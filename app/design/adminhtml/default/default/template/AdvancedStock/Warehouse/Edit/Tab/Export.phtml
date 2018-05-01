@@ -1,0 +1,34 @@
+<div class="entry-edit">
+          <div class="entry-edit-head">
+               <h4 class="icon-head head-account"><?php echo $this->__('Export Stock levels at specific date'); ?></h4>
+
+    </div>
+	<div class="fieldset">
+		<form method="POST" enctype="multipart/form-data" action="<?php echo $this->getUrl('adminhtml/AdvancedStock_Warehouse/ExportStockAtDate', array()); ?>">
+			<input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+			<input id="stock_id" name="stock_id" type="hidden" value="<?php echo $this->getStock()->getId(); ?>">
+			<table border="0" style="margin-left: 30px;">
+			<tr>
+				<th width="200" align="center"><?php echo $this->__('Date'); ?></th>
+				<td colspan="2">
+					<input type="text" id="date_end" name="date_end" size="8">
+					<img src="<?php echo $this->getSkinUrl('images/grid-cal.gif'); ?>" class="v-middle" id="img_calendar_date_end" />
+					<script type="text/javascript">
+						Calendar.setup({
+							inputField : 'date_end',
+							ifFormat : '%Y-%m-%e',
+							button : 'img_calendar_date_end',
+							align : 'Bl',
+							singleClick : true
+						});
+					</script>	
+				</td>
+			</tr>
+			<tr>
+				<th width="200" align="center"></th>
+				<td colspan="2"><input type="submit" value="<?php echo $this->__('Export'); ?>"></td>
+			</tr>
+			</table>
+		</form>
+	</div>
+</div>

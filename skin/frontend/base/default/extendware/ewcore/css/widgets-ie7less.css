@@ -1,0 +1,26 @@
+.ewfwidget .clear,
+.ewfwidget dl.accordion dt,
+.ewfwidget .grid thead th a,
+.ewfwidget .entry-edit .entry-edit-head,
+{ zoom:1; }
+
+.ewfwidget .clear { display:block; clear:both; height:0; font-size:0; line-height:0; overflow:hidden; }
+
+.ewfwidget input.input-file { padding:2px; }
+.ewfwidget input.checkbox,
+.ewfwidget input.radio { width:13px; height:13px; }
+.ewfwidget button.disabled,
+.ewfwidget button.disabled:hover,
+.ewfwidget button.disabled:active { filter:alpha(opacity=80); }
+
+/* Scalable Button Override */
+.ewfwidget button, .form-button            { width:auto; margin-left:5px; overflow:visible; }
+.ewfwidget .massaction button              { width:auto; height: 20px; margin-left:0; overflow:hidden; }
+
+/* Grid Filter Override */
+.ewfwidget .grid tr.filter th              { padding-top:3px; padding-bottom:3px; }
+.ewfwidget .grid tr.filter th input        { margin-right: -10px; }
+.ewfwidget .grid tr.filter th .range input { margin-right: 2px; }
+.ewfwidget button.icon-btn                 { width:31px; }
+
+.ewfwidget .content-header {zoom:1;}

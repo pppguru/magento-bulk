@@ -1,0 +1,97 @@
+<?php if (!$this->isWizarded()): ?>
+
+    <style>
+        .SaveButton {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+
+    <script>
+
+        function submitCompetitorPriceForm()
+        {
+            document.getElementById('form_competitor_price').submit();
+        }
+
+    </script>
+
+    <div id="competitor_price_wizard_content" style="display: none;">
+
+        <div style="margin: 10px;">
+
+            <h1 style="color: #4CAF50;">Ready to beat your competitors ?</h1>
+
+            <p>Price Tracker helps you to monitor competitors directly from the Magento admin panel</p>
+
+            <p>Using your product EAN / UPC numbers, Price Tracker indentifies your competitors on Google Shopping and displays the best prices in your Magento products list.</p>
+
+            <p>&nbsp;</p>
+
+            <h1 style="color: #4CAF50;">Setup your preferences</h1>
+
+            <form method="POST" id="form_competitor_price" action="<?php echo $this->getSaveUrl(); ?>">
+
+                <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey()  ?>" />
+
+                <center>
+                    <table border="0" width="80%">
+
+                        <?php if(!Mage::Helper('CompetitorPrice')->isErpInstalled()): ?>
+                            <tr style="height: 30px;">
+                                <td>Select attribute containing EAN / UPC codes ?</td>
+                                <td>
+                                    <select name="competitorPrice[attribute]" id="competitor_price_attribute">
+                                        <?php foreach($this->getAttributes() as $attribute): ?>
+                                            <option value="<?php echo $attribute['value']; ?>"><?php echo $attribute['label']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+
+                        <tr style="height: 30px;">
+                            <td>Select the google shopping channel you wish to use</td>
+                            <td>
+                                <select name="competitorPrice[country]" id="competitor_price_channel">
+                                    <?php foreach($this->getCountries() as $country): ?>
+                                        <option value="<?php echo $country['value']; ?>"><?php echo $country['label']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                        </tr>
+
+                    </table>
+                </center>
+
+            </form>
+
+            <p>&nbsp;</p>
+            <p><i>Note: you can change these settings later in System > Configuration > Pricer Tracker</i></p>
+
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <center>
+                <input type="button" value="Save and use it now !" class="SaveButton" onclick="submitCompetitorPriceForm();">
+            </center>
+
+        </div>
+    </div>
+
+    <script>
+
+        var content = document.getElementById('competitor_price_wizard_content').innerHTML;
+
+        win = new Window({className: "alphacube", title: "Welcome on Price Tracker", width:600, height:400, destroyOnClose:true,closable:true,draggable:true, recenterAuto:true, okLabel: "OK"});
+        win.setHTMLContent(content);
+        win.showCenter();
+
+    </script>
+
+<?php endif; ?>

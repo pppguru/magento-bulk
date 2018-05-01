@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE-COMMUNITY.txt
+ * 
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * aheadWorks does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * aheadWorks does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Catalogpermissions
+ * @copyright  Copyright (c) 2010-2011 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE-COMMUNITY.txt
+ */
+-->
+<config>
+    <includes>      
+        <default>
+			<Mage_Eav_Model_Config/>
+            <Mage_Eav_Model_Entity/>
+            <Mage_Eav_Model_Entity_Attribute/>
+            <Mage_Eav_Model_Entity_Attribute_Backend_Abstract/>
+            <Mage_Eav_Model_Entity_Attribute_Backend_Array/>
+            <Mage_Eav_Model_Entity_Attribute_Backend_Datetime/>
+            <Mage_Eav_Model_Entity_Attribute_Backend_Default/>
+            <Mage_Eav_Model_Entity_Attribute_Backend_Interface/>
+            <Mage_Eav_Model_Entity_Attribute_Backend_Time_Created/>
+            <Mage_Eav_Model_Entity_Attribute_Backend_Time_Updated/>
+            <Mage_Eav_Model_Entity_Attribute_Interface/>
+            <Mage_Eav_Model_Entity_Collection_Abstract/>
+            <Mage_Eav_Model_Entity_Interface/>
+            <Mage_Eav_Model_Entity_Type/>		
+            <Mage_Eav_Model_Mysql4_Entity_Attribute/>
+            <Mage_Eav_Model_Mysql4_Entity_Attribute_Collection/>
+            <Mage_Eav_Model_Mysql4_Entity_Type/>		
+            <Mage_CatalogInventory_Model_Mysql4_Stock/>
+            <Mage_CatalogInventory_Model_Mysql4_Stock_Item/>
+            <Mage_CatalogInventory_Model_Mysql4_Stock_Item_Collection/>
+            <Mage_CatalogInventory_Model_Mysql4_Stock_Status/> 
+            <Mage_CatalogInventory_Model_Observer/>
+            <Mage_CatalogInventory_Model_Stock/>
+            <Mage_CatalogInventory_Model_Stock_Item/>
+            <Mage_CatalogInventory_Model_Stock_Status/>				
+            <Mage_Catalog_Block_Product_Price/>
+            <Mage_Catalog_Helper_Product_Flat/>			
+            <Mage_Catalog_Model_Config/>
+            <Mage_Catalog_Model_Product/>			
+            <Mage_Catalog_Model_Product_Attribute_Backend_Media/>
+            <Mage_Catalog_Model_Product_Attribute_Backend_Price/>
+            <Mage_Catalog_Model_Product_Attribute_Backend_Startdate/>
+            <Mage_Catalog_Model_Product_Attribute_Backend_Tierprice/>
+            <Mage_Catalog_Model_Product_Attribute_Backend_Urlkey/>
+            <Mage_Catalog_Model_Product_Link/>
+            <Mage_Catalog_Model_Product_Media_Config/>
+            <Mage_Catalog_Model_Product_Option/>
+            <Mage_Catalog_Model_Product_Status/>
+            <Mage_Catalog_Model_Product_Type/>
+            <Mage_Catalog_Model_Product_Type_Abstract/>
+            <Mage_Catalog_Model_Product_Type_Price/>
+            <Mage_Catalog_Model_Product_Type_Simple/>
+            <Mage_Catalog_Model_Product_Url/>
+            <Mage_Catalog_Model_Product_Visibility/>			
+            <Mage_Catalog_Model_Resource_Eav_Attribute/>
+            <Mage_Catalog_Model_Resource_Eav_Mysql4_Abstract/>
+            <Mage_Catalog_Model_Resource_Eav_Mysql4_Collection_Abstract/>
+            <Mage_Catalog_Model_Resource_Eav_Mysql4_Config/>
+            <Mage_Catalog_Model_Resource_Eav_Mysql4_Product/>
+            <Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Attribute_Backend_Media/>
+            <Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Attribute_Backend_Tierprice/>
+            <Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Collection/>
+            <Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Link_Product_Collection/>
+            <Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Option/>
+            <Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Option_Collection/>		            
+            <Mage_Tax_Helper_Data/>
+            <Mage_Tax_Model_Calculation/>
+            <Mage_Tax_Model_Config/>
+            <Mage_Tax_Model_Mysql4_Calculation/>
+            <Mage_Tax_Model_Observer/>			 
+			<Mage_GiftMessage_Model_Entity_Attribute_Backend_Boolean_Config/>
+            <Mage_GiftMessage_Model_Observer/>
+            <Mage_GoogleCheckout_Block_Link/>
+            <Mage_GoogleCheckout_Helper_Data/>
+            <Mage_GoogleOptimizer_Block_Code_Conversion/>
+            <Mage_Reports_Model_Event_Observer/>
+            <Mage_Rule_Helper_Data/>
+            <Mage_Rule_Model_Condition_Abstract/>
+            <Mage_Rule_Model_Condition_Combine/>
+            <Mage_Rule_Model_Condition_Interface/>
+            <Mage_Rule_Model_Rule/>		
+			<!--<Mage_Sales_Model_Mysql4_Abstract/>--> 
+            <Mage_Sales_Model_Mysql4_Quote/>
+            <Mage_Sales_Model_Mysql4_Quote_Address/>
+            <Mage_Sales_Model_Mysql4_Quote_Address_Collection/>
+            <Mage_Sales_Model_Mysql4_Quote_Address_Item/>
+            <Mage_Sales_Model_Mysql4_Quote_Address_Item_Collection/>
+            <Mage_Sales_Model_Mysql4_Quote_Address_Rate/>
+            <Mage_Sales_Model_Mysql4_Quote_Address_Rate_Collection/>
+            <Mage_Sales_Model_Mysql4_Quote_Item/>
+            <Mage_Sales_Model_Mysql4_Quote_Item_Collection/>
+            <Mage_Sales_Model_Mysql4_Quote_Item_Option/>
+            <Mage_Sales_Model_Mysql4_Quote_Item_Option_Collection/>
+            <Mage_Sales_Model_Quote/>
+            <Mage_Sales_Model_Quote_Address/>
+            <Mage_Sales_Model_Quote_Address_Item/>
+            <Mage_Sales_Model_Quote_Address_Rate/>
+            <Mage_Sales_Model_Quote_Address_Total/>
+            <Mage_Sales_Model_Quote_Address_Total_Abstract/>
+            <Mage_Sales_Model_Quote_Address_Total_Discount/>
+            <Mage_Sales_Model_Quote_Address_Total_Grand/>
+            <Mage_Sales_Model_Quote_Address_Total_Shipping/>
+            <Mage_Sales_Model_Quote_Address_Total_Subtotal/>
+            <Mage_Sales_Model_Quote_Address_Total_Tax/>
+            <Mage_Sales_Model_Quote_Config/>
+            <Mage_Sales_Model_Quote_Item/>
+            <Mage_Sales_Model_Quote_Item_Abstract/>
+            <Mage_Sales_Model_Quote_Item_Option/>
+            <Mage_Shipping_Model_Rate_Abstract/>
+        </default>
+    </includes>
+</config>

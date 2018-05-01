@@ -1,0 +1,40 @@
+<form method="POST" action="<?php echo $this->applyInventoryUrl(); ?>" id="frm_apply">
+    <input type="hidden" name="ei_id" value="<?php echo $this->getInventory()->getId(); ?>">
+    <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Apply stock take'); ?></h4>
+    </div>
+    <div class="entry-edit">
+        <fieldset>
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td width="150"><?php echo $this->__('Stock movement label'); ?></td>
+                    <td class="input-ele" width="150">
+                        <input type="text" name="label" id="label" size="50">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="150"><?php echo $this->__('Stock movement date'); ?></td>
+                    <td class="input-ele" width="150">
+                        <input type="text" name="date" id="date" size="10"><i>(YYYY-MM-DD)</i>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="150"><?php echo $this->__('Simulation ?'); ?></td>
+                    <td class="input-ele" width="150">
+                        <select name="simulation" id="simulation">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="150"><?php echo $this->__('Apply'); ?></td>
+                    <td class="input-ele" width="150">
+                        <input type="button"  onclick="if (confirm('<?php echo $this->__('Do you REALLY want to apply stock take ?'); ?>')) {document.getElementById('frm_apply').submit()}" />
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+</form>

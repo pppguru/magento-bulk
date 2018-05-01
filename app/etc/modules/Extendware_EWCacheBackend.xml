@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+   <modules>
+      <Extendware_EWCacheBackend>
+         <active>true</active>
+         <codePool>local</codePool>
+         <depends>
+            <Extendware_EWCore/>
+         </depends>
+         <extendware>
+            <name>Cache Backends</name>
+         </extendware>
+      </Extendware_EWCacheBackend>
+   </modules>
+</config>

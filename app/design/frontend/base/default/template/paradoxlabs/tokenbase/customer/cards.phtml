@@ -1,0 +1,39 @@
+<h2><?php echo Mage::getStoreConfig( 'payment/' . Mage::registry('tokenbase_method') . '/title' ); ?></h2>
+<ol>
+	<?php if( count( $this->getCards() ) > 0 ): ?>
+		<?php foreach( $this->getCards() as $card ): ?>
+			<?php $card = $card->getTypeInstance(); ?>
+			<li class="item info-box block <?php if( $card->getExpires() != '' && strtotime( $card->getExpires() ) < time() ): ?>expired<?php endif; ?>">
+				<h3 class="box-title">
+					<?php if( $card->getExpires() != '' ): ?>
+						<small class="right pages"><?php echo date( 'm/Y', strtotime( $card->getExpires() ) ); ?></small>
+					<?php endif; ?>
+					<?php echo $this->__( 'Card: %s', $card->getLabel() ) ?>
+				</h3>
+				<address class="box-content">
+					<?php echo $card->getAddressObject()->format('html'); ?>
+					<div class="buttons-set" style="margin-top:8px;">
+						<?php if( $card->isInUse() ): ?>
+							<abbr title="<?php echo $this->__('This payment record cannot be modified while associated with pending orders.'); ?>"><?php echo $this->__('Card In Use'); ?></abbr>
+						<?php else: ?>
+							<form action="<?php echo Mage::getUrl('*/*', array('_secure' => true, 'method' => $card->getMethod())) ?>" method="post">
+								<input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+								<input type="hidden" name="id" value="<?php echo $card->getId() ?>" />
+								<input type="hidden" name="method" value="<?php echo $card->getMethod(); ?>" />
+								<button class="button" type="submit"><span><span><?php echo $this->__('Edit'); ?></span></span></button>
+							</form>
+							<form action="<?php echo Mage::getUrl('*/*/delete', array('_secure' => true, 'method' => $card->getMethod())) ?>" method="post" onsubmit="return confirm('<?php echo $this->__('Are you sure you want to delete this payment record?'); ?>');">
+								<input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+								<input type="hidden" name="id" value="<?php echo $card->getId() ?>" />
+								<input type="hidden" name="method" value="<?php echo $card->getMethod(); ?>" />
+								<button class="button" type="submit"><span><span><?php echo $this->__('Delete'); ?></span></span></button>
+							</form>
+						<?php endif; ?>
+					</div>
+				</address>
+			</li>
+		<?php endforeach; ?>
+	<?php else: ?>
+		<li class="item"><?php echo $this->__('You do not have any payment data saved yet.') ?></li>
+	<?php endif; ?>
+</ol>

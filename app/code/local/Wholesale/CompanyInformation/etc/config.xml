@@ -1,0 +1,23 @@
+<config>
+   <modules>
+       <Wholesale_CompanyInformation>
+           <version>0.1.0</version>
+       </Wholesale_CompanyInformation>
+   </modules>
+ <adminhtml>
+    <layout>
+           <updates>
+               <companyinformation>
+                  <file>companyinformation.xml</file>
+               </companyinformation>
+           </updates>
+       </layout>
+   </adminhtml>  
+   <global>
+       <blocks>
+           <companyinformation>
+               <class>Wholesale_CompanyInformation_Block</class>
+           </companyinformation>
+       </blocks>
+ </global>
+</config>

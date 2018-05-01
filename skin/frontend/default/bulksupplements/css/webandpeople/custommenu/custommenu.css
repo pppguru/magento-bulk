@@ -1,0 +1,92 @@
+#custommenu {
+	position:relative;
+	font-size: 14px;
+	margin: 0 auto;
+/*    padding: 0 16px;*/
+/*    width: 918px;*/
+	z-index: 999;
+}
+div.menu {
+	float: left;
+}
+div.menu.act a {
+/*    background-color:#FF7A01;*/
+	color: #fff196;
+}
+div.menu.active a {
+/*    background-color:#FF7A01;*/
+	color: #fff196;
+}
+div.wp-custom-menu-popup {
+	position:absolute;
+	z-index:3000;
+/*    border:5px solid #FF7A01;*/
+	display: none;
+
+	text-align:left;
+	padding: 10px 0;
+}
+
+div.wp-custom-menu-popup .block1 {
+	background-color:#fff;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 0 0 7px #999;
+	-moz-box-shadow: 0 0 7px #999;
+	-webkit-box-shadow: 0 0 7px #999;
+	padding: 10px 10px 0 10px;
+}
+
+div.menu, div.wp-custom-menu-popup {
+/*    padding: 10px 10px 0;*/
+}
+div.menu {
+	padding: 0;
+	height: 40px;
+	line-height: 40px;
+	background: url(../../../images/menu_divider.png) right top repeat-y;
+
+}
+div.menu_last {
+	background: none;
+}
+
+div.menu a, div.wp-custom-menu-popup a {
+	text-decoration: none;
+	display:block;
+}
+div.menu a:hover {
+	text-decoration: none;
+	color: #fff196;
+}
+
+div.menu a {
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 0 40px;
+}
+div.menu_last a { color: #fff196; }
+div.wp-custom-menu-popup a {
+	margin-bottom: 10px;
+}
+div.wp-custom-menu-popup a:hover {
+	text-decoration: underline;
+}
+div.wp-custom-menu-popup a.actParent {
+	color: #4D4D4D;
+}
+div.wp-custom-menu-popup a.act {
+	color: #FF7A01;
+}
+div.column {
+	float:left;
+	padding:5px 10px;
+}
+div.itemSubMenu {
+	margin-left:20px;
+}
+.clearBoth {
+	clear:both;
+}

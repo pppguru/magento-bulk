@@ -1,0 +1,51 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><form class="checkout-step__island form" id="co-shipping-method-form" action="">
+    <div class="shipping-methods" id="checkout-shipping-method-load">
+        <?php echo $this->getChildHtml('available') ?>
+    </div><!-- .shipping-methods -->
+
+    <div class="checkout-step__giftmessages" id="onepage-checkout-shipping-method-additional-load">
+        <?php echo $this->getChildHtml('additional') ;?>
+    </div>
+
+    <p class="form__field" id="shipping-method-buttons-container">
+        <button type="button" class="form__submit button" onclick="setStepDescription('shipping_method', getShippingMethodStepDescription());shippingMethod.save()"><?php echo $this->__('Choose and continue') ?></button>
+    </p>
+</form>
+
+<script>
+    window.shippingMethod = new ShippingMethod('co-shipping-method-form', "<?php echo $this->getUrl('checkout/onepage/saveShippingMethod') ?>");
+    var getShippingMethodStepDescription = function() {
+        var result = '';
+        $$('input[name="shipping_method"]').each(function(el){
+            if(el.checked) {
+                result = eval("window.shippingLabels['" + el.value + "']");
+            }
+        }.bind(result));
+        return result;
+    }
+</script>

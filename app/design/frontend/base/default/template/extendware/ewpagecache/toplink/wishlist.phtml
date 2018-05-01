@@ -1,0 +1,12 @@
+<?php
+$text = '';
+$quantity = (int)$this->getQty();
+if ($quantity == 1) {
+	$text = $this->__('My Wishlist (%s item)', $quantity);
+} elseif ($quantity > 0) {
+	$text = $this->__('My Wishlist (%s items)', $quantity);
+} else {
+	$text = $this->__('My Wishlist');
+}
+?>
+<a href="<?php echo Mage::helper('wishlist')->getListUrl(); ?>" title="<?php echo $text; ?>"><?php echo $text; ?></a>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="before_body_end">
+            <block type="page/html" name="googletrustedstores_badge" template="googletrustedstores/badge.phtml"/>
+        </reference>
+    </default>
+    <checkout_onepage_success>
+        <reference name="before_body_end">
+            <block type="page/html" name="googletrustedstores" after="-" template="googletrustedstores/details.phtml"/>
+        </reference>
+    </checkout_onepage_success>
+</layout>

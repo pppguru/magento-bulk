@@ -1,0 +1,85 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Background Tasks Stats')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl()?>'" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+            </td>            
+        </tr>
+    </table>
+</div>
+
+	<div class="entry-edit">
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Remain to execute'); ?></h4> 
+	    </div>
+	    <fieldset id="my-fieldset">
+			<center>
+				<h2><?php echo $this->getRemainToExecuteCount(); ?></h2>
+			</center>
+	    </fieldset>
+	</div>
+
+	<div class="entry-edit">
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Cron execution stats'); ?></h4> 
+	    </div>
+	    <fieldset id="my-fieldset">
+				<div class="grid">
+		        	<table class="data" cellspacing="0">
+		            	<thead>
+			        		<tr class="headings">
+			        			<th class="a-center"><?php echo $this->__('Executed At'); ?></th>
+			        			<th class="a-center"><?php echo $this->__('Duration'); ?></th>
+			        			<th class="a-center"><?php echo $this->__('Task count'); ?></th>
+			        		</tr>
+		        		</thead>
+			            <tbody>
+							<?php foreach ($this->getCronExecutionStats() as $stat): ?>
+								<tr>
+									<td class="a-center"><?php echo $stat['bt_executed_at']; ?></td>
+									<td class="a-center"><?php echo $stat['sum_duration']; ?></td>
+									<td class="a-center"><?php echo $stat['count_task']; ?></td>
+								</tr>											
+							<?php endforeach; ?>			            
+			            </tbody>
+					</table>
+				</div> 
+	    </fieldset>
+	</div>
+
+	<div class="entry-edit">
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Stats per method'); ?></h4> 
+	    </div>
+	    <fieldset id="my-fieldset">
+				<div class="grid">
+		        	<table class="data" cellspacing="0">
+		            	<thead>
+			        		<tr class="headings">
+			        			<th class="a-center"><?php echo $this->__('Helper'); ?></th>
+			        			<th class="a-center"><?php echo $this->__('Method'); ?></th>
+			        			<th class="a-center"><?php echo $this->__('Count'); ?></th>
+			        			<th class="a-center"><?php echo $this->__('Avg duration'); ?></th>
+			        			<th class="a-center"><?php echo $this->__('Total duration'); ?></th>
+			        		</tr>
+		        		</thead>
+			            <tbody>
+							<?php foreach ($this->getStatsPerMethod() as $stat): ?>
+								<tr>
+									<td class="a-center"><?php echo $stat['bt_helper']; ?></td>
+									<td class="a-center"><?php echo $stat['bt_method']; ?></td>
+									<td class="a-center"><?php echo $stat['record_count']; ?></td>
+									<td class="a-center"><?php echo (int)$stat['avg_duration']; ?></td>
+									<td class="a-center"><?php echo $stat['sum_duration']; ?></td>
+								</tr>																		
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+	    </fieldset>
+	</div>
+
+</div>

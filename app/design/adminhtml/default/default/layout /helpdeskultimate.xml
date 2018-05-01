@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <helpdeskultimate_admin_index_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>aw_helpdeskultimate/css/grid.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_helpdeskultimate/js/grid.js</name>
+            </action>
+        </reference>
+    </helpdeskultimate_admin_index_index>
+    <helpdeskultimate_admin_ticket_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>mage/adminhtml/wysiwyg/widget.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/variables.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/browser.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/magento.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_helpdeskultimate/js/ticket.js</name>
+            </action>
+            <action method="addJs">
+                <script>lib/flex.js</script>
+            </action>
+            <action method="addJs">
+                <script>lib/FABridge.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/flexuploader.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/browser.js</script>
+            </action>
+        </reference>
+    </helpdeskultimate_admin_ticket_edit>
+    <adminhtml_helpdeskultimate_ticket_edit>
+        <reference name="header">
+            <block type="core/template" name="helpdeskultimate_head" template="helpdeskultimate/head.phtml"/>
+        </reference>
+    </adminhtml_helpdeskultimate_ticket_edit>
+    <helpdeskultimate_admin_departments_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_helpdeskultimate/js/grid.js</name>
+            </action>
+        </reference>
+    </helpdeskultimate_admin_departments_index>
+    <helpdeskultimate_admin_departments_edit>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_helpdeskultimate/js/department.js</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="helpdeskultimate/adminhtml_departments_edit" name="department_edit"/>
+        </reference>
+        <reference name="left">
+            <block type="helpdeskultimate/adminhtml_departments_edit_tabs" name="department_edit_tabs">
+                <block type="helpdeskultimate/adminhtml_departments_edit_tab_general" name="tab_general"/>
+                <action method="addTab">
+                    <name>department_general</name>
+                    <block>tab_general</block>
+                </action>
+                <block type="helpdeskultimate/adminhtml_departments_edit_tab_email" name="tab_email"/>
+                <action method="addTab">
+                    <name>department_email</name>
+                    <block>tab_email</block>
+                </action>
+                <block type="helpdeskultimate/adminhtml_departments_edit_tab_templates" name="tab_templates"/>
+                <action method="addTab">
+                    <name>department_templates</name>
+                    <block>tab_templates</block>
+                </action>
+                <block type="helpdeskultimate/adminhtml_departments_edit_tab_permissions" name="tab_permissions"/>
+                <action method="addTab">
+                    <name>department_permissions</name>
+                    <block>tab_permissions</block>
+                </action>
+            </block>
+        </reference>
+    </helpdeskultimate_admin_departments_edit>
+    <adminhtml_helpdeskultimate_departments_stats>
+        <reference name="header">
+            <block type="core/template" name="helpdeskultimate_head" template="helpdeskultimate/head.phtml"/>
+        </reference>
+    </adminhtml_helpdeskultimate_departments_stats>
+    <helpdeskultimate_admin_templates_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_helpdeskultimate/js/grid.js</name>
+            </action>
+        </reference>
+    </helpdeskultimate_admin_templates_index>
+    <helpdeskultimate_admin_templates_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>mage/adminhtml/wysiwyg/widget.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/variables.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/browser.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/magento.css</name>
+            </action>
+            <action method="addJs">
+                <script>lib/flex.js</script>
+            </action>
+            <action method="addJs">
+                <script>lib/FABridge.js</script>
+            </action>
+            <action method="addJs">
+                <script>mage/adminhtml/flexuploader.js</script>
+            </action>
+        </reference>
+    </helpdeskultimate_admin_templates_edit>
+    <adminhtml_helpdeskultimate_departments_templates>
+        <reference name="header">
+            <block type="core/template" name="helpdeskultimate_head" template="helpdeskultimate/head.phtml"/>
+        </reference>
+    </adminhtml_helpdeskultimate_departments_templates>
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <block type="helpdeskultimate/adminhtml_customer_edit_tabs_tickets" name="helpdeskultimate_tickets"/>
+            <action method="addTab">
+                <name>Tickets</name>
+                <block>helpdeskultimate_tickets</block>
+            </action>
+        </reference>
+    </adminhtml_customer_edit>
+    <adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+            <block type="helpdeskultimate/adminhtml_sales_order_view_tabs_tickets" name="helpdeskultimate_tickets"/>
+            <action method="addTab">
+                <name>Tickets</name>
+                <block>helpdeskultimate_tickets</block>
+            </action>
+        </reference>
+        <reference name="order_history">
+            <action method="setTemplate">
+                <template>helpdeskultimate/sales/order/view/history.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+    <adminhtml_sales_order_addcomment>
+        <reference name="order_history">
+            <action method="setTemplate">
+                <template>helpdeskultimate/sales/order/view/history.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_addcomment>
+    <helpdeskultimate_admin_rejectingemails_rejectedlist>
+        <reference name="content">
+            <block type="helpdeskultimate/adminhtml_rejectingemails_rejectedlist" name="hdu_rejected_list"/>
+        </reference>
+    </helpdeskultimate_admin_rejectingemails_rejectedlist>
+    <helpdeskultimate_admin_rejectingemails_patternslist>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_helpdeskultimate/js/grid.js</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="helpdeskultimate/adminhtml_rejectingemails_patternslist" name="hdu_patterns_list"/>
+        </reference>
+    </helpdeskultimate_admin_rejectingemails_patternslist>
+    <helpdeskultimate_admin_rejectingemails_edit>
+        <reference name="content">
+            <block type="helpdeskultimate/adminhtml_rejectingemails_patternslist_edit" name="hdu_patterns_list_edit"/>
+        </reference>
+    </helpdeskultimate_admin_rejectingemails_edit>
+    <awcore_admin_viewlog_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_helpdeskultimate/js/logger.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>aw_helpdeskultimate/css/logger.css</name>
+            </action>
+        </reference>
+    </awcore_admin_viewlog_index>
+    <helpdeskultimate_admin_gateways_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_helpdeskultimate/js/grid.js</name>
+            </action>
+        </reference>
+    </helpdeskultimate_admin_gateways_index>
+    <adminhtml_permissions_role_editrole>
+        <reference name="adminhtml.permissions.editroles">
+            <block type="helpdeskultimate/adminhtml_permissions_tab_departments"
+                   name="helpdeskultimate.adminhtml_permissions_tab_departments"/>
+            <action method="addTab">
+                <name>helpdesk_departments</name>
+                <block>helpdeskultimate.adminhtml_permissions_tab_departments</block>
+            </action>
+        </reference>
+    </adminhtml_permissions_role_editrole>
+</layout>

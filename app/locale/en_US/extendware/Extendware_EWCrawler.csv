@@ -1,0 +1,191 @@
+"% Crawled","% Crawled"
+"<b>Only available with the ""Deep Crawling / Logged URLs"" addon. Please <a href=""http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/"" target=""_blank"">purchase addon</a> to enable.</b>","<b>Only available with the ""Deep Crawling / Logged URLs"" addon. Please <a href=""http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/"" target=""_blank"">purchase addon</a> to enable.</b>"
+Action,Action
+"Add after","Add after"
+"Add Custom Url","Add Custom Url"
+"Add Filter","Add Filter"
+"Add Job","Add Job"
+"Added %d custom URLs to queue","Added %d custom URLs to queue"
+"Added %d generated URLs to queue","Added %d generated URLs to queue"
+"Added %d logged URLs to queue","Added %d logged URLs to queue"
+"Adding a new queued job will delete any existing queued jobs.","Adding a new queued job will delete any existing queued jobs."
+"All keys and values must be raw URL encoded. Usually you would leave this blank. Format: key1=value1&key2=value2","All keys and values must be raw URL encoded. Usually you would leave this blank. Format: key1=value1&key2=value2"
+"Almost always enable this. There is no reason to crawl a product that has been disabled.","Almost always enable this. There is no reason to crawl a product that has been disabled."
+"Are you sure you want to change the status?","Are you sure you want to change the status?"
+"Are you sure?","Are you sure?"
+Automatic,Automatic
+"Avg. Crawl Rate","Avg. Crawl Rate"
+Both,Both
+"Cannot change status from %s to %s","Cannot change status from %s to %s"
+Categories,Categories
+"Category Products","Category Products"
+"Change status","Change status"
+"Changing the lock key is unsupported","Changing the lock key is unsupported"
+"Close DB Connection","Close DB Connection"
+"CMS Pages","CMS Pages"
+Configuration,Configuration
+Cookies,Cookies
+"Could not create / open file: %s","Could not create / open file: %s"
+"Could not find a customer for customer group ID %d","Could not find a customer for customer group ID %d"
+"Crawl Delay","Crawl Delay"
+"Crawl Finished","Crawl Finished"
+"Crawl Started","Crawl Started"
+"Crawled URLs","Crawled URLs"
+"Crawled Urls","Crawled Urls"
+Crawler,Crawler
+"Crawler not runnable due to high system load: %s","Crawler not runnable due to high system load: %s"
+Created,Created
+Curl,Curl
+"Currencies that are disabled when generating URLs. CTRL-Click to select more than one","Currencies that are disabled when generating URLs. CTRL-Click to select more than one"
+"Custom Url","Custom Url"
+"Custom URLs","Custom URLs"
+"Custom Urls","Custom Urls"
+"Custom Urls for %s (%s)","Custom Urls for %s (%s)"
+"Customer Group Ids","Customer Group Ids"
+"Customer Groups","Customer Groups"
+"Date Created","Date Created"
+"Date Scheduled","Date Scheduled"
+"Date Started","Date Started"
+"Deep Crawling","Deep Crawling"
+"Deep Crawling / Logged URLs are every page in your site that a visitor has been to. Deep Crawling / Logged URLs are read from the Extendware Full Page Cache extension. If you are using another Full Page Cache Extension, then no logged URLs will be crawled unless they create a compatible log file for our crawler.","Deep Crawling / Logged URLs are every page in your site that a visitor has been to. Deep Crawling / Logged URLs are read from the Extendware Full Page Cache extension. If you are using another Full Page Cache Extension, then no logged URLs will be crawled unless they create a compatible log file for our crawler."
+Delete,Delete
+"Destroy Session","Destroy Session"
+Developer,Developer
+"Did you know more pages will be crawled if the <a href=""http://www.extendware.com/howto-purchase-addon/"">deep crawling addon is purchased</a>?","Did you know more pages will be crawled if the <a href=""http://www.extendware.com/howto-purchase-addon/"">deep crawling addon is purchased</a>?"
+"Did you know purchasing %s can speed up your store even more?","Did you know purchasing %s can speed up your store even more?"
+"Did you know the crawler will be much more effective if you purchase our best-in-class <a href=""http://www.extendware.com/page-cache.html"">full page cache</a>?","Did you know the crawler will be much more effective if you purchase our best-in-class <a href=""http://www.extendware.com/page-cache.html"">full page cache</a>?"
+Directory,Directory
+Disabled,Disabled
+"Disabled Currencies","Disabled Currencies"
+Edit,Edit
+"Enable generating URLs from the core rewrite table","Enable generating URLs from the core rewrite table"
+"Enable or disable reading URLs from a directory","Enable or disable reading URLs from a directory"
+"Enable or disable the crawler","Enable or disable the crawler"
+"Enable or disable the verbose log. Be careful, this can create a large log file.","Enable or disable the verbose log. Be careful, this can create a large log file."
+"Enable or disabling destroying session after each crawl request.","Enable or disabling destroying session after each crawl request."
+Enabled,Enabled
+"Exclude Disabled Products","Exclude Disabled Products"
+"Exclude disabled products from being crawled","Exclude disabled products from being crawled"
+"Exclude Hidden Products","Exclude Hidden Products"
+"Exclude hidden products from being crawler","Exclude hidden products from being crawler"
+Extendware,Extendware
+"Filter Information","Filter Information"
+Filters,Filters
+Finished,Finished
+"Flush Full Page Cache","Flush Full Page Cache"
+"Flush Magento Cache","Flush Magento Cache"
+"Flush magento cache prior to the crawl","Flush magento cache prior to the crawl"
+"Flush the cache prior to the crawl. Usually should be disabled.","Flush the cache prior to the crawl. Usually should be disabled."
+"Flushing the magento cache ensures all the block caches are refreshed and will ensure crawled URLs are showing the most recent information.","Flushing the magento cache ensures all the block caches are refreshed and will ensure crawled URLs are showing the most recent information."
+General,General
+"General Information","General Information"
+"Generated URLs","Generated URLs"
+"Generated Urls","Generated Urls"
+"Generated URLs consist of your products, default category pages (no pagination, no sort by options, etc), and CMS pages.","Generated URLs consist of your products, default category pages (no pagination, no sort by options, etc), and CMS pages."
+"Generated Urls for %s (%s)","Generated Urls for %s (%s)"
+"Generation Segmentations","Generation Segmentations"
+"Group does not exist: %s","Group does not exist: %s"
+"Hidden products are products that your customers will most likely never see. For example, a simple product that is not visible in the category as it is only used as part of a configurable product.","Hidden products are products that your customers will most likely never see. For example, a simple product that is not visible in the category as it is only used as part of a configurable product."
+HTTP,HTTP
+ID,ID
+"If an item is selected here then it will be excluded from the generated url list. Category products are product urls with categories in them.","If an item is selected here then it will be excluded from the generated url list. Category products are product urls with categories in them."
+"If disabled then an already cached page will not be refreshed with a new version, which can dramatically increase crawl speed. <b>Note: </b> this only works with Extendware Full Page Cache","If disabled then an already cached page will not be refreshed with a new version, which can dramatically increase crawl speed. <b>Note: </b> this only works with Extendware Full Page Cache"
+"If disabled, then this URL will not fed to the crawler as a custom url to crawl.","If disabled, then this URL will not fed to the crawler as a custom url to crawl."
+"If enabled the db connection will be closed and reopened throughout the crawl process. If disabled then the db connection will be maintained.","If enabled the db connection will be closed and reopened throughout the crawl process. If disabled then the db connection will be maintained."
+Job,Job
+"Job has been deleted","Job has been deleted"
+"Job has been successfully added","Job has been successfully added"
+"Job has been successfully saved","Job has been successfully saved"
+"Job must be defined before working directory can be determined","Job must be defined before working directory can be determined"
+Jobs,Jobs
+"Last Activity","Last Activity"
+"Last Crawl Activity","Last Crawl Activity"
+Log,Log
+"Logged URLs","Logged URLs"
+"Logged Urls for %s (%s)","Logged Urls for %s (%s)"
+Main,Main
+Manual,Manual
+"Max Age (days)","Max Age (days)"
+"Max Threads","Max Threads"
+"Max time to wait for a request to complete. Setting too low could cause increased server load.","Max time to wait for a request to complete. Setting too low could cause increased server load."
+Message,Message
+"Missing data for item","Missing data for item"
+"No jobs are present in the queue. They will be automatically added by the crawler cronjob. Did you properly setup the crawler specific cronjob according to the crawler installation guide?","No jobs are present in the queue. They will be automatically added by the crawler cronjob. Did you properly setup the crawler specific cronjob according to the crawler installation guide?"
+"Num Custom Urls","Num Custom Urls"
+"Num Generated Urls","Num Generated Urls"
+"Num Logged Urls","Num Logged Urls"
+"Number of Minutes","Number of Minutes"
+"Only crawl a URL if it has been logged this number of times. This ensures the crawler does not crawl tens of thousands of pages that no one will ever visit again (such as an uncommon search string). Keep in mind that a URL is only log on cache. So, if your pages expire every 5 days, then the maximum times that page will be logged in a month is around 6.","Only crawl a URL if it has been logged this number of times. This ensures the crawler does not crawl tens of thousands of pages that no one will ever visit again (such as an uncommon search string). Keep in mind that a URL is only log on cache. So, if your pages expire every 5 days, then the maximum times that page will be logged in a month is around 6."
+Path,Path
+Paused,Paused
+"Percent Crawled","Percent Crawled"
+"Performance Information","Performance Information"
+"Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs.","Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs."
+"Please select an item(s) before submitting to the mass processor","Please select an item(s) before submitting to the mass processor"
+Products,Products
+Protocol,Protocol
+Queued,Queued
+"Raising this value too high will slow down your server. You can change this to determine the optimal value and then set it permanently in the crawler config.","Raising this value too high will slow down your server. You can change this to determine the optimal value and then set it permanently in the crawler config."
+"Refresh Pages","Refresh Pages"
+"RegExp Filters","RegExp Filters"
+"Relative path to the base path of the store. For example, to crawl http://www.example.com/my-special-page.html you would input /my-special-page.html","Relative path to the base path of the store. For example, to crawl http://www.example.com/my-special-page.html you would input /my-special-page.html"
+"Request returned an error %s: %s","Request returned an error %s: %s"
+"Request Timeout (secs)","Request Timeout (secs)"
+Running,Running
+Scheduled,Scheduled
+"Script Name","Script Name"
+"Secure HTTP","Secure HTTP"
+"Select which customers groups should be crawled. Please note, each customer group will multiply the # of urls needing to be crawled.  <b>Note:</b> Normally you should ONLY select NOT LOGGED IN unless you have a good reason to otherwise","Select which customers groups should be crawled. Please note, each customer group will multiply the # of urls needing to be crawled.  <b>Note:</b> Normally you should ONLY select NOT LOGGED IN unless you have a good reason to otherwise"
+"Select which customers groups should be crawled. Please note, each customer group will multiply the # of urls needing to be crawled. <b>Note:</b> Normally you should ONLY select NOT LOGGED IN unless you have a good reason to otherwise","Select which customers groups should be crawled. Please note, each customer group will multiply the # of urls needing to be crawled. <b>Note:</b> Normally you should ONLY select NOT LOGGED IN unless you have a good reason to otherwise"
+"Selected item(s) (%d) have been mass processed by the %s processor","Selected item(s) (%d) have been mass processed by the %s processor"
+"Selected item(s) (%d) have failed to be mass processed by the %s processor","Selected item(s) (%d) have failed to be mass processed by the %s processor"
+"Selected item(s) (%d) have failed to be mass processed by the %s processor (running jobs with an enabled status cannot be deleted)","Selected item(s) (%d) have failed to be mass processed by the %s processor (running jobs with an enabled status cannot be deleted)"
+Settings,Settings
+"Some data such as crawler state, num crawled urls, etc can take several minutes to update","Some data such as crawler state, num crawled urls, etc can take several minutes to update"
+"Some settings such as status and max threads can take several minutes to take effect","Some settings such as status and max threads can take several minutes to take effect"
+Started,Started
+State,State
+Status,Status
+"Store Ids","Store Ids"
+"Store View","Store View"
+"The average number of URLs crawled per minute over the entire crawl","The average number of URLs crawled per minute over the entire crawl"
+"The higher the number the faster the crawls, in general. Keep in mind, 2 threads is 2 concurrent requests, 3 is 3 concurrent requests, etc. If you set this to a higher number than your server can handle, then your store will become very slow.","The higher the number the faster the crawls, in general. Keep in mind, 2 threads is 2 concurrent requests, 3 is 3 concurrent requests, etc. If you set this to a higher number than your server can handle, then your store will become very slow."
+"The higher this number the more likely the crawler will crawl old / expired URLs. Set this to a value that lets the crawler build history, but is not so long that old, invalid URLs can never be ""forgotten"".","The higher this number the more likely the crawler will crawl old / expired URLs. Set this to a value that lets the crawler build history, but is not so long that old, invalid URLs can never be ""forgotten""."
+"The main thing this can be used for is if a server has limited resources you can set max threads to one and then add a wait between each request to give the server a break.","The main thing this can be used for is if a server has limited resources you can set max threads to one and then add a wait between each request to give the server a break."
+"The maximum number of concurrent requests to your Web site at one time. Be careful about setting this too high","The maximum number of concurrent requests to your Web site at one time. Be careful about setting this too high"
+"The minimum number of minutes to wait after the last crawl until a new crawl starts. ""0"" means a crawl will queue as soon as the last crawl finishes (continuous crawling).","The minimum number of minutes to wait after the last crawl until a new crawl starts. ""0"" means a crawl will queue as soon as the last crawl finishes (continuous crawling)."
+"The more segments the longer processing will take, but it will use less memory. 2 and 3 segments will be 2 and 3 time slowers than 1 segment, but memory can be dramatically reduced. Maximum: 100","The more segments the longer processing will take, but it will use less memory. 2 and 3 segments will be 2 and 3 time slowers than 1 segment, but memory can be dramatically reduced. Maximum: 100"
+"The name of the main script for your store. Usually this is index.php. This is only used if you have rewrites disabled","The name of the main script for your store. Usually this is index.php. This is only used if you have rewrites disabled"
+"The number of occurrences a url must be in a the log before it is crawled. Usually this should not be set for more than 5.","The number of occurrences a url must be in a the log before it is crawled. Usually this should not be set for more than 5."
+"The number of parallel requests performed at one time","The number of parallel requests performed at one time"
+"The number of segments used to process the logged urls.","The number of segments used to process the logged urls."
+"The number of URLs created from logs. It can take a few weeks before this is > 0. Only available if you have the Deep Crawling / Logged Urls addon.","The number of URLs created from logs. It can take a few weeks before this is > 0. Only available if you have the Deep Crawling / Logged Urls addon."
+"The number of URLs created through generation.","The number of URLs created through generation."
+"The number of URLs that have been crawled","The number of URLs that have been crawled"
+"The number of URLs that you have added programmatically according to the userguide.","The number of URLs that you have added programmatically according to the userguide."
+"The relative path to the directory from the mage root that contains the *.log files","The relative path to the directory from the mage root that contains the *.log files"
+"The URL will be crawled for the selected stores and the final URL will change based on the base path of the selected stores.","The URL will be crawled for the selected stores and the final URL will change based on the base path of the selected stores."
+"There was %s URLS added for ""%s""","There was %s URLS added for ""%s"""
+"This feature is for if you run Extendware Full Page Cache. Otherwise, you will need to create correctly formatted CSV files to use this feature.","This feature is for if you run Extendware Full Page Cache. Otherwise, you will need to create correctly formatted CSV files to use this feature."
+"This is recommended to always be on. Each crawl request creates a new session, so without destroying these new sessions your session data will increase by a lot.","This is recommended to always be on. Each crawl request creates a new session, so without destroying these new sessions your session data will increase by a lot."
+"This log every URL that is crawled to the ewcrawler.log file. Be careful leaving this enabled as it can create a huge log file.","This log every URL that is crawled to the ewcrawler.log file. Be careful leaving this enabled as it can create a huge log file."
+"This must be a valid regular expression with the beginning and ending ""/"". For example, /admin/. You can read the PHP preg documentation for more information","This must be a valid regular expression with the beginning and ending ""/"". For example, /admin/. You can read the PHP preg documentation for more information"
+"This should almost always be disabled. This option is only compatible with the Extendware Full Page Cache. If enabled, then your site will be slow during the crawl as the cache will be empty until the crawler rebuilds it.","This should almost always be disabled. This option is only compatible with the Extendware Full Page Cache. If enabled, then your site will be slow during the crawl as the cache will be empty until the crawler rebuilds it."
+"This usually does not need to be changed. If your store URLs are like this: http://www.domain.com/scriptname.php/, then you will need to change this to the name of the script.","This usually does not need to be changed. If your store URLs are like this: http://www.domain.com/scriptname.php/, then you will need to change this to the name of the script."
+Threshold,Threshold
+"Time in milliseconds to sleep after each request finishes. This should normally be 0. 1 second = 1000 milliseconds","Time in milliseconds to sleep after each request finishes. This should normally be 0. 1 second = 1000 milliseconds"
+"Timing Information","Timing Information"
+"To prevent overloading our demo server crawler jobs will not actually run in the demo and will not be automatically scheduled.","To prevent overloading our demo server crawler jobs will not actually run in the demo and will not be automatically scheduled."
+"Total number of minutes that the crawl took","Total number of minutes that the crawl took"
+Url,Url
+"URL Filter RegExp","URL Filter RegExp"
+"Url has been deleted","Url has been deleted"
+"Url has been successfully saved","Url has been successfully saved"
+"URL will be crawled for each of the selected customer groups. In most cases you would only select ""NOT LOGGED IN"" unless you have a good reason to otherwise.","URL will be crawled for each of the selected customer groups. In most cases you would only select ""NOT LOGGED IN"" unless you have a good reason to otherwise."
+"URLs longer than this number of days will not be included in the crawl","URLs longer than this number of days will not be included in the crawl"
+"Usually you only have to crawl separate customer groups if you receive lots of logged in traffic from that customer group and the cache is segmented on that customer group. You must be using the Extendware Page Cache to crawl as a customer group.","Usually you only have to crawl separate customer groups if you receive lots of logged in traffic from that customer group and the cache is segmented on that customer group. You must be using the Extendware Page Cache to crawl as a customer group."
+"Verbose Log","Verbose Log"
+"Wait Time (ms)","Wait Time (ms)"
+"When a URL matches one of the above regular expressions it will be excluded from the crawl.","When a URL matches one of the above regular expressions it will be excluded from the crawl."
+"Whether to crawl secure or non-secure pages or both. Usually non-secure (HTTP) is correct.","Whether to crawl secure or non-secure pages or both. Usually non-secure (HTTP) is correct."
+"You should set this to as high of a value as you can tolerate. Crawling does take server resources, so there is no reason to keep crawl very frequently unless your use case requires it.","You should set this to as high of a value as you can tolerate. Crawling does take server resources, so there is no reason to keep crawl very frequently unless your use case requires it."

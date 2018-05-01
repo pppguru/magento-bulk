@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <!--Core Magento Compatibility-->
+    <checkout_onepage_shippingmethod>
+        <reference name="root">
+            <action method="setTemplate">
+                <template helper='wsafreightcommon/getAvailableTemplate'/>
+            </action>
+        </reference>
+    </checkout_onepage_shippingmethod>
+
+    <checkout_cart_index>
+        <reference name="checkout.cart">
+            <block type="wsafreightcommon/checkout_cart_shipping" name="checkout.cart.shipping" as="shipping"/>
+        </reference>
+        <reference name="checkout.cart.shipping">
+            <action method="setTemplate">
+                <template helper="wsafreightcommon/getTemplate" />
+            </action>
+        </reference>
+    </checkout_cart_index>
+
+    <!--MageWorx iCart Compatibility FREIGHT-189-->
+    <checkout_icart_added>
+        <reference name="checkout.cart">
+            <block type="wsafreightcommon/checkout_cart_shipping" name="checkout.cart.shipping" as="shipping"/>
+        </reference>
+        <reference name="checkout.cart.shipping">
+            <action method="setTemplate">
+                <template helper="wsafreightcommon/getTemplate" />
+            </action>
+        </reference>
+    </checkout_icart_added>
+
+    <checkout_icart_update_delete>
+        <reference name="checkout.cart">
+            <block type="wsafreightcommon/checkout_cart_shipping" name="checkout.cart.shipping" as="shipping"/>
+        </reference>
+        <reference name="checkout.cart.shipping">
+            <action method="setTemplate">
+                <template helper="wsafreightcommon/getTemplate" />
+            </action>
+        </reference>
+    </checkout_icart_update_delete>
+
+    <checkout_icart_update_checkout_blocks>
+        <reference name="product.update.region.shipping">
+            <block type="wsafreightcommon/checkout_cart_shipping" name="checkout.cart.shipping" as="shipping"/>
+        </reference>
+        <reference name="checkout.cart.shipping">
+            <action method="setTemplate">
+                <template helper="wsafreightcommon/getTemplate" />
+            </action>
+        </reference>
+    </checkout_icart_update_checkout_blocks>
+
+    <!--OneStepCheckout Official Compatibility-->
+    <onestepcheckout_index_index>
+        <reference name="onestepcheckout.checkout">
+                <block type="checkout/onepage_shipping_method_available" name="choose-shipping-method">
+                    <action method="setTemplate">
+                        <template helper="wsafreightcommon/getAvailableTemplate" />
+                    </action>
+                </block>
+            </reference>
+    </onestepcheckout_index_index>
+
+    <onestepcheckout_ajax_save_billing>
+        <reference name="billing">
+            <block type="checkout/onepage_shipping_method_available" name="choose-shipping-method"
+                   as="choose-shipping-method">
+                <action method="setTemplate">
+                    <template helper="wsafreightcommon/getAvailableTemplate" />
+                </action>
+            </block>
+        </reference>
+    </onestepcheckout_ajax_save_billing>
+</layout>

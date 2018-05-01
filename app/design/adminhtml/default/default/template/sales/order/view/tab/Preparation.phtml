@@ -1,0 +1,251 @@
+<?php
+//page permettant d'editer une commande dans le cadre des orderpreparation
+$Order = $this->GetOrder();
+?>
+
+<form name="form_preparation" id="form_preparation" method="POST" action="<?php echo $this->getUrl('adminhtml/OrderPreparation_OrderPreparation/SaveOrder') ?>">
+    <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+    <input type="hidden" id="order_id"  name="order_id" value="<?php echo $Order->getId(); ?>">
+
+
+    <div class="a-right" style="margin-bottom: 10px;">
+        <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/sales/erp_tabs/preparation/allow_print')): ?>
+            <button onclick="document.location.href='<?php echo $this->getPrintUrl(); ?>'" class="scalable" type="button"><span><?php echo $this->__('Print') ?></span></button>
+        <?php endif; ?>
+        <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/sales/erp_tabs/preparation/allow_reserve_products')): ?>
+            <button onclick="document.location.href='<?php echo $this->getReserveAllProductsUrl(); ?>'" class="scalable" type="button"><span><?php echo $this->__('Reserve all products') ?></span></button>
+        <?php endif; ?>
+        <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/sales/erp_tabs/preparation/allow_shipping_method_change')): ?>
+            <button onclick="document.getElementById('form_preparation').submit()" class="scalable save" type="button"><span><?php echo $this->__('Save') ?></span></button>
+        <?php endif; ?>
+    </div>
+
+    <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/sales/erp_tabs/preparation/display_products')): ?>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4><?php echo Mage::helper('AdvancedStock')->__('Products') ?></h4>
+            </div>
+
+            <div class="grid">
+                <table cellspacing="0" class="data" width="100%">
+                    <thead>
+                        <tr class="headings">
+                            <th class="a-center"></th>
+                            <th class="a-center"><?php echo $this->__('Name') ?></th>
+                            <th class="a-center"><?php echo $this->__('Comments') ?></th>
+                            <th class="a-center"><?php echo $this->__('Serials') ?></th>
+                            <th class="a-center"><?php echo $this->__('Shipped Qty') ?></th>
+                            <th class="a-center"><?php echo $this->__('Reserved Qty') ?></th>
+                            <th class="a-center"><?php echo $this->__('Shelf<br>Location') ?></th>
+                            <th class="a-center"><?php echo $this->__('Preparation<br>Warehouse') ?></th>
+                            <th class="a-center"><?php echo $this->__('Action') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $collection = $this->getOrder()->getItemsCollection();
+                        foreach ($collection as $item):
+                            if (!$this->itemManageStock($item)): ?>
+                                <tr bgcolor="#F0F0F0">
+                                    <td></td>
+                                    <td><i>
+                                        <a href="<?php echo $this->getUrl('adminhtml/AdvancedStock_Products/Edit', array('product_id' => $item->getproduct_id())); ?>" target="_blank">
+                                        <?php echo $item->getname(); ?></a>
+                                        <?php echo $item->getOrderItemOptions('<br>');?>
+                                        <?php echo ' ('.$item->getproduct_type().')'; ?>
+                                        </i>
+                                    </td>
+                                    <td colspan="6"></td>
+                                    <td class="a-center"><?php echo $this->getReservedColumnHtml($item, $Order); ?></td>
+                                </tr>
+                            <?php else: ?>
+                                <tr>
+                                    <td class="a-center"><?php echo mage::helper('purchase')->getLightForStockDetailsWindow($item->getproduct_id(), $item->getname()); ?></td>
+                                    <td>
+                                        <a href="<?php echo $this->getUrl('adminhtml/AdvancedStock_Products/Edit', array('product_id' => $item->getproduct_id())); ?>"  target="_blank">
+                                            <?php echo $item->getname(); ?></a>
+                                            <br><?php echo mage::helper('AdvancedStock/Product_ConfigurableAttributes')->getDescription($item->getproduct_id()); ?>
+                                            <?php echo $item->getOrderItemOptions('<br>');?>
+                                    </td>
+                                    <td class="a-center"><textarea cols="40" rows="2"
+                                                                   id="data[<?php echo $item->getId(); ?>][comments]"
+                                                                   name="data[<?php echo $item->getId(); ?>][comments]"><?php echo $item->getcomments(); ?></textarea>
+                                    </td>
+                                    <td class="a-center"><textarea cols="30" rows="2"
+                                                                   id="data[<?php echo $item->getId(); ?>][serials]"
+                                                                   name="data[<?php echo $item->getId(); ?>][serials]"><?php echo $item->getserials(); ?></textarea>
+                                    </td>
+                                    <td class="a-center"><?php echo ((int)$item->getRealShippedQty()) . ' / ' . ((int)$item->getRemainToShipQty()); ?></td>
+                                    <td class="a-center"><?php echo $this->getReservedQty($item); ?></td>
+                                    <td class="a-center"><?php echo $this->getProductLocation($item); ?></td>
+                                    <td class="a-center">
+                                        <?php echo $this->getPreparationWarehouseCombo($item); ?>
+                                        <?php if (!$item->getpreparation_warehouse()): ?>
+                                            <br/><font
+                                                color="red"><?php echo $this->__('No warehouse assigned !'); ?></font>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="a-center"><?php echo $this->getReservedColumnHtml($item); ?></td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    <?php endif; ?>
+
+    <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/sales/erp_tabs/preparation/display_preparation_information')): ?>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4><?php echo Mage::helper('AdvancedStock')->__('Preparation information') ?></h4>
+            </div>
+            <fieldset>
+                <?php
+                $OrderToPrepare = $this->getOrderToPrepare();
+                if ($OrderToPrepare == null) {
+                    echo "<p><font color='red'>" . $this->__('This order doesnt belong to selected orders') . "</font></p>";
+                } else {
+                    //cree le menu deroulant pour les shipments
+                    $ComboShipment = $this->getShipmentsAsCombo('shipment_id', $this->OrderToPrepare->getshipment_id());
+
+                    //cree le menu deroulant pour les shipments
+                    $ComboInvoice = $this->getInvoicesAsCombo('invoice_id', $this->OrderToPrepare->getinvoice_id());
+
+                    //recupere le no de tracking
+                    $tracking = "";
+                    foreach ($Order->getTracksCollection() as $track) {
+                        if (is_object($track->getNumberDetail()))
+                            $tracking = $track->getNumberDetail()->gettracking();
+                        else {
+                            if (is_array($track->getNumberDetail()))
+                                $tracking = ' ';
+                        }
+                    }
+                    ?>
+                    <table border="0">
+                        <tr>
+                            <td><?php echo $this->__('Shipment'); ?> : </td>
+                            <td><?php echo $ComboShipment; ?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->__('Invoice'); ?> : </td>
+                            <td><?php echo $ComboInvoice; ?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->__('Tracking'); ?> : </td>
+                            <td>
+                                <?php if ($tracking == '') {
+                                    ?>
+                                    <input type="text" id="tracking_num" name="tracking_num" style="width: 350px;">
+                                <?php } else { ?>
+                                    <?php echo $tracking; ?>
+        <?php } ?>
+                            </td>
+                        </tr>
+                    </table>
+                    <?php
+                }
+                ?>
+
+                <p>
+                    <?php if (Mage::getSingleton('AdvancedStock/Sales_Order_Tool')->IsCompletelyShipped($Order)): ?>
+                        <?php echo $this->__('Order completely shipped'); ?>
+                    <?php else: ?>
+                        <?php echo $this->__('Order not completely shipped'); ?>
+                    <?php endif; ?>
+                </p>                
+
+                <p>
+                    <?php
+                    if (Mage::getSingleton('AdvancedStock/Sales_Order_Tool')->productReservationAllowed($Order))
+                        echo $this->__('Product reservation enabled');
+                    else
+                        echo $this->__('Product reservation disabled');
+                    ?>
+                </p>
+
+                <p>
+                    <?php
+                    echo $this->__('Order prepared from : ');
+                    foreach (Mage::getSingleton('AdvancedStock/Sales_Order_Tool')->getPreparationWarehouses($Order) as $warehouse) {
+
+                        //warehouse name where the order is being prepared
+                        echo '<br> - <b>'.$warehouse->getstock_name() . '</b> ';
+
+                        //tab where the order is dispatched
+                        $tab = mage::helper('Orderpreparation')->getCurrentOrderPreparationTab($Order->getId(),$warehouse->getId());
+                        if($tab)
+                            echo ' : '.$this->__('tab').' <b>'.Mage::helper('customer')->__(ucfirst(strtolower($tab)).' Orders').'</b>';
+
+                        //current user that prepare this order for this warehouse
+                        $operatorId = mage::helper('Orderpreparation')->getCurrentOrderPreparer($Order->getId(),$warehouse->getId());
+                        if($operatorId){
+                            $operatorName = mage::helper('Orderpreparation')->getOperatorName($operatorId);
+                            if($operatorName)
+                                echo ' : '.$this->__('tab').' <b>'.Mage::helper('customer')->__('Selected Orders').'</b> '.$this->__('by').' '.$operatorName;                            
+                        }
+
+                    }
+                    ?>
+                </p>
+                             
+                <p>
+                    <a href="<?php echo $this->getUrl('adminhtml/OrderPreparation_Order/Dispatch', array('order_id' => $Order->getId())); ?>"><?php echo $this->__('Distribute Order in Order Preparation'); ?></a>
+                </p>
+
+            </fieldset>
+        </div>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4><?php echo Mage::helper('AdvancedStock')->__('Order informations') ?></h4>
+            </div>
+            <fieldset>
+                <p>
+                    <?php
+                    echo $this->__('Order considered by ERP : ');
+                    if ($Order->getstocks_updated() == 1) {
+                        echo $this->__('Yes');
+                    }
+                    if ($Order->getstocks_updated() == 0) {
+                        echo $this->__('No');
+                    }
+                    if ($Order->getstocks_updated() == null) {
+                        echo $this->__('ERP Installation problem');
+                    }
+                    ?>
+                </p>
+                <p>
+                    <?php if (mage::helper('AdvancedStock/Sales_ValidOrders')->orderIsValid($Order)): ?>
+                        <?php echo $this->__('Order is valid'); ?>
+                    <?php else: ?>
+                        <?php echo $this->__('Order is not valid'); ?>
+                    <?php endif; ?>
+                    &nbsp;(<a href="<?php echo $this->getUrl('adminhtml/AdvancedStock_Order/UpdateIsValid', array('order_id' => $Order->getId())); ?>"><?php echo $this->__('Update'); ?></a>)
+                </p>
+                <p><?php echo $this->__('Order state').' : '.$Order->getstate(); ?></p>
+                <p><?php echo $this->__('Order status').' : '.$Order->getstatus(); ?></p>
+                <p><?php echo $this->__('Order status label').' : '.$Order->getStatusLabel(); ?></p>
+            </fieldset>
+        </div>
+    <?php endif; ?>
+
+    <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/sales/erp_tabs/preparation/allow_shipping_method_change')): ?>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4><?php echo Mage::helper('AdvancedStock')->__('Change shipping method') ?></h4>
+            </div>
+            <fieldset>
+                <p><?php echo $this->__('Order shipping code').' : '.$Order->getshipping_method(); ?></p>
+                <p><?php echo $this->__('Order shipping description').' : '.$Order->getShippingDescription(); ?></p>
+                <table cellspacing="0" class="form-list">
+                    <tr>
+                        <td class="label"><label><?php echo $this->__('Change to'); ?></label></td>
+                        <td><?php echo $this->getShippingMethodsAsCombo('shipping_method'); ?></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+    <?php endif; ?>
+</form>

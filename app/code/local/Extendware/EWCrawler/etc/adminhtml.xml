@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<config>
+	<extendware>
+		<quickaccess>
+			<ewcrawler>
+                <resource>extendware/ewcrawler</resource>
+				<children>
+					<job translate="title" module="ewcrawler">
+						<title>Jobs</title>
+						<action>extendware_ewcrawler/adminhtml_job</action>
+						<resource>extendware/ewcrawler/jobs</resource>
+						<sort_order>1</sort_order>
+					</job>
+					<url translate="title" module="ewcrawler">
+						<title>Custom Urls</title>
+						<action>extendware_ewcrawler/adminhtml_url</action>
+						<resource>extendware/ewcrawler/url</resource>
+						<sort_order>2</sort_order>
+					</url>
+				</children>
+				<title/>
+			</ewcrawler>
+		</quickaccess>
+	</extendware>
+	<menu></menu>
+	<acl>
+		<resources>
+            <admin>
+                <children>
+                    <extendware translate="title" module="ewcrawler">
+                    	<title>Extendware</title>
+                    	<sort_order>0</sort_order>
+                        <children>
+                        	<ewcrawler translate="title" module="ewcrawler">
+                        		<title>Crawler</title>
+                        		<children>
+                        			<jobs translate="title">
+                        				<title>Jobs</title>
+			            			</jobs>
+                        			<settings translate="title">
+                        				<title>Settings</title>
+                        				<children>
+				                            <main translate="title">
+				                                <title>Main</title>
+				                                <children>
+					                                <ewcrawler translate="title">
+						                                <title>General</title>
+						                            </ewcrawler>
+					                            </children>
+				                            </main>
+			                            </children>
+			            			</settings>
+			            		</children>
+			            	</ewcrawler>
+                        </children>
+                    </extendware>
+                </children>
+            </admin>
+        </resources>
+	</acl>
+</config>

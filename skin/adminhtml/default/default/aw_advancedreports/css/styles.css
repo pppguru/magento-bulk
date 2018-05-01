@@ -1,0 +1,134 @@
+.aw-arep-export {
+    float: right;
+}
+
+.aw-arep-setup {
+    float: right;
+    margin-right: 10px;
+    position: relative;
+}
+
+.aw-arep-setup img {
+    margin-right: 5px;
+}
+
+ul.aw-column-container {
+    margin: 5px;
+}
+
+.aw-column-overlay.show {
+    display: block !important;
+}
+
+.aw-column-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    cursor: pointer;
+    z-index: 90;
+}
+
+.aw-column {
+    position: relative;
+    height: 100px;
+    float: left;
+    border: 1px solid #D1CFCF;
+    margin-right: 2px;
+    margin-bottom: 2px;
+}
+
+.aw-column input.text.over, .aw-column input.text:focus {
+    border-color: #ED6502 #A04300 #A04300 #ED6502;
+}
+
+.aw-column input.text {
+    margin-bottom: 9px;
+    margin-top: 10px;
+    width: 90%;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #AAAAAA #C8C8C8 #C8C8C8 #AAAAAA;
+    border-style: solid;
+    border-width: 1px;
+    font: 12px arial, helvetica, sans-serif;
+}
+
+.aw-column .aw-header {
+    padding: 5px 10px;
+    background: url("../../images/sort_row_bg.gif") repeat-x scroll 0 50% transparent;
+    text-align: center;
+    border-color: #F9F9F9 #D1CFCF #F9F9F9 #F9F9F9;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.aw-column .aw-header span {
+    color: #67767E;
+}
+
+.aw-column .aw-header.over span {
+    color: #ED6502;
+}
+
+/* Sku advisor section */
+.aw_arep_sku_dropdown {
+    background-color: #FFFFFF;
+    border: 1px solid #ED6502;
+    display: none;
+    height: 0px;
+    left: 31px;
+    position: absolute;
+    top: 19px;
+    z-index: 10;
+}
+
+#product_sku_dropdown ul li {
+    padding-left: 3px;
+    padding-top: 1px;
+    cursor: pointer;
+}
+
+#product_sku_dropdown ul li span span.search {
+    background-color: #f8e515;
+}
+
+#product_sku_dropdown ul li.active {
+    background-color: #CDDDDD;
+}
+
+.aw_arep_sku_li_overlay {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 122px;
+    z-index: 1000;
+}
+
+.aw_arep_sku_loader {
+    background: url("../images/ajax-loader.gif") repeat-x scroll 0 0 #FFFFFF;
+    display: none;
+    height: 16px;
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    width: 16px;
+}
+
+.aw_arep_sku_loader.display, .aw_arep_sku_dropdown.display {
+    display: block;
+}
+
+.aw_arep_sku_container {
+    position: relative;
+}
+
+.aw_arep_sku_container input.input-text {
+    width: 118px;
+}
+
+.aw_arep_sku_container input.loading {
+    padding-right: 20px;
+    width: 100px;
+}

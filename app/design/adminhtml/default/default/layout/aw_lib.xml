@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <awlib_admin_log_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_lib/js/logger.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>aw_lib/css/logger.css</name>
+            </action>
+        </reference>
+    </awlib_admin_log_index>
+</layout>

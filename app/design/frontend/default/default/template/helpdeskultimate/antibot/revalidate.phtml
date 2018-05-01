@@ -1,0 +1,67 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdeskultimate
+ * @version    2.10.7
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+<?php if (Mage::getSingleton('core/session')->getPostData()): ?>
+<form action="<?php echo $this->getAction()?>" method="post" id="revalidate-form">
+    <div>
+        <?php echo $this->__("Please confirm your inquiry.") ?>
+    </div>
+    <div class="label"><?php echo $this->__("Enter digits <b>%s</b>", $this->getFailKey())?></div>
+    <input type="text" name="fail_key" value=""/>
+
+    <?php
+            if (!($uenc = $this->getRequest()->getParam('uenc'))) {
+    $uenc = Mage::helper('core')->urlEncode($this->getRequest()->getServer('HTTP_REFERER'));
+}
+    ?>
+    <input type="hidden" name="uenc" value="<?php echo $uenc?>">
+    <button type="submit"
+            onclick="$('revalidate-form').submit(); this.disabled = true;"><?php echo $this->__("Submit")?></button>
+    <?php foreach (unserialize(Mage::getSingleton('core/session')->getPostData()) as $k => $v) {
+    echo array2post($k, $v);
+
+}?>
+    <input type="hidden" value="<?php echo  $this->getFailKeyHash()?>" name="fail_key_hash"/>
+</form>
+<?php endif; ?>
+
+
+<?php
+    function array2post($k, $v, $out = '')
+{
+    if (!is_array($v)) {
+        if ($k != 'hdu_seed' && $k != 'fail_key' && $k != 'fail_key_hash') {
+            $out .= '<input type="hidden" value="' . htmlentities($v, ENT_QUOTES, AW_Helpdeskultimate_Model_Data_Parser_Abstract::STORAGE_ENCODING) . '" name="' . $k . '"/>';
+        }
+    } else {
+        foreach ($v as $key => $value) {
+            $out .= array2post($k . "[$key]", $value);
+        }
+    }
+    return $out;
+}
+?>

@@ -1,0 +1,163 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdeskultimate
+ * @version    2.10.7
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+    $ff = $this->getFromTo();
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tbody>
+        <tr>
+            <td style="width: 50%;"><h3
+                    class="icon-head head-helpdeskultimate-departments-stats"><?php echo $this->getTitle()?></h3></td>
+            <td class="form-buttons"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<form method="POST" action="<?php echo $this->getActionUrl()?>" id="aw_hdu_stats_form">
+
+<?php
+    $switcher = Mage::app()->getLayout()->createBlock('adminhtml/store_switcher');
+    $switcher->setUseConfirm(false);
+    echo $switcher->toHtml();
+    ?>
+
+
+    <input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey()?>"/>
+    <table cellspacing="0" class="actions">
+        <tr>
+
+            <td class="a-left filter">
+                <div class="f-left">
+                    <div><?php echo $this->__('From') ?>:&nbsp;<input class="input-text no-changes required-entry"
+                                                                      type="text" id="period_date_from"
+                                                                      name="depstats_from" value="<?php echo $ff[0] ?>"
+                                                                      style="width:5em"/> <img
+                            src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>"
+                            title="<?php echo $this->__('Select Date') ?>" id="period_date_from_trig"
+                            alt="<?php echo $this->__('Select Date') ?>" class="v-middle"/>&nbsp;&nbsp;</div>
+                    <div id="period_date_from_advaice"></div>
+                </div>
+
+                <div class="f-left">
+                    <div><?php echo $this->__('To') ?>:&nbsp;<input class="input-text no-changes required-entry"
+                                                                    type="text" id="period_date_to" name="depstats_to"
+                                                                    value="<?php echo $ff[1] ?>" style="width:5em"/>
+                        <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle"
+                             title="<?php echo $this->__('Select Date') ?>" id="period_date_to_trig"
+                             alt="<?php echo $this->__('Select Date') ?>"/>&nbsp;&nbsp;</div>
+                    <div id="period_date_to_advaice"></div>
+                </div>
+                <div class="f-left">
+                    <?php echo $this->getChildHtml('refresh_button') ?>
+                </div>
+
+                <div class="f-left" style="margin-left:7px;">
+                    <?php echo $this->getChildHtml('reset_button') ?>
+                </div>
+                <script type="text/javascript">
+                    <!--
+                    Calendar.setup({
+                        inputField : 'period_date_from',
+                        ifFormat : '<?php echo $this->getDateFormat() ?>',
+                        button : 'period_date_from_trig',
+                        align : 'Bl',
+                        singleClick : true
+                    });
+                    Calendar.setup({
+                        inputField : 'period_date_to',
+                        ifFormat : '<?php echo $this->getDateFormat() ?>',
+                        button : 'period_date_to_trig',
+                        align : 'Bl',
+                        singleClick : true
+                    });
+                    //-->
+                </script>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<?php
+    $sum_total = 0;
+$sum_open = 0;
+$sum_closed = 0;
+$sum_waiting = 0;
+?>
+
+
+<div class="grid">
+    <table cellspacing="0" id="gridDepartmentsStats_table" class="data">
+        <col/>
+        <col width="100"/>
+        <col width="100"/>
+        <col width="100"/>
+        <col width="100"/>
+        <thead>
+        <tr class="headings">
+            <th class="no-link"><span class="no-br"><?php echo $this->__('Name')?></span></th>
+            <th class="no-link"><span class="no-br"><?php echo $this->__('Total Tickets')?></span></th>
+            <?php foreach ($this->getStatuses() as $status): ?>
+            <th class="no-link last"><span class="no-br"><?php echo $status?></span></th>
+            <?php endforeach;?>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $i = 0;
+        $departments = $this->getDepartments(($this->getRequest()->getParam('store'))
+                                                     ? $this->getRequest()->getParam('store')
+                                                     : $this->getRequest()->getParam('store_switcher'), $this->getRequest()->getParam('depstats_from'), $this->getRequest()->getParam('depstats_to'));
+        ?>
+        <?php foreach ($departments as $dep): ?>
+            <?php $i++;
+            ?>
+        <tr class="<?php echo ($i % 2 ? 'even' : 'odd')?>">
+            <td class="a-left<?php if (!$dep['status']):?>disabled<?php endif;?>"><b><?php echo $dep['label']?></b></td>
+            <td class="a-right"><a
+                    href="<?php echo $this->getTicketsUrl($dep, null, $this->getRequest()->getParam('store'))?>"><?php echo $dep['total']?></a>
+            </td>
+            <?php foreach ($dep['stats'] as $key => $s): ?>
+            <td class="a-right"><a
+                    href="<?php echo $this->getTicketsUrl($dep, $key, $this->getRequest()->getParam('store'))?>"><?php echo $s?></a>
+            </td>
+            <?php endforeach;?>
+        </tr>
+            <?php endforeach;?>
+
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <td class="a-left"><b><?php echo $this->__('Total')?></b></td>
+            <?php foreach ($this->getGrandTotal($departments) as $total): ?>
+            <td class="a-right"><?php echo $total ?></td>
+            <?php endforeach;?>
+        </tr>
+        </tfoot>
+    </table>
+</div>

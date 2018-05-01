@@ -1,0 +1,62 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Customer_Ticket_View_Thread $this */?>
+<div class="awhdu3-ticket-view-thread">
+    <h2><?php echo $this->__('Ticket Tread');?></h2>
+    <?php foreach ($this->getTicketHistory() as $message):?>
+    <div class="awhdu3-ticket-view-thread-message-box" style="background-color:<?php echo $message['color'];?>">
+        <div class="awhdu3-ticket-view-thread-message-box-header">
+            <span class="awhdu3-ticket-view-thread-message-box-header-author"><?php echo $message['author'];?></span>
+            <span class="separator">|</span>
+            <span class="awhdu3-ticket-view-thread-message-box-header-date"><?php echo $this->formatDate($message['date'], 'long', true); ?></span>
+            <?php if ($message['additional_text']):?>
+                <span class="separator">|</span>
+                <span class="awhdu3-ticket-view-thread-message-box-header-additional"><?php echo $message['additional_text'];?></span>
+            <?php endif;?>
+        </div>
+        <?php if (null !== $message['content']): ?>
+            <div class="awhdu3-ticket-view-thread-message-box-body">
+                <p><?php echo $message['content'];?></p>
+                <?php $attachmentCollection = $message['attachment_collection'];?>
+                <?php if ($attachmentCollection->getSize()):?>
+                    <div class="awhdu3-ticket-view-thread-message-box-body-attachmentbox">
+                        <span><?php echo $this->__('Attachments:');?></span>
+                        <ul>
+                            <?php foreach ($attachmentCollection as $attachment):?>
+                                <li>
+                                    <a href="<?php echo $this->getUrl('*/*/download', array('attachId' => $attachment->getId(), 'id' => $this->getTicket()->getId(), 'key' => $this->getExternalKey()));?>" target="_blank">
+                                        <?php echo $attachment->getFileRealName();?>
+                                    </a>
+                                </li>
+                            <?php endforeach;?>
+                        </ul>
+                    </div>
+                <?php endif;?>
+            </div>
+        <?php endif;?>
+    </div>
+    <?php endforeach;?>
+</div>

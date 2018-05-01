@@ -1,0 +1,110 @@
+<?php
+   /**
+ 	* @category   Php4u
+	* @package    Php4u_BlastLuceneSearch
+	* @author     Marcin Szterling <marcin@php4u.co.uk>
+	* @copyright  Php4u Marcin Szterling (c) 2013
+	* @license http://php4u.co.uk/licence/
+	* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	* THE SOFTWARE.
+	* Any form of distribution, sell, transfer forbidden see licence above
+	*/
+?>
+<div id="pagemain-container">
+	<div id="storeswitcherdiv"><?php echo $this->getStoresDropdown(); ?></div>
+	<div class="clear"></div>
+    <div class="blast">Blast Search Lucene Search Terms</div>
+    <div id="table1">
+	<?php echo $this->getChildHtml('blastlucenesearch_st_table1') ?>
+	</div>
+	<div id="table2">
+	<?php echo $this->getChildHtml('blastlucenesearch_st_table2') ?>
+	</div>
+	<div class="clear"></div>
+	<div id="table3">
+	<?php echo $this->getChildHtml('blastlucenesearch_st_table3') ?>
+	</div>
+	<div id="table4">
+	<?php echo $this->getChildHtml('blastlucenesearch_st_table4') ?>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+var storeId = <?php echo Mage::app()->getRequest()->getParam('store') ? Mage::app()->getRequest()->getParam('store') : "''"; ?>;
+document.observe('dom:loaded', function() {
+    $('table1period').observe('change', tbl1obsrv);
+    $('table2period').observe('change', tbl2obsrv);
+    $('table3period').observe('change', tbl3obsrv);
+    $('table4period').observe('change', tbl4obsrv);
+});
+
+function tbl1obsrv(event) {
+	new Ajax.Request('<?php echo $this->getTableGeneratorUrl() ?>',
+        {
+        	method:'post',
+            parameters: { period: this.getValue(), tableType: 1, store: storeId },
+            onSuccess: function(transport) {
+            	$('table1').update(transport.responseText);  
+               	event.stop(); 
+               	$('table1period').observe('change', tbl1obsrv);
+            },
+            onFailure: function(transport) {
+            	alert("Please reload page");    
+            }
+        }); 
+}
+
+function tbl2obsrv(event) {
+	new Ajax.Request('<?php echo $this->getTableGeneratorUrl() ?>',
+        {
+        	method:'post',
+            parameters: { period: this.getValue(), tableType: 2, store: storeId },
+            onSuccess: function(transport) {
+            	$('table2').update(transport.responseText);  
+               	event.stop(); 
+               	$('table2period').observe('change', tbl2obsrv);
+            },
+            onFailure: function(transport) {
+            	alert("Please reload page");    
+            }
+        }); 
+}
+
+function tbl3obsrv(event) {
+	new Ajax.Request('<?php echo $this->getTableGeneratorUrl() ?>',
+        {
+        	method:'post',
+            parameters: { period: this.getValue(), tableType: 3, store: storeId },
+            onSuccess: function(transport) {
+            	$('table3').update(transport.responseText);  
+               	event.stop(); 
+               	$('table3period').observe('change', tbl3obsrv);
+            },
+            onFailure: function(transport) {
+            	alert("Please reload page");    
+            }
+        }); 
+}
+
+function tbl4obsrv(event) {
+	new Ajax.Request('<?php echo $this->getTableGeneratorUrl() ?>',
+        {
+        	method:'post',
+            parameters: { period: this.getValue(), tableType: 4, store: storeId },
+            onSuccess: function(transport) {
+            	$('table4').update(transport.responseText);  
+               	event.stop(); 
+               	$('table4period').observe('change', tbl4obsrv);
+            },
+            onFailure: function(transport) {
+            	alert("Please reload page");    
+            }
+        }); 
+}
+</script>

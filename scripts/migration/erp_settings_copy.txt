@@ -1,0 +1,34 @@
+-- On test server
+-- Export this query under SQL format :
+
+select *
+from core_config_data
+where 
+	path like 'dropshipping%'
+	or path like 'purchase%'
+	or path like 'clientcomputer%'
+	or path like 'backgroundtask%'
+	or path like 'advancedstock%'
+	or path like 'scanner%'
+	or path like 'orderpreparation%'
+	or path like 'salesorderplanning'
+	;
+	
+-- On production server, after ERP installation :
+
+delete *
+from core_config_data
+where 
+	path like 'dropshipping%'
+	or path like 'purchase%'
+	or path like 'clientcomputer%'
+	or path like 'backgroundtask%'
+	or path like 'advancedstock%'
+	or path like 'scanner%'
+	or path like 'orderpreparation%'
+	or path like 'salesorderplanning'
+	;
+	
+-- Import the sql backup you made from test server
+
+-- Refresh magento cache

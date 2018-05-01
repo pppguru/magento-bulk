@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <smartreport_common>
+        <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/magento.css</name>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addCss">
+                <name>lib/prototype/windows/themes/magento.css</name>
+            </action>
+            <action method="addJs">
+                <script>mdn/SmartReport/Main.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="jquery_files" template="SmartReport/Jquery.phtml"></block>
+        </reference>
+    </smartreport_common>
+
+    <adminhtml_catalog_product_edit>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>smart_report</name>
+                <block>SmartReport/Adminhtml_Catalog_Product_Edit_Tab_SmartReport</block>
+            </action>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_catalog_product_edit>
+
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <action method="addTab">
+                <name>smart_report</name>
+                <block>SmartReport/Adminhtml_Customer_Edit_Tab_SmartReport</block>
+            </action>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_customer_edit>
+
+    
+    <adminhtml_purchase_suppliers_edit>
+        <update handle="smartreport_common" />
+    </adminhtml_purchase_suppliers_edit>
+
+    <adminhtml_advancedstock_products_edit>
+        <update handle="smartreport_common" />
+    </adminhtml_advancedstock_products_edit>
+
+    <adminhtml_smartreport_reports_extract>
+        <reference name="content">
+            <block type="SmartReport/Report_Extract" template="SmartReport/Report/Extract.phtml"></block>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>SmartReport/Popup.phtml</template></action>
+        </reference>
+    </adminhtml_smartreport_reports_extract>
+
+    <adminhtml_smartreport_reports_extractdetails>
+        <reference name="content">
+            <block type="SmartReport/Report_ExtractDetails" template="SmartReport/Report/Extract.phtml"></block>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>SmartReport/Popup.phtml</template></action>
+        </reference>
+    </adminhtml_smartreport_reports_extractdetails>
+
+    <adminhtml_smartreport_reports_dashboard>
+        <reference name="content">
+            <block type="SmartReport/Report_Type_Dashboard" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_dashboard>
+
+    <adminhtml_smartreport_reports_customer>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_customer>
+
+
+    <adminhtml_smartreport_reports_reviews>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_reviews>
+
+    <adminhtml_smartreport_reports_paymentmethod>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_paymentmethod>
+
+    <adminhtml_smartreport_reports_shippingmethod>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_shippingmethod>
+
+    <adminhtml_smartreport_reports_refund>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_refund>
+
+    <adminhtml_smartreport_reports_couponcode>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_couponcode>
+
+    <adminhtml_smartreport_reports_couponcodedetails>
+        <reference name="content">
+            <block type="SmartReport/Report_Type_CouponCode" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_couponcodedetails>
+
+    <adminhtml_smartreport_reports_invoice>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_invoice>
+
+    <adminhtml_smartreport_reports_bestseller>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_bestseller>
+
+    <adminhtml_smartreport_reports_skudetail>
+        <update handle="smartreport_common" />
+        <reference name="content">
+            <block type="SmartReport/Report_Type_Sku" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+    </adminhtml_smartreport_reports_skudetail>
+
+    <adminhtml_smartreport_reports_category>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_category>
+
+    <adminhtml_smartreport_reports_manufacturer>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_manufacturer>
+
+    <adminhtml_smartreport_reports_categorydetail>
+        <reference name="content">
+            <block type="SmartReport/Report_Type_Category" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_categorydetail>
+
+    <adminhtml_smartreport_reports_countrydetail>
+        <reference name="content">
+            <block type="SmartReport/Report_Type_Country" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_countrydetail>
+
+    <adminhtml_smartreport_reports_manufacturerdetail>
+        <reference name="content">
+            <block type="SmartReport/Report_Type_Manufacturer" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_manufacturerdetail>
+
+    <adminhtml_smartreport_reports_purchase>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_purchase>
+
+    <adminhtml_smartreport_reports_inventory>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_inventory>
+
+    <adminhtml_smartreport_reports_orderpreparation>
+        <reference name="content">
+            <block type="SmartReport/Report_Type" template="SmartReport/Report/Type.phtml"></block>
+        </reference>
+        <update handle="smartreport_common" />
+    </adminhtml_smartreport_reports_orderpreparation>
+
+</layout>

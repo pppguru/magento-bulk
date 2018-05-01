@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <layout>
+        <updates>
+            <aw_lib>
+                <file>aw_lib.xml</file>
+            </aw_lib>
+        </updates>
+    </layout>
+</config>

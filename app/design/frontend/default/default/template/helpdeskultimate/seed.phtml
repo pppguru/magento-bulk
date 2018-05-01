@@ -1,0 +1,47 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdeskultimate
+ * @version    2.10.7
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><script type="text/javascript">
+    //<![CDATA[
+    window.HDUSeed = '<?php echo Mage::helper("helpdeskultimate")->getNewSeed(); ?>';
+    window.HDUSeedIntId = setInterval(function() {
+        if (document.observe) {
+            document.observe('dom:loaded', function() {
+                for (var i = 0; i < document.forms.length; i++) {
+                    if (document.forms[i].getAttribute('action') && document.forms[i].getAttribute('action').match('contacts/index/post')) {
+                        var el = document.createElement('input');
+                        el.type = ('hidden');
+                        el.name = 'hdu_seed';
+                        el.value = window.HDUSeed;
+                        document.forms[i].appendChild(el);
+
+                    }
+                }
+            });
+            clearInterval(window.HDUSeedIntId)
+        }
+    }, 100)
+    //]]>
+</script>

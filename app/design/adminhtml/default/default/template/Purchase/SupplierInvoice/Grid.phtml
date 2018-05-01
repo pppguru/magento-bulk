@@ -1,0 +1,47 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Supplier Invoice')?></h3></td>
+            <td align="right">
+                <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/purchasing/supplier_invoices/create')): ?>
+
+                <div id='popup_search_bar'>
+                    <?php echo $this->__('Create a supplier invoice'); ?>
+                    <input id="new_po_num" name="query" type="text" class="popup-input-search"
+                           value="<?php echo $this->__('Purchase order search'); ?>"
+                           onfocus="if(this.value=='<?php echo $this->__('Purchase order search'); ?>')this.value=''; "
+                           onblur="if(this.value=='')this.value='<?php echo $this->__('Purchase order search'); ?>';"
+                           onload="eval(document.getElementById('ScriptToForceInPopup').innerHTML);"
+                           autocomplete="off">
+                    <input type="hidden" name="new_po_num" id="new_po_num" value="">
+                </div>
+
+                <div id="new_po_num_autocomplete" class="autocomplete" ></div>
+
+                <script type="text/javascript" id="ScriptToForceInPopup">
+                    new Ajax.Autocompleter(
+                        'new_po_num',
+                        'new_po_num_autocomplete',
+                        '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/Purchase_SupplierInvoice/PurchaseOrderPopupSearch', array('unique_key' => $this->getUniqueKey())) ?>',
+                        {
+                            paramName:"query",
+                            minChars:2,
+                            updateElement:getSelectionId,
+                            evalJSON:'force'
+                        }
+                    );
+                    function getSelectionId(li) {
+                        showSupplierInvoiceWindows('<?php echo $this->getNewUrl(); ?>'+li.getAttribute('id'), '<?php echo $this->getPopupTitle(); ?>');
+                    }
+                </script>
+                <?php endif; ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<?php echo $this->getGridParentHtml() ?>
+
+</div>

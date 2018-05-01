@@ -1,0 +1,132 @@
+<?php $requireClass	= ( $this->haveStoredCards() ? $this->getMethodCode() . '_require' : 'required-entry' ); ?>
+<?php $newClass		= $this->getMethodCode() . '_new'; ?>
+<ul class="form-list" id="payment_form_<?php echo $this->getMethodCode(); ?>" style="display:none;">
+	<?php if( $this->haveStoredCards() ): ?>
+		<li>
+			<label for="<?php echo $this->getMethodCode(); ?>_payment_id"><?php echo $this->__('Pay with credit card on file'); ?></label>
+			<div class="input-box">
+				<select name="payment[card_id]" id="<?php echo $this->getMethodCode(); ?>_card_id" class="<?php echo $this->getMethodCode(); ?>_require required-entry">
+					<option value=""><?php echo $this->__('-- Select One --'); ?></option>
+					<?php foreach( $this->getStoredCards() as $card ): ?>
+						<?php $card = $card->getTypeInstance(); ?>
+						<option value="<?php echo $card->getId(); ?>" <?php if( $card->getId() == $this->getInfoData('tokenbase_id') || count( $this->getStoredCards() ) == 1 ): ?>selected="selected"<?php endif; ?>><?php echo $card->getLabel(); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</li>
+		<?php if( $this->getMethod()->getAdvancedConfigData('require_ccv') ): ?>
+			<li>
+				<div class="input-box">
+					<label for="<?php echo $this->getMethodCode(); ?>_saved_cc_cid" class="left"><?php echo $this->__('Card Code'); ?></label>&nbsp;
+					<input type="text" title="<?php echo $this->__('Card Verification Number') ?>" class="input-text <?php echo $this->getMethodCode(); ?>_require required-entry validate-digits-range digits-range-001-9999" id="<?php echo $this->getMethodCode(); ?>_saved_cc_cid" name="payment[saved_cc_cid]" autocomplete="off" value="<?php echo $this->getInfoData('tokenbase_id') != '' ? $this->getInfoData('cc_cid') : ''; ?>" style="width:4em;" maxlength="4" />
+				</div>
+			</li>
+		<?php endif; ?>
+		<li>
+			<div class="input-box">
+				<?php echo $this->__('Or,'); ?> <a href="#" id="<?php echo $this->getMethodCode(); ?>_add_new"><?php echo $this->__('use a different card.'); ?></a>
+			</div>
+		</li>
+	<?php endif; ?>
+	<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>">
+		<label for="<?php echo $this->getMethodCode(); ?>_cc_type"><?php echo $this->__('Credit Card Type') ?> <span class="required">*</span></label>
+		<div class="input-box">
+			<select id="<?php echo $this->getMethodCode(); ?>_cc_type" name="payment[cc_type]" class="<?php echo $requireClass; ?>">
+				<option value=""><?php echo $this->__('-- Select One --')?></option>
+				<?php foreach( $this->getCcAvailableTypes() as $k => $v ): ?>
+					<option value="<?php echo $k; ?>" <?php if( $k == $this->getInfoData('cc_type') ): ?>selected="selected"<?php endif ?>><?php echo $v; ?></option>
+				<?php endforeach ?>
+			</select>
+		</div>
+	</li>
+	<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>">
+		<label for="<?php echo $this->getMethodCode(); ?>_cc_number"><?php echo $this->__('Credit Card Number') ?> <span class="required">*</span></label>
+		<div class="input-box">
+			<input type="text" id="<?php echo $this->getMethodCode(); ?>_cc_number" name="payment[cc_number]" title="<?php echo $this->__('Credit Card Number') ?>" class="input-text <?php echo $requireClass; ?> validate-cc-number" autocomplete="off" value="<?php echo $this->getInfoData('cc_number'); ?>" />
+		</div>
+	</li>
+	<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>" id="<?php echo $this->getMethodCode(); ?>_cc_type_exp_div">
+		<label for="<?php echo $this->getMethodCode(); ?>_expiration"><?php echo $this->__('Expiration Date') ?> <span class="required">*</span></label>
+		<div class="input-box">
+			<select id="<?php echo $this->getMethodCode(); ?>_expiration" name="payment[cc_exp_month]" class="month <?php echo $requireClass; ?>">
+				<?php foreach( $this->getCcMonths() as $k => $v ): ?>
+					<option value="<?php echo $k?$k:''; ?>" <?php if( $k == $this->getInfoData('cc_exp_month') ): ?>selected="selected"<?php endif ?>><?php echo $v; ?></option>
+				<?php endforeach ?>
+			</select>
+			<select id="<?php echo $this->getMethodCode(); ?>_expiration_yr" name="payment[cc_exp_year]" class="year <?php echo $requireClass; ?>">
+				<?php foreach( $this->getCcYears() as $k => $v ): ?>
+					<option value="<?php echo $k?$k:''; ?>" <?php if( $k == $this->getInfoData('cc_exp_year') ): ?>selected="selected"<?php endif ?>><?php echo $v; ?></option>
+				<?php endforeach ?>
+			</select>
+		</div>
+	</li>
+	<?php echo $this->getChildHtml(); ?>
+	<?php if( $this->getMethod()->getConfigData('useccv') ): ?>
+		<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>" id="<?php echo $this->getMethodCode(); ?>_cc_type_cvv_div">
+			<label for="<?php echo $this->getMethodCode(); ?>_cc_cid"><?php echo $this->__('Card Verification Number') ?> <span class="required">*</span></label>
+			<div class="input-box">
+				<div class="v-fix">
+					<input type="text" title="<?php echo $this->__('Card Verification Number') ?>" class="input-text cvv <?php echo $requireClass; ?> <?php if( !$this->haveStoredCards() ): ?>validate-cc-cvn<?php endif; ?>" id="<?php echo $this->getMethodCode(); ?>_cc_cid" name="payment[cc_cid]" autocomplete="off" value="<?php echo $this->getInfoData('tokenbase_id') == '' ? $this->getInfoData('cc_cid') : ''; ?>" style="width:4em;" />
+				</div>
+			</div>
+		</li>
+	<?php endif; ?>
+	<?php if( !$this->isNominalCheckout() && $this->getMethod()->getConfigData('allow_unsaved') ): ?>
+		<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>">
+			<label>&nbsp;</label>
+			<input type="hidden" name="payment[save]" value="0" />
+			<input type="checkbox" name="payment[save]" id="<?php echo $this->getMethodCode(); ?>_save" value="1" <?php if( $this->getMethod()->getConfigData('savecard_opt_out') ): ?>checked="checked" <?php endif; ?>autocomplete="on" /> 
+			<label for="<?php echo $this->getMethodCode(); ?>_save" style="float:none;font-weight:normal;"><?php echo $this->__('Save for next time'); ?></label>
+		</li>
+	<?php else: /* Guests are not given any choice or warning, because the card can never be reused. */ ?>
+		<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>">
+			<?php echo $this->__('<strong>Note:</strong> For your convenience, this data will be stored securely by our payment processor.'); ?>
+		</li>
+	<?php endif; ?>
+</ul>
+<?php if( $this->haveStoredCards() ): ?>
+	<script type="text/javascript">
+	//<![CDATA[
+		$('<?php echo $this->getMethodCode(); ?>_add_new').observe( 'click', function(e) {
+			e.preventDefault();
+			
+			$$('.<?php echo $newClass; ?>').each(function(el) {
+				el.toggle();
+			});
+			
+			$$('.<?php echo $this->getMethodCode(); ?>_require').each(function(el) {
+				el.toggleClassName('required-entry');
+				if( el.hasClassName('cvv') ) {
+					el.toggleClassName('validate-cc-cvn');
+				}
+			});
+			
+			$('<?php echo $this->getMethodCode(); ?>_card_id').setValue(0);
+			
+			return false;
+		});
+		
+		$('<?php echo $this->getMethodCode(); ?>_card_id').observe( 'change', function(e) {
+			$$('.<?php echo $newClass; ?>').each(function(el) {
+				el.hide();
+			});
+			
+			$$('.<?php echo $newClass; ?> .<?php echo $this->getMethodCode(); ?>_require').each(function(el) {
+				el.removeClassName('required-entry');
+				if( el.hasClassName('cvv') ) {
+					el.removeClassName('validate-cc-cvn');
+				}
+			});
+			
+			$$('#<?php echo $this->getMethodCode(); ?>_saved_cc_cid, #<?php echo $this->getMethodCode(); ?>_card_id').each(function(el) {
+				el.addClassName('required-entry');
+				if( el.hasClassName('cvv') ) {
+					el.addClassName('validate-cc-cvn');
+				}
+			});
+			
+			return false;
+		});
+	//]]>
+	</script>
+<?php endif; ?>

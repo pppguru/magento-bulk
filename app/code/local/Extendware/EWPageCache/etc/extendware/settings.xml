@@ -1,0 +1,1276 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+        <Extendware_EWPageCache>
+        	<extendware>
+	        	<settings>
+	        		<scopes>
+		        		<main>
+							<tabs>
+						        <main translate="label comment ewhelp" module="ewpagecache">
+						            <label>Page Cache</label>
+						            <sort_order>100</sort_order>
+						        </main>
+						    </tabs>
+							<sections>
+								<ewpagecache translate="label comment ewhelp" module="ewpagecache">
+									<class>separator-top</class>
+									<label>General</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>100</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<groups>
+										<general translate="label comment ewhelp" module="ewpagecache">
+						                    <label>General</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>10</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <fields>
+						                        <primary_cache_enabled translate="label comment ewhelp">
+						                            <label>Primary Cache</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable or disable the super fast primary cache]]></comment>
+						                        	<ewhelp><![CDATA[The primary cache is the super fast primary cache. It does not use hole punches and is many times faster than even the secondary cache.]]></ewhelp>
+						                        </primary_cache_enabled>
+						                        <secondary_cache_enabled translate="label comment ewhelp">
+						                            <label>Secondary Cache</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>2</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                    		<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Enable or disable the fast secondary cache that is used when the primary cache cannot be used]]></comment>
+						                        	<ewhelp><![CDATA[The secondary cache is a cache that uses hole punches to serve dynamic content to even logged in users and after add to cart. In the rare case the default hole punches are incompatible with your theme you may disable this cache level to avoid any theme issue while the hole punches are modified for your theme. <u>You must have the secondary cache addon to use this</u>]]></ewhelp>
+						                        	<ewoverrides>
+														<licensing>
+							                        		<ifhelper>ewpagecache/layout/isSecondaryCacheAllowed</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<disabled>1</disabled>
+							                        			<comment><![CDATA[<b>Only available with the "Secondary Cache" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+							                        			<value>0</value>
+							                        		</field_option>
+							                        	</licensing>
+						                        	</ewoverrides>
+						                        </secondary_cache_enabled>
+						                        <!-- <holepunch_mode translate="label comment ewhelp">
+						                            <label>Holepunch Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_holepunchmode</source_model>
+						                            <sort_order>3</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <depends><secondary_cache_enabled>1</secondary_cache_enabled></depends>
+						                            <comment><![CDATA[Ajax method is experimental and may be removed. It will fill in the holepunches with an ajax request. Not useful for all use cases. Not recommended except for adavance users.]]></comment>
+						                        </holepunch_mode> -->
+						                        <cache_method translate="label comment ewhelp">
+						                            <label>Cache Backend</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_cachemethod</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[The place the cache is stored. <b>Note:</b> only methods compatible with this server are shown.]]></comment>
+						                            <demo_comment><![CDATA[Available backends are file, memcached, redis (with PCB), apc, and xcache. <b>Note:</b> <u>not all backends are available in the demo</u>]]></demo_comment>
+						                        	<ewhelp><![CDATA[Twelve cache methods are supported (File, File (optimized), APC, Memcached, XCache, Redis and 6 multi-level caches). However, <u>only methods supported by your server will be visiable</u>. If you do not see a method listed, then it is because your server does not support that method.
+							                        	<br/><br/>
+							                        	<ul style="list-style-type:disc; margin-left: 20px;">
+							                        		<li><b>File</b> - Good general cache method. Tag / auto-flushing performance is not very high.</li>
+							                        		<li><b>File (optimized)</b> - Requires Performant Cache Backends Extensions. Good even with tagging and you have more pages than can fit in memory.</li>
+							                        		<li><b>Redis (optimized)</b> - Requires Performant Cache Backends Extensions and must have installed the redis server and redis php extension.</li>
+							                        		<li><b>Memcached</b> - Must have installed the memcached daemon and memcache php extension.</li>
+							                        		<li><b>APC</b> - Requires APC to be installed. We recommend Memcached / Redis over APC.</li>
+							                        		<li><b>XCache</b> - Requires XCache to be installed. We recommend Memcached / Redis over XCache.</li>
+							                        		<li><b>Redis</b> - Must have installed the redis server and redis php extension.</li>
+							                        		<li><b>Multi: Memcached / File</b> - Combines the best of Memcached and File</li>
+							                        		<li><b>Multi: Memcached / File (optimized)</b> - Combines the best of Memcached and File (optimized). Requires Performant Cache Backends.</li>
+							                        		<li><b>Multi: APC / File</b> - Combines the best of APCand File</li>
+							                        		<li><b>Multi: APC / File (optimized)</b> - Combines the best of APC and File (optimized). Requires Performant Cache Backends.</li>
+							                        		<li><b>Multi: XCache / File</b> - Combines the best of XCache and File</li>
+							                        		<li><b>Multi: XCache / File (optimized)</b> - Combines the best of XCache and File (optimized). Requires Performant Cache Backends.</li>
+							                        	</ul>]]>
+							                        </ewhelp>
+							                        <ewoverrides>
+							                        	<notice>
+							                        		<ifhelper>ewcore/layout/isDemo</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<comment><![CDATA[The place the cache is stored. <b>Note:</b> only methods compatible with this server are shown. For higher performance backends consider <a href="http://www.extendware.com/performant-cache-backends-magento-extension.html"><b>Performant Cache Backends</b></a>]]></comment>
+							                        		</field_option>
+							                        	</notice>
+							                        	<licensing>
+							                        		<ifhelper>ewpagecache/layout/isCacheBackendsAllowed</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<disabled>1</disabled>
+							                        			<comment><![CDATA[<b>Only available with the "Cache Backends" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+							                        			<value>file</value>
+							                        		</field_option>
+							                        	</licensing>
+							                        	<licensing2>
+							                        		<ifhelper>ewpagecache/layout/isPerformanceCacheBackendsInstalled</ifhelper>
+							                        		<ifvalue>1</ifvalue>
+							                        		<field_option>
+							                        			<disabled>0</disabled>
+							                        		</field_option>
+							                        	</licensing2>
+						                        	</ewoverrides>
+						                        </cache_method>
+						                        <username translate="label comment ewhelp">
+						                            <label>Username</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>21</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <depends><cache_method separator=",">xcache,xcache_file</cache_method></depends>
+						                            <comment><![CDATA[Username for XCache]]></comment>
+						                        </username>
+						                        <password translate="label comment ewhelp">
+						                            <label>Password</label>
+						                            <frontend_type>password</frontend_type>
+						                            <sort_order>22</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <depends><cache_method separator=",">xcache,xcache_file,redis,ewredis</cache_method></depends>
+						                            <comment><![CDATA[Password for the backend. Leave blank for no password]]></comment>
+						                        </password>
+						                        <database_index translate="label comment ewhelp">
+						                            <label>Database Index</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>23</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            			<max_value>15</max_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <depends><cache_method separator=",">redis,ewredis</cache_method></depends>
+						                            <comment><![CDATA[The redis DB index that will be used. Should be 0-15]]></comment>
+						                        </database_index>
+						                        <cache_directory translate="label comment ewhelp">
+						                            <label>Directory</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>23</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <depends><cache_method separator=",">file,ewfile,apc_file,apc_ewfile,memcached_file,memcached_ewfile,xcache_file,xcache_ewfile</cache_method></depends>
+						                            <comment><![CDATA[The path where cached files should be stored. Leave empty for the default path. <b>Warning: </b> This needs to be a full path and must be readable and writable or it will cause issues.]]></comment>
+						                        </cache_directory>
+						                        <servers translate="label comment ewhelp">
+						                            <label>Servers</label>
+						                            <frontend_type>textarea</frontend_type>
+						                            <sort_order>28</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <depends><cache_method separator=",">memcached,redis,memcached_file,memcached_ewfile,ewredis</cache_method></depends>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_splittable_string_list</model>
+						                            		<options>
+						                            			<min_items>1</min_items>
+						                            			<splittable_delimiter>:</splittable_delimiter>
+						                            			<splittable_min_items>1</splittable_min_items>
+						                            			<splittable_max_items>2</splittable_max_items>
+						                            			<splittable_item_types>string|integer</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[One per line in the format of [host](:[port]). Default port for memcache is 11211 and default port for redis is 6379]]></comment>
+						                            <ewhelp><![CDATA[If you wish to use linux sockets, then please use the following format: [file path to socket]:0. For example, if the unix socket is unix:///var/memcached.sock, then you would use /var/memcached.sock:0<br/><br/>For multiple redis server support you need to use Performant Cache Backends extension.]]></ewhelp>
+						                        </servers>
+						                        <cache_lifetime translate="label comment ewhelp">
+						                            <label>Cache Lifetime (secs)</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                    		<show_in_store>1</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-zero-or-greater</validate>
+						                            <comment><![CDATA[How long in seconds a cache stays valid for. One day is 86400 seconds. In the advanced config you can set different expiratiosn per page types.]]></comment>
+						                        	<ewhelp><![CDATA[After this many seconds a page will be removed from the cache. The higher the cache expiration, the more useful the full page cache will be. Set this to the highest value that you can tolerate. You can set a separate per page type expiration in the advanced configuration and you can set a per page expiration programmatically.]]></ewhelp>
+						                        </cache_lifetime>
+						                        <compression_enabled translate="label comment ewhelp">
+						                            <label>Compression</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>31</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable or disable compression. Depends on what is more scarce, CPU or RAM / Disk IO.]]></comment>
+						                        	<ewhelp><![CDATA[This should amost always be enabled for APC, Memcached, Redis, and XCache]]></ewhelp>
+						                        </compression_enabled>
+											</fields>
+						                </general>
+						                <injector translate="label comment ewhelp" module="ewpagecache">
+						                    <label>Injector / Hole Punches</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>20</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <fields>
+						                        <cache_enabled translate="label comment ewhelp">
+						                            <label>Cache (experimental)</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable the caching of select hole punches at the user-level to take further load off the database.]]></comment>
+						                        	<ewoverrides>
+														<licensing>
+							                        		<ifhelper>ewpagecache/layout/isSecondaryCacheAllowed</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<disabled>1</disabled>
+							                        			<comment><![CDATA[<b>Only available with the "Secondary Cache" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+							                        			<value>0</value>
+							                        		</field_option>
+							                        	</licensing>
+						                        	</ewoverrides>
+						                        </cache_enabled>
+						                        <cache_lifetime translate="label comment ewhelp">
+						                            <label>Cache Lifetime (secs)</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                    		<show_in_store>1</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-zero-or-greater</validate>
+						                            <comment><![CDATA[How long in seconds a cache stays valid for. Generally this should be a low number ( < 30 minutes) as this is a user-level cache. One minutes is 60 seconds.]]></comment>
+						                        	<ewoverrides>
+														<licensing>
+							                        		<ifhelper>ewpagecache/layout/isSecondaryCacheAllowed</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<disabled>1</disabled>
+							                        			<comment><![CDATA[<b>Only available with the "Secondary Cache" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+							                        		</field_option>
+							                        	</licensing>
+						                        	</ewoverrides>
+						                        </cache_lifetime>
+						                        <compression_enabled translate="label comment ewhelp">
+						                            <label>Compression</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>31</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable or disable compression. Depends on what is more scarce, CPU or RAM / Disk IO.]]></comment>
+						                        	<ewoverrides>
+														<licensing>
+							                        		<ifhelper>ewpagecache/layout/isSecondaryCacheAllowed</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<disabled>1</disabled>
+							                        			<comment><![CDATA[<b>Only available with the "Secondary Cache" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+							                        		</field_option>
+							                        	</licensing>
+						                        	</ewoverrides>
+						                        </compression_enabled>
+											</fields>
+						                </injector>
+									</groups>
+								</ewpagecache>
+								<ewpagecache_tagging translate="label comment ewhelp" module="ewpagecache">
+									<class>separator-top</class>
+									<label>Auto Tag / Flush</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>150</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<groups>
+										<general translate="label comment ewhelp" module="ewpagecache">
+						                    <label>General</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>10</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <fields>
+						                        <enabled translate="label comment ewhelp">
+						                            <label>Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <ewoverrides>
+														<licensing>
+							                        		<ifhelper>ewpagecache/layout/isTaggingAllowed</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<disabled>1</disabled>
+							                        			<comment><![CDATA[<b>Only available with the "Tagging" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+							                        			<value>0</value>
+							                        		</field_option>
+							                        	</licensing>
+						                        	</ewoverrides>
+						                            <comment><![CDATA[Enable or disable tagging support. <b>Note:</b> tagging will only works for the File or Redis backends or one of the Multi backends. It will not work with APC, XCache, or Memcached (unless you use the Multi backend).]]></comment>
+						                        	<ewhelp><![CDATA[Tagging allows the deletion of products / categories as they are edited in the frontend. This reduces the need to completely flush the cache after making small changes.]]></ewhelp>
+						                        </enabled>
+											</fields>
+						                </general>
+						                <autotagging translate="label comment ewhelp" module="ewpagecache">
+						                    <label>Automatic Tagging</label>
+						                    <frontend_type>text</frontend_type>
+						                    <fieldset_css>fieldset-wide</fieldset_css>
+						                    <sort_order>20</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <ewfield_setifnotset>
+						                    	<ewoverrides>
+													<licensing>
+						                        		<ifhelper>ewpagecache/layout/isTaggingAllowed</ifhelper>
+						                        		<ifvalue>0</ifvalue>
+						                        		<field_option>
+						                        			<disabled>1</disabled>
+						                        			<comment><![CDATA[<b>Only available with the "Tagging" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+						                        		</field_option>
+						                        	</licensing>
+					                        	</ewoverrides>
+						                    </ewfield_setifnotset>
+						                    <fields>
+						                    	<cms_mode translate="label comment ewhelp">
+						                            <label>CMS Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_autotagging_cmsmode</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Determine how much auto-tagging you want to use. Without auto-tagging you will be responsible for adding tags according to the userguide.]]></comment>
+						                        	<ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;"><li><b>None</b> - No auto-tagging will be done. You can still manually tag</li><li><b>Lite</b> - cms page will be tagged</li></ul>]]></ewhelp>
+						                        </cms_mode>
+						                        <product_mode translate="label comment ewhelp">
+						                            <label>Product Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_autotagging_productmode</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Determine how much auto-tagging you want to use. Without auto-tagging you will be responsible for adding tags according to the userguide.]]></comment>
+						                        	<ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;"><li><b>None</b> - no auto-tagging will be done. You can still manually tag</li><li><b>Lite</b> - product pages will be tagged with the product ID</li><li><b>Medium</b> - product page + all products on catalog listing will be tagged</li><b>Heavy</b> - product page + all products loaded in product collections will be tagged</li></ul>]]></ewhelp>
+						                        </product_mode>
+						                        <category_mode translate="label comment ewhelp">
+						                            <label>Category Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_autotagging_categorymode</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Determine how much auto-tagging you want to use. Without auto-tagging you will be responsible for adding tags according to the userguide.]]></comment>
+						                        	<ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;"><li><b>None</b> - no auto-tagging will be done. You can still manually tag</li><li><b>Lite</b> - category listing pages will be tagged with category tag</li><li><b>Medium</b> - category listing + product pages will be tagged with relevant tag</li></ul>]]></ewhelp>
+						                        </category_mode>
+						                        <block_tags translate="label comment ewhelp">
+						                            <label>Block Tags</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_blocktags</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                    		<show_in_store>1</show_in_store>>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>2</splittable_min_items>
+						                            			<splittable_max_items>2</splittable_max_items>
+						                            			<splittable_item_types>string|string</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[Useful for adding tags to pages that have certain blocks.)]]></comment>
+						                        	<ewhelp><![CDATA[<b>Note:</b> click the input box for more information on each field.]]></ewhelp>
+						                        </block_tags>
+											</fields>
+						                </autotagging>
+						                <autoflushing translate="label comment ewhelp" module="ewpagecache">
+						                    <label>Automatic Flushing</label>
+						                    <frontend_type>text</frontend_type>
+						                    <fieldset_css>fieldset-wide</fieldset_css>
+						                    <sort_order>30</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <ewfield_setifnotset>
+						                    	<ewoverrides>
+													<licensing>
+						                        		<ifhelper>ewpagecache/layout/isTaggingAllowed</ifhelper>
+						                        		<ifvalue>0</ifvalue>
+						                        		<field_option>
+						                        			<disabled>1</disabled>
+						                        			<comment><![CDATA[<b>Only available with the "Tagging" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+						                        		</field_option>
+						                        	</licensing>
+					                        	</ewoverrides>
+						                    </ewfield_setifnotset>
+						                    <fields>
+						                    	<mode translate="label comment ewhelp">
+						                            <label>Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_autoflushing_mode</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Real-time will flush the cache without delay. Deferred will queue it and flush it in the background.]]></comment>
+						                            <ewhelp><![CDATA[If you editing products / categories slows down your admin do to flushing of the page cache, then select deferred. You will need to setup the cronjob according to the installation guide.]]></ewhelp>
+						                        </mode>
+						                        <flush_block_cache translate="label comment ewhelp">
+						                            <label>Flush Magento Block Cache</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Auto-clear the Magento block cache before auto-flushing page cache]]></comment>
+						                        </flush_block_cache>
+						                        <flush_parent_products translate="label comment ewhelp">
+						                            <label>Flush Parent Products</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>11</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Flush the main configurable / grouped products when child products are flushed.]]></comment>
+						                        </flush_parent_products>
+						                        <flush_parent_products translate="label comment ewhelp">
+						                            <label>Flush Parent Products</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>12</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Flush the main configurable / grouped products when child products are flushed.]]></comment>
+						                        </flush_parent_products>
+						                        <flush_product_link_types translate="label comment ewhelp">
+						                            <label>Flush Linked Products</label>
+						                            <frontend_type>multiselect</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_autoflushing_linktypes</source_model>
+						                            <sort_order>13</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <can_be_empty>1</can_be_empty>
+						                            <comment><![CDATA[Flush products that are linked to the affected product. Use CTR-C to select multiple items.]]></comment>
+						                        </flush_product_link_types>
+						                        <flush_parent_categories translate="label comment ewhelp">
+						                            <label>Flush Parent Categories</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>17</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Flush the parent categories of an affected category]]></comment>
+						                        </flush_parent_categories>
+						                        <custom_tags translate="label comment ewhelp">
+						                            <label>Custom Tags</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_customtags</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>19</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                    		<show_in_store>1</show_in_store>>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>2</splittable_min_items>
+						                            			<splittable_max_items>2</splittable_max_items>
+						                            			<splittable_item_types>string|string</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[Useful for flushing custom added tags on certain events.]]></comment>
+						                        	<ewhelp><![CDATA[<b>Note:</b> click the input box for more information on each field.]]></ewhelp>
+						                        </custom_tags>
+						                        <product_event translate="label comment ewhelp">
+						                            <label>Product Events</label>
+						                            <frontend_type>multiselect</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_autoflushing_productevent</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <can_be_empty>1</can_be_empty>
+						                            <comment><![CDATA[Choose when pages that display a changed product will be auto-flushed. Use CTRL-Click to select multiple items]]></comment>
+						                        	<ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;"><li><b>Product Save</b> - after saving a product</li><li><b>Stock Quantity Change</b> - when the stock quantity changes. For example, from 7 items to 6 items in stock.</li><li><b>Stock State Change</b> - when a product changes from in stock to out of stock and vice versa.</li></ul>]]></ewhelp>
+						                        </product_event>
+						                        <stock_quantity_change_mode translate="label comment ewhelp">
+						                            <label>Stock Quantity Change Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_autoflushing_stockquantitychange</source_model>
+						                            <sort_order>23</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Determines the mode for stock quantity change flush event. Set to conservative to only flush if quantity changes from 0 <-> 1. Change to liberal to flush on any change.]]></comment>
+						                        </stock_quantity_change_mode>
+						                        <category_event translate="label comment ewhelp">
+						                            <label>Category Events</label>
+						                            <frontend_type>multiselect</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_autoflushing_categoryevent</source_model>
+						                            <sort_order>25</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <can_be_empty>1</can_be_empty>
+						                            <comment><![CDATA[Determine how much auto-tagging you want to use. Without auto-tagging you will be responsible for adding tags according to the userguide.]]></comment>
+						                        	<ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;"><li><b>Category Save</b> - after saving a category</li></ul>]]></ewhelp>
+						                        </category_event>
+						                        <cms_event translate="label comment ewhelp">
+						                            <label>CMS Events</label>
+						                            <frontend_type>multiselect</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_autoflushing_cmsevent</source_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <can_be_empty>1</can_be_empty>
+						                            <comment><![CDATA[Choose when cms pages will be auto-flushed. Use CTRL-Click to select multiple items]]></comment>
+						                        	<ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;"><li><b>CMS Save</b> - After saving a CMS page</li></ul>]]></ewhelp>
+						                        </cms_event>
+											</fields>
+						                </autoflushing>
+									</groups>
+								</ewpagecache_tagging>
+								<ewpagecache_advanced translate="label comment ewhelp" module="ewpagecache">
+									<class>separator-top</class>
+									<label>Advanced</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>200</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<groups>
+										<behavior translate="label comment ewhelp" module="ewpagecache">
+						                    <label>Behavior</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>1</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <fields>
+						                        <recently_viewed_products_enabled translate="label comment ewhelp">
+						                            <label>Recently Viewed Products</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>5</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Enabling this is not recommended. Please refer to the user guide if you enable this.]]></comment>
+						                        	<ewhelp><![CDATA[Enabling this option will make your site slower and reduce the effecitveness of the Primary Cache. If you enable this
+						                        	you must modify the page rules by uncommenting the relevant section in the &lt;catalog-product-view&gt; node]]></ewhelp>
+						                        </recently_viewed_products_enabled>
+						                        <exclude_bad_requests_enabled translate="label comment ewhelp">
+						                            <label>Exclude Bad Requests</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>11</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[If this is enabled, then pages with a non 200 HTTPS status code will not be cached]]></comment>
+						                        	<ewhelp><![CDATA[Exclude 404 page errors and other non-200 requests. Usually there is not a reason to cache these pages especially because it can create issues where a CMS page is temporarily disabled (returns 404 error), this is cached, and then now it will keep showing a 404 page error until the page expires.]]></ewhelp>
+						                        </exclude_bad_requests_enabled>
+						                        <record_product_views_enabled translate="label comment ewhelp">
+						                            <label>Record Product Views</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>12</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[This should only be enabled if you are using our <a href="http://www.extendware.com/customers-also-viewed-magento-extension.html" target="_blank"><b>Also Viewed extension</b></a>.]]></comment>
+						                        </record_product_views_enabled>
+						                        <primary_cache_reentry_types translate="label comment ewhelp">
+						                            <label>Cache Re-entry (experimental)</label>
+						                            <frontend_type>multiselect</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_cachereentry</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <can_be_empty>1</can_be_empty>
+						                            <comment><![CDATA[Enabling this will allow customers to re-enter the primary cache after exiting the primary cache if certain conditions occur.]]></comment>
+						                            <ewhelp><![CDATA[Cache re-entry is only an attempt to re-enter the primary cache. It does not guarantee re-entry will occur. Type of cache re-entry:
+						                            <br/><br/>
+						                            <ul style="list-style-type:disc; margin-left: 20px;">
+						                            	<li><b>Cart</b> - Re-enter primary cache after cart has been emptied</li>
+						                            	<li><b>Login</b> - Re-enter primary cache after logging out</li>
+						                            	<li><b>Compare</b> - Re-enter primary cache after compare list has been cleared. Enabling this will attempt to disable the "Recently Compared Products" block. You will need to do this automatically if disabling is not automatic.</li>
+						                            </ul>
+						                            ]]></ewhelp>
+						                        </primary_cache_reentry_types>
+						                    </fields>
+						                </behavior>
+						                <caching translate="label comment ewhelp" module="ewpagecache">
+						                    <label>Caching</label>
+						                    <frontend_type>text</frontend_type>
+						                    <fieldset_css>fieldset-wide</fieldset_css>
+						                    <sort_order>5</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <ewhelp><![CDATA[Cacheable settings are used to determine whether a page is cached or not.]]></ewhelp>
+						                    <fields>
+						                        <page_rules translate="label comment ewhelp">
+						                            <label>Page Rules</label>
+						                            <frontend_type>textarea</frontend_type>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                    		<show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_xml</model>
+						                            		<options>
+						                            			<inline>1</inline>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[Please refer to the user guide that came with the extension for an explaination of rules]]></comment>
+						                        	<ewhelp><![CDATA[A page will be cacheable if it matches a rule listed here. Each rule follows a heirachy. For example, the page path "catalog-category-view" refers to the module (catalog), controller (category), and action (view). Rules 
+						                        	are inherited. So, a request to a catalog -> category -> view page will also match a rule block such as "catalog-category" if a config value is not defined more specifically in "catalog-category-view". 
+						                        	<br/><br/>
+						                        	To view the page path for a given page you should enable the footer widget (<i>Developer -> General -> Footer Widget</i>) or output headers (<i>Developer -> General -> Output Headers</i>) if the page is retrieved via ajax.
+						                        	You can use something like HTTPFox or an online header viewer. The relevant header with this information is <i>X-PageCache-PagePath</i>.]]></ewhelp>
+						                        	<ewoverrides>
+														<licensing>
+							                        		<ifhelper>ewpagecache/layout/isPageRulesAllowed</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<disabled>1</disabled>
+							                        			<comment><![CDATA[<b>Only available with the "Page Rules" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+							                        		</field_option>
+							                        	</licensing>
+						                        	</ewoverrides>
+						                        </page_rules>
+						                        <content_disqualifiers translate="label comment ewhelp">
+						                            <label>Content Disqualifiers</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_contentdisqualifiers</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>2</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                    		<show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>1</splittable_min_items>
+						                            			<splittable_max_items>1</splittable_max_items>
+						                            			<splittable_item_types>string</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[If any of the content in your HTML source matches the above strings, then the page will not be cached.]]></comment>
+						                        	<ewhelp><![CDATA[]]></ewhelp>
+						                        </content_disqualifiers>
+						                    </fields>
+						                </caching>
+						                <segmentable translate="label comment ewhelp" module="ewpagecache">
+						                    <label>Segmentable</label>
+						                    <frontend_type>text</frontend_type>
+						                    <fieldset_css>fieldset-wide</fieldset_css>
+						                    <sort_order>31</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <ewhelp><![CDATA[Segementable settings will determine when a cache is segemented. A segemented cache is a separate cache that exists in its own namespace. This allows the cache of one store view to not affect another store view, for example.]]></ewhelp>
+						                    <fields>
+						                        <user_agents translate="label comment ewhelp">
+						                            <label>User Agents</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_segmentable_useragents</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>2</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                   			<show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>2</splittable_min_items>
+						                            			<splittable_max_items>2</splittable_max_items>
+						                            			<splittable_item_types>string|regexp</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[If you serve different content based on user agent (for example, to serve a mobile theme), then you need to enter the regular expression to match the mobile browser user agent. The group can be whatever you want it to be and is for reference purposes. A regular expression must begin and end with "/".]]></comment>
+						                        	<ewhelp><![CDATA[]]></ewhelp>
+						                        </user_agents>
+						                        <cookies translate="label comment ewhelp">
+						                            <label>Cookies</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_segmentable_cookies</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>3</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                   			<show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>1</splittable_min_items>
+						                            			<splittable_max_items>1</splittable_max_items>
+						                            			<splittable_item_types>string</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        	<ewhelp><![CDATA[The cache will be segemented based on each cookie here. Default magento needs <i>currency</i> and <i>store</i> in order for the primary cache to work correctly for multiple currencies / store views.]]></ewhelp>
+						                        </cookies>
+						                    </fields>
+						                </segmentable>
+						                <injectors translate="label comment ewhelp" module="ewpagecache">
+						                    <label>Injectors / Hole Punches</label>
+						                    <frontend_type>text</frontend_type>
+						                    <fieldset_css>fieldset-wide</fieldset_css>
+						                    <sort_order>40</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <ewhelp><![CDATA[This section configures the holes punches that are used by the secondary cache.]]></ewhelp>
+						                    <ewfield_setifnotset>
+						                    	<ewoverrides>
+													<licensing>
+						                        		<ifhelper>ewpagecache/layout/isSecondaryCacheAllowed</ifhelper>
+						                        		<ifvalue>0</ifvalue>
+						                        		<field_option>
+						                        			<disabled>1</disabled>
+						                        			<comment><![CDATA[<b>Only available with the "Secondary Cache" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+						                        		</field_option>
+						                        	</licensing>
+					                        	</ewoverrides>
+						                    </ewfield_setifnotset>
+						                    <fields>
+						                        <list translate="label comment ewhelp">
+						                            <label>Injectors</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_injectors</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                    		<show_in_store>1</show_in_store>>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>2</splittable_min_items>
+						                            			<splittable_max_items>2</splittable_max_items>
+						                            			<splittable_item_types>string|string</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[Block leve hole punch registration. Refer to the user guide for more info]]></comment>
+						                        	<ewhelp><![CDATA[The way injectors (or hole punches) work is that the block defined by the <i>block key</i> will be surrounded by special HTML comments. After a page is cached, anything inside of those comments will be replaced by calling on the injector defined by the injector key. 
+						                        	This is how dynamic content is injected inside of a cached page. You may see an example of what an injector looks like by opening the <i>app/code/local/Extendware/EWPageCache/Model/Injector/Example.php</i> file.
+													<br><br><b>Note:</b> click the input box for more information on each field.
+													]]></ewhelp>
+						                        </list>
+						                    </fields>
+						                </injectors>
+						                <cache_key translate="label comment ewhelp" module="ewpagecache">
+						                    <label>Cache Key</label>
+						                    <frontend_type>text</frontend_type>
+						                    <fieldset_css>fieldset-wide</fieldset_css>
+						                    <sort_order>50</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <ewhelp><![CDATA[Cache key settings determine how the cache key is generated. Every page needs its own unique cache key and two pages with the same cache key will share the same cache.]]></ewhelp>
+						                    <fields>
+						                    	<sorting_enabled translate="label comment ewhelp">
+						                            <label>Sorting Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Sort paramters so they are always in the same order prior to getting cache key]]></comment>
+						                        	<ewhelp><![CDATA[A request like the following <i>index.php?b=1&a=2</i> is different than <i>index.php?a=1&b=2</i> if sorting is turned off. If paramteres change positions in your store, then you should enable sorting.]]></ewhelp>
+						                        </sorting_enabled>
+						                        <design_key_enabled translate="label comment ewhelp">
+						                            <label>Design Key Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[This will include design (template code, layout code, etc) information when creating a cache key for the secondary cache.]]></comment>
+						                        	<ewhelp><![CDATA[Only enable this if there is a problem with your design. This might fix the issue in extremely rare cases. The consequence of enabling this is that it will segment the primary / secondary cache which will reduce your cache hit rate.]]></ewhelp>
+						                        	<ewoverrides>
+														<licensing>
+							                        		<ifhelper>ewpagecache/layout/isSecondaryCacheAllowed</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<disabled>1</disabled>
+							                        			<comment><![CDATA[<b>Only available with the "Secondary Cache" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+							                        			<value>0</value>
+							                        		</field_option>
+							                        	</licensing>
+						                        	</ewoverrides>
+						                        </design_key_enabled>
+						                        <ignored_parameters translate="label comment ewhelp">
+						                            <label>Ignored Parameters</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_ignoredparameters</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>1</splittable_min_items>
+						                            			<splittable_max_items>1</splittable_max_items>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[URL paramters that are ignored when determining if page is unique or not.]]></comment>
+						                        	<ewhelp><![CDATA[If there are two URIs like <i>index.php?sid=VAL1</i> and <i>index.php?sid=VAL2</i>, the URIs will be considered identical if <i>sid</i> is in the ignored parameter list. This is useful for parameters that do not affect page content (sid params, advertising tracking parameters, etc)]]></ewhelp>
+						                        </ignored_parameters>
+						                        <tax_class_pieces translate="label comment ewhelp">
+						                            <label>Tax Class Information</label>
+						                            <frontend_type>select</frontend_type>
+						                            <frontend_type>multiselect</frontend_type>
+						                            <source_model>ewpagecache/adminhtml_config_data_option_taxclasspieces</source_model>
+						                            <sort_order>29</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <can_be_empty>1</can_be_empty>
+						                            <comment><![CDATA[Unless you have a complicated tax situation and show taxes on catalog / product pages, then you can leave this empty.]]></comment>
+						                        	<ewhelp><![CDATA[]]></ewhelp>
+						                        </tax_class_pieces>
+						                        <translated_customer_groups translate="label comment ewhelp">
+						                            <label>Translated Customer Groups</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_translatedcustomergroups</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                    		<show_in_store>1</show_in_store>
+						                    		<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>2</splittable_min_items>
+						                            			<splittable_max_items>2</splittable_max_items>
+						                            			<splittable_item_types>integer|integer</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[Customer group translation helps ensure different customer groups see the same cached page.]]></comment>
+						                        	<ewhelp><![CDATA[This is used to make the cache more efficient. If you have two customer groups that see your Web site in exactly the same way, then you can translate them so they share the same cache space. By default, the customer group ID "1" is translated to "0", which means that logged in users (in the default logged in customer group) will use the same cache as users not logged in.]]></ewhelp>
+													<ewoverrides>
+														<licensing>
+							                        		<ifhelper>ewpagecache/layout/isSecondaryCacheAllowed</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<disabled>1</disabled>
+							                        			<comment><![CDATA[<b>Only available with the "Secondary Cache" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+							                        			<value>0</value>
+							                        		</field_option>
+							                        	</licensing>
+						                        	</ewoverrides>
+						                        </translated_customer_groups>
+						                    </fields>
+						                </cache_key>
+									</groups>
+								</ewpagecache_advanced>
+								<ewpagecache_misc translate="label comment ewhelp" module="ewpagecache">
+									<class>separator-top</class>
+									<label>Miscellaneous</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>250</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<groups>
+						                <runnable>
+						                	<label>Runnable Disqualifiers</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>10</sort_order>
+						                    <fieldset_css>fieldset-wide</fieldset_css>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <ewhelp><![CDATA[Runnable settings help determine whether the cache is enabled or disabled based on URI or cookie rules.]]></ewhelp>
+						                    <fields>
+						                		<url_filters translate="label comment ewhelp">
+						                            <label>Uri Filter RegExps</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_urlfilters</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>1</splittable_min_items>
+						                            			<splittable_max_items>1</splittable_max_items>
+						                            			<splittable_item_types>regexp</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[If you cannot access a 3rd party extension's admin area, then you need to put in a unique string that matches the urls of the 3rd party extensions admin pages.]]></comment>
+						                        	<ewhelp><![CDATA[<b>Format:</b> One regular expression per line including the //. For example, /admin/ to match any url with admin.
+						                        	<br/><br/>
+						                        	If a a URI matches any string listed here, then the page cache extension will not run. <b>You must set this correctly in order to login to the admin area</b>. By default, the only string listed here is <i>admin</i>. If an extension uses admin URIs that do not match the below list then you will not be able to view that extensions admin pages until you add the appropriate identifier here.
+						                        	<br/><br/>
+						                        	<b>Note:</b> This can be used to disable the cache based on any arbitrary URL string.
+						                        	]]></ewhelp>
+							                    </url_filters>
+						                        <cookie_disqualifiers translate="label comment ewhelp">
+						                            <label>Cookie Names</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_cookiedisqualifiers</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>2</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>1</splittable_min_items>
+						                            			<splittable_max_items>1</splittable_max_items>
+						                            			<splittable_item_types>string</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[Anyone with a set a cookie that matches one of the inputted cookie names will not use the cache.]]></comment>
+						                        	<ewhelp><![CDATA[<b>Format:</b> one string per line.
+						                        	<br/><br/>
+						                        	This is useful if you do not want administrators to load the cache. This enables this to view all the latest changes to the site. Add <i>adminhtml</i> to the list to accomplish this.]]></ewhelp>
+						                        </cookie_disqualifiers>
+						                        <user_agent_disqualifiers translate="label comment ewhelp">
+						                            <label>User Agent Rules</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_useragentdisqualifiers</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>3</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>1</splittable_min_items>
+						                            			<splittable_max_items>1</splittable_max_items>
+						                            			<splittable_item_types>regexp</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[When a user's user agent matches an inputted regular expression, then they will not use the cache.]]></comment>
+						                        	<ewhelp><![CDATA[<b>Format:</b> one regular expression per line
+						                        	<br/><br/>
+						                        	If you serve different content based on user agent (for example, to serve a mobile theme) and for some reason you do not want to use the cache for these user agents, then you may enter a regular expression to disable the cache for these user agents. To disable the cache for mobile clients you could use something like this:
+													<p style="margin-top: 10px">BlackBerry|Pre|Palm|Googlebot-Mobile|mobi|Safari Mobile|Windows Mobile|Android|Opera Mini|mobile</p>
+						                        	]]></ewhelp>
+						                        </user_agent_disqualifiers>
+											</fields>
+						                </runnable>
+						                <logging>
+						                	<label>Logging</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>20</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <ewhelp><![CDATA[Logging is used by the Full Page Cache Crawler. If you do not have this installed, you may ignore these settings.]]></ewhelp>
+						                    <fields>
+						                		<enabled translate="label comment ewhelp">
+						                            <label>Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Enable or disable logging. This log can be fed to a crawler such as the Full Page Cache Crawler. Only cached pages are logged on cache]]></comment>
+						                        	<ewhelp><![CDATA[Only enable this if you also have the Full Page Cache Crawler. The location of the logs will be in <i>/var/extendware/ewpagecache/cachedlog/</i>]]></ewhelp>
+						                        </enabled>
+						                        <exclude_bad_requests_enabled translate="label comment ewhelp">
+						                            <label>Exclude Bad Requests</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>11</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[If this is enabled, then pages that do not return a 200 http status response will be excluded]]></comment>
+						                        	<ewhelp><![CDATA[Enabling logging of 404 page not found requests is generally a very bad idea. Only do this if you know what you are doing and have a very specific reason for doing it. You must also enable the caching of bad requests for requests to be logged.]]></ewhelp>
+						                        </exclude_bad_requests_enabled>
+						                        <max_log_size translate="label comment ewhelp">
+						                            <label>Max Log Size (MB)</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                    		<show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_double</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            			<max_value>10</max_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-number-range number-range-1-10</validate>
+						                            <comment><![CDATA[Max size of the log files in megabytes (1 - 10)]]></comment>
+						                        </max_log_size>
+						                        <max_log_age translate="label comment ewhelp">
+						                            <label>Max Log Age</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>29</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                    		<show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-zero-or-greater</validate>
+						                            <comment><![CDATA[The number of seconds since the last modification time that a log will be kept.]]></comment>
+						                        	<ewhelp><![CDATA[This should be set based on the Full Page cache Crawler <i>Max Days</i> setting.]]></ewhelp>
+						                        </max_log_age>
+						                        <max_log_history translate="label comment ewhelp">
+						                            <label>Max Log History</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                    		<show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-zero-or-greater</validate>
+						                            <comment><![CDATA[The maximum number of log files that will be kept]]></comment>
+						                        </max_log_history>
+											</fields>
+						                </logging>
+									</groups>
+								</ewpagecache_misc>
+								<ewpagecache_developer translate="label comment ewhelp" module="ewpagecache">
+									<class>separator-top</class>
+									<label>Developer</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>300</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<groups>
+										<general translate="label comment ewhelp" module="ewpagecache">
+						                    <label>General</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>10</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <fields>
+						                    	<ip_rules translate="label comment ewhelp">
+						                            <label>IP Access Rules</label>
+						                            <frontend_model>ewpagecache/adminhtml_config_form_field_ipaddress</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>2</splittable_min_items>
+						                            			<splittable_max_items>2</splittable_max_items>
+						                            			<splittable_item_types>string|ewpagecache/data_validator_ip</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment>Widgets, deleting over http, and hole punches hints will only be shown to IP addresses matching these rules. Leave empty for all.</comment>
+													<ewhelp><![CDATA[List of IP address rules. A variety of rules are supported, such as 222.222.*.105, 222.222.222.100-205. Input one rule per item.]]></ewhelp>
+						                        </ip_rules>
+						                    	<widget_enabled translate="label comment ewhelp">
+						                            <label>Demo Widget</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Show widget at the head of all pages. This will slow down the cache so enable with caution.]]></comment>
+						                            <ewhelp><![CDATA[In general you should never enable this. This option is only available for the demo (which uses the same exact packages). This has not been tested on non-default themes.]]></ewhelp>
+						                        </widget_enabled>
+						                        <footer_widget_enabled translate="label comment ewhelp">
+						                            <label>Footer Widget</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Show widget at the footer of all pages. This will slow down the cache so enable with caution.]]></comment>
+						                            <ewhelp><![CDATA[This will show a widget at the footer of your store with information such as cache level, time to live, page path, tags used, etc, of the cache page, etc. This is useful for debugging and information purposes.]]></ewhelp>
+						                        </footer_widget_enabled>
+						                        <output_headers_enabled translate="label comment ewhelp">
+						                            <label>Output Headers</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>25</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Output informative response headers. Will make requests slightly slower.]]></comment>
+						                        	<ewhelp><![CDATA[You can view the output headers of your store by downloading something like <u>HTTP Fox for Firefox</u>. Only look at the headers of the main document (not images, css, or js files). The page cache headers will begin with <i>X-PageCache</i>.]]></ewhelp>
+						                        </output_headers_enabled>
+						                        <deleting_over_http_enabled translate="label comment ewhelp">
+						                            <label>Deleting Over HTTP</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Ability to delete a page from cache via a link.]]></comment>
+						                            <ewhelp><![CDATA[With this enabled, you may retrive the cache key of a page via the footer widget and then goto http://www.yoursite.com/ewpagecache/cache/removeItem/?id=[cache key] in order to delete the page from your cache. You may also click on "[X]" in the footer widget to delete a page.]]></ewhelp>
+						                        </deleting_over_http_enabled>
+						                        <hole_punch_hints_enabled translate="label comment ewhelp">
+						                            <label>Hole Punch Hints</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>40</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                    		<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Outline all hole punched blocks in red so you can see what is not being cached. Will make requests slightly slower.]]></comment>
+						                        	<ewhelp><![CDATA[<u>Hole punch hits will only be visible if you are in the secondary cache.</u> You can view what cache level you are in by using the footer widget / output headers.]]></ewhelp>
+						                        	<ewoverrides>
+														<licensing>
+							                        		<ifhelper>ewpagecache/layout/isSecondaryCacheAllowed</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<disabled>1</disabled>
+							                        			<comment><![CDATA[<b>Only available with the "Secondary Cache" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+							                        			<value>0</value>
+							                        		</field_option>
+							                        	</licensing>
+						                        	</ewoverrides>
+						                        </hole_punch_hints_enabled>
+						                        <refresh_cache_sync_enabled translate="label comment ewhelp">
+						                            <label>Refresh Cache Sync</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>50</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                    		<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Enabling this will refresh the page cache when you refresh the other caches via System -> Cache Management. This can save you time if you always want to flush the page cache when you flush the block cache.]]></comment>
+						                        </refresh_cache_sync_enabled>
+						                        <log_enabled translate="label comment ewhelp">
+						                            <label>Debug Log</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>60</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                    		<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[When enabled a log will be created (ewpagecache.log). You should only enable if you have enabled IP Access Rules or else you will get a very large log file very rapidly.]]></comment>
+						                        </log_enabled>
+						                    </fields>
+						                </general>
+									</groups>
+								</ewpagecache_developer>
+							</sections>
+						</main>
+					</scopes>
+				</settings>
+			</extendware>
+		</Extendware_EWPageCache>
+	</modules>
+</config>

@@ -1,0 +1,6 @@
+- rajouter le sku dans l'export des purchase_order_products
+- exporter le montant d'une PO (ht & ttc) (en devise et en base) (impose de modifier la classe purchase_order
+- créer le script d'installation de sprofils (mage_dataflow_profile)
+- vérifier la casse sur la déclaration des classes dans le xml des profiles
+- les frais de douane ne sont pas pris en compte sur le calcul du total de la commande
+- vérifier le formatage de details sur les supply needs & order_to_prepare

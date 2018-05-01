@@ -1,0 +1,45 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Product Returns') ?></h1>
+</div>
+
+<div class="right">
+    <?php if ($this->canRequestForProductReturn()): ?>
+        <button type="button" onclick="document.location.href='<?php echo $this->getProductReturnRequestUrl(); ?>'"
+                title="<?php echo $this->__('Submit request'); ?>" class="button save">
+            <span><span><?php echo $this->__('Request a new Product Return'); ?></span></span></button>  &nbsp;
+    <?php endif; ?>
+</div>
+<p>&nbsp;</p>
+<?php if ($this->getList()->getSize()): ?>
+    <table cellspacing="0" class="data-table" id="my-productreturn-table">
+        <thead>
+        <tr>
+            <th><?php echo $this->__('Reference Number') ?></th>
+            <th><?php echo $this->__('Date') ?></th>
+            <th><?php echo $this->__('Order') ?></th>
+            <th><?php echo $this->__('Status') ?></th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $_odd = ''; ?>
+        <?php foreach ($this->getList() as $_productReturn): ?>
+            <tr>
+                <td><?php echo $_productReturn->getrma_ref(); ?></td>
+                <td><?php echo $this->formatDate($_productReturn->getrma_created_at(), 'medium'); ?></td>
+                <td><?php echo $_productReturn->getSalesOrder()->getIncrementId(); ?></td>
+                <td><?php echo $this->__(str_replace('_', ' ', $_productReturn->getrma_status())); ?></td>
+                <td class="a-center">
+                    <a href="<?php echo $this->getViewUrl($_productReturn) ?>"><?php echo $this->__('View') ?></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <script type="text/javascript">decorateTable('my-productreturn-table')</script>
+
+<?php else: ?>
+    <p><?php echo $this->__('You have no active product returns.') ?></p>
+<?php endif ?>

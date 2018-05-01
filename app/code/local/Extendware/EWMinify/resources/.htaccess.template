@@ -1,0 +1,57 @@
+# ensure we have access
+Order allow,deny
+Allow from all
+
+# turn off MultiViews if enabled
+Options -MultiViews
+
+<IfModule !mod_litespeed>
+	# For *.var requests, negotiate using type-map
+	AddHandler type-map .var
+
+	# use custom extensions so existing handlers for .gz/.Z don't interfere
+	AddEncoding x-gzip .zg
+	AddEncoding x-compress .zc
+	AddEncoding deflate .zd
+
+	# Necessary to add charset while using type-map
+	AddType application/x-javascript;charset=utf-8 js
+	AddType text/css;charset=utf-8 css
+</IfModule>
+
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresDefault "access plus 1 year"
+
+	# do this just in case previous expire was set earlier
+	ExpiresByType text/css "access plus 1 year"
+	ExpiresByType text/javascript "access plus 1 year"
+	ExpiresByType application/x-javascript "access plus 1 year"
+
+	ExpiresByType image/gif "access plus 1 year"
+	ExpiresByType image/png "access plus 1 year"
+	ExpiresByType image/jpg "access plus 1 year"
+	ExpiresByType image/jpeg "access plus 1 year"
+	ExpiresByType image/bmp "access plus 1 year"
+	ExpiresByType image/svg "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+	Header set Cache-Control "public, max-age=31536000"
+</IfModule>
+
+<IfModule mod_expires.c>
+	<IfModule mod_headers.c>
+		# if the other modules are enabled, there really isn't a need for an ETag
+		# it will just bloat the response headers
+		FileETag None
+	</IfModule>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	# if the browser is ie 5 or 6 without SV1 and not opera
+	RewriteCond %{HTTP_USER_AGENT} MSIE\ [56]
+	RewriteCond %{HTTP_USER_AGENT} !(\ SV1|Opera)
+	RewriteRule ^(.*)\.var$ $1 [L]
+</IfModule>

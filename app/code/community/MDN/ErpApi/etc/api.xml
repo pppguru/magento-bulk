@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<config>
+    <api>
+        <resources>           
+            <!-- START GUSTOMER GROUP RESOURCES -->
+            <ErpApi>
+                <model>ErpApi/Api</model>
+                <title>ERP API</title>
+                <acl>ErpApi</acl>
+                <methods>
+
+                    <getErpApiVersion  translate="title" module="ErpApi">
+                        <title>get The current ERP API version</title>
+                        <method>getErpApiVersion</method>
+                    </getErpApiVersion>
+
+                    <getOperators  translate="title" module="ErpApi">
+                        <title>Get magento user list</title>
+                        <method>getOperators</method>
+                    </getOperators>
+
+                    <skuExists  translate="title" module="ErpApi">
+                        <title>sku Exists</title>
+                        <method>skuExists</method>
+                    </skuExists>
+
+                    <skuByEan  translate="title" module="ErpApi">
+                        <title>Get a sku by ean</title>
+                        <method>skuByEan</method>
+                    </skuByEan>
+
+                    <productInfosByEan  translate="title" module="ErpApi">
+                        <title>Get product Infos By Ean</title>
+                        <method>productInfosByEan</method>
+                    </productInfosByEan>
+
+                    <productWarehouseList  translate="title" module="ErpApi">
+                        <title>Get product stocks informations infos by productId</title>
+                        <method>productWarehouseList</method>
+                    </productWarehouseList>
+
+                    <productStockMovementList  translate="title" module="ErpApi">
+                        <title>Get product stocks movements by productId</title>
+                        <method>productStockMovementList</method>
+                    </productStockMovementList>
+
+                     <productPendingSalesOrdersList  translate="title" module="ErpApi">
+                        <title>Get pending sales orders by productId</title>
+                        <method>productPendingSalesOrdersList</method>
+                    </productPendingSalesOrdersList>
+
+                    <productPurchaseOrdersList  translate="title" module="ErpApi">
+                        <title>Get purchase orders by productId</title>
+                        <method>productPurchaseOrdersList</method>
+                    </productPurchaseOrdersList>
+
+                    <updateProductQtyByWarehouse  translate="title" module="ErpApi">
+                        <title>update product Qty by warehouse Id</title>
+                        <method>updateProductQtyByWarehouse</method>
+                    </updateProductQtyByWarehouse>
+
+                    <updateProductSelfLocationByWarehouse  translate="title" module="ErpApi">
+                        <title>update Product SelfLocation By Warehouse Id</title>
+                        <method>updateProductSelfLocationByWarehouse</method>
+                    </updateProductSelfLocationByWarehouse>
+
+                    <updateProductIdealStockLevelByWarehouse  translate="title" module="ErpApi">
+                        <title>update Product IdealStockLevel by warehouse Id</title>
+                        <method>updateProductIdealStockLevelByWarehouse</method>
+                    </updateProductIdealStockLevelByWarehouse>
+
+                    <updateProductWarningStockLevelByWarehouse  translate="title" module="ErpApi">
+                        <title>update Product WarningStockLevel By warehouse Id</title>
+                        <method>updateProductWarningStockLevelByWarehouse</method>
+                    </updateProductWarningStockLevelByWarehouse>
+
+                    <supplierList  translate="title" module="ErpApi">
+                        <title>Get supplier List</title>
+                        <method>supplierList</method>
+                    </supplierList>
+
+                    <purchaseOrdersBySupplierId  translate="title" module="ErpApi">
+                        <title>Purchase Orders list By Supplier Id</title>
+                        <method>purchaseOrdersBySupplierId</method>
+                    </purchaseOrdersBySupplierId>
+
+                    <purchaseOrdersProducts  translate="title" module="ErpApi">
+                        <title>Purchase orders products by purchase order Id</title>
+                        <method>purchaseOrdersProducts</method>
+                    </purchaseOrdersProducts>
+
+                    <getWarehouseList  translate="title" module="ErpApi">
+                        <title>Get Warehouse List</title>
+                        <method>getWarehouseList</method>
+                    </getWarehouseList>
+
+                    <getWarehouseList  translate="title" module="ErpApi">
+                        <title>Get Warehouse List</title>
+                        <method>getWarehouseList</method>
+                    </getWarehouseList>
+                    
+                    <purchaseOrderDelivery  translate="title" module="ErpApi">
+                        <title>Purchase Order Delivery</title>
+                        <method>purchaseOrderDelivery</method>
+                    </purchaseOrderDelivery>
+
+                    <getErpOptions  translate="title" module="ErpApi">
+                        <title>Erp public options</title>
+                        <method>getErpOptions</method>
+                    </getErpOptions>
+
+                    <getRemainToShipOrderItems  translate="title" module="ErpApi">
+                        <title>Get RemainToShip Order Items</title>
+                        <method>getRemainToShipOrderItems</method>
+                    </getRemainToShipOrderItems>
+
+                    <getFullStockOrders  translate="title" module="ErpApi">
+                        <title>Get FullStock Orders</title>
+                        <method>getFullStockOrders</method>
+                    </getFullStockOrders>
+
+                    <getStocklessOrders  translate="title" module="ErpApi">
+                        <title>Get Stockless Orders</title>
+                        <method>getStocklessOrders</method>
+                    </getStocklessOrders>
+
+                    <getIgnoredOrders  translate="title" module="ErpApi">
+                        <title>Get Ignored Orders</title>
+                        <method>getIgnoredOrders</method>
+                    </getIgnoredOrders>
+
+                    <commitPacking  translate="title" module="ErpApi">
+                        <title>Commit an order packing</title>
+                        <method>commitPacking</method>
+                    </commitPacking>
+
+                    <getProductImage  translate="title" module="ErpApi">
+                        <title>get Product Image</title>
+                        <method>getProductImage</method>
+                    </getProductImage>
+
+                    <getOrderPreparationTabCount  translate="title" module="ErpApi">
+                        <title>get OrderPreparation Tab Count</title>
+                        <method>getOrderPreparationTabCount</method>
+                    </getOrderPreparationTabCount>
+
+                    <printPickingListMCC  translate="title" module="ErpApi">
+                        <title>Print the Picking List with MCC</title>
+                        <method>printPickingListMCC</method>
+                    </printPickingListMCC>
+
+                    <printDocumentsMCC  translate="title" module="ErpApi">
+                        <title>Print the order prepration with MCC</title>
+                        <method>printDocumentsMCC</method>
+                    </printDocumentsMCC>
+
+                    <addToSelectedOrders  translate="title" module="ErpApi">
+                        <title>Add order to selected order</title>
+                        <method>addToSelectedOrders</method>
+                    </addToSelectedOrders>
+
+                     <removeFromSelectedOrders  translate="title" module="ErpApi">
+                        <title>Remove order from selected order</title>
+                        <method>removeFromSelectedOrders</method>
+                    </removeFromSelectedOrders>
+
+                    <getSelectedOrders  translate="title" module="ErpApi">
+                        <title>Get Selected Orders</title>
+                        <method>getSelectedOrders</method>
+                    </getSelectedOrders>
+
+                    <getCurrentOrderPreparationTab  translate="title" module="ErpApi">
+                        <title>get Current Order Preparation Tab name</title>
+                        <method>getCurrentOrderPreparationTab</method>
+                    </getCurrentOrderPreparationTab>
+
+                    <finishSelectedOrders  translate="title" module="ErpApi">
+                        <title>finish the Selected Orders</title>
+                        <method>finishSelectedOrders</method>
+                    </finishSelectedOrders>
+
+                    <finishSelectedOrder  translate="title" module="ErpApi">
+                        <title>finish the Selected Order</title>
+                        <method>finishSelectedOrder</method>
+                    </finishSelectedOrder>
+
+                    <getStockTakesList  translate="title" module="ErpApi">
+                        <title>get Stock Takes List</title>
+                        <method>getStockTakesList</method>
+                    </getStockTakesList>
+
+                    <createStockTake  translate="title" module="ErpApi">
+                        <title>create a new Stock Take</title>
+                        <method>createStockTake</method>
+                    </createStockTake>
+
+                    <getStockPicture  translate="title" module="ErpApi">
+                        <title>get Stock Picture</title>
+                        <method>getStockPicture</method>
+                    </getStockPicture>
+
+                    <saveStockTakeScan translate="title" module="ErpApi">
+                        <title>save Stock Take Scan</title>
+                        <method>saveStockTakeScan</method>>
+                    </saveStockTakeScan>
+
+                    <createStockMovement translate="title" module="ErpApi">
+                        <title>create Stock Movement</title>
+                        <method>createStockMovement</method>>
+                    </createStockMovement>
+
+                    <getSuppliers translate="title" module="ErpApi">
+                        <title>get one or more Supplier</title>
+                        <method>getSuppliers</method>
+                    </getSuppliers>
+
+                    <getPurchaseOrders translate="title" module="ErpApi">
+                        <title>get Purchase Orders</title>
+                        <method>getPurchaseOrders</method>
+                    </getPurchaseOrders>
+
+                    <getPurchaseOrdersProducts translate="title" module="ErpApi">
+                        <title>get Purchase Orders Products</title>
+                        <method>getPurchaseOrdersProducts</method>
+                    </getPurchaseOrdersProducts>
+
+                </methods>
+            </ErpApi>
+        </resources>
+        <v2>
+            <resources_function_prefix>
+                <ErpApi>erpapi</ErpApi>
+            </resources_function_prefix>
+        </v2>  
+        <acl>
+            <resources>
+                <ErpApi translate="title" module="ErpApi">
+                    <title>Erp API</title>
+                    <sort_order>3</sort_order>
+                </ErpApi>
+            </resources>
+        </acl>
+    </api>
+</config>
+

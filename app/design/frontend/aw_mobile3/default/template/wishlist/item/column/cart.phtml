@@ -1,0 +1,72 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+    /* @var $this Mage_Wishlist_Block_Customer_Wishlist_Item_Column_Cart */
+    /* @var Mage_Wishlist_Model_Item $item */
+    $item = $this->getItem();
+    $product = $item->getProduct();
+?>
+
+        <p class="product-card__price">
+            <?php echo $this->getPriceHtml($product) ?>
+        </p>
+
+        <?php if ($product->getIsSalable()): ?>
+            <p class="wishlist-item__availability in-stock"><?php echo $this->__('In stock') ?></p>
+        <?php else: ?>
+            <p class="wishlist-item__availability out-of-stock"><?php echo $this->__('Out of stock') ?></p>
+        <?php endif; ?>
+
+        <?php foreach($this->getSortedChildren() as $childName): ?>
+            <?php echo $this->getChildHtml($childName, false); ?>
+        <?php endforeach; ?>
+
+        <?php if ($item->canHaveQty() && $item->getProduct()->isVisibleInSiteVisibility()): ?>
+            <p class="wishlist-item__qty">
+                <input class="textfield validate-not-negative-number js-wishlist-item-qty" type="text" name="qty[<?php echo $item->getId() ?>]" value="<?php echo $this->getAddToCartQty($item) * 1 ?>">
+            </p>
+        <?php endif; ?>
+
+    </div><!-- .product-card__info -->
+</div><!-- .wishlist-item__product product-card product-card--horizontal -->
+
+<ul class="wishlist-item__controls">
+
+    <?php if ($product->isSaleable()): ?>
+        <li class="wishlist-item__control-wrapper">
+            <button class="wishlist-item__control button btn-cart" type="button" title="<?php echo $this->__('Add to Cart') ?>" onclick="addWItemToCart(<?php echo $item->getId()?>);">
+                <?php echo $this->__('Add to Cart') ?>
+            </button>
+        </li>
+    <?php endif; ?>
+
+    <?php if ($product->isVisibleInSiteVisibility()): ?>
+        <li class="wishlist-item__control-wrapper">
+            <a class="wishlist-item__control button button--grey" href="<?php echo $this->getItemConfigureUrl($item) ?>">
+                <?php echo $this->__('Edit') ?>
+            </a>
+        </li>
+    <?php endif ?>

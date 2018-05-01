@@ -1,0 +1,1 @@
+function confirmSetLocationWithLoadingMask(a,b){confirm(a)&&(setLocation(b),$("loading-mask")&&$("loading-mask").show());return!1};

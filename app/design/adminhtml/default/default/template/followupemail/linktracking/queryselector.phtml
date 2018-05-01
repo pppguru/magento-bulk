@@ -1,0 +1,46 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Followupemail
+ * @version    3.5.8
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div>
+    <form id="queryTypeForm" name="queryTypeForm" action="<?php echo Mage::getSingleton('adminhtml/url')->getUrl('followupemail_admin/adminhtml_linktracking/index')?>">
+        <span><?php echo $this->__('Select statistics type');?></span>
+        <select name="queryType" id="queryType" class="select" style="width:250px; margin-left: 15px" onkeypress="selectorKeyPress(event)" >
+            <?php foreach(AW_Followupemail_Model_Source_Linktracking_Types::toOptionArray() as $v => $n):?>
+                <option <?php echo ($v == $this->getQueryType())?'selected="selected"':'' ?> value="<?php echo $v ?>"><?php echo htmlspecialchars($this->__($n)); ?></option>
+            <?php endforeach; ?>
+        </select>
+        <span class="field-row" style="margin: 0 5px; display:inline;"><button id="" class="scalable" style="" onclick="queryTypeForm.submit();" type="button"><span><?php echo $this->__('Display statistics')?></span></button></span>
+    </form>
+</div>
+
+<script type="text/javascript">
+selectorKeyPress = function(event) {
+    if(window.event) event = window.event;
+    if(event.keyCode == 13) {
+        if(window.event) event.cancelBubble = true; else event.stopPropagation();
+        $('queryTypeForm').submit();
+    }
+};
+</script>

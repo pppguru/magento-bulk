@@ -1,0 +1,37 @@
+<style type="text/css">ul.tabs a.changed { font-style: normal; }</style>
+<?php if($this->getTitle()): ?>
+    <h3><?php echo $this->getTitle() ?></h3>
+<?php endif ?>
+<?php if(!empty($tabs)): ?>
+<ul id="<?php echo $this->getId() ?>" class="tabs">
+<?php foreach ($tabs as $_tab): ?>
+<?php if (!$this->canShowTab($_tab)): continue;  endif; ?>
+    <li <?php if($this->getTabIsHidden($_tab)): ?> style="display:none"<?php endif; ?>>
+        <a href="<?php echo $this->getTabUrl($_tab) ?>" id="<?php echo $this->getTabId($_tab) ?>" name="<?php echo $this->getTabId($_tab, false) ?>" title="<?php echo $this->getTabTitle($_tab) ?>" class="tab-item-link <?php echo $this->getTabClass($_tab) ?><?php if (preg_match('/\s?ajax\s?/', $_tab->getClass())) {?> notloaded<?php }?>">
+            <span><?php echo $this->getTabLabel($_tab); ?></span>
+        </a>
+        <div id="<?php echo $this->getTabId($_tab) ?>_content" style="display:none;"><?php echo $this->getTabContent($_tab) ?></div>
+    </li>
+<?php endforeach; ?>
+</ul>
+<script type="text/javascript">
+    <?php echo $this->getJsObjectName() ?> = new varienTabs('<?php echo $this->getId() ?>', '<?php echo $this->getDestElementId() ?>', '<?php echo $this->getActiveTabId() ?>', <?php echo $this->getAllShadowTabs()?>);
+	
+	if (varienGlobalEvents) {
+        varienGlobalEvents.attachEventHandler('showTab', syncMOHeaderWithTab);
+    }
+    
+	function syncMOHeaderWithTab(obj) {
+		var tab = obj.tab;
+		var tabId2Header = new Array();
+		<?php foreach ($tabs as $_tab): ?>
+			tabId2Header['<?php echo $this->getTabId($_tab) ?>'] = '<?php echo (string) $_tab->getLabel(); ?>';
+		<?php endforeach; ?>
+
+		if (tabId2Header[tab.id]) {
+			$$('div.main-col-inner div.content-header > table > tbody > tr > td > h3').invoke('update', tabId2Header[tab.id]);
+			$$('div.main-col-inner div.content-header').invoke('show');
+		}
+	}
+</script>
+<?php endif; ?>

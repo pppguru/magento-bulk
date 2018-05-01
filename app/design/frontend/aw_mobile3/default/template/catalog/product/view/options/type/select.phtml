@@ -1,0 +1,209 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /* @var $this Mage_Catalog_Block_Product_View_Options_Type_Select */ ?>
+<?php $_option = $this->getOption() ?>
+
+<div class="form__field<?php if ($_option->getIsRequire()): ?> form__field--required<?php endif; ?>">
+    <label class="form__label<?php if ($_option->getIsRequire()): ?> form__label--required<?php endif; ?>"><?php echo  $this->htmlEscape($_option->getTitle()) ?></label>
+
+    <?php
+    $_option = $this->getOption();
+    $configValue = $this->getProduct()->getPreconfiguredValues() ?
+        $this->getProduct()->getPreconfiguredValues()->getData('options/' . $_option->getId()) : false;
+    $store = $this->getProduct()->getStore();
+
+    if ($_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_DROP_DOWN
+        || $_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_MULTIPLE) {
+        $require = ($_option->getIsRequire()) ? ' required-entry' : '';
+        $extraParams = '';
+        $select = $this->getLayout()->createBlock('core/html_select')
+            ->setData(array(
+                'id' => 'select_'.$_option->getId(),
+                'class' => $require.' product-custom-option'
+            ));
+
+        if ($_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_DROP_DOWN) {
+            $select->setName('options['.$_option->getid().']')
+                ->addOption('', $this->__('-- Please Select --'));
+        } else {
+            $select->setName('options['.$_option->getid().'][]');
+            $select->setClass('multiselect'.$require.' product-custom-option');
+        }
+
+        foreach ($_option->getValues() as $_value) {
+            $priceStr = $this->_formatPrice(array(
+                'is_percent'    => ($_value->getPriceType() == 'percent'),
+                'pricing_value' => $_value->getPrice(($_value->getPriceType() == 'percent'))
+            ), false);
+            $select->addOption(
+                $_value->getOptionTypeId(),
+                $_value->getTitle() . ' ' . $priceStr . '',
+                array(
+                    'price' => method_exists($this->helper('core'), 'currencyByStore') ?
+                        $this->helper('core')->currencyByStore($_value->getPrice(true), $store, false) :
+                                                        $this->helper('core')->currency($_value->getPrice(true), false)
+                )
+            );
+        }
+
+        if ($_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_MULTIPLE) {
+            $extraParams = ' multiple="multiple"';
+        }
+
+        if (!$this->getSkipJsReloadPrice()) {
+            $extraParams .= ' onchange="opConfig.reloadPrice()"';
+        }
+
+        $select->setExtraParams($extraParams);
+
+        if ($configValue) {
+            $select->setValue($configValue);
+        }
+
+        echo $select->getHtml();
+    }
+
+    ?>
+
+    <?php if ($_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_RADIO || $_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_CHECKBOX): ?>
+
+        <ul class="form__values-list" id="options-<?php echo $_option->getId() ?>-list">
+
+            <?php
+
+                $require = ($_option->getIsRequire()) ? ' validate-one-required-by-name' : '';
+                $arraySign = '';
+
+                if ($_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_RADIO) {
+
+                    if (!$_option->getIsRequire()) {
+
+                        ?>
+
+                        <li class="form__values-list-item">
+                            <span class="radio">
+                                <input class="radio__self product-custom-option" type="radio" name="options[<?php echo $_option->getId() ?>]" id="options_<?php echo $_option->getId() ?>" value="" checked <?php echo ($this->getSkipJsReloadPrice() ? '' : 'onclick="opConfig.reloadPrice()"') ?>>
+                                <label class="form__label radio__label" for="options_<?php echo $_option->getId() ?>">
+                                    <span class="radio__icon-wrapper">
+                                        <svg class="radio__icon radio__icon--unchecked svg-icon"><use xlink:href="#icon-radio" /></svg>
+                                        <svg class="radio__icon radio__icon--checked svg-icon"><use xlink:href="#icon-radio--checked" /></svg>
+                                    </span>
+                                    <span class="radio__text"><?php echo $this->__('None') ?></span>
+                                </label>
+                            </span>
+                        </li>
+
+                    <?php
+                    }
+                } else {
+                    $arraySign = '[]';
+                }
+
+                $count = 1;
+
+                foreach ($_option->getValues() as $_value) {
+                    $count++;
+
+                    $priceStr = $this->_formatPrice(array(
+                        'is_percent'    => ($_value->getPriceType() == 'percent'),
+                        'pricing_value' => $_value->getPrice($_value->getPriceType() == 'percent')
+                    ));
+
+                    $htmlValue = $_value->getOptionTypeId();
+
+                    if ($arraySign) {
+                        $checked = (is_array($configValue) && in_array($htmlValue, $configValue)) ? 'checked' : '';
+                    } else {
+                        $checked = $configValue == $htmlValue ? 'checked' : '';
+                    }
+
+                    ?>
+
+                    <li class="form__values-list-item">
+
+                        <?php if ($_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_RADIO): ?>
+
+                            <span class="radio">
+                                <input class="radio__self product-custom-option <?php echo $require ?>" type="radio"
+                                       name="options[<?php echo $_option->getId() ?>]<?php echo $arraySign ?>"
+                                       id="options_<?php echo $_option->getId() ?>_<?php echo $count ?>"
+                                       value="<?php echo $htmlValue ?>" <?php echo ($this->getSkipJsReloadPrice() ? '' : ' onclick="opConfig.reloadPrice()"') ?>
+                                       <?php echo $checked ?>
+                                       price="<?php echo method_exists($this->helper('core'), 'currencyByStore') ? $this->helper('core')->currencyByStore($_value->getPrice(true), $store, false) : $this->helper('core')->currency($_value->getPrice(true), false) ?>">
+
+                                <label class="form__label radio__label" for="options_<?php echo $_option->getId() ?>_<?php echo $count ?>">
+                                    <span class="radio__icon-wrapper">
+                                        <svg class="radio__icon radio__icon--unchecked svg-icon"><use xlink:href="#icon-radio" /></svg>
+                                        <svg class="radio__icon radio__icon--checked svg-icon"><use xlink:href="#icon-radio--checked" /></svg>
+                                    </span>
+                                    <span class="radio__text"><?php echo $_value->getTitle() ?> <?php echo $priceStr ?></span>
+                                </label>
+                            </span>
+
+                        <?php else: ?>
+
+                            <span class="checkbox">
+                                <input class="checkbox__self product-custom-option <?php echo $require ?>" type="checkbox"
+                                       name="options[<?php echo $_option->getId() ?>]<?php echo $arraySign ?>"
+                                       id="options_<?php echo $_option->getId() ?>_<?php echo $count ?>"
+                                       value="<?php echo $htmlValue ?>" <?php echo ($this->getSkipJsReloadPrice() ? '' : ' onclick="opConfig.reloadPrice()"') ?>
+                                       <?php echo $checked ?>
+                                       price="<?php echo method_exists($this->helper('core'), 'currencyByStore') ? $this->helper('core')->currencyByStore($_value->getPrice(true), $store, false) : $this->helper('core')->currency($_value->getPrice(true), false)?>">
+                                <label class="form__label checkbox__label" for="options_<?php echo $_option->getId() ?>_<?php echo $count ?>">
+                                    <span class="checkbox__icon-wrapper">
+                                        <svg class="checkbox__icon checkbox__icon--unchecked svg-icon"><use xlink:href="#icon-checkbox" /></svg>
+                                        <svg class="checkbox__icon checkbox__icon--checked svg-icon"><use xlink:href="#icon-checkbox--checked" /></svg>
+                                    </span>
+                                    <span class="checkbox__text"><?php echo $_value->getTitle() ?> <?php echo $priceStr ?></span>
+                                </label>
+                            </span>
+
+                        <?php endif; ?>
+
+                        <?php if ($_option->getIsRequire()): ?>
+                            <script>
+                                $('options_<?php echo $_option->getId() ?>_<?php echo $count ?>').advaiceContainer = 'options-<?php echo $_option->getId() ?>-container';
+                                $('options_<?php echo $_option->getId() ?>_<?php echo $count ?>').callbackFunction = 'validateOptionsCallback';
+                            </script>
+                        <?php endif ?>
+
+                    </li>
+
+                    <?php
+                }
+
+            ?>
+
+        </ul>
+
+    <?php endif ?>
+
+    <?php if ($_option->getIsRequire()): ?>
+        <?php if ($_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_RADIO || $_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_CHECKBOX): ?>
+            <span id="options-<?php echo $_option->getId() ?>-container"></span>
+        <?php endif; ?>
+    <?php endif;?>
+</div>

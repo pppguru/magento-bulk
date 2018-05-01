@@ -1,0 +1,35 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('New Tax Rate')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl()?>'" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+                <button onclick="document.getElementById('edit_form').submit();" class="scalable save" type="button"><span><?php echo $this->__('Save')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form id="edit_form" method="POST" name="edit_form" action="<?php echo $this->getUrl('*/*/Create')?>">
+<input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+<div class="entry-edit">
+    
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('Name'); ?></td>
+                    <td class="input-ele"><input type="text" name="ptr_name" id="ptr_name"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Rate'); ?></td>
+                    <td class="input-ele"><input type="text" name="ptr_value" id="ptr_value"></td>
+                </tr>
+            </table>
+        </fieldset>
+
+</div>
+</form>
+
+</div>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * conlabz Pssc
+ *
+ * Restrict products to be shipped to spicific countries
+ *
+ * @category    Conlabz
+ * @package     Conlabz_CustomPdf
+ * @author      Cornelius Adams (conlabz GmbH) <cornelius.adams@conlabz.de>
+ */
+-->
+<config>
+    <modules>
+        <Conlabz_Rpsc>
+            <active>false</active>
+            <codePool>local</codePool>
+        </Conlabz_Rpsc>
+    </modules>
+</config>

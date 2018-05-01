@@ -1,0 +1,163 @@
+<script>
+
+//**********************************************************************************************************
+    //**********************************************************************************************************
+    // CATCH KEYS
+    //**********************************************************************************************************
+    //**********************************************************************************************************
+
+
+    var KC_catchKeys = false;
+    var KC_displayInput = null;
+    var KC_value = '';
+    var KC_onEnter = null;
+
+
+    //***************************************************************************************************
+    //enable catch keys
+    function enableCatchKeys(eOnEnter)
+    {
+        KC_catchKeys = true;
+        KC_displayInput = document.getElementById('barcode');
+        KC_onEnter = eOnEnter;
+    }
+
+    //**********************************************************************************************************
+    //disable catch key
+    function disableCatchKeys()
+    {
+        KC_catchKeys = false;
+    }
+
+    //**********************************************************************************************************
+    //reset chars entered
+    function resetHandledKey()
+    {
+        KC_value = '';
+        if (KC_displayInput != null)
+            KC_displayInput.innerHTML = '';
+    }
+
+    //**********************************************************************************************************
+    //handle key press
+    function handleKey(evt) {
+
+        if (!KC_catchKeys)
+            return true;
+
+        var evt = (evt) ? evt : ((event) ? event : null);
+        var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+        var postambleKeyCode = postamble.charCodeAt(0);
+
+        //if no postamble defined, set 13 for Enter key auto mapping
+        if(!postambleKeyCode){
+            postambleKeyCode = 13;
+        }
+        
+        //try to get code from capabilities of the browser
+        keyCode = evt.which;//FF : OK, Chrome OK, IE: NOK
+        if(!keyCode) keyCode = evt.keyCode;//FF : NOK, Chrome OK, IE: OK
+        if(!keyCode) keyCode = evt.charCode;//FF : OK, Chrome OK, IE: NOK
+
+
+        if (keyCode != postambleKeyCode)
+        {
+            KC_value += String.fromCharCode(keyCode);
+        
+
+            if (KC_displayInput != null)
+                KC_displayInput.innerHTML = KC_value;
+        }
+        else
+        {
+            eval(KC_onEnter);
+            KC_value = '';
+        }
+
+        return false;
+    }
+
+    //**********************************************************************************************************
+    //execute function associated to enter
+    function commitBarcode()
+    {
+        eval(KC_onEnter);
+        resetHandledKey();
+    }
+
+
+    //**********************************************************************************************************
+    //**********************************************************************************************************
+    // TOOLS
+    //**********************************************************************************************************
+    //**********************************************************************************************************
+
+    //**********************************************************************************************************
+    //
+    function cleanBarcode(barcode)
+    {
+        barcode = barcode.replace("\r", '');
+        barcode = barcode.replace("\n", '');
+        return barcode;
+    }
+
+    //**********************************************************************************************************
+    //
+    function getTopScrollPosition()
+    {
+        return f_filterResults (
+        window.pageYOffset ? window.pageYOffset : 0,
+        document.documentElement ? document.documentElement.scrollTop : 0,
+        document.body ? document.body.scrollTop : 0
+    );
+    }
+
+    function f_filterResults(n_win, n_docel, n_body) {
+        var n_result = n_win ? n_win : 0;
+        if (n_docel && (!n_result || (n_result > n_docel)))
+            n_result = n_docel;
+        return n_body && (!n_result || (n_result > n_body)) ? n_body : n_result;
+    }
+
+    //**********************************************************************************************************
+    //keep toolbar at the top of the screen
+    function handleScroll()
+    {
+        var value = getTopScrollPosition();
+        document.getElementById('div_toolbar').style.top = value + 'px';
+    }
+
+    //**********************************************************************************************************
+    //Show message
+    function showSimpleMessage(message)
+    {
+        document.getElementById('div_content').style.display = 'none';
+        document.getElementById('simple_message_btn_ok').style.display = '';
+        document.getElementById('div_message_txt').innerHTML = message;
+        document.getElementById('div_message').style.display = '';
+    }
+
+    //**********************************************************************************************************
+    //Show message
+    function showInputBox(message)
+    {
+        document.getElementById('div_content').style.display = 'none';
+        document.getElementById('simple_message_btn_ok').style.display = '';
+        document.getElementById('div_message_txt').innerHTML = message;
+        document.getElementById('div_message').style.display = '';
+    }
+
+    //**********************************************************************************************************
+    //close message
+    function closeSimpleMessage()
+    {
+        document.getElementById('div_message').style.display = 'none';
+        document.getElementById('div_content').style.display = '';
+    }
+
+    //handler key press
+    document.onkeypress = handleKey;
+    window.onscroll = handleScroll;
+
+
+</script>

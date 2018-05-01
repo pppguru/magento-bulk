@@ -1,0 +1,141 @@
+<?php $suppliersList = mage::helper('ProductReturn/SupplierReturn')->getSupplierList(); ?>
+<?php $statusList = $this->getRsrp()->getStatuses(); ?>
+
+    
+<div class="entry-edit">
+    <div class="content-header">
+        <table cellspacing="0" class="grid-header">
+            <tr>
+                <td><h3><?php echo $this->__('Edit informations for a product pending a supplier return')?></h3></td>
+                <td><div style="text-align:right; margin-right: 5px; margin-bottom: 5px;">
+                        <button type="button" class="scalable back" onClick="setLocation('<?php echo $this->getUrl('adminhtml/ProductReturn_ProductsPendingSupplierReturn/Grid'); ?>')"><span><?php echo $this->__('Back'); ?></span></button>
+                        <button type="button" class="scalable" onClick="setLocation(window.location.href)"><span><?php echo $this->__('Reset'); ?></span></button>
+                        <button type="button" class="scalable save" onClick="document.getElementById('edit_form').submit();"><span><?php echo $this->__('Save'); ?></span></button>
+                </div></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="entry-edit-head"> 
+        <h4><?php echo $this->__('Edit'); ?></h4>
+    </div>
+    <fieldset id="my-fieldset">
+        <form name="edit_form" id="edit_form" method="post" action="<?php echo $this->getUrl('adminhtml/ProductReturn_ProductsPendingSupplierReturn/Save'); ?>">
+            <input type="hidden" id="rsrp_id" name="rsrp_id" value="<?php echo $this->getRsrp()->getrsrp_id(); ?>" />
+            <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+            <table cellspacing="0" class="form-list" style="border-spacing: 10px;">
+                <tr>
+                    <td class="label"><?php echo $this->__('Product ID'); ?>: </td>
+                    <td class="input-ele"><?php echo $this->getRsrp()->getrsrp_product_id(); ?>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Product SKU'); ?>: </td>
+                    <td class="input-ele"><?php echo $this->getRsrp()->getrsrp_product_sku(); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Product Name'); ?>: </td>
+                    <td class="input-ele"><a href="<?php echo $this->getUrl('AdvancedStock/Products/Edit', array('product_id' => $this->getRsrp()->getrsrp_product_id())) ?>"><?php echo $this->getRsrp()->getrsrp_product_name(); ?></a></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Product Serial'); ?>: </td>
+                    <td class="input-ele"><input type="text" name="rsrp_serial" id="rsrp_serial" value="<?php echo $this->getRsrp()->getrsrp_serial(); ?>" /></td>
+                    <td class="input-ele"><input type="button" onClick="checkSerial()" value="<?php echo $this->__('   Check Serial   '); ?>"/></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2"><div id="ajax-check-serial"></div></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Supplier'); ?>: </td>
+                    <td class="input-ele">
+                        <select name="rsrp_sup_id" id="rsrp_sup_id" onChange="loadPoList_prepare()">
+                            <option><?php echo $this->__('Unknown Supplier'); ?></option>
+                            <?php 
+                                
+                                foreach($suppliersList as $supId=>$supName) {
+                                    echo '<option value="'.$supId.'"';
+                                    if ($this->getRsrp()->getrsrp_sup_id()== $supId) { 
+                                            echo ' selected';
+                                    }
+                                    echo '>'.$supName.'</option>';
+                                }
+                            ?>
+                        </select>
+                    </td>
+                    <td class="label">
+                        <span style="color: red"><?php echo $this->__('Warning! The supplier and the purchase order may change on serial changes.'); ?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="input-ele">
+                        <?php echo $this->__('Purchase Order ID'); ?>:
+                    </td>
+                    <td>
+                        <div id="ajax-select-po">
+                            
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        <?php echo $this->__('Purchase Price'); ?>:
+                    </td>
+                    <td class="input-ele">
+                        <input type="text" name="rsrp_purchase_price" id="rsrp_purchase_price" value="<?php echo round($this->getRsrp()->getrsrp_purchase_price(),2); ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Comments'); ?>: </td>
+                    <td colspan="2"><textarea cols="60" rows="10" name="rsrp_comments" id="rsrp_comments"><?php echo $this->getRsrp()->getrsrp_comments(); ?></textarea></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Status'); ?>: </td>
+                    <td class="input-ele"><select name="rsrp_status" id="rsrp_status">
+                            <?php foreach($statusList as $k=>$v) {
+                                echo '<option value="'.$k.'"';
+                                if ($this->getRsrp()->getrsrp_status() == $k) {
+                                    echo ' selected';
+                                }
+                                echo '>'.$v.'</option>';
+                            }
+                            ?>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Do not value it'); ?></td>
+                    <td class="input-ele"><input type="checkbox" name="rsrp_do_not_value_it" id="rsrp_do_not_value_it" 
+                                                 <?php
+                                                    if ($this->getRsrp()->getrsrp_do_not_value_it() == 1)
+                                                        echo ' checked';
+                                                 ?>
+                                                 /></td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+    function loadPoList_prepare(){
+        newSupId = $('rsrp_sup_id').getValue();
+        loadPoList('<?php echo $this->getRsrp()->getrsrp_product_id() ?>',newSupId,'<?php echo $this->getRsrp()->getrsrp_pop_id() ?>','ajax-select-po');
+    }
+    
+     function checkSerial() {
+         serial = $('rsrp_serial').getValue();
+         formatedSerial = serial.replace('/','slash');
+         checkSerialAjax(   '<?php echo $this->getRsrp()->getrsrp_id(); ?>',
+                            '<?php echo $this->getRsrp()->getrsrp_product_id(); ?>', 
+                            formatedSerial,
+                            'ajax-check-serial'
+         );
+     }
+    
+    loadPoList( '<?php echo $this->getRsrp()->getrsrp_product_id(); ?>', 
+                '<?php echo $this->getRsrp()->getrsrp_sup_id(); ?>',
+                '<?php echo $this->getRsrp()->getrsrp_pop_id() ?>',
+                'ajax-select-po'
+            );
+     
+
+</script>

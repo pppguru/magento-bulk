@@ -1,0 +1,33 @@
+/* Tooltips */
+.ewcore-tooltip-label {
+	cursor: help; border-bottom: 1px dashed #0042AE; font-style: italic;
+}
+
+.ewcore-tooltip-label .required {
+	color: red;
+}
+.ewcore-form-field-tooltip-value, .ewcore-form-fieldset-tooltip-value {
+	background: #FFFFCC; padding: 5px; border: 1px solid #BBBBBB; position: fixed;
+}
+
+.ewcore-tooltip-label-clickable {
+	cursor: pointer; border-bottom: 1px solid #0042AE;
+}
+
+.ewcore-tooltip-fieldset-label {
+	float:right; width: 17px; height: 17px;;
+	background: url('../images/widgets/help.png') no-repeat; 
+	background-size:17px 17px; cursor: help;
+	margin-left: 10px;
+}
+
+/* Columns */
+
+.form-list td.value {
+    padding-right: 5px !important;
+    width: 300px;
+}
+
+.form-list td.value p.note {
+    width: auto;
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+
+	<modules>
+
+		<Bulksupplements_ReportDetails>
+
+			<active>true</active>
+
+			<codePool>local</codePool>
+
+		</Bulksupplements_ReportDetails>
+
+	</modules>
+
+</config>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<layout>
+	<customer_paymentinfo_index_authnetcim>
+		<reference name="tokenbase_customer_wrapper">
+			<block type="core/template" name="tokenbase_manage_authnetcim" template="paradoxlabs/tokenbase/customer/method.phtml">
+				<block type="tokenbase/customer_cards" name="tokenbase_manage_authnetcim_cards" as="tokenbase_customer_method_left" template="paradoxlabs/tokenbase/customer/cards.phtml" />
+				<block type="tokenbase/customer_form" name="tokenbase_manage_authnetcim_form" as="tokenbase_customer_method_right" template="paradoxlabs/tokenbase/customer/form.phtml" />
+			</block>
+		</reference>
+	</customer_paymentinfo_index_authnetcim>
+	
+	<customer_paymentinfo_ajaxload_authnetcim>
+		<block type="tokenbase/customer_form" name="root" template="paradoxlabs/tokenbase/customer/form.phtml" />
+	</customer_paymentinfo_ajaxload_authnetcim>
+	
+	<customer_paymentinfo_index_authnetcim_ach>
+		<reference name="tokenbase_customer_wrapper">
+			<block type="core/template" name="tokenbase_manage_authnetcim_ach" template="paradoxlabs/tokenbase/customer/method.phtml">
+				<block type="tokenbase/customer_cards" name="tokenbase_manage_authnetcim_ach_cards" as="tokenbase_customer_method_left" template="paradoxlabs/authnetcim_ach/customer/cards.phtml" />
+				<block type="tokenbase/customer_form" name="tokenbase_manage_authnetcim_ach_form" as="tokenbase_customer_method_right" template="paradoxlabs/authnetcim_ach/customer/form.phtml" />
+			</block>
+		</reference>
+	</customer_paymentinfo_index_authnetcim_ach>
+	
+	<customer_paymentinfo_ajaxload_authnetcim_ach>
+		<block type="tokenbase/customer_form" name="root" template="paradoxlabs/authnetcim_ach/customer/form.phtml" />
+	</customer_paymentinfo_ajaxload_authnetcim_ach>
+</layout>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MDN_M2eErpPatch>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MDN_M2eErpPatch>
+    </modules>
+</config> 

@@ -1,0 +1,163 @@
+
+<style>
+    .smart-report-grid {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .smart-report-grid td, .smart-report-grid th {
+        font-size: 1em;
+        border: 1px solid #98bf21;
+        padding: 3px 7px 2px 7px;
+    }
+
+    .smart-report-grid th {
+        font-size: 1.1em;
+        text-align: center;
+        padding-top: 5px;
+        padding-bottom: 4px;
+        background-color: #A7C942;
+        color: #ffffff;
+    }
+
+    .smart-report-grid tr.alt td {
+        color: #000000;
+        background-color: #EAF2D3;
+    }
+
+
+    .smart-report-grid tr td.total {
+        font-weight: 900;
+        color: #ffffff;
+        font-size: 1.1em;
+        background-color: #A7C942;
+        text-align: right;
+    }
+
+    .colonne
+    {
+        width:1100px;
+        background-color: #ffffff;
+        padding: 10px;
+    }
+
+</style>
+
+<div class="entry-edit">
+
+    <?php if(!$this->getDisableHeader()): ?>
+        <div class="content-header">
+            <table cellspacing="0" class="grid-header">
+                <tr>
+                    <td>
+                            <h3><?php echo $this->getTitle(); ?></h3>
+                    </td>
+                    <td align="right"  class="form-buttons">
+
+                        <?php if ($this->getBackUrl()): ?>
+                            <button  title="Back" type="button" class="scalable back" onclick="setLocation('<?php echo $this->getBackURl(); ?>')" style="margin-right: 20px;"><span><span><span>Back</span></span></span></button>
+                        <?php endif; ?>
+
+
+                        <?php if (!$this->isFormLess()): ?><form id="form_smartreport" method="POST" action="<?php echo $this->getUrl('*/*/*'); ?>">
+                            <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" /><?php endif; ?>
+                            <?php foreach($this->getAdditionalFilters() as $label => $filter): ?>
+                                <?php echo $label.': '.$filter; ?>
+                            <?php endforeach; ?>
+                            <?php foreach($this->getFormHiddens() as $k => $v): ?>
+                                <input type="hidden" name="smartreport[<?php echo $k; ?>]" value="<?php echo $v; ?>">
+                            <?php endforeach; ?>
+
+                            <?php if ($this->displayStoreFilter()): ?>
+                                <?php echo $this->__('Store'); ?> <?php echo $this->getStoreDropDown($this->getVariable('sm_store')); ?>
+                            <?php endif; ?>
+
+                            <?php echo $this->__('Period'); ?> <select name="smartreport[period]" onchange="fillDatesFromPeriod(this)" id="smart_report_period">
+                                <?php foreach($this->getPeriods() as $option): ?>
+                                    <option <?php echo ($option['value'] == $this->getVariable('period') ? ' selected ' : ''); ?> value="<?php echo $option['value']; ?>"><?php echo $this->__($option['label']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+
+                            <span id="date_selector" <?php echo ($this->getVariable('period') != 'custom' ? 'style="display: none;"' : ''); ?>>
+
+                                <?php echo $this->__('From'); ?> <input type="text" size="10" id="date_from" name="smartreport[date_from]" value="<?php echo substr($this->getVariable('date_from'), 0, 10); ?>">
+                                <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_calendar_date_from" style="margin-right: 20px;" />
+                                <script type="text/javascript">
+                                    Calendar.setup({
+                                        inputField : 'date_from',
+                                        ifFormat : '%Y-%m-%e',
+                                        button : 'img_calendar_date_from',
+                                        align : 'Bl',
+                                        singleClick : true
+                                    });
+                                </script>
+
+                                <?php echo $this->__('To'); ?> <input type="text" size="10" id="date_to" name="smartreport[date_to]" value="<?php echo substr($this->getVariable('date_to'), 0, 10); ?>">
+                                <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_calendar_date_to" style="margin-right: 20px;" />
+                                <script type="text/javascript">
+                                    Calendar.setup({
+                                        inputField : 'date_to',
+                                        ifFormat : '%Y-%m-%e',
+                                        button : 'img_calendar_date_to',
+                                        align : 'Bl',
+                                        singleClick : true
+                                    });
+                                </script>
+                            </span>
+                            <?php echo $this->__('Group by'); ?> <select name="smartreport[group_by_date]" id="smart_report_group_by_date">
+                                <?php foreach($this->getGoupByDateOptions() as $option): ?>
+                                    <option <?php echo ($option['value'] == $this->getVariable('group_by_date') ? ' selected ' : ''); ?> value="<?php echo $option['value']; ?>"><?php echo $this->__($option['label']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+
+                            <button  title="Apply" type="button" class="scalable save" onclick="submitReportFilters(<?php echo ($this->isFormLess() ? 'true' : 'false'); ?>, '<?php echo $this->getAjaxUrl(); ?>', '<?php echo $this->getContainer(); ?>');" style="margin-right: 20px;"><span><span><span><?php echo $this->__('Apply'); ?></span></span></span></button>
+
+                            <?php foreach($this->getAdditionalButtons() as $button): ?>
+                                <?php echo $button; ?>
+                            <?php endforeach; ?>
+
+                            <?php if (!$this->isFormLess()): ?></form><?php endif; ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($this->canDisplay()): ?>
+        <table border="0" width="100%">
+            <?php $currentCol = 0; ?>
+
+            <?php foreach($this->getReports() as $report): ?>
+                <?php if ($currentCol == 0) : ?>
+                    <tr>
+                <?php endif; ?>
+                <td align="center" <?php echo (($report->getwidth() == '100%') ? 'colspan="2"' : ' width="50%"'); ?>>
+                    <?php echo $report->setVariables($this->getVariables())->render($this->getVariables()); ?>
+                </td>
+                <?php if ($report->getwidth() == '100%'): ?>
+                    <?php $currentCol = 2; ?>
+                <?php else: ?>
+                    <?php $currentCol++; ?>
+                <?php endif; ?>
+                <?php if ($currentCol == 2) : ?>
+                    </tr>
+                    <tr><td colspan="2"><hr><br>&nbsp;</td></tr>
+                    <?php $currentCol = 0; ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <?php if ($currentCol == 1) : ?>
+                <td align="center" width="50%"></td></tr>
+            <?php endif; ?>
+        </table>
+    <?php else: ?>
+        <p align="center"><?php echo $this->__('Please select filters to display report'); ?></p>
+    <?php endif; ?>
+
+</div>
+
+<?php if ($this->getAjaxMode()): ?>
+    <script>
+        document.fire('dom:loaded');
+    </script>
+<?php endif; ?>

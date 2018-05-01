@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config>
+	<extendware>
+		<quickaccess>
+			<ewentityincrement>
+                <resource>extendware/ewentityincrement</resource>
+				<children>
+					<number translate="title" module="ewentityincrement">
+						<title>Preview Numbers</title>
+						<action>extendware_ewentityincrement/adminhtml_number</action>
+						<resource>extendware/ewentityincrement/number</resource>
+						<sort_order>3</sort_order>
+					</number>
+				</children>
+				<title/>
+			</ewentityincrement>
+		</quickaccess>
+	</extendware>
+	<menu></menu>
+	<acl>
+		<resources>
+            <admin>
+                <children>
+                    <extendware translate="title" module="ewentityincrement">
+                    	<title>Extendware</title>
+                    	<sort_order>0</sort_order>
+                        <children>
+                        	<ewentityincrement translate="title" module="ewentityincrement">
+                        		<title>Custom Order Numbers</title>
+                        		<children>
+                        			<settings translate="title">
+                        				<title>Settings</title>
+                        				<children>
+				                            <main translate="title">
+				                                <title>Main</title>
+				                                <children>
+					                                <ewentityincrement translate="title">
+						                                <title>General</title>
+						                            </ewentityincrement>
+					                            </children>
+				                            </main>
+			                            </children>
+			            			</settings>
+			            		</children>
+			            	</ewentityincrement>
+                        </children>
+                    </extendware>
+                </children>
+            </admin>
+        </resources>
+	</acl>
+</config>

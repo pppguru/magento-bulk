@@ -1,0 +1,130 @@
+.ship-gift-message-yes
+{
+    font-size: 18px; font-weight: bold;
+    margin-top: 10px;
+    color: #ff0000;
+    text-decoration: blink;
+}
+
+.ship-gift-message-no
+{
+    font-size: 18px; font-weight: bold;
+    margin-top: 10px;
+}
+
+.ship-info
+{
+    font-size: 18px; font-weight: bold;
+    margin-top: 10px;
+}
+
+
+.touch-big-button
+{
+    border : 1px solid #D6D6D6;
+    padding: 10px;
+    font-size: 18px; font-weight: bold;
+    width: 170px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.green-button
+{
+    background-color: #00CC33;
+}
+
+.yellow-button
+{
+    background-color: #FFFF00;
+}
+
+.red-button
+{
+    background-color: #CC3333;
+}
+
+.orange-button
+{
+    background-color: #FF7F50;
+}
+
+.current-button
+{
+    border-style: solid;
+    border-color: blue;
+    border-width: 3px;
+}
+
+.carton-count
+{
+    font-size: 36px;
+    font-weight: bold;
+    color: #ff0000;
+    width: 300px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.div-carton
+{
+    float: left;
+    
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+
+    padding: 5px;
+    width : 400px;
+    font-size: 12px;
+    font-weight: bold;
+
+    margin: 10px;
+}
+
+.button-qty
+{
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    
+    padding: 2px;
+    
+    font-size: 20px;
+}
+
+.table-touch
+{
+    border-style: solid;
+    border-width: 1px;
+    border-spacing: 0px;
+    width: 100%;
+}
+
+.table-touch td
+{
+    border-style: solid;
+    border-width: 1px;
+
+    font-size: 14px;
+}
+
+.table-touch th
+{
+    border-style: solid;
+    border-width: 1px;
+
+    font-size: 14px;
+    
+    text-align: center;
+}

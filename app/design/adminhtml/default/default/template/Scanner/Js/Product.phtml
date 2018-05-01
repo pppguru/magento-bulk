@@ -1,0 +1,42 @@
+<script>
+
+ var stockIdForProductLocation = '';
+ var productIdForBarcodeLink = '';
+
+    //***************************************************************************************************
+    //Link a new barcode to product
+    function linkBarcode(productId)
+    {
+        productIdForBarcodeLink = productId;
+        enableCatchKeys('applyProductBarcode(KC_value);');
+        showInputBox('Please scan barcode');
+    }
+
+    //***************************************************************************************************
+    //Apply product barcode
+    function applyProductBarcode(barcode)
+    {
+        var url = getNewBarcodeUrl;
+        url += 'product_id/' + productIdForBarcodeLink + '/barcode/' + barcode;
+        document.location.href = url;
+    }
+
+    //***************************************************************************************************
+    //Set product location for specific stock
+    function setProductStockLocation(stockId)
+    {
+        stockIdForProductLocation = stockId;
+        enableCatchKeys('applyProductLocation(KC_value);');
+        showInputBox('Please scan location barcode');
+    }
+
+    //***************************************************************************************************
+    //Apply barcode location
+    function applyProductLocation(location)
+    {
+        var url = changeProductLocationUrl;
+        url += 'stock_id/' + stockIdForProductLocation + '/location/' + location;
+        document.location.href = url;
+    }
+
+</script>

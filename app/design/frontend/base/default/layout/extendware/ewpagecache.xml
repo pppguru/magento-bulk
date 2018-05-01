@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<update handle="ewpagecache_remove_recently_viewed_handle" ewifhelper="ewpagecache/layout/isRecentlyViewedProductsDisabled"/>
+		<update handle="ewpagecache_remove_recently_compared_handle" ewifhelper="ewpagecache/layout/isRecentlyComparedProductsDisabled"/>
+		<update handle="ewpagecache_ajax_holepunch_handle" ewifhelper="ewpagecache/layout/isAjaxHolePunchModeEnabled"/>
+	</default>
+	
+	<catalog_product_view>
+        <reference name="content">
+            <block type="ewpagecache/code" name="ewpagecache_code" after="-" />
+        </reference>
+    </catalog_product_view>
+    
+    <ewpagecache_ajax_holepunch_handle>
+        <reference name="head">
+    		<action method="addJs"><script>extendware/ewpagecache/holepunch.js</script></action>
+        </reference>
+    </ewpagecache_ajax_holepunch_handle>
+    
+    <ewpagecache_remove_recently_viewed_handle>
+    	<remove name="right.reports.product.viewed"/>
+    	<remove name="left.reports.product.viewed"/>
+    </ewpagecache_remove_recently_viewed_handle>
+    
+    <ewpagecache_remove_recently_compared_handle>
+    	<remove name="right.reports.product.compared"/>
+    	<remove name="left.reports.product.compared"/>
+    </ewpagecache_remove_recently_compared_handle>
+    
+    <!-- <customer_logged_out>
+        <reference name="top.links">
+        	<action method="removeLinkByUrl" module="customer"><url helper="customer/getLoginUrl"/></action>
+        	<action method="addLink" translate="label title" module="customer">
+        		<label>Log In</label>
+        		<url helper="customer/getLoginUrl"/><title>Log In</title><prepare/><urlParams/><position>100</position><liParams/><aParams/>
+        		<beforeText helper="ewpagecache/getBeginMarker"><key>toplink_login</key></beforeText>
+          		<afterText helper="ewpagecache/getEndMarker"><key>toplink_login</key></afterText>
+        	</action>
+        </reference>
+    </customer_logged_out>
+
+    <customer_logged_in>
+        <reference name="top.links">
+            <action method="removeLinkByUrl" module="customer"><url helper="customer/getLogoutUrl"/></action>
+            <action method="addLink" translate="label title" module="customer">
+	            <label>Log Out</label>
+	            <url helper="customer/getLogoutUrl"/><title>Log Out</title><prepare/><urlParams/><position>100</position><liParams/><aParams/>
+	            <beforeText helper="ewpagecache/getBeginMarker"><key>toplink_login</key></beforeText>
+          		<afterText helper="ewpagecache/getEndMarker"><key>toplink_login</key></afterText>
+            </action>
+        </reference>
+    </customer_logged_in> -->
+</layout>

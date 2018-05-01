@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Webshopapps Shipping Module
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @author 	WebShopApps
+ * @license www.WebShopApps.com/license/license.txt
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
+ *
+ * (c) Webshopapps.com Zowta Ltd 2012 - All rights reserved.
+*/
+-->
+<config>
+    <modules>
+        <Webshopapps_Wsafreightcommon>
+            <version>0.0.11</version>
+            <depends>
+                <Mage_Shipping/>
+            </depends>
+        </Webshopapps_Wsafreightcommon>
+    </modules>
+    <global>
+        <models>
+            <wsafreightcommon>
+                <class>Webshopapps_Wsafreightcommon_Model</class>
+            </wsafreightcommon>
+            <wsafreightcommon_shipping>
+                <class>Webshopapps_Wsafreightcommon_Model</class>
+            </wsafreightcommon_shipping>
+           <shipping>
+                <rewrite>
+                    <shipping>Webshopapps_Wsacommon_Model_Shipping_Shipping</shipping>
+                </rewrite>
+            </shipping>
+        </models>
+        <events>
+            <admin_system_config_changed_section_carriers>
+                <observers>
+                    <wsafreightcommon_observer>
+                        <class>wsafreightcommon/observer</class>
+                        <method>postError</method>
+                    </wsafreightcommon_observer>
+                </observers>
+            </admin_system_config_changed_section_carriers>
+            <controller_action_predispatch>
+                <observers>
+                    <controller_action_before>
+                        <class>wsafreightcommon/observer</class>
+                        <method>hookToControllerActionPreDispatch</method>
+                    </controller_action_before>
+                </observers>
+            </controller_action_predispatch>
+            <controller_action_postdispatch>
+                <observers>
+                    <controller_action_before>
+                        <class>wsafreightcommon/observer</class>
+                        <method>hookToControllerActionPostDispatch</method>
+                    </controller_action_before>
+                </observers>
+            </controller_action_postdispatch>
+            <controller_action_predispatch_checkout_onepage_saveShippingMethod>
+                <observers>
+                    <controller_action_save_shipping_method>
+                        <class>wsafreightcommon/observer</class>
+                        <method>hookToControllerSaveShippingMethod</method>
+                    </controller_action_save_shipping_method>
+                </observers>
+            </controller_action_predispatch_checkout_onepage_saveShippingMethod>
+            <adminhtml_sales_order_create_process_data_before>
+                <observers>
+                    <adminhtml_sales_order_create_before>
+                        <class>wsafreightcommon/observer</class>
+                        <method>hookToAdminSalesOrderCreateProcessDataBefore</method>
+                    </adminhtml_sales_order_create_before>
+                </observers>
+            </adminhtml_sales_order_create_process_data_before>
+            <sales_quote_address_collect_totals_after>
+                <observers>
+                    <save_freight_quote_id_after_collect>
+                        <class>wsafreightcommon/observer</class>
+                        <method>saveFreightQuoteId</method>
+                    </save_freight_quote_id_after_collect>
+                </observers>
+            </sales_quote_address_collect_totals_after>
+            <controller_action_layout_generate_xml_before>
+                <observers>
+                    <add_new_layout>
+                        <class>wsafreightcommon/observer</class>
+                        <method>addNewLayout</method>
+                    </add_new_layout>
+                </observers>
+            </controller_action_layout_generate_xml_before>
+        </events>
+        <blocks>
+            <wsafreightcommon>
+                <class>Webshopapps_Wsafreightcommon_Block</class>
+            </wsafreightcommon>
+        </blocks>
+        <resources>
+            <wsafreightcommon_setup>
+                <setup>
+                    <module>Webshopapps_Wsafreightcommon</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </wsafreightcommon_setup>
+        </resources>
+        <sales>
+        </sales>
+        <fieldsets>
+            <sales_convert_quote_address>
+                <freight_quote_id>
+                    <to_order>*</to_order>
+                </freight_quote_id>
+                <liftgate_required>
+                    <to_order>*</to_order>
+                </liftgate_required>
+                <notify_required>
+                    <to_order>*</to_order>
+                </notify_required>
+                <inside_delivery>
+                    <to_order>*</to_order>
+                </inside_delivery>
+                <shipto_type>
+                    <to_order>*</to_order>
+                </shipto_type>
+                <original_shipping_method>
+                    <to_order>*</to_order>
+                </original_shipping_method>
+            </sales_convert_quote_address>
+            <sales_convert_order>
+                <freight_quote_id>
+                    <to_quote_address_shipping>*</to_quote_address_shipping>
+                </freight_quote_id>
+                <notify_required>
+                    <to_quote_address_shipping>*</to_quote_address_shipping>
+                </notify_required>
+                <inside_delivery>
+                    <to_quote_address_shipping>*</to_quote_address_shipping>
+                </inside_delivery>
+                <liftgate_required>
+                    <to_quote_address_shipping>*</to_quote_address_shipping>
+                </liftgate_required>
+                <shipto_type>
+                    <to_quote_address_shipping>*</to_quote_address_shipping>
+                </shipto_type>
+                <original_shipping_method>
+                    <to_quote_address_shipping>*</to_quote_address_shipping>
+                </original_shipping_method>
+            </sales_convert_order>
+        </fieldsets>
+        <helpers>
+            <wsafreightcommon>
+                <class>Webshopapps_Wsafreightcommon_Helper</class>
+            </wsafreightcommon>
+        </helpers>
+        <sales>
+            <quote>
+                <item>
+                    <product_attributes>
+                        <freight_class/>
+                        <must_ship_freight/>
+                    </product_attributes>
+                </item>
+            </quote>
+        </sales>
+    </global>
+    <frontend>
+        <routers>
+            <onestepcheckout>
+                <args>
+                    <modules>
+                        <Webshopapps_Wsafreightcommon before="Idev_OneStepCheckout">Webshopapps_Wsafreightcommon</Webshopapps_Wsafreightcommon>
+                    </modules>
+                </args>
+            </onestepcheckout>
+            <onepagecheckout>
+                <args>
+                    <modules>
+                        <Webshopapps_Wsafreightcommon before="IWD_OnepageCheckout">Webshopapps_Wsafreightcommon</Webshopapps_Wsafreightcommon>
+                    </modules>
+                </args>
+            </onepagecheckout>
+            <webshopapps_wsafreightcommon>
+                <use>standard</use>
+                <args>
+                    <module>Webshopapps_Wsafreightcommon</module>
+                    <frontName>wsafreightcommon</frontName>
+                </args>
+            </webshopapps_wsafreightcommon>
+        </routers>
+        <layout>
+            <updates>
+                <wsafreightcommon>
+                    <file>webshopapps/wsafreightcommon.xml</file>
+                </wsafreightcommon>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Webshopapps_Wsafreightcommon>
+                    <files>
+                        <default>Webshopapps_Wsafreightcommon.csv</default>
+                    </files>
+                </Webshopapps_Wsafreightcommon>
+            </modules>
+        </translate>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Webshopapps_Wsafreightcommon>
+                    <files>
+                        <default>Webshopapps_Wsafreightcommon.csv</default>
+                    </files>
+                </Webshopapps_Wsafreightcommon>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <wsafreightcommon>
+                    <file>webshopapps/wsafreightcommon.xml</file>
+                </wsafreightcommon>
+            </updates>
+        </layout>
+    </adminhtml>
+    <default>
+        <shipping>
+            <wsafreightcommon>
+                <active>1</active>
+                <use_accessories>1</use_accessories>
+                <max_package_weight>10000</max_package_weight>
+                <use_parent>1</use_parent>
+                <min_weight>150</min_weight>
+                <default_freight_class>55</default_freight_class>
+                <show_liftgate_fee>0</show_liftgate_fee>
+                <liftgate_fee>0</liftgate_fee>
+                <residential_fee>0</residential_fee>
+                <inside_delivery_fee>0</inside_delivery_fee>
+                <notify_fee>0</notify_fee>
+                <debug>0</debug>
+                <apply_live_liftgate>0</apply_live_liftgate>
+                <apply_live_business>0</apply_live_business>
+                <inside_delivery_fee>0</inside_delivery_fee>
+                <liftgate_origin>0</liftgate_origin>
+                <residential_origin>0</residential_origin>
+                <auto_select_cheapest>0</auto_select_cheapest>
+                <hide_accessorials/>
+                <default_address>0</default_address>
+                <minimum_dimensions>0</minimum_dimensions>
+                <generic_name></generic_name>
+                <ship_freight_rules>weight,dimensions,product_must,product_freight</ship_freight_rules>
+                <display_freight_rules>weight,dimensions,product_ships_freight</display_freight_rules>
+            </wsafreightcommon>
+        </shipping>
+        <carriers>
+            <freefreight>
+                <active>0</active>
+                <model>wsafreightcommon_shipping/carrier_freefreight</model>
+                <title>Select Shipping Method</title>
+                <name>Freefreight</name>
+                <liftgate_fee>0</liftgate_fee>
+                <residential_fee>0</residential_fee>
+                <inside_delivery_fee>0</inside_delivery_fee>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this
+                    shipping method, please contact us.
+                </specificerrmsg>
+                <allowed_methods>freefreight</allowed_methods>
+                <minimum_dimensions/>
+                <minimum_length/>
+            </freefreight>
+        </carriers>
+    </default>
+</config>

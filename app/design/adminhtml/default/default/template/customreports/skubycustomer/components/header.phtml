@@ -1,0 +1,54 @@
+<table cellspacing="0" class="actions" style="margin-bottom:20px;">
+	<tr>		
+		<td class="a-left filter">
+			<form id="frmReportFilter" enctype="multipart/form-data" action="<?php echo Mage::getUrl('adminhtml/bsreports_skubycustomer/loadReport')?>">
+				<div class="f-left">
+					<div>
+						<?php echo $this->__('SKU') ?>:&nbsp;
+						<input class="input-text required-entry" type="text" id="product_sku" name="product_sku" value="<?php echo $this->getFilter('product_sku');?>" style="width:10em" />
+					</div>
+				</div>
+				<div class="f-left" style="margin-left:10px;">
+					<div>
+						<?php echo $this->__('From') ?>:&nbsp;
+						<input class="input-text no-changes required-entry" type="text" id="dtp_from_date" name="from_date" value="<?php echo $this->getFilter('from_date');?>" style="width:8em" /> 
+						<img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" title="<?php echo $this->__('Select Date') ?>" id="dtp_from_date_trig" alt="<?php echo $this->__('Select Date') ?>" class="v-middle"/>
+					</div>
+				</div>
+				<div class="f-left" style="margin-left:10px;">
+					<div>
+						<?php echo $this->__('To') ?>:&nbsp;
+						<input  class="input-text no-changes required-entry" type="text" id="dtp_to_date" name="to_date"  value="<?php echo $this->getFilter('to_date');?>" style="width:8em" /> 
+						<img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" title="<?php echo $this->__('Select Date') ?>"id="dtp_to_date_trig" alt="<?php echo $this->__('Select Date') ?>" class="v-middle"/>
+					</div>
+				</div>
+				<div class="f-left" style="margin-left:10px;">
+					<button  onclick="ValidateReportForm()" class="scalable task" type="button" title="Load Report"><span><span><span>Load Report</span></span></span></button>
+				</div>
+				<input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />				
+			</form>		
+			<script type="text/javascript">
+			<!--
+			Calendar.setup({
+				inputField : 'dtp_from_date',
+				ifFormat : '%m/%e/%Y',
+				button : 'dtp_from_date_trig',
+				align : 'Bl',
+				singleClick : true
+			});
+			Calendar.setup({
+				inputField : 'dtp_to_date',
+				ifFormat : '%m/%e/%Y',
+				button : 'dtp_to_date_trig',
+				align : 'Bl',
+				singleClick : true
+			});			
+			//-->
+			function ValidateReportForm(){				
+				var frmObj = new varienForm('frmReportFilter', '');
+				frmObj.submit();
+			}			
+			</script>
+		</td>		
+	</tr>
+</table>

@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Bulksupplements_CustomReports>
+			<version>1.0.0</version>
+		</Bulksupplements_CustomReports>
+	</modules>
+	<admin>
+		<routers>			
+			<!--<customreports>
+				<use>admin</use>
+				<args>
+					<module>Bulksupplements_CustomReports</module>
+					<frontName>customreports</frontName>
+				</args>
+			</customreports>-->
+			<!--New way after SUPEE 6788 Or Magento CE 1.9.2.2-->
+			<adminhtml>
+				<args>
+					<modules>
+						<customreports before="Mage_Adminhtml">Bulksupplements_CustomReports_Adminhtml</customreports>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+	<adminhtml>
+		<menu>
+			<report>
+				<children>
+					<skubycustomer translate="title" module="customreports">
+						<!-- This is the name to be displayed in the admin panel under Reports -->
+						<title>SKU by Customer</title>		
+						<!--<action>customreports/adminhtml_skubycustomer</action>-->
+						<!--New way after SUPEE 6788 Or Magento CE 1.9.2.2 -->
+						<action>adminhtml/bsreports_skubycustomer</action>
+						<sort_order>0</sort_order>
+					</skubycustomer>
+					<productsbykg translate="title" module="customreports">
+						<!-- This is the name shown in the Admin role resources -->
+						<title>Products by Kilogram</title>
+						<!--<action>productsbykg/adminhtml_productsbykg</action>-->
+						<!--New way after SUPEE 6788 Or Magento CE 1.9.2.2 -->
+						<action>adminhtml/bsreports_productsbykg</action>
+						<sort_order>0</sort_order>
+					</productsbykg>
+				</children>
+			</report>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<report>
+							<children>
+								<skubycustomer translate="title" module="customreports">
+									<!-- This is the name shown in the Admin role resources -->
+									<title>SKU by Customer Report</title>
+									<!--<action>customreports/adminhtml_skubycustomer</action>-->
+									<!--New way after SUPEE 6788 Or Magento CE 1.9.2.2 -->
+									<action>adminhtml/bsreports_skubycustomer</action>
+								</skubycustomer>
+								<productsbykg translate="title" module="customreports">
+									<!-- This is the name shown in the Admin role resources -->
+									<title>Products by Kilogram</title>
+									<!--<action>productsbykg/adminhtml_productsbykg</action>-->
+									<!--New way after SUPEE 6788 Or Magento CE 1.9.2.2 -->
+									<action>adminhtml/bsreports_productsbykg</action>
+								</productsbykg>
+							</children>
+						</report>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<customreports>
+					<file>customreports.xml</file>
+				</customreports>
+			</updates>
+		</layout>
+	</adminhtml>
+	<global>		
+		<blocks>
+			<customreports>
+				<class>Bulksupplements_CustomReports_Block</class>
+			</customreports>
+		</blocks>
+		<helpers>
+			<customreports>
+				<class>Bulksupplements_CustomReports_Helper</class>
+			</customreports>
+		</helpers>
+		<models>
+			<customreports>
+				<class>Bulksupplements_CustomReports_Model</class>
+				<resourceModel>customreports</resourceModel>
+			</customreports>
+		</models>
+		<resources>
+            <bs_customreports_setup>
+                <setup>
+                    <module>Bulksupplements_CustomReports</module>
+                </setup>                
+            </bs_customreports_setup>            
+        </resources>
+	</global>
+</config>

@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <aw_mobile2 translate="label" module="aw_mobile2">
+            <label>iPhone Theme 2</label>
+            <tab>awall</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>110</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <is_enabled translate="label">
+                            <label>Enable Module</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <backend_model>aw_mobile2/source_moduleEnableValidator</backend_model>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </is_enabled>
+                        <iphone_home_page translate="label">
+                            <label>Mobile Home Page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>aw_mobile2/source_cmsPage</source_model>
+                        </iphone_home_page>
+                        <!--ipad_home_page translate="label">
+                            <label>Tablet Home Page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>aw_mobile2/source_cmsPage</source_model>
+                        </ipad_home_page-->
+                        <display_stock_status_at_catalog translate="label">
+                            <label>Display stock status at catalog</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </display_stock_status_at_catalog>
+                    </fields>
+                </general>
+                <design>
+                    <label>Design</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <mobile_logo_src translate="label,comment">
+                            <label>Mobile Logo Image</label>
+                            <comment>Recommended image size is 120x44px</comment>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">aw_mobile2</upload_dir>
+                            <base_url type="media" scope_info="1">aw_mobile2</base_url>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mobile_logo_src>
+                        <!--tablet_logo_src translate="label,comment">
+                            <label>Tablet Logo Image</label>
+                            <comment>If not specified, 'Mobile Logo Image' will be used for tablets. Recommended image size is 240x30px</comment>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">aw_mobile2</upload_dir>
+                            <base_url type="media" scope_info="1">aw_mobile2</base_url>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tablet_logo_src-->
+                        <bookmarks_src translate="label">
+                            <label>Bookmarks Icon Source</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">aw_mobile2</upload_dir>
+                            <base_url type="media" scope_info="1">aw_mobile2</base_url>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bookmarks_src>
+                    </fields>
+                </design>
+                <behavior>
+                    <label>Behavior</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <switcher>
+                            <label>Display Desktop/Mobile Switcher at Footer</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </switcher>
+                        <mobile_detect>
+                            <label>Mobile Device Detection</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>aw_mobile2/source_detection</source_model>
+                        </mobile_detect>
+                    </fields>
+                </behavior>
+            </groups>
+        </aw_mobile2>
+    </sections>
+</config>

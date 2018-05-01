@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <checkout translate="label" module="toolz4you">
+            <groups>
+                <rpsc>
+                    <label>Rpsc</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>10</sort_order>
+                    <fields>
+                        <access_control translate="label comment">
+                            <label>Access control</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>rpsc/system_config_source_accesscontrol</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Should selected countries in product be denied or allowed?</comment>
+                        </access_control>
+                        <based_on translate="label comment">
+                            <label>Control based on</label>
+                            <frontend_type>textarea</frontend_type>
+                            <frontend_model>rpsc/adminhtml_system_config_fieldset_basedOn</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends>
+                        </based_on>
+                    </fields>
+                </rpsc>
+            </groups>
+        </checkout>
+    </sections>
+</config>

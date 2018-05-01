@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+* @category   Wyomind
+* @package    Wyomind_Googletrustedstores
+* @license    http://Wyomind.com
+*/
+--> 
+<config>
+    <modules>
+        <Wyomind_Googletrustedstores>
+            <version>1.5.0</version> 
+        </Wyomind_Googletrustedstores> 
+    </modules> 
+    <default>
+        <googletrustedstores>
+            <license>
+                <version>1.5.0</version>
+            </license>
+            <gts>
+                <country>US</country>
+                <country>en_US</country>
+                <badge_position>BOTTOM_RIGHT</badge_position>
+                <badge_container_css>left:0px;
+top:0px;
+position:absolute;</badge_container_css>
+                <gs_product_id>{sku}</gs_product_id>
+            </gts>
+            <gts_orders>
+                <eta>0</eta>
+                <eta_ship>0</eta_ship>
+            </gts_orders>
+            <shipments_settings>
+                <filepath>media</filepath>
+                <filename>shipments.txt</filename>
+                <previous_days>1</previous_days>
+                <last_generation>never</last_generation>
+            </shipments_settings>
+            <cancellations_settings>
+                <filepath>media</filepath>
+                <filename>cancellations.txt</filename>
+                <previous_days>1</previous_days>
+            </cancellations_settings>
+            <schedule>
+                <cron>{"days":[],"hours":[]}</cron>
+                <last_update>
+                    2000-01-01 00:00:00
+                </last_update>
+                <enable_report>1</enable_report>
+                <emails></emails>
+                <report_title>Google Trusted Stores - Report</report_title>
+            </schedule>
+            <carriers>
+                <carriers_mapping>[{"code":"freeshipping","as":"OTHER"},{"code":"fedex","as":"FedEx"},{"code":"ups","as":"UPS"},{"code":"usps","as":"USPS"},{"code":"dhlint","as":"DHL"}]</carriers_mapping>
+            </carriers>
+        </googletrustedstores>
+    </default>
+    <frontend>
+        <layout>
+            <updates>
+                <googletrustedstores>
+                    <file>googletrustedstores.xml</file>
+                </googletrustedstores>
+            </updates>
+        </layout>
+        <routers>
+            <googletrustedstores>
+                <use>standard</use>
+                <args>
+                    <module>Wyomind_Googletrustedstores</module>
+                    <frontName>googletrustedstores</frontName>
+                </args>
+            </googletrustedstores>
+        </routers>  
+    </frontend>
+    <admin>
+        <routers>
+            <googletrustedstores>
+                <use>admin</use>
+                <args>
+                    <module>Wyomind_Googletrustedstores</module>
+                    <frontName>googletrustedstores</frontName>
+                </args>
+            </googletrustedstores>
+        </routers>
+    </admin>
+    <global>
+        <resources>
+            <googletrustedstores_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </googletrustedstores_write>
+            <googletrustedstores_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </googletrustedstores_read>
+        </resources>
+        <helpers>
+            <googletrustedstores>
+                <class>Wyomind_Googletrustedstores_Helper</class>
+            </googletrustedstores>
+        </helpers>
+        <models>
+            <googletrustedstores>
+                <class>Wyomind_Googletrustedstores_Model</class>
+            </googletrustedstores>
+        </models>
+    </global>
+    <crontab>
+        <jobs>
+            <googletrustedstores_generate>
+                <schedule>
+                    <cron_expr>*/30 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>googletrustedstores/observer::generateFeeds</model>
+                </run>
+            </googletrustedstores_generate>
+        </jobs>
+    </crontab>
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <googletrustedstores>
+                                            <title>Google Trusted Stores</title>
+                                        </googletrustedstores>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+            <modules>
+                <Wyomind_Googletrustedstores>
+                    <files>
+                        <default>Wyomind_Googletrustedstores.csv</default>
+                    </files>
+                </Wyomind_Googletrustedstores>
+            </modules>
+        </translate>
+    </adminhtml> 
+</config>

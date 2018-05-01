@@ -1,0 +1,244 @@
+<style>
+    .lien-popup span
+    {
+        position       :  absolute;
+        top            :  -2000em;
+        left           :  -2000em;
+        width          :  1px;
+        height         :  1px;
+        overflow       :  hidden;
+        background     :  #ffffe1;   /* D�finition du fond, sinon on a le m�me que notre lien */
+        border         :  1px solid #000000; /* D�finition des bordures */
+        text-decoration: none;
+        color: black;
+        text-align: left;
+    }
+
+
+    .lien-popup:hover span
+    {
+        top        :  auto;
+        left       :  auto;
+        width      :  200px;
+        height     :  auto;
+        overflow   :  visible;
+    }
+
+</style>
+
+<script>
+
+//return package qty for product
+function getQtyPerPackage(packageId, productId)
+{
+	var key = packageId + '_' + productId;
+	<?php foreach($this->getOrder()->getProducts() as $product): ?>
+		<?php foreach(mage::helper('purchase/Product_Packaging')->getPackagingForProduct($product->getpop_product_id()) as $packaging): ?>
+			<?php $key = $packaging->getId().'_'.$product->getpop_product_id(); ?>
+			if (key == '<?php echo $key; ?>')
+				return <?php echo $packaging->getpp_qty(); ?>;
+		<?php endforeach; ?>
+	<?php endforeach; ?>
+	return 1;
+}
+
+//display final qty for products when using package
+function displayFinalQty(itemId, productId)
+{
+        <?php if (mage::helper('purchase/Product_Packaging')->isEnabled()): ?>
+            var spanId = 'span_final_qty_' + itemId;
+            var packageCount = document.getElementById('pop_qty_' + itemId).value;
+            var packageId = document.getElementById('pop_packaging_id_' + itemId).value;
+            var qtyPerPackage = getQtyPerPackage(packageId, productId);
+            document.getElementById(spanId).innerHTML = (qtyPerPackage * packageCount);
+        <?php endif; ?>
+}
+
+</script>
+
+<?php
+//init main values
+$currency = $this->getOrder()->getpo_currency();
+$currencyRate = $this->getOrder()->getpo_currency_change_rate();
+?>
+
+<script>
+    var kCostRepartitionMethod = '<?php echo mage::getStoreConfig('purchase/purchase_order/cost_repartition_method'); ?>';
+    var kDefaultProductSalePriceRate = <?php echo (1 + mage::getStoreConfig('purchase/purchase_product/pricer_default_tax_rate') / 100); ?> ;
+    var kEditImageUrl = '<?php echo $this->getSkinUrl('images/purchase/edit.jpg'); ?>';
+    var kPricerSaveUrl = '<?php echo $this->getUrl('adminhtml/Purchase_Orders/savePrice'); ?>';
+    var kEnableEcoTax = <?php echo (mage::getStoreConfig('purchase/purchase_order/manage_deee') == 1 ? 'true' : 'false'); ?>;
+</script>
+
+<input type="hidden" id="po_num" name="po_num" value="<?php echo $this->getOrder()->getId(); ?>">
+<div class="entry-edit">
+
+    <div class="grid">
+        <table cellspacing="0" class="data" width="100%" cellspacing="0">
+            <thead>
+                <tr class="headings">
+
+                    <?php if (mage::getStoreConfig('purchase/purchase_order/display_product_picture')): ?>
+                        <th class="a-center"><?php echo$this->__('Picture') ?></th>
+                    <?php endif; ?>
+                        <th class="a-center"><?php echo$this->__('Details') ?></th>
+                        <th class="a-center">Sku</th>
+                        <th><?php echo$this->__('Description') ?></th>
+                     <?php if (mage::getStoreConfig('advancedstock/miscellaneous/display_configurable_attributes') == 1): ?>
+						<th class="a-center"><?php echo$this->__('Attributes') ?></th>
+                    <?php endif; ?>
+                        <th class="a-center"><?php echo$this->__('Supplier Ref') ?></th>
+                        <th class="a-center"><?php echo$this->__('Qty') ?></th>
+                    <?php if (mage::helper('purchase/Product_Packaging')->isEnabled()): ?>
+                            <th class="a-center"><?php echo $this->__('Packaging') ?></th>
+                    <?php endif; ?>
+                    <?php if (mage::getStoreConfig('purchase/purchase_order/display_prefered_stock_level')): ?>
+                                <th class="a-center"><?php echo$this->__('Prefered<br>Stock Level') ?></th>
+                    <?php endif; ?>
+                                <th class="a-center"><?php echo$this->__('Delivered<br>Qty') ?></th>
+                                <th class="a-center"><?php echo$this->__('Buy Price') . '<br>(' . $currency . ')' ?></th>
+                                <th class="a-center"><?php echo$this->__('Sale Price') . '<br>(' . $currency . ')' ?></th>
+                    <?php if (mage::getStoreConfig('purchase/purchase_order/display_last_buy_price') == 1): ?>
+                                    <th class="a-center"><?php echo$this->__('Last Price') . '<br>(' . $currency . ')' ?></th>
+                    <?php endif; ?>
+                    <?php if (mage::getStoreConfig('purchase/purchase_order/manage_deee') == 1): ?>
+                                            <th class="a-center"><?php echo$this->__('Weee') . '<br>(' . $currency . ')' ?></th>
+                    <?php endif; ?>
+                                            <th class="a-center"><?php echo$this->__('Tax Rate') ?></th>
+                                            <th class="a-center"><?php echo$this->__('Total HT') . '<br>(' . $currency . ')' ?></th>
+                                            <th class="a-center"><?php echo$this->__('Delete') ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                <?php
+                                            //Display products
+                                            $collection = $this->getProducts();
+                                            if (sizeof($collection) == 0) {
+                                                echo '<tr><td colspan="13" align="center">' . $this->__('No items') . '</td></tr>';
+                                            }
+                                            $js = '';
+                                            foreach ($collection as $item) {
+                                                echo '<tr>';
+
+                                                //product image
+                                                if (mage::getStoreConfig('purchase/purchase_order/display_product_picture') == 1) {
+                                                    if ($item->getsmall_image() != 'no_selection') {
+                                                        $productImage = Mage::getBaseUrl('media') . 'catalog/product' . $item->getsmall_image();
+                                                        echo '<td class="a-center"><img src="' . $productImage . '" width="50" height="50"></td>';
+                                                    } else {
+                                                        echo '<td></td>';
+                                                    }
+                                                }
+
+
+                                                echo '<script>';
+                                                echo 'var product_price_' . $item->getpop_product_id() . ' = ' . number_format($this->convertSalePriceToExcludingTax($item->getsale_price()) * $currencyRate, 2, '.', '') . ';';
+                                                echo '</script>';
+                                                echo '<td align="center">';
+                                                echo mage::helper('purchase')->getLightForStockDetailsWindow($item->getpop_product_id(), $item->getpop_product_name());
+                                                echo '</td>';
+
+                                                echo '<td><a href="' . $this->getUrl('adminhtml/AdvancedStock_Products/Edit', array('product_id' => $item->getpop_product_id())) . '">' . $item->getsku() . '</a></td>';
+                                                echo '<td><input size="20" type="text" id="pop_product_name_' . $item->getId() . '" name="pop_product_name_' . $item->getId() . '" value="' . $item->getpop_product_name() . '"></td>';
+                                                
+                                                if (mage::getStoreConfig('advancedstock/miscellaneous/display_configurable_attributes') == 1)
+                                                	echo '<td>'.mage::helper('AdvancedStock/Product_ConfigurableAttributes')->getDescription($item->getpop_product_id()).'</td>';
+                                                echo '<td><input size="8" type="text" id="pop_supplier_ref_' . $item->getId() . '" name="pop_supplier_ref_' . $item->getId() . '" value="' . $item->getpop_supplier_ref() . '"></td>';
+
+                                                $onChange = '';
+                                                if (mage::helper('purchase/Product_Packaging')->isEnabled())
+                                                    $onChange = 'displayFinalQty('.$item->getId().','.$item->getpop_product_id().');';
+
+                                                echo '<td align="center"><input size="2" type="text" id="pop_qty_' . $item->getId() . '" name="pop_qty_' . $item->getId() . '" value="' . $this->getItemQty($item) . '" onkeyup="updateAllMargins(); '.$onChange.'"></td>';
+
+                                                //add packaging column
+                                                if (mage::helper('purchase/Product_Packaging')->isEnabled()) {
+                                                    echo '<td align="center">';
+                                                    $onChange = 'displayFinalQty('.$item->getId().','.$item->getpop_product_id().');';
+                                                    echo mage::helper('purchase/Product_Packaging')->getPackagingPurchaseCombobox($item->getpop_product_id(), 'pop_packaging_id_' . $item->getId(), $item->getpop_packaging_id(), $onChange);
+                                                    echo '<br>'.$this->__('Total : ').'<span id="span_final_qty_'.$item->getId().'" class="finalQty">0</span>';
+                                                    echo '</td>';
+                                                }
+
+                                                if (mage::getStoreConfig('purchase/purchase_order/display_prefered_stock_level')) {
+                                                    echo '<td align="center">' . $this->getWarningStockLevel($item->getpop_product_id()) . '</td>';
+                                                }
+                                                echo '<td align="center">'.$item->getSuppliedQty().'</td>';
+                                                echo '<td align="center"><input size="6" type="text" id="pop_price_ht_' . $item->getId() . '" name="pop_price_ht_' . $item->getId() . '" value="' . $item->getpop_price_ht() . '" onkeyup="displayMargin(' . $item->getpop_product_id() . ', ' . $item->getId() . ');"><br><div id="div_price_with_extended_cost_' . $item->getId() . '"></div></td>';
+                                                echo '<td class="a-center"><div id="div_sellprice_' . $item->getpop_product_id() . '">' . number_format($item->getsale_price() * $currencyRate, 2) . '</div></td>';
+
+                                                //display last buy price
+                                                if (mage::getStoreConfig('purchase/purchase_order/display_last_buy_price') == 1) {
+                                                    echo '<td align="center">';
+                                                    $lastPrice = $this->GetLastPriceWithoutFees($item->getpop_product_id());
+                                                    $lastPriceCurrency = $this->GetLastPriceWithoutFees($item->getpop_product_id()) * $this->getOrder()->getpo_currency_change_rate();
+                                                    echo $this->getOrder()->getCurrency()->formatTxt($lastPriceCurrency);
+                                                    echo '&nbsp;</td>';
+                                                }
+
+                                                if (mage::getStoreConfig('purchase/purchase_order/manage_deee') == 1)
+                                                    echo '<td align="center"><input size="3" onkeyup="displayMargin(' . $item->getpop_product_id() . ', ' . $item->getId() . ');" type="text" id="pop_eco_tax_' . $item->getId() . '" name="pop_eco_tax_' . $item->getId() . '" value="' . $item->getpop_eco_tax() . '"></td>';
+
+                                                echo '<td align="center"><input size="3" type="text" id="pop_tax_rate_' . $item->getId() . '" name="pop_tax_rate_' . $item->getId() . '" value="' . $item->getpop_tax_rate() . '"></td>';
+                                                echo '<td align="center">' . $this->getOrder()->getCurrency()->formatTxt($item->getRowTotal()) . '</td>';
+                                                echo '<td align="center"><input type="checkbox" id="delete_' . $item->getId() . '" name="delete_' . $item->getId() . '" value="1"></td>';
+
+                                                echo '</tr>';
+
+                                                $js .= 'displayFinalQty('.$item->getId().','.$item->getpop_product_id().');';
+                                                $js .= 'displayMargin(' . $item->getpop_product_id() . ', ' . $item->getId() . ');' . "\r\n";
+                                            }
+                ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                <?php $defaultCurrency = (string) Mage::getStoreConfig(Mage_Directory_Model_Currency::XML_PATH_CURRENCY_BASE); ?>
+
+                            <div id="div_dlg_pricer" class="dlg-pricer" style="display: none;">
+                                <input type="hidden" id="pricer_product_id" name="pricer_product_id" value="">
+                                <input type="hidden" id="pricer_item_id" name="pricer_item_id" value="">
+                                <table border="0">
+                                    <tr>
+                                        <td><?php echo$this->__('Buy price') ?></td>
+                                        <td><input type="text" id="pricer_buy_price" name="pricer_buy_price" disabled size="8"> <?php echo $defaultCurrency; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><?php echo$this->__('Sale price') ?></td>
+                                                        <td><input onkeyup="refreshPricer('sell_price');" type="text" id="pricer_sell_price" name="pricer_sell_price" size="8"> <?php echo $defaultCurrency; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><?php echo$this->__('Sale price (incl tax)') ?></td>
+                                                        <td><input onkeyup="refreshPricer('sell_price_ttc');" type="text" id="pricer_sell_price_ttc" name="pricer_sell_price_ttc" size="8"> <?php echo $defaultCurrency; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><?php echo$this->__('Margin') ?></td>
+                                                        <td><input onkeyup="refreshPricer('margin');" type="text" id="pricer_margin" name="pricer_margin" size="8"> %</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" class="a-center"><input type="button" value="<?php echo $this->__('Save sale price'); ?>" onclick="savePricer();"></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                            <script>
+                                                function updateAllMargins()
+                                                {
+<?php echo $js; ?>
+                                                                }
+                                                                updateAllMargins();
+                                            </script>
+
+                                            <div align="right">
+                                                <table border="0">
+                                                    <tr>
+                                                        <td><h3><?php echo $this->__('Total'); ?></h3></td>
+                                                        <td width="100"><h3><?php echo $this->getOrder()->getCurrency()->formatTxt($this->getOrder()->getTotalHt()) ?></h3></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h3><?php echo $this->__('Total (incl tax)'); ?></h3></td>
+                                                        <td width="100"><h3><?php echo $this->getOrder()->getCurrency()->formatTxt($this->getOrder()->getTotalTtc()) ?></h3></td>
+        </tr>
+    </table>
+</div>

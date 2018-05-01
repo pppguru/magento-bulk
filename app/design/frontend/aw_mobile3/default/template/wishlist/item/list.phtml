@@ -1,0 +1,59 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+    $columns = $this->getColumns();
+    // Columns order:
+    // 0 ??? image
+    // 1 ??? info
+    // 2 ??? cart
+    // 3 ??? remove
+?>
+
+<?php if (count($this->getItems())): ?>
+    <ul class="wishlist__items">
+        <?php foreach ($this->getItems() as $item): ?>
+            <li class="wishlist__item wishlist-item" id="item_<?php echo $item->getId() ?>">
+                <?php foreach ($columns as $column): ?>
+                    <?php $column->setItem($item); echo $column->toHtml($item); ?>
+                <?php endforeach; ?>
+            </li>
+        <?php endforeach ?>
+    </ul>
+<?php else: ?>
+    <div class="wishlist-empty">
+        <?php echo $this->__('This Wishlist has no Items') ?>
+    </div>
+<?php endif; ?>
+
+<?php foreach ($columns as $column): ?>
+    <?php echo $column->getAdditionalHtml() ?>
+<?php endforeach; ?>
+
+<script>
+    <?php foreach ($columns as $column): ?>
+        <?php echo $column->getJs() ?>
+    <?php endforeach; ?>
+</script>

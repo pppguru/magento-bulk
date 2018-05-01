@@ -1,0 +1,20 @@
+<table border="0" width="100%">
+<tr>
+	<td colspan="2">
+		<?php
+			//affiche la grille des commandes préparables
+			echo $this->getChildHtml('availableorders');
+			
+		?>	
+	</td>
+</tr>
+<tr>
+	<td>
+		<?php
+			//affiche la grille des commandes en attente de produits
+			echo $this->getChildHtml('selectedorders');
+		?>	
+	</td>
+</tr>
+</table>
+

@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <report>
+            <children>
+                <productreturn translate="title" module="ProductReturn">
+                    <title>Product Return</title>
+                    <sort_order>1000</sort_order>
+                    <children>
+                        <reason translate="title" module="ProductReturn">
+                            <title>By reason</title>
+                            <action>adminhtml/ProductReturn_Report/Reason</action>
+                        </reason>
+                        <product translate="title" module="ProductReturn">
+                            <title>By product</title>
+                            <action>adminhtml/ProductReturn_Report/Product</action>
+                        </product>
+                    </children>
+                </productreturn>
+            </children>
+        </report>
+        <sales>
+            <children>
+                <productreturn translate="title" module="ProductReturn">
+                    <title>Product Returns</title>
+                    <sort_order>500</sort_order>
+                    <children>
+                        <customerreturn translate="title" module="ProductReturn">
+                            <title>Customer Returns</title>
+                            <action>adminhtml/ProductReturn_Admin/Grid</action>
+                        </customerreturn>
+                        <pendingproducts translate="title" module="ProductReturn">
+                            <title>Pending products</title>
+                            <action>adminhtml/ProductReturn_PendingProducts/Grid</action>
+                        </pendingproducts>
+                        <configuration translate="title" module="ProductReturn">
+                            <title>Configuration</title>
+                            <action>adminhtml/ProductReturn_Admin/Configuration</action>
+                        </configuration>
+                    </children>
+                </productreturn>
+            </children>
+        </sales>
+    </menu>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <productreturn module="ProductReturn">
+                                <title>Customer Returns</title>
+                                <children>
+                                    <customerreturn module="ProductReturn">
+                                        <title>Customer Returns</title>
+
+                                        <children>
+                                            <action module="ProductReturn">
+                                                <title>Action</title>
+                                                <children>
+                                                    <printrma module="ProductReturn">
+                                                        <title>Print product return</title>
+                                                    </printrma>
+                                                    <deleterma module="ProductReturn">
+                                                        <title>Delete product return</title>
+                                                    </deleterma>
+                                                    <editrma module="ProductReturn">
+                                                        <title>Edit product return</title>
+                                                    </editrma>
+                                                    <lockrma module="ProductReturn">
+                                                        <title>Lock product return</title>
+                                                    </lockrma>
+                                                    <notifyrma module="ProductReturn">
+                                                        <title>Notify product return</title>
+                                                    </notifyrma>
+                                                    <editlockedrma module="ProductReturn">
+                                                        <title>Edit locked product return</title>
+                                                    </editlockedrma>
+                                                    <preceivedrma module="ProductReturn">
+                                                        <title>Products received button</title>
+                                                    </preceivedrma>
+                                                    <sendreturnlabel module="ProductReturn">
+                                                        <title>Send return label</title>
+                                                    </sendreturnlabel>
+                                                    <editserial module="ProductReturn">
+                                                        <title>Can edit serial number</title>
+                                                    </editserial>
+                                                    <editrmaid module="ProductReturn">
+                                                        <title>Can edit RMA ID</title>
+                                                    </editrmaid>
+                                                    <editanyrma module="ProductReturn">
+                                                        <title>Can edit any RMA</title>
+                                                    </editanyrma>
+                                                </children>
+                                            </action>
+                                            <view module="ProductReturn">
+                                                <title>View</title>
+                                                <children>
+                                                    <history module="ProductReturn">
+                                                        <title>History</title>
+                                                    </history>
+                                                    <productsreservation module="ProductReturn">
+                                                        <title>Products reservation</title>
+                                                    </productsreservation>
+                                                    <processproducts module="ProductReturn">
+                                                        <title>Process products</title>
+                                                    </processproducts>
+                                                    <returnlabel module="ProductReturn">
+                                                        <title>Return label</title>
+                                                    </returnlabel>
+                                                    <customerdetail module="ProductReturn">
+                                                        <title>Show customer detail</title>
+                                                    </customerdetail>
+                                                </children>
+                                            </view>
+                                        </children>
+                                    </customerreturn>
+                                    <pendingproducts module="ProductReturn">
+                                        <title>Pending products</title>
+                                    </pendingproducts>
+                                    <configuration module="ProductReturn">
+                                        <title>Configuration</title>
+                                    </configuration>
+                                </children>
+                            </productreturn>
+                            <order_view module="ProductReturn">
+                                <title>Order View</title>
+                                <children>
+                                    <showrmainorderview module="ProductReturn">
+                                        <title>Product return in order view</title>
+                                    </showrmainorderview>
+                                    <creatermainorderview module="ProductReturn">
+                                        <title>Create RMA in order view</title>
+                                    </creatermainorderview>
+                                </children>
+                            </order_view>
+                        </children>
+                    </sales>
+
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <productreturn module="ProductReturn">
+                                        <title>Product Returns</title>
+                                    </productreturn>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

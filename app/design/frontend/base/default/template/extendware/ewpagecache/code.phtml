@@ -1,0 +1,18 @@
+<?php 	
+	$_visitor = Mage::getSingleton('log/visitor');
+	$_query = array(
+		'id' => $this->getProduct()->getId(), 
+		'SID' => Mage::getSingleton('core/session')->getSessionId(),
+		'url' => $_visitor->getUrl(),
+		'referrer' => $_visitor->getHttpReferer(),
+	);
+	
+?>
+<script type="text/javascript">
+document.observe('dom:loaded', function() {
+	if ('EWPC:CACHE_LEVEL' == 1 || 'EWPC:CACHE_LEVEL' == 2) {
+		var url = <?php echo json_encode($this->getUrl('ewpagecache/product/recordView', array('_query' => $_query))); ?>;
+		new Ajax.Request(url, {method: 'get'});
+	}
+});
+</script>

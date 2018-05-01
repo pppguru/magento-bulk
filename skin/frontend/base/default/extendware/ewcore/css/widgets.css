@@ -1,0 +1,350 @@
+/* Session */
+.warning-msg { background-position:10px 9px !important; background-repeat:no-repeat !important; min-height:24px !important; padding:8px 8px 8px 32px !important; font-size:11px !important; font-weight:bold !important; }
+.warning-msg { border:1px solid #666e73 !important;background:#e6e6e6 url(../images/widgets/warning_msg_icon.gif) no-repeat 10px 10px !important; color:#000000 !important; }
+
+/* Grid - General */
+.ewfwidget .grid                           { border-bottom:0; padding-bottom:.5em; }
+.ewfwidget .grid table                     { width:100%; border:1px solid #cbd3d4; border-bottom:none; }
+.ewfwidget .grid table.border              { border:1px solid #cbd3d4; }
+.ewfwidget .grid tbody                     { background:#fff; }    /* Zebra odd-row */
+.ewfwidget .grid tr.even, .grid tr.even tr { background:#f6f6f6; } /* Zebra even-row */
+.ewfwidget .grid tr.on-mouse               { background:#fcf5dd; cursor:pointer; } /* Rows mouse-over */
+.ewfwidget .grid tr.invalid                { background-color:#f5d6c7; }
+.ewfwidget .grid th, .grid td              { padding:2px 4px 2px 4px; }
+.ewfwidget .grid th                        { white-space:nowrap; }
+.ewfwidget .grid td.editable input.input-text { width:50px !important; margin-left:4px !important; }
+.ewfwidget .grid td input.input-text       { width:86%; }
+.ewfwidget .grid table td                  { border-width:0 1px 1px 0; border-color:#dadfe0; border-style:solid; }
+.ewfwidget .grid table.border td           { background:#fff !important; }
+.ewfwidget .grid table td.last             { border-right:0; }
+.ewfwidget .grid table td.product          { text-align:right; }
+.ewfwidget .grid table td.empty-text       { padding:15px; }
+.ewfwidget .grid table td .action-select   { width:100%; }
+.ewfwidget .grid .separator                { padding:0 4px; color:#b9b9b9; }
+
+.ewfwidget .grid tbody.odd tr              { background:#fff !important; }
+.ewfwidget .grid tbody.even tr             { background:#f6f6f6 !important; }
+.ewfwidget .grid tbody.odd tr td,
+.ewfwidget .grid tbody.even tr td          { border-bottom:0; }
+.ewfwidget .grid tbody.odd tr.border td,
+.ewfwidget .grid tbody.even tr.border td   { border-bottom:1px solid #dadfe0; }
+
+
+/* Grid - Pager and Buttons row */
+.ewfwidget table.actions                   { width:100%; margin:.5em 0; }
+.ewfwidget table.actions td                { vertical-align:middle; }
+.ewfwidget .pager select                   { width:4em!important; margin:0 4px; }
+.ewfwidget .pager input.page               { width:2em !important; }
+.ewfwidget .pager .arrow                   { margin:0 3px; vertical-align:middle; }
+
+
+/* Grid - Headings */
+.ewfwidget .grid tr.headings { background:url(../images/widgets/sort_row_bg.gif) 0 50% repeat-x; }
+.ewfwidget .grid tr.headings th { border-width:1px; border-color:#f9f9f9 #d1cfcf #f9f9f9 #f9f9f9; border-style:solid; padding-top:1px; padding-bottom:0; font-size:.9em; }
+.ewfwidget .grid tr.headings th.last { border-right:0; }
+.ewfwidget .grid tr.headings th.no-link { /* Grid th with no sorting functionality */ padding-top:2px; padding-bottom:1px; color:#67767e; }
+.ewfwidget .grid tr.headings th span.nobr { display:block; /* FF3 fix */ }
+.ewfwidget .grid tr.headings th a { display:block; padding:2px 4px 1px 0; color:#2d444f; text-decoration:none; }
+.ewfwidget .grid tr.headings th a:hover { color:#d85909; text-decoration:none; }
+.ewfwidget .grid tr.headings th a.sort-arrow-desc,
+.ewfwidget .grid tr.headings th a.sort-arrow-asc { background:url(../images/widgets/sort_on_bg.gif) 0 0 no-repeat; border-bottom:1px solid #fff; border-right:1px solid #fff; padding-bottom:2px; }
+.ewfwidget .grid tr.headings th span.sort-title { display:block; padding:3px 12px 4px 0; line-height:1; }
+.ewfwidget .grid tr.headings th a.sort-arrow-desc span.sort-title,
+.ewfwidget .grid tr.headings th a.sort-arrow-asc span.sort-title { background-position:right 50%; background-repeat:no-repeat; padding:3px 12px 2px 8px; }
+.ewfwidget .grid tr.headings th a.sort-arrow-desc span.sort-title { background-image:url(../images/widgets/grid_sort_desc.gif); }
+.ewfwidget .grid tr.headings th a.sort-arrow-asc span.sort-title { background-image:url(../images/widgets/grid_sort_asc.gif); }
+
+
+/* Grid - Mass Action */
+.ewfwidget .massaction { width:100%; height:26px; border:1px solid #d1cfcf; border-bottom:none; background:url(../images/widgets/massaction_bg.gif) repeat-x 0 100% #ebebeb; font-size:.9em; }
+.ewfwidget .massaction td                              { width:50%; border-top:1px solid #fff; padding:1px 8px; vertical-align:middle; }
+.ewfwidget .massaction .entry-edit fieldset .select    { width:auto; /*width:120px;*/ display:inline; }
+.ewfwidget .massaction .entry-edit fieldset select.validation-failed { border:1px dashed #eb340a !important; background:#faebe7 !important }
+.ewfwidget .massaction .entry-edit fieldset            { margin:0; padding:0; background:none; border:none; }
+.ewfwidget .massaction .entry-edit fieldset .field-row { display:inline; }
+.ewfwidget .massaction .entry-edit .field-row label    { float:none; width:auto; margin-left:13px; }
+.ewfwidget .massaction .entry-edit                     { margin:0 !important; padding:0; }
+.ewfwidget .massaction .entry-edit .validation-advice  { display:none !important; }
+.ewfwidget .massaction a { text-decoration:none; }
+.ewfwidget .massaction .entry-edit fieldset span.form_row,
+.ewfwidget .massaction .entry-edit fieldset span.field-row { clear:none !important; display:inline; float:left !important; margin:0; padding:0 5px 0 0; }
+
+.ewfwidget .massaction .entry-edit .outer-span { float:left; }
+
+/* Grid - Filter */
+.ewfwidget .grid tr.filter                  { background:url(../images/widgets/filter_row_bg.gif) repeat-x #e3eff1; cursor:default; }
+.ewfwidget .grid tr.filter th               { padding-top:5px; padding-bottom:5px; border:1px solid #bdbdbd; border-width:0 1px 1px 0; white-space:normal; }
+.ewfwidget .grid tr.filter th.last          { border-right:0; }
+.ewfwidget .grid tr.filter input.input-text { width:85%; }
+.ewfwidget .grid tr.filter select           { width:100%; }
+.ewfwidget .grid tr.filter .range .range-line { margin-bottom:3px; width:100px; }
+.ewfwidget .grid tr.filter .range div.date  { min-width:121px; }
+.ewfwidget .grid tr.filter .range input     { float:right; width:50px !important; margin-top:0; }
+.ewfwidget .grid tr.filter .range select    { float:right; width:56px !important; margin-top:0; }
+.ewfwidget .grid tr.filter .range .label    { display:block; width:36px; float:left; padding-left:2px; }
+.ewfwidget .grid tr.filter .date img        { width:15px; height:15px; cursor:pointer; vertical-align:middle; }
+.ewfwidget .grid .head-massaction select    { width:50px !important; }
+
+/* Grid Footer */
+.ewfwidget .grid table tfoot tr            { background:#D7E5EF; }
+.ewfwidget .grid table tfoot tr td         { border-top:1px solid #9babb9; background:#e5ecf2; line-height:1.7em; }
+.ewfwidget .grid table.border tfoot tr td  { background:#D7E5EF !important; }
+
+/* ACCORDION
+*******************************************************************************/
+.ewfwidget dl.accordion .grid      { margin-bottom:0; }
+.ewfwidget dl.accordion dt,
+.ewfwidget .entry-edit .entry-edit-head { background:#6f8992; padding:2px 10px; }
+.ewfwidget dl.accordion dt, div.collapseable { margin-top:1px; }
+.ewfwidget dl.accordion dt a, div.collapseable a { background:url(images/entry_edit_head_arrow_down.gif) 100% 50% no-repeat; color:#fff; display:block; font-weight:bold; text-decoration:none; }
+.ewfwidget div.disabled { background:#c6cbc9 !important; }
+.ewfwidget div.disabled a { background-image:url(images/entry_edit_head_arrow_down2.gif) !important; color:#f6f6f6 !important; }
+
+.ewfwidget .entry-edit fieldset.collapseable { margin-bottom:10px; }
+
+.ewfwidget dl.accordion dt a:hover, div.collapseable a:hover { color:#fff; text-decoration:none; }
+.ewfwidget dl.accordion dt.open a, div.collapseable a.open  { background:url(images/entry_edit_head_arrow_up.gif) 100% 50% no-repeat; }
+.ewfwidget dl.accordion dd         { display:none; }
+.ewfwidget dl.accordion dd.open    { display:block; }
+.ewfwidget img.accordion-btn       { float:right; margin-top:1px; margin-right:5px; }
+
+/* FORMS
+*******************************************************************************/
+
+.ewfwidget .fieldset {margin: 0px;}
+.ewfwidget select.countries option         { background-repeat:no-repeat; }
+.ewfwidget .entry-edit .fieldset .tree li,
+.ewfwidget .entry-edit .tree li            { margin:0; }
+
+
+/* Entry Edit  */ /* Site-wide form fieldset */
+.ewfwidget table.form-edit                         { width:100%; }
+.ewfwidget .box,
+.ewfwidget .entry-edit fieldset,
+.ewfwidget .entry-edit .fieldset                   { padding:10px 15px; margin-bottom:15px; }
+.ewfwidget .entry-edit .entry-edit-head h4         { float:left; padding:0; background:none; margin:0; color:#fff; font-size:1em; line-height:18px; min-height:0; }
+.ewfwidget .entry-edit .entry-edit-head strong,
+.ewfwidget .entry-edit .entry-edit-head a          { color:#fff; font-size:1em; line-height:18px; min-height:0; font-weight:bold}
+.ewfwidget .entry-edit .content                    { margin-left:0 !important; padding:10px 15px; }
+.ewfwidget .entry-edit fieldset li,
+.ewfwidget .entry-edit .fieldset li                { margin:4px 0; }
+.ewfwidget .entry-edit fieldset span.form_row,
+.ewfwidget .entry-edit .fieldset span.form_row,
+.ewfwidget .entry-edit fieldset .field-row .hint,
+.ewfwidget .entry-edit .fieldset .field-row .hint  { float:left; color:#999; padding-left:12em; }
+.ewfwidget .entry-edit .form-buttons               { float:right; margin:2px -3px 2px 0pt; }
+.ewfwidget label.inline                            { float:none !important; width:auto !important; }
+.ewfwidget .nested-content .entry-edit             { margin-left:2em; }
+.ewfwidget .nested-content .entry-edit .entry-edit { margin-left:0; }
+
+/* Form Elements */
+.ewfwidget input.input-text,textarea,select { border-width:1px; border-style:solid; border-color:#aaa #c8c8c8 #c8c8c8 #aaa; background:#fff; font:12px arial, helvetica, sans-serif; }
+.ewfwidget select { min-height:17px; /* to set the height for empty selects */ }
+.ewfwidget input.input-text,textarea       { padding:2px; }
+.ewfwidget input.qty                       { width:40px !important; }
+.ewfwidget input.item-qty                  { width:22px !important; }
+.ewfwidget input.price                     { width:50px !important; text-align:right; }
+.ewfwidget select optgroup                 { font-style:normal; }
+.ewfwidget select optgroup option          { padding-left:10px; }
+.ewfwidget select optgroup option.even     { background:#f6f6f6; } /* Zebra even-row */
+.ewfwidget select.multiselect option       { padding:3px 4px; border-bottom:1px solid #ddd; }
+.ewfwidget .checkboxes li                  { margin:0 0 5px !important; }
+.ewfwidget .field-100 { background-color:#fff; border-width:1px; border-style:solid; border-color:#aaa #c8c8c8 #c8c8c8 #aaa; padding:2px; }
+.ewfwidget .field-100 textarea,
+.ewfwidget .field-100 input.input-text { float:left; width:100% !important; border:0 !important; padding:0 !important; }
+
+
+/* Form List */ /* Table for default form data */
+.ewfwidget .form-list                      { width:auto; border:0 !important; }
+.ewfwidget .form-list td.label,
+.ewfwidget .form-list td.value,
+.ewfwidget .form-list td.value2,
+.ewfwidget .form-list td.note,
+.ewfwidget .form-list td.scope-label,
+.ewfwidget .form-list td.use-default       { border:0 !important; padding-top:5px !important; padding-bottom:5px !important; padding-left:5px !important; background:0 !important; }
+.ewfwidget .form-list td.hidden            { border:0 !important; padding:0 !important; background:0 !important; }
+.ewfwidget .form-list td.label             { width:200px; }
+.ewfwidget .form-list td.label label       { display:block; width:185px; padding-right:15px; }
+.ewfwidget .form-list td.value input.input-text,
+.ewfwidget .form-list td.value textarea    { width:274px; }
+.ewfwidget .form-list td.value textarea    { height:15em; }
+.ewfwidget .form-list td.value select      { width:280px; }
+.ewfwidget .form-list td.note              { background:url(images/note_cell_bg.gif) 6px 10px no-repeat !important; padding-left:18px; }
+.ewfwidget .form-list td.scope-label       { padding-left:5px; color:#6f8992; font-size:.9em; }
+.ewfwidget .form-list p.note               { margin:0; padding:0 0 0 13px; background:url(../images/widgets/note_bg.gif) 1px 6px no-repeat; font-size:11px; }
+
+.ewfwidget .columns .form-list             { width:auto; }
+.ewfwidget .columns .form-list td.value    { width:280px; padding-right:5px !important; }
+.ewfwidget .columns .form-list td.value .next-toinput { width:75px; display:inline; margin-right:5px; }
+.ewfwidget .columns .form-list td.value .next-toselect input.input-text { width:180px; display:inline; }
+
+.ewfwidget .fieldset-wide .form-list { width:100% !important; }
+.ewfwidget .fieldset-wide .form-list td.value { width:auto !important; }
+.ewfwidget .fieldset-wide .form-list td.value input.input-text,
+.ewfwidget .fieldset-wide .form-list td.value textarea { width:98% !important; }
+.ewfwidget .fieldset-wide .form-list td.value select { display:block; }
+.ewfwidget .fieldset-wide .form-list td.scope-label { white-space:nowrap; width:1px; }
+.ewfwidget .fieldset-wide .form-list td.note { width:120px; }
+
+.ewfwidget .multi-input                    { margin-bottom:8px; } /* Example: Address fields with 2 input lines */
+.ewfwidget .grid tr .form-list tr          { background:#fff !important; } /* Follows grid row background-color */
+.ewfwidget .grid tr.even .form-list tr     { background:#f6f6f6 !important; } /* Follows grid row background-color */
+.ewfwidget .grid tr.on-mouse .form-list tr { background:#fcf5dd !important; } /* Follows grid row background-color */
+.ewfwidget .grid tr .form-list             { margin:8px 0; }
+.ewfwidget .field-row                      { display:block; margin-bottom:5px; }
+.ewfwidget span.delete-image               { display:block; white-space:nowrap; padding-left:25px; }
+
+/* Back compatibility with span forms */
+.ewfwidget .entry-edit .field-row          { display:block; }
+.ewfwidget .entry-edit .field-row label    { float:left; width:150px; }
+
+/* Form Button */
+.ewfwidget .content-buttons.form-buttons,
+.ewfwidget .content-header .form-buttons   { text-align:right; margin-bottom:0; white-space:nowrap; }
+.ewfwidget .content-header .content-buttons-placeholder { display:inline !important; }
+.ewfwidget .content-header .form-buttons   { float:right; }
+.ewfwidget .content-header td.form-buttons   { float:none; }
+.ewfwidget .content-header .form-buttons button { margin-bottom:3px; }
+.ewfwidget .sub-btn-set { border:1px solid #ddd; border-width:0 1px; background:url(../images/widgets/sub_button_bg.gif) repeat; padding:3px 10px; text-align:right; }
+
+
+.ewfwidget button,
+.ewfwidget .form-button { border-width:1px; border-style:solid; border-color:#ed6502 #a04300 #a04300 #ed6502; padding:0 7px 1px 7px; background:#ffac47 url(../images/widgets/btn_bg.gif) repeat-x 0 100%; color:#fff; font:bold 12px arial, helvetica, sans-serif; cursor:pointer; text-align:center !important; white-space:nowrap; }
+
+.ewfwidget button:hover                    { background:#f77c16 url(../images/widgets/btn_over_bg.gif) repeat-x 0 0; }
+.ewfwidget button:active                   { background:#f77c16 url(../images/widgets/btn_on_bg.gif) repeat-x 0 0; }
+.ewfwidget button span                     { line-height:1.35em; background-repeat:no-repeat; background-position:0 50%; }
+.ewfwidget .form-buttons button span span {
+  background: none repeat scroll 0 0 transparent !important;
+  display: inline !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.ewfwidget button.delete,
+.ewfwidget button.save,
+.ewfwidget button.add                      { padding-left:6px; }
+.ewfwidget button.cancel span,
+.ewfwidget button.delete span,
+.ewfwidget button.save span,
+.ewfwidget button.add span,
+.ewfwidget button.back span,
+.ewfwidget button.add-image span,
+.ewfwidget button.add-widget span { padding-left:20px; }
+.ewfwidget button.back { border-color:#ccc #aaa #aaa #ccc; background-color:#fff; background-image:url(../images/widgets/btn_back_bg.gif); color:#555; }
+.ewfwidget button.back span { background-image:url(../images/widgets/icon_btn_back.gif); }
+.ewfwidget button.cancel,
+.ewfwidget button.delete { border-color:#d24403 #a92000 #a92000 #d24403; background-image:url(../images/widgets/cancel_btn_bg.gif); background-color:#fcaf81; color:#fff; }
+.ewfwidget button.cancel:hover,
+.ewfwidget button.delete:hover { background-image:url(../images/widgets/cancel_btn_over_bg.gif); }
+.ewfwidget button.cancel:active,
+.ewfwidget button.delete:active { background-image:url(../images/widgets/cancel_btn_active_bg.gif); background-color:#e0612f; }
+.ewfwidget button.cancel span,
+.ewfwidget button.delete span { background-image:url(../images/widgets/cancel_btn_icon.gif); }
+.ewfwidget button.add span     { background-image:url(../images/widgets/add_btn_icon.gif); }
+.ewfwidget button.save span    { background-image:url(../images/widgets/save_btn_icon.gif); }
+.ewfwidget button.show-hide span { background-image:url(../images/widgets/btn_show-hide_icon.gif); padding-left:26px; }
+.ewfwidget button.add-image span { background-image:url(../images/widgets/btn_add-image_icon.gif); }
+.ewfwidget button.go span { background-image:url(../images/widgets/btn_go.gif); padding-left:16px; }
+.ewfwidget button.btn-chooser { display:block; margin:0 0 10px; }
+
+.ewfwidget button.disabled,
+.ewfwidget button.disabled:hover,
+.ewfwidget button.disabled:active { border-color:#777 #505050 #505050 #777; background:#919191 url(../images/widgets/btn_bg-disabled.gif) 0 0 repeat-x; color:#fff; cursor:default; opacity:.8; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; }
+.ewfwidget button.add.disabled span { background-image:url(../images/widgets/add_btn_icon-disabled.gif); }
+
+.ewfwidget button.icon-btn { width:32px !important; }
+.ewfwidget button.icon-btn span { text-indent:-999em; display:block; width:16px; padding:0; overflow:hidden; }
+
+.ewfwidget .buttons-set { margin:0 0 10px; }
+.ewfwidget .buttons-set button { margin-right:5px; }
+
+/* HEADINGS
+********************************************************************************************/
+
+/* Content Header */
+.ewfwidget .content-header {
+    margin-bottom:18px;
+    border-bottom:4px solid #dfdfdf;
+    padding-bottom:.25em;
+    }
+.ewfwidget .content-header table           { width:100%; }
+.ewfwidget .content-header h3              { float:left; margin:.3em .5em 0 0; color:#eb5e00; font-size:1.25em; line-height:1.2em; }
+.ewfwidget .content-header .head h3        { float:none; }
+.ewfwidget .content-header .button-set     { white-space:nowrap; text-align:right; }
+.ewfwidget .content-header .content-buttons  { white-space:nowrap!important; margin:0; }
+.ewfwidget .content-header td.content-buttons  { width:13%;white-space:nowrap!important; margin:0; }
+.ewfwidget .content-buttons button,
+.ewfwidget .content-header button,
+.ewfwidget .filter-actions button          { margin:0 0 0 5px; }
+.ewfwidget .side-col .content-header       { border-bottom:0; margin-right:12px; margin-bottom:.6em; }
+.ewfwidget .catalog-categories .side-col .content-header { margin-right:0; }  /* Catalog/Categories */
+
+.ewfwidget .left-col-block { width:200px; }
+.ewfwidget .content-header-text  { margin-bottom: 10px; }
+    
+/* Floating Content Header */ /* Used to make action buttons always within reach */
+.ewfwidget .content-header-floating { display:none; position:fixed; left:0; top:0; width:100%; border-bottom:solid 1px #988753; z-index:100; background:#fdfaa4; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)"/* IE8 */; opacity:.85; }
+.ewfwidget .content-header-floating .content-header { padding:6px 8px 4px 8px; margin-bottom:0; border:0; }
+.ewfwidget .content-header-floating td     { padding-right:20px; }
+.ewfwidget .content-header-floating button { margin-top:3px; }
+.ewfwidget .content-header-floating .content-buttons { float:right; /* margin:12px 25px 0 0;*/ }
+.ewfwidget .content-buttons { margin-bottom:5px; float:right; display:inline; white-space:nowrap; }
+.ewfwidget .content-header-floating .form-buttons {padding-right:20px; }
+.ewfwidget .content-header-floating h3 {margin-left:20px; display:inline; }
+    
+/*****************************************/
+/******** ALIGNMENTS AND CLEARS **********/
+/*****************************************/
+
+/* Directional and spacial */
+.ewfwidget .f-left, .left      { float:left; }
+.ewfwidget .f-right, .right    { float:right; }
+.ewfwidget .v-top              { vertical-align:top; }
+.ewfwidget .v-middle           { vertical-align:middle !important; }
+.ewfwidget .v-bottom           { vertical-align:bottom; }
+.ewfwidget .a-left             { text-align:left !important; }
+.ewfwidget .a-center           { text-align:center !important; }
+.ewfwidget .a-right            { text-align:right !important; }
+.ewfwidget .nm                 { margin:0 !important; }
+.ewfwidget .np                 { padding:0 !important; }
+.ewfwidget .no-display         { display:none; }
+.ewfwidget .no-show            { display:none; }
+.ewfwidget .nowrap, .nobr      { white-space:nowrap; }
+.ewfwidget .wrap               { white-space:normal !important; }
+.ewfwidget .no-float           { float:none !important; }
+.ewfwidget .pointer            { cursor:pointer; }
+
+/* Color */
+.ewfwidget .emph, .ewfwidget .accent      { color:#eb5e00 !important; }
+.ewfwidget .subdue             { color:#306375; }
+
+/* Font */
+.ewfwidget .bold               { font-weight:bold !important; }
+.ewfwidget .normal             { font-weight:normal !important; }
+
+/* Clear */ /* This keeps our HTML free of buncha clearing elements */
+
+.ewfwidget .wrapper:after,
+.ewfwidget .columns:after,
+.ewfwidget .main-col:after,
+.ewfwidget .content-header-floating:after,
+.ewfwidget .entry-edit .entry-edit-head:after,
+.ewfwidget .content-header:after,
+.ewfwidget .login-box .button-set:after,
+.ewfwidget ul.tabs-horiz:after,
+.ewfwidget .header-top:after,
+.ewfwidget dl.accordion dt:after,
+.ewfwidget .field-100:after,
+.ewfwidget .entry-edit fieldset li:after,
+.ewfwidget .entry-edit fieldset span.field-row:after,
+.ewfwidget .content:after,
+.ewfwidget .main:after,
+.ewfwidget .container:after,
+.ewfwidget .footer:after,
+.ewfwidget .middle:after,
+.ewfwidget .header:after,
+.ewfwidget .box-head:after,
+.ewfwidget div.actions:after,
+.ewfwidget .tier-container:after,
+.ewfwidget .clear:after,
+.ewfwidget .grid tr.filter .range .range-line:after { display:block; clear:both; content:"."; font-size:0; line-height:0; height:0; overflow:hidden; }

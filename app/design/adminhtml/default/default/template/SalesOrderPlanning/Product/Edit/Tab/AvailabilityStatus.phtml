@@ -1,0 +1,89 @@
+<?php $productAvailabilityStatus = $this->getAvailabilityStatus(); ?>
+
+
+<div class="entry-edit">
+
+<div class="entry-edit-head">
+	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Availability Status'); ?></h4> 
+</div>
+<div class="entry-edit">
+    
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+            	<tr>
+                    <td class="label"><?php echo $this->__('Refresh')?></td>
+                    <td class="input-ele">
+                    	<button type="button" class="scalable " onclick="window.location.href='<?php echo $this->getRefreshUrl(); ?>'" style=""><span><?php echo $this->__('Refresh'); ?></span></button>
+                    </td>                                		
+            	</tr>
+
+<?php if ($productAvailabilityStatus->getId()): ?>
+	<?php $statuses = $productAvailabilityStatus->getStatuses(); ?>
+
+            	<tr>
+                    <td class="label"><?php echo $this->__('Available qty')?></td>
+                    <td class="input-ele"><?php echo $productAvailabilityStatus->getpa_available_qty(); ?></td>                    
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Supply delay')?></td>
+                    <td class="input-ele"><?php echo $productAvailabilityStatus->getpa_supply_delay(); ?> <?php echo $this->__('days'); ?></td>                    
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Allow Backorders')?></td>
+                    <td class="input-ele">
+						<?php 
+							switch($productAvailabilityStatus->getpa_allow_backorders())
+							{
+								case 0:
+									echo $this->__('No');
+									break;
+								case 1:
+									echo $this->__('Yes');								
+									break;
+								case 2:
+									echo $this->__('Yes, notify customer');
+									break;
+							}
+						?>
+					</td>                    
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Supply date')?></td>
+                    <td class="input-ele"><?php echo $productAvailabilityStatus->getpa_backinstock_date(); ?></td>                    
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Out of stock period')?></td>
+                    <td class="input-ele"><?php echo $productAvailabilityStatus->getOutofStockInformation(true); ?></td>                    
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Is saleable')?></td>
+                    <td class="input-ele"><?php echo ($productAvailabilityStatus->getpa_is_saleable() ? $this->__('Yes') : $this->__('No')); ?></td>                    
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Status')?></td>
+                    <td class="input-ele"><?php echo $this->__($statuses[$productAvailabilityStatus->getpa_status()]) ?></td>                    
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Available date')?></td>
+                    <td class="input-ele"><?php echo $productAvailabilityStatus->getEstimatedDateForQty(1, time()); ?></td>                    
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Message')?></td>
+                    <td class="input-ele"><?php echo $productAvailabilityStatus->getMessage(); ?></td>                    
+                </tr>
+                
+
+<?php else: ?>
+
+                <tr>
+                    <td class="label"></td>
+                    <td class="input-ele"><?php echo $this->__('Product availability status is not available.'); ?> </td>                    
+                </tr>
+
+<?php endif; ?>
+                
+            </table>
+        </fieldset>
+</div>
+
+</div>

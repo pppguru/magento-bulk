@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+   <modules>
+      <Extendware_EWDeferredIndexing>
+         <active>true</active>
+         <codePool>local</codePool>
+         <depends>
+            <Extendware_EWCore/>
+         </depends>
+         <extendware>
+            <name>Deferred Indexing</name>
+         </extendware>
+      </Extendware_EWDeferredIndexing>
+   </modules>
+</config>

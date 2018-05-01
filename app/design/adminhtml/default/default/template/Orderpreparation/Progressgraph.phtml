@@ -1,0 +1,210 @@
+<?php
+		$t_summary = $this->getSummary();
+		
+?>
+
+<style>
+
+.progress-graph-etape
+{
+	background:transparent url(<?php echo $this->getSkinUrl('images/orderpreparation/progress_graph_fond.gif') ?>);
+	text-align: center;
+	vertical-align:middle;
+}
+
+.progress-graph-libelle-etape
+{
+	text-align: center;
+	font:12px verdana;
+	font-weight:bold;
+	color: #B40F0F;
+}
+
+.progress-graph-date-livraison
+{
+	text-align: center;
+	font:12px verdana;
+	font-weight:bold;
+	color: #B40F0F;
+	vertical-align:middle;
+}
+
+.progress-graph-current
+{
+	text-align: center;
+	vertical-align:middle;
+}
+
+.bloc-etape
+{
+	width: 59px;
+	height: 55px;
+	background:transparent url(<?php echo $this->getSkinUrl('images/orderpreparation/progress_graph_etape.gif') ?>);
+	text-align: center;
+	vertical-align:middle;
+	display: block;
+	margin: auto;
+}
+
+.progress-graph-percent
+{
+	padding-top: 20px;
+	text-align: center;
+	vertical-align:middle;
+	font:14px verdana;
+	font-weight:bold;
+	height: 50px;
+}
+
+.progress-graph-date
+{
+	padding-top: 7px;
+	padding-left: 3px;
+	padding-right: 3px;
+	text-align: center;
+	vertical-align:middle;
+	font:12px verdana;
+	font-weight:bold;
+	height: 50px;
+}
+
+</style>
+
+<?php if (($this->getOrder()->getStatusCode() != Mage_Sales_Model_Order::STATE_CANCELED) && ($this->getOrder()->getStatusCode() != Mage_Sales_Model_Order::STATE_CLOSED)) { ?>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+	<td class="progress-graph-current" width="19%" align="center">
+		<?php if ($t_summary['current_step'] == 'payment') { echo '<img src="'.$this->getSkinUrl('images/orderpreparation/progress_graph_current.gif').'">'; } else { echo '&nbsp;'; } ?>
+	</td>
+	<td class="progress-graph-current" width="19%" align="center">
+		<?php if ($t_summary['current_step'] == 'supply') { echo '<img src="'.$this->getSkinUrl('images/orderpreparation/progress_graph_current.gif').'">'; } else { echo '&nbsp;'; } ?>
+	</td>
+	<td class="progress-graph-current" width="19%" align="center">
+		<?php if ($t_summary['current_step'] == 'assembly') { echo '<img src="'.$this->getSkinUrl('images/orderpreparation/progress_graph_current.gif').'">'; } else { echo '&nbsp;'; } ?>
+	</td>
+	<td class="progress-graph-current" width="19%" align="center">
+		<?php if ($t_summary['current_step'] == 'shipping') { echo '<img src="'.$this->getSkinUrl('images/orderpreparation/progress_graph_current.gif').'">'; } else { echo '&nbsp;'; } ?>
+	</td>
+	<td width="35">
+		&nbsp;
+	</td>
+	<td align="center">
+		<?php if ($t_summary['current_step'] == 'delivery') { echo '<img src="'.$this->getSkinUrl('images/orderpreparation/progress_graph_current.gif').'">'; } else { echo '&nbsp;'; } ?>
+	</td>
+</tr>
+<tr height="55">
+	<td class="progress-graph-etape" align="center">
+		<div class="bloc-etape">
+		<?php 
+			//Etape paiement
+			if ($t_summary['payment_validated'])
+			{
+				echo '<img style="padding-top: 8px;" src="'.$this->getSkinUrl('images/orderpreparation/progress_graph_etape_ok.gif').'" >';
+			}
+			else 
+			{
+				echo '<img style="padding-top: 8px;" src="'.$this->getSkinUrl('images/orderpreparation/progress_graph_etape_nok.gif').'">';
+			}
+		?>
+		</div>
+	</td>
+	<td class="progress-graph-etape" align="center">
+		<div class="bloc-etape">
+		<?php 
+			//Etape appro
+			switch($t_summary['current_step'])
+			{
+				case 'supply':
+					echo '<div class="progress-graph-percent">'.$t_summary['supply_percent'].'%</p>';
+					break;
+				case 'assembly':
+				case 'shipping':
+				case 'delivery':
+					echo '<img style="padding-top: 8px;" src="'.$this->getSkinUrl('images/orderpreparation/progress_graph_etape_ok.gif').'">';
+					break;
+			}
+		?>
+		</div>
+	</td>
+	<td class="progress-graph-etape" align="center">
+		<div class="bloc-etape">
+		<?php 
+			//Etape assemblage & preparation
+			switch($t_summary['current_step'])
+			{
+				case 'assembly':
+					echo '<div class="progress-graph-percent">'.$t_summary['preparation_percent'].'%</p>';
+					break;
+				case 'shipping':
+				case 'delivery':
+					echo '<img style="padding-top: 8px;" src="'.$this->getSkinUrl('images/orderpreparation/progress_graph_etape_ok.gif').'">';
+					break;
+			}
+		?>
+		</div>
+	</td>
+	<td class="progress-graph-etape" align="center">
+		<div class="bloc-etape">
+		<?php 
+			//Etape shipping
+			if (($t_summary['current_step'] == 'shipping') || ($t_summary['current_step'] == 'delivery'))
+			{
+				if ($t_summary['ship_date_ts'] < time())
+				{	
+					echo '<img style="padding-top: 8px;" src="'.$this->getSkinUrl('images/orderpreparation/progress_graph_etape_ok.gif').'">';			
+				}
+				else 
+				{
+					echo '<div class="progress-graph-date">'.$this->formatDate($t_summary['ship_date'],'medium').'</div>';
+				}
+			}
+		?>
+		</div>
+	</td>
+	<td width="35">
+		<img src="<?php echo $this->getSkinUrl('images/orderpreparation/progress_graph_fleche.gif') ?>" width="35" height="55">
+	</td>
+	<td rowspan="2" class="progress-graph-date-livraison" align="center">
+		<?php if ($t_summary['current_step'] != 'payment') { ?>
+			<?php if ((strtotime($t_summary['delivery_date']) > time()) || (($t_summary['current_step'] == 'delivery') || ($t_summary['current_step'] == 'shipping')) && (strtotime($t_summary['delivery_date']) < time())) { ?>
+				<?php echo $this->__('Delivery<br>planed to'); ?><br><?php echo $t_summary['delivery_date']; ?><br>&nbsp;
+			<?php } else { ?>
+				<font size="36">?</font>
+			<?php } ?>
+		<?php } else { ?>
+			<font size="36">?</font>
+		<?php } ?>
+	</td>
+</tr>
+<tr>
+	<td class="progress-graph-libelle-etape" align="center">
+		<?php echo $this->__('Payment<br>Validation'); ?>
+	</td>
+	<td class="progress-graph-libelle-etape" align="center">
+		<?php echo $this->__('Product<br>Supply'); ?>
+	</td>
+	<td class="progress-graph-libelle-etape" align="center">
+		<?php echo $this->__('Assembly /<br>Preparation'); ?>
+	</td>
+	<td class="progress-graph-libelle-etape" align="center">
+		<?php echo $this->__('Shiping'); ?>
+	</td>
+	<td>
+		&nbsp;
+	</td>
+</tr>
+</table>
+
+
+<?php } ?>
+<p>&nbsp;</p>
+
+<?php
+		//Recupere les infos
+		/*
+		$helper = mage::getModel('Purchase/Sales_Order_OrderProgressSummary');
+		$helper->setOrder($this->getOrder());
+		echo $helper->GetTextualExplanations();	
+		*/
+?>

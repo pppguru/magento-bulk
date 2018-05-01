@@ -1,0 +1,106 @@
+#nav ul li.ewcore-overview a span, #nav ul li.ewcore-configure a span {font-weight: bold;}
+#nav ul li.ewcore-extendware-link a span {background: #FFDBBF; font-weight: bold}
+
+.form-list td.value p.note {
+    width: auto;
+}
+
+
+
+ul.tabs a.tab-extendware-extensions-store, ul.tabs a.tab-extendware-extensions-store:hover {
+    padding-left: 18px;
+}
+ul.tabs a.tab-extendware-extensions-store span, ul.tabs a.tab-extendware-extensions-store.active:hover span {
+    background: rgba(0, 0, 0, 0) url("../images/tab-store.png") no-repeat scroll 0 0;
+    margin: 0;
+    padding: 15px 0;
+}
+
+ul.tabs a.tab-extendware-extensions-store, ul.tabs a.tab-extendware-extensions-store:hover {
+    background: black;
+}
+
+ul.tabs a.tab-extendware-extensions-store.active, ul.tabs a.tab-extendware-extensions-store.active:hover {
+    background: #1C3143;
+}
+
+.ewcore-tooltip-label {
+	cursor: help; border-bottom: 1px dashed #0042AE; font-style: italic;
+}
+
+.ewcore-tooltip-label-clickable {
+	cursor: pointer; border-bottom: 1px solid #0042AE;
+}
+
+.ewcore-tooltip-fieldset-label {
+	float:right; width: 17px; height: 17px;
+	background: url('../images/help.png') no-repeat; 
+	background-size:17px 17px; cursor: help;
+	margin-left: 10px;
+}
+
+.ewcore-tooltip-config-fieldset-label {
+	 margin-top: 2px; margin-right: 20px;
+}
+
+
+/* added for compat with magento >= 1.7.0.0 */
+fieldset.config .form-list td.value p.note {
+  width: auto;
+}
+
+button.chooser-btn span {
+  overflow: visible;
+}
+
+/************ 4 LEVEL SUPPORT ************/
+#nav ul li.parent ul li.parent a,
+#nav ul li.parent li.parent ul li.parent a { background-image:url(../../../images/nav2_parent_arrow.gif); background-position:100% 100%; background-repeat:no-repeat; }
+#nav ul li.parent ul li.parent li a,
+#nav ul li.parent li.parent ul li.parent li a { background-image:none; }
+
+
+#nav li.over ul li.over ul li.over ul ul { left:-10000px;}
+#nav li.over ul li.over ul li.over ul li.over ul { left:100px; }
+
+/************ 5 LEVEL SUPPORT ************/
+#nav ul li.parent ul li.parent ul li.parent a,
+#nav ul li.parent ul li.parent li.parent ul li.parent a { background-image:url(../../../images/nav2_parent_arrow.gif); background-position:100% 100%; background-repeat:no-repeat; }
+#nav ul li.parent ul li.parent ul li.parent li a,
+#nav ul li.parent li.parent ul li.parent li.parent ul li.parent li a { background-image:none; }
+
+
+#nav li.over ul li.over ul li.over ul li.over ul ul { left:-10000px;}
+#nav li.over ul li.over ul li.over ul li.over ul li.over ul { left:100px; }
+
+/************ 6 LEVEL SUPPORT ************/
+#nav ul li.parent ul li.parent ul li.parent ul li.parent a,
+#nav ul li.parent ul li.parent ul li.parent li.parent ul li.parent a { background-image:url(../../../images/nav2_parent_arrow.gif); background-position:100% 100%; background-repeat:no-repeat; }
+#nav ul li.parent ul li.parent ul li.parent ul li.parent li a,
+#nav ul li.parent li.parent ul li.parent li.parent ul li.parent li.parent ul li.parent li a { background-image:none; }
+
+
+#nav li.over ul li.over ul li.over ul li.over ul li.over ul ul { left:-10000px;}
+#nav li.over ul li.over ul li.over ul li.over ul li.over ul li.over ul { left:100px; }
+
+/************ 7 LEVEL SUPPORT ************/
+#nav ul li.parent ul li.parent ul li.parent ul li.parent ul li.parent a,
+#nav ul li.parent ul li.parent ul li.parent ul li.parent li.parent ul li.parent a { background-image:url(../../../images/nav2_parent_arrow.gif); background-position:100% 100%; background-repeat:no-repeat; }
+#nav ul li.parent ul li.parent ul li.parent ul li.parent ul li.parent li a,
+#nav ul li.parent li.parent ul li.parent li.parent ul li.parent li.parent ul li.parent li.parent ul li.parent li a { background-image:none; }
+
+
+#nav li.over ul li.over ul li.over ul li.over ul li.over ul li.over ul ul { left:-10000px;}
+#nav li.over ul li.over ul li.over ul li.over ul li.over ul li.over ul li.over ul { left:100px; }
+
+/************ 8 LEVEL SUPPORT ************/
+#nav ul li.parent ul li.parent ul li.parent ul li.parent ul li.parent ul li.parent a,
+#nav ul li.parent ul li.parent ul li.parent ul li.parent ul li.parent li.parent ul li.parent a { background-image:url(../../../images/nav2_parent_arrow.gif); background-position:100% 100%; background-repeat:no-repeat; }
+#nav ul li.parent ul li.parent ul li.parent ul li.parent ul li.parent ul li.parent li a,
+#nav ul li.parent li.parent ul li.parent li.parent ul li.parent li.parent ul li.parent li.parent ul li.parent li.parent ul li.parent li a { background-image:none; }
+
+
+#nav li.over ul li.over ul li.over ul li.over ul li.over ul li.over ul li.over ul ul { left:-10000px;}
+#nav li.over ul li.over ul li.over ul li.over ul li.over ul li.over ul li.over ul li.over ul { left:100px; }
+
+

@@ -1,0 +1,31 @@
+<script>
+	var smc_validation_url = '<?php echo $this->getValidationUrl(); ?>';
+	var smc_commit_url = '<?php  echo $this->getCommitUrl(); ?>';	
+</script>
+
+<form id="stock_movement_creation">
+<input type="hidden" name="sm_product_id" id="sm_product_id" value="<?php echo $this->getProductId(); ?>" >
+<table cellspacing="0" class="data" width="100%">
+	<thead>
+		<tr class="headings">
+			<th class="a-center"><?php echo $this->__('From warehouse'); ?></th>
+			<th class="a-center"><?php echo $this->__('To warehouse'); ?></th>
+			<th class="a-center"><?php echo $this->__('Qty'); ?></th>
+			<th class="a-center"><?php echo $this->__('Type'); ?></th>
+			<th class="a-center"><?php echo $this->__('Description'); ?></th>
+			<th class="a-center"><?php echo $this->__('Action'); ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="a-center"><?php echo $this->getWarehousesAsCombo('sm_source_stock'); ?></td>
+			<td class="a-center"><?php echo $this->getWarehousesAsCombo('sm_target_stock'); ?></td>
+			<td class="a-center"><input type="text" name="sm_qty" id="sm_qty" value="1"></td>
+			<td class="a-center"><?php echo $this->getTypesAsCombo('sm_type', 'adjustment'); ?></td>
+			<td class="a-center"><input type="text" name="sm_description" id="sm_description" value=""></td>
+			<td class="a-center"><button onclick="createStockMovement();" class="scalable" type="button"><span><?php echo $this->__('Create')?></span></button></td>
+		</tr>
+	</tbody>
+</table>
+
+</form>

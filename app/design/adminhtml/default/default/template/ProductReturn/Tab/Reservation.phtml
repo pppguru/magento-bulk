@@ -1,0 +1,43 @@
+<div class="entry-edit">
+    
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Reserved products'); ?></h4> 
+	    </div>
+        <fieldset id="my-fieldset">
+        	<div class="grid"> 
+				<table cellspacing="0" class="form-list" style="width:100%;">
+					<thead> 
+		                <tr class="headings"> 
+	    	            	<th><span class="nobr"><?php echo $this->__('Sku'); ?></span></th> 
+	    	            	<th><span class="nobr"><?php echo $this->__('Product'); ?></span></th> 
+	    	            	<th><span class="nobr"><?php echo $this->__('Reserved Qty'); ?></span></th> 
+	    	            	<th><span class="nobr"><?php echo $this->__('Action'); ?></span></th> 
+	    	            </tr>
+	    	        </thead>
+	    	        <tbody>
+			        	<?php foreach ($this->getRma()->getReservations() as $reservation): ?>
+							<tr>
+								<td><?php echo $reservation->getProduct()->getsku(); ?></td>							
+								<td><?php echo $reservation->getProduct()->getname(); ?></td>							
+								<td><?php echo $reservation->getrr_qty(); ?></td>							
+								<td align="center"><a href="<?php echo $this->getUrl('adminhtml/ProductReturn_Admin/ReleaseProduct', array('rma_id' => $this->getRma()->getId(), 'product_id' => $reservation->getrr_product_id())); ?>"><?php echo $this->__('Release');?></a></td>
+							</tr>			        
+			        	<?php endforeach; ?>
+					</tbody>
+				</table>       	
+			</div>
+        </fieldset>
+</div>
+
+<div class="entry-edit">
+    
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Add product to reservation'); ?></h4> 
+	    </div>
+        <fieldset id="my-fieldset">
+        	<?php
+        		$block = $this->getLayout()->createBlock('ProductReturn/Productreturn_Edit_Tab_ReservationGrid');
+        		echo $block->toHtml();
+        	?>
+        </fieldset>
+</div>

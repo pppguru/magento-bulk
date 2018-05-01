@@ -1,0 +1,49 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><p class="logo">
+    <a class="logo__link" href="<?php echo $this->getUrl('') ?>">
+        <img class="logo__image" src="<?php echo AW_Mobile3_Helper_Config::getMobileLogoSrc() ? AW_Mobile3_Helper_Config::getMobileLogoSrc() : $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>">
+    </a>
+</p>
+
+<button class="site-header__action site-header__action--left js-open-panel" data-open-panel="nav"><svg class="site-header__action-icon site-header__action-icon--catalog svg-icon"><use xlink:href="#icon-navigation" /></svg><span class="hide"><?php echo $this->__('Catalog')?></span></button>
+
+<?php if ($searchLink = $this->getChildHtml('catalog_search_link')):?>
+    <?php echo $searchLink;?>
+<?php endif;?>
+
+<?php /* in scripts.js in awMobile3.cart should be the same code as here */ ?>
+<?php $summaryQty = (int)Mage::getSingleton('checkout/cart')->getSummaryQty();?>
+<button class="site-header__action site-header__action--right cart-count js-open-panel" data-open-panel="cart">
+    <?php if ($summaryQty > 0): ?>
+    	<svg class="site-header__action-icon site-header__action-icon--cart svg-icon"><use xlink:href="#icon-cart" /></svg>
+        <span class="site-header__cart-items"><?php echo $summaryQty ?></span>
+    <?php else: ?>
+    	<svg class="site-header__action-icon site-header__action-icon--cart svg-icon"><use xlink:href="#icon-cart--empty" /></svg>
+    <?php endif;?>
+</button>
+
+<button class="site-header__action site-header__action--right js-open-panel" data-open-panel="customer-panel" id="customer_account_link"><svg class="site-header__action-icon site-header__action-icon--user svg-icon"><use xlink:href="#icon-user" /></svg><span class="hide"><?php echo $this->__('User')?></span></button>

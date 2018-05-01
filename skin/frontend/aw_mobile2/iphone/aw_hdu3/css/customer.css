@@ -1,0 +1,186 @@
+.awhdu3-ticket-list-container {
+    padding:15px;
+}
+.awhdu3-ticket-list-table {
+    width:100%;
+    margin-bottom:30px;
+}
+.awhdu3-ticket-list-table, .awhdu3-ticket-list-table tbody, .awhdu3-ticket-list-table td, .awhdu3-ticket-list-table-tr{
+    display:block;
+}
+.awhdu3-ticket-list-table a, .awhdu3-ticket-list-table-td-dep {
+    display:block;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+.awhdu3-ticket-list-table a, .awhdu3-ticket-view-info-table a{
+    color: #1c57ff;
+}
+.awhdu3-ticket-list-table-tr.last {
+    border-bottom: 1px solid #b2b2b2;
+    margin-bottom:10px;
+}
+.awhdu3-ticket-list-table-tr.last td {
+    height: 30px;
+    width: 100%;
+}
+.awhdu3-ticket-list-table-td-label {
+    text-align: right;
+    float:right;
+    width:50%;
+}
+.awhdu3-ticket-list-table-td-dep {
+    text-align: left;
+    float:left;
+    width:50%;
+}
+.page-header__action--create-new-ticket{
+    padding-right:10px;
+}
+
+.awhdu3-customer-create-ticket-form-container {
+    overflow-y: scroll;
+}
+#awhdu3-customer-create-ticket-form{
+    padding: 15px;
+}
+#awhdu3-customer-create-ticket-form textarea{
+    height: 150px;
+}
+
+.awhdu3-ticket-view-col2-set{
+    padding: 15px;
+}
+.awhdu3-ticket-view-col-1, .awhdu3-ticket-view-col-2{
+    display: inline-block;
+    vertical-align: top;
+}
+#awhdu3-ticket-view-escalate-button button, #awhdu3-ticket-view-escalate-textarea-bottom-group button, .awhdu3-ticket-view-action-bottomgroup-right button{
+    width: auto;
+}
+label[for="awhdu3-ticket-view-escalate-form-textarea"]{
+    font-size: 13px;
+}
+#awhdu3-ticket-view-close-btn {
+    margin-bottom:5px;
+}
+.awhdu3-ticket-view-action-bottomgroup{}
+.awhdu3-ticket-view-action-bottomgroup-left{
+    display:block;
+    padding-bottom: 5px;
+}
+#awhdu3-replyform-attachment {
+    display: block;
+    width:100%;
+}
+.awhdu3-ticket-view-action-bottomgroup-right{
+    display: inline-block;
+    text-align: right;
+    padding-bottom: 5px;
+    vertical-align: top;
+    padding-top: 10px;
+}
+.awhdu3-ticket-view-info-table th{
+    font-weight: bold;
+    padding: 2px 15px 2px 0;
+    font-size: 12px;
+    text-align: left;
+}
+#awhdu3-ticket-view-escalate-textarea-bottom-group{
+    text-align:center;
+    padding-top: 10px;
+}
+#awhdu3-ticket-view-escalate-textarea textarea{
+    width: 100%;
+    height: 80px;
+}
+#awhdu3-customer-reply-form {
+    padding: 15px;
+}
+#awhdu3-customer-reply-form label[for="awhdu3-replyform-message"]{
+    text-align: left;
+}
+#awhdu3-replyform-message{
+    height: 100px;
+}
+.aw-hdu3-external-ticketview #awhdu3-replyform-message{
+    width: 894px!important;
+}
+.awhdu3-ticket-view-thread{
+    padding: 15px;
+}
+.awhdu3-ticket-view-thread-message-box{
+    border: 1px solid #ccc;
+    border-left: 4px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    padding: 15px;
+    overflow-x: auto;
+}
+.awhdu3-ticket-view-thread-message-box-header{
+    text-align: left;
+}
+.awhdu3-ticket-view-thread-message-box-header-author{
+    font-weight: bold;
+}
+.awhdu3-ticket-view-thread-message-box-body{
+    margin-top: 8px;
+    padding-top: 2px;
+    border-top: 1px dotted #333;
+}
+.awhdu3-ticket-view-thread-message-box-body-attachmentbox{
+    font-size: 12px;
+    min-width: 100px;
+    display: inline-block;
+    background: #BEBEBE;
+    padding: 5px;
+}
+.awhdu3-ticket-view-thread-message-box-body-attachmentbox>span{
+    float: left;
+    padding: 0 10px 0 0;
+}
+.awhdu3-ticket-view-thread-message-box-body-attachmentbox>ul{
+    float: right;
+}
+.awhdu3-ticket-view-thread-message-box-body-attachmentbox>ul>li{
+    padding: 0;
+    margin: 0!important;
+}
+.awhdu3-ticket-view-thread-message-box-body-attachmentbox>ul>li>a{
+    color: #2A96FF;
+}
+/** ATTACHMENT FILE LIST (ON UPLOAD)*/
+.awhdu3-ticketform-file-list li{
+    margin: 0 10px 10px 0;
+    padding: 0;
+}
+.awhdu3-ticketform-file-list input[type="checkbox"] {
+    vertical-align:middle;
+}
+.awhdu3-ticketform-file-list li span{
+    display: block;
+}
+.awhdu3-ticketform-file-list li span label{
+    float: none;
+}
+.awhdu3-ticketform-file-list li img{
+    height: 50px;
+}
+.awhdu3-ticketform-file-list-error-el{
+    color: red;
+}
+
+#awhdu3-ticket-view-escalate-form .required:after{
+    content: ' *';
+    color: red;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+#awhdu3-ticket-view-escalate-form {
+    text-align: left;
+}
+
+#awhdu3-ticket-view-escalate-form label {
+    text-align: center;
+}

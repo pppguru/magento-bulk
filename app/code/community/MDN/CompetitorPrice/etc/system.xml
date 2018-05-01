@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <competitorprice translate="label" module="CompetitorPrice">
+            <label>Price Tracker</label>
+            <tab>catalog</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>101</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <account>
+                    <label>Account</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <explanations translate="label">
+                            <label>How to use</label>
+                            <frontend_model>CompetitorPrice/System_Config_Explanations</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </explanations>
+                        <user translate="label">
+                            <label>Login</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>required-entry</validate>
+                            <comment>Your boostmyshop customer account email</comment>
+                        </user>
+                        <secret_key translate="label">
+                            <label>Secret key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>required-entry</validate>
+                            <comment>Your secret key (available in your customer account on boostmyshop.com</comment>
+                        </secret_key>
+                        <status translate="label">
+                            <label>Account status</label>
+                            <frontend_model>CompetitorPrice/System_Config_AccountStatus</frontend_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </status>
+                    </fields>
+                </account>
+                <general>
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If enabled, the extension adds the google shopping column in products list</comment>
+                        </enable>
+                        <barcode_attribute translate="label">
+                            <label>Barcode attribute</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>CompetitorPrice/System_Config_Source_Attribute</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Select the attribute with UPC / EAN codes. If you use Embedded ERP, this setting is optional</comment>
+                        </barcode_attribute>
+                        <gs_website translate="label">
+                            <label>Price Tracker Channel</label>
+                            <frontend_type>select</frontend_type>
+                            <frontend_model>CompetitorPrice/System_Config_Field_GsWebsite</frontend_model>
+                            <source_model>CompetitorPrice/System_Config_Source_GoogleShoppingCountry</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>required-entry</validate>
+                        </gs_website>
+                        <frequency>
+                            <label>Price update frequency</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>CompetitorPrice/System_Config_Source_Frequency</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Frequency to update the competitor information</comment>
+                        </frequency>
+                        <!--
+                        <barcode_attribute>
+                            <label>Barcode attribute</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>CompetitorPrice/System_Config_Source_Attribute</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Select the attribute that contains ean / upc / gtin codes. This setting is optional if you use Embedded ERP</comment>
+                        </barcode_attribute>
+                        -->
+
+                    </fields>
+                </general>
+                <display>
+                    <label>Display</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sort_mode>
+                            <label>Sort mode for seller</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>CompetitorPrice/System_Config_Source_SortMode</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Select the way to sort sellers</comment>
+                        </sort_mode>
+                        <number_of_seller>
+                            <label>Number of sellers to display</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>CompetitorPrice/System_Config_Source_NumberOfSellers</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </number_of_seller>
+                    </fields>
+                </display>
+                <products_to_watch>
+                    <label>Products to watch</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <watch_only_selected>
+                            <label>Watch only selected products</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If enabled, you manually select the products to watch from the grid using the watch product button. If disabled, all products are watched</comment>
+                        </watch_only_selected>
+                        <exclude_disabled_products>
+                            <label>Exclude disabled products</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </exclude_disabled_products>
+                        <exclude_outofstock_products>
+                            <label>Exclude out of stock products</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </exclude_outofstock_products>
+                    </fields>
+                </products_to_watch>
+                <tools>
+                    <label>Tools</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>999</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <flush_cache>
+                            <label>Flush cache</label>
+                            <frontend_model>CompetitorPrice/System_Config_Button_FlushCache</frontend_model>
+                            <sort_order>99</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </flush_cache>
+                        <create_table>
+                            <label>Create table</label>
+                            <frontend_model>CompetitorPrice/System_Config_Button_CreateTable</frontend_model>
+                            <sort_order>999</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>To use if database installation failed</comment>
+                        </create_table>
+                    </fields>
+                </tools>
+            </groups>
+        </competitorprice>
+    </sections>
+</config>

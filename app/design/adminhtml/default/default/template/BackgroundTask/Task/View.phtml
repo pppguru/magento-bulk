@@ -1,0 +1,77 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Task')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl()?>'" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+                <button onclick="document.location.href='<?php echo $this->getReplayUrl()?>'" class="scalable" type="button"><span><?php echo $this->__('Replay')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="entry-edit">
+    
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('Id'); ?></td>
+                    <td class="input-ele"><?php echo $this->getTask()->getId(); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Created at'); ?></td>
+                    <td class="input-ele"><?php echo $this->getTask()->getbt_created_at(); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Executed at'); ?></td>
+                    <td class="input-ele"><?php echo $this->getTask()->getbt_executed_at(); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Description'); ?></td>
+                    <td class="input-ele"><?php echo $this->getTask()->getbt_description(); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Helper'); ?></td>
+                    <td class="input-ele"><?php echo $this->getTask()->getbt_helper(); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Method'); ?></td>
+                    <td class="input-ele"><?php echo $this->getTask()->getbt_method(); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Params'); ?></td>
+                    <td class="input-ele"><?php echo unserialize($this->getTask()->getbt_params()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Result'); ?></td>
+                    <td class="input-ele"><?php echo $this->getTask()->getbt_result(); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Result description'); ?></td>
+                    <td class="input-ele"><pre><?php echo $this->getTask()->getbt_result_description(); ?></pre></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Group code'); ?></td>
+                    <td class="input-ele"><?php echo $this->getTask()->getbt_group_code(); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Priority'); ?></td>
+                    <td class="input-ele"><pre><?php echo $this->getTask()->getbt_priority(); ?></pre></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Duration'); ?></td>
+                    <td class="input-ele"><pre><?php echo $this->getTask()->getbt_duration(); ?> ms</pre></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Stack trace'); ?></td>
+                    <td class="input-ele"><pre><?php echo $this->getTask()->getbt_stacktrace(); ?></pre></td>
+                </tr>
+
+            </table>
+        </fieldset>
+
+</div>
+
+</div>

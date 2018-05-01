@@ -1,0 +1,57 @@
+<div>
+	<div id="tab-stock" class="tab-selected"><a href="javascript:return false;" onclick="showStockTab('tab-content-stock', 'tab-stock')"><?php echo $this->__('Stocks'); ?></a></div>
+	<div id="tab-salesorder" class="tab-unselected"><a href="javascript:return false;" onclick="showStockTab('tab-content-salesorder', 'tab-salesorder')"><?php echo $this->__('Sales Order'); ?></a></div>
+	<div id="tab-purchaseorder" class="tab-unselected"><a href="javascript:return false;" onclick="showStockTab('tab-content-purchaseorder', 'tab-purchaseorder')"><?php echo $this->__('Purchase Order'); ?></a></div>
+	<div id="tab-viewproduct" class="tab-unselected"><a href="<?php echo $this->getProductSheetUrl(); ?>" target="_blank" ><?php echo $this->__('View product'); ?></a></div>
+</div>
+
+<div class="clear"></div>
+
+<p>&nbsp;</p>
+
+<div id="tab-content-stock" class="tab-content-visible">
+<?php
+	//print stocks grid
+	$block = $this->getLayout()->createBlock('Purchase/Product_Widget_StockDetails_Stock');
+	$block->setProduct($this->getProduct());
+	$block->setTemplate('Purchase/Product/StockDetails/AbstractGrid.phtml');
+	echo $block->toHtml();
+	
+	//print summary
+	$block = $this->getLayout()->createBlock('Purchase/Product_Widget_StockDetails_Summary');
+	$block->setProduct($this->getProduct());
+	$block->setTemplate('Purchase/Product/StockDetails/Summary.phtml');
+	echo $block->toHtml();
+?>
+</div>
+
+<div id="tab-content-salesorder" class="tab-content-invisible">
+
+	<?php
+		//print sales history
+		$block = $this->getLayout()->createBlock('AdvancedStock/Product_Edit_Tabs_SalesHistory');
+		$block->setProduct($this->getProduct());
+		$block->setTemplate('Purchase/Product/StockDetails/SalesHistory.phtml');
+		echo $block->toHtml();
+	?>
+
+	<div class="grid">
+		<?php
+			//print stocks grid
+			$block = $this->getLayout()->createBlock('Purchase/Product_Widget_StockDetails_SalesOrder');
+			$block->setProduct($this->getProduct());
+			$block->setTemplate('Purchase/Product/StockDetails/AbstractGrid.phtml');
+			echo $block->toHtml();
+		?>
+	</div>
+</div>
+
+<div id="tab-content-purchaseorder" class="tab-content-invisible">
+<?php
+	//print stocks grid
+	$block = $this->getLayout()->createBlock('Purchase/Product_Widget_StockDetails_PurchaseOrder');
+	$block->setProduct($this->getProduct());
+	$block->setTemplate('Purchase/Product/StockDetails/AbstractGrid.phtml');
+	echo $block->toHtml();
+?>
+</div>

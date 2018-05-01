@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <erp>
+                        <children>
+                            <healthyerp module="HealthyERP">
+                                <title>HealthyERP</title>
+                            </healthyerp>
+                       </children>
+                    </erp>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <healthyerp module="HealthyERP">
+                                        <title>Healthy ERP</title>
+                                    </healthyerp>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <translate>
+        <modules>
+            <MDN_HealthyERP>
+                <files>
+                    <default>MDN_HealthyERP.csv</default>
+                </files>
+            </MDN_HealthyERP>
+        </modules>
+    </translate>
+    <!--<layout>
+        <updates>
+            <HealthyERP>
+                <file>HealthyERP.xml</file>
+            </HealthyERP>
+        </updates>
+    </layout>-->
+</config>

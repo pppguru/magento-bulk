@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Amasty_Paction>
+            <version>1.4.0</version>
+        </Amasty_Paction>
+    </modules>
+    
+    <admin>
+        <routers>
+            <ampaction>
+                <use>admin</use>
+                <args>
+                    <module>Amasty_Paction</module>
+                    <frontName>ampaction</frontName>
+                </args>
+            </ampaction>
+        </routers>
+    </admin>
+    
+    <adminhtml>
+        <events>
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <amorderattach>
+                        <type>singleton</type>
+                        <class>ampaction/observer</class>
+                        <method>onCoreBlockAbstractToHtmlBefore</method>
+                    </amorderattach>
+                </observers>
+            </core_block_abstract_to_html_before>
+        </events> 
+            
+        <translate>
+            <modules>
+                <Amasty_Paction>
+                    <files>
+                        <default>Amasty_Paction.csv</default>
+                    </files>
+                </Amasty_Paction>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <ampaction translate="title" module="ampaction">
+                                            <title>Mass Product Actions</title>
+                                        </ampaction>
+                                    </children>
+                                </config>
+                            </children>
+                        </system> 
+                     </children>
+                </admin> 
+            </resources>
+        </acl>
+    </adminhtml>
+    
+    <global>
+        <models>
+            <ampaction>
+                <class>Amasty_Paction_Model</class>
+                <resourceModel>ampaction_mysql4</resourceModel>
+            </ampaction>
+            <ampaction_mysql4>
+                <class>Amasty_Paction_Model_Mysql4</class>
+            </ampaction_mysql4>
+        </models>
+        
+		<resources>
+             <ampaction_setup>
+                <setup>
+                    <module>Amasty_Paction</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ampaction_setup>
+		    <ampaction_write>
+		        <connection><use>core_write</use></connection>
+		    </ampaction_write>
+		    <ampaction_read>
+		        <connection><use>core_read</use></connection>
+		    </ampaction_read>
+		</resources>
+		  
+        <blocks>
+            <ampaction>
+                <class>Amasty_Paction_Block</class>
+            </ampaction>
+        </blocks>
+        
+        <helpers>
+            <ampaction>
+                <class>Amasty_Paction_Helper</class>
+            </ampaction>
+        </helpers>
+    </global>
+    
+    
+    <default>
+        <ampaction>
+           <general>
+<commands>0,addcategory,removecategory,replacecategory,4,modifycost,modifyprice,modifyspecial,addspecial,addprice,addspecialbycost,11,relate,upsell,crosssell,15,unrelate,unupsell,uncrosssell,19,copyoptions,copyattr,copyimg,removeimg,24,changeattributeset,26,delete,28</commands>
+                <rounding>0</rounding>
+                <categories>1</categories>
+                <attr></attr>
+           </general>
+           <links>           
+                <upsell>0</upsell>
+                <upsell_reverse>0</upsell_reverse>
+
+                <crosssell>0</crosssell>
+                <crosssell_reverse>0</crosssell_reverse>
+
+                <relate>0</relate> 
+                <relate_reverse>0</relate_reverse>
+           </links>
+           <unlink>           
+                <unrelate>0</unrelate>
+                <unupsell>0</unupsell>
+                <uncrosssell>0</uncrosssell> 
+           </unlink>
+        </ampaction>
+    </default>
+    
+</config>

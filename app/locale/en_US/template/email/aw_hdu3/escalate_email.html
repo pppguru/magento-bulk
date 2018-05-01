@@ -1,0 +1,31 @@
+<!--@subject {{var customer_name}} escalated ticket #[{{var ticket_uid}}]@-->
+<style type="text/css">
+    body, td {
+        color: #2f2f2f;
+        font: 11px/1.35em Verdana, Arial, Helvetica, sans-serif;
+    }
+</style>
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+    <table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+        <tr>
+            <td align="center" valign="top">
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <p style="border:1px solid #BEBCB7; padding:13px 18px; background:#F8F7F5; line-height: 20px;">
+                                <strong>Escalation Message: </strong>{{var message|escape|nl2br}}<br/>
+                                <strong>Ticket Subject: </strong><a href="{{var external_admin_url}}">{{var ticket_subject}}</a><br/>
+                                <strong>Initial Message by Customer: </strong>{{var ticket_first_message|escape|nl2br}}<br/>
+                                <strong>Department: </strong>{{var department_title}}<br/>
+                                <strong>Help Desk Agent: </strong>{{var agent_name}}<br/>
+                                <strong>Priority: </strong>{{var ticket_priority}}<br/>
+                                <strong>Current Status: </strong>{{var ticket_status}}<br/>
+                                <strong>Ticket Created at: </strong>{{var ticket_created_at}}<br/>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,151 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Adminhtml_Ticket_Edit_Form_Thread $this */?>
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Ticket Thread');?></h4>
+</div>
+<div class="fieldset">
+    <button id="awhdu3-ticket-edit-thread-add_note" title="<?php echo $this->__('Add Note');?>">
+        <span><span><?php echo $this->__('Add Note');?></span></span>
+    </button>
+    <script type="text/javascript">
+        var awHDU3TicketThreadNotePopup = new AWHDU3_TICKET_POPUP(
+            <?php echo Zend_Json::encode($this->getAddNotePopupContent());?>,
+            function(){awHDU3TicketView.addNote("<?php echo $this->getAddNotePopupActionUrl();?>");},
+            <?php echo Zend_Json::encode($this->getAddNotePopupTitles());?>
+        );
+        Event.observe($('awhdu3-ticket-edit-thread-add_note'), 'click', function(){
+            awHDU3TicketThreadNotePopup.show();
+        });
+    </script>
+    <ul class="awhdu3-ticket-edit-thread-tabs">
+        <li data-key="all"><?php echo $this->__('All');?></li><!--
+        --><li data-key="discussion" class="awhdu3-ticket-edit-thread-tabs-tab-active"><?php echo $this->__('Discussion');?></li><!--
+        --><li data-key="notes"><?php echo ($this->getNotesCount()?$this->__('Notes (%d)', $this->getNotesCount()):$this->__('Notes'));?></li><!--
+        --><li data-key="history" class="awhdu3-ticket-edit-thread-tabs-tab-last"><?php echo $this->__('History');?></li>
+    </ul>
+    <div class="awhdu3-ticket-edit-thread-tabs-content">
+        <div class="awhdu3-ticket-edit-thread-tabs-content-item" data-key="all">
+            <?php echo $this->getChildHtml('tab.content.all');?>
+        </div>
+        <div class="awhdu3-ticket-edit-thread-tabs-content-item awhdu3-ticket-edit-thread-tabs-content-item-active" data-key="discussion">
+            <?php echo $this->getChildHtml('tab.content.discussion');?>
+        </div>
+        <div class="awhdu3-ticket-edit-thread-tabs-content-item" data-key="notes">
+            <?php echo $this->getChildHtml('tab.content.notes');?>
+        </div>
+        <div class="awhdu3-ticket-edit-thread-tabs-content-item" data-key="history">
+            <?php echo $this->getChildHtml('tab.content.history');?>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var awHDU3TicketThread = {
+            init: function() {
+                this.tabList = $$('.awhdu3-ticket-edit-thread-tabs li');
+                this.contentList = $$('.awhdu3-ticket-edit-thread-tabs-content-item');
+                this._stopObserverFnList = [];
+
+                this.startObservers();
+
+                if (Object.isUndefined(Storage)) {
+                    return;
+                }
+                var key = localStorage.getItem("awhdu3-ticket-thread-tab-selected");
+                if (!key) {
+                    return;
+                }
+                var me = this;
+                this.tabList.each(function(el, index){
+                    if (key === el.getAttribute('data-key')) {
+                        me.setTabAsActive(el);
+                    }
+                });
+            },
+
+            startObservers: function() {
+                var me = this;
+                this.tabList.each(function(el, index){
+                    var fn = function(e){
+                        me.setTabAsActive(el);
+                    };
+                    el.observe('click', fn);
+                    me._stopObserverFnList.push(function(){el.stopObserving('click', fn)});
+                });
+            },
+
+            stopObservers: function() {
+                this._stopObserverFnList.each(function(fn){
+                    fn();
+                });
+            },
+
+            setTabAsActive: function(tab) {
+                this.tabList.each(function(el){
+                    el.removeClassName('awhdu3-ticket-edit-thread-tabs-tab-active');
+                });
+                tab.addClassName('awhdu3-ticket-edit-thread-tabs-tab-active');
+                this.contentList.each(function(el){
+                    el.removeClassName('awhdu3-ticket-edit-thread-tabs-content-item-active');
+                    if (el.getAttribute('data-key') === tab.getAttribute('data-key')) {
+                        el.addClassName('awhdu3-ticket-edit-thread-tabs-content-item-active');
+                    }
+                });
+                //update storage
+                if (!Object.isUndefined(Storage)) {
+                    localStorage.setItem("awhdu3-ticket-thread-tab-selected", tab.getAttribute('data-key'));
+                }
+            },
+
+            ajaxUpdate: function() {
+                var me = this;
+                var url = <?php echo Zend_Json::encode($this->getTabContentHtmlUrl());?>;
+                new Ajax.Request(url, {
+                    onComplete: function (transport) {
+                        if (!transport.responseText.isJSON()) {
+                            document.location.reload();
+                            return;
+                        }
+                        try {
+                            var response = transport.responseText.evalJSON();
+                            Object.keys(response).each(function(key){
+                                var contentEl = me.contentList.find(function(el){
+                                    return el.getAttribute('data-key') === key;
+                                });
+                                if (!contentEl) {
+                                    return;
+                                }
+                                contentEl.update(response[key]);
+                            });
+                        } catch (e) {
+                            document.location.reload();
+                        }
+                    }
+                });
+            }
+        };
+        awHDU3TicketThread.init();
+    </script>
+</div>

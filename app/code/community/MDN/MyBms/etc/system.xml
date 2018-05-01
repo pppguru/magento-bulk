@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <mybms translate="label" module="MyBms">
+            <label>My Bms</label>
+            <sort_order>1000</sort_order>
+        </mybms>
+    </tabs>
+    <sections>
+        <MyBms translate="label" module="MyBms">
+            <label>My Extensions</label>
+            <tab>mybms</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <myextensions translate="label" module="MyBms">
+                    <label>Installed extension</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <extensions_list translate="label">
+                            <label>Extensions list</label>
+                            <frontend_model>MyBms/System_Config_Form_FieldSet_MyExtensions</frontend_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </extensions_list>
+                    </fields>
+                </myextensions>
+
+                <documentation translate="label" module="MyBms">
+                    <label>Documentation</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enable_menu_display translate="label">
+                            <label>Displays the HELP menu in modules screen</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If enabled, it displays a HELP section on the right of the screen. IF you click on it, it displays an appropriate list to the online documentation.</comment>
+                        </enable_menu_display>
+                        <manual_flush>
+                            <label>Flush the documentation cache</label>
+                            <frontend_model>MyBms/System_Config_Button_FlushDocumentationCache</frontend_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </manual_flush>
+                    </fields>
+                </documentation>
+
+                <notifications translate="label" module="MyBms">
+                    <label>Notifications</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable notifications</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If enabled, the module will check every day if there are new notifications from boostmyshop.</comment>
+                        </enable>
+                        <enable_new_versions translate="label">
+                            <label>Enable new versions notification</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If enabled, a notification is displayed when new extension releases are available.</comment>
+                        </enable_new_versions>
+                    </fields>
+                </notifications>
+            </groups>
+        </MyBms>
+    </sections>
+</config>

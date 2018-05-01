@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MDN_ProductReturn>
+            <version>2.0.9</version>
+        </MDN_ProductReturn>
+    </modules>
+
+    <global>
+        <helpers>
+            <ProductReturn>
+                <class>MDN_ProductReturn_Helper</class>
+            </ProductReturn>
+        </helpers>
+        <blocks>
+            <ProductReturn>
+                <class>MDN_ProductReturn_Block</class>
+            </ProductReturn>
+        </blocks>
+        <models>
+            <ProductReturn>
+                <class>MDN_ProductReturn_Model</class>
+                <resourceModel>ProductReturn_mysql4</resourceModel>
+            </ProductReturn>
+            <ProductReturn_mysql4>
+                <class>MDN_ProductReturn_Model_Mysql4</class>
+                <!-- defini les tables utilisables -->
+                <entities>
+                    <Rma>
+                        <table>rma</table>
+                    </Rma>
+                    <rma>
+                        <table>rma</table>
+                    </rma>
+                    <rma_products>
+                        <table>rma_products</table>
+                    </rma_products>
+                    <product_entity>
+                        <table>catalog_product_entity</table>
+                    </product_entity>
+                    <RmaProducts>
+                        <table>rma_products</table>
+                    </RmaProducts>
+                    <RmaHistory>
+                        <table>rma_history</table>
+                    </RmaHistory>
+                    <SupplierReturn>
+                        <table>rma_supplier_return</table>
+                    </SupplierReturn>
+                    <RmaReservation>
+                        <table>rma_reservation</table>
+                    </RmaReservation>
+                    <SupplierReturn_History>
+                        <table>rma_supplier_return_history</table>
+                    </SupplierReturn_History>
+                    <SupplierReturn_Product>
+                        <table>rma_supplier_return_product</table>
+                    </SupplierReturn_Product>
+                    <Period>
+                        <table>rma_report_period</table>
+                    </Period>
+                    <RmaMessage>
+                        <table>rma_messages</table>
+                    </RmaMessage>
+                </entities>
+            </ProductReturn_mysql4>
+        </models>
+
+        <resources>
+            <ProductReturn_setup>
+                <setup>
+                    <module>MDN_ProductReturn</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ProductReturn_setup>
+            <ProductReturn_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ProductReturn_write>
+            <ProductReturn_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ProductReturn_read>
+        </resources>
+
+        <template>
+            <email>
+                <productreturn_emails_template_supplierreturn translate="label" module="ProductReturn">
+                    <label>Supplier Return notification</label>
+                    <file>ProductReturn/sendtosupplier.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_supplierreturn>
+                <productreturn_emails_template_rma_request translate="label" module="ProductReturn">
+                    <label>Product return request</label>
+                    <file>ProductReturn/new_request.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_rma_request>
+                <productreturn_emails_template_product_return_accepted translate="label" module="ProductReturn">
+                    <label>Product return accepted</label>
+                    <file>ProductReturn/accepted.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_product_return_accepted>
+                <productreturn_emails_template_product_return_refused translate="label" module="ProductReturn">
+                    <label>Product return refused</label>
+                    <file>ProductReturn/refused.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_product_return_refused>
+                <productreturn_emails_template_product_received translate="label" module="ProductReturn">
+                    <label>Product return received</label>
+                    <file>ProductReturn/received.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_product_received>
+                <productreturn_emails_template_product_received_but_refused translate="label" module="ProductReturn">
+                    <label>Product return received but refused</label>
+                    <file>ProductReturn/product_refused.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_product_received_but_refused>
+                <productreturn_emails_template_expertise_product translate="label" module="ProductReturn">
+                    <label>Product Expertise</label>
+                    <file>ProductReturn/expertise.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_expertise_product>
+                <productreturn_emails_template_waiting_for_supplier translate="label" module="ProductReturn">
+                    <label>Waiting for supplier</label>
+                    <file>ProductReturn/waiting_for_supplier.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_waiting_for_supplier>
+                <productreturn_emails_template_complete translate="label" module="ProductReturn">
+                    <label>Complete</label>
+                    <file>ProductReturn/complete.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_complete>
+                <productreturn_emails_template_return_label translate="label" module="ProductReturn">
+                    <label>Return label</label>
+                    <file>ProductReturn/return_label.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_return_label>
+                <productreturn_messages_customer_email_template translate="label" module="ProductReturn">
+                    <label>Product Return Message to Admin</label>
+                    <file>ProductReturn/admin_message.html</file>
+                    <type>html</type>
+                </productreturn_messages_customer_email_template>
+                <productreturn_messages_admin_email_template translate="label" module="ProductReturn">
+                    <label>Product Return Message to Customer</label>
+                    <file>ProductReturn/customer_message.html</file>
+                    <type>html</type>
+                </productreturn_messages_admin_email_template>
+            </email>
+        </template>
+
+        <events>
+            <orderpreparartion_create_tabs>
+                <observers>
+                    <ProductReturn>
+                        <type>singleton</type>
+                        <class>ProductReturn/Observer</class>
+                        <method>orderpreparartion_create_tabs</method>
+                    </ProductReturn>
+                </observers>
+            </orderpreparartion_create_tabs>
+            <orderpreparation_print_order_documents>
+                <observers>
+                    <ProductReturn>
+                        <type>singleton</type>
+                        <class>ProductReturn/Observer</class>
+                        <method>orderpreparation_print_order_documents</method>
+                    </ProductReturn>
+                </observers>
+            </orderpreparation_print_order_documents>
+        </events>
+
+    </global>
+
+    <adminhtml>
+
+        <translate>
+            <modules>
+                <MDN_ProductReturn>
+                    <files>
+                        <default>MDN_ProductReturn.csv</default>
+                    </files>
+                </MDN_ProductReturn>
+            </modules>
+        </translate>
+
+        <routers>
+            <ProductReturn>
+                <use>standard</use>
+                <args>
+                    <module>MDN_ProductReturn</module>
+                    <frontName>ProductReturn</frontName>
+                </args>
+            </ProductReturn>
+        </routers>
+
+        <layout>
+            <updates>
+                <ProductReturn>
+                    <file>ProductReturn.xml</file>
+                </ProductReturn>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <frontend>
+
+        <secure_url>
+            <productreturn_front_list>/ProductReturn/Front/List</productreturn_front_list>
+            <productreturn_front_newrequestselectorder>/ProductReturn/Front/NewRequestSelectOrder</productreturn_front_newrequestselectorder>
+            <productreturn_front_newrequest>/ProductReturn/Front/NewRequest</productreturn_front_newrequest>
+            <productreturn_front_submitrequest>/ProductReturn/Front/SubmitRequest</productreturn_front_submitrequest>
+            <productreturn_front_view>/ProductReturn/Front/View</productreturn_front_view>
+            <productreturn_front_viewcgv>/ProductReturn/Front/ViewCGV</productreturn_front_viewcgv>
+        </secure_url>
+
+        <routers>
+            <ProductReturn>
+                <use>standard</use>
+                <args>
+                    <module>MDN_ProductReturn</module>
+                    <frontName>ProductReturn</frontName>
+                </args>
+            </ProductReturn>
+        </routers>
+
+        <layout>
+            <updates>
+                <ProductReturn>
+                    <file>ProductReturn.xml</file>
+                </ProductReturn>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <MDN_ProductReturn>
+                    <files>
+                        <default>MDN_ProductReturn.csv</default>
+                    </files>
+                </MDN_ProductReturn>
+            </modules>
+        </translate>
+
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <ProductReturn before="Mage_Adminhtml">MDN_ProductReturn_Adminhtml</ProductReturn>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <default>
+        <productreturn>
+            <general>
+                <default_validity_duration>30</default_validity_duration>
+                <add_tab_in_order_preparation>0</add_tab_in_order_preparation>
+                <is_installed>1</is_installed>
+            </general>
+            <product_return>
+                <max_days_request>7</max_days_request>
+                <other_reason>Cancel;Defect</other_reason>
+                <request_type>Refund;Exchange;Storecredit;Repair</request_type>
+                <new_status_for_product_received>product_received</new_status_for_product_received>
+                <new_status_for_request>requested</new_status_for_request>
+                <display_disabled_shipping_methods>1</display_disabled_shipping_methods>
+                <display_disabled_payment_methods>1</display_disabled_payment_methods>
+            </product_return>
+            <supplier_return>
+                <manufacturer_attribute_name>0</manufacturer_attribute_name>
+                <template_supplierreturn>productreturn_supplier_return_template_supplierreturn</template_supplierreturn>
+                <destroy_warehouse>1</destroy_warehouse>
+                <normal_warehouse>1</normal_warehouse>
+            </supplier_return>
+            <messages>
+                <enable>1</enable>
+            </messages>
+        </productreturn>
+    </default>
+
+
+    <crontab>
+        <jobs>
+            <update_status_rma>
+                <schedule>
+                    <cron_expr>00 17 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>ProductReturn/Observer::UpdateStatusRma</model>
+                </run>
+            </update_status_rma>
+        </jobs>
+    </crontab>
+
+</config>

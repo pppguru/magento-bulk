@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <block type="core/template" name="helpdeskultimate_seed" template="helpdeskultimate/seed.phtml"/>
+        </reference>
+    </default>
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="helpdeskultimate">
+                <name>helpdeskultimate</name>
+                <path>helpdeskultimate/customer</path>
+                <label>Help Desk</label>
+            </action>
+        </reference>
+        <reference name="head">
+            <block type="core/template" name="helpdeskultimate_head" template="helpdeskultimate/head.phtml"/>
+        </reference>
+    </customer_account>
+    <helpdeskultimate_customer_index>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="helpdeskultimate/customer_tickets" name="helpdeskultimate_tickets"
+                   template="helpdeskultimate/tickets.phtml"/>
+            <block type="helpdeskultimate/customer_ticketform" name="helpdeskultimate_ticketform"/>
+        </reference>
+    </helpdeskultimate_customer_index>
+    <helpdeskultimate_customer_view>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="helpdeskultimate/customer_ticket" name="customers_ticket"/>
+            <block type="helpdeskultimate/customer_replyform" name="customers_helpdeskultimate_replyform"/>
+            <block type="helpdeskultimate/customer_messages" name="customers_helpdeskultimate"/>
+        </reference>
+    </helpdeskultimate_customer_view>
+    <helpdeskultimate_customer_viewext>
+        <reference name="head">
+            <block type="core/template" name="helpdeskultimate_head" template="helpdeskultimate/head.phtml"/>
+            <action method="addCss">
+                <stylesheet>aw_helpdeskultimate/css/main.css</stylesheet>
+            </action>
+        </reference>
+        <update handle="root"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="helpdeskultimate/customer_ticket" name="external_ticket"/>
+            <block type="helpdeskultimate/customer_replyform" name="external_replyfrom"/>
+            <block type="helpdeskultimate/customer_messages" name="external_messages"/>
+        </reference>
+    </helpdeskultimate_customer_viewext>
+    <helpdeskultimate_customer_revalidate>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="helpdeskultimate/customer_antibot_revalidate" name="helpdeskultimate_revalidator"
+                   template="helpdeskultimate/antibot/revalidate.phtml"/>
+        </reference>
+    </helpdeskultimate_customer_revalidate>
+    <sales_order_history>
+        <reference name="sales.order.history">
+            <action method="setTemplate">
+                <template>helpdeskultimate/sales/order/history.phtml</template>
+            </action>
+        </reference>
+    </sales_order_history>
+    <contacts_index_index>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>aw_helpdeskultimate/css/main.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <action method="unsetChildren"/>
+            <block type="helpdeskultimate/contacts_form" name="contactForm"/>
+            <block type="core/template" name="antibot" template="helpdeskultimate/antibot.phtml"/>
+        </reference>
+    </contacts_index_index>
+</layout>

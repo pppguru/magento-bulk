@@ -1,0 +1,43 @@
+<!--@subject [#{{var ticket_uid}}] Your ticket has been changed.@-->
+<style type="text/css">
+    body, td {
+        color: #2f2f2f;
+        font: 11px/1.35em Verdana, Arial, Helvetica, sans-serif;
+    }
+</style>
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+    <table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+        <tr>
+            <td align="center" valign="top">
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                           <span class="_CONTENT_">
+                                Hello, {{var customer_first_name}}.<br/>
+                                Your ticket has been changed.
+                            </span>
+                            <p>
+                                <strong>Ticket new properties:</strong><br/>
+                                {{depend is_department_changed}}
+                                Ticket has been assigned to department <b>{{var department_name}}</b><br/>
+                                {{/depend}}
+                                {{depend is_agent_changed}}
+                                Ticket has been assigned to agent <b>{{var agent_name}}</b><br/>
+                                {{/depend}}
+                                {{depend is_status_changed}}
+                                Ticket status has been changed to <b>{{var ticket_status}}</b><br/>
+                                {{/depend}}
+                            </p>
+                            <p><strong>Ticket details:</strong></p>
+                            <p style="border:1px solid #BEBCB7  ; padding:13px 18px; background:#F8F7F5  ; line-height: 20px;">
+                                <strong>Ticket UID: </strong> <a href="{{var external_customer_url}}">{{var ticket_uid}}</a><br/>
+                                <strong>Subject: </strong> {{var ticket_subject}}<br/>
+                            <p>{{var external_link_html}}</p>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

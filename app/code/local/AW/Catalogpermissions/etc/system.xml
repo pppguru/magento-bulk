@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+            <catalogpermissions translate="label" module="catalogpermissions">
+                <label>Catalog Permissions</label>
+                <tab>awall</tab>
+                <frontend_type>text</frontend_type>
+                <sort_order>100</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <groups>
+                    <general translate="label">
+                        <label>General</label>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <sort_order>10</sort_order>
+                        <expanded>1</expanded>
+                        <fields>
+                            <hide_price_for_group translate="label">
+                                <label>Hide price for group</label>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                                <frontend_type>multiselect</frontend_type>
+                                <source_model>catalogpermissions/entity_attribute_source_groups</source_model>
+                                <can_be_empty>1</can_be_empty>
+                                <sort_order>10</sort_order>
+                            </hide_price_for_group>
+                            <redirect_from_category translate="label tooltip">
+                                <label>Redirect from category</label>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>15</sort_order>
+                                <tooltip>Redirect from category tooltip</tooltip>
+                            </redirect_from_category>
+                            <redirect_from_category_notice translate="label tooltip">
+                                <label>Redirect from category notice</label>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                                <frontend_type>textarea</frontend_type>
+                                <sort_order>20</sort_order>
+                                <tooltip>Redirect from category notice tooltip</tooltip>
+                            </redirect_from_category_notice>
+                            <redirect_from_product translate="label tooltip">
+                                <label>Redirect from product</label>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>25</sort_order>
+                                <tooltip>Redirect from product tooltip</tooltip>
+                            </redirect_from_product>
+                            <redirect_from_product_notice translate="label tooltip">
+                                <label>Redirect from product notice</label>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                                <frontend_type>textarea</frontend_type>
+                                <sort_order>30</sort_order>
+                                <tooltip>Redirect from product notice tooltip</tooltip>
+                            </redirect_from_product_notice>
+                            <product_notice translate="label tooltip">
+                                <label>Product with disabled price notice</label>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>35</sort_order>
+                                <tooltip>Notice for product with disabled price to explain to customer</tooltip>
+                            </product_notice>
+                        </fields>
+                    </general>
+                </groups>
+            </catalogpermissions>
+    </sections>
+    <defaults>
+        <catalogpermissions>
+            <general>
+                <hide_price_for_group>0</hide_price_for_group>
+            </general>
+        </catalogpermissions>
+    </defaults>
+</config>

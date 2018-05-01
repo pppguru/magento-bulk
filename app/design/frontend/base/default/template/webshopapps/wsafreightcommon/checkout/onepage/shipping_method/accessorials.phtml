@@ -1,0 +1,368 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * WebShopApps Shipping Module
+ *
+ * @category    WebShopApps
+ * @package     WebShopApps_Wsafreightcommon
+ * Date         1 September 2014
+ * Time         13:05
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
+ * @license     http://www.WebShopApps.com/license/license.txt - Commercial license
+ *
+ */
+?>
+
+<?php $quote = Mage::getSingleton('checkout/session')->getQuote(); ?>
+<?php $hideFreight = $this->helper('wsafreightcommon')->dontShowCommonFreightForQuote($quote);?>
+<?php $carrierCode = $this->getCarrierCode();?>
+<?php $warehouse = $this->getWarehouse();?>
+<?php $warehouseInsert = $warehouse == '' ? '' : '_' . $warehouse; ?>
+<?php if (!$hideFreight): ?>
+    <div class="inner-box">
+        <?php if($this->helper('wsafreightcommon')->isAddressTypeOptionEnabled($this->showAccessorials())): ?>
+            <div class="a-left input-box" id="shipto_type_div_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>">
+                <label id="shipto_type_label_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>" for="shipto_type_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>">
+                    <?php echo $this->__('Address Type') ?>
+                </label>
+                <?php echo $this->getShiptoTypeHtmlSelect($carrierCode, $warehouseInsert, $this->getShiptoType()) ?>
+                <br/>
+            </div>
+        <?php endif; ?>
+
+        <?php if($this->helper('wsafreightcommon')->isNotifyOptionEnabled($carrierCode)): ?>
+            <div class="a-left input-checkbox" id="notify_required_div_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>">
+                <label id="notify_required_label_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>"
+                       for="notify_required_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>"><?php echo $this->__('Scheduled Appointment?') ?></label>
+                <input  class="accessorial" type="checkbox" name="notify_required_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>" id="notify_required_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>" value="1"
+                    <?php if ($this->getNotifyRequired()): ?> checked="checked"<?php endif; ?> />
+            </div>
+        <?php endif; ?>
+
+        <?php if($this->helper('wsafreightcommon')->isInsideDeliveryEnabled($carrierCode)): ?>
+            <div class="a-left input-checkbox" id="inside_delivery_div_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>">
+                <label id="inside_delivery_label_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>" for="inside_delivery_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>"><?php echo $this->__('Inside Delivery?') ?></label>
+                <input  class="accessorial" type="checkbox" name="inside_delivery_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>" id="inside_delivery_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>" value="1"
+                    <?php if ($this->getInsideDelivery()): ?> checked="checked"<?php endif; ?> />
+            </div>
+        <?php endif; ?>
+
+        <?php if($this->helper('wsafreightcommon')->isLiftgateEnabled($carrierCode)): ?>
+            <div class="a-left input-checkbox" id="liftgate_required_div_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>">
+                <label id="liftgate_required_label_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>"
+                       for="liftgate_required_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>"><?php echo $this->getLiftgateLabel($carrierCode) ?></label>
+                <input class="accessorial" type="checkbox" name="liftgate_required_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>" id="liftgate_required_<?php echo $carrierCode; ?><?php echo $warehouseInsert; ?>" value="1"
+                    <?php if ($this->getLiftgateRequired()): ?> checked="checked"<?php endif; ?> />
+            </div>
+        <?php endif;?>
+        <br>
+
+        <div id="retrieving-rates"></div>
+    </div>
+    <?php if ($this->getCustomDescription()): ?>
+        <div class="custom-message">
+            <P><?php echo $this->getCustomDescription() ?></p>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+
+
+<script type="text/javascript">
+    //<![CDATA[
+    var hideFreight = '<?php echo $hideFreight; ?>';
+    var FreightListener = Class.create();
+    var oscEnabled = '<?php echo $this->isOSCEnabled(); ?>';
+    var iwdEnabled = '<?php echo $this->isIWDEnabled(); ?>';
+    var insuranceEnabled = '<?php echo $this->isInsuranceEnabled(); ?>';//FREIGHT-165
+
+    FreightListener.prototype = {
+
+        initialize: function (form) {
+            this.form = form;
+            this.oscEnabled = oscEnabled;
+            this.iwdEnabled = iwdEnabled;
+            var carrierCode = '<?php echo $carrierCode; ?>';
+            this.carrierCode = carrierCode;
+            var warehouseInsert = '<?php echo $warehouseInsert; ?>';
+            this.warehouseInsert = warehouseInsert;
+            this.setUpAccessorialDisplay();
+        },
+
+        onChangeAccessorial: function (event) {
+            var element = event.element();
+            var selectedElementId = element.id;
+
+            if(selectedElementId.indexOf(this.carrierCode) > -1) {
+                if(selectedElementId.indexOf(this.warehouseInsert) > -1) {
+                    if (!hideFreight) {
+                        if (this.oscEnabled) {
+                            this.onChangeAccessorialOSC();
+                        } else if (this.iwdEnabled) {
+                            this.onChangeAccessorialIWD();
+                        } else {
+                            this.onChangeAccessorialStd();
+                        }
+                    }
+                }
+            }
+        },
+
+        onChangeAccessorialStd: function () {
+
+            var url = '<?php echo $this->getUrl("wsafreightcommon/ajax/getFreight", array("_secure"=>true)) ?>';
+            document.getElementById('retrieving-rates').innerHTML =
+                "<img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>'> Retrieving rates...";
+            var carrierCode = '<?php echo $carrierCode; ?>';
+            var warehouseInsert = '<?php echo $warehouseInsert; ?>';
+            var warehouse = '<?php echo $warehouse; ?>';
+
+            var liftgate_required = false;
+            var notify_required = false;
+            var shipto_type = false;
+            var inside_delivery = false;
+
+            if($('liftgate_required_'+carrierCode+warehouseInsert)) {
+                liftgate_required = $('liftgate_required_'+carrierCode+warehouseInsert).checked
+            }
+
+            if($('notify_required_' +carrierCode+warehouseInsert)) {
+                notify_required = $('notify_required_' +carrierCode+warehouseInsert).checked;
+            }
+
+            if($('shipto_type_' +carrierCode+warehouseInsert)) {
+                shipto_type = $('shipto_type_' +carrierCode+warehouseInsert).value;
+            }
+
+            if($('inside_delivery_' +carrierCode+warehouseInsert)) {
+                inside_delivery = $('inside_delivery_' +carrierCode+warehouseInsert).checked;
+            }
+
+             new Ajax.Request(url, {
+                    method: 'get',
+                    dataType: 'json',
+                    onSuccess: freightListener.updateStdRates,
+                    onComplete: function () {
+                        document.getElementById('retrieving-rates').innerHTML = "";
+                        if(insuranceEnabled) {
+                            insuranceListener();
+                        }
+                    },
+                    parameters: {
+                        carrier_code: carrierCode,
+                        warehouse: warehouse,
+                        liftgate_required: liftgate_required,
+                        notify_required: notify_required,
+                        shipto_type: shipto_type,
+                        inside_delivery: inside_delivery
+                    }
+                }
+
+            );
+
+        },
+
+        onChangeAccessorialOSC: function () {
+            var url = '<?php echo $this->getUrl("onestepcheckout/onestepcheckout/getFreight", array("_secure"=>true)) ?>';
+            var shipment_methods = $$('div.onestepcheckout-shipping-method-block')[0];
+            var set_methods_url = '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>';
+            var update_payments = <?php echo $this->settings['enable_update_payment_on_shipping'] ? 'true' : 'false'; ?>;
+            var carrierCode = '<?php echo $carrierCode; ?>';
+            var warehouseInsert = '<?php echo $warehouseInsert; ?>';
+            var warehouse = '<?php echo $warehouse; ?>';
+
+            var liftgate_required = false;
+            var notify_required = false;
+            var shipto_type = false;
+            var inside_delivery = false;
+
+            if($('liftgate_required_'+carrierCode+warehouseInsert)) {
+                liftgate_required = $('liftgate_required_'+carrierCode+warehouseInsert).checked
+            }
+
+            if($('notify_required_' +carrierCode+warehouseInsert)) {
+                notify_required = $('notify_required_' +carrierCode+warehouseInsert).checked;
+            }
+
+            if($('shipto_type_' +carrierCode+warehouseInsert)) {
+                shipto_type = $('shipto_type_' +carrierCode+warehouseInsert).value;
+            }
+
+            if($('inside_delivery_' +carrierCode+warehouseInsert)) {
+                inside_delivery = $('inside_delivery_' +carrierCode+warehouseInsert).checked;
+            }
+
+
+            shipment_methods.update('<div class="loading-ajax">&nbsp;</div>');
+
+            new Ajax.Request(url, {
+                method: 'get',
+                parameters: {
+                    carrier_code: carrierCode,
+                    warehouse: warehouse,
+                    liftgate_required: liftgate_required,
+                    notify_required: notify_required,
+                    shipto_type: shipto_type,
+                    inside_delivery: inside_delivery
+                },
+                onSuccess: function (transport) {
+                    if (transport.status == 200) {
+                        var data = transport.responseText.evalJSON();
+                        shipment_methods.update(data.shipping_method);
+                      //  freightListener.setUpAccessorialDisplay();
+                        $$('dl.shipment-methods input').invoke('observe', 'click',
+                            get_separate_save_methods_function(set_methods_url, update_payments));
+                        $$('dl.shipment-methods input:checked')[0].click();
+                    }
+                }
+
+            });
+        },
+
+        onChangeAccessorialIWD: function () {
+            var url = '<?php echo $this->getUrl("onepagecheckout/index/getFreight", array("_secure"=>true)) ?>';
+            var carrierCode = '<?php echo $carrierCode; ?>';
+            var warehouseInsert = '<?php echo $warehouseInsert; ?>';
+            var warehouse = '<?php echo $warehouse; ?>';
+
+            var liftgate_required = false;
+            var notify_required = false;
+            var shipto_type = false;
+            var inside_delivery = false;
+
+            if($('liftgate_required_'+carrierCode+warehouseInsert)) {
+                liftgate_required = $('liftgate_required_'+carrierCode+warehouseInsert).checked
+            }
+
+            if($('notify_required_' +carrierCode+warehouseInsert)) {
+                notify_required = $('notify_required_' +carrierCode+warehouseInsert).checked;
+            }
+
+            if($('shipto_type_' +carrierCode+warehouseInsert)) {
+                shipto_type = $('shipto_type_' +carrierCode+warehouseInsert).value;
+            }
+
+            if($('inside_delivery_' +carrierCode+warehouseInsert)) {
+                inside_delivery = $('inside_delivery_' +carrierCode+warehouseInsert).checked;
+            }
+
+            new Ajax.Request(url, {
+                method: 'get',
+                parameters: {
+                    carrier_code: carrierCode,
+                    warehouse: warehouse,
+                    liftgate_required: liftgate_required,
+                    notify_required: notify_required,
+                    shipto_type: shipto_type,
+                    inside_delivery: inside_delivery
+                },
+                onLoading: function () {
+                  //  freightListener.setUpAccessorialDisplay();
+                    checkout.update({
+                        'payment-method': 1,
+                        'shipping-method': 1,
+                        'review': 1
+                    });
+
+                }
+            });
+        },
+
+        setUpAccessorialDisplay: function () {
+            var accessorialObjects = document.getElementsByClassName('accessorial');
+            for(i = 0; i < accessorialObjects.length; i++) {
+                if(accessorialObjects[i].type == 'select-one') {
+                    accessorialObjects[i].observe('change', this.onChangeAccessorial.bind(this));
+                }
+                else {
+                    accessorialObjects[i].observe('click', this.onChangeAccessorial.bind(this));
+                }
+            }
+        },
+
+        updateStdRates: function(transport)
+        {
+            var response = transport.responseText.evalJSON();
+            var carrierCode = response.carrier_code;
+            var warehouse = response.warehouse;
+            var warehouseInsert = '';
+            if(warehouse != '' ) {
+                warehouseInsert = '_' + warehouse;
+            }
+            var data = response.shipping_rates;
+            if (data == false) {
+                <?php $errorMessage = $this->__('Sorry, no quotes are available for this order at this time.'); ?>
+                $('radio_choices' + "_" + carrierCode + warehouseInsert).innerHTML='<ul class="messages"><li class="error-msg"><ul><li><?php echo preg_replace("!\s+!"," ",$errorMessage); ?></li></ul></li></ul>';
+            } else {
+                var existingRadios = document.getElementsByName('shipping_method');
+                var selectedMethod = false;
+
+                for(i=0;i < existingRadios.length ;i++) {
+                    var radio = existingRadios[i];
+                    if(radio.checked) {
+                        selectedMethod = radio.value;
+                    }
+                }
+                $('radio_choices'+ "_" + carrierCode + warehouseInsert).remove();
+                var radOptions = new Element('div',{id:'radio_choices'+ "_" + carrierCode + warehouseInsert});
+                $('ship_options'+ "_" + carrierCode + warehouseInsert).insert(radOptions);
+                var radioText ='';
+                checkedFlag = false;
+                for (code in data) {
+                    if(code == selectedMethod) {
+                        checkedFlag = true;
+                    }
+                    element = data[code];
+                    if (checkedFlag == true) {
+                        radioIndText= '<li><input name="shipping_method" type="radio" checked  value="'+code+'" id="s_method'+'_'+code+'"/>\
+                        <label for="s_method'+'_'+code+'">'+element.label+'</label></li>';
+                        checkedFlag = false;
+                    }	else {
+                        radioIndText= '<li><input name="shipping_method'+'" type="radio" value="'+code+'" id="s_method'+'_'+code+'"/>\
+                         <label for="s_method'+'_'+code+'">'+element.label+'</label></li>';
+                    }
+                    radioText += radioIndText;
+
+                }
+                $('radio_choices'+ "_" + carrierCode + warehouseInsert).innerHTML=radioText;
+                for(code in data)
+                {
+                    var el = document.getElementById('s_method'+'_'+code);
+                  //  el.addEventListener("click", shippingMethodEvent, false);
+                }
+            }
+
+        }
+    };
+
+    var freightListener = new FreightListener('co-store-freightcommon-form');
+
+    if(!oscEnabled && !iwdEnabled){
+      //  freightListener.onChangeAccessorial();
+    }
+
+    //]]>
+</script>

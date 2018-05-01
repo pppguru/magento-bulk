@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<!--
+    Configuration file for Ebizmarts_AbandonedCart module, touch at you entire responsibility
+
+    @category   Ebizmarts
+    @package    Ebizmarts_AbandonedCart
+    @author     Ebizmarts Team <info@ebizmarts.com>
+    @license    http://opensource.org/licenses/osl-3.0.php
+-->
+<config>
+    <modules>
+        <Ebizmarts_AbandonedCart>
+            <version>0.1.28</version>
+        </Ebizmarts_AbandonedCart>
+    </modules>
+    <global>
+        <template>
+            <email>
+                <ebizmarts_abandonedcart_general_template1 translate="label" module="ebizmarts_abandonedcart">
+                    <label>First Abandoned Cart Mail</label>
+                    <file>ebizmarts/abandonedcart/abandoned_cart_mail_1.html</file>
+                    <type>html</type>
+                </ebizmarts_abandonedcart_general_template1>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_abandonedcart_general_template2 translate="label" module="ebizmarts_abandonedcart">
+                    <label>Second Abandoned Cart Mail</label>
+                    <file>ebizmarts/abandonedcart/abandoned_cart_mail_2.html</file>
+                    <type>html</type>
+                </ebizmarts_abandonedcart_general_template2>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_abandonedcart_general_template3 translate="label" module="ebizmarts_abandonedcart">
+                    <label>Third Abandoned Cart Mail</label>
+                    <file>ebizmarts/abandonedcart/abandoned_cart_mail_3.html</file>
+                    <type>html</type>
+                </ebizmarts_abandonedcart_general_template3>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_abandonedcart_general_template4 translate="label" module="ebizmarts_abandonedcart">
+                    <label>Fourth Abandoned Cart Mail</label>
+                    <file>ebizmarts/abandonedcart/abandoned_cart_mail_generic.html</file>
+                    <type>html</type>
+                </ebizmarts_abandonedcart_general_template4>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_abandonedcart_general_template5 translate="label" module="ebizmarts_abandonedcart">
+                    <label>Fifth Abandoned Cart Mail</label>
+                    <file>ebizmarts/abandonedcart/abandoned_cart_mail_generic.html</file>
+                    <type>html</type>
+                </ebizmarts_abandonedcart_general_template5>
+            </email>
+        </template>
+        <ebizmarts_abandonedcart>
+            <mandrill-tag>AbandonedCart</mandrill-tag>
+        </ebizmarts_abandonedcart>
+        <models>
+            <ebizmarts_abandonedcart>
+                <class>Ebizmarts_AbandonedCart_Model</class>
+                <resourceModel>ebizmarts_abandonedcart_resource</resourceModel>
+            </ebizmarts_abandonedcart>
+            <ebizmarts_abandonedcart_resource>
+                <class>Ebizmarts_AbandonedCart_Model_Resource</class>
+                <deprecatedNode>ebizmarts_abandonedcart_mysql4</deprecatedNode>
+                <entities>
+                    <mailssent>
+                        <table>magemonkey_mails_sent</table>
+                    </mailssent>
+                </entities>
+            </ebizmarts_abandonedcart_resource>
+        </models>
+        <blocks>
+            <ebizmarts_abandonedcart>
+                <class>Ebizmarts_AbandonedCart_Block</class>
+            </ebizmarts_abandonedcart>
+        </blocks>
+        <helpers>
+            <ebizmarts_abandonedcart>
+                <class>Ebizmarts_AbandonedCart_Helper</class>
+            </ebizmarts_abandonedcart>
+        </helpers>
+        <resources>
+            <ebizmarts_abandonedcart_setup>
+                <setup>
+                    <module>Ebizmarts_AbandonedCart</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ebizmarts_abandonedcart_setup>
+        </resources>
+        <fieldsets>
+            <sales_convert_quote>
+                <ebizmarts_abandonedcart_flag>
+                    <to_order>*</to_order>
+                </ebizmarts_abandonedcart_flag>
+            </sales_convert_quote>
+        </fieldsets>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Ebizmarts_Abandonedcart before="Mage_Adminhtml">Ebizmarts_AbandonedCart_Adminhtml</Ebizmarts_Abandonedcart>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <ebizmarts_abandonedcart>
+                    <file>ebizmarts/abandonedcart.xml</file>
+                </ebizmarts_abandonedcart>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Ebizmarts_AbandonedCart>
+                    <files>
+                        <default>Ebizmarts_AbandonedCart.csv</default>
+                    </files>
+                </Ebizmarts_AbandonedCart>
+            </modules>
+        </translate>
+        <events>
+            <admin_system_config_changed_section_ebizmarts_abandonedcart>
+                <observers>
+                    <ebizmarts_abandoned_save_config>
+                        <class>ebizmarts_abandonedcart/eventObserver</class>
+                        <method>saveConfig</method>
+                    </ebizmarts_abandoned_save_config>
+                </observers>
+            </admin_system_config_changed_section_ebizmarts_abandonedcart>
+        </events>
+    </adminhtml>
+
+    <frontend>
+        <routers>
+            <ebizmarts_abandonedcart>
+                <use>standard</use>
+                <args>
+                    <module>Ebizmarts_AbandonedCart</module>
+                    <frontName>ebizmarts_abandonedcart</frontName>
+                </args>
+            </ebizmarts_abandonedcart>
+        </routers>
+        <layout>
+            <updates>
+                <ebizmarts_abandonedcart>
+                    <file>ebizmarts/abandonedcart.xml</file>
+                </ebizmarts_abandonedcart>
+            </updates>
+        </layout>
+    </frontend>
+    <crontab>
+        <jobs>
+            <ebizmarts_abandoned_cart>
+                <schedule>
+                    <cron_expr>0 */1 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>ebizmarts_abandonedcart/cron::abandoned</model>
+                </run>
+            </ebizmarts_abandoned_cart>
+        </jobs>
+    </crontab>
+    <default>
+        <ebizmarts_abandonedcart>
+            <general>
+                <max>2</max>
+                <subject1>Having trouble?</subject1>
+                <subject2>Limited stock</subject2>
+                <subject3>Coupon Discount!</subject3>
+                <unit>1</unit>
+                <days1>1</days1>
+                <days2>1</days2>
+                <days3>2</days3>
+                <sendon>3</sendon>
+                <mandrill-tag>AbandonedCart</mandrill-tag>
+                <autologin>0</autologin>
+                <page>checkout/cart</page>
+            </general>
+        </ebizmarts_abandonedcart>
+    </default>
+</config>

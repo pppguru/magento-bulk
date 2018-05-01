@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<layout>
+    <!-- main layout definition that adds the column -->
+    <add_order_grid_column_handle>
+        <reference name="sales_order.grid">
+            <action method="addColumnAfter">
+                <columnId>customer_group_id</columnId>
+                <arguments module="sales" translate="header">
+                    <header>Customer Group</header>
+                    <index>customer_group_id</index>
+                    <type>options</type>
+                    <filter>Bulksupplements_CustomerGroupGrid_Block_Widget_Grid_Column_Customer_Group</filter>
+                    <renderer>Bulksupplements_CustomerGroupGrid_Block_Widget_Grid_Column_Renderer_Customer_Group</renderer>
+                    <width>200</width>
+                </arguments>
+                <after>shipping_name</after>
+            </action>
+        </reference>
+    </add_order_grid_column_handle>
+    <!-- order grid action -->
+    <adminhtml_sales_order_grid>
+        <!-- apply the layout handle defined above -->
+        <update handle="add_order_grid_column_handle" />
+    </adminhtml_sales_order_grid>
+    <!-- order grid view action -->
+    <adminhtml_sales_order_index>
+        <!-- apply the layout handle defined above -->
+        <update handle="add_order_grid_column_handle" />
+    </adminhtml_sales_order_index>
+</layout>

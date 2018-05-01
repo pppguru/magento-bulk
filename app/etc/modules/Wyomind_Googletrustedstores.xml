@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Wyomind_Googletrustedstores>
+            <active>true</active>
+            <codePool>local</codePool>
+            <version>1.5.0</version>
+        </Wyomind_Googletrustedstores>
+    </modules>
+</config> 

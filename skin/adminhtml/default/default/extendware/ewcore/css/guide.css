@@ -1,0 +1,77 @@
+#user-guide-frame, #user-guide-bar {
+	position:fixed; 
+	top: 0; 
+	right: 0; 
+	width: 550px;
+	height: 100%; 
+	z-index: 999999998; 
+	text-align: left;
+	background: white;
+	padding: 0;
+	margin: 0;
+}
+
+#user-guide-frame {
+	-webkit-box-shadow: -7px 7px 5px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    -7px 7px 5px rgba(50, 50, 50, 0.75);
+	box-shadow:         -7px 7px 5px rgba(50, 50, 50, 0.75);
+}
+
+#user-guide-frame-loader {
+	margin-top: 80px;
+	font-size: 14px;
+	padding: 5px;
+	border-bottom: 1px solid black;
+}
+
+#user-guide-bar { 
+	background: #A8A8A8;
+	-webkit-box-shadow: 0px 4px 5px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    0px 4px 5px rgba(50, 50, 50, 0.75);
+	box-shadow:         0px 4px 5px rgba(50, 50, 50, 0.75);
+	height: 30px;
+	z-index: 999999999;
+	top: 0px; right: 0px;
+}
+
+#user-guide-bar span.rwheader { 
+	font-size: 20px; 
+	font-weight: bold; 
+	color: #4D4D4D;
+	margin-left: 20px;
+	margin-top: 5px;
+	background: none;
+	float: left;
+	text-shadow: 0px 1px 1px white;
+}
+
+#user-guide-bar div.rwclose { 
+	display:inline; 
+	float: right; 
+	color: black;
+	cursor: pointer;
+	width: 30px; height: 30px;
+	margin-top: 0px; margin-right: 5px;
+	text-align: center; text-valign: middle;
+}
+
+#user-guide-bar div.rwclose div {
+	color: #4D4D4D;
+	font-weight: bold; font-size: 18px; padding-top: 5px;
+	text-shadow: 0px 1px 1px white;
+}
+
+#user-guide-frame iframe {
+	position: absolute;
+	border: none; padding-top: 30px;
+	top: 0; left: 0; width: 100%; height: 100%;
+	box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+
+#user-guide-button {
+	position: fixed;
+	background: url("../images/user-guide-button.png") no-repeat scroll right center transparent;
+	cursor: pointer; display: block;
+	width: 25px; height: 145px;
+	right: 0; top: 200px;
+}

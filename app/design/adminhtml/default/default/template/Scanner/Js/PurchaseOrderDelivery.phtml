@@ -1,0 +1,282 @@
+<script>
+
+    var productIdForAddBarcodeInPo = '';
+
+    //***************************************************************************************************
+    //
+    function linkBarcodeForPo(productId)
+    {
+        productIdForAddBarcodeInPo = productId;
+        enableCatchKeys('addProductBarcodeForPo(KC_value);');
+        showInputBox('Please scan barcode for ' + getProductName(productId));
+    }
+
+    //***************************************************************************************************
+    //
+    function addLocationForPo(productId)
+    {
+        productIdForAddBarcodeInPo = productId;
+        enableCatchKeys('addProductLocationForPo(KC_value);');
+        showInputBox('Please scan location for ' + getProductName(productId));
+    }
+
+    //***************************************************************************************************
+    //Manually add a location for a product in a PO
+    function addProductLocationForPo(barcode)
+    {
+        var productId = productIdForAddBarcodeInPo;
+        var i;
+        for (i=0;i<products.length;i++)
+        {
+            if (products[i]['id'] == productId)
+            {
+                products[i]['location'] = barcode;
+                document.getElementById('location_' + productId).value = barcode;
+            }
+        }
+
+        //reenable barcode scanning
+        resetHandledKey();
+        enableCatchKeys('newScanEntryForPurchaseOrder(KC_value);');
+        closeSimpleMessage();
+    }
+
+    //***************************************************************************************************
+    //Manually add a barcode for a product in a PO
+    function addProductBarcodeForPo(barcode)
+    {
+        var productId = productIdForAddBarcodeInPo;
+        var i;
+        for (i=0;i<products.length;i++)
+        {
+            if (products[i]['id'] == productId)
+            {
+                var nb = products[i]['barcodes'].length + 1;
+                products[i]['barcodes'][nb] = barcode;
+                document.getElementById('barcode_' + productId).value = barcode;
+            }
+        }
+
+        //reenable barcode scanning
+        resetHandledKey();
+        enableCatchKeys('newScanEntryForPurchaseOrder(KC_value);');
+        closeSimpleMessage();
+    }
+
+    //***************************************************************************************************
+    //return product name from product id
+    function getProductName(productId)
+    {
+        var i;
+        for (i=0;i<products.length;i++)
+        {
+            if (products[i]['id'] == productId)
+            {
+                return products[i]['name'];
+            }
+        }
+
+        return 'unknown';
+    }
+
+    //***************************************************************************************************
+    //Increment product qty
+    function incrementProductQty(productId)
+    {
+
+        var qty = document.getElementById('product_' + productId).value;
+        qty++;
+        document.getElementById('product_' + productId).value = qty;
+        document.getElementById('span_product_' + productId).innerHTML = qty;
+
+        colorProductCell(productId);
+    }
+
+    //***************************************************************************************************
+    //decrement product qty
+    function decrementProductQty(productId)
+    {
+        var qty = document.getElementById('product_' + productId).value;
+        if (qty > 0)
+        {
+            qty--;
+            document.getElementById('product_' + productId).value = qty;
+            document.getElementById('span_product_' + productId).innerHTML = qty;
+        }
+
+        colorProductCell(productId);
+    }
+
+    //**************************************************************************************************************
+    //Check if all products qty for 1 manufacturer are ok
+    function sortObjectProductsQtyReached(sortValue)
+    {
+        var i;
+        for (i=0;i<products.length;i++)
+        {
+            if (products[i]['sort_value'] == sortValue)
+            {
+                var productId = products[i]['id'];
+                var expectedQty = products[i]['expected_qty'];
+                var scannedQty = document.getElementById('product_' + productId).value;
+                if (scannedQty < expectedQty)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    //***************************************************************************************************
+    //Color cell in green whe delivered qty = expected qty
+    function colorProductCell(productId)
+    {
+        var qty = document.getElementById('product_' + productId).value;
+        var color = '';
+
+
+        var i;
+        for (i=0;i<products.length;i++)
+        {
+            if (products[i]['id'] == productId)
+            {
+                color = '#ff0000';
+                if (qty == products[i]['expected_qty'])
+                {
+                    color = '#00FF00';
+
+                    //delete row if configured
+                    if (deleteRowWhenQtyReached == 1)
+                    {
+                        var rowId = 'tr_product_' + productId;
+                        document.getElementById(rowId).style.display = 'none';
+
+                        var sortValue = products[i]['sort_value'];
+                        if (sortObjectProductsQtyReached(sortValue))
+                        {
+                            rowId = 'tr_sortvalue_' + sortValue;
+                            //if (document.getElementById(rowId))
+                            //    document.getElementById(rowId).style.display = 'none';
+                        }
+                    }
+                }
+                if (qty > products[i]['expected_qty'])
+                {
+                    color = '#0000FF';
+
+                    //display row if qty greater
+                    var rowId = 'tr_product_' + productId;
+                    document.getElementById(rowId).style.display = '';
+                }
+            }
+        }
+
+        document.getElementById('tr_product_' + productId).style.color = color;
+        if (color == '#00FF00')
+        {
+            document.getElementById('tr_product_' + productId).style.display = 'none';
+        }
+        else
+        {
+            document.getElementById('tr_product_' + productId).style.display = '';
+        }
+
+    }
+
+    //***************************************************************************************************
+    //Scan new entry for purchase order (add location scan after if enabled)
+
+    var scanLocationProductId = '';
+
+    function newScanEntryForPurchaseOrder(barcode)
+    {
+        var productId = newScanEntry(barcode);
+
+        //ask for location
+        if ((scanLocationAfterProduct == 1) && (productId != ''))
+        {
+            //check if location has already been scaned
+            var currentLocation = '';
+            var i;
+            for (i=0;i<products.length;i++)
+            {
+                if (products[i]['id'] == productId)
+                {
+                    if (products[i]['location'] == '')
+                    {
+                        scanLocationProductId = productId;
+                        enableCatchKeys('scanProductLocation(KC_value);');
+                        showInputBox('Please scan product location for ' + products[i]['name']);
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+
+    //***************************************************************************************************
+    //Scan product location
+    function scanProductLocation(barcode)
+    {
+
+        //store location (if not null)
+        if (barcode != '')
+        {
+            var i;
+            for (i=0;i<products.length;i++)
+            {
+                if (products[i]['id'] == scanLocationProductId)
+                {
+                    products[i]['location'] = barcode;
+                    document.getElementById('location_' + scanLocationProductId).value = barcode;
+                }
+            }
+        }
+
+        //reenable barcode scanning
+        resetHandledKey();
+        enableCatchKeys('newScanEntryForPurchaseOrder(KC_value);');
+        closeSimpleMessage();
+    }
+
+    //***************************************************************************************************
+    //New scan entry
+    function newScanEntry(barcode)
+    {
+        //search for product
+        var productId = null;
+        var i;
+
+        for (i=0;i<products.length;i++)
+        {
+            //search for barcode
+            var j;
+            for(j=0;j<products[i]['barcodes'].length;j++)
+            {
+                
+                if (barcode == products[i]['barcodes'][j])
+                {
+                    //increment qty
+                    var productId = products[i]['id'];
+                    var qty = document.getElementById('product_' + productId).value;
+                    qty++;
+
+                    document.getElementById('product_' + productId).value = qty;
+                    document.getElementById('span_product_' + productId).innerHTML = qty;
+
+                    colorProductCell(productId);
+
+                    resetHandledKey();
+                    return productId;
+                }
+
+            }
+        }
+
+        //if not found..
+        showSimpleMessage('Unable to find product with barcode = "' + barcode + '"');
+        resetHandledKey();
+        return '';
+    }
+
+</script>

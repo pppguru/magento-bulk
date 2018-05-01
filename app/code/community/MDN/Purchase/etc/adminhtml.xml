@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <erp>
+                        <children>
+                            <purchasing module="purchase">
+                                <title>Purchasing</title>
+                                <children>
+                                    <purchase_supply_needs module="purchase">
+                                        <title>Supply Needs</title>
+                                        <children>
+                                            <display_details_column module="purchase">
+                                                <title>Display details column</title>
+                                            </display_details_column>
+                                        </children>
+                                    </purchase_supply_needs>
+                                    <purchase_orders module="purchase">
+                                        <title>Purchase orders</title>
+                                        <children>
+                                            <can_edit_locked_po module="purchase">
+                                                <title>Can edit locked PO</title>
+                                            </can_edit_locked_po>
+                                            <create module="purchase">
+                                                <title>Create</title>
+                                            </create>
+                                            <delete module="purchase">
+                                                <title>Delete</title>
+                                            </delete>
+                                            <import_supply_needs module="purchase">
+                                                <title>Import the supply needs</title>
+                                            </import_supply_needs>
+                                            <edit module="purchase">
+                                                <title>Edit</title>
+                                            </edit>
+                                            <scanner_delivery module="purchase">
+                                                <title>Scanner delivery</title>
+                                            </scanner_delivery>
+                                            <print module="purchase">
+                                                <title>Print PO</title>
+                                            </print>
+                                            <export module="purchase">
+                                                <title>Export</title>
+                                            </export>
+                                            <tabs module="purchase">
+                                                <title>Tabs</title>
+                                                <children>
+                                                    <accounting module="purchase">
+                                                        <title>Accounting</title>
+                                                    </accounting>
+                                                    <history module="purchase">
+                                                        <title>History</title>
+                                                    </history>
+                                                    <deliveries module="purchase">
+                                                        <title>Deliveries</title>
+                                                        <children>
+                                                            <print_location module="purchase">
+                                                                <title>Print location</title>
+                                                            </print_location>
+                                                            <print_barcode module="purchase">
+                                                                <title>Print barcode</title>
+                                                            </print_barcode>
+                                                        </children>
+                                                    </deliveries>
+                                                    <supplier_notification module="purchase">
+                                                        <title>Supplier notification</title>
+                                                    </supplier_notification>
+                                                    <add_products module="purchase">
+                                                        <title>Add products</title>
+                                                    </add_products>
+                                                    <import_products module="purchase">
+                                                        <title>Import products</title>
+                                                    </import_products>
+                                                </children>
+                                            </tabs>
+                                        </children>
+                                    </purchase_orders>
+                                    <remaining_supply_quantities module="purchase">
+                                        <title>Remaining supply quantities</title>
+                                    </remaining_supply_quantities>
+                                    <liabilities module="purchase">
+                                        <title>Suppliers liabilities</title>
+                                    </liabilities>
+                                    <purchase_supplier module="purchase">
+                                        <title>Suppliers</title>
+                                        <children>
+                                            <create module="purchase">
+                                                <title>Create</title>
+                                            </create>
+                                            <delete module="purchase">
+                                                <title>Delete</title>
+                                            </delete>
+                                            <new_order module="purchase">
+                                                <title>New order</title>
+                                            </new_order>
+                                            <edit module="purchase">
+                                                <title>Edit</title>
+                                            </edit>
+                                            <show_miscellaneous module="purchase">
+                                                <title>Show miscellaneous tab</title>
+                                            </show_miscellaneous>
+                                            <show_contacts module="purchase">
+                                                <title>Show contacts tab</title>
+                                            </show_contacts>
+                                        </children>
+                                    </purchase_supplier>
+                                    <purchase_contact module="purchase">
+                                        <title>Contacts</title>
+                                    </purchase_contact>
+                                    <purchase_tax_rates module="purchase">
+                                        <title>Tax Rates</title>
+                                    </purchase_tax_rates>
+                                    <supplier_invoices module="purchase">
+                                        <title>Supplier invoices</title>
+                                        <children>
+                                            <create module="purchase">
+                                                <title>Create</title>
+                                            </create>
+                                            <delete module="purchase">
+                                                <title>Delete</title>
+                                            </delete>
+                                            <edit module="purchase">
+                                                <title>Edit</title>
+                                            </edit>
+                                        </children>
+                                    </supplier_invoices>
+                                </children>
+                            </purchasing>
+                            <products>
+                                <children>
+                                    <view>
+                                        <children>
+                                            <purchase_settings module="purchase">
+                                                <title>Purchase settings tab</title>
+                                            </purchase_settings>
+                                            <purchase_orders module="purchase">
+                                                <title>Purchase orders tab</title>
+                                            </purchase_orders>
+                                            <suppliers module="purchase">
+                                                <title>Suppliers tab</title>
+                                                <children>
+                                                    <add module="purchase">
+                                                        <title>Add</title>
+                                                    </add>
+                                                    <delete module="purchase">
+                                                        <title>Delete</title>
+                                                    </delete>
+                                                    <edit module="purchase">
+                                                        <title>Edit</title>
+                                                    </edit>
+                                                    <display_unit_price module="purchase">
+                                                        <title>Display unit price</title>
+                                                    </display_unit_price>
+                                                    <display_discount module="purchase">
+                                                        <title>Display discount</title>
+                                                    </display_discount>
+                                                    <display_last_price module="purchase">
+                                                        <title>Display last price</title>
+                                                    </display_last_price>
+                                                </children>
+                                            </suppliers>
+                                            <packaging module="purchase">
+                                                <title>Packaging tab</title>
+                                            </packaging>
+                                        </children>
+                                    </view>
+                                </children>
+                            </products>
+                        </children>
+                    </erp>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <purchase module="purchase">
+                                        <title>Purchase</title>
+                                    </purchase>
+                                    <planning module="purchase">
+                                        <title>Planning</title>
+                                    </planning>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <translate>
+        <modules>
+            <MDN_Purchase>
+                <files>
+                    <default>MDN_Purchase.csv</default>
+                </files>
+            </MDN_Purchase>
+        </modules>
+    </translate>
+    <menu>
+        <erp>
+            <children>
+                <purchasing translate="title" module="purchase">
+                    <title>Purchasing</title>
+                    <sort_order>20</sort_order>
+                    <children>
+                        <purchase_supply_needs translate="title" module="purchase">
+                            <title>Supply Needs</title>
+                            <action>adminhtml/Purchase_SupplyNeeds/Grid</action>
+                            <sort_order>10</sort_order>
+                        </purchase_supply_needs>
+                        <purchase_orders translate="title" module="purchase">
+                            <title>Purchase orders</title>
+                            <action>adminhtml/Purchase_Orders/List</action>
+                            <sort_order>20</sort_order>
+                        </purchase_orders>
+                        <purchase_supplier translate="title" module="purchase">
+                            <title>Suppliers</title>
+                            <action>adminhtml/Purchase_Suppliers/List</action>
+                            <sort_order>30</sort_order>
+                        </purchase_supplier>
+                        <supplier_invoices translate="title" module="purchase">
+                            <title>Supplier invoices</title>
+                            <action>adminhtml/Purchase_SupplierInvoice/List</action>
+                            <sort_order>40</sort_order>
+                        </supplier_invoices>
+                        <remaining_supply_quantities translate="title" module="purchase">
+                            <title>Remaining supply quantities</title>
+                            <action>adminhtml/Purchase_RemainingSupplyQuantities/List</action>
+                            <sort_order>50</sort_order>
+                        </remaining_supply_quantities>
+                        <purchase_contact translate="title" module="purchase">
+                            <title>Contacts</title>
+                            <action>adminhtml/Purchase_Contacts/List</action>
+                            <sort_order>60</sort_order>
+                        </purchase_contact>
+                        <purchase_tax_rates translate="title" module="purchase">
+                            <title>Tax Rates</title>
+                            <action>adminhtml/Purchase_Tax/List</action>
+                            <sort_order>70</sort_order>
+                        </purchase_tax_rates>
+                    </children>
+                </purchasing>
+            </children>
+            <sort_order>90</sort_order>
+        </erp>
+    </menu>
+
+    <routers>
+        <Purchase>
+            <use>standard</use>
+            <args>
+                <module>MDN_Purchase</module>
+                <frontName>Purchase</frontName>
+            </args>
+        </Purchase>
+    </routers>
+        
+    <layout>
+        <updates>
+            <purchase>
+                <file>purchase.xml</file>
+            </purchase>
+        </updates>
+    </layout>
+</config>

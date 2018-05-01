@@ -1,0 +1,117 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+    $_helper = $this->helper('catalog/output');
+    $_product = $this->getProduct();
+?>
+
+<script>
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+
+<?php echo $this->getChildHtml('external.pagecache.cookie') ?>
+
+<div class="product">
+
+    <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+    <h2 class="product__title"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+
+    <div class="product__admiration">
+        <?php echo $this->getReviewsSummaryHtml($_product, false, false)?>
+    </div>
+
+    <div class="product__gallery">
+        <?php echo $this->getChildHtml('product.info.gallery') ?>
+    </div><!-- .product__gallery -->
+
+    <form class="product__buy-form form" id="product_addtocart_form" action="<?php echo $this->helper('aw_mobile3/url')->getAddToCartUrl($_product, array(), $this->getData('submit_route_data')) ?>" method="post" enctype="multipart/form-data">
+
+        <?php echo $this->getBlockHtml('formkey') ?>
+
+        <input type="hidden" name="product" value="<?php echo $_product->getId() ?>">
+        <input type="hidden" name="related_product" id="related-products-field" value="">
+
+        <?php if (!$_product->getTypeInstance() instanceof Mage_Catalog_Model_Product_Type_Grouped): ?>
+            <div class="product__type-data">
+                <?php echo $this->getChildHtml('product_type_data') ?>
+            </div>
+        <?php endif;?>
+
+        <?php echo $this->getChildHtml('product_options_wrapper') ?>
+
+        <?php echo $this->getTierPriceHtml() ?>
+
+        <?php if($_product->isSaleable()): ?>
+            <?php echo $this->getChildHtml('addtocart') ?>
+        <?php endif; ?>
+
+        <?php if ($this->helper('wishlist')->isAllow()): ?>
+            <p class="product__wishlist">
+                <?php echo $this->getChildHtml('addto') ?>
+            </p>
+
+            <script>
+                var productAddToCartForm = new VarienForm('product_addtocart_form');
+
+                productAddToCartForm.submitLight = function(button, url) {
+                   if (this.validator) {
+                       var nv = Validation.methods;
+                       delete Validation.methods['required-entry'];
+                       delete Validation.methods['validate-one-required'];
+                       delete Validation.methods['validate-one-required-by-name'];
+                       // Remove custom datetime validators
+                       for (var methodName in Validation.methods) {
+                           if (methodName.match(/^validate-datetime-.*/i)) {
+                               delete Validation.methods[methodName];
+                           }
+                       }
+
+                       if (this.validator.validate()) {
+                               if (url) {
+                                   this.form.action = url;
+                               }
+                               this.form.submit();
+                           }
+                           Object.extend(Validation.methods, nv);
+                       }
+                }.bind(productAddToCartForm);
+            </script>
+        <?php endif; ?>
+
+        <?php if ($_product->getTypeInstance() instanceof Mage_Catalog_Model_Product_Type_Grouped): ?>
+            <?php echo $this->getChildHtml('product_type_data') ?>
+        <?php endif;?>
+    </form>
+
+    <?php echo $this->getChildHtml('info_tabs') ?>
+    <!--According to google adwords, we need to add these disclaimers at the end. Mohin, 25 Nov 2015 -->
+    <?php if($_product->getAddLegalDisclaimer()): ?>
+        <p class="add-legal-disclaimer">*NOTE: These statements have not been evaluated by the Food and Drug Administration.  This product is not intended to diagnose, treat, cure or prevent any disease.</p>
+        <p class="add-legal-disclaimer">**DISCLAIMER: There is no guarantee of specific results and results can vary.</p>
+    <?php endif; ?>
+
+</div><!-- .product -->

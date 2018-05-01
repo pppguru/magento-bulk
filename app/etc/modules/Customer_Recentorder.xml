@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Customer_Recentorder>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Customer_Recentorder>
+    </modules>
+</config>

@@ -1,0 +1,666 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Advancedreports
+ * @version    2.5.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php $numColumns = sizeof($this->getColumns()); ?>
+<?php if($this->getCollection()): ?>
+    <script>
+        var _submitEnabled = true;
+    </script>
+    <?php if($this->canDisplayContainer()): ?>
+        <?php if($this->getGridHeader()): ?>
+        <div class="content-header">
+            <table cellspacing="0">
+                <tr>
+                    <td style="width:50%;"><h2><?php echo $this->getGridHeader(); ?></h2></td>
+                </tr>
+            </table>
+        </div>
+        <?php endif ?>
+        <div id="<?php echo $this->getId() ?>">
+    <?php else: ?>
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php endif; ?>
+    <?php if($this->getStoreSwitcherVisibility() || $this->getDateFilterVisibility()): ?>
+        <?php if($this->getStoreSwitcherVisibility()): ?>
+            <?php echo $this->getStoreSwitcherHtml() ?>
+        <?php endif ?>
+        <?php if ( Mage::helper('advancedreports')->confShowChart() && $this->hasRecords() ): ?>
+        <?php if ($this instanceof AW_Advancedreports_Block_Advanced_Country_Grid) : ?>
+        <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+        <script type="text/javascript">
+            google.load('visualization', '1', {'packages': ['geochart']});
+        </script>
+        <?php endif ?>
+        <div id="aw_chart_container" style="width: 100%;"></div>
+        <?php endif; ?>
+        <table cellspacing="0" class="actions">
+            <tr>
+        <?php if($this->getDateFilterVisibility()): ?>
+            <td class="a-left filter">
+                <?php if ( $this->getIsSalesByProduct() ): ?>
+                <div class="f-left">
+                   <div class="aw_arep_sku_container">
+                     <div><?php echo $this->__('SKU') ?>:&nbsp;<input class="input-text no-changes required-entry advanced-filter" title="<?php echo  $this->__('Enter product SKUs, separated by comma'); ?>"  value="<?php echo $this->getFilter('product_sku') ?>" type="text" name="product_sku" id="product_sku" />&nbsp;</div>
+                     <div id="product_sku_advaice"></div>
+                     <div id="product_sku_loader" class="aw_arep_sku_loader"></div>
+                     <div id="product_sku_dropdown" class="aw_arep_sku_dropdown">
+                         <ul id="aw_arep_ul" class="product_sku_dropdown_ul" onmouseout="_skus.mouseOut(event); return false;" ></ul>
+                     </div>
+                   </div>
+                    <script type="text/javascript">
+                        var _skus = new AWAdvancedReportsSkus({
+                            input:    'product_sku',
+                            loader:   'product_sku_loader',
+                            dropdown: 'product_sku_dropdown',
+                            sku_ul: 'aw_arep_ul',
+                            disable_selector: '#product_sku_dropdown ul li.active',
+                            url: '<?php echo $this->getUrl('advancedreports_admin/product/getSku', array('sku'=>'{{sku}}', 'limit'=>'{{limit}}')); ?>',
+                            store_url: '<?php echo $this->getUrl('advancedreports_admin/product/storeSku', array('sku'=>'{{sku}}')); ?>',
+                            limit: <?php echo $this->getCustomOption('product_sku_limit') ? $this->getCustomOption('product_sku_limit') : 10; ?>,
+                            template: '<li id="{{sku_id}}" class="is_li"><div id="overlay_{{sku_id}}" class="aw_arep_sku_li_overlay" onmousemove="_skus.mouseOver(event); return false;" onclick="_skus.mouseClick(event); return false;" ></div><span id="span_{{sku_id}}">{{sku_title}}</span></li>'
+                        });
+
+                    </script>
+                </div>
+                <?php endif; ?>
+                <div class="f-left">
+                    <?php echo $this->__('Range') ?>:
+                    <select  class="input-text no-changes advanced-filter" name="custom_date_range" id="custom_date_range" name="custom_date_range" style="width:15em" onchange="switchDateRange();">
+                        <?php foreach ( Mage::helper('advancedreports')->getOptions($this->getId()) as $option ): ?>
+                            <option value="<?php echo  $option['value'] ?>" <?php if ( $this->getFilter('custom_date_range') ? $this->getFilter('custom_date_range') === $option['value'] : isset($option['default'])  ): ?>selected<?php endif; ?>><?php echo  Mage::helper('advancedreports')->__($option['label']) ?></option>
+                        <?php endforeach; ?>
+                    </select>&nbsp;
+                </div>
+                <div class="f-left">
+                    <div><?php echo $this->__('From') ?>:&nbsp;<input class="input-text no-changes required-entry advanced-filter" type="text" id="period_date_from" name="report_from" value="<?php echo $this->getFilter('report_from') ?>" style="width:5em" onchange="setCustomRange();" /> <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" title="<?php echo $this->__('Select Date') ?>" id="period_date_from_trig" alt="<?php echo $this->__('Select Date') ?>" class="v-middle"/>&nbsp;&nbsp;</div>
+                    <div id="period_date_from_advaice"></div>
+                </div>
+
+                <div class="f-left">
+                    <div><?php echo $this->__('To') ?>:&nbsp;<input  class="input-text no-changes required-entry advanced-filter" type="text" id="period_date_to" name="report_to"  value="<?php echo $this->getFilter('report_to') ?>" style="width:5em"  onchange="setCustomRange();" /> <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" title="<?php echo $this->__('Select Date') ?>"id="period_date_to_trig" alt="<?php echo $this->__('Select Date') ?>"/>&nbsp;&nbsp;</div>
+                    <div id="period_date_to_advaice"></div>
+                </div>
+                <div class="f-left"<?php  if ( $this->getHideShowBy() ): ?> style="display:none;"<?php endif; ?>>
+                    <?php echo $this->__('Show by') ?>:
+                    <select name="report_period" id="report_period" onchange="setCustomRange(true);" style="width:6em;" class="advanced-filter">
+                    <?php foreach ($this->getPeriods() as $_value=>$_label): ?>
+                        <option value="<?php echo $_value ?>" <?php if($this->getFilter('report_period')==$_value): ?> selected<?php endif; ?>><?php echo $_label ?></option>
+                    <?php endforeach; ?>
+                    </select>&nbsp;
+                </div>
+                <?php if ( Mage::helper('advancedreports')->confShowChart()/* && $this->hasRecords()*/ && !$this->getNeedReload() ): ?>
+                    <?php if ($this->getChartParams() && count($this->getChartParams()) > 1): ?>
+                            <div class="f-left">
+                                <select class="left-col-block advanced-filter" name="param_selector" id="param_selector"  onchange="" style="width: 10em;"<?php if (!$this->hasRecords()): ?> disabled<?php endif; ?>>
+                            <?php foreach( $this->getChartParams() as $param ): ?>
+                                <option value="<?php echo  $param['value'] ?>"<?php if( $this->getFilter('param_selector') === $param['value'] ): ?>  selected<?php endif; ?>><?php echo Mage::helper('reports')->__( $param['label'] ) ?></option>
+                            <?php endforeach; ?>
+                            </select>&nbsp;
+                            </div>
+                    <?php elseif ($this->getChartParams() && count($this->getChartParams()) == 1): ?>
+                        <?php $params = $this->getChartParams(); ?>
+                        <input type="hidden" class="advanced-filter" name="param_selector" id="param_selector" value="<?php echo  $params[0]['value'] ?>" />
+                    <?php endif; ?>
+                <?php elseif( (Mage::helper('advancedreports')->confShowChart() || $this->getShowAnyway() ) && $this->getNeedReload() ): ?>
+                            <div class="f-left">
+                            <?php $params = $this->getChartParams(); ?>
+                            <input type="hidden" class="advanced-filter" name="param_selector" id="param_selector" value="<?php echo  $params[0]['value'] ?>" />
+                            <select class="left-col-block" class="advanced-filter" name="reload_key" id="reload_key" onchange="" style="width: 7em;">
+                            <?php foreach( Mage::helper('advancedreports')->getReloadKeys() as $key ): ?>
+                                <option value="<?php echo  $key['value'] ?>"<?php if( $this->getFilter('reload_key') === $key['value'] ): ?>  selected<?php endif; ?>><?php echo Mage::helper('reports')->__( $key['label'] ) ?></option>
+                            <?php endforeach; ?>
+                            </select>&nbsp;
+                            </div>
+                <?php endif; ?>
+                <?php if ($this->setShowAdditionalSelector()): ?>
+                    <?php echo $this->getAdditionalSelectorHtml(); ?>
+                <?php endif; ?>
+                <div class="f-left">
+                    <?php echo $this->getRefreshButtonHtml() ?>
+                    <?php if ($this->getFilterVisibility()): ?>
+                        <?php echo $this->getResetButtonHtml() ?>
+                    <?php endif; ?>
+                </div>
+            </td>
+        <?php endif; ?>
+
+            <td class="a-right">
+
+            <?php if($this->getExportVisibility()): ?>
+                <div class="aw-arep-export">
+                    <img src="<?php echo $this->getSkinUrl('images/icon_export.gif') ?>" alt="" class="v-middle"/>&nbsp; <?php echo $this->__('Export to:') ?>
+                    <select name="<?php echo $this->getId() ?>_export" id="<?php echo $this->getId() ?>_export" style="width:8em;">
+                    <?php foreach ($this->getExportTypes() as $_type): ?>
+                        <option value="<?php echo $_type->getUrl() ?>"><?php echo $_type->getLabel() ?></option>
+                    <?php endforeach; ?>
+                    </select>
+                    <?php echo $this->getExportButtonHtml() ?>
+                </div>
+            <?php endif; ?>
+                <?php echo $this->getSetupHtml(); ?>
+            </td>
+            </tr>
+        </table>
+    <?php endif; ?>
+    <?php if ( !$this->getHideNativeGrid() ): ?>
+        <div class="grid">
+        <table cellspacing="0" class="data" id="<?php echo $this->getId() ?>_table">
+            <col/>
+            <?php foreach ($this->getColumns() as $_column): ?>
+            <col <?php echo $_column->getHtmlProperty() ?>/>
+            <?php endforeach; ?>
+            <?php if ($this->getHeadersVisibility() || $this->getFilterVisibility()): ?>
+                <thead>
+                    <?php if ($this->getHeadersVisibility()): ?>
+                        <tr class="headings">
+                        <th class="no-link" style="width:100px"><span class="no-br"><?php echo $this->getPeriodText() ?></span></th>
+                        <?php foreach ($this->getColumns() as $_column): ?>
+                            <th <?php echo $_column->getHeaderHtmlProperty() ?>><span class="no-br"><?php echo $_column->getHeaderHtml() ?></span></th>
+                        <?php endforeach; ?>
+                        </tr>
+                    <?php endif; ?>
+                </thead>
+            <?php endif; ?>
+            <tbody>
+            <?php if ($this->getCollection()->getSize()): ?>
+            <?php foreach ($this->getCollection()->getIntervals() as $_index => $_item): ?>
+                <tr>
+                <?php $report=$this->getReport($_item['start'], $_item['end']) ?>
+                <?php $rows=count($report) ?>
+                <?php if ($rows > 0 ): ?>
+                <td rowspan="<?php echo $rows + ($this->getCountTotals() && $this->getSubtotalVisibility()?1:0) ?>"><?php echo $_index ?></td>
+                    <?php $i=0;foreach ($report as $_subIndex=>$_subItem): ?>
+                        <?php if($i>0): ?>
+                        <tr>
+                        <?php endif; ?>
+                        <?php $i++; ?>
+                        <?php $j=0;foreach ($this->getColumns() as $_column): ?>
+                            <td class="<?php echo $_column->getCssProperty() ?> <?php echo ++$j==$numColumns?'last':'' ?>">
+                                <?php echo (($_html = $_column->getRowField($_subItem)) != '' ? $_html : '&nbsp;') ?>
+                            </td>
+                        <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                    <?php if($this->getCountTotals() && $rows > 0 && $this->getSubtotalVisibility()): ?>
+                    <tr>
+                        <?php $j=0;foreach ($this->getColumns() as $_column): ?>
+                            <td class="<?php echo $_column->getCssProperty() ?> <?php echo ++$j==$numColumns?'last':'' ?> subtotal">
+                                <?php echo ($j==1)?$this->getSubtotalText():$_column->getRowField($this->getTotals()) ?>
+                            </td>
+                        <?php endforeach; ?>
+                    </tr>
+                    <?php endif; ?>
+                <?php else: ?>
+                    <td><?php echo $_index ?></td>
+                    <td colspan="<?php echo $numColumns ?>" class="empty-text <?php echo $this->getEmptyTextClass() ?> last"><?php echo $this->getEmptyText() ?></td>
+                <?php endif; ?>
+                </tr>
+            <?php endforeach; ?>
+            <?php elseif ($this->getEmptyText()): ?>
+                <tr>
+                  <td class="empty-text <?php echo $this->getEmptyTextClass() ?>" colspan="100"><?php echo $this->getEmptyText() ?></td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+            <?php if ($this->getCountTotals() && $this->getCollection()->getSize()): ?>
+            <tfoot>
+                <tr><th><?php echo $this->getTotalText() ?></th>
+                <?php $j=0;foreach ($this->getColumns() as $_column): ?>
+                    <th class="<?php echo $_column->getCssProperty() ?> <?php echo ++$j==$numColumns?'last':'' ?>"><?php echo $_column->getRowField($this->getGrandTotals()) ?></th>
+                <?php endforeach; ?>
+                </tr>
+             </tfoot>
+            <?php endif; ?>
+        </table>
+        </div>
+    <?php endif; ?>
+    <?php if ( $this->getShowCustomGrid() ): ?>
+        <?php Varien_profiler::start('aw::advancedreports::grid.phtml::rendering'); ?>
+        <!-- AW Advanced Reports Show Advanced Reports -->
+        <div class="grid">
+        <table cellspacing="0" class="data" id="<?php echo $this->getId() ?>_table">
+            <?php foreach ($this->getColumns() as $_column): ?>
+            <col <?php echo $_column->getHtmlProperty() ?>/>
+            <?php endforeach; ?>
+            <?php if ($this->getHeadersVisibility() || $this->getFilterVisibility()): ?>
+                <thead>
+                    <?php if ($this->getHeadersVisibility()): ?>
+                        <tr class="headings">
+                        <?php foreach ($this->getColumns() as $_column): ?>
+                            <th <?php echo $_column->getHeaderHtmlProperty() ?>><span class="no-br"><?php echo $_column->getHeaderHtml() ?></span></th>
+                        <?php endforeach; ?>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($this->getFilterVisibility()): ?>
+                        <tr class="filter">
+                        <?php $i=0;foreach ($this->getColumns() as $_column): ?>
+                            <th<?php echo $_column->getHeaderHtmlProperty() ?>><?php echo $_column->getFilterHtml() ?></th>
+                        <?php endforeach; ?>
+                        </tr>
+                    <?php endif ?>
+                </thead>
+            <?php endif; ?>
+            <tbody>
+            <?php if ( count( $this->getGridData() ) ): ?>
+            <?php foreach ($this->getGridData() as $data ): ?>
+                <tr>
+                <?php $j=0;foreach ($this->getColumns() as $_column): ?>
+                    <?php Varien_profiler::start('aw::advancedreports::grid.phtml::rendering::row'); ?>
+                    <?php Varien_profiler::start('aw::advancedreports::grid.phtml::rendering::cell'); ?>
+                    <td class="<?php echo $_column->getCssProperty() ?> <?php echo ++$j==$numColumns?'last':'' ?>">
+                        <?php echo (($_html = $_column->getRowField( $data )) != '' ? $_html : '&nbsp;') ?>
+                    </td>
+                    <?php Varien_profiler::stop('aw::advancedreports::grid.phtml::rendering::cell'); ?>
+                <?php endforeach; ?>
+                <?php Varien_profiler::stop('aw::advancedreports::grid.phtml::rendering::row'); ?>
+                </tr>
+            <?php endforeach; ?>
+            <?php elseif ($this->getEmptyText()): ?>
+                <tr>
+                  <td class="empty-text <?php echo $this->getEmptyTextClass() ?>" colspan="100"><?php echo $this->getEmptyText() ?></td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+            <?php if ($this->getNeedTotal() && $this->getCountTotals() && count( $this->getGridData() )): ?>
+            <tfoot>
+                <tr>
+                <?php $numColumns = count($this->getColumns()); ?>
+                <?php $_isFirst = true; ?>
+                <?php $j=1;foreach ($this->getColumns() as $_column): ?>
+                    <?php if ($_isFirst): ?>
+                        <th><?php echo $this->getTotalText() ?></th>
+                    <?php elseif ($_column->getType() == "action" || $_column->getDisableTotal()): ?>
+                        <th class="<?php echo $_column->getCssProperty() ?> <?php echo ++$j==$numColumns?'last':'' ?>"></th>
+                    <?php else: ?>
+                        <?php Varien_profiler::start('aw::advancedreports::grid.phtml::rendering::total_cell'); ?>
+                        <th class="<?php echo $_column->getCssProperty() ?> <?php echo ++$j==$numColumns?'last':'' ?>"><?php echo $_column->getRowField($this->getGrandTotals()) ?></th>
+                        <?php Varien_profiler::stop('aw::advancedreports::grid.phtml::rendering::total_cell'); ?>
+                    <?php endif; ?>
+                    <?php $_isFirst = false; ?>
+                <?php endforeach; ?>
+                </tr>
+             </tfoot>
+            <?php endif; ?>
+        </table>
+        </div>
+        <?php Varien_profiler::stop('aw::advancedreports::grid.phtml::rendering'); ?>
+    <?php endif; ?>
+<?php if($this->canDisplayContainer()): ?>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+var CAWAdvancedReports = Class.create({
+    initialize:function (name) {
+        window[name] = this;
+        this._initRanges();
+    },
+
+    _initRanges:function () {
+        <?php $values = Mage::helper('advancedreports')->getRangeValues() ?>
+        this._keys = [
+            <?php foreach ($values as $value): ?>
+                '<?php echo  $value['key'] ?>',
+                <?php endforeach; ?>
+        ];
+        this._from_dates = [
+            <?php foreach ($values as $value): ?>
+                '<?php echo  $value['from'] ?>',
+                <?php endforeach; ?>
+        ];
+        this._to_dates = [
+            <?php foreach ($values as $value): ?>
+                '<?php echo  $value['to'] ?>',
+                <?php endforeach; ?>
+        ];
+        this._periods = [
+            <?php foreach ($values as $value): ?>
+                <?php echo  isset($value['period']) ? "'" . $value['period'] . "'" : "null" ?>,
+                <?php endforeach; ?>
+        ];
+
+        for (var i = 0; i < this._from_dates.length; i++) {
+            if (!this._from_dates[i]
+                || typeof(this._to_dates[i]) == 'undefined'
+                || !this._to_dates[i]) {
+                // There is no values for some key - remove option from select
+                var option = $$('#custom_date_range>option[value="' + this._keys[i] + '"]').first();
+                if (typeof(option) != 'undefined') {
+                    option.remove();
+                }
+            }
+        }
+    },
+
+    getKeys:function () {
+        return this._keys;
+    },
+
+    getFromDates:function () {
+        return this._from_dates;
+    },
+
+    getToDates:function () {
+        return this._to_dates;
+    },
+
+    getPeriods:function () {
+        return this._periods;
+    }
+});
+new CAWAdvancedReports('awadvancedreports');
+
+var getFilterValue = function(){
+
+        var filters = $$('#'+<?php echo $this->getJsObjectName() ?>.containerId+' .filter input',
+                        '#'+<?php echo $this->getJsObjectName() ?>.containerId+' .filter select',
+                        '#'+<?php echo $this->getJsObjectName() ?>.containerId+'_table .filter input',
+                        '#'+<?php echo $this->getJsObjectName() ?>.containerId+' .advanced-filter',
+                        '#'+<?php echo $this->getJsObjectName() ?>.containerId+'_table .filter select');
+        var elements = [];
+        for(var i in filters){
+            if(filters[i].value && filters[i].value.length) elements.push(filters[i]);
+        }
+        return encode_base64(Form.serializeElements(elements));
+    };
+
+    var watchKeys = new Array();
+    <?php if (($addKeys = $this->getAdditionalKeys()) && is_array($addKeys)): ?>
+    <?php foreach ($addKeys as $key): ?>
+    watchKeys.push('<?php echo $key ?>');
+    <?php endforeach; ?>
+    <?php endif; ?>
+
+    varienGrid.prototype.doSort = function(event){
+        var element = Event.findElement(event, 'a');
+        if(element.name && element.title){
+            this.addVarToUrl(this.sortVar, element.name);
+            this.addVarToUrl(this.dirVar, element.title);
+            this.addVarToUrl(this.filterVar, getFilterValue());
+            this.reload(this.url);
+        }
+        Event.stop(event);
+        return false;
+    }
+
+
+    <?php echo $this->getJsObjectName() ?> = new varienGrid('<?php echo $this->getId() ?>', '<?php echo $this->getGridUrl() ?>', '<?php echo $this->getVarNamePage() ?>', '<?php echo $this->getVarNameSort() ?>', '<?php echo $this->getVarNameDir() ?>', '<?php echo $this->getVarNameFilter() ?>');
+    <?php echo $this->getJsObjectName() ?>.useAjax = '<?php echo $this->getUseAjax() ?>';
+    <?php if($this->getDateFilterVisibility()):?>
+    <?php echo $this->getJsObjectName() ?>.doFilterCallback = validateFilterDate;
+
+    <?php echo $this->getJsObjectName() ?>.resetFilter = function(){
+        var report_from = $('period_date_from').value;
+        var report_to = $('period_date_to').value;
+        var param_selector = $('param_selector').value;
+        var custom_date_range = $('custom_date_range').value;
+        var def_str = 'report_from='+ report_from +'&report_to='+ report_to +'&param_selector='+ param_selector +'&custom_date_range=' + custom_date_range;
+        this.addVarToUrl(this.filterVar, encode_base64(def_str));
+        this.addVarToUrl(this.sortVar, '');
+        this.addVarToUrl(this.dirVar, '');
+        this.addVarToUrl('view_key', '<?php echo $this->getViewKey(); ?>' );
+        this.reload(this.url);
+    }
+
+    <?php echo $this->getJsObjectName() ?>.doFilter = function(){
+        if (_submitEnabled){
+            var filters = $$('#'+this.containerId+' .filter input', '#'+this.containerId+' .filter select', '#'+this.containerId+'_table .filter input', '#'+this.containerId+'_table .filter select');
+            var elements = [];
+            for(var i in filters){
+                if(filters[i].value && filters[i].value.length) elements.push(filters[i]);
+            }
+            if (!this.doFilterCallback || (this.doFilterCallback && this.doFilterCallback())) {
+                this.reload(this.addVarToUrl(this.filterVar, encode_base64(Form.serializeElements(elements))));
+            }
+        }
+    }
+
+    <?php echo $this->getJsObjectName() ?>.reload = function(url){
+        if (!this.reloadParams) {
+            this.reloadParams = {form_key: FORM_KEY};
+        }
+        else {
+            this.reloadParams.form_key = FORM_KEY;
+        }
+        this.addVarToUrl('view_key', '<?php echo $this->getViewKey(); ?>' );
+        url = url || this.url;
+        if(this.useAjax){
+            new Ajax.Request(url + (url.match(new RegExp('\\?')) ? '&ajax=true' : '?ajax=true' ) + '&view_key=<?php echo $this->getViewKey(); ?>', {
+                loaderArea: this.containerId,
+                parameters: this.reloadParams || {},
+                evalScripts: true,
+                onFailure: this._processFailure.bind(this),
+                onComplete: this.initGrid.bind(this),
+                onSuccess: function(transport) {
+                    try {
+                        if (transport.responseText.isJSON()) {
+                            var response = transport.responseText.evalJSON();
+                            if (response.error) {
+                                alert(response.message);
+                            }
+                            if(response.ajaxExpired && response.ajaxRedirect) {
+                                setLocation(response.ajaxRedirect);
+                            }
+                        } else {
+                            $(this.containerId).update(transport.responseText);
+                            reInitGrid();
+                        }
+                    }
+                    catch (e) {
+                        $(this.containerId).update(transport.responseText);
+                    }
+                }.bind(this)
+            });
+            return;
+        } else{
+            if(this.reloadParams){
+                $H(this.reloadParams).each(function(pair){
+                        url = this.addVarToUrl(pair.key, pair.value);
+                }.bind(this));
+            }
+
+//            console.log(url + 'view_key/<?php echo $this->getViewKey(); ?>/');
+            location.href = url;
+        }
+    };
+
+    var period_date_from = $('period_date_from');
+    var period_date_to   = $('period_date_to');
+    period_date_from.advaiceContainer = $('period_date_from_advaice');
+    period_date_to.advaiceContainer   = $('period_date_to_advaice');
+
+    <?php if( $this->getIsSalesByProduct() ): ?>
+    var product_sku      = $('product_sku');
+    product_sku.advaiceContainer      = $('product_sku_advaice');
+    <?php endif; ?>
+    function validateFilterDate()
+    {
+        if (period_date_from && period_date_to<?php if( $this->getIsSalesByProduct() ): ?> && product_sku<?php endif;  ?>) {
+            return Validation.validate(period_date_from) && Validation.validate(period_date_to)<?php if( $this->getIsSalesByProduct() ): ?> && Validation.validate(product_sku)<?php endif;  ?>;
+        }
+        else {
+            return true;
+        }
+    }
+    <?php endif;?>
+
+    function reInitGrid()
+    {
+        if (document.getElementById('period_date_from')){
+            Calendar.setup({
+                inputField : 'period_date_from',
+                ifFormat : '<?php echo $this->getDateFormat() ?>',
+                button : 'period_date_from_trig',
+                align : 'Bl',
+                singleClick : true
+            });
+        }
+        if (document.getElementById('period_date_from')){
+            Calendar.setup({
+                inputField : 'period_date_to',
+                ifFormat : '<?php echo $this->getDateFormat() ?>',
+                button : 'period_date_to_trig',
+                align : 'Bl',
+                singleClick : true
+            });
+        }
+        <?php if ($this->getStoreSwitcherVisibility()): ?>
+        if ($('store_switcher')) {
+            $('store_switcher').disabled = false;
+        }
+        <?php endif; ?>
+    }
+
+    function isStoredCustomDate()
+    {
+        <?php $values = Mage::helper('advancedreports')->getRangeValues() ?>
+        var blackList = [
+        <?php foreach($values as $value): ?>
+             <?php if (strpos($value['key'], 'custom_') !== false ): ?>
+                '<?php echo  $value['key'] ?>',
+             <?php endif; ?>
+        <?php endforeach; ?>
+        ];
+
+        result = false;
+        for (var i = 0; i < blackList.length; i++){
+            if (document.getElementById('custom_date_range').getValue() == blackList[i] ){
+                result = true;
+            }
+        }
+        return !result;
+    }
+
+    function switchDateRange() {
+        var keys = awadvancedreports.getKeys();
+        var from_dates = awadvancedreports.getFromDates();
+        var to_dates = awadvancedreports.getToDates();
+        var periods = awadvancedreports.getPeriods();
+
+        date_range = document.getElementById('custom_date_range');
+        date_from  = document.getElementById('period_date_from');
+        date_to    = document.getElementById('period_date_to');
+        value = date_range.getValue();
+        if (value != 'custom')
+        {
+            var i;
+            for (i = 0;i < keys.length; i++)
+            {
+                if ( keys[i] == value )
+                {
+                    date_from.setValue(from_dates[i]);
+                    date_to  .setValue(to_dates[i]);
+
+                    if ( (periods[i] !== null) &&
+                          (typeof(document.getElementById('report_period')) != 'undefined') ){
+                          var report_period = document.getElementById('report_period');
+                          report_period .setValue(periods[i]);
+                    }
+
+                }
+            }
+        }
+    }
+
+    function setCustomRange(is_not_date){
+
+        if (typeof(is_not_date) == 'undefined'){
+            date_range = document.getElementById('custom_date_range');
+            date_range.setValue('custom');
+        } else {
+            if (!isStoredCustomDate()){
+                date_range = document.getElementById('custom_date_range');
+                date_range.setValue('custom');
+            }
+        }
+    }
+
+    function switchDefDateRange(){
+        switchDateRange();
+        date_range = document.getElementById('custom_date_range');
+        date_from  = document.getElementById('period_date_from');
+        if ('<?php echo  $this->getFilter('report_from') ?>' && '<?php echo  $this->getFilter('report_to')   ?>'){
+            date_from.setValue('<?php echo $this->getFilter('report_from') ?>');
+            date_to  .setValue('<?php echo $this->getFilter('report_to')   ?>');
+            //setCustomRange();
+        }
+        <?php if ( !$this->getDisableAutoload() ): ?>
+        else
+        {
+            <?php echo  $this->getJsObjectName() ?>.doFilter();
+        }
+        <?php endif; ?>
+    }
+
+    switchDefDateRange();
+
+    if (document.getElementById('period_date_from')){
+        Calendar.setup({
+            inputField : 'period_date_from',
+            ifFormat : '<?php echo $this->getDateFormat() ?>',
+            button : 'period_date_from_trig',
+            align : 'Bl',
+            singleClick : true
+        });
+    }
+    if (document.getElementById('period_date_from')){
+        Calendar.setup({
+            inputField : 'period_date_to',
+            ifFormat : '<?php echo $this->getDateFormat() ?>',
+            button : 'period_date_to_trig',
+            align : 'Bl',
+            singleClick : true
+        });
+    }
+    <?php if ($this->hasRecords()): ?>
+    changeParam();
+    function changeParam()
+    {
+        contentElementId =  'aw_chart_container';
+        ajaxBlockParam  =   'block/<?php echo  $this->getRoute() ?>/';
+        ajaxBlockProtocol = 'protocol/' + window.location.protocol + '/';
+        ajaxTypeParam  =    'type/<?php echo  $this->getChartType() ?>/';
+        ajaxOptionParam =   'option/' + document.getElementById('param_selector').getValue() + '/';
+        ajaxWidthParam  =   'width/' + document.getElementById('<?php echo  $this->getId(); ?>').getWidth(document.getElementById('aw_chart_container')) + '/';
+        ajaxBlockUrl =      '<?php echo  $this->getUrl('advancedreports_admin/chart/ajaxBlock') ?>' +
+                            ajaxBlockParam +
+                            ajaxWidthParam +
+                            ajaxTypeParam +
+                            ajaxOptionParam +
+                            ajaxBlockProtocol;
+        ajaxBlockUrl = ajaxBlockUrl.replace(/^http[s]{0,1}/, window.location.href.replace(/:[^:].*$/i, ''));
+        new Ajax.Updater(contentElementId, ajaxBlockUrl, {
+            method: 'post',
+            parameters: {
+                isAjax: 'true',
+                form_key: FORM_KEY
+            },
+            evalScripts: true
+        });
+    }
+    <?php endif; ?>
+//]]>
+</script>
+<?php endif; ?>
+<?php endif; ?>

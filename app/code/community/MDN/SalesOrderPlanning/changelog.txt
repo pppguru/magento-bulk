@@ -1,0 +1,136 @@
+____________________________________________________________________________________________________________________
+v2.3.10 - ERP 2.9.5.2
+
+- ERP product availability status has a new method to be compatible with Google shopping restricted statuses
+- Add refresh cases on product availability status parent refresh
+- Fix shipping delay screen bug on UpdateCarrier Button
+- Fix planning grid renderer display (and csv export) on some ERP installations
+- Fix regression on planning calculation on some ERP installations
+- Fix double qty for some configurable products cases on  product availability status calculation
+- Configurable Front status compatibility with magento 1.9.2.x
+- Limit number of "update planning" generated background tasks
+
+____________________________________________________________________________________________________________________
+v2.3.9 - ERP 2.9.5.0
+
+Feature :
+ - Improve product availability statuses grid
+ - Add delete action in product availability statuses grid
+
+Fix :
+- When a customer cancel an order if Credit card failed, it is mandatory to refresh product availability status ASAP
+- Force refresh the Planning automatically On CreditMemo
+- Fix fast update issue when Stock reservation is disabled
+
+____________________________________________________________________________________________________________________
+v2.3.9 - ERP 2.9.3.4
+  - Create Product availability status if not exist in any call of the Product Availability Status
+  - Avoid blocking if too many product when refresh Product availability status 'Only Missing' and 'All'  : limited to 10000 on each execution
+  - Improve background task message for update product availability status on product save
+  - Refresh product availability status if product change Stock management method
+
+____________________________________________________________________________________________________________________
+v2.3.8 - ERP 2.9.3.0
+
+- Add mass action to refresh product availability status on selection in Tool -> product availability status
+- Planning don't create BG task for planning is option disable it
+- Fix : Avoid planning crash in Background tasks
+- Fix MDN_SalesOrderPlanning_Block_Front_CatalogInventory_Stockqty_Default 
+- Planning in cart and Sales History : Remove option and enabel the usage using the BoostMyShop doc 
+
+____________________________________________________________________________________________________________________
+v2.3.7 - ERP 2.9.2
+
+- Bug fix : option show_planning_in_cart is now also active in the order vie in the customer account.
+- Fix time shift on date display into sales order planning
+
+____________________________________________________________________________________________________________________
+v2.3.6 - ERP 2.9.1
+
+- Fix missing method salesorderitem_aftersave in config.xml
+
+____________________________________________________________________________________________________________________
+v2.3.5 - ERP 2.9.0
+
+- Fix non declared variable in range image helper
+- Product availability statuses are updated immediately after order is placed, without waiting for cron execution
+
+____________________________________________________________________________________________________________________
+v2.3.4
+
+- Fix : reset out of stock period data on product duplication
+- Add unique index on product availability
+- Override configurable product type model to fix magento < 1.6 issue with getSku() method
+
+____________________________________________________________________________________________________________________
+v2.3.2
+
+- Code pool is now community
+- Improve design for estimated date of delivery in cart
+- FIx issue in late orders screen under magento > 1.4.0
+- new button in product availability status screen to refresh only missing statuses
+- Fix : issue with allow backorders and NOT notify customers
+
+____________________________________________________________________________________________________________________
+v2.3.1
+
+- Fix crash on frontend displaying estimated delivery date when planning doesn't exist
+- Change IsConsidered function algorithm (value based on consideration date now)
+- Improve graph display in sales order sheet in adminhtml
+- Add some fix on planning calculation 
+- add quotemode parameter to getPreparationDurationForOrder method
+- Fix : option "Consider Order for Tomorow if placed after" didnt work in cart
+
+____________________________________________________________________________________________________________________
+v2.3
+
+- Fix installation script issue
+- Fix : products without stock management were not saleable
+
+____________________________________________________________________________________________________________________
+v2.2
+
+- Fix: create planning task was scheduled several times
+- Fix: issue with database table prefix for FlatOrder->isFlatOrder
+
+____________________________________________________________________________________________________________________
+v2.1
+
+- Fix some translations
+- Fix some issues on planning update
+- Merge branches 1.4 & 1.4.1
+- Improve performances : plannings are updated only on demand (when customer or admin tries to view it), not automatically
+- Add new "Availability status" tab in ERP > product sheet
+____________________________________________________________________________________________________________________
+v2.0
+
+- Add a new function RefreshAllWithoutBackgroundTasks in ProductAvailabilityStatus helper
+- Update availability status when changing out of stock period information
+- Fix issue to allow sales for product with backorders = true even if out of stock period is current
+- Fix issue to not consider out of stock period if past
+- Add message column in ProductAvailabilityStatus grid (+ new column renderer)
+- Do not consider supply date if past
+- Add a cron task every night to refresh availability status for products having a out of stock period
+
+____________________________________________________________________________________________________________________
+v1.9
+
+- Update planning when sales order is_valid change
+- Add table product_availability, product availability statuses can be view in ERP > tools > product availability status
+- Remove availability.phtml & stock.phtml template, replaced with original simple.phtml
+- Out of stock periods management (in ERP > Product > product sheet > "Out of stock period" tab
+- Add listeners to update product availability statues on product / stock / supplier updates
+- Add missing translations
+____________________________________________________________________________________________________________________
+v1.5
+
+- Fix issue when displaying planning on frontend
+- Add french translations
+- Add adminhtml.xml
+____________________________________________________________________________________________________________________
+v1.4
+
+- Extension creation (purchase extension split)
+- Consider default supply delay for products if not set (setting in system > config > purchase module > purchase product)
+- Planning is not updated every 2 hours using cron (cron upadte plannings with psop_need_update = 1)
+- SAP also contains product availability features for frontend

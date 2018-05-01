@@ -1,0 +1,56 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="newsletter-subscription">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php echo $this->getChildHtml('form_before')?>
+
+    <form action="<?php echo $this->getAction() ?>" method="post" class="form" id="form-validate">
+        <?php echo $this->getBlockHtml('formkey')?>
+        <p class="form__field">
+            <span class="checkbox">
+                <input class="checkbox__self" type="checkbox" name="is_subscribed" id="subscription" <?php if ($this->getIsSubscribed()): ?>checked<?php endif; ?>>
+                <label class="form__label checkbox__label" for="subscription">
+                    <span class="checkbox__icon-wrapper">
+                        <svg class="checkbox__icon checkbox__icon--unchecked svg-icon"><use xlink:href="#icon-checkbox" /></svg>
+                        <svg class="checkbox__icon checkbox__icon--checked svg-icon"><use xlink:href="#icon-checkbox--checked" /></svg>
+                    </span>
+                    <span class="checkbox__text"><?php echo $this->__('General Subscription') ?></span>
+                </label>
+            </span>
+        </p><!-- .form__field -->
+
+        <p class="form__field">
+            <button type="submit" class="form__submit button"><?php echo $this->__('Save') ?></button>
+        </p>
+        <p class="account__back-button">
+            <a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>" class="button button--invert"><?php echo $this->__('Back') ?></a>
+        </p><!-- .form__submit-wrapper -->
+    </form>
+
+    <script>
+        var dataForm = new VarienForm('form-validate', true);
+    </script>
+</div>

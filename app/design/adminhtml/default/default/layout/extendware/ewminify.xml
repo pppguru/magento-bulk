@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_cache_index>
+		<reference name="cache.additional">
+			<block type="ewminify/adminhtml_cache_additional_cache" name="cache.additional.ewminify" template="extendware/ewminify/cache/additional/cache.phtml" />
+		</reference>
+	</adminhtml_cache_index>
+</layout>

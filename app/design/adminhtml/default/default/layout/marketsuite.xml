@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <marketsuite_adminhtml_filter_index>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>aw_marketsuite/css/marketsuite.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="js">
+            <block type="adminhtml/template" template="marketsuite/gridjs.phtml" name="mss_conf"/>
+        </reference>
+        <reference name="content">
+            <block type="marketsuite/adminhtml_filter" name="filter"/>
+        </reference>
+    </marketsuite_adminhtml_filter_index>
+    <marketsuite_adminhtml_filter_edit>
+        <reference name="head">
+            <action method="setCanLoadExtJs">
+                <flag>1</flag>
+            </action>
+            <action method="setCanLoadRulesJs">
+                <flag>1</flag>
+            </action>
+            <action method="addCss">
+                <stylesheet>aw_marketsuite/css/marketsuite.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="marketsuite/adminhtml_filter_edit" name="filter_edit"/>
+        </reference>
+        <reference name="left">
+            <block type="marketsuite/adminhtml_filter_edit_tabs" name="edit_tabs">
+                <block type="marketsuite/adminhtml_filter_edit_tab_main" name="main"/>
+                <action method="addTab">
+                    <name>main_section</name>
+                    <block>main</block>
+                </action>
+                <block type="marketsuite/adminhtml_filter_edit_tab_conditions" name="conditions"/>
+                <action method="addTab">
+                    <name>conditions_section</name>
+                    <block>conditions</block>
+                </action>
+            </block>
+        </reference>
+        <reference name="js">
+            <block type="adminhtml/template" template="marketsuite/js.phtml" name="mss_conf"/>
+        </reference>
+    </marketsuite_adminhtml_filter_edit>
+    <marketsuite_adminhtml_customer_index>
+        <reference name="content">
+            <block type="marketsuite/adminhtml_customer" name="mss.customer"/>
+        </reference>
+    </marketsuite_adminhtml_customer_index>
+    <marketsuite_adminhtml_customer_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="marketsuite/adminhtml_customer_grid" name="mss.customer.grid"/>
+        </block>
+    </marketsuite_adminhtml_customer_grid>
+    <marketsuite_adminhtml_order_index>
+        <reference name="content">
+            <block type="marketsuite/adminhtml_order" name="mss.order"/>
+        </reference>
+    </marketsuite_adminhtml_order_index>
+    <marketsuite_adminhtml_order_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="marketsuite/adminhtml_order_grid" name="mss.order.grid"/>
+        </block>
+    </marketsuite_adminhtml_order_grid>
+    <adminhtml_customer_edit>
+        <reference name="content">
+            <block type="adminhtml/template" template="marketsuite/backurl.phtml"/>
+        </reference>
+    </adminhtml_customer_edit>
+    <adminhtml_sales_order_view>
+        <reference name="content">
+            <block type="adminhtml/template" template="marketsuite/backurl.phtml"/>
+        </reference>
+    </adminhtml_sales_order_view>
+</layout>

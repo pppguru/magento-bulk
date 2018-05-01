@@ -1,0 +1,126 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="add-review">
+    <h2 class="add-review__title"><?php echo $this->__('Write Your Own Review') ?></h2>
+
+    <?php if ($this->getAllowWriteReviewFlag()): ?>
+        <form class="form" action="<?php echo $this->getAction() ?>" method="post" id="review-form">
+            <?php echo $this->getChildHtml('form_fields_before')?>
+            <?php echo $this->getBlockHtml('formkey') ?>
+
+            <?php if ($this->getRatings() && $this->getRatings()->getSize()): ?>
+                <div class="form__field">
+                    <label class="form__label form__label--required"><?php echo $this->__('How do you rate this product?') ?></label>
+
+                    <ul class="add-review__ratings add-review-ratings">
+                        <?php foreach ($this->getRatings() as $_rating): ?>
+                            <li class="add-review-ratings__item">
+                                <p class="add-review-ratings__title"><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></p>
+
+                                <ul class="add-review-ratings__options">
+                                    <?php foreach ($_rating->getOptions() as $_option): ?>
+                                        <li class="add-review-ratings__option">
+                                            <label class="add-review-ratings__option-click">
+                                                <input class="add-review-ratings__option-value" type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>">
+                                                <span class="add-review-ratings__visual"></span>
+                                            </label>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+
+                    <input type="hidden" name="validate_rating" class="validate-rating" value="">
+                </div>
+            <?php endif; ?>
+
+            <p class="form__field">
+                <label class="form__label form__label--required" for="nickname_field"><?php echo $this->__('Nickname') ?></label>
+
+                <input class="form__textfield textfield required-entry" type="text" name="nickname" id="nickname_field" value="<?php echo $this->htmlEscape($data->getNickname()) ?>">
+            </p>
+
+            <p class="form__field">
+                <label class="form__label form__label--required" for="summary_field"><?php echo $this->__('Summary of Your Review') ?></label>
+
+                <input class="form__textfield textfield required-entry" type="text" name="title" id="summary_field" value="<?php echo $this->htmlEscape($data->getTitle()) ?>">
+            </p>
+
+            <p class="form__field">
+                <label class="form__label form__label--required" for="review_field"><?php echo $this->__('Review') ?></label>
+
+                <textarea class="form__textfield add-review__textarea textfield required-entry" name="detail" id="review_field" rows="3"><?php echo $this->htmlEscape($data->getDetail()) ?></textarea>
+            </p>
+
+            <p class="form__field">
+                <button class="form__submit button" type="submit"><?php echo $this->__('Submit Review') ?></button>
+            </p><!-- .form__field -->
+        </form>
+
+        <script>
+            var dataForm = new VarienForm('review-form');
+            Validation.addAllThese(
+                [
+                    [
+                        'validate-rating',
+                        '<?php echo $this->__('Please select one of each of the ratings above') ?>',
+                        function() {
+                            var ratings = $$('.add-review-ratings__options');
+                            var inputs;
+                            var error = 1;
+
+                            for (var j = 0; j < ratings.length; j++) {
+                                var rating = ratings[j];
+
+                                inputs = rating.select('input');
+
+                                for (var i = 0; i < inputs.length; i++) {
+                                    if (inputs[i].checked == true) {
+                                        error = 0;
+                                        break;
+                                    }
+                                }
+
+                                if (error == 1) {
+                                    return false;
+                                } else {
+                                    error = 1;
+                                }
+                            }
+
+                            return true;
+                        }
+                    ]
+                ]
+            );
+        </script>
+    <?php else: ?>
+        <p>
+            <?php echo $this->__('Only registered users can write reviews. Please, <a href="%s" class="js-open-panel" data-open-panel="customer-panel">log in</a> or <a href="%s" class="js-open-panel" data-open-panel="customer-panel">register</a>.', $this->getLoginLink(), Mage::helper('customer')->getRegisterUrl()) ?>
+        </p>
+    <?php endif ?>
+</div>

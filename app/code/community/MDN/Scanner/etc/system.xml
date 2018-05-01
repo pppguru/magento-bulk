@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <scanner>
+            <label>Scanner</label>
+            <tab>ERP</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>106</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <display>
+                    <label>Display</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <screen_width translate="label">
+                            <label>Screen width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </screen_width>
+                        <screen_height translate="label">
+                            <label>Screen height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </screen_height>
+                        <remove_scroll_bars translate="label">
+                            <label>Remove scroll bars</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </remove_scroll_bars>
+                        <mobile_user_agent translate="label">
+                            <label>Mobile user agent</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </mobile_user_agent>
+                    </fields>
+                </display>
+                <misc>
+                    <label>Miscellaneous</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <hide_product_row_when_qty_reached translate="label">
+                            <label>Hide product row when qty reached</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </hide_product_row_when_qty_reached>
+                        <postamble translate="label">
+                            <label>Postamble</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </postamble>
+                    </fields>
+                </misc>
+                <purchase_order>
+                    <label>Purchase order</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <scan_location translate="label">
+                            <label>Scan location after scanning product</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </scan_location>
+                    </fields>
+                </purchase_order>
+                <free_delivery>
+                    <label>Free delivery</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <warehouse>
+                            <label>Affect product to warehouse</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>AdvancedStock/System_Config_Source_Warehouse</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </warehouse>
+                        <stock_movement_caption translate="label">
+                            <label>Stock movement caption</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </stock_movement_caption>
+                        <prevent_location_change_if_is_in_stock translate="label">
+                            <label>Prevent location change if product is in stock in another location</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </prevent_location_change_if_is_in_stock>
+                    </fields>
+                </free_delivery>
+            </groups>
+        </scanner>
+    </sections>
+</config>
+ 

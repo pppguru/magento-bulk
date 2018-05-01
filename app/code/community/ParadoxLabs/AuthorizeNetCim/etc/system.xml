@@ -1,0 +1,513 @@
+<?xml version="1.0"?>
+<config>
+   <sections>
+		<payment>
+			<groups>
+				<authnetcim translate="label" module="authnetcim">
+					<label>Authorize.Net CIM</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>670</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<comment><![CDATA[<div style="float:right;text-align:center;"><img src="https://store.paradoxlabs.com/media/wysiwyg/AuthorizeNetCertified.gif" width="140" height="50" border="0" alt="Authorize.Net Certified Solution" /><br />by <a href="https://store.paradoxlabs.com/magento-authorize-net-cim-payment-module.html" target="_blank">ParadoxLabs, inc.</a></div>]]></comment>
+					<fields>
+						<version translate="label">
+							<label>Version Installed</label>
+							<frontend_type>label</frontend_type>
+							<backend_model>authnetcim/config_version</backend_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</version>
+						<apitest>
+							<label>API Test Results</label>
+							<frontend_type>label</frontend_type>
+							<frontend_model>authnetcim/adminhtml_config_apiTester</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</apitest>
+						<active translate="label">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</active>
+						<title translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<login translate="label">
+							<label>API Login ID</label>
+							<frontend_type>obscure</frontend_type>
+							<backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</login>
+						<trans_key translate="label">
+							<label>Transaction Key</label>
+							<frontend_type>obscure</frontend_type>
+							<backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Get these from your Authorize.Net account settings.</comment>
+						</trans_key>
+						<test translate="label">
+							<label>Authorize.Net Sandbox Account</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>'Yes' only if the API credentials are for a sandbox account. The account must have test mode disabled.</comment>
+						</test>
+						<payment_action translate="label">
+							<label>Payment Action</label>
+							<frontend_type>select</frontend_type>
+							<source_model>paygate/authorizenet_source_paymentAction</source_model>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>'Authorize and Capture' to charge on checkout.</comment>
+						</payment_action>
+						<order_status translate="label">
+							<label>New Order Status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status_newprocessing</source_model>
+							<sort_order>65</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Normally 'Pending' if 'Authorize Only' above; 'Processing' if not.</comment>
+						</order_status>
+						<validation_mode translate="label">
+							<label>Validation Type</label>
+							<frontend_type>select</frontend_type>
+							<source_model>authnetcim/config_validationmode</source_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>'Live' to validate cards before storing in CIM. This will incur an extra txn fee.</comment>
+						</validation_mode>
+						<cctypes translate="label">
+							<label>Credit Card Types</label>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>paygate/authorizenet_source_cctype</source_model>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</cctypes>
+						<useccv translate="label">
+							<label>Credit Card Verification</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>'Yes' to require the CCV code when using new cards (recommended).</comment>
+						</useccv>
+						<allow_unsaved translate="label">
+							<label>Allow cards to not be stored</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>95</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If yes, customers can choose whether to save their credit card during checkout.</comment>
+						</allow_unsaved>
+						<show_branding translate="label">
+							<label>Show Authorize.Net logo</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>96</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Show an Authorize.Net logo on the payment form.</comment>
+						</show_branding>
+						<currency translate="label">
+							<label>Accepted Currency</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_currency</source_model>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</currency>
+						<allowspecific translate="label">
+							<label>Allow Payment from Countries</label>
+							<frontend_type>allowspecific</frontend_type>
+							<sort_order>110</sort_order>
+							<source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</allowspecific>
+						<specificcountry translate="label">
+							<label>Payment from Specific Countries</label>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>120</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><allowspecific>1</allowspecific></depends>
+						</specificcountry>
+						<min_order_total translate="label">
+							<label>Minimum Order Total</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>130</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</min_order_total>
+						<max_order_total translate="label">
+							<label>Maximum Order Total</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>140</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</max_order_total>
+						<sort_order translate="label">
+							<label>Sort Order</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>150</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sort_order>
+						<authnetcim_advanced translate="label">
+							<label>Advanced Settings</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<sort_order>500</sort_order>
+						</authnetcim_advanced>
+						<require_ccv translate="label">
+							<label>Require CCV for all transactions</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>510</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If yes, CCV code will be required even for stored cards. This will not affect recurring transactions.</comment>
+							<depends><useccv>1</useccv></depends>
+						</require_ccv>
+						<send_shipping_address translate="label">
+							<label>Send Shipping Address</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>520</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If yes, shipping address will be sent with each transaction. Required for some fraud filters.</comment>
+						</send_shipping_address>
+						<send_line_items translate="label">
+							<label>Send Line Items</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>530</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If yes, the items will be included with each transaction. May not be desired for some accounting integrations.</comment>
+						</send_line_items>
+						<reauthorize_partial_invoice translate="label">
+							<label>Reauthorize on Partial Invoice</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>540</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If yes, when you create a partial invoice, we will reauthorize any outstanding balance on the order. This helps guarantee funds, but can cause multiple holds on the card until transactions settle.</comment>
+							<depends><payment_action>authorize</payment_action></depends>
+						</reauthorize_partial_invoice>
+						<savecard_opt_out translate="label">
+							<label>Auto-select 'save for next time'</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>550</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If yes, will be selected by default during checkout.</comment>
+							<depends><allow_unsaved>1</allow_unsaved></depends>
+						</savecard_opt_out>
+						<verify_ssl translate="label">
+							<label>Verify SSL</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>560</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Strongly recommended. Do not disable unless you get SSL errors and your host is unable to fix them.</comment>
+						</verify_ssl>
+					</fields>
+				</authnetcim>
+				<authnetcim_ach translate="label" module="authnetcim_ach">
+					<label>Authorize.Net CIM - ACH (eCheck)</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>680</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<comment><![CDATA[<div style="float:right;text-align:center;"><img src="https://store.paradoxlabs.com/media/wysiwyg/AuthorizeNetCertified.gif" width="140" height="50" border="0" alt="Authorize.Net Certified Solution" /><br />by <a href="https://store.paradoxlabs.com/magento-authorize-net-cim-payment-module.html" target="_blank">ParadoxLabs, inc.</a></div>]]></comment>
+					<fields>
+						<version translate="label">
+							<label>Version Installed</label>
+							<frontend_type>label</frontend_type>
+							<backend_model>authnetcim/config_version</backend_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</version>
+						<apitest>
+							<label>API Test Results</label>
+							<frontend_type>label</frontend_type>
+							<frontend_model>authnetcim_ach/adminhtml_config_apiTester</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</apitest>
+						<active translate="label">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</active>
+						<title translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<login translate="label">
+							<label>API Login ID</label>
+							<frontend_type>obscure</frontend_type>
+							<backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</login>
+						<trans_key translate="label">
+							<label>Transaction Key</label>
+							<frontend_type>obscure</frontend_type>
+							<backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Get these from your Authorize.Net account settings.</comment>
+						</trans_key>
+						<test translate="label">
+							<label>Authorize.Net Sandbox Account</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>'Yes' only if the API credentials are for a sandbox account. The account must have test mode disabled.</comment>
+						</test>
+						<payment_action translate="label">
+							<label>Payment Action</label>
+							<frontend_type>select</frontend_type>
+							<source_model>paygate/authorizenet_source_paymentAction</source_model>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>'Authorize and Capture' to charge on checkout.</comment>
+						</payment_action>
+						<order_status translate="label">
+							<label>New Order Status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status_newprocessing</source_model>
+							<sort_order>65</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Normally 'Pending' if 'Authorize Only' above; 'Processing' if not.</comment>
+						</order_status>
+						<validation_mode translate="label">
+							<label>Validation Type</label>
+							<frontend_type>select</frontend_type>
+							<source_model>authnetcim/config_validationmode</source_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>'Live' to validate info before storing in CIM. This will incur an extra txn fee.</comment>
+						</validation_mode>
+						<allow_unsaved translate="label">
+							<label>Allow info to not be stored</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>95</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If yes, customers can choose whether to save their payment info during checkout.</comment>
+						</allow_unsaved>
+						<show_branding translate="label">
+							<label>Show Authorize.Net logo</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>96</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Show an Authorize.Net logo on the payment form.</comment>
+						</show_branding>
+						<currency translate="label">
+							<label>Accepted Currency</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_currency</source_model>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</currency>
+						<allowspecific translate="label">
+							<label>Allow Payment from Countries</label>
+							<frontend_type>allowspecific</frontend_type>
+							<sort_order>110</sort_order>
+							<source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</allowspecific>
+						<specificcountry translate="label">
+							<label>Payment from Specific Countries</label>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>120</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><allowspecific>1</allowspecific></depends>
+						</specificcountry>
+						<min_order_total translate="label">
+							<label>Minimum Order Total</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>130</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</min_order_total>
+						<max_order_total translate="label">
+							<label>Maximum Order Total</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>140</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</max_order_total>
+						<sort_order translate="label">
+							<label>Sort Order</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>150</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sort_order>
+						<authnetcim_ach_advanced translate="label">
+							<label>Advanced Settings</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<sort_order>500</sort_order>
+						</authnetcim_ach_advanced>
+						<send_shipping_address translate="label">
+							<label>Send Shipping Address</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>520</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If yes, shipping address will be sent with each transaction. Required for some fraud filters.</comment>
+						</send_shipping_address>
+						<send_line_items translate="label">
+							<label>Send Line Items</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>530</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If yes, the items will be included with each transaction. May not be desired for some accounting integrations.</comment>
+						</send_line_items>
+						<reauthorize_partial_invoice translate="label">
+							<label>Reauthorize on Partial Invoice</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>540</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If yes, when you create a partial invoice, we will reauthorize any outstanding balance on the order.</comment>
+							<depends><payment_action>authorize</payment_action></depends>
+						</reauthorize_partial_invoice>
+						<savecard_opt_out translate="label">
+							<label>Auto-select 'save for next time'</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>550</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If yes, will be selected by default during checkout.</comment>
+							<depends><allow_unsaved>1</allow_unsaved></depends>
+						</savecard_opt_out>
+						<verify_ssl translate="label">
+							<label>Verify SSL</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>560</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Strongly recommended. Do not disable unless you get SSL errors and your host is unable to fix them.</comment>
+						</verify_ssl>
+					</fields>
+				</authnetcim_ach>
+			</groups>
+		</payment>
+	</sections>
+</config>

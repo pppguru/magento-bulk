@@ -1,0 +1,377 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MDN_Purchase>
+            <version>2.8.5.0</version>
+        </MDN_Purchase>
+    </modules>
+    
+    <global>
+    
+        <helpers>
+            <purchase>
+                <class>MDN_Purchase_Helper</class>
+            </purchase>
+            <AdvancedStock>
+                <rewrite>
+                    <Product_Cost>MDN_Purchase_Helper_Product_Cost</Product_Cost>
+                </rewrite>
+            </AdvancedStock>
+        </helpers>
+        
+        <blocks>
+            <Purchase>
+                <class>MDN_Purchase_Block</class>
+            </Purchase>
+        </blocks>
+        <models>
+            <Purchase>
+                <class>MDN_Purchase_Model</class>
+                <resourceModel>Purchase_mysql4</resourceModel>
+            </Purchase>
+
+            <Purchase_mysql4>
+                <class>MDN_Purchase_Model_Mysql4</class>
+                <!-- defini les tables utilisables -->
+                <entities>
+                    <Manufacturer>
+                        <table>purchase_manufacturer</table>
+                    </Manufacturer>
+                    <Supplier>
+                        <table>purchase_supplier</table>
+                    </Supplier>
+                    <ProductSupplier>
+                        <table>purchase_product_supplier</table>
+                    </ProductSupplier>
+                    <ProductManufacturer>
+                        <table>purchase_product_manufacturer</table>
+                    </ProductManufacturer>
+                    <Contact>
+                        <table>purchase_contact</table>
+                    </Contact>
+
+                    <ManufacturerSupplier>
+                        <table>purchase_manufacturer_supplier</table>
+                    </ManufacturerSupplier>
+                    <Order>
+                        <table>purchase_order</table>
+                    </Order>
+                    <Order_History>
+                        <table>purchase_order_history</table>
+                    </Order_History>
+                    <OrderProduct>
+                        <table>purchase_order_product</table>
+                    </OrderProduct>
+                    <stockmovement>
+                        <table>stock_movement</table>
+                    </stockmovement>
+
+                    <SupplyNeeds>
+                        <table>erp_view_supplyneeds_global</table>
+                    </SupplyNeeds>
+                    <SupplyNeedsWarehouse>
+                        <table>erp_view_supplyneeds_warehouse</table>
+                    </SupplyNeedsWarehouse>
+                    
+                    <TaxRates>
+                        <table>purchase_tva_rates</table>
+                    </TaxRates>
+                    <CatalogProduct>
+                        <table>catalog_product_entity</table>
+                    </CatalogProduct>
+                    <CatalogProductVarchar>
+                        <table>catalog_product_entity_varchar</table>
+                    </CatalogProductVarchar>
+                    <CatalogProductDecimal>
+                        <table>catalog_product_entity_decimal</table>
+                    </CatalogProductDecimal>
+                    <CatalogProductInt>
+                        <table>catalog_product_entity_int</table>
+                    </CatalogProductInt>
+                    <Packaging>
+                        <table>purchase_packaging</table>
+                    </Packaging>
+                    <PurchaseSupplierInvoice>
+                        <table>purchase_supplier_invoice</table>
+                    </PurchaseSupplierInvoice>
+                </entities>
+            </Purchase_mysql4>
+            <core>
+                <rewrite>
+                    <locale>MDN_Purchase_Model_Core_Locale</locale>
+                </rewrite>
+            </core>
+        </models>
+
+        <resources>
+            <Purchase_setup>
+                <setup>
+                    <module>MDN_Purchase</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </Purchase_setup>
+            <Purchase_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </Purchase_write>
+            <Purchase_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </Purchase_read>
+        </resources>
+        <events>
+            
+            <advancedstock_product_grid_preparecolumns>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/ErpObserver</class>
+                        <method>advancedstock_product_grid_preparecolumns</method>
+                    </Purchase>
+                </observers>
+            </advancedstock_product_grid_preparecolumns>
+
+            <advancedstock_product_grid_preparemassaction>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/ErpObserver</class>
+                        <method>advancedstock_product_grid_preparemassaction</method>
+                    </Purchase>
+                </observers>
+            </advancedstock_product_grid_preparemassaction>
+            
+            <advancedstock_masstockeditor_grid_preparecolumns>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/ErpObserver</class>
+                        <method>advancedstock_masstockeditor_grid_preparecolumns</method>
+                    </Purchase>
+                </observers>                
+            </advancedstock_masstockeditor_grid_preparecolumns>
+    
+		
+            <product_waiting_for_delivery_qty_change>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/ErpObserver</class>
+                        <method>product_waiting_for_delivery_qty_change</method>
+                    </Purchase>
+                </observers>
+            </product_waiting_for_delivery_qty_change>
+
+            
+            <advancedstock_product_force_stocks_update_requested>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/ErpObserver</class>
+                        <method>advancedstock_product_force_stocks_update_requested</method>
+                    </Purchase>
+                </observers>
+            </advancedstock_product_force_stocks_update_requested>
+            
+            <!-- event to interact with advanced stock -->
+            <advancedstock_product_edit_create_tabs>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/ErpObserver</class>
+                        <method>advancedstock_product_edit_create_tabs</method>
+                    </Purchase>
+                </observers>
+            </advancedstock_product_edit_create_tabs>
+            <advancedstock_product_sheet_save>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/ErpObserver</class>
+                        <method>advancedstock_product_sheet_save</method>
+                    </Purchase>
+                </observers>
+            </advancedstock_product_sheet_save>
+            <advancedstock_stock_aftersave>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/ErpObserver</class>
+                        <method>advancedstock_stock_aftersave</method>
+                    </Purchase>
+                </observers>
+            </advancedstock_stock_aftersave>
+
+            <catalog_product_save_after>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/ErpObserver</class>
+                        <method>catalog_product_save_after</method>
+                    </Purchase>
+                </observers>
+            </catalog_product_save_after>
+
+            <catalog_model_product_duplicate>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/Observer</class>
+                        <method>catalog_model_product_duplicate</method>
+                    </Purchase>
+                </observers>
+            </catalog_model_product_duplicate>
+            
+            <catalog_product_delete_before>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/Observer</class>
+                        <method>catalog_product_delete_before</method>
+                    </Purchase>
+                </observers>
+            </catalog_product_delete_before>
+
+            <advancedstock_product_grid_preparecolumns>
+                <observers>
+                    <Purchase>
+                        <type>singleton</type>
+                        <class>Purchase/ErpObserver</class>
+                        <method>advancedstock_product_grid_preparecolumns</method>
+                    </Purchase>
+                </observers>
+            </advancedstock_product_grid_preparecolumns>
+            
+        </events>
+			
+        <!-- Email templates -->
+        <template>
+            <email>
+                <purchase_notify_supplier_email_template translate="label" module="AdvancedStock">
+                    <label>Notify supplier for purchase order</label>
+                    <file>Purchase/PurchaseOrder/NotifySupplier.html</file>
+                    <type>html</type>
+                </purchase_notify_supplier_email_template>
+            </email>
+        </template>
+		
+    </global>
+    
+    <adminhtml>
+        <translate>
+            <modules>
+                <MDN_Purchase>
+                    <files>
+                        <default>MDN_Purchase.csv</default>
+                    </files>
+                </MDN_Purchase>
+            </modules>
+        </translate>
+        <routers>
+            <Purchase>
+                <use>standard</use>
+                <args>
+                    <module>MDN_Purchase</module>
+                    <frontName>Purchase</frontName>
+                </args>
+            </Purchase>
+        </routers>
+        
+        <layout>
+            <updates>
+                <purchase>
+                    <file>purchase.xml</file>
+                </purchase>
+            </updates>
+        </layout>
+
+    </adminhtml>
+    
+    <frontend>
+        <routers>
+            <Purchase>
+                <use>standard</use>
+                <args>
+                    <module>MDN_Purchase</module>
+                    <frontName>Purchase</frontName>
+                </args>
+            </Purchase>
+        </routers>
+        
+    </frontend>
+
+    <default>
+        <purchase>
+            <configuration>
+                <order_payment_method>Credit card,Check,Cash On Delivery,Bank transfer,Outstanding amount</order_payment_method>
+                <order_carrier>DHL,FEDEX,TNT,UPS,TAT Express,Calberson,Chronopost,Colissimo,Cooljet</order_carrier>
+                <check_qty_before_create_shipment>1</check_qty_before_create_shipment>
+            </configuration>
+            <general>
+                <pdf_use_truetype_font>0</pdf_use_truetype_font>
+            </general>
+            <notify_supplier>
+                <email_identity>general</email_identity>
+                <email_template>purchase_notify_supplier_email_template</email_template>
+            </notify_supplier>
+            <purchase_order>
+                <default_shipping_duties_taxrate>0</default_shipping_duties_taxrate>
+                <default_currency>EUR</default_currency>
+                <store_product_cost>1</store_product_cost>
+                <cost_repartition_method>by_qty</cost_repartition_method>
+                <auto_fill_price>1</auto_fill_price>
+                <display_order_notices>1</display_order_notices>
+                <products_default_tax_rate>3</products_default_tax_rate>
+            </purchase_order>
+            <purchase_product_grid>
+                <display_product_picture>1</display_product_picture>
+                <display_supplier_sku>1</display_supplier_sku>
+                <display_discount>1</display_discount>
+                <display_subtotal>1</display_subtotal>
+                <display_last_buy_price>1</display_last_buy_price>
+                <display_specific_delivery_date>1</display_specific_delivery_date>
+                <display_sales_history>1</display_sales_history>
+                <display_supply_needs>0</display_supply_needs>
+            </purchase_product_grid>
+            <purchase_product>
+                <pricer_default_tax_rate>20</pricer_default_tax_rate>
+                <restore_isinstock>1</restore_isinstock>
+                <product_default_supply_delay>5</product_default_supply_delay>
+            </purchase_product>
+            <remaining_supply_qties>
+                <severity_low>5</severity_low>
+                <severity_medium>10</severity_medium>
+            </remaining_supply_qties>
+            <misc>
+                <barcode_label>all_products</barcode_label>
+            </misc>
+            <scanner>
+                <display_quantity_button>1</display_quantity_button>
+                <allow_barcode_assigment>1</allow_barcode_assigment>
+            </scanner>
+        </purchase>
+        <barcode>
+            <general>
+                <disable>1</disable>
+            </general>
+        </barcode>
+    </default>
+    
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Purchase before="Mage_Adminhtml">MDN_Purchase_Adminhtml</Purchase>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+        
+</config>

@@ -1,0 +1,50 @@
+<div class="entry-edit">
+
+<div class="entry-edit-head">
+	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Out of stock Period'); ?></h4> 
+</div>
+<div class="entry-edit">
+    
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('Enabled')?></td>
+                    <td class="input-ele"><input type="checkbox" value="1" id="outofstock[outofstock_period_enabled]" name="outofstock[outofstock_period_enabled]" <?php if ($this->getProduct()->getoutofstock_period_enabled() == 1) { echo ' checked '; } ?>></td>                    
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('From Date'); ?></td>
+                    <td class="input-ele">
+                    	<input size="8" type="text" id="outofstock[outofstock_period_from]" name="outofstock[outofstock_period_from]" value="<?php echo $this->getProduct()->getoutofstock_period_from(); ?>">
+                    	<img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_calendar_outofstock_from" />
+				        <script type="text/javascript">
+			                Calendar.setup({
+			                    inputField : 'outofstock[outofstock_period_from]',
+			                    ifFormat : '%Y-%m-%e',
+			                    button : 'img_calendar_outofstock_from',
+			                    align : 'Bl',
+			                    singleClick : true
+			                });
+		                </script>	
+                    </td>
+               </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('To Date'); ?></td>
+                    <td class="input-ele">
+                    	<input size="8" type="text" id="outofstock[outofstock_period_to]" name="outofstock[outofstock_period_to]" value="<?php echo $this->getProduct()->getoutofstock_period_to(); ?>">
+                    	<img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_calendar_outofstock_to" />
+				        <script type="text/javascript">
+			                Calendar.setup({
+			                    inputField : 'outofstock[outofstock_period_to]',
+			                    ifFormat : '%Y-%m-%e',
+			                    button : 'img_calendar_outofstock_to',
+			                    align : 'Bl',
+			                    singleClick : true
+			                });
+		                </script>	
+                    </td>
+               </tr>
+            </table>
+        </fieldset>
+</div>
+
+</div>

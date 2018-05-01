@@ -1,0 +1,38 @@
+<table border="1" cellspacing="0" cellpadding="5" width="100%">
+	<tr>
+		<th class="a-center" bgcolor="#cccccc" colspan="2"><?php echo $this->__('Search results'); ?></th>
+	</tr>
+	<?php if ($this->getCollection()->getSize() == 0): ?>
+		<tr>
+			<td>
+				<?php echo $this->__('No results for %s', $this->getQueryString()); ?>
+			</td>
+		</tr>
+	<?php else: ?>
+		<tr>
+			<th class="a-center"><?php echo $this->__('Sku'); ?></th>
+			<th class="a-center"><?php echo $this->__('Product'); ?></th>
+		</tr>	
+		<?php $i = 0; ?>
+		<?php foreach ($this->getCollection() as $item): ?>
+			<tr>
+				<td><?php echo $item->getSku(); ?></td>
+				<td>
+					<input type="button" value="<?php echo $item->getName(); ?>" class="touch_button" onclick="document.location.href='<?php echo $this->getUrl('adminhtml/Scanner_Inventory/ProductInformation', array('product_id' => $item->getId())); ?>';" />
+				</td>
+			</tr>
+			<?php $i++; ?>
+			<?php if ($i > 25): ?>
+				<tr>
+					<td colspan="2" class="a-center"><?php echo $this->__('Not all results are displayed'); ?></td>
+				</tr>
+				<?php break;  ?>
+			<?php endif;  ?>
+		<?php endforeach; ?>
+	<?php endif; ?>
+</table>
+
+
+<script>
+	enableCatchKeys("document.getElementById('query').value=KC_value;form1.submit();");
+</script>

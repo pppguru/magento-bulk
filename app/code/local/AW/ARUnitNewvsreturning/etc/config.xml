@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AW_ARUnitNewvsreturning>
+            <version>1.0.6</version><platform>ce</platform>
+        </AW_ARUnitNewvsreturning>
+    </modules>
+    <global>
+        <helpers>
+            <awunitnewvsreturning>
+                    <class>AW_Advancedreports_Helper</class>
+            </awunitnewvsreturning>
+        </helpers>
+    </global>
+    <adminhtml>
+        <translate>
+            <modules>
+                <AW_ARUnitNewvsreturning>
+                    <files>
+                        <default>AW_Advancedreports.csv</default>
+                    </files>
+                </AW_ARUnitNewvsreturning>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <report>
+                            <children>
+                                <advancedreports>
+                                    <title>Advanced</title>
+                                    <children>
+                                        <newvsreturning>
+                                            <title>New vs Returning Customers</title>
+                                        </newvsreturning>
+                                    </children>
+                                </advancedreports>
+                            </children>
+                        </report>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <menu>
+            <report>
+                <children>
+                    <advancedreports translate="title" module="advancedreports">
+                        <title>Advanced</title>
+                        <sort_order>100</sort_order>
+                        <children>
+                            <newvsreturning module="advancedreports" translate="title">
+                                <title>New vs Returning Customers</title>
+                                <action>advancedreports_admin/additional_report/index/name/newvsreturning</action>
+                                <sort_order>15</sort_order>
+                            </newvsreturning>
+                        </children>
+                    </advancedreports>
+                </children>
+            </report>
+        </menu>
+    </adminhtml>
+</config>

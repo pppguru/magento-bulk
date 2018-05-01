@@ -1,0 +1,29 @@
+<?php if (Mage::helper('ewcore/environment')->isDemoServer()): ?>
+<script>
+document.observe('dom:loaded', function() {
+	var content = '<div style="max-width: 500px;"><div style="font-size: 14px; font-weight: bold; border-bottom: 1px solid black; margin-bottom: 7px;">Menu Configuration</div>You can remove the highlighting of this menu or move its location under the System menu in the Extendware Core configuration.</div>';
+	new Opentip($$('li.ewcore-main > a').first(), content, '', {"delay": 0.001,"group":"config","stemLength":10,"background":"#FFFFCC","borderColor":"#BBBBBB","closeButtonCrossColor":"#000000","closeButtonCrossSize":8,"closeButtonRadius":12});
+});
+</script>
+<script>
+document.observe('dom:loaded', function() {
+	var e = $$('li.tab-extendware-extensions').first();
+	if (!e) return;
+	e.hide();
+});
+</script>
+<?php else: ?>
+	<?php if (Mage::helper('ewcore/environment')->isExtendwareSite() === false): ?>
+		<?php $_link = Mage::helper('ewcore/layout')->getHeaderLink(); ?>
+		<?php if ($_link): ?>
+			<script>
+			document.observe('dom:loaded', function() {
+				var e = $$('div.header-right').first();
+				if (!e) return;
+				$$('div.header-right > a').invoke('remove');
+				e.insert({'top': '<?php echo $_link; ?>'});
+			});
+			</script>
+		<?php endif; ?>
+	<?php endif; ?>
+<?php endif; ?>

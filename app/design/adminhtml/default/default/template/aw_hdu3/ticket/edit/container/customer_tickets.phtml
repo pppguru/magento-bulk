@@ -1,0 +1,76 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Adminhtml_Ticket_Edit_Form_CustomerTickets $this */?>
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Last Customer Tickets');?></h4>
+</div>
+<div class="fieldset">
+    <div>
+        <span style="display: inline-block;width:100px;">
+            <strong><?php echo $this->__('Total Tickets:');?></strong>
+        </span>
+        <?php echo $this->getTicketCount();?>
+    </div>
+    <div class="awhdu3-ticket-edit-customertickets-list-container">
+        <?php foreach($this->getTicketCollection() as $ticket):?>
+            <?php /** @var AW_Helpdesk3_Model_Ticket $ticket */?>
+            <div class="awhdu3-ticket-edit-customertickets-list-item">
+                <div class="awhdu3-ticket-edit-customertickets-list-item-summary">
+                    <ul>
+                        <li>
+                            <a href="<?php echo $this->getUrl('helpdesk_admin/adminhtml_ticket/edit', array('id' => $ticket->getId()));?>">
+                                <?php echo $ticket->getUid();?>
+                            </a>
+                        </li>
+                        <li title="<?php echo $this->formatDate($ticket->getCreatedAt(), 'medium', true);?>">
+                            <?php echo $this->formatDate($ticket->getCreatedAt(), 'medium');?>
+                        </li>
+                        <li>
+                            <span class="awhdu3-ticket-edit-customertickets-status" style="<?php echo $this->getStyleForTicketStatus($ticket);?>">
+                                <strong><?php echo $this->getStatusLabelByTicket($ticket);?></strong>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="awhdu3-ticket-edit-customertickets-priority" style="<?php echo $this->getStyleForTicketPriority($ticket);?>">
+                                <strong><?php echo $this->getPriorityLabelByTicket($ticket);?></strong>
+                            </span>
+                        </li>
+                        <li><strong><?php echo $ticket->getDepartment()->getTitle();?></strong></li>
+                        <li><strong><?php echo $ticket->getDepartmentAgent()->getName();?></strong></li>
+                    </ul>
+                </div>
+                <div class="awhdu3-ticket-edit-customertickets-list-item-info">
+                    <div class="awhdu3-ticket-edit-customertickets-list-item-subject">
+                        <?php echo Mage::helper('core/string')->truncate($this->getTicketSubject($ticket), 400);?>
+                    </div>
+                    <div class="awhdu3-ticket-edit-customertickets-list-item-firstmessage">
+                        <?php echo Mage::helper('core/string')->truncate($this->getFirstTicketMessage($ticket), 400);?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach;?>
+    </div>
+</div>

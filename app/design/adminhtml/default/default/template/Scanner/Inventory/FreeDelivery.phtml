@@ -1,0 +1,31 @@
+<script>
+
+    var freeDeliveryAddProductUrl = '<?php echo $this->getUrl('adminhtml/Scanner_Inventory/FreeDelivery'); ?>';
+
+</script>
+
+<table border="1" cellspacing="0" cellpadding="5" width="100%">
+    <tr>
+        <th class="a-center" bgcolor="#cccccc" colspan="2"><?php echo $this->__('Products'); ?></th>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+<div id="div_error" style="color: red; text-align: center;">
+    <?php echo $this->getErrorMessage(); ?>
+</div>
+<div id="div_success" style="color: green; text-align: center;">
+    <?php echo $this->getSuccessMessage(); ?>
+</div>
+
+<p>&nbsp;</p>
+<div id="no_products" style="text-align: center;">
+    <p><?php echo $this->__('Please scan product'); ?></p>
+</div>
+
+<script>
+
+    enableCatchKeys('freeDeliveryAddProduct(KC_value);');
+
+</script>
+

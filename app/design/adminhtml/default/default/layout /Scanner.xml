@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	   
+	<!-- main menu -->
+    <scanner_index_index>
+        <update handle="main_scanner_update"/>
+        <reference name="content">
+            <block type="Scanner/Menu" name="scanner_menu" template="Scanner/Menu.phtml">
+               <action method="addButton">
+                    <label>Inventory</label>
+                    <url>Scanner/Inventory</url>
+                    <imgUrl>images/scanner/inventory.gif</imgUrl>
+                </action>
+                <action method="addButton">
+                    <label>Order preparation</label>
+                    <url>Scanner/OrderPreparation</url>
+                    <imgUrl>images/scanner/order_preparation.gif</imgUrl>
+                </action>
+                <action method="addButton">
+                    <label>Purchase delivery</label>
+                    <url>Scanner/PurchaseOrder/SelectSupplier</url>
+                    <imgUrl>images/scanner/purchase_order.gif</imgUrl>
+                </action>
+                <action method="addButton">
+                    <label>Barcode Comparison</label>
+                    <url>Scanner/BarcodeComparison</url>
+                    <imgUrl>images/scanner/comparison.gif</imgUrl>
+                </action>
+            </block>
+        </reference>
+    </scanner_index_index>
+
+    <!-- Inventory -->
+    <scanner_inventory_index>
+        <update handle="main_scanner_update"/>
+        <reference name="content">
+            <block type="Scanner/Inventory_Search" name="scanner_inventory_search" template="Scanner/Inventory/Search.phtml" />
+        </reference>
+    </scanner_inventory_index>
+    
+    <scanner_inventory_processsearch>
+        <update handle="main_scanner_update"/>
+        <reference name="content">
+            <block type="Scanner/Inventory_Result" name="scanner_inventory_result" as="scanner_inventory_result" template="Scanner/Inventory/Result.phtml" />
+        </reference>
+    </scanner_inventory_processsearch>
+
+    <scanner_inventory_productinformation>
+        <update handle="main_scanner_update"/>
+        <reference name="scanner_toolbar">
+            <block type="core/template" template="Scanner/Js/Product.phtml" name="js_product" as="js_product" />
+        </reference>
+        <reference name="content">
+            <block type="Scanner/Inventory_Product" name="scanner_inventory_product" as="scanner_inventory_product" template="Scanner/Inventory/ProductInformation.phtml" />
+        </reference>
+    </scanner_inventory_productinformation>
+
+    <scanner_inventory_editstock>
+        <update handle="main_scanner_update"/>
+        <reference name="scanner_toolbar">
+            <block type="core/template" template="Scanner/Js/EditStock.phtml" name="js_stock" as="js_stock" />
+        </reference>
+        <reference name="content">
+            <block type="Scanner/Inventory_EditStock" name="scanner_inventory_editstock" as="scanner_inventory_editstock" template="Scanner/Inventory/EditStock.phtml" />
+        </reference>
+    </scanner_inventory_editstock>
+    
+    <scanner_inventory_freedelivery>
+        <update handle="main_scanner_update"/>
+        <reference name="scanner_toolbar">
+            <block type="core/template" template="Scanner/Js/FreeDelivery.phtml" name="js_free" as="js_free" />
+        </reference>
+        <reference name="content">
+            <block type="Scanner/Inventory_FreeDelivery" name="scanner_inventory_freedelivery" as="scanner_inventory_freedelivery" template="Scanner/Inventory/FreeDelivery.phtml" />
+        </reference>
+    </scanner_inventory_freedelivery>
+	
+    <!-- Purchase order -->
+    <scanner_purchaseorder_selectsupplier>
+        <update handle="main_scanner_update"/>
+        <reference name="content">
+            <block type="Scanner/PurchaseOrder_SupplierSelection" name="scanner_purchaseorder_supplierselection" template="Scanner/PurchaseOrder/SupplierSelection.phtml" />
+        </reference>
+    </scanner_purchaseorder_selectsupplier>
+    
+    <scanner_purchaseorder_selectpurchaseorder>
+        <update handle="main_scanner_update"/>
+        <reference name="content">
+            <block type="Scanner/PurchaseOrder_OrderSelection" name="scanner_purchaseorder_orderselection" template="Scanner/PurchaseOrder/OrderSelection.phtml" />
+        </reference>
+    </scanner_purchaseorder_selectpurchaseorder>
+    
+    <scanner_purchaseorder_selectproductdelivery>
+        <update handle="main_scanner_update"/>
+        <reference name="scanner_toolbar">
+            <block type="core/template" template="Scanner/Js/PurchaseOrderDelivery.phtml" name="js_free" as="js_free" />
+        </reference>
+        <reference name="content">
+            <block type="Scanner/PurchaseOrder_SelectProductDelivery" name="scanner_purchaseorder_productdelivery" template="Scanner/PurchaseOrder/SelectProductDelivery.phtml" />
+        </reference>
+    </scanner_purchaseorder_selectproductdelivery>
+
+    <scanner_purchaseorder_createdelivery>
+        <update handle="main_scanner_update"/>
+        <reference name="content">
+            <block type="core/template" name="scanner_purchaseorder_createdelivery" template="Scanner/PurchaseOrder/CreateDelivery.phtml" />
+        </reference>
+    </scanner_purchaseorder_createdelivery>
+    
+    <!-- Order Preparation -->
+    <scanner_orderpreparation_index>
+        <update handle="main_scanner_update"/>
+        <reference name="content">
+            <block type="Scanner/OrderPreparation_Picking" name="scanner_orderpreparation_picking" template="Scanner/OrderPreparation/Picking.phtml" />
+        </reference>
+        <reference name="scanner_toolbar">
+            <block type="core/template" template="Scanner/Js/Picking.phtml" name="js_product" as="js_product" />
+        </reference>
+    </scanner_orderpreparation_index>
+
+    <!-- Order Preparation -->
+    <scanner_barcodecomparison_index>
+        <update handle="main_scanner_update"/>
+        <reference name="content">
+            <block type="Scanner/BarcodeComparison_Index" name="scanner_bacodecomparison_index" template="Scanner/BarcodeComparison/Index.phtml" />
+        </reference>
+        <reference name="scanner_toolbar">
+            <block type="core/template" template="Scanner/Js/ScanComparison.phtml" name="js_stock" as="js_stock" />
+        </reference>
+    </scanner_barcodecomparison_index>
+    
+    <!-- Misc -->
+    <main_scanner_update>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>Scanner/Page/Scanner.phtml</template>
+            </action>
+            <block type="core/text_list" name="scanner_toolbar" as="scanner_toolbar" />
+        </reference>
+        <reference name="scanner_toolbar">
+            <block type="core/template" template="Scanner/Js/Common.phtml" name="js_common" as="js_common" />
+            <block type="Scanner/Menu" template="Scanner/Toolbar.phtml" name="dynamic_scanner_toolbar" as="dynamic_scanner_toolbar">
+ 
+            </block>
+        </reference>
+    </main_scanner_update>
+	
+</layout>

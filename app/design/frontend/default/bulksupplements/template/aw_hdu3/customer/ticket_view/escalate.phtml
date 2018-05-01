@@ -1,0 +1,68 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Customer_Ticket_View_Escalate $this */?>
+<div class="fieldset" style="text-align:center">
+    <h2 class="legend"><?php echo $this->__('Ticket Escalation') ?></h2>
+    <?php echo $this->__('Are you dissatisfied with the quality of support?');?><br />
+    <div id="awhdu3-ticket-view-escalate-button">
+        <?php echo $this->__('Click this button to report this ticket to a supervisor.');?><br />
+        <button title="<?php echo $this->__('Escalate') ?>" class="button"><span><span><?php echo $this->__('Escalate') ?></span></span></button>
+    </div>
+    <div id="awhdu3-ticket-view-escalate-textarea" style="display:none">
+        <form method="post" id="awhdu3-ticket-view-escalate-form" action="<?php echo $this->getEscalatePostAction();?>">
+            <label for="awhdu3-ticket-view-escalate-form-textarea" class="required"><?php echo $this->__('Please, provide us information why are you not satisfied with quality of support.');?></label>
+            <textarea class="required-entry" id="awhdu3-ticket-view-escalate-form-textarea" name="content"></textarea>
+        </form>
+        <div id="awhdu3-ticket-view-escalate-textarea-bottom-group">
+            <button id="awhdu3-ticket-view-escalate-textarea-btn-cancel" title="<?php echo $this->__('Cancel') ?>" class="button"><span><span><?php echo $this->__('Cancel') ?></span></span></button>
+            <button id="awhdu3-ticket-view-escalate-textarea-btn-escalate" title="<?php echo $this->__('Escalate') ?>" class="button"><span><span><?php echo $this->__('Escalate') ?></span></span></button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    (function(){
+        var previewContainer = $('awhdu3-ticket-view-escalate-button');
+        var actionContainer = $('awhdu3-ticket-view-escalate-textarea');
+        var cancelBtn = $('awhdu3-ticket-view-escalate-textarea-btn-cancel');
+        var postBtn = $('awhdu3-ticket-view-escalate-textarea-btn-escalate');
+        var escalateBtn = previewContainer.select('button').first();
+        var form = new VarienForm('awhdu3-ticket-view-escalate-form');
+        if (!previewContainer || !actionContainer || !escalateBtn || !cancelBtn || !postBtn || !form) {
+            return;
+        }
+        escalateBtn.observe('click', function(e){
+            previewContainer.hide();
+            actionContainer.show();
+        });
+        cancelBtn.observe('click', function(e){
+            previewContainer.show();
+            actionContainer.hide();
+        });
+        postBtn.observe('click', function(e){
+            form.submit();
+        });
+    })();
+</script>

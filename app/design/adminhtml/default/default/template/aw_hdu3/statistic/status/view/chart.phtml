@@ -1,0 +1,158 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Adminhtml_Statistic_Status_View_Chart $this */?>
+<div id="awhdu3-statistic-chart"></div>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    Array.prototype.reduce = undefined;
+    var awHDU3ChartData = <?php echo Zend_Json::encode($this->getDataForChart());?>;
+    if (awHDU3ChartData.length > 1) {
+        google.load("visualization", "1", {packages:["corechart"]});
+        google.setOnLoadCallback(function(){
+            var max = 0;
+            awHDU3ChartData.each(function(day){
+                day.each(function(value){
+                    if (isFinite(value) && value > max) {
+                        max = value;
+                    }
+                });
+            });
+            var data = google.visualization.arrayToDataTable(awHDU3ChartData);
+            var chart = new google.visualization.LineChart($('awhdu3-statistic-chart'));
+            chart.draw(data, {
+                vAxis: {viewWindow: {min: 0}, minValue: 0, maxValue: parseInt((max+10)/10)*10, gridlines: {count: 6}}
+            });
+        });
+    }
+</script>
+<div id="awhdu3-statistic-tools">
+    <form action="<?php echo $this->getFormAction();?>" method="post">
+        <input name="form_key" type="hidden" value="<?php echo $this->getFormKey();?>">
+        <div class="awhdu3-statistic-tools-column">
+            <div class="awhdu3-statistic-tools-row">
+                <label for="period"><?php echo $this->__('Period');?></label>
+                <select id="period" name="period">
+                    <?php foreach ($this->getPredefinedPeriodTypeList() as $periodValue => $periodLabel):?>
+                        <option value="<?php echo $periodValue;?>"<?php echo $this->isPeriodSelected($periodValue)?' selected':'';?>><?php echo $periodLabel;?></option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+            <div class="awhdu3-statistic-tools-row">
+                <label for="from"><?php echo $this->__('From');?></label>
+                <input name="from_date" id="from" value="<?php echo $this->getFromDateValue();?>" type="text">
+                <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif');?>" class="v-middle" id="from_trig" title="<?php echo $this->__('Select Date');?>">
+                <script type="text/javascript">
+                    Calendar.setup({
+                        inputField: "from",
+                        ifFormat: "%d/%m/%Y",
+                        showsTime: false,
+                        button: "from_trig",
+                        align: "Bl",
+                        singleClick : true
+                    });
+                </script>
+            </div>
+            <div class="awhdu3-statistic-tools-row">
+                <label for="to"><?php echo $this->__('To');?></label>
+                <input name="to_date" id="to" value="<?php echo $this->getToDateValue();?>" type="text">
+                <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif');?>" class="v-middle" id="to_trig" title="<?php echo $this->__('Select Date');?>">
+                <script type="text/javascript">
+                    Calendar.setup({
+                        inputField: "to",
+                        ifFormat: "%d/%m/%Y",
+                        showsTime: false,
+                        button: "to_trig",
+                        align: "Bl",
+                        singleClick : true
+                    });
+                </script>
+            </div>
+            <script type="text/javascript">
+                var awHdu3OnPeriodChangeFn = function(e){
+                    if ($('period').value == <?php echo Zend_Json::encode(AW_Helpdesk3_Block_Adminhtml_Statistic_Status_View_Chart::PERIOD_CUSTOM);?>) {
+                        $('from').up().show();
+                        $('to').up().show();
+                    } else {
+                        $('from').up().hide();
+                        $('to').up().hide();
+                    }
+                };
+                $('period').observe('change', awHdu3OnPeriodChangeFn);
+                awHdu3OnPeriodChangeFn();
+            </script>
+        </div>
+        <div class="awhdu3-statistic-tools-column">
+            <div class="awhdu3-statistic-tools-row">
+                <label for="group"><?php echo $this->__('Group by');?></label>
+                <select id="group" name="group">
+                    <?php foreach ($this->getAvailableGroupingList() as $groupValue => $groupLabel):?>
+                        <option value="<?php echo $groupValue;?>"<?php echo $this->isGroupSelected($groupValue)?' selected':'';?>><?php echo $groupLabel;?></option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+            <div class="awhdu3-statistic-tools-row">
+                <label for="status"><?php echo $this->__('Status');?></label>
+                <select id="status" name="status[]" multiple>
+                    <?php foreach ($this->getStatusList() as $statusId => $statusTitle):?>
+                        <option value="<?php echo $statusId;?>"<?php echo $this->isStatusSelected($statusId)?' selected':'';?>><?php echo $statusTitle;?></option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+        </div>
+        <div class="awhdu3-statistic-tools-column">
+            <div class="awhdu3-statistic-tools-row">
+                <label for="departments"><?php echo $this->__('Departments');?></label>
+                <select id="departments" name="departments[]" multiple>
+                    <?php foreach ($this->getDepartmentList() as $departmentId => $departmentTitle):?>
+                        <option value="<?php echo $departmentId;?>"<?php echo $this->isDepartmentSelected($departmentId)?' selected':'';?>><?php echo $departmentTitle;?></option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+        </div>
+        <div class="awhdu3-statistic-tools-column" style="float:right">
+            <button type="submit">
+                <span><span><?php echo $this->__('Build Report');?></span></span>
+            </button>
+        </div>
+    </form>
+    <script type="text/javascript">
+        $$('#awhdu3-statistic-tools form').first().observe('submit', function(e){
+            Event.stop(e);
+            var json = Form.serialize($$('#awhdu3-statistic-tools form').first(), true);
+            var filterParam = encode_base64(Object.toJSON(json));
+            if (location.pathname.match(/\/filter\/.*/)) {
+                location.pathname = location.pathname.replace(/\/filter\/([^\/]*)/, '/filter/' + filterParam);
+            } else {
+                var str = '';
+                if (location.href[location.href.length - 1] !== '/') {
+                    str += '/';
+                }
+                str += 'filter/' + filterParam + '/';
+                location.href += str;
+            }
+        });
+    </script>
+</div>

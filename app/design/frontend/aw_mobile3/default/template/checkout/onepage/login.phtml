@@ -1,0 +1,121 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="checkout-method">
+
+    <?php echo $this->getChildHtml('login_before')?>
+
+    <div class="checkout-method__section">
+
+        <h3 class="checkout-method__title"><?php echo $this->__('Sign in') ?></h3>
+
+        <form class="form form__field" id="checkout-login-form" action="<?php echo $this->getPostAction() ?>" method="post">
+            <?php echo $this->getBlockHtml('formkey'); ?>
+
+            <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+            <input type="hidden" name="form_type" value="checkout_login"/>
+            <p class="form__field">
+                <label class="form__label"><?php echo $this->__('Email') ?></label>
+                <input type="email" class="form__textfield textfield required-entry validate-email" id="login-email" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" >
+            </p><!-- .form__field -->
+
+            <p class="form__field">
+                <label class="form__label"><?php echo $this->__('Password') ?></label>
+                <input type="password" class="form__textfield textfield required-entry" id="login-password" name="login[password]">
+                <?php echo $this->getChildHtml('form.additional.info'); ?>
+            </p>
+
+            <p class="form__field">
+                <button type="submit" class="checkout-method__sign-in form__submit button" onclick="onepageLogin(this)"><?php echo $this->__('Sign in') ?></button>
+
+                <?php if (method_exists($this->helper('checkout'), 'isCustomerMustBeLogged') && $this->helper('checkout')->isCustomerMustBeLogged()): ?>
+                    <a href="<?php echo Mage::helper('customer')->getRegisterUrl() ?>" class="js-open-panel checkout-method__create button button--invert" data-open-panel="customer-panel"><?php echo $this->__('Create an account') ?></a>
+                <?php else: ?>
+                    <button type="button" class="checkout-method__create button button--invert" onclick="<?php if ($this->getQuote()->isAllowedGuestCheckout() ): ?>$('login:register').checked = true;setStepDescription('login', '');<?php endif;?>checkout.setMethod();"><?php echo $this->__('Create an account') ?></button>
+                <?php endif;?>
+            </p>
+
+            <?php if (!$this->getQuote()->isAllowedGuestCheckout() ): ?>
+                <input type="hidden" name="checkout_method" id="login:register" value="register" checked="checked" />
+            <?php endif;?>
+        </form>
+
+    </div><!-- .checkout-method__section -->
+
+    <?php if ( $this->getQuote()->isAllowedGuestCheckout() ): ?>
+        <input style="display:none;" type="radio" name="checkout_method" id="login:guest" value="guest">
+        <input style="display:none;" type="radio" name="checkout_method" id="login:register" value="register">
+
+        <div class="checkout-method__section">
+
+            <h3 class="checkout-method__title"><?php echo $this->__('Checkout as Guest') ?></h3>
+
+            <p>
+                <button type="button" onclick="$('login:guest').checked = true;setStepDescription('login', '<?php echo $this->__('You are checking out as Guest')?>');checkout.setMethod();" class="form__submit button"><?php echo $this->__('Continue') ?></button>
+            </p>
+
+        </div><!-- .checkout-method__section -->
+    <?php endif;?>
+
+</div><!-- .checkout-method -->
+
+<script>
+    var loginForm = new VarienForm('checkout-login-form', true);
+
+    $('login-email').observe('keypress', bindLoginPost);
+    $('login-password').observe('keypress', bindLoginPost);
+
+    function bindLoginPost(evt) {
+        if (evt.keyCode == Event.KEY_RETURN) {
+            loginForm.submit();
+        }
+    }
+    function onepageLogin(button) {
+        if (loginForm.validator && loginForm.validator.validate()){
+            button.disabled = true;
+            loginForm.submit();
+        }
+    }
+    // Quo($('checkout_customer_forgot_form')).tap(function(e){
+    //     window.customerAccount.showForgotForm();
+    //     window.customerAccount.showMenu();
+    //     Event.stop(e);
+    // });
+</script>
+
+<?php
+$registerParam = $this->getRequest()->getParam('register');
+
+if ($registerParam || $registerParam === ''):
+    ?>
+    <script>
+        document.observe("dom:loaded", function() {
+            if ($('login:register')) {
+                $('login:register').checked = true;
+                checkout.setMethod();
+            }
+        });
+    </script>
+<?php endif; ?>

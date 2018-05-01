@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Wyomind_Licensemanager>
+            <version>2.1.1</version>
+        </Wyomind_Licensemanager>
+    </modules>
+    
+    
+    <frontend>
+        <routers>
+            <licensemanager>
+                <use>standard</use>
+                <args>
+                    <module>Wyomind_Licensemanager</module>
+                    <frontName>licensemanager</frontName>
+                </args>
+            </licensemanager>
+        </routers>
+    </frontend>
+    <adminhtml>
+      
+        <layout>
+            <updates>
+                <licensemanager>
+                    <file>licensemanager.xml</file>
+                </licensemanager>
+            </updates>
+        </layout>
+    </adminhtml>   
+    <global>
+       
+        <blocks>
+            <licensemanager>
+                <class>Wyomind_Licensemanager_Block</class>
+            </licensemanager>
+        </blocks>
+    </global>
+</config>
+

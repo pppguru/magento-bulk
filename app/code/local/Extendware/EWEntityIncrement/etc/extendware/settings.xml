@@ -1,0 +1,487 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+        <Extendware_EWEntityIncrement>
+        	<extendware>
+	        	<settings>
+	        		<scopes>
+		        		<main>
+							<tabs>
+						        <main translate="label comment ewhelp" module="ewentityincrement">
+						            <label>Order Numbers</label>
+						            <sort_order>100</sort_order>
+						        </main>
+						    </tabs>
+							<sections>
+								<ewentityincrement translate="label comment ewhelp" module="ewentityincrement">
+									<class>separator-top</class>
+									<label>General</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>100</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<groups>
+										<order translate="label comment ewhelp" module="ewentityincrement">
+											<label>Order Numbers</label>
+											<frontend_type>text</frontend_type>
+											<sort_order>100</sort_order>
+											<show_in_default>1</show_in_default>
+											<show_in_website>1</show_in_website>
+											<show_in_store>1</show_in_store>
+											<fields>
+												<prefix translate="label comment ewhelp">
+													<label>Prefix</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>10</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<comment><![CDATA[A non-numeric prefix (or no prefix) is generally recommended]]></comment>
+													<ewhelp><![CDATA[The prefix will go in front of your number. For example, if the next number is 100 and you have a prefix ABC, the real number will be ABC100.]]></ewhelp>
+												</prefix>
+												<date_prefix translate="label comment ewhelp">
+													<label>Date Prefix</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewentityincrement/adminhtml_data_option_dateprefix</source_model>
+													<sort_order>11</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Prefix numbers by date. This goes after the prefix and before the number: [prefix][date_prefix][number]]]></comment>
+												</date_prefix>
+												<date_prefix_reset_enabled translate="label comment ewhelp">
+													<label>Reset On Date Change</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewcore/adminhtml_config_data_option_yesno</source_model>
+													<sort_order>12</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Reset the numbering when the date prefix changes (e.g., the year changing from 2011 to 2012)]]></comment>
+													<ewhelp><![CDATA[For example, if you have configured the date prefix to be YYYYMMDD and you enable <i>reset on date change</i>, then every day the number portion would reset to the starting number. If the date prefix format is set to YYYYMM, then the starting number would reset every month.]]></ewhelp>
+												</date_prefix_reset_enabled>
+												<starting_number translate="label comment ewhelp">
+													<label>Starting Number</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>20</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_pattern</model>
+						                            		<options>
+						                            			<pattern><![CDATA[/^(?:\d+-\d+|\d+)$/]]></pattern>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[The number the first ID will have. Format: [num] or [min-num]-[max-num]]]></comment>
+						                            <ewhelp><![CDATA[If you already have orders in your store and you set the start number below the last order ID, then nothing will happen. You will have to rebuild your numbers / reset your last ID cache in this situation. If you set a range such as 1-5, then the starting number will be a randomly number within this range. This is especially useful for date prefixes where the starting number resets every date period.]]></ewhelp>
+												</starting_number>
+												<increment_amount translate="label comment ewhelp">
+													<label>Increment Amount</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>30</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_pattern</model>
+						                            		<options>
+						                            			<pattern><![CDATA[/^(?:\d+-\d+|\d+)$/]]></pattern>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[The next ID will be the last ID + the increment amount. Format: [num] or [min-num]-[max-num]]]></comment>
+													<ewhelp><![CDATA[If customer A orders and gets number 100 and customer B orders immediately after, the increment amount determines what number customer B will receive. If increment amoun is 1, then the next number is 101, if it is 5, then the next number will be 105. If the increment amount is 1-5, then a random number between 1-5 will be added to 100 to obtain the next ID.]]></ewhelp>
+												</increment_amount>
+												<padding_length translate="label comment ewhelp">
+													<label>Padding Length</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>40</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[An ID of 1 with a padding of 3 will be 003]]></comment>
+												</padding_length>
+												<rebuild translate="label comment ewhelp">
+													<label>Rebuild Numbers</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewcore/adminhtml_config_data_option_yesno</source_model>
+													<sort_order>50</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[This will irreversibly update numbers to new number scheme. Backup the database prior to using!]]></comment>
+													<ewhelp><![CDATA[Rebuild numbers only if you want your old olders to be updated to the current numbering scheme.]]></ewhelp>
+												</rebuild>
+											</fields>
+										</order>
+										<invoice translate="label comment ewhelp" module="ewentityincrement">
+											<label>Invoice Numbers</label>
+											<frontend_type>text</frontend_type>
+											<sort_order>200</sort_order>
+											<show_in_default>1</show_in_default>
+											<show_in_website>1</show_in_website>
+											<show_in_store>1</show_in_store>
+											<fields>
+												<prefix translate="label comment ewhelp">
+													<label>Prefix</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>10</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<comment><![CDATA[A non-numeric prefix (or no prefix) is generally recommended]]></comment>
+													<ewhelp><![CDATA[The prefix will go in front of your number. For example, if the next number is 100 and you have a prefix ABC, the real number will be ABC100.]]></ewhelp>
+												</prefix>
+												<date_prefix translate="label comment ewhelp">
+													<label>Date Prefix</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewentityincrement/adminhtml_data_option_dateprefix</source_model>
+													<sort_order>11</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Prefix numbers by date. This goes after the prefix and before the number: [prefix][date_prefix][number]]]></comment>
+												</date_prefix>
+												<date_prefix_reset_enabled translate="label comment ewhelp">
+													<label>Reset On Date Change</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewcore/adminhtml_config_data_option_yesno</source_model>
+													<sort_order>12</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Reset the numbering when the date prefix changes (e.g., the year changing from 2011 to 2012)]]></comment>
+													<ewhelp><![CDATA[For example, if you have configured the date prefix to be YYYYMMDD and you enable reset numbering, then every day the number portion would reset to the starting number.]]></ewhelp>
+												</date_prefix_reset_enabled>
+												<starting_number translate="label comment ewhelp">
+													<label>Starting Number</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>20</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_pattern</model>
+						                            		<options>
+						                            			<pattern><![CDATA[/^(?:\d+-\d+|\d+)$/]]></pattern>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[The number the first ID will have. Format: [num] or [min-num]-[max-num]]]></comment>
+						                            <ewhelp><![CDATA[If you already have orders in your store and you set the start number below the last order ID, then nothing will happen. You will have to rebuild your numbers / reset your last ID cache in this situation. If you set a range such as 1-5, then the starting number will be a randomly number within this range. This is especially useful for date prefixes where the starting number resets every date period.]]></ewhelp>
+												</starting_number>
+												<increment_amount translate="label comment ewhelp">
+													<label>Increment Amount</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>30</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_pattern</model>
+						                            		<options>
+						                            			<pattern><![CDATA[/^(?:\d+-\d+|\d+)$/]]></pattern>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[The next ID will be the last ID + the increment amount. Format: [num] or [min-num]-[max-num]]]></comment>
+													<ewhelp><![CDATA[If customer A orders and gets number 100 and customer B orders immediately after, the increment amount determines what number customer B will receive. If increment amoun is 1, then the next number is 101, if it is 5, then the next number will be 105. If the increment amount is 1-5, then a random number between 1-5 will be added to 100 to obtain the next ID.]]></ewhelp>
+												</increment_amount>
+												<padding_length translate="label comment ewhelp">
+													<label>Padding Length</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>40</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[An ID of 1 with a padding of 3 will be 003]]></comment>
+												</padding_length>
+												<rebuild translate="label comment ewhelp">
+													<label>Rebuild Numbers</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewcore/adminhtml_config_data_option_yesno</source_model>
+													<sort_order>50</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[This will irreversibly update numbers to new number scheme. Backup the database prior to using!]]></comment>
+													<ewhelp><![CDATA[Rebuild numbers only if you want your old olders to be updated to the current numbering scheme.]]></ewhelp>
+												</rebuild>
+											</fields>
+										</invoice>
+										<shipment translate="label comment ewhelp" module="ewentityincrement">
+											<label>Shipment Numbers</label>
+											<frontend_type>text</frontend_type>
+											<sort_order>300</sort_order>
+											<show_in_default>1</show_in_default>
+											<show_in_website>1</show_in_website>
+											<show_in_store>1</show_in_store>
+											<fields>
+												<prefix translate="label comment ewhelp">
+													<label>Prefix</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>10</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<comment><![CDATA[A non-numeric prefix (or no prefix) is generally recommended]]></comment>
+													<ewhelp><![CDATA[The prefix will go in front of your number. For example, if the next number is 100 and you have a prefix ABC, the real number will be ABC100.]]></ewhelp>
+												</prefix>
+												<date_prefix translate="label comment ewhelp">
+													<label>Date Prefix</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewentityincrement/adminhtml_data_option_dateprefix</source_model>
+													<sort_order>11</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Prefix numbers by date. This goes after the prefix and before the number: [prefix][date_prefix][number]]]></comment>
+												</date_prefix>
+												<date_prefix_reset_enabled translate="label comment ewhelp">
+													<label>Reset On Date Change</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewcore/adminhtml_config_data_option_yesno</source_model>
+													<sort_order>12</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Reset the numbering when the date prefix changes (e.g., the year changing from 2011 to 2012)]]></comment>
+													<ewhelp><![CDATA[For example, if you have configured the date prefix to be YYYYMMDD and you enable reset numbering, then every day the number portion would reset to the starting number.]]></ewhelp>
+												</date_prefix_reset_enabled>
+												<starting_number translate="label comment ewhelp">
+													<label>Starting Number</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>20</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_pattern</model>
+						                            		<options>
+						                            			<pattern><![CDATA[/^(?:\d+-\d+|\d+)$/]]></pattern>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[The number the first ID will have. Format: [num] or [min-num]-[max-num]]]></comment>
+						                            <ewhelp><![CDATA[If you already have orders in your store and you set the start number below the last order ID, then nothing will happen. You will have to rebuild your numbers / reset your last ID cache in this situation. If you set a range such as 1-5, then the starting number will be a randomly number within this range. This is especially useful for date prefixes where the starting number resets every date period.]]></ewhelp>
+												</starting_number>
+												<increment_amount translate="label comment ewhelp">
+													<label>Increment Amount</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>30</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_pattern</model>
+						                            		<options>
+						                            			<pattern><![CDATA[/^(?:\d+-\d+|\d+)$/]]></pattern>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[The next ID will be the last ID + the increment amount. Format: [num] or [min-num]-[max-num]]]></comment>
+													<ewhelp><![CDATA[If customer A orders and gets number 100 and customer B orders immediately after, the increment amount determines what number customer B will receive. If increment amoun is 1, then the next number is 101, if it is 5, then the next number will be 105. If the increment amount is 1-5, then a random number between 1-5 will be added to 100 to obtain the next ID.]]></ewhelp>
+												</increment_amount>
+												<padding_length translate="label comment ewhelp">
+													<label>Padding Length</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>40</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[An ID of 1 with a padding of 3 will be 003]]></comment>
+												</padding_length>
+												<rebuild translate="label comment ewhelp">
+													<label>Rebuild Numbers</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewcore/adminhtml_config_data_option_yesno</source_model>
+													<sort_order>50</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[This will irreversibly update numbers to new number scheme. Backup the database prior to using!]]></comment>
+													<ewhelp><![CDATA[Rebuild numbers only if you want your old olders to be updated to the current numbering scheme.]]></ewhelp>
+												</rebuild>
+											</fields>
+										</shipment>
+										<credit_memo translate="label comment ewhelp" module="ewentityincrement">
+											<label>Credit Memo Numbers</label>
+											<frontend_type>text</frontend_type>
+											<sort_order>400</sort_order>
+											<show_in_default>1</show_in_default>
+											<show_in_website>1</show_in_website>
+											<show_in_store>1</show_in_store>
+											<fields>
+												<prefix translate="label comment ewhelp">
+													<label>Prefix</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>10</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<comment><![CDATA[A non-numeric prefix (or no prefix) is generally recommended]]></comment>
+													<ewhelp><![CDATA[The prefix will go in front of your number. For example, if the next number is 100 and you have a prefix ABC, the real number will be ABC100.]]></ewhelp>
+												</prefix>
+												<date_prefix translate="label comment ewhelp">
+													<label>Date Prefix</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewentityincrement/adminhtml_data_option_dateprefix</source_model>
+													<sort_order>11</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Prefix numbers by date. This goes after the prefix and before the number: [prefix][date_prefix][number]]]></comment>
+												</date_prefix>
+												<date_prefix_reset_enabled translate="label comment ewhelp">
+													<label>Reset On Date Change</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewcore/adminhtml_config_data_option_yesno</source_model>
+													<sort_order>12</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Reset the numbering when the date prefix changes (e.g., the year changing from 2011 to 2012)]]></comment>
+													<ewhelp><![CDATA[For example, if you have configured the date prefix to be YYYYMMDD and you enable reset numbering, then every day the number portion would reset to the starting number.]]></ewhelp>
+												</date_prefix_reset_enabled>
+												<starting_number translate="label comment ewhelp">
+													<label>Starting Number</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>20</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_pattern</model>
+						                            		<options>
+						                            			<pattern><![CDATA[/^(?:\d+-\d+|\d+)$/]]></pattern>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[The number the first ID will have. Format: [num] or [min-num]-[max-num]]]></comment>
+						                            <ewhelp><![CDATA[If you already have orders in your store and you set the start number below the last order ID, then nothing will happen. You will have to rebuild your numbers / reset your last ID cache in this situation. If you set a range such as 1-5, then the starting number will be a randomly number within this range. This is especially useful for date prefixes where the starting number resets every date period.]]></ewhelp>
+												</starting_number>
+												<increment_amount translate="label comment ewhelp">
+													<label>Increment Amount</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>30</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_pattern</model>
+						                            		<options>
+						                            			<pattern><![CDATA[/^(?:\d+-\d+|\d+)$/]]></pattern>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[The next ID will be the last ID + the increment amount. Format: [num] or [min-num]-[max-num]]]></comment>
+													<ewhelp><![CDATA[If customer A orders and gets number 100 and customer B orders immediately after, the increment amount determines what number customer B will receive. If increment amoun is 1, then the next number is 101, if it is 5, then the next number will be 105. If the increment amount is 1-5, then a random number between 1-5 will be added to 100 to obtain the next ID.]]></ewhelp>
+												</increment_amount>
+												<padding_length translate="label comment ewhelp">
+													<label>Padding Length</label>
+													<frontend_type>text</frontend_type>
+													<sort_order>40</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+													<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[An ID of 1 with a padding of 3 will be 003]]></comment>
+												</padding_length>
+												<rebuild translate="label comment ewhelp">
+													<label>Rebuild Numbers</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewcore/adminhtml_config_data_option_yesno</source_model>
+													<sort_order>50</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[This will irreversibly update numbers to new number scheme. Backup the database prior to using!]]></comment>
+													<ewhelp><![CDATA[Rebuild numbers only if you want your old olders to be updated to the current numbering scheme.]]></ewhelp>
+												</rebuild>
+											</fields>
+										</credit_memo>
+									</groups>
+								</ewentityincrement>
+								<ewentityincrement_advanced translate="label comment ewhelp" module="ewentityincrement">
+									<class>separator-top</class>
+									<label>Advanced</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>200</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<groups>
+										<general translate="label comment ewhelp" module="ewentityincrement">
+											<label>General</label>
+											<frontend_type>text</frontend_type>
+											<sort_order>100</sort_order>
+											<show_in_default>1</show_in_default>
+											<show_in_website>1</show_in_website>
+											<show_in_store>1</show_in_store>
+											<fields>
+												<date_source translate="label comment ewhelp">
+													<label>Date Source</label>
+													<frontend_type>select</frontend_type>
+													<source_model>ewentityincrement/adminhtml_data_option_datesource</source_model>
+													<sort_order>11</sort_order>
+													<show_in_default>1</show_in_default>
+													<show_in_website>1</show_in_website>
+													<show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Select the source that will be used for date prefixes. System time will use the time configured on your system / database. Locale will attempt to adjust it for your configured locale.]]></comment>
+												</date_source>
+											</fields>
+										</general>
+									</groups>
+								</ewentityincrement_advanced>
+							</sections>
+						</main>
+					</scopes>
+				</settings>
+			</extendware>
+		</Extendware_EWEntityIncrement>
+	</modules>
+</config>

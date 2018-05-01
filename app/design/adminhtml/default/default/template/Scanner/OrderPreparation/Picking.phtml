@@ -1,0 +1,69 @@
+<script>
+	var products = new Array();
+		
+	<?php $i = 0; ?>
+	<?php $collection = $this->getProducts(); ?>
+	<?php foreach ($collection as $product): ?>
+		products['<?php echo $i; ?>'] = new Array();
+		products['<?php echo $i; ?>']['id'] = <?php echo $product->getId(); ?>;
+		products['<?php echo $i; ?>']['manufacturer'] = '<?php echo $product->getManufacturer(); ?>';
+		products['<?php echo $i; ?>']['location'] = '<?php echo $product->getlocation(); ?>';
+		products['<?php echo $i; ?>']['expected_qty'] = <?php echo $product->getqty(); ?>;
+		products['<?php echo $i; ?>']['sort_value'] = '<?php echo strtolower((mage::getStoreConfig('orderpreparation/picking_list/sort_mode') == 'location') ? $product->getlocation() : $product->getmanufacturer()); ?>';
+		products['<?php echo $i; ?>']['barcodes'] = new Array();
+		<?php $j = 0; ?>
+		<?php foreach ($this->getBarcodes($product->getId()) as $barcode): ?>
+			products['<?php echo $i; ?>']['barcodes'][<?php echo $j; ?>] = '<?php echo $barcode->getppb_barcode(); ?>';
+			<?php $j++; ?>
+		<?php endforeach; ?>
+		<?php $i++; ?>
+	<?php endforeach; ?>	
+	
+	var deleteRowWhenQtyReached = <?php echo (int)mage::getStoreConfig('scanner/misc/hide_product_row_when_qty_reached'); ?>;
+	
+</script>
+
+<table border="1" cellspacing="0" cellpadding="5" width="100%">
+	<tr>
+		<th class="a-center" bgcolor="#cccccc" colspan="2"><?php echo $this->__('Picking'); ?></th>
+	</tr>
+	<?php if (count($collection) == 0): ?>
+		<tr>
+			<td>
+				<?php echo $this->__('No Products'); ?>
+			</td>
+		</tr>
+	<?php else: ?>
+		<?php $lastSortValue = ''; ?>
+		<?php foreach ($collection as $product): ?>
+			<?php if ($product->gettype_id() != 'simple') { continue; }; ?>
+			<?php $currentSortValue = strtolower((mage::getStoreConfig('orderpreparation/picking_list/sort_mode') == 'location') ? $product->getlocation() : $product->getmanufacturer()); ?>
+			<?php if ($lastSortValue != $currentSortValue): ?>
+				<tr id="tr_sortvalue_<?php echo $currentSortValue; ?>">
+					<?php if ($currentSortValue != ''): ?>
+							<th bgcolor="#eeeeee" colspan="2" align="center"><?php echo strtoupper($currentSortValue); ?></th>
+					<?php else: ?>
+							<th bgcolor="#eeeeee" colspan="2" align="center"><?php echo $this->__('Unknown'); ?></th>				
+					<?php endif; ?>
+				</tr>
+				<?php $lastSortValue = $currentSortValue; ?>
+			<?php endif; ?>
+			<tr id="tr_product_<?php echo $product->getId(); ?>">
+				<td nowrap>
+					<input type="hidden" size="1" id="product_<?php echo $product->getId(); ?>" name="product_<?php echo $product->getId(); ?>" value="0">
+					<span id="span_product_<?php echo $product->getId(); ?>">0</span> / <?php echo $product->getqty(); ?>
+				</td>
+				<td><?php echo $product->getName(); ?></td>
+			</tr>
+		<?php endforeach; ?>
+	<?php endif; ?>
+</table>
+
+<script>
+	<?php foreach ($collection as $product): ?>
+        <?php if ($product->gettype_id() != 'simple') { continue; }; ?>
+		colorProductCell(<?php echo $product->getId(); ?>);
+	<?php endforeach; ?>	
+	
+	enableCatchKeys('newScanEntry(KC_value);');	
+</script>

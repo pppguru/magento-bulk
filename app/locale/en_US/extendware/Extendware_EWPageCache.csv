@@ -1,0 +1,417 @@
+"<b>Format:</b> one regular expression per line
+						                        	<br/><br/>
+						                        	If you serve different content based on user agent (for example, to serve a mobile theme) and for some reason you do not want to use the cache for these user agents, then you may enter a regular expression to disable the cache for these user agents. To disable the cache for mobile clients you could use something like this:
+													<p style=""margin-top: 10px"">BlackBerry|Pre|Palm|Googlebot-Mobile|mobi|Safari Mobile|Windows Mobile|Android|Opera Mini|mobile</p>
+						                        	","<b>Format:</b> one regular expression per line
+						                        	<br/><br/>
+						                        	If you serve different content based on user agent (for example, to serve a mobile theme) and for some reason you do not want to use the cache for these user agents, then you may enter a regular expression to disable the cache for these user agents. To disable the cache for mobile clients you could use something like this:
+													<p style=""margin-top: 10px"">BlackBerry|Pre|Palm|Googlebot-Mobile|mobi|Safari Mobile|Windows Mobile|Android|Opera Mini|mobile</p>
+						                        	"
+"<b>Format:</b> One regular expression per line including the //. For example, /admin/ to match any url with admin.
+						                        	<br/><br/>
+						                        	If a a URI matches any string listed here, then the page cache extension will not run. <b>You must set this correctly in order to login to the admin area</b>. By default, the only string listed here is <i>admin</i>. If an extension uses admin URIs that do not match the below list then you will not be able to view that extensions admin pages until you add the appropriate identifier here.
+						                        	<br/><br/>
+						                        	<b>Note:</b> This can be used to disable the cache based on any arbitrary URL string.
+						                        	","<b>Format:</b> One regular expression per line including the //. For example, /admin/ to match any url with admin.
+						                        	<br/><br/>
+						                        	If a a URI matches any string listed here, then the page cache extension will not run. <b>You must set this correctly in order to login to the admin area</b>. By default, the only string listed here is <i>admin</i>. If an extension uses admin URIs that do not match the below list then you will not be able to view that extensions admin pages until you add the appropriate identifier here.
+						                        	<br/><br/>
+						                        	<b>Note:</b> This can be used to disable the cache based on any arbitrary URL string.
+						                        	"
+"<b>Format:</b> one string per line.
+						                        	<br/><br/>
+						                        	This is useful if you do not want administrators to load the cache. This enables this to view all the latest changes to the site. Add <i>adminhtml</i> to the list to accomplish this.","<b>Format:</b> one string per line.
+						                        	<br/><br/>
+						                        	This is useful if you do not want administrators to load the cache. This enables this to view all the latest changes to the site. Add <i>adminhtml</i> to the list to accomplish this."
+"<b>Note:</b> click the input box for more information on each field.","<b>Note:</b> click the input box for more information on each field."
+"<b>Only available with the ""Cache Backends"" addon. Please <a href=""http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/"" target=""_blank"">purchase addon</a> to enable.</b>","<b>Only available with the ""Cache Backends"" addon. Please <a href=""http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/"" target=""_blank"">purchase addon</a> to enable.</b>"
+"<b>Only available with the ""Page Rules"" addon. Please <a href=""http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/"" target=""_blank"">purchase addon</a> to enable.</b>","<b>Only available with the ""Page Rules"" addon. Please <a href=""http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/"" target=""_blank"">purchase addon</a> to enable.</b>"
+"<b>Only available with the ""Secondary Cache"" addon. Please <a href=""http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/"" target=""_blank"">purchase addon</a> to enable.</b>","<b>Only available with the ""Secondary Cache"" addon. Please <a href=""http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/"" target=""_blank"">purchase addon</a> to enable.</b>"
+"<b>Only available with the ""Tagging"" addon. Please <a href=""http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/"" target=""_blank"">purchase addon</a> to enable.</b>","<b>Only available with the ""Tagging"" addon. Please <a href=""http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/"" target=""_blank"">purchase addon</a> to enable.</b>"
+"<u>Hole punch hits will only be visible if you are in the secondary cache.</u> You can view what cache level you are in by using the footer widget / output headers.","<u>Hole punch hits will only be visible if you are in the secondary cache.</u> You can view what cache level you are in by using the footer widget / output headers."
+"<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>Category Save</b> - after saving a category</li></ul>","<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>Category Save</b> - after saving a category</li></ul>"
+"<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>CMS Save</b> - After saving a CMS page</li></ul>","<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>CMS Save</b> - After saving a CMS page</li></ul>"
+"<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>None</b> - no auto-tagging will be done. You can still manually tag</li><li><b>Lite</b> - category listing pages will be tagged with category tag</li><li><b>Medium</b> - category listing + product pages will be tagged with relevant tag</li></ul>","<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>None</b> - no auto-tagging will be done. You can still manually tag</li><li><b>Lite</b> - category listing pages will be tagged with category tag</li><li><b>Medium</b> - category listing + product pages will be tagged with relevant tag</li></ul>"
+"<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>None</b> - No auto-tagging will be done. You can still manually tag</li><li><b>Lite</b> - cms page will be tagged</li></ul>","<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>None</b> - No auto-tagging will be done. You can still manually tag</li><li><b>Lite</b> - cms page will be tagged</li></ul>"
+"<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>None</b> - no auto-tagging will be done. You can still manually tag</li><li><b>Lite</b> - product pages will be tagged with the product ID</li><li><b>Medium</b> - product page + all products on catalog listing will be tagged</li><b>Heavy</b> - product page + all products loaded in product collections will be tagged</li></ul>","<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>None</b> - no auto-tagging will be done. You can still manually tag</li><li><b>Lite</b> - product pages will be tagged with the product ID</li><li><b>Medium</b> - product page + all products on catalog listing will be tagged</li><b>Heavy</b> - product page + all products loaded in product collections will be tagged</li></ul>"
+"<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>Product Save</b> - after saving a product</li><li><b>Stock Quantity Change</b> - when the stock quantity changes. For example, from 7 items to 6 items in stock.</li><li><b>Stock State Change</b> - when a product changes from in stock to out of stock and vice versa.</li></ul>","<ul style=""list-style-type:disc; margin-left: 20px;""><li><b>Product Save</b> - after saving a product</li><li><b>Stock Quantity Change</b> - when the stock quantity changes. For example, from 7 items to 6 items in stock.</li><li><b>Stock State Change</b> - when a product changes from in stock to out of stock and vice versa.</li></ul>"
+"A page will be cacheable if it matches a rule listed here. Each rule follows a heirachy. For example, the page path ""catalog-category-view"" refers to the module (catalog), controller (category), and action (view). Rules 
+						                        	are inherited. So, a request to a catalog -> category -> view page will also match a rule block such as ""catalog-category"" if a config value is not defined more specifically in ""catalog-category-view"". 
+						                        	<br/><br/>
+						                        	To view the page path for a given page you should enable the footer widget (<i>Developer -> General -> Footer Widget</i>) or output headers (<i>Developer -> General -> Output Headers</i>) if the page is retrieved via ajax.
+						                        	You can use something like HTTPFox or an online header viewer. The relevant header with this information is <i>X-PageCache-PagePath</i>.","A page will be cacheable if it matches a rule listed here. Each rule follows a heirachy. For example, the page path ""catalog-category-view"" refers to the module (catalog), controller (category), and action (view). Rules 
+						                        	are inherited. So, a request to a catalog -> category -> view page will also match a rule block such as ""catalog-category"" if a config value is not defined more specifically in ""catalog-category-view"". 
+						                        	<br/><br/>
+						                        	To view the page path for a given page you should enable the footer widget (<i>Developer -> General -> Footer Widget</i>) or output headers (<i>Developer -> General -> Output Headers</i>) if the page is retrieved via ajax.
+						                        	You can use something like HTTPFox or an online header viewer. The relevant header with this information is <i>X-PageCache-PagePath</i>."
+"A request like the following <i>index.php?b=1&a=2</i> is different than <i>index.php?a=1&b=2</i> if sorting is turned off. If paramteres change positions in your store, then you should enable sorting.","A request like the following <i>index.php?b=1&a=2</i> is different than <i>index.php?a=1&b=2</i> if sorting is turned off. If paramteres change positions in your store, then you should enable sorting."
+"Ability to delete a page from cache via a link.","Ability to delete a page from cache via a link."
+"Add after","Add after"
+"Add Block Tags","Add Block Tags"
+"Add Cookie","Add Cookie"
+"Add Disqualifer","Add Disqualifer"
+"Add Filter","Add Filter"
+"Add Injectors","Add Injectors"
+"Add Param","Add Param"
+"Add Rule","Add Rule"
+"Add Servers","Add Servers"
+"Add Tags","Add Tags"
+"Add Translation","Add Translation"
+"Add User Agent","Add User Agent"
+Advanced,Advanced
+"After this many seconds a page will be removed from the cache. The higher the cache expiration, the more useful the full page cache will be. Set this to the highest value that you can tolerate. You can set a separate per page type expiration in the advanced configuration and you can set a per page expiration programmatically.","After this many seconds a page will be removed from the cache. The higher the cache expiration, the more useful the full page cache will be. Set this to the highest value that you can tolerate. You can set a separate per page type expiration in the advanced configuration and you can set a per page expiration programmatically."
+"Ajax (experimental)","Ajax (experimental)"
+"An error occurred while flushing the cachd log","An error occurred while flushing the cachd log"
+"An error occurred while flushing the full page cache","An error occurred while flushing the full page cache"
+"Anyone with a set a cookie that matches one of the inputted cookie names will not use the cache.","Anyone with a set a cookie that matches one of the inputted cookie names will not use the cache."
+APC,APC
+"Are you sure you want to flush the cached log? This will reset all the history that the crawler uses to crawl URLs. This history can take several weeks to rebuild after a flush.","Are you sure you want to flush the cached log? This will reset all the history that the crawler uses to crawl URLs. This history can take several weeks to rebuild after a flush."
+"Are you sure you want to flush the full page cache?","Are you sure you want to flush the full page cache?"
+"Auto Tag / Flush","Auto Tag / Flush"
+"Auto-clear the Magento block cache before auto-flushing page cache","Auto-clear the Magento block cache before auto-flushing page cache"
+"Automatic Flushing","Automatic Flushing"
+"Automatic Tagging","Automatic Tagging"
+Behavior,Behavior
+"Block Key","Block Key"
+"Block leve hole punch registration. Refer to the user guide for more info","Block leve hole punch registration. Refer to the user guide for more info"
+"Block Tags","Block Tags"
+"Cache (experimental)","Cache (experimental)"
+"Cache Backend","Cache Backend"
+"Cache Key","Cache Key"
+"Cache key settings determine how the cache key is generated. Every page needs its own unique cache key and two pages with the same cache key will share the same cache.","Cache key settings determine how the cache key is generated. Every page needs its own unique cache key and two pages with the same cache key will share the same cache."
+"Cache Lifetime (secs)","Cache Lifetime (secs)"
+"Cache Re-entry (experimental)","Cache Re-entry (experimental)"
+"Cache re-entry is only an attempt to re-enter the primary cache. It does not guarantee re-entry will occur. Type of cache re-entry:
+						                            <br/><br/>
+						                            <ul style=""list-style-type:disc; margin-left: 20px;"">
+						                            	<li><b>Cart</b> - Re-enter primary cache after cart has been emptied</li>
+						                            	<li><b>Login</b> - Re-enter primary cache after logging out</li>
+						                            	<li><b>Compare</b> - Re-enter primary cache after compare list has been cleared. Enabling this will attempt to disable the ""Recently Compared Products"" block. You will need to do this automatically if disabling is not automatic.</li>
+						                            </ul>
+						                            ","Cache re-entry is only an attempt to re-enter the primary cache. It does not guarantee re-entry will occur. Type of cache re-entry:
+						                            <br/><br/>
+						                            <ul style=""list-style-type:disc; margin-left: 20px;"">
+						                            	<li><b>Cart</b> - Re-enter primary cache after cart has been emptied</li>
+						                            	<li><b>Login</b> - Re-enter primary cache after logging out</li>
+						                            	<li><b>Compare</b> - Re-enter primary cache after compare list has been cleared. Enabling this will attempt to disable the ""Recently Compared Products"" block. You will need to do this automatically if disabling is not automatic.</li>
+						                            </ul>
+						                            "
+"Cacheable settings are used to determine whether a page is cached or not.","Cacheable settings are used to determine whether a page is cached or not."
+Caching,Caching
+Cart,Cart
+"Category Create","Category Create"
+"Category Events","Category Events"
+"Category Index Save Deferred Event","Category Index Save Deferred Event"
+"Category Index Save Event","Category Index Save Event"
+"Category Mode","Category Mode"
+"Category Update","Category Update"
+"Changing the lock key is not supported","Changing the lock key is not supported"
+"Choose when cms pages will be auto-flushed. Use CTRL-Click to select multiple items","Choose when cms pages will be auto-flushed. Use CTRL-Click to select multiple items"
+"Choose when pages that display a changed product will be auto-flushed. Use CTRL-Click to select multiple items","Choose when pages that display a changed product will be auto-flushed. Use CTRL-Click to select multiple items"
+"CMS Events","CMS Events"
+"CMS Mode","CMS Mode"
+"CMS Page Create","CMS Page Create"
+"CMS Page Update","CMS Page Update"
+"Comma separated list of tags","Comma separated list of tags"
+Compare,Compare
+Compression,Compression
+Configuration,Configuration
+Conservative,Conservative
+"Content Disqualifiers","Content Disqualifiers"
+Cookie,Cookie
+"Cookie Name","Cookie Name"
+"Cookie Names","Cookie Names"
+Cookies,Cookies
+"Could not clean the cached log","Could not clean the cached log"
+"Could not load injector: %s","Could not load injector: %s"
+"Could not verify request","Could not verify request"
+Country,Country
+"Custom Tags","Custom Tags"
+"Customer group translation helps ensure different customer groups see the same cached page.","Customer group translation helps ensure different customer groups see the same cached page."
+"Database Index","Database Index"
+"Debug Log","Debug Log"
+Deferred,Deferred
+Delete,Delete
+"Deleting Over HTTP","Deleting Over HTTP"
+"Demo Widget","Demo Widget"
+"Design Key Status","Design Key Status"
+"Determine how much auto-tagging you want to use. Without auto-tagging you will be responsible for adding tags according to the userguide.","Determine how much auto-tagging you want to use. Without auto-tagging you will be responsible for adding tags according to the userguide."
+"Determines the mode for stock quantity change flush event. Set to conservative to only flush if quantity changes from 0 <-> 1. Change to liberal to flush on any change.","Determines the mode for stock quantity change flush event. Set to conservative to only flush if quantity changes from 0 <-> 1. Change to liberal to flush on any change."
+Developer,Developer
+"Did you know purchasing %s can speed up your store even more?","Did you know purchasing %s can speed up your store even more?"
+Directory,Directory
+"Disqualifying String","Disqualifying String"
+"Enable or disable compression. Depends on what is more scarce, CPU or RAM / Disk IO.","Enable or disable compression. Depends on what is more scarce, CPU or RAM / Disk IO."
+"Enable or disable logging. This log can be fed to a crawler such as the Full Page Cache Crawler. Only cached pages are logged on cache","Enable or disable logging. This log can be fed to a crawler such as the Full Page Cache Crawler. Only cached pages are logged on cache"
+"Enable or disable tagging support. <b>Note:</b> tagging will only works for the File or Redis backends or one of the Multi backends. It will not work with APC, XCache, or Memcached (unless you use the Multi backend).","Enable or disable tagging support. <b>Note:</b> tagging will only works for the File or Redis backends or one of the Multi backends. It will not work with APC, XCache, or Memcached (unless you use the Multi backend)."
+"Enable or disable the fast secondary cache that is used when the primary cache cannot be used","Enable or disable the fast secondary cache that is used when the primary cache cannot be used"
+"Enable or disable the super fast primary cache","Enable or disable the super fast primary cache"
+"Enable the caching of select hole punches at the user-level to take further load off the database.","Enable the caching of select hole punches at the user-level to take further load off the database."
+"Enabling logging of 404 page not found requests is generally a very bad idea. Only do this if you know what you are doing and have a very specific reason for doing it. You must also enable the caching of bad requests for requests to be logged.","Enabling logging of 404 page not found requests is generally a very bad idea. Only do this if you know what you are doing and have a very specific reason for doing it. You must also enable the caching of bad requests for requests to be logged."
+"Enabling this is not recommended. Please refer to the user guide if you enable this.","Enabling this is not recommended. Please refer to the user guide if you enable this."
+"Enabling this option will make your site slower and reduce the effecitveness of the Primary Cache. If you enable this
+						                        	you must modify the page rules by uncommenting the relevant section in the &lt;catalog-product-view&gt; node","Enabling this option will make your site slower and reduce the effecitveness of the Primary Cache. If you enable this
+						                        	you must modify the page rules by uncommenting the relevant section in the &lt;catalog-product-view&gt; node"
+"Enabling this will allow customers to re-enter the primary cache after exiting the primary cache if certain conditions occur.","Enabling this will allow customers to re-enter the primary cache after exiting the primary cache if certain conditions occur."
+"Enabling this will refresh the page cache when you refresh the other caches via System -> Cache Management. This can save you time if you always want to flush the page cache when you flush the block cache.","Enabling this will refresh the page cache when you refresh the other caches via System -> Cache Management. This can save you time if you always want to flush the page cache when you flush the block cache."
+"Error encountered when trying to flush cache","Error encountered when trying to flush cache"
+"Error: Deleting over HTTP is disabled","Error: Deleting over HTTP is disabled"
+"Error: No cache ids were specified","Error: No cache ids were specified"
+"Error: You do not have permission to delete pages from cache","Error: You do not have permission to delete pages from cache"
+Event,Event
+"Exclude 404 page errors and other non-200 requests. Usually there is not a reason to cache these pages especially because it can create issues where a CMS page is temporarily disabled (returns 404 error), this is cached, and then now it will keep showing a 404 page error until the page expires.","Exclude 404 page errors and other non-200 requests. Usually there is not a reason to cache these pages especially because it can create issues where a CMS page is temporarily disabled (returns 404 error), this is cached, and then now it will keep showing a 404 page error until the page expires."
+"Exclude Bad Requests","Exclude Bad Requests"
+Extendware,Extendware
+"Extendware page cache must be enabled to use this feature","Extendware page cache must be enabled to use this feature"
+File,File
+"File (optimized)","File (optimized)"
+"Flush All Pages","Flush All Pages"
+"Flush By Group","Flush By Group"
+"Flush by Group","Flush by Group"
+"Flush By Tag","Flush By Tag"
+"Flush by Tag","Flush by Tag"
+"Flush by tag action cannot be completed until tagging is enabled in the Extendware page cache configuration","Flush by tag action cannot be completed until tagging is enabled in the Extendware page cache configuration"
+"Flush by tag is only available if tagging is enabled. You will need to enable tagging to use this feature in Extendware -> Manage Extensions -> Page Cache -> Configure, click the Tagging tab to the left, and set the Status to Enabled. Please note that the cache backend must be either File or Redis for tagging to be completely enabled.","Flush by tag is only available if tagging is enabled. You will need to enable tagging to use this feature in Extendware -> Manage Extensions -> Page Cache -> Configure, click the Tagging tab to the left, and set the Status to Enabled. Please note that the cache backend must be either File or Redis for tagging to be completely enabled."
+"Flush Cache","Flush Cache"
+"Flush Cached Log","Flush Cached Log"
+"Flush FPC","Flush FPC"
+"Flush Full Page Cache","Flush Full Page Cache"
+"Flush Linked Products","Flush Linked Products"
+"Flush Magento Block Cache","Flush Magento Block Cache"
+"Flush Parent Categories","Flush Parent Categories"
+"Flush Parent Products","Flush Parent Products"
+"Flush products that are linked to the affected product. Use CTR-C to select multiple items.","Flush products that are linked to the affected product. Use CTR-C to select multiple items."
+"Flush the main configurable / grouped products when child products are flushed.","Flush the main configurable / grouped products when child products are flushed."
+"Flush the parent categories of an affected category","Flush the parent categories of an affected category"
+"Flush will occur on these stores. Select no stores to flush all stores.","Flush will occur on these stores. Select no stores to flush all stores."
+"Flushing by group is useful when you want to flush an entire page class such as all product pages","Flushing by group is useful when you want to flush an entire page class such as all product pages"
+"Flushing by tag allows you to flush by any page tag. A pages' tags are visible when the footer widget is enable.","Flushing by tag allows you to flush by any page tag. A pages' tags are visible when the footer widget is enable."
+"Footer Widget","Footer Widget"
+"From Customer Group ID","From Customer Group ID"
+"Full Page Cache","Full Page Cache"
+"Full page cache has been flushed and config rewritten","Full page cache has been flushed and config rewritten"
+"Full page cache.","Full page cache."
+"Full page caching is disabled so there is no need to flush the cache. You can enable the caches in Extendware -> Manage Extensions -> Page Cache and then save the configuration.","Full page caching is disabled so there is no need to flush the cache. You can enable the caches in Extendware -> Manage Extensions -> Page Cache and then save the configuration."
+General,General
+"General Information","General Information"
+Group,Group
+Heavy,Heavy
+"Hole Punch Hints","Hole Punch Hints"
+Host,Host
+"How long in seconds a cache stays valid for. Generally this should be a low number ( < 30 minutes) as this is a user-level cache. One minutes is 60 seconds.","How long in seconds a cache stays valid for. Generally this should be a low number ( < 30 minutes) as this is a user-level cache. One minutes is 60 seconds."
+"How long in seconds a cache stays valid for. One day is 86400 seconds. In the advanced config you can set different expiratiosn per page types.","How long in seconds a cache stays valid for. One day is 86400 seconds. In the advanced config you can set different expiratiosn per page types."
+"If any of the content in your HTML source matches the above strings, then the page will not be cached.","If any of the content in your HTML source matches the above strings, then the page will not be cached."
+"If there are two URIs like <i>index.php?sid=VAL1</i> and <i>index.php?sid=VAL2</i>, the URIs will be considered identical if <i>sid</i> is in the ignored parameter list. This is useful for parameters that do not affect page content (sid params, advertising tracking parameters, etc)","If there are two URIs like <i>index.php?sid=VAL1</i> and <i>index.php?sid=VAL2</i>, the URIs will be considered identical if <i>sid</i> is in the ignored parameter list. This is useful for parameters that do not affect page content (sid params, advertising tracking parameters, etc)"
+"If this is enabled, then pages that do not return a 200 http status response will be excluded","If this is enabled, then pages that do not return a 200 http status response will be excluded"
+"If this is enabled, then pages with a non 200 HTTPS status code will not be cached","If this is enabled, then pages with a non 200 HTTPS status code will not be cached"
+"If you cannot access a 3rd party extension's admin area, then you need to put in a unique string that matches the urls of the 3rd party extensions admin pages.","If you cannot access a 3rd party extension's admin area, then you need to put in a unique string that matches the urls of the 3rd party extensions admin pages."
+"If you editing products / categories slows down your admin do to flushing of the page cache, then select deferred. You will need to setup the cronjob according to the installation guide.","If you editing products / categories slows down your admin do to flushing of the page cache, then select deferred. You will need to setup the cronjob according to the installation guide."
+"If you enable Tagging, then you will not have to do full flushes as frequently.","If you enable Tagging, then you will not have to do full flushes as frequently."
+"If you serve different content based on user agent (for example, to serve a mobile theme), then you need to enter the regular expression to match the mobile browser user agent. The group can be whatever you want it to be and is for reference purposes. A regular expression must begin and end with ""/"".","If you serve different content based on user agent (for example, to serve a mobile theme), then you need to enter the regular expression to match the mobile browser user agent. The group can be whatever you want it to be and is for reference purposes. A regular expression must begin and end with ""/""."
+"If you wish to use linux sockets, then please use the following format: [file path to socket]:0. For example, if the unix socket is unix:///var/memcached.sock, then you would use /var/memcached.sock:0<br/><br/>For multiple redis server support you need to use Performant Cache Backends extension.","If you wish to use linux sockets, then please use the following format: [file path to socket]:0. For example, if the unix socket is unix:///var/memcached.sock, then you would use /var/memcached.sock:0<br/><br/>For multiple redis server support you need to use Performant Cache Backends extension."
+"Ignored Parameters","Ignored Parameters"
+"In general you should never enable this. This option is only available for the demo (which uses the same exact packages). This has not been tested on non-default themes.","In general you should never enable this. This option is only available for the demo (which uses the same exact packages). This has not been tested on non-default themes."
+"Index used by the Extendware Full Page Cache","Index used by the Extendware Full Page Cache"
+"Injector / Hole Punches","Injector / Hole Punches"
+"Injector Key","Injector Key"
+Injectors,Injectors
+"Injectors / Hole Punches","Injectors / Hole Punches"
+Inline,Inline
+"Inputted tags (%d) have been flushed.","Inputted tags (%d) have been flushed."
+"IP Access Rules","IP Access Rules"
+"IP Rule","IP Rule"
+Label,Label
+Liberal,Liberal
+"List of IP address rules. A variety of rules are supported, such as 222.222.*.105, 222.222.222.100-205. Input one rule per item.","List of IP address rules. A variety of rules are supported, such as 222.222.*.105, 222.222.222.100-205. Input one rule per item."
+Lite,Lite
+"Log In","Log In"
+"Log Out","Log Out"
+Logging,Logging
+"Logging is used by the Full Page Cache Crawler. If you do not have this installed, you may ignore these settings.","Logging is used by the Full Page Cache Crawler. If you do not have this installed, you may ignore these settings."
+Login,Login
+Main,Main
+"Matching All Tags","Matching All Tags"
+"Matching Any Tags","Matching Any Tags"
+"Max Log Age","Max Log Age"
+"Max Log History","Max Log History"
+"Max Log Size (MB)","Max Log Size (MB)"
+"Max size of the log files in megabytes (1 - 10)","Max size of the log files in megabytes (1 - 10)"
+Medium,Medium
+Memcached,Memcached
+Miscellaneous,Miscellaneous
+"Missing data for item","Missing data for item"
+Mode,Mode
+"Multi: APC / File","Multi: APC / File"
+"Multi: APC / File (optimized)","Multi: APC / File (optimized)"
+"Multi: Memcached / File","Multi: Memcached / File"
+"Multi: Memcached / File (optimized)","Multi: Memcached / File (optimized)"
+"Multi: XCache / File","Multi: XCache / File"
+"Multi: XCache / File (optimized)","Multi: XCache / File (optimized)"
+"My Cart","My Cart"
+"My Cart (%s item)","My Cart (%s item)"
+"My Cart (%s items)","My Cart (%s items)"
+"My Wishlist","My Wishlist"
+"My Wishlist (%s item)","My Wishlist (%s item)"
+"My Wishlist (%s items)","My Wishlist (%s items)"
+"No pages were flushed","No pages were flushed"
+None,None
+"One per line in the format of [host](:[port]). Default port for memcache is 11211 and default port for redis is 6379","One per line in the format of [host](:[port]). Default port for memcache is 11211 and default port for redis is 6379"
+"Only enable this if there is a problem with your design. This might fix the issue in extremely rare cases. The consequence of enabling this is that it will segment the primary / secondary cache which will reduce your cache hit rate.","Only enable this if there is a problem with your design. This might fix the issue in extremely rare cases. The consequence of enabling this is that it will segment the primary / secondary cache which will reduce your cache hit rate."
+"Only enable this if you also have the Full Page Cache Crawler. The location of the logs will be in <i>/var/extendware/ewpagecache/cachedlog/</i>","Only enable this if you also have the Full Page Cache Crawler. The location of the logs will be in <i>/var/extendware/ewpagecache/cachedlog/</i>"
+"Outline all hole punched blocks in red so you can see what is not being cached. Will make requests slightly slower.","Outline all hole punched blocks in red so you can see what is not being cached. Will make requests slightly slower."
+"Output Headers","Output Headers"
+"Output informative response headers. Will make requests slightly slower.","Output informative response headers. Will make requests slightly slower."
+"Page Cache","Page Cache"
+"Page Group","Page Group"
+"Page Rules","Page Rules"
+"Pages associated with this %s have been flushed","Pages associated with this %s have been flushed"
+"Pages that match in the selected groups (and the stores above) will be flushed. Select no groups to select all groups.","Pages that match in the selected groups (and the stores above) will be flushed. Select no groups to select all groups."
+Parameter,Parameter
+Password,Password
+"Password for the backend. Leave blank for no password","Password for the backend. Leave blank for no password"
+"Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs.","Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs."
+"Please refer to the user guide that came with the extension for an explaination of rules","Please refer to the user guide that came with the extension for an explaination of rules"
+Port,Port
+"Post Code","Post Code"
+"Primary Cache","Primary Cache"
+"Product Create","Product Create"
+"Product Delete","Product Delete"
+"Product Events","Product Events"
+"Product Index Create Deferred Event","Product Index Create Deferred Event"
+"Product Index Create Event","Product Index Create Event"
+"Product Index Delete Deferred Event","Product Index Delete Deferred Event"
+"Product Index Delete Event","Product Index Delete Event"
+"Product Index Mass Action Deferred Event","Product Index Mass Action Deferred Event"
+"Product Index Mass Action Event","Product Index Mass Action Event"
+"Product Index Save Deferred Event","Product Index Save Deferred Event"
+"Product Index Save Event","Product Index Save Event"
+"Product Mode","Product Mode"
+"Product Update","Product Update"
+Real-time,Real-time
+"Real-time will flush the cache without delay. Deferred will queue it and flush it in the background.","Real-time will flush the cache without delay. Deferred will queue it and flush it in the background."
+"Recently Viewed Products","Recently Viewed Products"
+"Record Product Views","Record Product Views"
+Redis,Redis
+"Redis (optimized)","Redis (optimized)"
+"Refresh Cache Sync","Refresh Cache Sync"
+RegExp,RegExp
+Region,Region
+"Runnable Disqualifiers","Runnable Disqualifiers"
+"Runnable settings help determine whether the cache is enabled or disabled based on URI or cookie rules.","Runnable settings help determine whether the cache is enabled or disabled based on URI or cookie rules."
+"Secondary Cache","Secondary Cache"
+"Segementable settings will determine when a cache is segemented. A segemented cache is a separate cache that exists in its own namespace. This allows the cache of one store view to not affect another store view, for example.","Segementable settings will determine when a cache is segemented. A segemented cache is a separate cache that exists in its own namespace. This allows the cache of one store view to not affect another store view, for example."
+Segmentable,Segmentable
+"Selected groups have been flushed.","Selected groups have been flushed."
+"Separate each tag with a space. Product tags and category tags are of the form of pXX and cXX where XX is the product or category ID.","Separate each tag with a space. Product tags and category tags are of the form of pXX and cXX where XX is the product or category ID."
+Servers,Servers
+Settings,Settings
+"Show widget at the footer of all pages. This will slow down the cache so enable with caution.","Show widget at the footer of all pages. This will slow down the cache so enable with caution."
+"Show widget at the head of all pages. This will slow down the cache so enable with caution.","Show widget at the head of all pages. This will slow down the cache so enable with caution."
+"Sort paramters so they are always in the same order prior to getting cache key","Sort paramters so they are always in the same order prior to getting cache key"
+"Sorting Status","Sorting Status"
+Status,Status
+"Stock Item Index Save Deferred Event","Stock Item Index Save Deferred Event"
+"Stock Item Index Save Event","Stock Item Index Save Event"
+"Stock Quantity Change","Stock Quantity Change"
+"Stock Quantity Change Mode","Stock Quantity Change Mode"
+"Stock State Change","Stock State Change"
+Stores,Stores
+"Tagging allows only specific portions of the page cache to be flushed. This enables you to edit products / categories / cms pages without flushing the whole cache.","Tagging allows only specific portions of the page cache to be flushed. This enables you to edit products / categories / cms pages without flushing the whole cache."
+"Tagging allows the deletion of products / categories as they are edited in the frontend. This reduces the need to completely flush the cache after making small changes.","Tagging allows the deletion of products / categories as they are edited in the frontend. This reduces the need to completely flush the cache after making small changes."
+Tags,Tags
+"Tags (comma separated)","Tags (comma separated)"
+"Tax Class ID","Tax Class ID"
+"Tax Class Information","Tax Class Information"
+"The block key is the key found in the layout files. For example the underlined layout definition is the block key:<br><br> &lt;block type=""<u>checkout/cart_sidebar</u>"" name=""cart_sidebar"" template=""checkout/cart/sidebar.phtml"" before=""-""&gt;","The block key is the key found in the layout files. For example the underlined layout definition is the block key:<br><br> &lt;block type=""<u>checkout/cart_sidebar</u>"" name=""cart_sidebar"" template=""checkout/cart/sidebar.phtml"" before=""-""&gt;"
+"The cache will be segemented based on each cookie here. Default magento needs <i>currency</i> and <i>store</i> in order for the primary cache to work correctly for multiple currencies / store views.","The cache will be segemented based on each cookie here. Default magento needs <i>currency</i> and <i>store</i> in order for the primary cache to work correctly for multiple currencies / store views."
+"The cached log has been flushed","The cached log has been flushed"
+"The full page cache has been flushed","The full page cache has been flushed"
+"The full page cache has been flushed.","The full page cache has been flushed."
+"The full page cache has been flushed. <u>To reduce the need for full page cache flushes you should purchase the Tagging / Auto-flushing addon.</u>","The full page cache has been flushed. <u>To reduce the need for full page cache flushes you should purchase the Tagging / Auto-flushing addon.</u>"
+"The full page cache has been flushed. If you did not desire this you may change cache syncing in the developer section of the page cache configuration.","The full page cache has been flushed. If you did not desire this you may change cache syncing in the developer section of the page cache configuration."
+"The full page cache has been flushed. If you did not desire this you may change cache syncing in the developer section of the page cache configuration. <u>To reduce the need for full page cache flushes you should purchase the Tagging / Auto-flushing addon.</u>","The full page cache has been flushed. If you did not desire this you may change cache syncing in the developer section of the page cache configuration. <u>To reduce the need for full page cache flushes you should purchase the Tagging / Auto-flushing addon.</u>"
+"The injector key takes one of two formats. The first format is without a ""/"" and an example is <i>checkout_cart_sidebar</i>. When this format is used,
+								then an injector located at <i>app/code/local/Extendware/EWPageCache/Model/Injector/Checkout/Cart/Siderbar.php</i> will be used.</p>
+        	","The injector key takes one of two formats. The first format is without a ""/"" and an example is <i>checkout_cart_sidebar</i>. When this format is used,
+								then an injector located at <i>app/code/local/Extendware/EWPageCache/Model/Injector/Checkout/Cart/Siderbar.php</i> will be used.</p>
+        	"
+"The maximum number of log files that will be kept","The maximum number of log files that will be kept"
+"The number of seconds since the last modification time that a log will be kept.","The number of seconds since the last modification time that a log will be kept."
+"The path where cached files should be stored. Leave empty for the default path. <b>Warning: </b> This needs to be a full path and must be readable and writable or it will cause issues.","The path where cached files should be stored. Leave empty for the default path. <b>Warning: </b> This needs to be a full path and must be readable and writable or it will cause issues."
+"The place the cache is stored. <b>Note:</b> only methods compatible with this server are shown.","The place the cache is stored. <b>Note:</b> only methods compatible with this server are shown."
+"The place the cache is stored. <b>Note:</b> only methods compatible with this server are shown. For higher performance backends consider <a href=""http://www.extendware.com/performant-cache-backends-magento-extension.html""><b>Performant Cache Backends</b></a>","The place the cache is stored. <b>Note:</b> only methods compatible with this server are shown. For higher performance backends consider <a href=""http://www.extendware.com/performant-cache-backends-magento-extension.html""><b>Performant Cache Backends</b></a>"
+"The primary cache is the super fast primary cache. It does not use hole punches and is many times faster than even the secondary cache.","The primary cache is the super fast primary cache. It does not use hole punches and is many times faster than even the secondary cache."
+"The redis DB index that will be used. Should be 0-15","The redis DB index that will be used. Should be 0-15"
+"The secondary cache is a cache that uses hole punches to serve dynamic content to even logged in users and after add to cart. In the rare case the default hole punches are incompatible with your theme you may disable this cache level to avoid any theme issue while the hole punches are modified for your theme. <u>You must have the secondary cache addon to use this</u>","The secondary cache is a cache that uses hole punches to serve dynamic content to even logged in users and after add to cart. In the rare case the default hole punches are incompatible with your theme you may disable this cache level to avoid any theme issue while the hole punches are modified for your theme. <u>You must have the secondary cache addon to use this</u>"
+"The way injectors (or hole punches) work is that the block defined by the <i>block key</i> will be surrounded by special HTML comments. After a page is cached, anything inside of those comments will be replaced by calling on the injector defined by the injector key. 
+						                        	This is how dynamic content is injected inside of a cached page. You may see an example of what an injector looks like by opening the <i>app/code/local/Extendware/EWPageCache/Model/Injector/Example.php</i> file.
+													<br><br><b>Note:</b> click the input box for more information on each field.
+													","The way injectors (or hole punches) work is that the block defined by the <i>block key</i> will be surrounded by special HTML comments. After a page is cached, anything inside of those comments will be replaced by calling on the injector defined by the injector key. 
+						                        	This is how dynamic content is injected inside of a cached page. You may see an example of what an injector looks like by opening the <i>app/code/local/Extendware/EWPageCache/Model/Injector/Example.php</i> file.
+													<br><br><b>Note:</b> click the input box for more information on each field.
+													"
+"This is used to make the cache more efficient. If you have two customer groups that see your Web site in exactly the same way, then you can translate them so they share the same cache space. By default, the customer group ID ""1"" is translated to ""0"", which means that logged in users (in the default logged in customer group) will use the same cache as users not logged in.","This is used to make the cache more efficient. If you have two customer groups that see your Web site in exactly the same way, then you can translate them so they share the same cache space. By default, the customer group ID ""1"" is translated to ""0"", which means that logged in users (in the default logged in customer group) will use the same cache as users not logged in."
+"This must be a valid regular expression with the beginning and ending ""/"". For example, /admin/. You can read the PHP preg documentation for more information","This must be a valid regular expression with the beginning and ending ""/"". For example, /admin/. You can read the PHP preg documentation for more information"
+"This must be a valid regular expression with the beginning and ending ""/"". For example, /mobile/. You can read the PHP preg documentation for more information","This must be a valid regular expression with the beginning and ending ""/"". For example, /mobile/. You can read the PHP preg documentation for more information"
+"This section configures the holes punches that are used by the secondary cache.","This section configures the holes punches that are used by the secondary cache."
+"This should amost always be enabled for APC, Memcached, Redis, and XCache","This should amost always be enabled for APC, Memcached, Redis, and XCache"
+"This should be set based on the Full Page cache Crawler <i>Max Days</i> setting.","This should be set based on the Full Page cache Crawler <i>Max Days</i> setting."
+"This should only be enabled if you are using our <a href=""http://www.extendware.com/customers-also-viewed-magento-extension.html"" target=""_blank""><b>Also Viewed extension</b></a>.","This should only be enabled if you are using our <a href=""http://www.extendware.com/customers-also-viewed-magento-extension.html"" target=""_blank""><b>Also Viewed extension</b></a>."
+"This will include design (template code, layout code, etc) information when creating a cache key for the secondary cache.","This will include design (template code, layout code, etc) information when creating a cache key for the secondary cache."
+"This will show a widget at the footer of your store with information such as cache level, time to live, page path, tags used, etc, of the cache page, etc. This is useful for debugging and information purposes.","This will show a widget at the footer of your store with information such as cache level, time to live, page path, tags used, etc, of the cache page, etc. This is useful for debugging and information purposes."
+"To Customer Group ID","To Customer Group ID"
+"Translated Customer Groups","Translated Customer Groups"
+"Twelve cache methods are supported (File, File (optimized), APC, Memcached, XCache, Redis and 6 multi-level caches). However, <u>only methods supported by your server will be visiable</u>. If you do not see a method listed, then it is because your server does not support that method.
+							                        	<br/><br/>
+							                        	<ul style=""list-style-type:disc; margin-left: 20px;"">
+							                        		<li><b>File</b> - Good general cache method. Tag / auto-flushing performance is not very high.</li>
+							                        		<li><b>File (optimized)</b> - Requires Performant Cache Backends Extensions. Good even with tagging and you have more pages than can fit in memory.</li>
+							                        		<li><b>Redis (optimized)</b> - Requires Performant Cache Backends Extensions and must have installed the redis server and redis php extension.</li>
+							                        		<li><b>Memcached</b> - Must have installed the memcached daemon and memcache php extension.</li>
+							                        		<li><b>APC</b> - Requires APC to be installed. We recommend Memcached / Redis over APC.</li>
+							                        		<li><b>XCache</b> - Requires XCache to be installed. We recommend Memcached / Redis over XCache.</li>
+							                        		<li><b>Redis</b> - Must have installed the redis server and redis php extension.</li>
+							                        		<li><b>Multi: Memcached / File</b> - Combines the best of Memcached and File</li>
+							                        		<li><b>Multi: Memcached / File (optimized)</b> - Combines the best of Memcached and File (optimized). Requires Performant Cache Backends.</li>
+							                        		<li><b>Multi: APC / File</b> - Combines the best of APCand File</li>
+							                        		<li><b>Multi: APC / File (optimized)</b> - Combines the best of APC and File (optimized). Requires Performant Cache Backends.</li>
+							                        		<li><b>Multi: XCache / File</b> - Combines the best of XCache and File</li>
+							                        		<li><b>Multi: XCache / File (optimized)</b> - Combines the best of XCache and File (optimized). Requires Performant Cache Backends.</li>
+							                        	</ul>
+							                        ","Twelve cache methods are supported (File, File (optimized), APC, Memcached, XCache, Redis and 6 multi-level caches). However, <u>only methods supported by your server will be visiable</u>. If you do not see a method listed, then it is because your server does not support that method.
+							                        	<br/><br/>
+							                        	<ul style=""list-style-type:disc; margin-left: 20px;"">
+							                        		<li><b>File</b> - Good general cache method. Tag / auto-flushing performance is not very high.</li>
+							                        		<li><b>File (optimized)</b> - Requires Performant Cache Backends Extensions. Good even with tagging and you have more pages than can fit in memory.</li>
+							                        		<li><b>Redis (optimized)</b> - Requires Performant Cache Backends Extensions and must have installed the redis server and redis php extension.</li>
+							                        		<li><b>Memcached</b> - Must have installed the memcached daemon and memcache php extension.</li>
+							                        		<li><b>APC</b> - Requires APC to be installed. We recommend Memcached / Redis over APC.</li>
+							                        		<li><b>XCache</b> - Requires XCache to be installed. We recommend Memcached / Redis over XCache.</li>
+							                        		<li><b>Redis</b> - Must have installed the redis server and redis php extension.</li>
+							                        		<li><b>Multi: Memcached / File</b> - Combines the best of Memcached and File</li>
+							                        		<li><b>Multi: Memcached / File (optimized)</b> - Combines the best of Memcached and File (optimized). Requires Performant Cache Backends.</li>
+							                        		<li><b>Multi: APC / File</b> - Combines the best of APCand File</li>
+							                        		<li><b>Multi: APC / File (optimized)</b> - Combines the best of APC and File (optimized). Requires Performant Cache Backends.</li>
+							                        		<li><b>Multi: XCache / File</b> - Combines the best of XCache and File</li>
+							                        		<li><b>Multi: XCache / File (optimized)</b> - Combines the best of XCache and File (optimized). Requires Performant Cache Backends.</li>
+							                        	</ul>
+							                        "
+"Unless you have a complicated tax situation and show taxes on catalog / product pages, then you can leave this empty.","Unless you have a complicated tax situation and show taxes on catalog / product pages, then you can leave this empty."
+"Uri Filter RegExps","Uri Filter RegExps"
+"URL paramters that are ignored when determining if page is unique or not.","URL paramters that are ignored when determining if page is unique or not."
+"Useful for adding tags to pages that have certain blocks.)","Useful for adding tags to pages that have certain blocks.)"
+"Useful for flushing custom added tags on certain events.","Useful for flushing custom added tags on certain events."
+"User Agent RegExp","User Agent RegExp"
+"User Agent Rules","User Agent Rules"
+"User Agents","User Agents"
+Username,Username
+"Username for XCache","Username for XCache"
+"Welcome, %s!","Welcome, %s!"
+"When a user's user agent matches an inputted regular expression, then they will not use the cache.","When a user's user agent matches an inputted regular expression, then they will not use the cache."
+"When enabled a log will be created (ewpagecache.log). You should only enable if you have enabled IP Access Rules or else you will get a very large log file very rapidly.","When enabled a log will be created (ewpagecache.log). You should only enable if you have enabled IP Access Rules or else you will get a very large log file very rapidly."
+"Widgets, deleting over http, and hole punches hints will only be shown to IP addresses matching these rules. Leave empty for all.","Widgets, deleting over http, and hole punches hints will only be shown to IP addresses matching these rules. Leave empty for all."
+"With this enabled, you may retrive the cache key of a page via the footer widget and then goto http://www.yoursite.com/ewpagecache/cache/removeItem/?id=[cache key] in order to delete the page from your cache. You may also click on ""[X]"" in the footer widget to delete a page.","With this enabled, you may retrive the cache key of a page via the footer widget and then goto http://www.yoursite.com/ewpagecache/cache/removeItem/?id=[cache key] in order to delete the page from your cache. You may also click on ""[X]"" in the footer widget to delete a page."
+XCache,XCache
+"You can view the output headers of your store by downloading something like <u>HTTP Fox for Firefox</u>. Only look at the headers of the main document (not images, css, or js files). The page cache headers will begin with <i>X-PageCache</i>.","You can view the output headers of your store by downloading something like <u>HTTP Fox for Firefox</u>. Only look at the headers of the main document (not images, css, or js files). The page cache headers will begin with <i>X-PageCache</i>."
+"You must have the tagging / auto-flush addon in order to select specific stores.","You must have the tagging / auto-flush addon in order to select specific stores."
+"You must input at least one tag","You must input at least one tag"

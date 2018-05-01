@@ -1,0 +1,23 @@
+<table border="1" cellspacing="0" cellpadding="5" width="100%">
+	<tr>
+		<th class="a-center" bgcolor="#cccccc" colspan="2"><?php echo $this->__('Select purchase order'); ?></th>
+	</tr>
+	<?php if ($this->getOrders()->getSize() == 0): ?>
+		<tr>
+			<td colspan="2">
+				<?php echo $this->__('No Orders'); ?>
+			</td>
+		</tr>
+	<?php else: ?>
+		<tr>
+			<th class="a-center"><?php echo $this->__('Delivery Date'); ?></th>
+			<th class="a-center"><?php echo $this->__('Reference'); ?></th>
+		</tr>
+		<?php foreach ($this->getOrders() as $order): ?>
+			<tr>
+				<td class="a-center"><?php echo $order->getpo_supply_date(); ?></td>
+				<td class="a-center"><a href="<?php echo $this->getUrl('adminhtml/Scanner_PurchaseOrder/SelectProductDelivery', array('po_num' => $order->getId())); ?>"><?php echo $order->getpo_order_id(); ?></a></td>
+			</tr>
+		<?php endforeach; ?>
+	<?php endif; ?>
+</table>

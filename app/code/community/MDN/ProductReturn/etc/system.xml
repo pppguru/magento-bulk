@@ -1,0 +1,450 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <productreturn translate="label" module="ProductReturn">
+            <label>Product Return</label>
+            <tab>sales</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>500</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general>
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <allow_customer_request translate="label">
+                            <label>Allow Customer Product Return Request</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If enable, customer can request for a new return from the customer account</comment>
+                        </allow_customer_request>
+                        <default_validity_duration translate="label">
+                            <label>Default Validity Duration</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Returns are valid until creation date + X days</comment>
+                        </default_validity_duration>
+                    </fields>
+                </general>
+                <emails>
+                    <label>Emails</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <email_new_request>
+                            <label>Email new request</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Email sent when a customer request a new return</comment>
+                        </email_new_request>
+                        <auto_notify_customer translate="label">
+                            <label>Notify customer on all status changes</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Automatically send an email to client when rma's status changes</comment>
+                        </auto_notify_customer>
+
+                        <template_rma_request translate="label">
+                            <label>Template New Product Return Request</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </template_rma_request>
+
+                        <cc_to translate="label">
+                            <label>Copy To</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Copy all emails to this recipient</comment>
+                        </cc_to>
+                        <email_identity translate="label">
+                            <label>Email Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Identity to use to send emails</comment>
+                        </email_identity>
+                        <template_product_return_refused translate="label">
+                            <label>Template Product Return Refused</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Email sent when you refuse a return request</comment>
+                        </template_product_return_refused>
+                        <template_product_return_accepted translate="label">
+                            <label>Template Product Return Accepted</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Email sent when you accept a return request</comment>
+                        </template_product_return_accepted>
+                        <template_product_received translate="label">
+                            <label>Template Products received</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Email sent when you receive the products</comment>
+                        </template_product_received>
+                        <template_product_received_but_refused translate="label">
+                            <label>Template Products received but refused</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Email sent when you refuse to process returned products</comment>
+                        </template_product_received_but_refused>
+                        <template_expertise_product translate="label">
+                            <label>Template Expertise product</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Email sent when you set return status to expertise</comment>
+                        </template_expertise_product>
+                        <template_waiting_for_supplier translate="label">
+                            <label>Template Waiting for Supplier</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Email sent when you set return status to waiting for supplier</comment>
+                        </template_waiting_for_supplier>
+                        <template_complete translate="label">
+                            <label>Template RMA Complete</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Email sent when return is complete</comment>
+                        </template_complete>
+                        <template_return_label translate="label">
+                            <label>Template to notify shipping label</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </template_return_label>
+                    </fields>
+                </emails>
+                <pdf>
+                    <label>Pdf Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <address translate="label">
+                            <label>Company Address</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Your warehouse address displayed on the PDF</comment>
+                        </address>
+                        <header_text translate="label">
+                            <label>PDF Header Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Header text displayed in the PDF</comment>
+                        </header_text>
+                        <footer_text translate="label">
+                            <label>PDF Footer Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Footer text displayed in PDF</comment>
+                        </footer_text>
+                        <pdf_comment translate="label">
+                            <label>PDF Comment</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Additional comments displayed in the PDF</comment>
+                        </pdf_comment>
+                    </fields>
+                </pdf>
+                <product_return>
+                    <label>Product Return</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <fake_product_id translate="label">
+                            <label>Fake product_id</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>ID of the fake product you must create installing extension</comment>
+                        </fake_product_id>
+                        <fake_product_label translate="label">
+                            <label>Default Fake product Name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default name for the product</comment>
+                        </fake_product_label>
+                        <other_reason translate="label">
+                            <label>Reason</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Set you own reasons for returns (separated with a ;)</comment>
+                        </other_reason>
+                        <request_type translate="label">
+                            <label>Request type</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Action requested by the customer (separated with a ;)</comment>
+                        </request_type>
+                        <max_days_request translate="label">
+                            <label>Max days for request</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Number of day a customer can request a return from order date</comment>
+                        </max_days_request>
+                        <default_shipment translate="label">
+                            <label>Default shipment method</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ProductReturn/system_config_source_carrierset</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default shipping method assigned to orders created from RMA module</comment>
+                        </default_shipment>
+                        <default_payment_method translate="label">
+                            <label>Default payment method</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ProductReturn/system_config_source_PaymentMethod</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default payment method assigned to orders created from RMA module</comment>
+                        </default_payment_method>
+                        <new_status_for_product_received translate="label">
+                            <label>New status for product received</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ProductReturn/system_config_source_statuses</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Status assigned to return when you confirm product reception</comment>
+                        </new_status_for_product_received>
+                        <new_status_for_request translate="label">
+                            <label>New status for request</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ProductReturn/system_config_source_statuses</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Status assigned to return when a customer request a new one</comment>
+                        </new_status_for_request>
+                        <display_disabled_shipping_methods translate="label">
+                            <label>Display disabled shipping methods</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_disabled_shipping_methods>
+                        <display_disabled_payment_methods translate="label">
+                            <label>Display disabled payment methods</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_disabled_payment_methods>
+                        <auto_create_invoice translate="label">
+                            <label>Auto generate invoice</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Create invoice for orders generated from Product Return extension</comment>
+                        </auto_create_invoice>
+                        <auto_create_invoice_onlyzero translate="label">
+                            <label>Auto generate invoice only for 0 total</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Create invoice for orders generated from Product Return extension only if order total is zero</comment>
+                        </auto_create_invoice_onlyzero>
+                        <prevent_edit_rma_manager translate="label">
+                            <label>Prevent to edit rma from other manager</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If enabled, users can not edit returns from other manager (magento users)</comment>
+                        </prevent_edit_rma_manager>
+                        <allow_return_without_invoice>
+                            <label>Allow product return even if order has not been invoiced</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Order must be shipped</comment>
+                        </allow_return_without_invoice>
+                    </fields>
+                </product_return>
+
+                <predefined_msg>
+                    <label>Predefined msg</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <messages translate="label">
+                            <label>Messages</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </messages>
+                    </fields>
+                </predefined_msg>
+
+                <messages>
+                    <label>Messages</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>15</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+                        <email_identity translate="label">
+                            <label>Identity</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Identity to use to send emails</comment>
+                        </email_identity>
+                        <customer_email_template translate="label">
+                            <label>Template to notify admin</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_email_template>
+                        <admin_email_template translate="label">
+                            <label>Template to notify customer</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </admin_email_template>
+                    </fields>
+                </messages>
+
+            </groups>
+        </productreturn>
+    </sections>
+</config>

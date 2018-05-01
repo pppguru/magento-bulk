@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <placeholders>
+        <iphone_shopping_cart>
+            <block>checkout/cart</block>
+            <placeholder>aw_mobile3_iphone_shopping_cart</placeholder>
+            <container>AW_Mobile3_Model_Caching_Iphone_Checkout_Cart</container>
+            <cache_lifetime>0</cache_lifetime>
+        </iphone_shopping_cart>
+        <iphone_header>
+            <block>page/html_header</block>
+            <placeholder>aw_mobile3_iphone_iphone_header</placeholder>
+            <container>AW_Mobile3_Model_Caching_Iphone_Page_Header</container>
+            <cache_lifetime>0</cache_lifetime>
+        </iphone_header>
+    </placeholders>
+</config>

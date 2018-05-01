@@ -1,0 +1,27 @@
+<table border="1" cellspacing="0" cellpadding="5" width="100%">
+	<tr>
+		<th class="a-center" bgcolor="#cccccc" colspan="2"><?php echo $this->__('Create free delivery'); ?></th>
+	</tr>
+	<tr>
+		<td align="center">
+                        <input type="button" value="Create Free Delivery" class="touch_button touch_button_menu" onclick="document.location.href='<?php echo $this->getFreeDeliveryUrl(); ?>'" />
+		</td>
+	</tr>
+	
+	<tr>
+		<th class="a-center" bgcolor="#cccccc" colspan="2"><?php echo $this->__('Select supplier'); ?></th>
+	</tr>
+	<?php if ($this->getSuppliers()->getSize() == 0): ?>
+		<tr>
+			<td>
+				<?php echo $this->__('No Suppliers'); ?>
+			</td>
+		</tr>
+	<?php else: ?>
+		<?php foreach ($this->getSuppliers() as $supplier): ?>
+			<tr>
+				<td><a href="<?php echo $this->getUrl('adminhtml/Scanner_PurchaseOrder/SelectPurchaseOrder', array('sup_num' => $supplier->getId())); ?>"><?php echo $supplier->getsup_name(); ?></a></td>
+			</tr>
+		<?php endforeach; ?>
+	<?php endif; ?>
+</table>

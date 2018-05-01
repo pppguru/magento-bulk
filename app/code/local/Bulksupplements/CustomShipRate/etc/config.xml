@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bulksupplements_CustomShipRate>
+            <version>1.0.0</version>
+        </Bulksupplements_CustomShipRate>
+    </modules>
+    
+    <global> 
+        <models>
+            <customshiprate>
+                <class>Bulksupplements_CustomShipRate_Model</class>
+            </customshiprate>
+            
+            <adminhtml>
+                <rewrite>
+                    <sales_order_create>Bulksupplements_CustomShipRate_Model_Adminhtml_Sales_Order_Create</sales_order_create>
+                </rewrite>
+            </adminhtml>
+        </models>     
+    
+        <blocks>
+            <customshiprate>
+                <class>Bulksupplements_CustomShipRate_Block</class>
+            </customshiprate>
+        </blocks>
+        
+        <helpers>
+            <customshiprate>
+                <class>Bulksupplements_CustomShipRate_Helper</class>
+            </customshiprate>
+        </helpers>
+    </global>
+    
+    <adminhtml>
+        <layout>
+            <updates>
+                <customshiprate>
+                    <file>customshiprate.xml</file>
+                </customshiprate>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+        <carriers>
+            <customshiprate>
+                <active>0</active>
+                <sallowspecific>0</sallowspecific>
+                <model>customshiprate/carrier_customshiprate</model>
+                <name>Custom Shipping Rate</name>
+                <title>Custom Shipping Rate</title>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+            </customshiprate>
+        </carriers>
+    </default>
+</config>

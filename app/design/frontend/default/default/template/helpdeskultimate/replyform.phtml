@@ -1,0 +1,66 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdeskultimate
+ * @version    2.10.7
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php if (($this->getTicketInfo()->getStatus() != AW_Helpdeskultimate_Model_Status::STATUS_CLOSED) && $this->canShowForm()
+):
+    // If ticket is closed, no reply form should be shown
+    ?>
+
+<fieldset class="group-select">
+    <h4 class="legend"><?php echo $this->__('Post a reply')?></h4>
+    <a name="reply"></a>
+
+    <form action="<?php echo $this->getAction() ?>" method="post" id="helpdesk-reply-form"
+          enctype="multipart/form-data">
+        <div>
+            <label for="content_field"><?php echo $this->__('Reply') ?><span class="required">*</span></label><br/>
+            <textarea class="required-entry" name="content"
+                      id="content_field"><?php echo $this->htmlEscape($data->getContent()) ?></textarea>
+        </div>
+        <?php if (Mage::getStoreConfig(AW_Helpdeskultimate_Helper_Config::XML_PATH_ADVANCED_MANAGEFILES)): ?>
+        <div>
+            <label for="filename"><?php echo $this->__('Attachment') . $this->__(' (%sMb limit)', Mage::getStoreConfig('helpdeskultimate/advanced/maxupload'));?></label><br/>
+            <input class="input-file" name="filename" id="filename" style="width: 450px;" type="file"/>
+        </div>
+        <?php endif;?>
+        <div class="button-set">
+            <button class="button right form-button" type="submit"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+            <button class="button right form-button close-ticket-btn"><span><span><?php echo $this->__('Close Ticket') ?></span></span></button>
+        </div>
+        <?php if ($this->isExternal()): ?>
+        <input type="hidden" name="uid" value="<?php echo $this->getRequest()->getParam('uid');?>"/>
+        <input type="hidden" name="key" value="<?php echo $this->getRequest()->getParam('key');?>"/>
+        <?php endif;?>
+    </form>
+    <script type="text/javascript">
+        $$('#helpdesk-reply-form .close-ticket-btn')[0].observe('click', function(event){
+            if (confirm('<?php echo $this->__('Are you sure you want to do this?'); ?>')) {
+                setLocation('<?php echo $this->getCloseTicketAction(); ?>');
+            }
+            event.stop();
+        });
+    </script>
+</fieldset>
+<?php endif; ?>

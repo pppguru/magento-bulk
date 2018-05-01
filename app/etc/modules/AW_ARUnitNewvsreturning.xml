@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AW_ARUnitNewvsreturning>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <AW_Advancedreports/>
+            </depends>
+        </AW_ARUnitNewvsreturning>
+    </modules>
+</config>

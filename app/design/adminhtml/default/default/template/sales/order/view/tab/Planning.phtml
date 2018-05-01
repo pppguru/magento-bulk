@@ -1,0 +1,126 @@
+<?php if ($this->getPlanning() == null): ?>
+
+	<?php echo $this->__('Planning is not available yet'); ?>
+	<p><a href="<?php echo $this->getUrlToForceCreation(); ?>"><?php echo $this->__('Click here to force planning creation'); ?></a></p>
+
+<?php else: ?>
+
+<?php if ($this->getPlanning()->getpsop_anounced_date() != NULL): ?>
+<div class="content-header"> 
+<h4><?php echo $this->__('Anounced delivery date')?> : <?php echo $this->formatDate($this->getPlanning()->getpsop_anounced_date(), 'medium', false); ?></h4>
+<h4><?php echo $this->__('Anounced Max delivery date')?> : <?php echo $this->formatDate($this->getPlanning()->getpsop_anounced_date_max(), 'medium', false); ?></h4>
+</div>
+
+<?php endif; ?>
+
+<div class="content-header"> 
+	<?php
+		//insert graph
+    	$block = $this->getLayout()->createBlock('SalesOrderPlanning/Planning_Graph');
+    	$block->setOrder($this->getOrder());
+    	$block->setTemplate('SalesOrderPlanning/Planning/Graph.phtml');
+    	echo $block->toHtml();			
+	?>
+</div>
+
+<form name="form_planning" id="form_planning" method="POST" action="<?php echo $this->getSubmitUrl(); ?>">
+<input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+<input type="hidden" name="psop_id" id="psop_id" value="<?php echo $this->getPlanning()->getpsop_id(); ?>">
+<input type="hidden" name="psop_order_id" id="psop_order_id" value="<?php echo $this->getPlanning()->getpsop_order_id(); ?>">
+<div class="grid">
+	<table cellspacing="0" class="data" width="100%">
+		<thead>
+			<tr class="headings">
+				<th class="a-center">&nbsp;</th>
+				<th class="a-center"><?php echo $this->__('Date')?></th>
+				<th class="a-center"><?php echo $this->__('Force to')?></th>
+				<th class="a-center"><?php echo $this->__('Max date')?></th>
+				<th class="a-center"><?php echo $this->__('Comments')?></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b><?php echo $this->__('Order placed')?></b></td>
+				<td class="a-center"><?php echo $this->formatDate(Mage::getSingleton('AdvancedStock/Sales_Order_Tool')->getOrderPlaceDate($this->getOrder()), 'medium', true); ?></td>
+				<td class="a-center">-</td>
+				<td class="a-center">-</td>
+				<td class="a-center">-</td>
+			</tr>
+			<tr>
+				<td><b><?php echo $this->__('Considered on')?></b></td>
+				<td class="a-center"><?php echo $this->formatDateWithEmpty($this->getPlanning()->getpsop_consideration_date(), 'medium', false); ?></td>
+				<td class="a-center">
+                	<input size="8" type="text" id="psop_consideration_date_force" name="psop_consideration_date_force" value="<?php echo $this->getPlanning()->getpsop_consideration_date_force(); ?>">
+                	<img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_calendar_psop_consideration_date_force" />
+			        <script type="text/javascript">
+		                Calendar.setup({
+		                    inputField : 'psop_consideration_date_force',
+		                    ifFormat : '%Y-%m-%e',
+		                    button : 'img_calendar_psop_consideration_date_force',
+		                    align : 'Bl',
+		                    singleClick : true
+		                });
+	                </script>
+				</td>
+				<td class="a-center"> - </td>
+				<td class="a-left"><i><?php echo $this->getPlanning()->getpsop_consideration_comments(); ?></i></td>
+			</tr>
+			<tr>
+				<td><b><?php echo $this->__('Ready to prepare')?></b></td>
+				<td class="a-center"><?php echo $this->formatDateWithEmpty($this->getPlanning()->getFullstockDate(), 'medium', false); ?></td>
+				<td class="a-center">
+                	<input size="8" type="text" id="psop_fullstock_date_force" name="psop_fullstock_date_force" value="<?php echo $this->getPlanning()->getpsop_fullstock_date_force(); ?>">
+                	<img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_calendar_psop_fullstock_date_force" />
+			        <script type="text/javascript">
+		                Calendar.setup({
+		                    inputField : 'psop_fullstock_date_force',
+		                    ifFormat : '%Y-%m-%e',
+		                    button : 'img_calendar_psop_fullstock_date_force',
+		                    align : 'Bl',
+		                    singleClick : true
+		                });
+	                </script>
+				</td>
+				<td class="a-center"><?php echo $this->formatDateWithEmpty($this->getPlanning()->getpsop_fullstock_date_max(), 'medium', false); ?></td>
+				<td class="a-left"><i><?php echo $this->getPlanning()->getpsop_fullstock_comments(); ?></i></td>
+			</tr>
+			<tr>
+				<td><b><?php echo $this->__('Shipping date')?></b></td>
+				<td class="a-center"><?php echo $this->formatDateWithEmpty($this->getPlanning()->getShippingDate(), 'medium', false); ?></td>
+				<td class="a-center">
+                	<input size="8" type="text" id="psop_shipping_date_force" name="psop_shipping_date_force" value="<?php echo $this->getPlanning()->getpsop_shipping_date_force(); ?>">
+                	<img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_calendar_psop_shipping_date_force" />
+			        <script type="text/javascript">
+		                Calendar.setup({
+		                    inputField : 'psop_shipping_date_force',
+		                    ifFormat : '%Y-%m-%e',
+		                    button : 'img_calendar_psop_shipping_date_force',
+		                    align : 'Bl',
+		                    singleClick : true
+		                });
+	                </script>
+				</td>
+				<td class="a-center"><?php echo $this->formatDateWithEmpty($this->getPlanning()->getpsop_shipping_date_max(), 'medium', false); ?></td>
+				<td class="a-left"><i><?php echo $this->getPlanning()->getpsop_shipping_comments(); ?></i></td>
+			</tr>
+			<tr>
+				<td><b><?php echo $this->__('Delivery')?></b></td>
+				<td class="a-center"><?php echo $this->formatDateWithEmpty($this->getPlanning()->getDeliveryDate(), 'medium', false); ?></td>
+				<td class="a-center">-</td>
+				<td class="a-center"><?php echo $this->formatDateWithEmpty($this->getPlanning()->getpsop_delivery_date_max(), 'medium', false); ?></td>
+				<td class="a-left"><i><?php echo $this->getPlanning()->getpsop_delivery_comments(); ?></i></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="clear"></div>
+
+<div class="a-right">
+     <button onclick="document.location.href='<?php echo $this->getResetUrl(); ?>'" class="scalable" type="button"><span><?php echo $this->__('Reset')?></span></button>
+     <button onclick="document.getElementById('form_planning').submit()" class="scalable save" type="button"><span><?php echo $this->__('Save')?></span></button>
+</div>
+
+</form>
+
+<?php endif; ?>

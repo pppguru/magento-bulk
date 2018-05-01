@@ -1,0 +1,53 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+/**
+ * @see Enterprise_Reward_Block_Tooltip
+ */
+?>
+<div class="reward-message <?php echo $this->getWrapperClass() ?>">
+    <?php if ($this->hasRewardMessage()): ?>
+        <span><?php echo $this->__($this->getRewardMessage(), Mage::helper('enterprise_reward')->formatReward($this->getRewardPoints(), $this->getRewardAmount(), null, '<strong>%s</strong>')) ?></span>
+    <?php endif; ?>
+
+    <?php if ($this->hasPointsBalance() && !$this->hasHideBalance()): ?>
+        <span>
+            <?php echo $this->__('Your current balance is %s.', Mage::helper('enterprise_reward')->formatReward($this->getPointsBalance(), null, null, '<strong>%s</strong>')) ?>
+        </span>
+    <?php endif; ?>
+
+    <?php if (!$this->hasHideLink()): ?>
+        <span><?php echo $this->renderLearnMoreLink() ?></span>
+    <?php endif; ?>
+
+    <?php if ($this->hasQtyLimit() && $this->hasRewardQtyLimitationMessage()): ?>
+        <p><?php echo $this->__($this->getRewardQtyLimitationMessage(), "<strong>{$this->getQtyLimit()}</strong>") ?></p>
+    <?php endif; ?>
+
+    <?php if ($this->hasGuestNote()): ?>
+        <p><?php echo $this->__($this->getGuestNote()) ?></p>
+    <?php endif; ?>
+</div>

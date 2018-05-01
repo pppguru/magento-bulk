@@ -1,0 +1,59 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="downloadable-products">
+    <?php $_items = $this->getItems(); ?>
+
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+    <?php if(count($_items)): ?>
+        <ul class="downloadable-products__list">
+            <?php foreach ($_items as $_item): ?>
+                <li class="downloadable-products__item">
+                    <h2 class="downloadable-products__title"><?php echo $this->escapeHtml($_item->getPurchased()->getProductName()) ?></h2>
+
+                    <p class="downloadable-products__date"><?php echo $this->formatDate($_item->getPurchased()->getCreatedAt()) ?></p>
+
+                    <p class="downloadable-products__order"><?php echo $this->__('Order #: ');?><a href="<?php echo $this->getOrderViewUrl($_item->getPurchased()->getOrderId()) ?>" title="<?php echo Mage::helper('downloadable')->__('View Order') ?>"><?php echo $_item->getPurchased()->getOrderIncrementId() ?></a></p>
+
+                    <p class="downloadable-products__status"><?php echo $this->__('Status: %s', ucfirst($_item->getStatus())) ?></p>
+
+                    <p class="downloadable-products__downloads"><?php echo $this->__('Remaining Downloads: %s', $this->getRemainingDownloads($_item)) ?></p>
+
+                    <p>
+                        <a href="<?php echo $this->getDownloadUrl($_item) ?>" class="downloadable-products__start-download button" title="<?php echo Mage::helper('downloadable')->__('Start Download') ?>" <?php echo $this->getIsOpenInNewWindow()?'onclick="this.target=\'_blank\'"':''; ?>><?php echo $this->escapeHtml($_item->getPurchased()->getProductName()) ?> - <?php echo $this->escapeHtml($_item->getLinkTitle()) ?></a>
+                    </p>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p><?php echo Mage::helper('downloadable')->__('You have not purchased any downloadable products yet.'); ?></p>
+    <?php endif; ?>
+    <p class="account__back-button">
+        <a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>" class="button button--invert"><?php echo $this->__('Back') ?></a>
+    </p>
+</div>
+
+<?php echo $this->getPagerHtml(); ?>

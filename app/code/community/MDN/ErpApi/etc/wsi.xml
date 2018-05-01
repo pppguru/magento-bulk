@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:typens="urn:{{var wsdl.name}}"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             name="{{var wsdl.name}}"
+             targetNamespace="urn:{{var wsdl.name}}">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">
+            
+<!--BEGIN TYPES --> 
+
+            <!--BEGIN CUSTOMER PARAMS -->
+            <xsd:element name="erpapi_testRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="erpapi_testResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <!--END CUSTOMER PARAMS -->
+            
+        </xsd:schema>
+    </wsdl:types>
+    
+    
+<!-- BEGIN MESSAGES -->
+
+            <!-- BEGIN CUSTOMER MESSAGES -->
+    <wsdl:message name="erpapi_testRequest">
+        <wsdl:part name="parameters" element="typens:erpapi_testRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="erpapi_testResponse">
+        <wsdl:part name="parameters" element="typens:erpapi_testResponseParam" />
+    </wsdl:message>
+            <!-- END CUSTOMER MESSAGES -->
+
+<!-- END MESSAGES -->
+
+
+    <wsdl:portType name="{{var wsdl.handler}}PortType">
+<!-- BEGIN PORT TYPES -->
+            <!-- BEGIN CUSTOMER PORT TYPES -->
+        <wsdl:operation name="erpapi_test">
+            <wsdl:documentation>Test erp api</wsdl:documentation>
+            <wsdl:input message="typens:erpapi_testRequest" />
+            <wsdl:output message="typens:erpapi_testResponse" />
+        </wsdl:operation>
+            <!-- END CUSTOMER PORT TYPES -->
+            
+<!-- END PORT TYPES -->
+    </wsdl:portType>
+    <wsdl:binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        
+<!-- BEGIN BINDINGS -->
+            <!-- BEGIN CUSTOMER BINDINGS -->
+        <wsdl:operation name="erpapi_test">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+            <!-- END CUSTOMER BINDINGS -->
+<!-- END BINDINGS -->
+    </wsdl:binding>
+</wsdl:definitions>

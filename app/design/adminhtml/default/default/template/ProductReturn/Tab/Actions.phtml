@@ -1,0 +1,153 @@
+<script>
+    var ProductExchangeSelectionPopupUrl = '<?php echo $this->getProductExchangeSelectionPopup(); ?>';
+</script>
+
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Process products'); ?></h4>
+</div>
+
+<fieldset id="my-fieldset">
+    <div class="grid">
+        <table class="data" cellspacing="0">
+            <thead>
+            <tr class="headings">
+                <th></th>
+                <th></th>
+                <th class="a-center"><?php echo $this->__('Reason'); ?></th>
+                <th class="a-center"><?php echo $this->__('Request type'); ?></th>
+                <th class="a-center"><?php echo $this->__('Price (incl tax)'); ?></th>
+                <th class="a-center"><?php echo $this->__('No action'); ?></th>
+                <th class="a-center"><?php echo $this->__('Back to customer'); ?></th>
+                <th class="a-center"><?php echo $this->__('Refund'); ?></th>
+                <th class="a-center"><?php echo $this->__('Exchange'); ?></th>
+                <th class="a-center"><?php echo $this->__('Product destination'); ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php $currency = Mage::app()->getLocale()->currency($this->getRma()->getSalesOrder()->getorder_currency_code())->getSymbol(); ?>
+            <?php foreach ($this->getRma()->getProducts() as $product): ?>
+                <?php
+                if ($product->getrp_qty() == 0) {
+                    continue;
+                }
+                ?>
+                <tr>
+                    <td><img src="<?php echo mage::helper('ProductReturn')->getProductImage($product->getproduct_id(),65); ?>" /></td>
+                    <td>
+                        <?php echo $product->getrp_qty() . 'x ' . $this->getProductName($product); ?>
+                        <?php $sku = mage::helper('ProductReturn')->getProductSku($product->getproduct_id()); ?>
+                        <?php if(empty($sku)): ?>
+                            <?php echo '<br/><span style="color:red;">Product no more exists</span>'; ?>
+                        <?php endif; ?>
+                    </td>
+                    <td class="a-center"><?php echo $this->__($product->getrp_reason()); ?></td>
+                    <td class="a-center"><?php echo $this->__($product->getrp_request_type()); ?></td>
+                    <td class="a-center">
+                        <span id="span_product_<?php echo $product->getrp_id(); ?>_price"><?php echo number_format($product->getoriginal_price(), 2, '.', ''); ?><?php echo ' '.$currency; ?></span>
+                    </td>
+                    <?php if ($this->hasBeenProcessed($product)): ?>
+                        <td class="a-left" colspan="5"><?php echo $this->getProceedInformation($product); ?></td>
+                    <?php else: ?>
+                        <td class="a-center"><?php echo $this->getNoActionHtml($product); ?></td>
+                        <td class="a-center"><?php echo $this->getReturnProductHtml($product); ?></td>
+                        <td class="a-center"><?php echo $this->getRefundHtml($product); ?></td>
+                        <td class="a-center"><?php echo $this->getExchangeHtml($product); ?></td>
+                        <td class="a-center"><?php echo $this->getProductDestinationHtml($product); ?></td>
+                    <?php endif; ?>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+
+<table border="0" width="100%">
+    <tr>
+        <td width="50%">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Credit memo settings'); ?></h4>
+            </div>
+            <fieldset id="my-fieldset">
+                <center><p><i><?php echo $this->__('Applies when you refund customer or for product exchange'); ?></i></p></center>
+                <table cellspacing="0" class="form-list" id="block_action">
+                    <tr id="tr_refund_shipping">
+                        <td class="label"><?php echo $this->__('Refund shipping fees'); ?></td>
+                        <td class="input-ele"><input type="checkbox" name="data[refund_shipping_fees]" id="refund_shipping_fees" onclick="toggleShippingAmount()" ></td>
+                    </tr>
+                    <tr id="tr_refund_shipping_amount" style="display: none;">
+                        <td class="label"></td>
+                        <td class="input-ele"><?php echo $this->__('Amount (incl tax)'); ?>&nbsp;:&nbsp;<input type="textbox" name="data[refund_shipping_amount]" id="refund_shipping_amount" value="<?php echo $this->getShippingAmountInclTax(); ?>" ></td>
+                    </tr>
+                    <tr id="tr_refund_shipping">
+                        <td class="label"><?php echo $this->__('Adjustment refund (incl tax)'); ?></td>
+                        <td class="input-ele">
+                            <input type="text" name="data[credit_memo_refund]" id="credit_memo_refund" value="0">
+                            <p class="note"><?php echo $this->__('Amount to add to refund'); ?></p>
+                        </td>
+                    </tr>
+                    <tr id="tr_refund_shipping">
+                        <td class="label"><?php echo $this->__('Adjustment fee (incl tax)'); ?></td>
+                        <td class="input-ele">
+                            <input type="text" name="data[credit_memo_fee]" id="credit_memo_fee" value="0">
+                            <p class="note"><?php echo $this->__('Amount to substract to refund'); ?></p>
+                        </td>
+                    </tr>
+                    <tr id="refund_online">
+                        <?php if ($this->canRefundOnline()): ?>
+                            <td class="label"><?php echo $this->__('Refund online'); ?></td>
+                            <td class="select-ele">
+                                <select type="select" name="data[rma_refund_online]" id="data[rma_refund_online]">
+                                    <option value="1"><?php echo $this->__('Yes'); ?></option>
+                                    <option value="0"><?php echo $this->__('No'); ?></option>
+                                </select>
+                            </td>
+                        <?php else: ?>
+                            <td class="label"><?php echo $this->__('Refund offline only'); ?></td>
+                            <td></td>
+                        <?php endif; ?>
+                    </tr>
+                </table>
+            </fieldset>
+        </td>
+        <td width="50%">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Order settings'); ?></h4>
+            </div>
+            <fieldset id="my-fieldset">
+                <center><p><i><?php echo $this->__('Applies when for exchange or return to customer'); ?></i></p></center>
+                <table cellspacing="0" class="form-list" id="block_action">
+                    <tr id="tr_payment_method">
+                        <td class="label"><?php echo $this->__('Payment Method'); ?></td>
+                        <td class="input-ele"><?php echo $this->getPaymentMethodAsCombo('data[payment_method]'); ?></td>
+                    </tr>
+                    <tr id="tr_shipping_method">
+                        <td class="label"><?php echo $this->__('Shipping Method'); ?></td>
+                        <td class="input-ele"><?php echo $this->getCarriersAsCombo('data[rma_carrier]', $this->getRma()->getrma_carrier()); ?></td>
+                    </tr>
+                    <tr id="tr_shipping_cost">
+                        <td class="label"><?php echo $this->__('Shipping Cost (incl tax)'); ?> <?php echo $this->getTaxText(); ?></td>
+                        <td class="input-ele">
+                            <input type="text" name="data[rma_shipping_cost]" id="data[rma_shipping_cost]" value="0">
+                            <p class="note"><?php echo $this->__('Shipping fees to charge to customer'); ?></p>
+                        </td>
+                    </tr>
+                    <tr id="tr_technical_cost">
+                        <td class="label"><?php echo $this->__('Technical Cost (incl tax)'); ?> <?php echo $this->getTaxText(); ?></td>
+                        <td class="input-ele">
+                            <input type="text" name="data[rma_technical_cost]" id="data[rma_technical_cost]" value="0">
+                            <p class="note"><?php echo $this->__('Amount for additional costs to charge to customer'); ?></p>
+                        </td>
+                    </tr>
+                    <tr id="tr_technical_caption">
+                        <td class="label"><?php echo $this->__('Technical Cost Caption'); ?></td>
+                        <td class="input-ele">
+                            <input type="text" name="data[rma_libelle_action]" id="data[rma_libelle_action]" value="">
+                            <p class="note"><?php echo $this->__('Caption for additional costs to charge to customer'); ?></p>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </td>
+    </tr>
+</table>
+

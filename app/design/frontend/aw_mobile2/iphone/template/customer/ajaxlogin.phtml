@@ -1,0 +1,40 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile2
+ * @version    2.0.6
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><header class="panel-nav">
+    <button style="display:none;" class="panel-nav__action panel-nav__action--left panel-nav__action--back nav__back-action js-catalog-nav-back" data-default-label="">
+        <span class="panel-nav__action-label"></span>
+    </button>
+    <h2 class="panel-nav__title" data-default-title="<?php echo $this->__('Customer Login');?>">
+        <span class="active"><?php echo $this->__('Customer Login')?></span>
+    </h2>
+    <button type="button" class="panel-nav__action panel-nav__action--right panel-nav__action--cancel not-lap-land js-close-panel">
+    </button>
+</header>
+<div class="customer-account nav__list-container panel__container">
+    <?php echo $this->getChildHtml('customer_form_login');?>
+    <?php echo $this->getChildHtml('forgotPassword');?>
+    <?php echo $this->getChildHtml('customer_form_register');?>
+</div>

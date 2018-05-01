@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bulksupplements_Newsletter>
+            <version>1.0</version>
+        </Bulksupplements_Newsletter>
+    </modules>
+    <frontend>
+        <routers>
+            <newsletter>
+                <args>
+                    <modules>
+                        <Bulksupplements_Newsletter before="Mage_Newsletter">Bulksupplements_Newsletter</Bulksupplements_Newsletter>
+                    </modules>
+                </args>
+            </newsletter>
+        </routers>
+    </frontend>
+</config>

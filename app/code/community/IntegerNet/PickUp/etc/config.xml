@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <IntegerNet_PickUp>
+            <version>0.1.0</version>
+        </IntegerNet_PickUp>
+    </modules>
+
+    <global>
+        <models>
+            <integernet_pickup>
+                <class>IntegerNet_PickUp_Model</class>
+            </integernet_pickup>
+        </models>
+
+        <blocks>
+            <integernet_pickup>
+                <class>IntegerNet_PickUp_Block</class>
+            </integernet_pickup>
+        </blocks>
+
+        <helpers>
+            <integernet_pickup>
+                <class>IntegerNet_PickUp_Helper</class>
+            </integernet_pickup>
+        </helpers>
+    </global>
+
+    <frontend>
+        <translate>
+            <modules>
+                <IntegerNet_PickUp>
+                    <files>
+                        <default>IntegerNet_PickUp.csv</default>
+                    </files>
+                </IntegerNet_PickUp>
+            </modules>
+        </translate>
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <IntegerNet_PickUp>
+                    <files>
+                        <default>IntegerNet_PickUp.csv</default>
+                    </files>
+                </IntegerNet_PickUp>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <default>
+        <carriers>
+            <pickup>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>integernet_pickup/carrier_pickup</model>
+                <name>Pickup at Store</name>
+                <price>0.00</price>
+                <title>Pickup at Store</title>
+                <type>I</type>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+                <infotext></infotext>
+                <handling_type>F</handling_type>
+            </pickup>
+        </carriers>
+        <payment>
+            <pickup>
+                <active>1</active>
+                <model>integernet_pickup/payment_pickup</model>
+                <order_status>pending</order_status>
+                <title>Payment on Pickup</title>
+                <allowspecific>0</allowspecific>
+                <sort_order>10</sort_order>
+                <group>offline</group>
+            </pickup>
+        </payment>
+        <autoshipping>
+            <settings>
+                <ignore_shipping_methods>pickup</ignore_shipping_methods>
+            </settings>
+        </autoshipping>
+    </default>
+</config>

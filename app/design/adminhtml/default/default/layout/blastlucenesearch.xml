@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <blastlucenesearch_adminhtml_blastlucenesearch_searchterms>
+     <reference name="head">
+        <action method="addCss"><stylesheet>blastsearchlucene/css/style.css</stylesheet></action>
+     </reference>
+     <reference name="content">
+        <block type="blastlucenesearch/adminhtml_searchterms" name="blastlucenesearch_searchterms" template="blastsearchlucene/searchterms.phtml">
+            <block type="blastlucenesearch/adminhtml_table" name="blastlucenesearch_st_table1" as="blastlucenesearch_st_table1" template="blastsearchlucene/table-1.phtml" />
+        	<block type="blastlucenesearch/adminhtml_table" name="blastlucenesearch_st_table2" as="blastlucenesearch_st_table2" template="blastsearchlucene/table-2.phtml" />
+        	<block type="blastlucenesearch/adminhtml_table" name="blastlucenesearch_st_table3" as="blastlucenesearch_st_table3" template="blastsearchlucene/table-3.phtml" />
+        	<block type="blastlucenesearch/adminhtml_table" name="blastlucenesearch_st_table4" as="blastlucenesearch_st_table4" template="blastsearchlucene/table-4.phtml" />
+        </block>
+    </reference>
+  </blastlucenesearch_adminhtml_blastlucenesearch_searchterms>
+  <blastlucenesearch_adminhtml_blastlucenesearch_index>
+     <reference name="head">
+        <action method="addCss"><stylesheet>blastsearchlucene/css/style.css</stylesheet></action>
+     </reference>
+     <reference name="content">
+        <block type="blastlucenesearch/adminhtml_diagnozing" name="blastlucenesearch_diagnozing" template="blastsearchlucene/diagnozing.phtml"></block>
+    </reference>
+  </blastlucenesearch_adminhtml_blastlucenesearch_index>
+</layout>

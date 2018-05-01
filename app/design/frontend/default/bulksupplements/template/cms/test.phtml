@@ -1,0 +1,36 @@
+<div id="rotator">
+    <div class="controls"  style="float:left;"></div>
+    <ul>
+      <li>
+        <div class="data">
+          <h1>Sports & Fitness Supplements</h1>
+        </div>
+        <div><img src="/media/home/rotator/1.png" alt=""  border="0" class="image" /></div>
+      </li>
+      <li>
+        <div class="data">
+          <h1>Weight Loss Supplements</h1>
+        </div>
+        <div><img src="/media/home/rotator/2.png" alt=""  border="0" class="image" /></div>
+      </li>         
+      <li>
+        <div class="data">
+          <h1>Digestive Support Supplements</h1>              
+        </div>
+        <div><img src="/media/home/rotator/4.png" alt="Plastic String" title="Plastic String" border="0" class="image" /></div>
+      </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+/* main page rotator */
+jQuery('#rotator ul').cycle({ 
+    fx:     'fade', 
+    speed:  300, 
+    timeout: 6000,
+    pager: '.controls',
+    prev: '',
+    next: ''
+}); 
+// end 
+</script>

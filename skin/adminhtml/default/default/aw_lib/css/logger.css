@@ -1,0 +1,78 @@
+/*minimize tr*/
+div.aw-lib-cell {
+    height: 18px;
+    overflow: hidden;
+}
+
+/*standart tr*/
+div.aw-lib-full-cell {
+    height: auto;
+    overflow: visible;
+}
+
+/*minimize tr*/
+div.aw-lib-info-cell {
+    height: 18px;
+    overflow: hidden;
+}
+
+/*standart tr*/
+div.aw-lib-info-full-cell {
+    height: auto;
+    overflow: visible;
+}
+
+
+#awLibLogGrid_table tbody tr {
+    cursor: pointer;
+}
+
+.aw-lib-cell-severity-notice,
+.aw-lib-cell-severity-warning,
+.aw-lib-cell-severity-error,
+.aw-lib-cell-severity-strict {
+    color: #fff;
+    border: 1px solid #000;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 0px 5px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.aw-lib-cell-severity-notice {
+    background-color: #14892c;
+    border-color: #14892c;
+}
+
+.aw-lib-cell-severity-warning {
+    background-color: #ffd351;
+    border-color: #ffd351;
+    color: #594300;
+}
+
+.aw-lib-cell-severity-error,
+.aw-lib-cell-severity-strict {
+    background-color: #DD0000;
+    border-color: #DD0000;
+}
+
+.aw-lib-row-severity-notice,
+.aw-lib-row-severity-warning,
+.aw-lib-row-severity-error,
+.aw-lib-row-severity-strict {
+    border-bottom: 1px solid #888;
+    width: 100%;
+    display: block;
+}
+
+.aw-lib-row-severity-warning {
+    color: #FF8000;
+}
+
+.aw-lib-row-severity-error,
+.aw-lib-row-severity-strict {
+    color: #DD0000;
+}
+

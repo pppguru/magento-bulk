@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <aw_hdu3 module="aw_hdu3">
+            <depends>
+                <module>AW_Helpdesk3</module>
+            </depends>
+            <title>Help Desk</title>
+            <sort_order>72</sort_order>
+            <children>
+                <ticket translate="title" module="aw_hdu3">
+                    <title>View tickets</title>
+                    <action>helpdesk_admin/adminhtml_ticket/list</action>
+                    <sort_order>10</sort_order>
+                </ticket>
+                <statistic translate="title" module="aw_hdu3">
+                    <title>Statistics</title>
+                    <sort_order>20</sort_order>
+                    <children>
+                        <workload_report translate="title" module="aw_hdu3">
+                            <title>Workload Report</title>
+                            <action>helpdesk_admin/adminhtml_statistic_workload/view</action>
+                            <sort_order>10</sort_order>
+                        </workload_report>
+                        <agent translate="title" module="aw_hdu3">
+                            <title>Agent Statistics</title>
+                            <action>helpdesk_admin/adminhtml_statistic_agent/view</action>
+                            <sort_order>20</sort_order>
+                        </agent>
+                        <ticket_status translate="title" module="aw_hdu3">
+                            <title>Ticket Status Statistics</title>
+                            <action>helpdesk_admin/adminhtml_statistic_status/view</action>
+                            <sort_order>30</sort_order>
+                        </ticket_status>
+                    </children>
+                </statistic>
+                <rejecting translate="title" module="aw_hdu3">
+                    <title>Email Rejecting</title>
+                    <sort_order>30</sort_order>
+                    <children>
+                        <email translate="title" module="aw_hdu3">
+                            <title>Rejected Emails</title>
+                            <action>helpdesk_admin/adminhtml_rejecting_email</action>
+                            <sort_order>10</sort_order>
+                        </email>
+                        <pattern translate="title" module="aw_hdu3">
+                            <title>Manage Patterns</title>
+                            <action>helpdesk_admin/adminhtml_rejecting_pattern</action>
+                            <sort_order>20</sort_order>
+                        </pattern>
+                    </children>
+                </rejecting>
+                <department translate="title" module="aw_hdu3">
+                    <title>Departments</title>
+                    <action>helpdesk_admin/adminhtml_department</action>
+                    <sort_order>40</sort_order>
+                </department>
+                <quick_response translate="title" module="aw_hdu3">
+                    <title>Quick Responses</title>
+                    <action>helpdesk_admin/adminhtml_quickresponse</action>
+                    <sort_order>60</sort_order>
+                </quick_response>
+                <customization translate="title" module="aw_hdu3">
+                    <title>Customization</title>
+                    <sort_order>70</sort_order>
+                    <children>
+                        <status translate="title" module="aw_hdu3">
+                            <title>Statuses</title>
+                            <action>helpdesk_admin/adminhtml_customization_status</action>
+                            <sort_order>10</sort_order>
+                        </status>
+                        <priority translate="title" module="aw_hdu3">
+                            <title>Priorities</title>
+                            <action>helpdesk_admin/adminhtml_customization_priority</action>
+                            <sort_order>20</sort_order>
+                        </priority>
+                    </children>
+                </customization>
+                <settings translate="title" module="aw_hdu3">
+                    <title>Settings</title>
+                    <action>adminhtml/system_config/edit/section/aw_helpdesk3</action>
+                    <sort_order>80</sort_order>
+                </settings>
+            </children>
+        </aw_hdu3>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <aw_hdu3>
+                        <title>Help Desk 3 by aheadWorks</title>
+                        <sort_order>10</sort_order>
+                        <children>
+                            <ticket>
+                                <title>Tickets</title>
+                                <sort_order>10</sort_order>
+                            </ticket>
+                            <statistic>
+                                <title>Statistics</title>
+                                <sort_order>20</sort_order>
+                                <children>
+                                    <workload_report>
+                                        <title>Workload Report</title>
+                                        <sort_order>10</sort_order>
+                                    </workload_report>
+                                    <agent>
+                                        <title>Agent Statistics</title>
+                                        <sort_order>20</sort_order>
+                                    </agent>
+                                    <ticket_status>
+                                        <title>Ticket Status Statistics</title>
+                                        <sort_order>30</sort_order>
+                                    </ticket_status>
+                                </children>
+                            </statistic>
+                            <rejecting>
+                                <title>Email Rejecting</title>
+                                <sort_order>30</sort_order>
+                                <children>
+                                    <email>
+                                        <title>Rejected Emails</title>
+                                        <sort_order>10</sort_order>
+                                    </email>
+                                    <pattern>
+                                        <title>Manage Patterns</title>
+                                        <sort_order>20</sort_order>
+                                    </pattern>
+                                </children>
+                            </rejecting>
+                            <department>
+                                <title>Departments</title>
+                                <sort_order>40</sort_order>
+                            </department>
+                            <quick_response>
+                                <title>Quick Responses</title>
+                                <sort_order>60</sort_order>
+                            </quick_response>
+                            <customization>
+                                <title>Customization</title>
+                                <sort_order>70</sort_order>
+                                <children>
+                                    <status>
+                                        <title>Statuses</title>
+                                        <sort_order>10</sort_order>
+                                    </status>
+                                    <priority>
+                                        <title>Priorities</title>
+                                        <sort_order>20</sort_order>
+                                    </priority>
+                                </children>
+                            </customization>
+                            <settings>
+                                <title>Settings</title>
+                                <sort_order>80</sort_order>
+                            </settings>
+                        </children>
+                    </aw_hdu3>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <aw_helpdesk3>
+                                        <title>aheadWorks - Help Desk Ultimate 3 Section</title>
+                                    </aw_helpdesk3>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

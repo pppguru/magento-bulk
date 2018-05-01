@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <WYOMIND translate="label">
+            <label>WYOMIND</label>
+            <sort_order>1000000</sort_order>
+        </WYOMIND>
+    </tabs>
+    <sections>
+        <orderseraser translate="label">
+            <label>Orders Eraser</label>
+            <tab>WYOMIND</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1010</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                
+                
+                <system translate="label">
+                    <label><![CDATA[ Core setting <span class="notice"> // Advanced users //</span>]]>
+                    </label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>300</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store> 
+                    <fields>
+                       <grid translate="label comment">
+                            <label>Orders grid to display </label>
+                            <comment>
+                                <![CDATA[ <span class="notice"> Default value : `Mage_Adminhtml_Block_Sales_Order_Grid`</span>]]>
+                            </comment>
+                            <validate>required-entry  validate-address</validate>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </grid>
+                      
+                    </fields>
+                    </system>
+                
+                </groups>
+
+      
+            </orderseraser>
+        </sections>
+    </config>
+
+
+
+

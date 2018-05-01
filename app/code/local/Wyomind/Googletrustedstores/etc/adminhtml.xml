@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+    
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <googletrustedstores>
+                                        <title>Google Trusted Stores</title>
+                                    </googletrustedstores>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+		
+		
+		
+    <translate>
+        <modules>
+            <Wyomind_googletrustedstores>
+                <files>
+                    <default>Wyomind_googletrustedstores.csv</default>
+                </files>
+            </Wyomind_googletrustedstores>
+        </modules>
+    </translate>
+    <layout>
+        <updates>
+            <googletrustedstores>
+                <file>googletrustedstores.xml</file>
+            </googletrustedstores>
+        </updates>
+    </layout>
+
+</config>

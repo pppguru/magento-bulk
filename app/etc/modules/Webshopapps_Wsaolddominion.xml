@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Webshopapps_Wsaolddominion>
+			<active>true</active>
+			<codePool>community</codePool>
+            <depends>
+                <Mage_Shipping />
+                <Webshopapps_Wsacommon />
+                <Webshopapps_Wsafreightcommon />
+            </depends>
+		</Webshopapps_Wsaolddominion>
+	</modules>
+</config>
+

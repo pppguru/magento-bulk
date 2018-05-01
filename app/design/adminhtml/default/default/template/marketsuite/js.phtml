@@ -1,0 +1,216 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Marketsuite
+ * @version    2.1.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div id="aw-mss-loader-mask" style="display:none">
+    <p class="loader">
+        <span class="aw-mss-pg-progressbar">
+            <span class="aw-mss-pg-progress">
+                <span class="aw-mss-pg-progressstyle"></span>
+                <span class="aw-mss-pg-text">0%</span>
+            </span>
+        </span>
+        <?php echo Mage::helper('adminhtml')->__('Please wait...') ?>
+    </p>
+</div>
+<script type="text/javascript">
+    var mssSave = {
+        saveAs: function () {
+            var value = prompt(
+                '<?php echo Mage::helper('marketsuite')->__('Please enter new template name') ?>',
+                '<?php echo Mage::helper('marketsuite')->__('Copy %s', Mage::registry('marketsuitefilters_data')->getName()); ?>'
+            );
+            if (!value) {
+                return false;
+            } else {
+                $('rule_name').value = value;
+            }
+            $('rule_save_as_flag').value = '1';
+            this.saveRule("<?php echo Mage::helper('adminhtml')->getUrl('marketsuite/adminhtml_filter/saveRule'); ?>");
+            return false;
+        },
+
+        saveTab: function () {
+            this.saveRule("<?php echo Mage::helper('adminhtml')->getUrl('marketsuite/adminhtml_filter/saveRule'); ?>");
+        },
+
+        saveRule: function (url) {
+            if (editForm && editForm.validate()) {
+                new Ajax.Request(url, {
+                    method: "post",
+                    parameters: Form.serialize($("edit_form")),
+                    onComplete: function (transport) {
+                        try {
+                            var jsonResponse = transport.responseText.evalJSON();
+                        } catch (ex) {
+                            window.location.reload();
+                            return;
+                        }
+                        window.location.replace(jsonResponse.redirect);
+                    }
+                });
+            }
+        },
+
+        saveAndReindex: function () {
+            if (editForm && editForm.validate()) {
+                var me = this;
+                var url = "<?php echo Mage::helper('adminhtml')->getUrl('marketsuite/adminhtml_filter/saveRule', array('reindex' => true)); ?>";
+                new Ajax.Request(url, {
+                    method: "post",
+                    parameters: Form.serialize($("edit_form")),
+                    loaderArea: false,
+                    onCreate: function (transport) {
+                        window.onbeforeunload = function (e) {
+                            return '<?php echo $this->__("Index process is running. Please, wait...") ?>';
+                        };
+                        $("aw-mss-loader-mask").setStyle({
+                            display: 'block'
+                        });
+                    },
+                    onComplete: function (transport) {
+                        try {
+                            var jsonResponse = transport.responseText.evalJSON();
+                        } catch (ex) {
+                            window.location.reload();
+                            return;
+                        }
+                        if (jsonResponse.error) {
+                            window.location.replace(jsonResponse.redirect);
+                            return;
+                        } else {
+                            var rule = parseInt(jsonResponse.rule_id);
+                            var parts = parseInt(jsonResponse.parts);
+                        }
+                        me.updateIndexRequest({
+                            rule: rule,
+                            parts: parts,
+                            page: 1
+                        }, jsonResponse.redirect);
+                    }
+                });
+            }
+        },
+
+        updateIndexRequest: function (config, redirectUrl) {
+            if (config.page > config.parts) {
+                window.onbeforeunload = null;
+                window.location.href = redirectUrl;
+                return;
+            }
+            var me = this;
+            new Ajax.Request("<?php echo Mage::helper('adminhtml')->getUrl('marketsuite/adminhtml_filter/updateIndex'); ?>", {
+                method: "get",
+                loaderArea: false,
+                parameters: {rule: config.rule, page: config.page, parts: config.parts},
+                onComplete: function (transport) {
+                    me.onUpdateIndexComplete(transport, config, redirectUrl);
+                }
+            });
+        },
+
+        onUpdateIndexComplete: function (transport, config, redirectUrl) {
+            try {
+                var response = transport.responseText.evalJSON();
+            } catch (ex) {
+                window.location.reload();
+                return;
+            }
+            if (response.error) {
+                window.location.reload();
+                return;
+            }
+            var percent = response.percent;
+            $("aw-mss-loader-mask").select('.aw-mss-pg-progressstyle').first().style.width = percent + '%';
+            $("aw-mss-loader-mask").select('.aw-mss-pg-text').first().update(Math.round(percent) + '%');
+            this.updateIndexRequest({
+                rule: config.rule,
+                parts: config.parts,
+                page: config.page + 1
+            }, redirectUrl);
+        }
+    };
+
+    var saveAs = function () {
+        mssSave.saveAs();
+    };
+    var saveTab = function () {
+        mssSave.saveTab();
+    };
+    var saveRule = function (url) {
+        mssSave.saveRule(url);
+    };
+    var saveAndContinueEdit = function (url) {
+        var tabsIdValue = filter_idJsTabs.activeTab.id;
+        var tabsBlockPrefix = 'filter_id_';
+        if (tabsIdValue.startsWith(tabsBlockPrefix)) {
+            tabsIdValue = tabsIdValue.substr(tabsBlockPrefix.length)
+        }
+        var template = new Template(url, /(^|.|\\r|\\n)({{(\w+)}})/);
+        var evaluatedUrl = template.evaluate({tab_id: tabsIdValue});
+        mssSave.saveRule(evaluatedUrl);
+    };
+
+    var saveAndReindex = function () {
+        if ($('rule_filter_id')) {
+            new Ajax.Request("<?php echo Mage::helper('adminhtml')->getUrl('marketsuite/adminhtml_filter/isReindexRunning'); ?>", {
+                method: "post",
+                parameters: {'filter_id': $('rule_filter_id').getValue()},
+                onComplete: function (transport) {
+                    if ($('loading-mask')) {
+                        $('loading-mask').hide();
+                    }
+
+                    var response = transport.responseText.evalJSON();
+                    var canSaveAndReindex = true;
+                    if (response.is_reindex_running) {
+                        canSaveAndReindex = confirm(
+                            '<?php echo Mage::helper('marketsuite')->__('Reindex process is running. Want to proceed?'); ?>'
+                        );
+                    }
+                    if (canSaveAndReindex) {
+                        mssSave.saveAndReindex();
+                    }
+                }
+            });
+        } else {
+            mssSave.saveAndReindex();
+        }
+    };
+
+    function keypressHandler(event) {
+        var key = event.which || event.keyCode;
+        switch (key) {
+            default:
+                break;
+            case Event.KEY_RETURN:
+                Event.stop(event);
+                break;
+        }
+    }
+
+    if ($('rule_name') != 'undefined') {
+        $('rule_name').observe('keypress', keypressHandler);
+    }
+</script>

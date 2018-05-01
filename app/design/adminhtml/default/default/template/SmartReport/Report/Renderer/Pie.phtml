@@ -1,0 +1,77 @@
+<?php if (!$this->hasReportData()): ?>
+    <p align="center" style='font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif; font-size: 18px; margin-top: 10px; margin-bottom: 20px;'><?php echo $this->__($this->getReport()->getName()); ?></p>
+    <p><?php echo $this->__('No data available'); ?></p>
+<?php else: ?>
+    <div id="report_<?php echo $this->getReport()->getId(); ?>" style="<?php echo $this->getContainerStyle(); ?>">
+    </div>
+<?php endif; ?>
+
+
+<?php if ($this->hasReportData()): ?>
+    <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+
+            jQuery('#report_<?php echo $this->getReport()->getId(); ?>').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                credits: { enabled: false },
+                title:{ text:'<?php echo $this->__($this->getReport()->getName()); ?>'},
+                subtitle: {
+                    text: '<?php echo $this->getSubtitle(); ?>'
+                },
+                tooltip: {
+                    pointFormat: '<b>{point.y} {series.name} ({point.percentage:.1f} %)</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            },
+                            formatter: function() {
+                                <?php echo $this->getLabelFormatter(); ?>
+                            }
+                        }
+                    },
+                    series: {
+                        stacking: 'normal',
+                        point: {
+                            events: {
+                                click: function () {
+                                    <?php echo $this->onClick(); ?>
+                                }
+                            }
+                        }
+                    },
+
+                    column: {
+                        colorByPoint: true
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: '<?php echo $this->getYLabel(); ?>',
+                    data: <?php echo json_encode($this->getReportDatas()); ?>
+                }],
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            menuItems: [{
+                                text: 'Excel Export',
+                                onclick: function () {
+                                    <?php echo $this->exportJs(); ?>
+                                }
+                            }]
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+<?php endif; ?>

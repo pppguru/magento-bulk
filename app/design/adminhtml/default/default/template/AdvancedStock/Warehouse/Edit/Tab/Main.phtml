@@ -1,0 +1,36 @@
+<div class="entry-edit">
+    	<input type="hidden" name="data[stock_id]" value="<?php echo $this->getStock()->getId(); ;?>">
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('Name'); ?></td>
+                    <td class="input-ele"><input type="text" name="data[stock_name]" id="data[stock_name]"
+                                                 class="required-entry" value="<?php echo $this->getStock()->getstock_name(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Code'); ?></td>
+                    <td class="input-ele"><input type="text" name="data[stock_code]" id="data[stock_code]"
+                                                 class="" value="<?php echo $this->getStock()->getstock_code(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Description'); ?></td>
+                    <td class="input-ele"><textarea name="data[stock_description]" id="data[stock_description]"
+                                                    cols="50" rows="4"><?php echo $this->getStock()->getstock_description(); ?></textarea></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Address'); ?></td>
+                    <td class="input-ele"><textarea name="data[stock_address]" id="data[stock_address]"
+                                                    cols="50" rows="4"><?php echo $this->getStock()->getstock_address(); ?></textarea></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Disable supply needs'); ?></td>
+                    <td class="input-ele"><?php echo $this->getYesNoCombo("data[stock_disable_supply_needs]", $this->getStock()->getstock_disable_supply_needs()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Hide warehouse'); ?></td>
+                    <td class="input-ele"><?php echo $this->getYesNoCombo("data[stock_is_hidden]", $this->getStock()->getstock_is_hidden()); ?></td>
+                </tr>
+            </table>
+        </fieldset>
+
+</div>

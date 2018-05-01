@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <erp>
+                        <children>
+                            <order_preparation module="Orderpreparation">
+                                <title>Order Preparation</title>
+                                <children>
+                                    <prepare_order module="Orderpreparation">
+                                        <title>Prepare orders</title>
+                                        <children>
+                                            <fullstock_order module="Orderpreparation">
+                                                <title>Display fullstock orders</title>
+                                            </fullstock_order>
+                                            <stockless_order module="Orderpreparation">
+                                                <title>Display stockless orders</title>
+                                            </stockless_order>
+                                            <ignored_order module="Orderpreparation">
+                                                <title>Display ignored orders</title>
+                                            </ignored_order>
+                                            <selected_orders module="Orderpreparation">
+                                                <title>Display selected orders</title>
+                                            </selected_orders>
+                                            <allow_scope_change module="Orderpreparation">
+                                                <title>Allow scope change</title>
+                                            </allow_scope_change>
+                                            <mass_actions module="Orderpreparation">
+                                                <title>Mass actions</title>
+                                                <children>
+                                                    <add_to_selection module="Orderpreparation">
+                                                        <title>Add to selection</title>
+                                                    </add_to_selection>                                                    
+                                                    <download_picking_list module="Orderpreparation">
+                                                        <title>Download picking list</title>
+                                                    </download_picking_list>    
+                                                    <download_preparation_pdf module="Orderpreparation">
+                                                        <title>Download preparation pdf</title>
+                                                    </download_preparation_pdf>         
+                                                    <change_shipping_method module="Orderpreparation">
+                                                        <title>Change shipping method</title>
+                                                    </change_shipping_method>                                               
+                                                </children>
+                                            </mass_actions>
+                                            <steps module="Orderpreparation">
+                                                <title>Steps</title>
+                                                <children>
+                                                    <select_orders  module="Orderpreparation">
+                                                         <title>Select orders</title>
+                                                    </select_orders>
+                                                    <picking_list module="Orderpreparation">
+                                                        <title>Picking list</title>
+                                                    </picking_list> 
+                                                    <create_shipment_invoice module="Orderpreparation">
+                                                        <title>Create shipment and invoices</title>
+                                                    </create_shipment_invoice> 
+                                                    <print_download_documents module="Orderpreparation">
+                                                        <title>Print / Download documents</title>
+                                                    </print_download_documents> 
+                                                    <packing module="Orderpreparation">
+                                                        <title>Packing</title>
+                                                    </packing> 
+                                                    <shipping_label module="Orderpreparation">
+                                                        <title>Shipping label</title>
+                                                    </shipping_label> 
+                                                    <notify module="Orderpreparation">
+                                                        <title>Notify</title>
+                                                    </notify> 
+                                                    <finish module="Orderpreparation">
+                                                        <title>Finish</title>
+                                                    </finish> 
+                                                </children>
+                                            </steps>
+                                        </children>
+                                    </prepare_order>
+                                    <carrier_template module="Orderpreparation">
+                                        <title>Carrier Templates</title>
+                                    </carrier_template>
+                                </children>
+                            </order_preparation>
+                        </children>
+                    </erp>
+                    <sales>
+                        <children>
+                            <erp_tabs module="Orderpreparation">
+                                <title>ERP Order view tabs</title>
+                                <children>
+                                    <preparation module="Orderpreparation">
+                                        <title>Preparation</title>
+                                        <children>
+                                            <display_products module="Orderpreparation">
+                                                <title>Display products</title>
+                                            </display_products>
+                                            <display_preparation_information module="Orderpreparation">
+                                                <title>Display preparation information</title>
+                                            </display_preparation_information>
+                                            <allow_shipping_method_change module="Orderpreparation">
+                                                <title>Allow shipping method change</title>
+                                            </allow_shipping_method_change>
+                                            <allow_print module="Orderpreparation">
+                                                <title>Allow print</title>
+                                            </allow_print>
+                                            <allow_release_products module="Orderpreparation">
+                                                <title>Allow release products</title>
+                                            </allow_release_products>
+                                            <allow_reserve_products module="Orderpreparation">
+                                                <title>Allow reserve products</title>
+                                            </allow_reserve_products>
+                                        </children>
+                                    </preparation>                                    
+                                </children>
+                            </erp_tabs>
+                        </children>
+                    </sales>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <orderpreparation module="Orderpreparation">
+                                        <title>Order Preparation</title>
+                                    </orderpreparation>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <translate>
+        <modules>
+            <MDN_Orderpreparation>
+                <files>
+                    <default>MDN_Orderpreparation.csv</default>
+                </files>
+            </MDN_Orderpreparation>
+        </modules>
+    </translate>
+    <menu>
+        <erp>
+            <children>
+                <order_preparation translate="title" module="Orderpreparation">
+                    <title>Order Preparation</title>
+                    <sort_order>30</sort_order>
+                    <children>
+                        <prepare_order translate="title" module="Orderpreparation">
+                            <title>Prepare orders</title>
+                            <action>adminhtml/OrderPreparation_OrderPreparation</action>
+                            <sort_order>10</sort_order>
+                        </prepare_order>
+                        <carrier_template translate="title" module="Orderpreparation">
+                            <title>Carrier templates</title>
+                            <action>adminhtml/OrderPreparation_CarrierTemplate/Grid</action>
+                            <sort_order>30</sort_order>
+                        </carrier_template>
+                    </children>
+                </order_preparation>
+            </children>
+        </erp>
+    </menu>
+    <layout>
+        <updates>
+            <orderpreparation>
+                <file>orderpreparation.xml</file>
+            </orderpreparation>
+        </updates>
+    </layout>
+</config>

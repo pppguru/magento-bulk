@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<!--<customreports_adminhtml_skubycustomer_index>
+		<reference name="content">
+			<block type="customreports/adminhtml_skubycustomer" name="skubycustomer" />
+		</reference>
+	</customreports_adminhtml_skubycustomer_index>-->
+	<!--<reportkilogram_adminhtml_reportkilogram_index>
+		<reference name="content">
+			<block type="reportkilogram/adminhtml_reportkilogram" name="reportkilogram" />
+		</reference>
+	</reportkilogram_adminhtml_reportkilogram_index>-->
+	<!--New way after SUPEE 6788 Or Magento CE 1.9.2.2 -->
+	<adminhtml_bsreports_productsbykg_index>
+		<reference name="content">
+			<block type="customreports/adminhtml_productsbykg" name="productsbykg" />
+		</reference>
+	</adminhtml_bsreports_productsbykg_index>
+</layout>

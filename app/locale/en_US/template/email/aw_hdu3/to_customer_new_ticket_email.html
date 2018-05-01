@@ -1,0 +1,39 @@
+<!--@subject [#{{var ticket_uid}}] Ticket created: {{var ticket_subject}}@-->
+<style type="text/css">
+    body, td {
+        color: #2f2f2f;
+        font: 11px/1.35em Verdana, Arial, Helvetica, sans-serif;
+    }
+</style>
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+    <table cellspacing="0" cellpadding="0" border="0" width="98%"
+           style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+        <tr>
+            <td align="center" valign="top">
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <p><strong>Hello, {{var customer_first_name}}</strong>.<br/>
+                                Thank you for contacting us. This is an automated response confirming the receipt of
+                                your ticket. One of our agents will get back to you as soon as possible. For your
+                                records, the details of the ticket are listed below. When replying, please make sure
+                                that the ticket ID is kept in the subject line to ensure that your replies are tracked
+                                appropriately.
+                            </p>
+                            <p style="border:1px solid #BEBCB7; padding:13px 18px; background:#F8F7F5; line-height: 20px;">
+                                <strong>Ticket ID: </strong> {{var ticket_uid}}<br/>
+                                <strong>Subject: </strong> {{var ticket_subject}}<br/>
+                            </p>
+                            <p>
+                                <strong>With best regards,<br/>
+                                    {{var agent_name}}</strong>
+                            </p>
+                            <br/>
+                            {{var external_link_html}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

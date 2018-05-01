@@ -1,0 +1,40 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php $_product = $this->getProduct(); ?>
+<?php $_wishlistItem = $this->getWishlistItem(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getUpdateUrl($_wishlistItem); ?>
+
+<?php if ($this->helper('wishlist')->isAllow()): ?>
+    <?php if ($_product->getHasOptions() && !$this->getLinkToProcess()): ?>
+        <button class="button js-open-panel" data-open-panel="add-to-cart-options" type="button">
+            <?php echo $this->__('Configure and Update Wishlist'); ?>
+        </button>
+    <?php else: ?>
+        <button class="button" type="button" onclick="productAddToCartForm.submitLight(this, '<?php echo $_wishlistSubmitUrl ?>'); return false;">
+            <?php echo $this->__('Update Wishlist'); ?>
+        </button>
+    <?php endif; ?>
+<?php endif; ?>

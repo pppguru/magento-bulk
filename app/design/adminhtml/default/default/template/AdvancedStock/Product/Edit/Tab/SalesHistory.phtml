@@ -1,0 +1,133 @@
+<script>
+    var autoCalculatePreferedStockLevel = '<?php echo $this->getUrl('adminhtml/AdvancedStock_PreferedStockLevel/UpdateForOneProduct'); ?>';
+</script>
+
+<?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/sales_history/sales_history')): ?>
+
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Sales History'); ?></h4> 
+    </div>
+    <div class="entry-edit">
+
+        <div class="grid">
+		
+			<p align="right">
+				</p>
+			
+            <table class="data" cellspacing="0" width="100%">
+                <thead>
+                    <tr class="headings">
+                        <th class="a-center"><?php echo $this->__('Warehouse') ?></th>
+                        <th class="a-center"><?php echo $this->__('Updated at') ?></th>
+                        <?php foreach ($this->getRanges() as $range): ?>
+                            <th class="a-center"><?php echo $this->__('Last %s week(s)', $range) ?></th>
+                        <?php endforeach; ?>
+                        <th class="a-center"><?php echo $this->__('Refresh') ?></th>
+                    </tr>
+                </thead>
+                <tbody>	
+                    <?php
+					$_history = $this->getHistory();
+					$multipleWarehouseCase = (count($_history)>1);
+					if ($multipleWarehouseCase){
+						$_history_sum_period_1 = 0;
+						$_history_sum_period_2 = 0;
+						$_history_sum_period_3 = 0;
+						$_history_last_updated_at = '9999-12-30';
+						foreach($_history as $h){
+							$_history_sum_period_1 += $h->getsh_period_1();
+							$_history_sum_period_2 += $h->getsh_period_2();
+							$_history_sum_period_3 += $h->getsh_period_3();
+							$_history_last_updated_at = ($h->getsh_updated_at()<$_history_last_updated_at)?$h->getsh_updated_at():$_history_last_updated_at;
+						}
+					}
+					?>
+					<tr>
+						<?php if ($multipleWarehouseCase): ?>
+							<td class="a-center"><b><?php echo $this->__('All warehouses'); ?></b></td>
+							<td class="a-center"><b><?php echo $_history_last_updated_at; ?></b></td>
+							<td class="a-center"><b><?php echo $_history_sum_period_1; ?></b></td>
+							<td class="a-center"><b><?php echo $_history_sum_period_2; ?></b></td>
+							<td class="a-center"><b><?php echo $_history_sum_period_3; ?></b></td>
+						<?php else: ?>
+							<td colspan = 5></td>
+						<?php endif; ?>
+							<td class="a-center">
+								<button type="button" class="scalable" onclick="setLocation('<?php echo $this->getRefreshHistoryUrl(); ?>')" style=""><span><?php echo $this->__('Refresh product'); ?></span></button>
+							</td>
+					</tr>
+					<tr>
+						<td class="a-center" colspan="6" style="background-color: #DDDDDD"></td>
+					</tr>
+
+					<?php foreach($_history as $h): ?>
+						<tr>
+							<?php if ($h->getId()): ?>
+								<td class="a-center"><?php echo $h->getstock_name(); ?></td>
+								<td class="a-center"><?php echo $h->getsh_updated_at(); ?></td>
+								<td class="a-center"><?php echo $h->getsh_period_1(); ?></td>
+								<td class="a-center"><?php echo $h->getsh_period_2(); ?></td>
+								<td class="a-center"><?php echo $h->getsh_period_3(); ?></td>
+								<td class="a-center">
+									<button type="button" class="scalable" onclick="setLocation('<?php echo $this->getRefreshHistoryByWarehouseUrl($h->getstock_id()); ?>')" style=""><span><?php echo $this->__('Refresh'); ?></span></button>
+								</td>
+							<?php else: ?>
+								<td class="a-center" colspan="4"><?php echo $this->__('No history available'); ?></td>
+							<?php endif; ?>
+						</tr>
+					<?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<?php endif; ?>
+
+<?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/sales_history/suggestions')): ?>
+
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Warning stock level / Ideal stock suggestions'); ?></h4>
+    </div>
+    <div class="entry-edit">
+		<?php $warehouses = Mage::getModel('AdvancedStock/Warehouse')->getCollection(); ?>
+			<div class="grid">
+				<table class="data" cellspacing="0" width="100%">
+					<thead>
+						<tr class="headings">
+							<th class="a-center"><?php echo $this->__('Warehouse') ?></th>
+							<th class="a-center"><?php echo $this->__('Warning stock level') ?></th>
+							<th class="a-center"><?php echo $this->__('Ideal stock') ?></th>
+							<th class="a-center"><?php echo $this->__('Apply') ?></th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php foreach($warehouses as $w): ?>
+						<?php $_preferedStockLevelData = $this->getPreferedStockLevelSuggestion($w->getId()); ?>
+							<tr>
+								<td class="a-center"><?php echo $w->getStockName(); ?></td>
+								<td class="a-center"><?php echo $_preferedStockLevelData['warning_stock_level'] ?></td>
+								<td class="a-center"><?php echo $_preferedStockLevelData['ideal_stock_level'] ?></td>
+								<td class="a-center"><button  type="button" class="scalable" onclick="setLocation('<?php echo $this->getApplyPreferedStockLevelSuggestion(); ?>')" style=""><span><?php echo $this->__('Apply'); ?></span></button></td>
+							</tr>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+    </div>
+
+<?php endif; ?>
+
+<?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/sales_history/all_orders')): ?>
+
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('All Orders'); ?></h4> 
+    </div>
+    <div class="entry-edit">
+        <?php
+        $block = $this->getLayout()->createBlock('AdvancedStock/Product_Edit_Tabs_AllSalesOrder');
+        $block->setProduct($this->getProduct());
+        echo $block->toHtml();
+        ?>
+    </div>
+
+<?php endif; ?>

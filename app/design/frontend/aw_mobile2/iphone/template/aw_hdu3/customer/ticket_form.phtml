@@ -1,0 +1,114 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Customer_TicketForm $this */?>
+<div id="aw_hdu_ticket_create_form" class="awhdu3-customer-create-ticket-form panel panel--from-bottom popup-form">
+    <header class="panel-nav">
+        <h2 class="panel-nav__title"><?php echo $this->__("Create new ticket");?></h2>
+        <button class="panel-nav__action panel-nav__action--right panel-nav__action--cancel js-close-panel"></button>
+        <script type="text/javascript">
+            $$('.awhdu3-customer-create-ticket-form .panel-nav__action--cancel').first().observe('click', function(){
+                $$('.awhdu3-customer-create-ticket-form').first().removeClassName('is-opened');
+            });
+        </script>
+    </header>
+    <div class="panel__container awhdu3-customer-create-ticket-form-container">
+        <form id="awhdu3-customer-create-ticket-form" action="<?php echo $this->getFormAction() ?>" method="post" enctype="multipart/form-data">
+            <?php if ($this->isCanShowDepartment()):?>
+                <p class="form__field form__field--required">
+                    <label for="awhdu3-ticketform-department" class="form__label form__label--required"><?php echo $this->__('Department') ?></label>
+                    <select class="form__search textfield required-entry" name="department" id="awhdu3-ticketform-department" title="<?php echo $this->__('Department') ?>">
+                        <?php foreach($this->getDepartmentOptionList() as $option):?>
+                            <option value="<?php echo $option['value'];?>" <?php echo $this->isDepartmentDefault($option['value'])?'selected':''?>
+                                ><?php echo $option['label'];?>
+                            </option>
+                        <?php endforeach;?>
+                    </select>
+                </p>
+            <?php endif;?>
+            <?php if ($this->isCanShowPriority()):?>
+                <p class="form__field form__field--required">
+                    <label for="awhdu3-ticketform-priority" class="form__label form__label--required"><?php echo $this->__('Priority') ?></label>
+                    <select class="form__search textfield required-entry" name="priority" id="awhdu3-ticketform-priority" title="<?php echo $this->__('Priority') ?>">
+                        <?php foreach($this->getPriorityOptionList() as $option):?>
+                            <option value="<?php echo $option['value'];?>" <?php echo $this->isPriorityDefault($option['value'])?'selected':''?>
+                                ><?php echo $option['label'];?>
+                            </option>
+                        <?php endforeach;?>
+                    </select>
+                </p>
+            <?php endif;?>
+            <?php if ($this->isCanShowOrderAssign()):?>
+                <p class="form__field">
+                    <label for="awhdu3-ticketform-order" class="form__label"><?php echo $this->__('Assign to order') ?></label>
+                    <select class="form__search textfield" name="order" id="awhdu3-ticketform-order" title="<?php echo $this->__('Assign to order') ?>">
+                        <?php foreach($this->getOrderOptionList() as $option):?>
+                            <option value="<?php echo $option['value'];?>"><?php echo $option['label'];?></option>
+                        <?php endforeach;?>
+                    </select>
+                </p>
+            <?php endif;?>
+            <p class="form__field form__field--required">
+                <label for="awhdu3-ticketform-title" class="form__label form__label--required"><?php echo $this->__('Subject');?></label>
+                <input name="title" id="awhdu3-ticketform-title" title="<?php echo $this->__('Subject');?>" value="" class="form__textfield textfield required-entry" type="text">
+            </p>
+            <p class="form__field form__field--required">
+                <label for="awhdu3-ticketform-title" class="form__label form__label--required"><?php echo $this->__('Message');?></label>
+                <textarea cols="5" rows="3" class="form__textfield textfield required-entry" name="message" id="awhdu3-ticketform-message"></textarea>
+            </p>
+            <?php if ($this->isCanShowAttachment()):?>
+            <p class="form__field">
+                <label for="awhdu3-ticketform-attachments" class="form__label"><?php echo $this->__('Attachments') ?></label>
+                <?php if ($this->getMaxAvailableFileSize()):?>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $this->getMaxAvailableFileSize() * 1024 * 1024;?>" />
+                <?php endif;?>
+                <input name="attachments[]" id="awhdu3-ticketform-attachments" title="<?php echo $this->__('Attachments') ?>" value="" class="form__textfield textfield" type="file" multiple/>
+                <script type="text/javascript">
+                    new AWLIB.FileUploader($('awhdu3-ticketform-attachments'), {
+                        fileListClassName: 'awhdu3-ticketform-file-list',
+                        errorMsgClassName: 'awhdu3-ticketform-file-list-error-el',
+                        fileListElName: 'attachment_needed',
+                        availableFileExtensionList: <?php echo Zend_Json::encode($this->getAvailableFileExtensionList());?>,
+                        maxFileSizeInBytes: <?php echo Zend_Json::encode($this->getMaxAvailableFileSize() * 1024 * 1024);?>,
+                        unexpectedFileExtensionMessage: function(fileName) {
+                            return '<?php echo $this->__('Unexpected extension for file: %s. Extension must be one of: %s', "' + fileName + '", join(', ', $this->getAvailableFileExtensionList()));?>';
+                        },
+                        unexpectedFileSizeMessage: function(fileName) {
+                            return '<?php echo $this->__('File "%s" is too large. File size must be less than %s Mb', "' + fileName + '", $this->getMaxAvailableFileSize());?>';
+                        }
+                    });
+                </script>
+            </p>
+            <?php endif;?>
+            <p class="form__submit-wrapper">
+                <span class="required"><?php echo $this->__('Required Fields') ?></span>
+                <button type="submit" title="<?php echo $this->__('Submit Ticket') ?>" class="button"><?php echo $this->__('Submit Ticket') ?></button>
+            </p>
+        </form>
+        <script type="text/javascript">
+            new VarienForm('awhdu3-customer-create-ticket-form');
+        </script>
+    </div>
+</div>

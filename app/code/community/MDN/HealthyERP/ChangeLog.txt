@@ -1,0 +1,43 @@
+------------------------------------------------------------------------
+1.0.3  - ERP 2.9.5.2
+
+- Add option to disable ERP magento integration (enabled by default)
+- Add option to disable ERP cron and use erpcron.php
+- Background task - launch bg task execution instead of cron.php itself
+
+------------------------------------------------------------------------
+0.1.0  - ERP 2.9.5.0
+ - Add a cron that notify a system alert every morning if some ERP probe report problems must be fixed
+ - Detect products with negative stock qty
+ - Detect Missed reserved qty
+ - Detect Missing ERP products attribute and essential Magento attribute necessary fro ERP
+ - Improve Missing View repair tool (manage the case when table are created instead of views)
+ - Global detection cases improvement
+
+------------------------------------------------------------------------
+0.0.4  - ERP 2.9.3.4
+ - Compatible with PHP 5.2
+ - OrderNotYetConsidered :  is now compatible with magento 1.4.1
+ - UnconsistantProductAvailibilityStatus : safer fix method
+ - UnconsistantProductAvailibilityStatus : avoid deleted product
+ - QtyDifferentSumStockMovements : returns only stock manged product
+ - QtyDifferentSumStockMovements : refresh stock and product availability status after fix
+ - StockMovements : fix Qty based on Stock movements probe fix method
+ - Launch stock update and reservation after fixing stock
+ - UnconsistantWaitingForDelivery : fix bug on deleted product
+ - BackgrounTask : fix bug on Cron.php link
+ - UnconsistantQtyOrdered probe is now compatible with the logic of the option do_not_consider_invalid_orders_for_stocks in valid order option
+
+------------------------------------------------------------------------
+0.0.3 - ERP 2.9.3.3
+- "UnconsistantWaitingFordeliveryQty" : Speed up + avoid out of memory
+- Check views : Avoid potential crash if No autorization to check INFORMATION_SCHEMA
+- "Unconsistant Availability Status" handle correctly backorders items
+
+------------------------------------------------------------------------
+0.0.2 - ERP 2.9.3.1
+- Fix View recreation when table prefix is present
+
+------------------------------------------------------------------------
+0.0.1 - ERP 2.9.3.0
+ - Initial version

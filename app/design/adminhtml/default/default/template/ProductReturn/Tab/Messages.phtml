@@ -1,0 +1,17 @@
+<p>
+    <strong><?php echo $this->__('Post a new message'); ?></strong>
+</p>
+<textarea name="data[message]" id="message" style="width: 100%; height: 100px;"></textarea>
+
+<p>
+    <strong><?php echo $this->__('Messages'); ?></strong>
+</p>
+
+<?php foreach($this->getMessages() as $message): ?>
+
+    <div class="rma-msg-<?php echo $message->getrmam_author(); ?>">
+        <p><strong><?php echo $message->getrmam_date(); ?>, <?php echo $this->__('by'); ?> <?php echo $this->__($message->getrmam_author()); ?></strong></p>
+        <p><?php echo $message->getrmam_message(); ?></p>
+    </div>
+
+<?php endforeach; ?>

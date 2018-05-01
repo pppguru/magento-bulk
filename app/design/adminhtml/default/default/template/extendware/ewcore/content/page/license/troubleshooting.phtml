@@ -1,0 +1,74 @@
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td><h3>Licenses and Serial Troubleshooting</h3></td>
+        </tr>
+    </table>
+</div>
+You have received a license and serials notification message because licenses or serials are not updating. Do not worry, the solution
+is usually very simple. <u>If this problem goes unresolved it will cause the extension to stop working, which may interrupt the operation of your store.</u>
+Here are the common causes and solutions so that you may fix this error:
+<br/><br/>
+
+<h4>File permissions are incorrect</h4>
+<div style="margin: 0px 10px 30px 10px">
+<u>How to determine if this is the issue</u><br/>
+For each Extendware extensions, go to Extendware -> Manage Extensions -> Overview and click on the row to view the extension information page.
+At the top of the page, click the button titled "Update Licenses / Serial" If you receive an <u>error message</u>, then the issue is most likely caused by
+file permissions.
+<br/><br/>
+
+<u>How to resolve this issue</u>
+<br/>
+You need to ensure the files in <i>[Magento installation directory]/var/extendware/</i> are writeable. You may do this by setting its permissions along with all sub-directories / files to 0777.</i>.
+Please consult with your host or Web master if you do not know how to do this.
+</div>
+
+<h4>Cron has not been properly installed</h4>
+<div style="margin: 0px 10px 30px 10px">
+<u>How to determine if this is the issue</u><br/>
+For each Extendware extensions, go to Extendware -> Manage Extensions -> Overview and click on the row to view the extension information page.
+At the top of the page, click the button titled "Update Licenses / Serial" If you receive a <u>success message</u>, then the issue is most likely caused
+by a non-existent or improperly setup cron.
+<br/><br/>
+
+<u>How to resolve this issue</u>
+<br/>
+You may look at the this <a href="http://www.sitepoint.com/introducing-cron/" target="_blank">introduction to cron</a> and this <a href="http://www.siteground.com/tutorials/cpanel/cron_jobs.htm" target="_blank">cPanel cron tutorial</a>. The file that needs to be added to cron is <i>cron.php</i>
+that is exists in the root of your magento installation. We recommend to run the cron every 5 minutes. Please note, that not only are extensions need cron. Magento itself needs cron, so failing to setup
+cron for your Magento installation will make your store run less optimally than it has to. If you need assistance, your host should be able to tell you how to setup crons for your specific hosting environment
+</div>
+
+<h4>Cannot verify license integrity</h4>
+<div style="margin: 0px 10px 30px 10px">
+<u>How to determine if this is the issue</u><br/>
+Look at the log named <i>ewcore.log</i> in <i>Extendware -> System -> Logs -> Logs</i>. If there are error messages related to inability to verify integrity of licenses then this is the issue.
+<br/><br/>
+
+<u>How to resolve this issue</u>
+<br/>
+<ol style="list-style-type: decimal; list-style-position:inside;">
+<li>Go to <i>Extendware -> Manage Extensions -> Extendware Core -> Configure</i> and click on the <i>Licensing</i> tab</li>
+<li>On this page there are <u>three</u> <i>Verify Integrity</i> options. Set each one to <i>Disabled</i></li>
+<li>Go to <i>Extenware -> Manage Extensions -> Overview</i> and click on each Extendware extension and click on <i>Update Serials and Licenses</i></li>
+<li>Repeat steps 1 and 2 except set the <i>Verify Integrity</i> value to <i>Enabled</i> as this protects your store</li>
+</ol>
+</div>
+
+<h4>IonCube is not installed on the command line</h4>
+<div style="margin: 0px 10px 30px 10px">
+<u>How to determine if this is the issue</u><br/>
+Type "php -m" on the command line and see if IonCube is outputted.
+<br/><br/>
+
+<u>How to resolve this issue</u>
+<br/>
+Your system admin will need to install IonCube for the PHP that is used by the command line (and cron). Alternatively, you can run your cronjob via your Web server, but calling cron like this:
+wget http://www.yourdomain.com/cron.php
+</div>
+
+<h4>There is some other factor that prevents license updates</h4>
+<div style="margin: 0px 10px 30px 10px">
+Look at the log named <i>ewcore.log</i> in <i>Extendware -> System -> Logs -> Logs</i> to identify the issue. If you still cannot resolve the issue, then please contact Extendware support for help resolving this issue.
+</div>
+

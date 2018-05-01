@@ -1,0 +1,80 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdeskultimate
+ * @version    2.10.7
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php if (!$this->isExternal()): ?>
+<div class="back">
+    <a href="<?php echo $this->getBackUrl() ?>"
+       class="left">&laquo;<?php echo $this->__(' Back to My Support Tickets') ?></a>
+</div>
+<?php endif; ?>
+
+<?php if ($this->getCollection() && $this->getCollection()->count()): ?>
+<?php foreach ($this->getCollection() as $_hd): ?>
+    <div class="message-box">
+        <div class="message-header inner-head">
+            <h5><?php echo $_hd->getAuthorName()?> <span
+                    class="separator">|</span> <?php echo $this->dateFormat($_hd->getCreatedTime()) ?></h5>
+            <?php if ($this->getCanQuote()): ?>
+            <p class="do-quote">
+                <a href="#reply" onclick="insQuot(this)">
+                    <?php echo $this->__('Quote')?>
+                    <textarea class="no-display"><?php echo htmlspecialchars($this->getQuoteContent($_hd));?></textarea>
+                </a>
+            </p>
+            <?php endif; ?>
+        </div>
+        <div class="message-body">
+            <?php echo $this->getContent($_hd); ?>
+        </div>
+        <?php if ($_hd->getFilename()): ?>
+        <p class="attachment"><?php echo count($_hd->getFilename()) == 1 ? $this->__('Attachment')
+                : $this->__('Attachments') ?>:
+            <?php foreach ($_hd->getFilename() as $file) : ?>
+                <a href="<?php echo $_hd->getFileUrl($file)?>" title="<?php echo $file;?>"><?php echo Mage::helper('helpdeskultimate/threads')->convertStringToSize($file, 35) ?></a>&nbsp;
+                <?php endforeach ?>
+        </p>
+        <?php endif;?>
+    </div>
+    <?php endforeach; ?>
+<?php endif; ?>
+<div class="message-box">
+    <div class="message-header inner-head">
+        <h5><?php echo $this->getTicket()->getInitiator()->getName()?> <span
+                class="separator">|</span>  <?php echo $this->dateFormat($this->getTicket()->getCreatedTime()) ?></h5>
+    </div>
+
+    <div class="message-body">
+        <?php echo $this->getContent($this->getTicket()) ?>
+    </div>
+    <?php if ($this->getTicket()->getFilename()): ?>
+    <p class="attachment">
+        <?php echo count($this->getTicket()->getFilename()) == 1 ? $this->__('Attachment') : $this->__('Attachments') ?>
+        :
+        <?php foreach ($this->getTicket()->getFilename() as $file) : ?>
+        <a href="<?php echo $this->getTicket()->getFileUrl($file)?>" title="<?php echo $file;?>"><?php echo Mage::helper('helpdeskultimate/threads')->convertStringToSize($file, 35) ?></a>&nbsp;
+        <?php endforeach ?>
+    </p>
+    <?php endif;?>
+</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Lemonline_SimpleAdminPayment>
+			<active>true</active>
+			<codePool>community</codePool>
+			<depends>
+				<Mage_Adminhtml/>
+				<Mage_Core/>
+				<Mage_Payment/>
+			</depends>
+			<version>0.1.0</version>
+		</Lemonline_SimpleAdminPayment>
+	</modules>
+</config>

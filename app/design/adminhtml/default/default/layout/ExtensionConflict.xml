@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- ce fichier doit se trouver dans adminhtml/default/default sinon pas pris en compte.. -->
+<layout version="0.1.0">
+    
+	<adminhtml_extensionconflict_admin_list>
+        <!--<reference name="content">
+	           <block type="ExtensionConflict/List" name="extensionconflictlist" as="extensionconflictlist" template="ExtensionConflict/Main.phtml">
+	           </block>
+        </reference>-->
+    </adminhtml_extensionconflict_admin_list>
+    
+	<adminhtml_extensionconflict_admin_displayfix>
+        <reference name="content">
+	           <block type="ExtensionConflict/DisplayFix" name="extensionconflictdisplayfix" as="extensionconflictdisplayfix" template="ExtensionConflict/DisplayFix.phtml">
+	           </block>
+        </reference>
+    </adminhtml_extensionconflict_admin_displayfix>
+
+</layout>

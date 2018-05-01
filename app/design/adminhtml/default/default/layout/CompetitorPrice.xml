@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <default>
+        <reference name="head">
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/alphacube.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="CompetitorPrice/Wizard" name="competitor_price_wizard" template="CompetitorPrice/Wizard.phtml"></block>
+        </reference>
+    </default>
+
+    <competitor_price_items>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/CompetitorPrice.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="CompetitorPrice/Js" template="CompetitorPrice/Header.phtml" before="-" />
+        </reference>
+    </competitor_price_items>
+
+    <adminhtml_advancedstock_products_grid>
+        <update handle="competitor_price_items" />
+    </adminhtml_advancedstock_products_grid>
+
+    <advancedstock_products_grid>
+        <update handle="competitor_price_items" />
+    </advancedstock_products_grid>
+
+    <adminhtml_amazon_main_index>
+        <update handle="competitor_price_items" />
+    </adminhtml_amazon_main_index>
+
+    <adminhtml_cdiscount_main_index>
+        <update handle="competitor_price_items"/>
+    </adminhtml_cdiscount_main_index>
+
+    <adminhtml_catalog_product_index>
+        <update handle="competitor_price_items" />
+    </adminhtml_catalog_product_index>
+
+    <adminhtml_catalog_product_edit>
+        <update handle="competitor_price_items" />
+        <reference name="content">
+            <block type="CompetitorPrice/ProductView" template="CompetitorPrice/ProductView.phtml" after="-" />
+        </reference>
+    </adminhtml_catalog_product_edit>
+
+</layout>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Customer_Recentorder>
+            <version>1.0</version>
+        </Customer_Recentorder>
+    </modules>
+    <adminhtml>
+        <layout>
+            <updates>
+                <recentorder>
+                    <file>recentorder.xml</file>
+                </recentorder>
+            </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <blocks>
+            <recentorder>
+                <class>Customer_Recentorder_Block</class>
+            </recentorder>
+            <adminhtml>
+                <rewrite>
+                    <customer_edit_tab_view_orders>Customer_Recentorder_Block_Customer_Edit_Tab_View_Orders</customer_edit_tab_view_orders>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+    </global>
+</config>

@@ -1,0 +1,11 @@
+<?php
+$text = $url = '';
+if ($this->getIsLoggedIn()) {
+	$text = $this->__('Log Out');
+	$url = Mage::helper('customer')->getLogoutUrl();
+} else {
+	$text = $this->__('Log In');
+	$url = Mage::helper('customer')->getLoginUrl();
+}
+?>
+<a href="<?php echo $url; ?>" title="<?php echo $url; ?>"><?php echo $text; ?></a>

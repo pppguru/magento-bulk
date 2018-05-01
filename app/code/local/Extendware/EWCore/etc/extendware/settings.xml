@@ -1,0 +1,677 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+        <Extendware_EWCore>
+        	<extendware>
+	        	<settings>
+	        		<scopes>
+		        		<main>
+							<tabs>
+						        <main translate="label comment ewhelp" module="ewcore">
+						            <label>Core</label>
+						            <sort_order>100</sort_order>
+						        </main>
+						    </tabs>
+							<sections>
+								<ewcore translate="label comment ewhelp" module="ewcore">
+									<class>separator-top</class>
+									<label>General</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>1000</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>0</show_in_website>
+									<show_in_store>0</show_in_store>
+						            <groups>
+						            	<appearance translate="label comment ewhelp" module="ewcore">
+						                    <label>Appearance</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>1</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                    	<user_guide_button translate="label comment ewhelp">
+						                            <label>User Guide Button</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable / disable the user guide button]]></comment>
+						                            <ewoverrides>
+														<hide>
+							                        		<ifhelper>ewcore/config/isWhiteLabeled</ifhelper>
+							                        		<ifvalue>1</ifvalue>
+							                        		<field_option>
+							                        			<show_in_default>0</show_in_default>
+																<show_in_website>0</show_in_website>
+																<show_in_store>0</show_in_store>
+							                        		</field_option>
+							                        	</hide>
+						                        	</ewoverrides>
+						                        </user_guide_button>
+						                        <admin_menu_location translate="label comment ewhelp">
+						                            <label>Admin Menu Location</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_adminmenulocation</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Select where the Extendware menu should be displayed]]></comment>
+						                        </admin_menu_location>
+						                        <highlight_admin_menu translate="label comment ewhelp">
+						                            <label>Menu Highlight</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable / disable the highlighting of the Extendware menu item in the admin menu]]></comment>
+						                        </highlight_admin_menu>
+						                        <default_config_help_trigger_mode translate="label comment ewhelp">
+						                            <label>Config Help Trigger</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_helptrigger</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Choose how the help popups are triggered on configuration pages]]></comment>
+						                        </default_config_help_trigger_mode>
+						                        <default_form_help_trigger_mode translate="label comment ewhelp">
+						                            <label>Form Help Trigger</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_helptrigger</source_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Choose how the help popups are triggered on form pages]]></comment>
+						                        </default_form_help_trigger_mode>
+						                    </fields>
+						                </appearance>
+						                <log_viewer translate="label comment ewhelp" module="ewcore">
+						                    <label>Log Viewer</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>100</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <max_collection_size translate="label comment ewhelp">
+						                            <label>Max Lines</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-greater-than-zero</validate>
+						                            <comment><![CDATA[The maximum number of lines to read from a log file. The higher the number the more memory used when viewing the log file]]></comment>
+						                        	<ewhelp><![CDATA[Log files are viewable in Extendware -> System -> Logs]]></ewhelp>
+						                        </max_collection_size>
+						                    </fields>
+						                </log_viewer> 
+						                <system_messages translate="label comment ewhelp" module="ewcore">
+						                    <label>System Messages</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>200</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <max_num translate="label comment ewhelp">
+						                            <label>Max Messages</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-zero-or-greater</validate>
+						                            <comment><![CDATA[Messages over this number will be deleted. This prevents the system message database from becoming too large.]]></comment>
+						                        	<ewhelp><![CDATA[System messages are viewable in Extendware -> System -> Messages]]></ewhelp>
+						                        </max_num>
+						                    </fields>
+						                </system_messages>
+						            </groups>
+						        </ewcore>
+						        <ewcore_messaging translate="label comment ewhelp" module="ewcore">
+									<class>separator-top</class>
+									<label>Messaging</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>2000</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>0</show_in_website>
+									<show_in_store>0</show_in_store>
+									<ewoverrides>
+										<licensing>
+			                        		<ifhelper>ewcore/layout/isDemo</ifhelper>
+			                        		<ifvalue>1</ifvalue>
+			                        		<field_option>
+			                        			<show_in_default>0</show_in_default>
+												<show_in_website>0</show_in_website>
+												<show_in_store>0</show_in_store>
+			                        		</field_option>
+			                        	</licensing>
+		                        	</ewoverrides>
+						            <groups>
+						            	<license_expiring translate="label comment ewhelp" module="ewcore">
+						                    <label>License / Serial Expiring</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>100</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <enabled translate="label comment ewhelp">
+						                            <label>Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable this to be notified if licenses have not been able to update or if a lease / trial term is about to end. <b>Disabling this is dangerous</b>]]></comment>
+						                        	<ewhelp><![CDATA[If you disable this option, then you may not be notified if your licenses have stopped updating. This can cause those extensions to become disabled, which may interrupt the operation of your store. Disable this with caution.]]></ewhelp>
+						                        </enabled>
+						                    </fields>
+						                </license_expiring>
+						                <license_failed_update translate="label comment ewhelp" module="ewcore">
+						                    <label>License / Serial Failed Update</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>200</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <enabled translate="label comment ewhelp">
+						                            <label>Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable this to be notified if licenses will expire shortly. <b>Disabling this is dangerous</b>]]></comment>
+						                        	<ewhelp><![CDATA[If you disable this option, then you may not be notified if your licenses have stopped updating. This can cause those extensions to become disabled, which may interrupt the operation of your store. Disable this with caution.]]></ewhelp>
+						                        </enabled>
+						                    </fields>
+						                </license_failed_update>
+						                <disabled_extensions translate="label comment ewhelp" module="ewcore">
+						                    <label>Disabled Extensions</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>300</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <enabled translate="label comment ewhelp">
+						                            <label>Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable this to be notified if an Extendware extension is disabled]]></comment>
+						                        	<ewhelp><![CDATA[An extension may be disabled manually in Extendware -> Manage Extensions -> Overview or it may become disabled due to a licensing issue. Enable this to be notified when an extension is disabled.]]></ewhelp>
+						                        </enabled>
+						                        <min_num translate="label comment ewhelp">
+						                            <label>Number Needed</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-greater-than-zero</validate>
+						                            <comment><![CDATA[The minimum number of disabled extension needed before the message is shown]]></comment>
+						                        </min_num>
+						                    </fields>
+						                </disabled_extensions>
+						                <misc translate="label comment ewhelp" module="ewcore">
+						                    <label>Miscellaneous</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>400</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                    	<writeable_enabled translate="label comment ewhelp">
+						                            <label>Writeable Notice Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable this to be notified if files that Extendware depends on are not writeable when they should be]]></comment>
+						                        	<ewhelp><![CDATA[Files such as module config files and licenses need to be writeable in order for Extendware to function optimally in all circumstances. If the files are not and this option is enabled, then a message will be shown in the admin header advising you to make these files writeable.]]></ewhelp>
+						                        </writeable_enabled>
+						                        <config_help_notice_threshold translate="label comment ewhelp">
+						                            <label>Config Help Notice Threshold</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-zero-or-greater</validate>
+						                            <comment><![CDATA[After a config section has been shown this number of times, the notice will disappear]]></comment>
+						                        	<ewhelp><![CDATA[After a configuration screen has been saved this number of times, then the notice that appears above the configuration screen that tells you that some fields may have helpful hints (such as this tooltip) will be hidden.]]></ewhelp>
+						                        </config_help_notice_threshold>
+						                        <header_recommendations_enabled translate="label comment ewhelp">
+						                            <label>Header Recommendations</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>28</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-zero-or-greater</validate>
+						                        </header_recommendations_enabled>
+						                        <message_upating_enabled translate="label comment ewhelp">
+						                            <label>General Messages</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-zero-or-greater</validate>
+						                            <comment><![CDATA[These are the messages that we send and appear in Extendware -> Message Inbox. <b>Warning: </b>If this is disabled, then you will not receive discounts or security notices regarding your extensions.]]></comment>
+						                        </message_upating_enabled>
+						                    </fields>
+						                </misc>
+						            </groups>
+						        </ewcore_messaging>
+						        <ewcore_licensing translate="label comment ewhelp" module="ewcore">
+									<class>separator-top</class>
+									<label>Licensing</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>3000</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>0</show_in_website>
+									<show_in_store>0</show_in_store>
+									<ewoverrides>
+										<licensing>
+			                        		<ifhelper>ewcore/layout/isDemo</ifhelper>
+			                        		<ifvalue>1</ifvalue>
+			                        		<field_option>
+			                        			<show_in_default>0</show_in_default>
+												<show_in_website>0</show_in_website>
+												<show_in_store>0</show_in_store>
+			                        		</field_option>
+			                        	</licensing>
+			                        	<licensing2>
+			                        		<ifhelper>ewcore/layout/isLicensed</ifhelper>
+			                        		<ifvalue>0</ifvalue>
+			                        		<field_option>
+			                        			<show_in_default>0</show_in_default>
+												<show_in_website>0</show_in_website>
+												<show_in_store>0</show_in_store>
+			                        		</field_option>
+			                        	</licensing2>
+		                        	</ewoverrides>
+						            <groups>
+						            	<serial translate="label comment ewhelp" module="ewcore">
+						                    <label>Serials</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>1</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <verify_integrity translate="label comment ewhelp">
+						                            <label>Verify Integrity</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_verifymode</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Automatic or always is usually best. Automatic will avoid notification after upgrading.]]></comment>
+						                        	<ewhelp><![CDATA[The serial updater will refuse serials that are not valid or would cause extensions to be disabled. Disabling this could cause the updater to accept a bad license. Only disable this if you are told to by support.]]></ewhelp>
+						                        </verify_integrity>
+						                    </fields>
+						                </serial>
+						            	<license translate="label comment ewhelp" module="ewcore">
+						                    <label>License</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>100</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <verify_integrity translate="label comment ewhelp">
+						                            <label>Verify Integrity</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_verifymode</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Automatic or always is usually best. Automatic will avoid notification after upgrading.]]></comment>
+						                        	<ewhelp><![CDATA[The license updater will refuse licenses that are not valid or would cause extensions to be disabled. Disabling this could cause the updater to accept a bad license. Only disable this if you are told to by support.]]></ewhelp>
+						                        </verify_integrity>
+						                        <ignore_staging_websites translate="label comment ewhelp">
+						                            <label>Ignore Staging Websites</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Ignore staging Web sites when checking license.]]></comment>
+						                        	<ewhelp><![CDATA[<u>Enterprise only.</u> Selecting this will ignore staging Web sites when performing licensing checks. It is slightly slower than not enabling it so it is disabled unless needed.]]></ewhelp>
+						                        </ignore_staging_websites>
+						                    </fields>
+						                </license>
+						                <encoder_license translate="label comment ewhelp" module="ewcore">
+						                    <label>Encoder License</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>200</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <verify_integrity translate="label comment ewhelp">
+						                            <label>Verify Integrity</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_verifymode</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Automatic or always is usually best. Automatic will avoid notification after upgrading.]]></comment>
+						                        	<ewhelp><![CDATA[The license updater will refuse licenses that are not valid or would cause extensions to be disabled. Disabling this could cause the updater to accept a bad license. Only disable this if you are told to by support.]]></ewhelp>
+						                        </verify_integrity>
+						                        <verify_file_path translate="label comment ewhelp">
+						                            <label>Verify File Path</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Disabling this will allow the writing of file paths even if you use symlinks.]]></comment>
+						                        	<ewhelp><![CDATA[Prior to writing the license file, the updater will verify the destination of the license is within your var directory. This is a security precation, so this should not be disabled unless told to by support.]]></ewhelp>
+						                        </verify_file_path>
+						                    </fields>
+						                </encoder_license>
+						                <automatic_license_updating translate="label comment ewhelp" module="ewcore">
+						                    <label>License Updating</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>250</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                    	<cronjob_enabled translate="label comment ewhelp">
+						                            <label>Cronjob</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable or disable updating licenses via cronjob]]></comment>
+						                        </cronjob_enabled>
+						                        <admin_login_enabled translate="label comment ewhelp">
+						                            <label>On Admin Login</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable or disable updating licenses on admin login]]></comment>
+						                        	<ewhelp><![CDATA[If you do not have cron enabled (such as this is your development server), then enabling this option will ensure licenses still update without manually having to update licenses.]]></ewhelp>
+						                        </admin_login_enabled>
+						                        <database_fallback_enabled translate="label comment ewhelp">
+						                            <label>Database Fallback</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[If enabled the database will be used as a fallback if the license files cannot be found. Recommended especially in multi-server environments. <b>Note: </b>Disabling this is NOT recommended.]]></comment>
+						                        </database_fallback_enabled>
+						                    </fields>
+						                </automatic_license_updating>
+						            	<violation_disabling translate="label comment ewhelp" module="ewcore">
+						                    <label>Automatically Disable Extensions</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>300</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <enabled translate="label comment ewhelp">
+						                            <label>Disable On Violation</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Disable extension if it is violating its license. If the extension is not disabled it will cause errors in your store.]]></comment>
+						                        	<ewhelp><![CDATA[If an extension is in violation of its license it can automatically disable. This will prevent errors in your store. If you disable this, then the extension will still not run, but has a high chance of causing store errors.]]></ewhelp>
+						                        </enabled>
+						                    </fields>
+						                </violation_disabling>
+						                <!-- <preemptive_expiration_disabling translate="label comment ewhelp" module="ewcore">
+						                    <label>Preemptively Disable Expiring Extensions</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>400</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <enabled translate="label comment ewhelp">
+						                            <label>Disable Expiring Extensions</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Disable extensions before their license expires to prevent issues when they can no longer run.]]></comment>
+						                        </enabled>
+						                        <num_hours translate="label comment ewhelp">
+						                            <label>Number of Hours</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-greater-than-zero</validate>
+						                            <comment><![CDATA[Number of hours before expiration that extension is preemptively disabled. Please account for how often cronjobs are run.]]></comment>
+						                        </num_hours>
+						                    </fields>
+						                </preemptive_expiration_disabling> -->
+						            </groups>
+						        </ewcore_licensing>
+						        <ewcore_developer translate="label comment ewhelp" module="ewcore">
+									<class>separator-top</class>
+									<label>Developer</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>4000</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>0</show_in_website>
+									<show_in_store>0</show_in_store>
+						            <groups>
+						            	<general translate="label comment ewhelp" module="ewcore">
+						                    <label>General</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>1</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <show_logs_enabled translate="label comment ewhelp">
+						                            <label>Show Logs </label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Show non-extendware related logs in Extendware -> System -> Logs -> Logs]]></comment>
+						                        </show_logs_enabled>
+						                        <show_reports_enabled translate="label comment ewhelp">
+						                            <label>Show Reports</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Show reports in Extendware -> System -> Logs -> Reports]]></comment>
+						                        </show_reports_enabled>
+						                    </fields>
+						                </general>
+						                <system_exception_log translate="label comment ewhelp" module="ewcore">
+						                    <label>System Exception Logging</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>100</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <enabled translate="label comment ewhelp">
+						                            <label>Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[System -> Configuration -> Developer -> Logging must be enabled. This will slow down your store. Use only when needed.]]></comment>
+						                        	<ewhelp><![CDATA[This log will viewable in Extendware -> System -> Logs. Please note, this log file can become very large, so you must ensure it does not become too large and disable this option when not needed. <b>Note</b>: You MUST uncomment the function <i>__extendwareErrorHandler</i> in <i>app/code/local/Varien/Autoload.php</a> in order for this to work.]]></ewhelp>
+						                        </enabled>
+						                    </fields>
+						                </system_exception_log>
+						                <verbose_exception_log translate="label comment ewhelp" module="ewcore">
+						                    <label>Verbose Exception Logging</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>200</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                        <enabled translate="label comment ewhelp">
+						                            <label>Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[System -> Configuration -> Developer -> Logging must be enabled. This will slow down your store. Use only when needed.]]></comment>
+						                        	<ewhelp><![CDATA[This log will viewable in Extendware -> System -> Logs. Please note, this log file can become very large, so you must ensure it does not become too large and disable this option when not needed.]]></ewhelp>
+						                        </enabled>
+						                    </fields>
+						                </verbose_exception_log>
+						                <misc translate="label comment ewhelp" module="ewcore">
+						                    <label>Miscellaneous</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>300</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>0</show_in_website>
+						                    <show_in_store>0</show_in_store>
+						                    <fields>
+						                    	<delete_efficiently translate="label comment ewhelp">
+						                            <label>Delete Efficiently</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[If enabled, then the <i>rm</i> command will be used to delete directories recursively.]]></comment>
+						                        </delete_efficiently>
+						                        <disable_unknown_compiler translate="label comment ewhelp">
+						                            <label>Disable Unknown Compiler</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Disable compilation if the compiler process has been rewritten by a 3rd party.]]></comment>
+						                        	<ewhelp><![CDATA[If the compiler is rewritten by a 3rd party then there is a good chance that running compilation will break your store. <u>Only disable this if you know what you are doing and know how to manually restore a store broken from compilation</u>]]></ewhelp>
+						                        </disable_unknown_compiler>
+						                    </fields>
+						                </misc>
+						            </groups>
+						        </ewcore_developer>
+							</sections>
+						</main>
+					</scopes>
+				</settings>
+			</extendware>
+		</Extendware_EWCore>
+	</modules>
+</config>

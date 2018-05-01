@@ -1,0 +1,88 @@
+<script>
+
+    //**********************************************************************************
+    //Create a purchase order
+    function createPo(supplierId)
+    {
+        //define url
+        var url = '<?php echo mage::helper('adminhtml')->getUrl('adminhtml/Purchase_SupplyNeeds/CreatePoFromStats'); ?>';
+        url += 'sup_id/' + supplierId + '/mode/';
+		
+        //add mode
+        var chName = 'ch_' + supplierId;
+        var hasStatus = false;
+        $$('[id="' + chName + '"]').each(
+        function(s)
+        {
+            if (s.checked && s.value)
+            {
+                url += s.value; 
+                hasStatus = true;
+            }
+        });
+		
+        if (!hasStatus)
+            alert('<?php echo $this->__('Please check at least one checkbox'); ?>');
+        else
+            document.location.href = url;
+    }	
+
+</script>
+
+<div class="entry-edit">
+
+    <div class="content-header">
+        <table cellspacing="0" class="grid-header">
+            <tr>
+                <td><h3><?php echo $this->__('Supply Needs - Statistics') ?></h3></td>
+                <td align="right">
+                    <button onclick="document.location.href='<?php echo $this->getUrl('adminhtml/Purchase_SupplyNeeds/Grid'); ?>'" class="scalable back" type="button"><span><?php echo $this->__('Back') ?></span></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="grid">
+        <table cellspacing="0" class="data" width="100%">
+            <thead>
+                <tr class="headings">
+                    <th class="a-center"><?php echo $this->__('Supplier'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Skip'); ?></th>
+                    <?php foreach ($this->getModes() as $modeId => $modeLabel): ?>
+                        <th class="a-center"><?php echo $modeLabel; ?></th>
+                    <?php endforeach; ?>
+                    <th class="a-center"><?php echo $this->__('Total'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Free carriage'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Min. amount'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Create Order'); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->getSuppliers() as $supplier): ?>
+                    <tr>
+                        <td><a href="<?php echo $this->getUrl('adminhtml/Purchase_Suppliers/Edit', array('sup_id' => $supplier->getId())); ?>"><?php echo $supplier->getsup_name(); ?></a></td>
+                        <td class="a-center"><br><input type="radio" name="ch_<?php echo $supplier->getId(); ?>" id="ch_<?php echo $supplier->getId(); ?>" value="" checked></td>
+                        <?php $total = 0; ?>
+                            <?php foreach ($this->getModes() as $modeId => $modeLabel): ?>
+                                <td class="a-center">
+                                    <?php $value = $this->getAmount($supplier, null, $modeId); ?>
+                                    <?php echo $this->formatCurrency($value); ?>
+                                    <br><input type="radio" name="ch_<?php echo $supplier->getId(); ?>" id="ch_<?php echo $supplier->getId(); ?>" value="<?php echo $modeId; ?>">
+                                </td>
+                            <?php $total += $value; ?>
+                        <?php endforeach; ?>
+                        <td class="a-center"><?php echo $this->formatCurrency($total); ?></td>
+                        <td class="a-center"><?php echo $this->checkFreeCarriage($supplier, $total); ?></td>
+                        <td class="a-center"><?php echo $this->checkMinOrder($supplier, $total); ?></td>
+                        <td class="a-center">
+                            <button onclick="createPo(<?php echo $supplier->getId(); ?>);" class="scalable" type="button"><span><?php echo $this->__('Create') ?></span></button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>        
+
+
+
+</div>

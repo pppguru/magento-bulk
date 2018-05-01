@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MDN_MyBms>
+            <version>1.3</version>
+        </MDN_MyBms>
+    </modules>
+    <global>
+        <helpers>
+            <MyBms>
+                <class>MDN_MyBms_Helper</class>
+            </MyBms>
+        </helpers>
+        <blocks>
+            <MyBms>
+                <class>MDN_MyBms_Block</class>
+            </MyBms>
+        </blocks>
+
+        <models>
+            <MyBms>
+                <class>MDN_MyBms_Model</class>
+                <resourceModel>MyBms_mysql4</resourceModel>
+            </MyBms>
+        </models>
+
+        <resources>
+            <MyBms_setup>
+                <setup>
+                    <module>MDN_MyBms</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </MyBms_setup>
+            <MyBms_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </MyBms_write>
+            <MyBms_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </MyBms_read>
+        </resources>
+
+        <events>
+
+        </events>
+
+    </global>
+
+    <frontend>
+        <routers>
+            <MyBms>
+                <use>standard</use>
+                <args>
+                    <module>MDN_MyBms</module>
+                    <frontName>MyBms</frontName>
+                </args>
+            </MyBms>
+        </routers>
+
+        <layout>
+            <updates>
+                <MyBms>
+                    <file>MyBms.xml</file>
+                </MyBms>
+            </updates>
+        </layout>
+
+
+        <translate>
+            <modules>
+                <MDN_MyBms>
+                    <files>
+                        <default>MDN_MyBms.csv</default>
+                    </files>
+                </MDN_MyBms>
+            </modules>
+        </translate>
+
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <MyBms before="Mage_Adminhtml">MDN_MyBms_Adminhtml</MyBms>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <MyBms>
+                    <file>MyBms.xml</file>
+                </MyBms>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <MDN_MyBms>
+                    <files>
+                        <default>MDN_MyBms.csv</default>
+                    </files>
+                </MDN_MyBms>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <MyBms>
+                                            <title>MyBms</title>
+                                            <children>
+                                                <MyExtension translate="title" module="MyBms">
+                                                    <title>MyExtension</title>
+                                                </MyExtension>
+                                            </children>
+                                        </MyBms>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <mybms_observer>
+                        <type>singleton</type>
+                        <class>MyBms/Observer</class>
+                        <method>controllerActionPredispatch</method>
+                    </mybms_observer>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </adminhtml>
+
+    <default>
+        <MyBms>
+            <documentation>
+                <last_update>0</last_update>
+                <frequency>86400</frequency>
+            </documentation>
+            <webservice>
+                <listbmsextensions>https://www.boostmyshop.fr/ws/releases.json</listbmsextensions>
+                <listbmsdocumentation>https://www.boostmyshop.fr/ws/documentation.json</listbmsdocumentation>
+                <getnotificationslist>https://www.boostmyshop.fr/ws/notifications.json</getnotificationslist>
+            </webservice>
+            <popup>
+                <is_already_displayed>0</is_already_displayed>
+                <bms_notifications>1</bms_notifications>
+            </popup>
+            <notifications>
+                <enable>1</enable>
+                <enable_new_versions>1</enable_new_versions>
+            </notifications>
+            <documentation>
+                <enable_menu_display>1</enable_menu_display>
+            </documentation>
+        </MyBms>
+    </default>
+
+</config>

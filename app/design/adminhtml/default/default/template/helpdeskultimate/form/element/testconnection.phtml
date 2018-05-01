@@ -1,0 +1,115 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdeskultimate
+ * @version    2.10.7
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+/**
+ * Template for:
+ * AW_Helpdeskultimate_Block_Adminhtml_Form_Element_Testconnection
+ */
+?>
+<div>
+    <button onclick="testConnection();" class="scalable" type="button" id="test_gateway_connection">
+        <span><?php echo Mage::helper('helpdeskultimate')->__('Test connection'); ?></span></button>
+    &nbsp;<span id="aw_script_answer"></span>
+    <?php echo $this->getStateHtml(); ?>
+    <script type="text/javascript">
+        var states = new Array();
+        <?php if (count($states = $this->getStateObjects())): ?>
+            <?php foreach ($states as $state): ?>
+            states[<?php echo $state->getValue()?>] = '<?php echo $this->renderStateHtml($state->getLabel(), $state->getColor()); ?>';
+                <?php endforeach; ?>
+            <?php endif; ?>
+
+        var callInProgress = function(xmlhttp) {
+            switch (xmlhttp.readyState) {
+                case 1:
+                case 2:
+                case 3:
+                    return true;
+                    break;
+                // Case 4 and 0
+                default:
+                    return false;
+                    break;
+            }
+        }
+
+        var testConnection = function() {
+
+            var ajaxUrl = '<?php echo $this->getUrl('helpdeskultimate_admin/gateways/testconnection'); ?>';
+            ajaxUrl = ajaxUrl.replace(/^http[s]{0,1}/, window.location.href.replace(/:[^:].*$/i, ''));
+            var loader_id = 'loading-mask';
+            var container_id = 'test_connection_container';
+            var def_str = 'protocol=' + $('protocol').value + '&email=' + encodeURIComponent($('email').value) + '&host=' + encodeURIComponent($('host').value)
+                + '&login=' + encodeURIComponent($('login').value) + '&password=' + encodeURIComponent($('password').value) + '&port=' + $('port').value + '&secure=' + $('secure').value;
+            var params = encode_base64(def_str);
+            ajaxUrl = ajaxUrl + 'params/' + params + '/';
+
+            Ajax.Responders.register({
+                onCreate: function(request) {
+                    request['awTimeoutId'] = window.setTimeout(
+                            function() {
+                                if (callInProgress(request.transport)) {
+                                    request.transport.abort();
+                                    if (request.options['onFailure']) {
+                                        request.options['onFailure'](request.transport, request.json);
+                                    }
+                                }
+                            },
+                            10000  //Ten seconds
+                    );
+                },
+                onComplete: function(request) {
+                    window.clearTimeout(request['awTimeoutId']);
+                }
+            });
+
+            new Ajax.Request(ajaxUrl + (ajaxUrl.match(new RegExp('\\?')) ? '&ajax=true' : '?ajax=true' ), {
+                parameters: this.reloadParams || {},
+                onCreate: function(obj) {
+                    Element.show(loader_id);
+                },
+                onFailure: function () {
+                    $('aw_script_answer').innerHTML = states[0];
+                },
+                onComplete: function (transport) {
+                    Element.hide(loader_id);
+                },
+                onSuccess: function(transport) {
+                    try {
+                        if (transport.responseText.isJSON()) {
+                            var response = transport.responseText.evalJSON()
+                            if (response.result) {
+                                $('aw_script_answer').innerHTML = states[response.result];
+                            }
+                        }
+                    }
+                    catch (e) {
+                    }
+                }
+            });
+        }
+    </script>
+</div>

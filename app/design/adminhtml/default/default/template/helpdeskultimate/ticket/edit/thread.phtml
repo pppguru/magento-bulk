@@ -1,0 +1,181 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdeskultimate
+ * @version    2.10.7
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+$_hd = $this->getCollection()->getTicket();
+$helper = Mage::helper('helpdeskultimate/threads');
+
+$__confirmMessage = $this->__('Are you sure you want to do this?');
+?>
+<div class="entry-edit">
+    <div class="entry-edit-head"><h4><?php echo $this->_label ?></h4></div>
+    <div class="fieldset">
+        <?php if ($this->getCollection()->count()): ?>
+        <ul class="note-list">
+            <?php foreach ($this->getCollection() as $message): ?>
+            <li class="helpdesk-message">
+                <h5>
+                    <?php echo $this->_getAuthorHtml($message->getAuthorName())?>
+                    <span class="separator">|</span>
+                    <?php echo $this->DTFormat($message->getCreatedTime());?>
+                </h5>
+                <p>
+                <div class="do-quote">
+                    <span style="float:left;padding:5px;">
+                        <p>
+                            <a href="javascript:void(0)" onclick="awHDUShowSource('<?php echo $this->getUrl('helpdeskultimate_admin/ticket/showSource/', array('message_id'=>$message->getId()) )?>'); return false;"><?php echo $this->__('Show original message')?></a>
+                        </p>
+                    </span>
+                    <span style="float:left;padding:5px;">
+                        <p>
+                            <a href="#content" onclick="return awhduticket.quoteMessage(<?php echo $message->getId() ?>)">
+                                <?php echo $this->__('Quote')?>
+                            </a>
+                            <script type="text/javascript">
+                                <?php $quotedText = $this->getParserForMessage($message)->setText($message->getOrigData('content'), true)->convertToQuoteAsHtml()->getText() ?>
+                                awhduticket.setQuote(<?php echo $message->getId() ?>, "<?php echo $helper->stringToJsString($quotedText); ?>");
+                            </script>
+                        </p>
+                    </span>
+                </div>
+                <div class="clear:both;"></div>
+
+                    <?php if ($message->isDepartmentReply() && !$_hd->isReadOnly()) : ?>
+                    <span class="separator">|</span>
+                    <a href="#message<?php echo $message->getId() ?>" onclick="awhduticket.editMessage(<?php echo $message->getId() ?>);return false;">
+                        <?php echo $this->__('Edit');?>
+                    </a>
+                    <span class="separator">|</span>
+                    <a href="<?php echo $this->getRemoveMessageUrl($_hd->getId(), $message->getId()); ?>" onclick="return confirm('<?php echo $__confirmMessage ?>')">
+                        <?php echo $this->__('Delete');?>
+                    </a>
+                    <?php endif ?>
+                </p>
+                <a name="message<?php echo $message->getId() ?>"></a>
+                <div style="clear:both" id="messageBody<?php echo $message->getId() ?>">
+                    <?php
+                        $body = $this->getParserForMessage($message)
+                                        ->setText($message->getParsedContent(), true)
+                                        ->prepareToDisplay(!$this->isDepartmentAuthor($message))
+                                        ->getText();
+                        echo $body;
+                    ?>
+                    <script type="text/javascript">
+                        <?php $origMessage = $this->getParserForMessage($message)->setText($message->getOrigData('content'), true)->clear()->getText();?>
+                        awhduticket.setMessage(<?php echo $message->getId() ?>, '<?php echo $helper->stringToJsString($origMessage); ?>');
+                        awhduticket.setDBMessage(<?php echo $message->getId() ?>, '<?php echo $helper->stringToJsString($origMessage); ?>');
+                    </script>
+                </div>
+                <div id="messageEdit<?php echo $message->getId() ?>" style="display: none;">
+                    <textarea style="width: 90%" id="messageBodyText<?php echo $message->getId() ?>"><?php echo htmlspecialchars($origMessage) ?></textarea>
+                    <br/>
+                    <button class="scalable save"
+                            onclick="awhduticket.saveMessage(<?php echo $message->getId() ?>);return false;">
+                        <span><?php echo $this->__('Save Message') ?></span>
+                    </button>
+                    <button class="scalable"
+                            onclick="awhduticket.cancelMessage(<?php echo $message->getId() ?>);return false;">
+                        <span><?php echo $this->__('Cancel') ?></span>
+                    </button>
+                </div>
+                <?php if ($message->getFilename()): ?>
+                    <?php $__attachmentTitle = count($message->getFilename()) == 1 ? 'Attachment' : 'Attachments';?>
+                    <p class="attachment">
+                        <span style="float:left"><?php echo $this->__($__attachmentTitle); ?>:</span>
+                        <span style="display:block; text-align:right">
+                        <?php foreach ($message->getFileName() as $filename) : ?>
+                            <a href="<?php echo $message->getAdminFileUrl($filename) ?>" title="<?php echo $filename;?>"><?php echo $helper->convertStringToSize($filename, 38) ?></a>
+                        <?php endforeach ?>
+                        </span>
+                    </p>
+                <?php endif;?>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+        <?php else: ?>
+        <center><i><?php echo $this->__("No replies")?></i></center>
+        <?php endif; ?>
+
+        <?php /* Ticket header */ ?>
+        <ul class="note-list">
+            <li class="helpdesk-message">
+                <h5>
+                    <?php echo $this->_getAuthorHtml()?>
+                    <span class="separator">|</span>
+                    <?php echo $this->DTFormat($_hd->getCreatedTime());?>
+                </h5>
+                <div class="do-quote">
+                    <span style="float:left;padding:5px;">
+                        <p>
+                            <a href="javascript:void(0)" onclick="awHDUShowSource('<?php echo $this->getUrl('helpdeskultimate_admin/ticket/showSource/', array('ticket_id'=>$_hd->getId()) )?>'); return false;"><?php echo $this->__('Show original message')?></a>
+                        </p>
+                    </span>
+                    <span style="float:left;padding:5px;">
+                        <p >
+                            <a href="#content" onclick="return awhduticket.quoteMessage(0)"><?php echo $this->__('Quote')?></a>
+                        </p>
+                    </span>
+                </div>
+                <div class="clear:both;"></div>
+                <p style="clear:both">
+                    <?php
+                        $content = $this->getParserForMessage($_hd)->setText($_hd->getParsedContent(), true)
+                                        ->prepareToDisplay(!$this->isDepartmentAuthor($_hd))
+                                        ->getText()
+                        ;
+                        echo $content;
+                    ?>
+                    <script type="text/javascript">
+                        <?php $quotedContent = $this->getParserForMessage($_hd)
+                                                      ->setText($_hd->getOrigData('content'), true)
+                                                      ->convertToQuoteAsHtml()
+                                                      ->getText();
+                        ?>
+                        awhduticket.setQuote(0, '<?php echo $helper->stringToJsString($quotedContent); ?>');
+                    </script>
+                </p>
+                <?php if ($_hd->getFilename()): ?>
+                    <?php $__attachmentTitle = count($_hd->getFilename()) == 1 ? 'Attachment' : 'Attachments';?>
+                    <p class="attachment">
+                        <span style="float:left"><?php echo $this->__($__attachmentTitle); ?>:</span>
+                        <span style="display:block; text-align:right">
+                        <?php foreach ($_hd->getFilename() as $filename) : ?>
+                            <a href="<?php echo $_hd->getAdminFileUrl($filename)?>" title="<?php echo $filename;?>"><?php echo $helper->convertStringToSize($filename, 38); ?></a>
+                        <?php endforeach ?>
+                        </span>
+                    </p>
+                <?php endif;?>
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    awhduticket.setUrl('saveUrl', '<?php echo $this->getSaveMessageBodyUrl(); ?>');
+    var awHDUShowSource = function(url) {
+        var win = window.open(url, '',
+            'width=1000,height=700,resizable=1,scrollbars=1');
+        win.focus();
+    }
+</script>

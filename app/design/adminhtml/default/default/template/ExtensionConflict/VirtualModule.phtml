@@ -1,0 +1,25 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Virtual Module')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getDeleteVirtualModuleUrl()?>'" class="scalable" type="button"><span><?php echo $this->__('Delete Virtual Module')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <form id="form_upload" name="form_upload" action="<?php echo $this->getUploadUrl()?>" enctype="multipart/form-data" method="post" >
+        <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+
+        <div class="box" style="margin:20px;">
+            <i><?php echo $this->__('To test if another module has conflict with installed extensions, select module config.xml file and click on upload button'); ?></i>
+        </div>
+
+        <?php echo $this->__('File to upload : '); ?><input type="file" id="config_file" name="config_file">
+
+        <button onclick="document.getElementById('form_upload').submit();" class="scalable" type="button"><span><?php echo $this->__('Upload !')?></span></button>
+    </form>
+    <p>&nbsp;</p>
+</div>

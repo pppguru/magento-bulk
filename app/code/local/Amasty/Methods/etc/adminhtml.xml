@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Methods
+ */
+-->
+<config>
+    <menu>
+        <system>
+            <children>
+                <ammethods translate="title">
+                    <title>Payment/Shipping Methods Access</title>
+                    <sort_order>30</sort_order>
+                    <children>
+                        <ammethods_payment translate="title">
+                            <title>Payment Methods</title>
+                            <action>adminhtml/ammethods_manage/payment</action>
+                            <sort_order>10</sort_order>
+                        </ammethods_payment>
+                        <ammethods_shipping translate="title">
+                            <title>Shipping Methods</title>
+                            <action>adminhtml/ammethods_manage/shipping</action>
+                            <sort_order>20</sort_order>
+                        </ammethods_shipping>
+                    </children>
+                </ammethods>
+            </children>
+        </system>
+    </menu>
+    
+    <translate>
+        <modules>
+            <Amasty_Methods>
+                <files>
+                    <default>Amasty_Methods.csv</default>
+                </files>
+            </Amasty_Methods>
+        </modules>
+    </translate>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <ammethods translate="title">
+                                <title>Payment/Shipping Methods Access</title>
+                                <sort_order>30</sort_order>
+                                <children>
+                                    <ammethods_payment translate="title">
+                                        <title>Payment Methods</title>
+                                        <sort_order>10</sort_order>
+                                    </ammethods_payment>
+                                    <ammethods_shipping translate="title">
+                                        <title>Shipping Methods</title>
+                                        <sort_order>20</sort_order>
+                                    </ammethods_shipping>
+                                </children>
+                            </ammethods>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,13 @@
+<?php
+
+$gridBlock = $this->getLayout()
+                ->createBlock('Organizer/Task_Grid')
+                ->setEntityType('order')
+                ->setEntityId($this->getOrder()->getId())
+                ->setShowTarget(false)
+                ->setShowEntity(false)
+                ->setTemplate('Organizer/Task/List.phtml');
+
+$content = $gridBlock->toHtml();
+echo $content;
+?>

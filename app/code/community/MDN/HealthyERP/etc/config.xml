@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MDN_HealthyERP>
+            <version>1.0.3</version>
+            <depends>
+                <MDN_AdvancedStock />               
+            </depends>
+        </MDN_HealthyERP>
+    </modules>
+    <global>
+        <helpers>
+            <HealthyERP>
+                <class>MDN_HealthyERP_Helper</class>
+            </HealthyERP>
+        </helpers>
+        <blocks>
+            <HealthyERP>
+                <class>MDN_HealthyERP_Block</class>
+            </HealthyERP>
+
+            <adminhtml>
+                <rewrite>
+                    <notification_toolbar>MDN_HealthyERP_Block_Adminhtml_Notification_Toolbar</notification_toolbar>
+                    <notification_window>MDN_HealthyERP_Block_Adminhtml_Notification_Window</notification_window>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <models>
+            <HealthyERP>
+                <class>MDN_HealthyERP_Model</class>
+            </HealthyERP>
+        </models>
+
+        <resources>
+            <HealthyERP_setup>
+                <setup>
+                    <module>MDN_HealthyERP</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </HealthyERP_setup>
+            <HealthyERP_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </HealthyERP_write>
+            <HealthyERP_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </HealthyERP_read>
+        </resources>
+
+
+    </global>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <MDN_HealthyERP>
+                    <files>
+                        <default>MDN_HealthyERP.csv</default>
+                    </files>
+                </MDN_HealthyERP>
+            </modules>
+        </translate>        
+    </adminhtml>
+
+    <frontend>
+        <routers>
+            <healthyerp>
+                <use>standard</use>
+                <args>
+                    <module>MDN_HealthyERP</module>
+                    <frontName>HealthyERP</frontName>
+                </args>
+            </healthyerp>
+        </routers>
+        <translate>
+            <modules>
+                <MDN_HealthyERP>
+                    <files>
+                        <default>MDN_HealthyERP.csv</default>
+                    </files>
+                </MDN_HealthyERP>
+            </modules>
+        </translate>        
+    </frontend>
+    
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <HealthyERP before="Mage_Adminhtml">MDN_HealthyERP_Adminhtml</HealthyERP>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    
+    <default>
+        <HealthyERP>
+            <options>
+                <display_basic_message>1</display_basic_message>
+                <display_advanced_message>0</display_advanced_message>
+                <display_notifications>1</display_notifications>
+            </options>
+            <erp>
+                <enabled>0</enabled>
+                <disable_cron>0</disable_cron>
+            </erp>
+        </HealthyERP>
+    </default>
+
+
+    <crontab>
+        <jobs>
+            <erp_check_probes>
+                <schedule>
+                    <!-- Checks all HealthyERP probe daily at 5 AM  : 0 5 * * *-->
+                    <cron_expr>0 5 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>HealthyERP/Observer::CheckProbes</model>
+                </run>
+            </erp_check_probes>
+        </jobs>
+    </crontab>
+</config> 

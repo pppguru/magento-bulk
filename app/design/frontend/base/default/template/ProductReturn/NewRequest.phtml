@@ -1,0 +1,125 @@
+<?php /* @var $this MDN_ProductReturn_Block_Front_NewRequest */ ?>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $requestenabled = false; ?>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Request Product Return for Order #%s', $this->getSalesOrder()->getIncrementId()) ?></h1>
+</div>
+
+<p><?php echo $this->__('Initiate a product return below.'); ?>&nbsp;
+<br><?php echo $this->__("Once your return request has been submitted, it will be reviewed by our Customer Service team, and you'll be contacted within 24 to 48 hours."); ?><p/>
+
+<form method="POST" id="edit_form" name="edit_form" action="<?php echo $this->getSubmitUrl(); ?>">
+    <input type="hidden" id="data[rma_id]" name="data[rma_id]" value="<?php echo $this->getRma()->getId(); ?>">
+    <input type="hidden" id="data[rma_order_id]" name="data[rma_order_id]"
+           value="<?php echo $this->getRma()->getSalesOrder()->getId(); ?>">
+    <input type="hidden" id="data[rma_customer_id]" name="data[rma_customer_id]"
+           value="<?php echo $this->getRma()->getrma_customer_id(); ?>">
+    <input type="hidden" id="data[rma_ref]" name="data[rma_ref]" value="<?php echo $this->getRma()->getrma_ref(); ?>">
+    <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>"/>
+
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Contact Details'); ?></h2>
+
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td class="label" width="150"><label
+                        for="data[rma_customer_phone]"><?php echo $this->__('Phone'); ?></label></td>
+                <td class="input-ele"><input type="text" name="data[rma_customer_phone]" id="data[rma_customer_phone]"
+                                             value="<?php echo $this->getRma()->getrma_customer_phone(); ?>"></td>
+            </tr>
+            <tr>
+                <td class="label"><label for="data[rma_customer_email]"><?php echo $this->__('Email'); ?></label></td>
+                <td class="input-ele">
+                    <input type="text" name="data[rma_customer_email]" id="data[rma_customer_email]"
+                           value="<?php echo $this->getRma()->getrma_customer_email(); ?>">
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo $this->__('Return Address'); ?></td>
+                <td class="input-ele"><?php echo $this->getCustomerAddressesAsCombo('data[rma_address_id]', $this->getRma()->getrma_address_id()); ?></td>
+            </tr>
+        </table>
+    </div>
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Products'); ?></h2>
+
+
+        <div class="rma-items">
+            <?php foreach ($this->getRma()->getProducts() as $product): ?>
+                <?php if ($this->displayProduct($product)): ?>
+                    <div class="fieldset" style="position: relative">
+                        <h2 class="legend"><?php echo $this->getProductName($product); ?></h2>
+
+                        <div class="right" style="position: absolute;top:-15px;right: -15px;">
+                            <img class="block"
+                                 src="<?php echo mage::helper('ProductReturn')->getProductImage($product->getproduct_id(), 100); ?>"/>
+                        </div>
+                        <div>
+                            <?php $qtyinrma = (int)mage::helper('ProductReturn')->getIsalreadyInRma($product); ?>
+                            <?php $productQty = (Mage::getStoreConfig('productreturn/product_return/allow_return_without_invoice') == 1) ? $product->getqty_shipped() : $product->getqty_invoiced(); ?>
+                            <?php if ($qtyinrma >= $productQty): ?>
+                                <br style="clear: both;"/>
+                                <?php echo $this->__('A return is already in progress for this product, or this product has not been invoiced.'); ?><br/><br/>
+                                <div style="display:none;">
+                                    <?php echo $this->getQtySelect('data[rp_qty_' . $product->getitem_id() . ']', ($productQty - $qtyinrma)); ?>
+                                    <?php echo $this->getReasonSelect('data[rp_reason_' . $product->getitem_id() . ']'); ?>
+                                    <?php echo $this->getRequesttypeSelect('data[rp_request_type_' . $product->getitem_id() . ']'); ?>
+                                    <input type="hidden"
+                                           name="data[rp_description_<?php echo $product->getitem_id(); ?>]"
+                                           id="data[rp_description_<?php echo $product->getitem_id(); ?>]"
+                                           value="<?php echo $product->getrp_description(); ?>"/>
+                                </div>
+                            <?php else: ?>
+                                <?php $requestenabled = true; ?>
+
+                                <ul class="form-list">
+                                    <li class="fields">
+                                        <?php echo $this->getNameBlockHtml() ?>
+                                    </li>
+                                    <li class="fields">
+                                        <div class="field">
+                                            <label
+                                                for="<?php echo 'data[rp_qty_' . $product->getitem_id() . ']'; ?>"><?php echo $this->__('Qty to return'); ?></label>
+                                            <?php echo $this->getQtySelect('data[rp_qty_' . $product->getitem_id() . ']', ($productQty - $qtyinrma)); ?>
+                                        </div>
+                                    </li>
+                                    <li class="fields">
+                                        <div class="field">
+                                            <label
+                                                for="<?php echo 'data[rp_reason_' . $product->getitem_id() . ']'; ?>"><?php echo $this->__('Reason for the return'); ?></label>
+                                            <?php echo $this->getReasonSelect('data[rp_reason_' . $product->getitem_id() . ']'); ?>
+                                        </div>
+                                        <div class="field">
+                                            <label
+                                                for="<?php echo 'data[rp_request_type_' . $product->getitem_id() . ']'; ?>"><?php echo $this->__('Requested Action'); ?></label>
+                                            <?php echo $this->getRequesttypeSelect('data[rp_request_type_' . $product->getitem_id() . ']'); ?>
+                                        </div>
+                                        <div style="clear:both; font-weight: bold; padding: 10px 0 10px 0;"><?php echo $this->__('NOTE: Defective items can only be exchanged for the same item. They can NOT be returned for a refund.'); ?></div>
+                                    </li>
+                                    <li class="wide">
+                                        <label
+                                            for="data[rp_description_<?php echo $product->getitem_id(); ?>]"><?php echo $this->__('Comments'); ?></label>
+                                        <textarea cols="40" rows="2"
+                                                  name="data[rp_description_<?php echo $product->getitem_id(); ?>]"
+                                                  id="data[rp_description_<?php echo $product->getitem_id(); ?>]"><?php echo $product->getrp_description(); ?></textarea>
+                                    </li>
+                                </ul>
+                            <?php endif; ?>
+                        </div>
+                        <br style="clear: both;"/>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php if ($requestenabled): ?>
+        <div class="button-set">
+            <button type="submit" title="<?php echo $this->__('Submit'); ?>" class="button save a-center">
+                <span><span><?php echo $this->__('Submit'); ?></span></span>
+            </button>
+            &nbsp;
+        </div>
+    <?php endif; ?>
+</form>

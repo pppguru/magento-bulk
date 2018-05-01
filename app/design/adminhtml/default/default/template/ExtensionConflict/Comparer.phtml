@@ -1,0 +1,41 @@
+<div class="entry-edit">
+    <div class="content-header">
+        <table cellspacing="0" class="grid-header">
+            <tr>
+                <td><h3><?php echo $this->__('Compare installed Modules') ?></h3></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="box" style="margin:20px;">
+        <i><?php echo $this->__('This tool enables you to check if an installed module has been modified.') ?></i><br/>
+        <i><?php echo $this->__('First, upload the original module in /var/extension/ of your Magento root folder.') ?></i><br/>
+        <i><?php echo $this->__('It have to look like /var/extension/app/code/... ') ?></i><br/>
+        <i><?php echo $this->__('Second, click on the compare button and check the result.') ?></i><br/>
+        <i><?php echo $this->__('Then you can delete what you have uploaded in /var/extension/, using the "Reset Folder" button.') ?></i><br/>
+    </div>
+
+    <div class="box" style="margin:20px;">
+        <button onclick="compare();" class="scalable" type="button">
+            <span><?php echo $this->__('Compare') ?></span>
+        </button>
+        <br/>
+
+        <br/>
+        <button onclick="cleanFolder();" class="scalable" type="button">
+            <span><?php echo $this->__('Reset folder') ?></span>
+        </button>
+        <br/>
+
+        <br/>
+        <button onclick="backupDifferences();" class="scalable" type="button">
+            <span><?php echo $this->__('Backup differences') ?></span>
+        </button>
+        <br/>
+
+    </div>
+
+    <div class="box" style="margin:20px;" id="compareResultZone"></div>
+
+</div>
+

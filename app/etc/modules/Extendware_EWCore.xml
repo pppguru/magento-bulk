@@ -1,0 +1,14 @@
+<config>
+   <modules>
+      <Extendware_EWCore>
+         <active>true</active>
+         <codePool>local</codePool>
+         <extendware>
+            <name>Extendware Core</name>
+            <licensing>
+               <disable_on_error>0</disable_on_error>
+            </licensing>
+         </extendware>
+      </Extendware_EWCore>
+   </modules>
+</config>

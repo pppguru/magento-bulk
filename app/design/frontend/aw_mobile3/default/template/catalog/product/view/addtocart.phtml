@@ -1,0 +1,51 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php $_product = $this->getProduct() ?>
+
+<?php if(!$_product->isGrouped()): ?>
+    <div class="product__quantity product-quantity">
+        <button class="product-quantity__button product-quantity__button--decrease js-product-quantity-decrease">???</button>
+        <input class="product-quantity__field textfield js-product-quantity-value" type="text" name="qty" value="<?php echo max($this->getMinimalQty($_product), 1) ?>" data-minimal-qty="<?php echo max($this->getMinimalQty($_product), 1) ?>">
+        <button class="product-quantity__button product-quantity__button--increase js-product-quantity-increase">+</button>
+    </div>
+<?php endif; ?>
+
+<p class="product__add-to-cart">
+    <!--We want 'Add to cart' regardless of product type. Mohin - Aug 21, 2015-->
+    <!-- We have added this code again for updating mobile theme 2.0.6 to 3.0.3. Erik, 11 Nov 2016, mantis-400 -->
+    <button type="submit" class="button button--alternative">
+        <?php echo $this->__('Add to cart'); ?>
+    </button>
+    <?php //if ($_product->getHasOptions()): ?>
+        <!-- <button type="button" class="button button double-alternative js-open-panel" data-open-panel="add-to-cart-options"> -->
+            <?php //echo $this->__('Configure and Buy'); ?>
+        <!-- </button> -->
+    <?php //else: ?>
+        <!-- <button type="submit" class="button button double-alternative"> -->
+            <?php //echo $this->__('Add to cart'); ?>
+        <!-- </button> -->
+    <?php //endif; ?>
+</p><!-- .product__add-to-cart -->

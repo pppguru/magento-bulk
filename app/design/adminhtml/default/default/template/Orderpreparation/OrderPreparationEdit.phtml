@@ -1,0 +1,96 @@
+<?php
+	//page permettant d'�diter une commande dans le cadre des orderpreparation
+	$Order = $this->GetOrder();
+?>
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Order ').$Order->getincrement_id(); ?></h3></td>
+            <td class="a-right">
+                <button onclick="document.location.href='<?php echo $this->getUrl('adminhtml/OrderPreparation_OrderPreparation')?>'" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+                <button onclick="document.location.href='<?php echo $this->getPrintUrl(); ?>'" class="scalable save" type="button"><span><?php echo $this->__('Print')?></span></button>
+                <button onclick="document.getElementById('edit_form').submit()" class="scalable save" type="button"><span><?php echo $this->__('Save')?></span></button>
+				</td>
+        </tr>
+    </table>
+</div>
+
+<?php
+	//affiche le graph de progression
+	if ($Order->getState() != Mage_Sales_Model_Order::STATE_CANCELED)
+	{
+		echo $this->getChildHtml('progressgraph');
+	}
+?>
+
+
+<form id="edit_form" name="edit_form" method="GET" action="<?php echo $this->getUrl('*/*/SaveOrder')?>">
+<input type="hidden" id="order_id"  name="order_id" value="<?php echo  $Order->getId(); ?>">
+
+<?php
+	$OrderToPrepare = $this->getOrderToPrepare();
+	if ($OrderToPrepare == null)
+	{
+		echo "<p><font color='red'>".$this->__('This order doesnt belong to selected orders')."</font></p>";
+	}
+	else 
+	{
+		//sinon on affiche le formulaire pour s�lectionner le shipment et le invoice
+		
+		//cree le menu deroulant pour les shipments
+		$ComboShipment = '<select id="shipment_id" name="shipment_id">';
+		$ComboShipment .= '<option value=""></option>';
+		$collection = $this->getOrderShipments();
+		foreach ($collection as $shipment)
+		{
+			$selected = '';
+			if ($shipment->getincrement_id() == $this->OrderToPrepare->getshipment_id())
+				$selected = ' selected ';
+			$ComboShipment .= '<option value="'.$shipment->getincrement_id().'" '.$selected.'>'.$shipment->getincrement_id().' ('.$shipment->getcreated_at().')</option>';
+		}
+		$ComboShipment .= '</select>';
+		
+		//cree le menu deroulant pour les shipments
+		$ComboInvoice = '<select id="invoice_id" name="invoice_id">';
+		$ComboInvoice .= '<option value=""></option>';
+		$collection = $this->getOrderInvoices();
+		foreach ($collection as $invoice)
+		{
+			$selected = '';
+			if ($invoice->getincrement_id() == $this->OrderToPrepare->getinvoice_id())
+				$selected = ' selected ';
+			$ComboInvoice .= '<option value="'.$invoice->getincrement_id().'"'.$selected.'>'.$invoice->getincrement_id().' ('.$shipment->getcreated_at().')</option>';
+		}
+		$ComboInvoice .= '</select>';
+		
+		//recupere le no de tracking
+		$tracking = "";
+		foreach($Order->getTracksCollection() as $track)
+    	{
+    		$tracking = $track->getNumberDetail()->gettracking();
+    	}
+		
+		?>
+
+		<p>Shipment : <?php echo $ComboShipment; ?></p>
+		<p>Invoice : <?php echo $ComboInvoice; ?></p>
+		
+		<?php if ($tracking == '') { ?>
+			<p>Tracking : <input type="text" id="tracking_num" name="tracking_num" style="width: 350px;"></p>
+		<?php } else { ?>
+		<p>Tracking : <?php echo $tracking; ?></p>
+		<?php }
+	}
+	
+	if ($Order->canShip())
+		echo '<p>Can ship: ';
+	else 
+		echo '<p>Cant ship: ';
+?>
+
+<?php
+	//affiche la grille du contenu de la commande
+	echo $this->getChildHtml('ordercontentgrid');
+?>	
+</form>

@@ -1,0 +1,57 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->getInventory()->getAdvancedLabel(); ?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl()?>'" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+
+<table border="0" width="100%">
+<tr><td width="50%">
+    <div id="div_instruction" style="font-size: 24px; font-weight: bold; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; padding: 10px;">
+
+    </div>
+</td><td width="50%">
+    <div id="div_message" style="font-size: 18px; font-weight: bold; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; padding: 10px;">
+        &nbsp;
+    </div>
+</td></tr>
+</table>
+
+<table border="0" width="100%">
+<tr><td width="80%">
+    <div id="div_products" style="align: center; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; margin-top: 10px;">
+
+    </div>
+</td><td width="20%">
+    <div id="div_summary" style="border: 1px solid #D6D6D6; background: #FAFAFA; margin-top: 10px; font-size: 18px; padding: 10px;">
+        &nbsp;
+    </div>
+    <center>
+        <p>&nbsp;</p>
+    </center>
+</td></tr>
+</table>
+
+<form id="frm_inventory" name="frm_inventory" method="POST" action="<?php echo $this->getSubmitUrl(); ?>">
+    <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    <input type="hidden" name="ei_id" id="ei_id" value="<?php echo $this->getInventory()->getId(); ?>" />
+    <input type="hidden" name="eip_location" id="eip_location" value="" />
+    <input type="hidden" name="product_datas" id="product_datas" value="" />
+    <input type="hidden" name="ei_stock_take_mode" id="ei_stock_take_mode" value="<?php echo $this->getInventory()->getei_stock_take_mode(); ?>" />
+    <input type="hidden" name="ei_stock_take_disabled_tag" id="ei_stock_take_disabled_tag" value="<?php echo MDN_AdvancedStock_Helper_Inventory::TAG_BY_LOCATION; ?>" />
+</form>
+<!-- //ERP-318 -->
+<script>
+    inventoryObj = new inventory('<?php echo $this->getUrlProducts(); ?>', <?php echo $this->getInventory()->getId(); ?>, '<?php echo $this->getUrlResetLocation(); ?>', '<?php echo $this->getUnknownBarcodeUrl(); ?>', <?php echo Mage::getStoreConfig('advancedstock/stock_take/display_quantity_buttons'); ?>);
+    inventoryObj.waitForScan();
+</script>
+
+<audio id="audio_ok" src="<?php echo $this->getSkinUrl('media/correct.mp3'); ?>" ></audio>
+<audio id="audio_nok" src="<?php echo $this->getSkinUrl('media/wrong.mp3'); ?>" ></audio>

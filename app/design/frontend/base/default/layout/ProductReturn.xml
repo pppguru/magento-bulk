@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <!-- !!! DEPRECATED !!!
+    <default>
+        <reference name="footer_links">
+            <block type="ProductReturn/Front_Links" name="productreturn_link"/>
+            <action method="addLinkBlock"><blockName>productreturn_link</blockName></action>
+        </reference>
+    </default>
+    -->
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="ProductReturn">
+                <name>ProductReturn</name>
+                <path>ProductReturn/Front/List</path>
+                <label>Product Returns</label>
+            </action>
+        </reference>
+    </customer_account>
+
+    <productreturn_front_list>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="ProductReturn/Front_List" name="productreturnlist" as="productreturnlist"
+                   template="ProductReturn/List.phtml"/>
+        </reference>
+    </productreturn_front_list>
+
+    <productreturn_front_newrequestselectorder>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="ProductReturn/Front_SelectOrder" name="productreturnselectorder" as="productreturnselectorder"
+                   template="ProductReturn/SelectOrder.phtml"/>
+        </reference>
+    </productreturn_front_newrequestselectorder>
+
+    <productreturn_front_newrequest>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="ProductReturn/Front_NewRequest" name="productreturnnewrequest" as="productreturnnewrequest"
+                   template="ProductReturn/NewRequest.phtml"/>
+        </reference>
+    </productreturn_front_newrequest>
+
+    <productreturn_front_view>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addCss">
+                <name>ProductReturn/rma.css</name>
+            </action>
+        </reference>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="ProductReturn/Front_View" name="productreturnview" as="productreturnview"
+                   template="ProductReturn/View.phtml">
+                <block type="ProductReturn/Front_View_Messages" name="productreturn_view_messages" as="productreturn_view_messages" template="ProductReturn/View/Messages.phtml"/>
+                    </block>
+        </reference>
+    </productreturn_front_view>
+
+    <productreturn_front_viewcgv>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="ProductReturn/Front_CGVRma" name="productreturnnewrequest" as="productreturnnewrequest"
+                   template="ProductReturn/FormCGV.phtml"/>
+        </reference>
+    </productreturn_front_viewcgv>
+
+    <productreturn_front_accountform>
+        <remove name="right"/>
+        <remove name="left"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="ProductReturn/Front_Form" name="productreturn_form" as="productreturn_form"
+                   template="ProductReturn/Form.phtml"/>
+        </reference>
+    </productreturn_front_accountform>
+
+    <!-- GUEST -->
+
+    <sales_guest_view>
+        <reference name="sales.order.info">
+            <action method="addLink" translate="label" module="ProductReturn"><name>Request a return</name><path>ProductReturn/Guest/Form</path><label>Request a return</label></action>
+        </reference>
+    </sales_guest_view>
+
+    <sales_guest_invoice>
+        <reference name="sales.order.info">
+            <action method="addLink" translate="label" module="ProductReturn"><name>Request a return</name><path>ProductReturn/Guest/Form</path><label>Request a return</label></action>
+        </reference>
+    </sales_guest_invoice>
+
+    <sales_guest_shipment>
+        <reference name="sales.order.info">
+            <action method="addLink" translate="label" module="ProductReturn"><name>Request a return</name><path>ProductReturn/Guest/Form</path><label>Request a return</label></action>
+        </reference>
+    </sales_guest_shipment>
+
+    <sales_guest_creditmemo>
+        <reference name="sales.order.info">
+            <action method="addLink" translate="label" module="ProductReturn"><name>Request a return</name><path>ProductReturn/Guest/Form</path><label>Request a return</label></action>
+        </reference>
+    </sales_guest_creditmemo>
+    
+    <productreturn_guest_form>
+        <remove name="right"/>
+        <remove name="left"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="ProductReturn/Front_Guest_Form" name="productreturn_guest_form" as="productreturn_guest_form"
+                   template="ProductReturn/Guest/Form.phtml"/>
+        </reference>
+    </productreturn_guest_form>
+    
+</layout>

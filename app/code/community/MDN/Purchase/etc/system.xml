@@ -1,0 +1,551 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <purchase translate="label" module="purchase">
+            <label>Purchase</label>
+            <tab>ERP</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>102</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general>
+                    <label>PDF Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <header_text translate="label">
+                            <label>PDF Header Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Text displayed in purchase order PDF header</comment>
+                        </header_text>
+                        <footer_text translate="label">
+                            <label>PDF Footer Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Text displayed in purchase order PDF footer</comment>
+                        </footer_text>
+                        <pdf_comment translate="label">
+                            <label>PDF Comment</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Text displayed at the end of the purchase order PDF</comment>
+                        </pdf_comment>
+                        <pdf_use_truetype_font translate="label">
+                            <label>PDF use truetype font</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Use this option if you encounter accent issues or if international characters does not display</comment>
+                        </pdf_use_truetype_font>
+                    </fields>
+                </general>
+                <configuration>
+                    <label>Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <order_payment_method translate="label">
+                            <label>Purchase Order Payment Method</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Separated with coma</comment>
+                        </order_payment_method>
+                        <order_carrier translate="label">
+                            <label>Purchase Order Carriers</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Separated with coma</comment>
+                        </order_carrier>
+                    </fields>
+                </configuration>
+                <notify_supplier>
+                    <label>Notify Supplier</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>6</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <email_identity translate="label">
+                            <label>Email Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_identity>
+                        <email_template translate="label">
+                            <label>Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_template>
+                        <cc_to translate="label">
+                            <label>Copy To</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Copy purchase order PDF to this email</comment>
+                        </cc_to>
+                        <company_name translate="label">
+                            <label>Company name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Your company name (used in supplier notification email subject)</comment>
+                        </company_name>
+                    </fields>
+                </notify_supplier>
+                <purchase_order>
+                    <label>Purchase Order</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>7</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <auto_fill_price>
+                            <label>Automatically fill product price from history</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>When adding product to a puchase order, automatically fill price from the association with supplier</comment>
+                        </auto_fill_price>
+                        <use_product_cost>
+                            <label>Use product cost</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>When adding product to a puchase order, automatically fill price from the cost in product sheet</comment>
+                        </use_product_cost>
+                        <store_product_cost>
+                            <label>Store product cost</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>When purchase order is complete, update product cost in product sheet</comment>
+                        </store_product_cost>
+                        <cost_repartition_method translate="label">
+                            <label>Cost Repartition Method</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Purchase/system_config_source_costrepartition</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Define the way shipping costs are dispatched to calculate landing costs per product</comment>
+                        </cost_repartition_method>
+                        <products_default_tax_rate translate="label">
+                            <label>Product default tax rate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Purchase/system_config_source_taxrates</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </products_default_tax_rate>
+                        <default_shipping_duties_taxrate>
+                            <label>Default tax rate for Shipping</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_shipping_duties_taxrate>
+                        <default_currency>
+                            <label>Default currency</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_currency>                       
+                        <default_warehouse_for_delivery>
+                            <label>Default warehouse for delivery</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>AdvancedStock/System_Config_Source_Warehouse</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_warehouse_for_delivery>
+                        <defect_products_warehouse>
+                            <label>Defect products warehouse</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>AdvancedStock/System_Config_Source_Warehouse</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </defect_products_warehouse>
+                        <enable_defect_delivery>
+                            <label>Enable defect delivery</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable_defect_delivery>
+                        <display_order_notices>
+                            <label>Display order notices</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Display warning if PO doesnt fullfill supplier condition (minimum of order...)</comment>
+                        </display_order_notices>
+                    </fields>
+                </purchase_order>
+                <purchase_product_grid>
+                    <label>Purchase Product Grid</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>8</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <display_product_picture>
+                            <label>Display product picture</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_product_picture>
+                        <display_last_buy_price>
+                            <label>Display last buy price</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>101</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_last_buy_price>
+                        <display_prefered_stock_level>
+                            <label>Display warning stock level</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>102</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_prefered_stock_level>
+                        <display_supplier_sku>
+                            <label>Display supplier sku</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>102</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_supplier_sku>
+                        <display_weee>
+                            <label>Display Weee</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>102</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_weee>
+                        <display_discount>
+                            <label>Display Discount</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>102</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_discount>
+                        <display_subtotal>
+                            <label>Display Subtotal</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_subtotal>
+                        <display_sales_history>
+                            <label>Display sales history</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_sales_history>
+                        <display_supply_needs>
+                            <label>Display Supply needs in the product selection Tab</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>111</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>The load time of this tab can be significantly increased if you activate this option</comment>
+                        </display_supply_needs>
+                    </fields>
+                </purchase_product_grid>
+                <purchase_product>
+                    <label>Purchase Product</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>8</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <pricer_default_tax_rate>
+                            <label>Default tax rate for Pricer</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>validate-number</validate>
+                        </pricer_default_tax_rate>
+                        <product_default_supply_delay>
+                            <label>Default supply delay</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>validate-number</validate>
+                        </product_default_supply_delay>
+                        <check_product_supplier_association>
+                            <label>Check product / supplier association when adding product to purchase order</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Prevent to add a product in a purchase order if product is not already associated to supplier</comment>
+                        </check_product_supplier_association>
+                    </fields>
+                </purchase_product>
+                <remaining_supply_qties>
+                    <label>Remaining supply quantities</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <severity_low>
+                            <label>Late severity low</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>days</comment>
+                        </severity_low>
+                        <severity_medium>
+                            <label>Late severity medium</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>days</comment>
+                        </severity_medium>
+                    </fields>
+                </remaining_supply_qties>
+                <packaging>
+                    <label>Product packaging</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable>
+                    </fields>
+                </packaging>
+                <scanner>
+                    <label>Barcode Scanner for deliveries</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <location translate="label">
+                            <label>Scan location</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </location>
+                        <serial translate="label">
+                            <label>Scan serial number</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </serial> 
+                        <display_quantity_button>
+                            <label>Display quantity buttons</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Allow to change scanned quantity with plus / minus buttons</comment>
+                        </display_quantity_button>           
+                        <allow_barcode_assigment>
+                            <label>Allow barcode assignment</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Allow to add a barcode to a product when the barcode is not known</comment>
+                        </allow_barcode_assigment>             
+                    </fields>
+                </scanner>
+                <manufacturer_supplier_synchronization>
+                    <label>Manufacturer / supplier synchronization</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <manufacturer_attribute>
+                            <label>Manufacturer attribute</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Purchase/System_Config_Source_ProductAttributeOfTypeList</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </manufacturer_attribute>
+                        <synchronize_manufacturer_and_supplier>
+                            <label>Synchronize Manufacturers and suppliers</label>
+                            <frontend_model>Purchase/System_Config_Button_SynchronizeManufacturerAndSuppliers</frontend_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Becarefull: clicking on this button will launch a process that can be very long depending of your product count. Also, it will create new suppliers even if you have some allready named like your manufacturers.</comment>
+                        </synchronize_manufacturer_and_supplier>
+                        <auto_sync translate="label">
+                            <label>Enable auto synchronization</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If enabled, associate product to supplier based on the manufacturer</comment>
+                        </auto_sync>
+                    </fields>
+                </manufacturer_supplier_synchronization>
+                <supplyneeds>
+                    <label>Supply needs</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>23</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <manufacturer_attribute>
+                            <label>Manufacturer attribute</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Purchase/System_Config_Source_ProductAttributeId</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </manufacturer_attribute>
+                    </fields>
+                </supplyneeds>
+                <misc>
+                    <label>Miscellaneous</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <barcode_label>
+                            <label>Print barcode label for</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Purchase/System_Config_Source_BarcodeLabelPrint</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </barcode_label>
+                    </fields>
+                </misc>
+            </groups>
+        </purchase>
+    </sections>
+</config>           

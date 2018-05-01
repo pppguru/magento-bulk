@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <aw_helpdesk3 translate="label" module="aw_hdu3">
+            <label>Help Desk Ultimate 3</label>
+            <tab>awall</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>120</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <is_enabled translate="label">
+                            <label>Enabled Module</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <backend_model>aw_hdu3/source_moduleEnableValidator</backend_model>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </is_enabled>
+                        <default_department translate="label,comment">
+                            <label>Primary Department</label>
+                            <comment>Applicable if department selector on frontend is disabled, all new tickets are assigned to this department automatically. Also this department will be set when admin creates ticket from order page.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>aw_hdu3/source_department</source_model>
+                        </default_department>
+                        <ticket_autoexpiration translate="label,comment">
+                            <label>Ticket auto-expiration, days</label>
+                            <comment>If a "Waiting for Customer" ticket is not updated for X days, it will be automatically closed. Leave empty or 0 to disable.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ticket_autoexpiration>
+                        <gateway_new_ticket_from_incoming_email translate="label">
+                            <label>Gateways: Create new tickets from incoming emails</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </gateway_new_ticket_from_incoming_email>
+                        <hide_customer_orders translate="label">
+                            <label>Hide "Customer Orders" from Agents</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>aw_hdu3/source_hideCustomerOrders</source_model>
+                        </hide_customer_orders>
+                        <send_carbon_copy_to translate="label">
+                            <label>Send carbon copy to</label>
+                            <comment>All emails will also be sent to this email address. Use comma-separated values to specify several emails</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <backend_model>aw_hdu3/source_emailValidator</backend_model>
+                        </send_carbon_copy_to>
+                        <display_columns translate="label">
+                            <label>Display these columns in tickets grid</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>aw_hdu3/source_system_config_column</source_model>
+                            <sort_order>70</sort_order>
+                            <comment>If no options are selected, all columns will be displayed</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </display_columns>
+                        <allow_rate translate="label">
+                            <label>Enable Ticket Rating</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>75</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </allow_rate>
+                        <is_pq_enabled translate="label">
+                            <label>Enable Product Questions Integration</label>
+                            <frontend_type>select</frontend_type>
+                            <comment>When a customer submits an inquiry through the Product Question form, a HDU ticket gets created. Integration with Product Questions v2.0.0+</comment>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </is_pq_enabled>
+                    </fields>
+                </general>
+                <frontend translate="label">
+                    <label>Frontend</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <show_selectors>
+                            <label>Show these fields when customer creates ticket</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>aw_hdu3/source_ticket_frontend_selectors</source_model>
+                            <can_be_empty>1</can_be_empty>
+                        </show_selectors>
+                        <allow_customer_to_attach_files translate="label">
+                            <label>Allow customer to attach files</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </allow_customer_to_attach_files>
+                        <max_upload_file_size translate="label">
+                            <label>Max Upload File Size (Mb)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </max_upload_file_size>
+                        <allow_file_extension translate="label">
+                            <label>Allow file extensions</label>
+                            <comment>Comma-separated values. If empty, all file formats are allowed for uploading</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allow_file_extension>
+                        <contact_form translate="label,comment">
+                            <label>Enable Contact Form integration</label>
+                            <comment>Enables submitting tickets through the native "Contact Us" page.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </contact_form>
+                        <allow_external_view_for_tickets translate="label,comment">
+                            <label>Allow external view for tickets</label>
+                            <comment>Allows customers to view and answer tickets without being logged in</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </allow_external_view_for_tickets>
+                        <show_ticket_page_entities>
+                            <label>Show selected entities to customer on ticket page</label>
+                            <comment>System messages are: changes of priority,  department, current Help Desk Agent (assignee)</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>aw_hdu3/source_ticket_page_entities</source_model>
+                            <can_be_empty>1</can_be_empty>
+                        </show_ticket_page_entities>
+                    </fields>
+                </frontend>
+                <ticket_escalation translate="label">
+                    <label>Ticket Escalation</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <allow_ticket_escalation translate="label">
+                            <label>Allow ticket escalation</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <backend_model>aw_hdu3/source_ticketEscalation</backend_model>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </allow_ticket_escalation>
+                        <supervisor_emails translate="label,comment">
+                            <label>Supervisor email(s)</label>
+                            <comment>Use comma-separation to specify more than one email</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <backend_model>aw_hdu3/source_emailValidator</backend_model>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </supervisor_emails>
+                        <email_template_to_supervisor translate="label">
+                            <label>Email Template to supervisor</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                        </email_template_to_supervisor>
+                    </fields>
+                </ticket_escalation>
+            </groups>
+        </aw_helpdesk3>
+    </sections>
+</config>

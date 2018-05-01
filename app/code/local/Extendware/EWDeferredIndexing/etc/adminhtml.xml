@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<config>
+	<extendware>
+		<quickaccess>
+			<ewdeferredindexing>
+                <resource>extendware/ewdeferredindexing</resource>
+				<children>
+					<indexing translate="title" module="ewdeferredindexing">
+						<title>Index Management</title>
+						<action>adminhtml/process/list</action>
+						<resource>system/index</resource>
+						<sort_order>1</sort_order>
+					</indexing>
+					<queue translate="title" module="ewdeferredindexing">
+						<title>Queued Index Events</title>
+						<action>extendware_ewdeferredindexing/adminhtml_queue</action>
+						<resource>extendware/ewdeferredindexing/queue</resource>
+						<sort_order>2</sort_order>
+					</queue>
+				</children>
+				<title/>
+			</ewdeferredindexing>
+		</quickaccess>
+	</extendware>
+	<menu></menu>
+	<acl>
+		<resources>
+            <admin>
+                <children>
+                    <extendware translate="title" module="ewdeferredindexing">
+                    	<title>Extendware</title>
+                    	<sort_order>0</sort_order>
+                        <children>
+                        	<ewdeferredindexing translate="title" module="ewdeferredindexing">
+                        		<title>Deferred Indexing</title>
+                        		<children>
+                        			<settings translate="title">
+                        				<title>Settings</title>
+                        				<children>
+				                            <main translate="title">
+				                                <title>Main</title>
+				                                <children>
+					                                <ewdeferredindexing translate="title">
+						                                <title>General</title>
+						                            </ewdeferredindexing>
+					                            </children>
+				                            </main>
+			                            </children>
+			            			</settings>
+			            		</children>
+			            	</ewdeferredindexing>
+                        </children>
+                    </extendware>
+                </children>
+            </admin>
+        </resources>
+	</acl>
+</config>

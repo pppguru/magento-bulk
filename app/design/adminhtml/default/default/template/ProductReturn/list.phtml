@@ -1,0 +1,7 @@
+<?php if (Mage::getSingleton('admin/session')->isAllowed('admin/sales/order_view/creatermainorderview')) : ?>
+<span class="a-right">
+	<button type="button" class="scalable" onclick="setLocation('<?php echo $this->getUrl('adminhtml/ProductReturn_Admin/Edit', array('order_id' => $this->getRequest()->getParam('order_id'))); ?>')" style=""><span><?php echo $this->__('Create New Product Return'); ?></span></button>
+</span>
+<?php endif; ?>
+<p>&nbsp;</p>
+<?php echo $this->getGridParentHtml() ?>

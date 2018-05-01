@@ -1,0 +1,59 @@
+<?php $_product = $this->getProduct() ?>
+<?php $productkind = $_product->getTypeId(); ?>
+<?php $theGoods = Mage::helper('customstockstatus')->getTheGoods($_product->getId()); ?>
+<?php $availabilitytext = Mage::helper('customstockstatus')->getAvailabilityText($theGoods, $productkind); ?>
+<?php $stockInfo = Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product); ?>
+<?php $stocklevel = (int)$stockInfo->getQty(); ?>
+<?php $backordered = $stockInfo->getBackorders(); ?>
+<?php $stockmanaged = $stockInfo->getManageStock(); ?>
+<?php $restrictionsText = Mage::helper('customstockstatus')->getRestrictionsText(); ?>
+
+<div class="stock-price">
+<?php if ($_product->isAvailable()): ?>
+	<?php if(($productkind == 'simple' || $productkind == 'virtual') && $stockmanaged == 1 && $backordered != 1): ?>
+		<?php if($stocklevel > 0): ?>
+			<p class="availability in-stock">
+				<?php // echo $availabilitytext; ?>
+				<span class="instock">In stock</span>
+			</p>
+			<?php if($restrictionsText) echo $restrictionsText; ?>
+			<!--<p class="shipsin"><?php echo Mage::helper('customstockstatus')->getShipDateHtml($theGoods, $productkind);?></p>-->
+		<?php else: ?>
+			<p class="availability out-of-stock">
+				<?php // echo $availabilitytext; ?>
+				<span class="outofstock">Out of stock</span>
+			</p>
+			<?php if($restrictionsText) echo $restrictionsText; ?>
+		<?php endif; ?>
+	<?php else: ?>
+		<p class="availability in-stock"><?php // echo $availabilitytext; ?><span class="instock">In stock</span></p>
+		<p class="availability out-of-stock" style="display: none;"><span class="outofstock"><?php echo $this->__('Out of stock') ?></span></p>
+		<?php if($restrictionsText) echo $restrictionsText; ?>
+		<!--<p class="shipsin"><?php echo Mage::helper('customstockstatus')->getShipDateHtml($theGoods, $productkind);?></p>-->
+	<?php endif; ?>
+<?php else: ?>
+	<p class="availability out-of-stock"><span class="outofstock"><?php echo $this->__('Out of stock') ?></span></p>
+	<!--<p class="availability out-of-stock"><?php echo $this->__('Availability:') ?> <?php echo $availabilitytext; ?></p>-->
+	<?php if($restrictionsText) echo $restrictionsText; ?>
+<?php endif; ?>
+<?php echo $this->getChildHtml('product_type_data_extra') ?>
+<?php //25kg display feature - Display stock here. See mantis#363. Mohin - Mar 16, 2016 ?>
+	<span class="available-qty"></span>
+<?php //End ?>
+
+</div>
+<?php echo $this->getPriceHtml($_product) ?>
+<?php $injector_key_name = "catalog_product_view_type_shipdate"; ?>
+<?php /*if (Extendware::helper('ewpagecache') !== false)*/ echo Mage::helper('ewpagecache')->getBeginMarker($injector_key_name); ?>
+
+<?php if ($_product->isAvailable()): ?>
+	<?php if(($productkind == 'simple' || $productkind == 'virtual') && $stockmanaged == 1 && $backordered != 1): ?>
+		<?php if($stocklevel > 0): ?>
+			<p class="shipsin"><?php echo Mage::helper('customstockstatus')->getShipDateHtml($theGoods, $productkind);?></p>
+		<?php endif; ?>
+	<?php else: ?>
+		<p class="shipsin"><?php echo Mage::helper('customstockstatus')->getShipDateHtml($theGoods, $productkind);?></p>
+	<?php endif; ?>
+<?php endif; ?>
+
+<?php /*if (Extendware::helper('ewpagecache') !== false)*/ echo Mage::helper('ewpagecache')->getEndMarker($injector_key_name); ?>

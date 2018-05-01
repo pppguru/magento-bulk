@@ -1,0 +1,45 @@
+<script>
+function sendToSupplier()
+{
+	document.getElementById('send_to_customer').value = '1';
+	editForm.submit();
+}
+</script>
+
+<div class="entry-edit">
+    
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Send order to supplier'); ?></h4> 
+	    </div>
+        <fieldset id="my-fieldset">
+			<?php echo $this->__('Fill comments and click button to send order to supplier by email'); ?>
+			<br><?php echo $this->__('Supplier email address').' : '.$this->getOrder()->getSupplier()->getsup_mail(); ?>
+                        <?php if ($this->getOrder()->getSupplier()->getsup_mail() == ''): ?>
+                            <font color="red"><?php echo $this->__('Caution : supplier email is not set !'); ?></font>
+                        <?php endif; ?>
+			<?php if ($this->getOrder()->getpo_supplier_notification_date() != ''): ?>
+				<br><?php echo $this->__('Supplier notified on').' : '.$this->formatDate($this->getOrder()->getpo_supplier_notification_date(), 'medium', true); ?>
+			<?php endif; ?>
+
+			<p>&nbsp;</p>
+
+            <textarea id="email_comment" name="email_comment" cols="100" rows="15"><?php echo $this->getOrder()->getpo_last_notify_text(); ?></textarea>
+
+            <p>&nbsp;</p>
+
+            <p><?php echo $this->__('Change status to :'); ?></p>
+            <div style="margin-left: 50px;">
+                <p>
+                    <input checked type="radio" name="change_status" id="change_status_no" value="no" /> <label for="change_status_no"><?php echo $this->__('Do not change status'); ?></label>
+                    <br><input type="radio" name="change_status" id="change_status_waiting_for_supplier" value="waiting_for_supplier" /> <label for="change_status_waiting_for_supplier"><?php echo $this->__('Waiting for supplier'); ?></label>
+                    <br><input type="radio" name="change_status" id="change_status_waiting_for_delivery" value="waiting_for_delivery" /> <label for="change_status_waiting_for_delivery"><?php echo $this->__('Waiting for delivery'); ?></label>
+                </p>
+            </div>
+            <input type="hidden" id="send_to_customer" name="send_to_customer" value="">
+
+            <p>&nbsp;</p>
+
+            <button type="button" class="scalable " onclick="sendToSupplier();" style=""><span><?php echo $this->__('Send to supplier'); ?></span></button>
+        </fieldset>
+</div>
+

@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <erp>
+            <children>
+                <organizer translate="title" module="Organizer">
+                    <title>Organizer</title>
+                    <sort_order>40</sort_order>
+                    <children>
+                        <list translate="title" module="Organizer">
+                            <title>All Tasks/Events</title>
+                            <action>adminhtml/Organizer_Task/List</action>
+                        </list>
+                        <dashboard translate="title" module="Organizer">
+                            <title>My Dashboard</title>
+                            <action>adminhtml/Organizer_Task/Dashboard</action>
+                        </dashboard>
+                    </children>
+                    <sort_order>90</sort_order>
+                </organizer>
+            </children>
+        </erp>
+    </menu>
+
+    <routers>
+        <Organizer>
+            <use>standard</use>
+            <args>
+                <module>MDN_Organizer</module>
+                <frontName>Organizer</frontName>
+            </args>
+        </Organizer>
+    </routers>
+
+    <layout>
+        <updates>
+            <organizer>
+                <file>organizer.xml</file>
+            </organizer>
+        </updates>
+    </layout>
+        
+    <translate>
+        <modules>
+            <MDN_Organizer>
+                <files>
+                    <default>MDN_Organizer.csv</default>
+                </files>
+            </MDN_Organizer>
+        </modules>
+    </translate>
+        
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <erp>
+                        <children>
+                            <organizer module="Organizer">
+                                <title>Organizer</title>
+                                <children>
+                                    <list module="Organizer">
+                                        <title>All Tasks/Events</title>
+                                    </list>
+                                    <dashboard module="Organizer">
+                                        <title>My dashboard</title>
+                                    </dashboard>
+                                </children>
+                            </organizer>
+                            <products>
+                                <children>
+                                    <view>
+                                        <children>
+                                            <organizer module="Organizer">
+                                                <title>Organizer tab</title>
+                                            </organizer>
+                                        </children>
+                                    </view>
+                                </children>
+                            </products>
+                        </children>
+                    </erp>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <organizer module="Organizer">
+                                        <title>Organizer</title>
+                                    </organizer>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

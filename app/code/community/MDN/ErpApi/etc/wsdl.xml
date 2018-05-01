@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:typens="urn:{{var wsdl.name}}" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/"
+    name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}" xmlns:ns0="urn:Magento">
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Magento">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/" />
+        </schema>
+    </types>
+    
+<!--END TYPES -->
+    
+<!--BEGIN MESSAGES -->
+
+    <message name="erpapigetErpApiVersionRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="erpapigetErpApiVersionResponse">
+        <part name="result" type="xsd:string" />
+    </message>
+
+    <message name="erpapigetOperatorsRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="erpapigetOperatorsResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+        
+    <message name="erpapiskuExistsRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="sku" type="xsd:string" />
+    </message>
+    <message name="erpapiskuExistsResponse">
+        <part name="result" type="xsd:string" />
+    </message>
+
+    <message name="erpapiskuByEanRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="ean" type="xsd:string" />
+    </message>
+    <message name="erpapiskuByEanResponse">
+        <part name="result" type="xsd:string" />
+    </message>
+
+    <message name="erpapiproductInfosByEanRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="ean" type="xsd:string" />
+    </message>
+    <message name="erpapiproductInfosByEanResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapiproductWarehouseListRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="productId" type="xsd:string" />
+    </message>
+    <message name="erpapiproductWarehouseListResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapiproductStockMovementListRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="productId" type="xsd:string" />
+        <part name="limit" type="xsd:string" />
+    </message>
+    <message name="erpapiproductStockMovementListResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+
+    <message name="erpapiproductPendingSalesOrdersListRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="productId" type="xsd:string" />
+        <part name="limit" type="xsd:string" />
+    </message>
+    <message name="erpapiproductPendingSalesOrdersListResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapiproductPurchaseOrdersListRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="productId" type="xsd:string" />
+        <part name="limit" type="xsd:string" />
+    </message>
+    <message name="erpapiproductPurchaseOrdersListResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+    
+    <message name="erpapiupdateProductQtyByWarehouseRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="productId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="qty" type="xsd:string" />
+    </message>
+    <message name="erpapiupdateProductQtyByWarehouseResponse">
+        <part name="result" type="xsd:string" />
+    </message>
+
+    <message name="erpapiupdateProductSelfLocationByWarehouseRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="productId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="selfLocation" type="xsd:string" />
+    </message>
+    <message name="erpapiupdateProductSelfLocationByWarehouseResponse">
+        <part name="result" type="xsd:string" />
+    </message>
+
+    <message name="erpapiupdateProductWarningStockLevelByWarehouseRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="productId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="warningStockLevel" type="xsd:string" />
+    </message>
+    <message name="erpapiupdateProductWarningStockLevelByWarehouseResponse">
+        <part name="result" type="xsd:string" />
+    </message>
+    
+    <message name="erpapiupdateProductIdealStockLevelByWarehouseRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="productId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="idealStockLevel" type="xsd:string" />
+    </message>
+    <message name="erpapiupdateProductIdealStockLevelByWarehouseResponse">
+        <part name="result" type="xsd:string" />
+    </message>
+
+    <message name="erpapisupplierListRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="erpapisupplierListResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapipurchaseOrdersBySupplierIdRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="supplierId" type="xsd:string" />
+        <part name="limit" type="xsd:string" />
+    </message>
+    <message name="erpapipurchaseOrdersBySupplierIdResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapipurchaseOrdersProductsRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="purchaseOrderId" type="xsd:string" />
+        <part name="targetWarehouseId" type="xsd:string" />
+    </message>
+    <message name="erpapipurchaseOrdersProductsResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapigetWarehouseListRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="erpapigetWarehouseListResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapipurchaseOrderDeliveryRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="purchaseOrderId" type="xsd:string" />
+        <part name="targetWarehouseId" type="xsd:string" />
+        <part name="itemsDelivered" type="xsd:array" />
+        <part name="itemsDefectiveDelivered" type="xsd:array" />
+    </message>
+    <message name="erpapipurchaseOrderDeliveryResponse">
+        <part name="result" type="xsd:string" />
+    </message>
+
+    <message name="erpapigetErpOptionsRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="erpapigetErpOptionsResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapigetFullStockOrdersRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+    </message>
+    <message name="erpapigetFullStockOrdersResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapigetIgnoredOrdersRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+    </message>
+    <message name="erpapigetIgnoredOrdersResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapigetStocklessOrdersRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+    </message>
+    <message name="erpapigetStocklessOrdersResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapigetRemainToShipOrderItemsRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="orderId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+    </message>
+    <message name="erpapigetRemainToShipOrderItemsResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapicommitPackingRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="orderId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="operatorId" type="xsd:string" />
+        <part name="weight" type="xsd:string" />
+    </message>
+    <message name="erpapicommitPackingResponse">
+        <part name="result" type="xsd:string" />
+    </message>
+
+    <message name="erpapigetProductImageRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="productId" type="xsd:string" />
+        <part name="getBase64" type="xsd:string" />
+        <part name="resize" type="xsd:string" />
+        <part name="width" type="xsd:string" />
+        <part name="height" type="xsd:string" />
+    </message>
+    <message name="erpapigetProductImageResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapigetOrderPreparationTabCountRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="operatorId" type="xsd:string" />
+    </message>
+    <message name="erpapigetOrderPreparationTabCountResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+
+    <message name="erpapiprintDocumentsMCCRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="operatorId" type="xsd:string" />
+    </message>
+    <message name="erpapiprintDocumentsMCCResponse">
+        <part name="result" type="xsd:int" />
+    </message>
+
+    <message name="erpapiprintPickingListMCCRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="operatorId" type="xsd:string" />
+    </message>
+    <message name="erpapiprintPickingListMCCResponse">
+        <part name="result" type="xsd:int" />
+    </message>
+
+    <message name="erpapiaddToSelectedOrdersRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="orderId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="operatorId" type="xsd:string" />
+    </message>
+    <message name="erpapiaddToSelectedOrdersResponse">
+        <part name="result" type="xsd:int" />
+    </message>
+
+
+    <message name="erpapiremoveFromSelectedOrdersRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="orderId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="operatorId" type="xsd:string" />
+    </message>
+    <message name="erpapiremoveFromSelectedOrdersResponse">
+        <part name="result" type="xsd:int" />
+    </message>
+
+
+    <message name="erpapigetSelectedOrdersRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="operatorId" type="xsd:string" />
+    </message>
+    <message name="erpapigetSelectedOrdersResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+
+
+    <message name="erpapifinishSelectedOrdersRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="orderIds" type="xsd:array" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="operatorId" type="xsd:string" />
+    </message>
+    <message name="erpapifinishSelectedOrdersResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapifinishSelectedOrderRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="orderId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+        <part name="operatorId" type="xsd:string" />
+    </message>
+    <message name="erpapifinishSelectedOrderResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+
+    <message name="erpapigetCurrentOrderPreparationTabRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="orderId" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />        
+    </message>
+    <message name="erpapigetCurrentOrderPreparationTabResponse">
+        <part name="result" type="xsd:string" />
+    </message>
+
+    <message name="erpapigetStockTakesListRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="erpapigetStockTakesListResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapicreateStockTakeRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="stockTakeName" type="xsd:string" />
+        <part name="warehouseId" type="xsd:string" />
+    </message>
+    <message name="erpapicreateStockTakeResponse">
+        <part name="result" type="xsd:int" />
+    </message>
+
+    <message name="erpapigetStockPictureRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="stockTakeId" type="xsd:string" />
+    </message>
+    <message name="erpapigetStockPictureResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapisaveStockTakeScanRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="stockTakeId" type="xsd:string" />
+        <part name="location" type="xsd:string" />
+        <part name="stockTakeProducts" type="xsd:array" />
+    </message>
+    <message name="erpapisaveStockTakeScanResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapicreateStockMovementRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="sourceWarehouseId" type="xsd:string" />
+        <part name="targetWarehouseId" type="xsd:string" />
+        <part name="productId" type="xsd:string" />
+        <part name="qty" type="xsd:string" />
+    </message>
+    <message name="erpapicreateStockMovementResponse">
+        <part name="result" type="xsd:string" />
+    </message>
+
+
+    <message name="erpapigetSuppliersRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="supplierId" type="xsd:string" />
+    </message>
+    <message name="erpapigetSuppliersResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapigetPurchaseOrdersProductsRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="poId" type="xsd:string" />
+    </message>
+    <message name="erpapigetPurchaseOrdersProductsResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+    <message name="erpapigetPurchaseOrdersRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="poUpdatedAtFrom" type="xsd:string" />
+        <part name="poUpdatedAtTo" type="xsd:string" />
+        <part name="poSent" type="xsd:string" />
+        <part name="poPaid" type="xsd:string" />
+        <part name="poFinished" type="xsd:string" />
+    </message>
+    <message name="erpapigetPurchaseOrdersResponse">
+        <part name="result" type="xsd:array" />
+    </message>
+
+<!--END MESSAGES -->
+    
+    
+<!--BEGIN PORT TYPES -->
+    
+    <portType name="{{var wsdl.handler}}PortType">
+        
+        <operation name="erpapigetErpApiVersion">
+            <documentation>ERP Api Version</documentation>
+            <input message="typens:erpapigetErpApiVersionRequest" />
+            <output message="typens:erpapigetErpApiVersionResponse" />
+        </operation>
+
+        <operation name="erpapigetOperators">
+            <documentation>Magento user list</documentation>
+            <input message="typens:erpapigetOperatorsRequest" />
+            <output message="typens:erpapigetOperatorsResponse" />
+        </operation>
+
+        <operation name="erpapiskuExists">
+            <documentation>sku Exists</documentation>
+            <input message="typens:erpapiskuExistsRequest" />
+            <output message="typens:erpapiskuExistsResponse" />
+        </operation>
+
+        <operation name="erpapiskuByEan">
+            <documentation>get Sku by Ean or Barcode</documentation>
+            <input message="typens:erpapiskuByEanRequest" />
+            <output message="typens:erpapiskuByEanResponse" />
+        </operation>
+
+        <operation name="erpapiproductInfosByEan">
+            <documentation>get Allproduct Infos from an Ean</documentation>
+            <input message="typens:erpapiproductInfosByEanRequest" />
+            <output message="typens:erpapiproductInfosByEanResponse" />
+        </operation>
+
+        <operation name="erpapiproductWarehouseList">
+            <documentation>get warehouse Infos from an ProductID</documentation>
+            <input message="typens:erpapiproductWarehouseListRequest" />
+            <output message="typens:erpapiproductWarehouseListResponse" />
+        </operation>
+
+        <operation name="erpapiproductStockMovementList">
+            <documentation>get Stock Movements from an ProductID</documentation>
+            <input message="typens:erpapiproductStockMovementListRequest" />
+            <output message="typens:erpapiproductStockMovementListResponse" />
+        </operation>
+        
+        <operation name="erpapiproductPendingSalesOrdersList">
+            <documentation>get pending Sales Orders from an ProductID</documentation>
+            <input message="typens:erpapiproductPendingSalesOrdersListRequest" />
+            <output message="typens:erpapiproductPendingSalesOrdersListResponse" />
+        </operation>
+
+        <operation name="erpapiproductPurchaseOrdersList">
+            <documentation>get purchase Orders from an ProductID</documentation>
+            <input message="typens:erpapiproductPurchaseOrdersListRequest" />
+            <output message="typens:erpapiproductPurchaseOrdersListResponse" />
+        </operation>
+
+        <operation name="erpapiupdateProductQtyByWarehouse">
+            <documentation>update Qty for a product ID and a warehouse ID</documentation>
+            <input message="typens:erpapiupdateProductQtyByWarehouseRequest" />
+            <output message="typens:erpapiupdateProductQtyByWarehouseResponse" />
+        </operation>
+
+        <operation name="erpapiupdateProductSelfLocationByWarehouse">
+            <documentation>update shelf Location for a product ID and a warehouse ID</documentation>
+            <input message="typens:erpapiupdateProductSelfLocationByWarehouseRequest" />
+            <output message="typens:erpapiupdateProductSelfLocationByWarehouseResponse" />
+        </operation>
+
+        <operation name="erpapiupdateProductWarningStockLevelByWarehouse">
+            <documentation>update warningStockLevel for a product ID and a warehouse ID</documentation>
+            <input message="typens:erpapiupdateProductWarningStockLevelByWarehouseRequest" />
+            <output message="typens:erpapiupdateProductWarningStockLevelByWarehouseResponse" />
+        </operation>
+
+        <operation name="erpapiupdateProductIdealStockLevelByWarehouse">
+            <documentation>update warningStockLevel for a product ID and a warehouse ID</documentation>
+            <input message="typens:erpapiupdateProductIdealStockLevelByWarehouseRequest" />
+            <output message="typens:erpapiupdateProductIdealStockLevelByWarehouseResponse" />
+        </operation>
+
+        <operation name="erpapisupplierList">
+            <documentation>get supplier List</documentation>
+            <input message="typens:erpapisupplierListRequest" />
+            <output message="typens:erpapisupplierListResponse" />
+        </operation>
+
+        <operation name="erpapipurchaseOrdersBySupplierId">
+            <documentation>update warningStockLevel for a product ID and a warehouse ID</documentation>
+            <input message="typens:erpapipurchaseOrdersBySupplierIdRequest" />
+            <output message="typens:erpapipurchaseOrdersBySupplierIdResponse" />
+        </operation>
+
+        <operation name="erpapipurchaseOrdersProducts">
+            <documentation>get products list for a Purchase Order id</documentation>
+            <input message="typens:erpapipurchaseOrdersProductsRequest" />
+            <output message="typens:erpapipurchaseOrdersProductsResponse" />
+        </operation>
+        
+        <operation name="erpapigetWarehouseList">
+            <documentation>get the warehouses list</documentation>
+            <input message="typens:erpapigetWarehouseListRequest" />
+            <output message="typens:erpapigetWarehouseListResponse" />
+        </operation>
+        
+        <operation name="erpapipurchaseOrderDelivery">
+            <documentation>Purchase Order Delivery</documentation>
+            <input message="typens:erpapipurchaseOrderDeliveryRequest" />
+            <output message="typens:erpapipurchaseOrderDeliveryResponse" />
+        </operation>        
+        
+        <operation name="erpapigetErpOptions">
+            <documentation>ERP public options</documentation>
+            <input message="typens:erpapigetErpOptionsRequest" />
+            <output message="typens:erpapigetErpOptionsResponse" />
+        </operation>
+
+        <operation name="erpapigetFullStockOrders">
+            <documentation>ERP get FullStock Orders</documentation>
+            <input message="typens:erpapigetFullStockOrdersRequest" />
+            <output message="typens:erpapigetFullStockOrdersResponse" />
+        </operation>
+
+        <operation name="erpapigetIgnoredOrders">
+            <documentation>ERP get Ignored Orders</documentation>
+            <input message="typens:erpapigetIgnoredOrdersRequest" />
+            <output message="typens:erpapigetIgnoredOrdersResponse" />
+        </operation>
+
+        <operation name="erpapigetStocklessOrders">
+            <documentation>ERP get Stockless Orders</documentation>
+            <input message="typens:erpapigetStocklessOrdersRequest" />
+            <output message="typens:erpapigetStocklessOrdersResponse" />
+        </operation>
+
+        <operation name="erpapigetRemainToShipOrderItems">
+            <documentation>ERP get RemainToShip Order Items</documentation>
+            <input message="typens:erpapigetRemainToShipOrderItemsRequest" />
+            <output message="typens:erpapigetRemainToShipOrderItemsResponse" />
+        </operation>
+
+
+        <operation name="erpapicommitPacking">
+            <documentation>ERP get RemainToShip Order Items</documentation>
+            <input message="typens:erpapicommitPackingRequest" />
+            <output message="typens:erpapicommitPackingResponse" />
+        </operation>
+        
+        <operation name="erpapigetProductImage">
+            <documentation>return a product Image URL of base 64 content</documentation>
+            <input message="typens:erpapigetProductImageRequest" />
+            <output message="typens:erpapigetProductImageResponse" />
+        </operation>
+
+        <operation name="erpapigetOrderPreparationTabCount">
+            <documentation>return the order preparation tab counts</documentation>
+            <input message="typens:erpapigetOrderPreparationTabCountRequest" />
+            <output message="typens:erpapigetOrderPreparationTabCountResponse" />
+        </operation>
+
+
+        <operation name="erpapiprintPickingListMCC">
+            <documentation>Print picking list document with MCC</documentation>
+            <input message="typens:erpapiprintPickingListMCCRequest" />
+            <output message="typens:erpapiprintPickingListMCCResponse" />
+        </operation>
+
+
+        <operation name="erpapiprintDocumentsMCC">
+            <documentation>Print order preparation documents with MCC</documentation>
+            <input message="typens:erpapiprintDocumentsMCCRequest" />
+            <output message="typens:erpapiprintDocumentsMCCResponse" />
+        </operation>
+        
+        
+        <operation name="erpapiaddToSelectedOrders">
+            <documentation>Add order from select order</documentation>
+            <input message="typens:erpapiaddToSelectedOrdersRequest" />
+            <output message="typens:erpapiaddToSelectedOrdersResponse" />
+        </operation>
+        
+        <operation name="erpapiremoveFromSelectedOrders">
+            <documentation>Remove order from select order</documentation>
+            <input message="typens:erpapiremoveFromSelectedOrdersRequest" />
+            <output message="typens:erpapiremoveFromSelectedOrdersResponse" />
+        </operation>
+
+        <operation name="erpapigetSelectedOrders">
+            <documentation>ERP get Selected Orders</documentation>
+            <input message="typens:erpapigetSelectedOrdersRequest" />
+            <output message="typens:erpapigetSelectedOrdersResponse" />
+        </operation>
+
+        <operation name="erpapigetCurrentOrderPreparationTab">
+            <documentation>get Current Order Preparation Tab</documentation>
+            <input message="typens:erpapigetCurrentOrderPreparationTabRequest" />
+            <output message="typens:erpapigetCurrentOrderPreparationTabResponse" />
+        </operation>
+
+        <operation name="erpapifinishSelectedOrders">
+            <documentation>finish Selected Orders</documentation>
+            <input message="typens:erpapifinishSelectedOrdersRequest" />
+            <output message="typens:erpapifinishSelectedOrdersResponse" />
+        </operation>
+
+        <operation name="erpapifinishSelectedOrder">
+            <documentation>finish Selected Order</documentation>
+            <input message="typens:erpapifinishSelectedOrderRequest" />
+            <output message="typens:erpapifinishSelectedOrderResponse" />
+        </operation>
+
+        <operation name="erpapigetStockTakesList">
+            <documentation>get Stock Takes List</documentation>
+            <input message="typens:erpapigetStockTakesListRequest" />
+            <output message="typens:erpapigetStockTakesListResponse" />
+        </operation>
+
+        <operation name="erpapicreateStockTake">
+            <documentation>create Stock Take</documentation>
+            <input message="typens:erpapicreateStockTakeRequest" />
+            <output message="typens:erpapicreateStockTakeResponse" />
+        </operation>
+
+        <operation name="erpapigetStockPicture">
+            <documentation>get Stock Picture</documentation>
+            <input message="typens:erpapigetStockPictureRequest" />
+            <output message="typens:erpapigetStockPictureResponse" />
+        </operation>
+
+        <operation name="erpapisaveStockTakeScan">
+            <documentation>get Scanned Products</documentation>
+            <input message="typens:erpapisaveStockTakeScanRequest" />
+            <output message="typens:erpapisaveStockTakeScanResponse" />
+        </operation>
+
+        <operation name="erpapicreateStockMovement">
+            <documentation>get Scanned Products</documentation>
+            <input message="typens:erpapicreateStockMovementRequest" />
+            <output message="typens:erpapicreateStockMovementResponse" />
+        </operation>
+
+        <operation name="erpapigetPurchaseOrders">
+            <documentation>get Purchase Orders</documentation>
+            <input message="typens:erpapigetPurchaseOrdersRequest" />
+            <output message="typens:erpapigetPurchaseOrdersResponse" />
+        </operation>
+
+        <operation name="erpapigetPurchaseOrdersProducts">
+            <documentation>get Purchase Orders Products</documentation>
+            <input message="typens:erpapigetPurchaseOrdersProductsRequest" />
+            <output message="typens:erpapigetPurchaseOrdersProductsResponse" />
+        </operation>
+
+        <operation name="erpapigetSuppliers">
+            <documentation>get Suppliers by Id</documentation>
+            <input message="typens:erpapigetSuppliersRequest" />
+            <output message="typens:erpapigetSuppliersResponse" />
+        </operation>
+
+
+    </portType>
+    
+<!--END PORT TYPES -->    
+    
+<!--BEGIN BINDINGS --> 
+
+    <binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+        
+        <operation name="erpapigetErpApiVersion">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetOperators">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapiskuExists">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>            
+        </operation>
+
+        <operation name="erpapiskuByEan">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapiproductInfosByEan">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapiproductWarehouseList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapiproductStockMovementList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapiproductPendingSalesOrdersList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        
+        <operation name="erpapiproductPurchaseOrdersList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapiupdateProductQtyByWarehouse">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapiupdateProductSelfLocationByWarehouse">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapiupdateProductWarningStockLevelByWarehouse">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapiupdateProductIdealStockLevelByWarehouse">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapisupplierList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapipurchaseOrdersBySupplierId">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        
+        <operation name="erpapipurchaseOrdersProducts">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetWarehouseList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapipurchaseOrderDelivery">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>        
+
+        <operation name="erpapigetErpOptions">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetFullStockOrders">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetIgnoredOrders">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetStocklessOrders">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetRemainToShipOrderItems">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapicommitPacking">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetProductImage">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        
+        <operation name="erpapigetOrderPreparationTabCount">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapiprintPickingListMCC">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        
+        
+        <operation name="erpapiprintDocumentsMCC">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+
+        <operation name="erpapiaddToSelectedOrders">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapiremoveFromSelectedOrders">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        
+         <operation name="erpapigetSelectedOrders">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetCurrentOrderPreparationTab">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapifinishSelectedOrders">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapifinishSelectedOrder">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetStockTakesList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapicreateStockTake">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetStockPicture">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapisaveStockTakeScan">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapicreateStockMovement">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+
+        <operation name="erpapigetPurchaseOrders">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetPurchaseOrdersProducts">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        <operation name="erpapigetSuppliers">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+
+        
+    </binding>
+<!--END BINDINGS -->     
+    
+</definitions>

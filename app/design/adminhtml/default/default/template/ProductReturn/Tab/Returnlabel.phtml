@@ -1,0 +1,26 @@
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Shipping label'); ?></h4>
+</div>
+<fieldset id="my-fieldset">
+    <div class="field">
+        <div class="input-box">
+
+            <?php if (Mage::helper('ProductReturn/Returnlabel')->isExists($this->getRma())): ?>
+
+                <center>
+                    <button type="button" class="scalable " onclick="window.open('<?php echo Mage::helper('ProductReturn/Returnlabel')->getReturnlabelUrl($this->getRma()); ?>')" style=""><span><span><span><?php echo $this->__('Download shipping label'); ?></span></span></span></button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="scalable " onclick="setLocation('<?php echo $this->getNotifyLabelUrl($this->getRma()); ?>')" style=""><span><span><span><?php echo $this->__('Notify customer about the shipping label'); ?></span></span></span></button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="scalable " onclick="setLocation('<?php echo $this->getDeleteLabelUrl($this->getRma()); ?>')" style=""><span><span><span><?php echo $this->__('Delete shipping label'); ?></span></span></span></button>
+                </center>
+
+            <?php else: ?>
+
+                <label for="returnlabel"><?php echo $this->__('Upload shipping label') ?><span class="required">*</span></label><br/>
+                <input type="file" name="returnlabel" id="returnlabel" title="<?php echo $this->__('Label') ?>" class="required-entry input-text"/>
+
+            <?php endif; ?>
+        </div>
+    </div>
+</fieldset>

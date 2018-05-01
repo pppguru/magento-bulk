@@ -1,0 +1,33 @@
+<div class="entry-edit">
+          <div class="entry-edit-head">
+               <h4 class="icon-head head-account"><?php echo $this->__('Import shelf location'); ?></h4>
+
+    </div>
+	<div class="fieldset">
+		<form method="POST" enctype="multipart/form-data" action="<?php echo Mage::getUrl('adminhtml/AdvancedStock_Warehouse/ImportShelfLocation', array()); ?>">
+			<input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+			<input id="stock_id" name="stock_id" type="hidden" value="<?php echo $this->getStock()->getId(); ?>">
+			<table border="0" style="margin-left: 30px;">
+
+			<tr>
+				<th width="200" align="center"><?php echo $this->__('File'); ?></th>
+				<th><input type="file" name="import_shelf_location" id="import_shelf_location"></th>
+			</tr>
+			<tr>
+				<th width="200" align="center"></th>
+				<td colspan="2"><br/><input type="submit" value="<?php echo $this->__('Import'); ?>"></td>
+			</tr>
+            <tr>
+                    <th width="200" align="center"><br/><b><?php echo $this->__('Help'); ?></b></th>
+                    <td>
+                        <b><i><?php echo $this->__('File format'); ?> : </i></b><br>
+                        <pre>
+SKU1;SHELF_LOCATION
+SKU2;SHELF_LOCATION
+                        </pre>
+                    </td>
+                </tr>
+			</table>
+		</form>
+	</div>
+</div>

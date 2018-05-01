@@ -1,0 +1,55 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Customer_Ticket_View_Info $this */?>
+<div class="fieldset">
+    <h2 class="legend"><?php echo $this->__('Ticket Information') ?></h2>
+    <table class="awhdu3-ticket-view-info-table info-table">
+        <tbody>
+            <?php if ($this->isCanShowDepartment()):?>
+                <tr>
+                    <th><span class="nobr"><?php echo $this->__('Department');?></span></th>
+                    <td><?php echo $this->getDepartmentName();?></td>
+                </tr>
+            <?php endif;?>
+            <tr>
+                <th><span class="nobr"><?php echo $this->__('Status');?></span></th>
+                <td><?php echo $this->getStatusLabel();?></td>
+            </tr>
+            <?php if ($this->isCanShowPriority()):?>
+                <tr>
+                    <th><span class="nobr"><?php echo $this->__('Priority');?></span></th>
+                    <td><?php echo $this->getPriorityLabel();?></td>
+                </tr>
+            <?php endif;?>
+            <?php if ($this->getOrderLabel()): ?>
+                <tr>
+                    <th><span class="nobr"><?php echo $this->__('Order');?></span></th>
+                    <td><a href="<?php echo $this->getOrderUrl();?>"><?php echo $this->getOrderLabel();?></a></td>
+                </tr>
+            <?php endif;?>
+        </tbody>
+    </table>
+</div>

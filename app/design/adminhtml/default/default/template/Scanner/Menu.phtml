@@ -1,0 +1,25 @@
+<table border="0" width="100%" cellspacing="0" style="margin-top: 20px;">
+<?php foreach ($this->getButtons() as $button): ?>
+    <tr>
+        <td>
+            <img style="margin-bottom: 10px;" src="<?php echo $button['img']; ?>" alt="<?php echo $button['label']; ?>" onclick="document.location.href='<?php echo $button['url']; ?>'" width="32" height="32" />
+        </td>
+        <td align="center">
+            <input type="button" value="<?php echo $button['label']; ?>" class="touch_button touch_button_menu" onclick="document.location.href='<?php echo $button['url']; ?>'" />
+        </td>
+    </tr>
+<?php endforeach; ?>
+    <tr>
+        <td>
+            <img src="<?php echo $this->getSkinUrl('images/scanner/logout.gif'); ?>" onclick="document.location.href='<?php echo $this->getLogoutUrl(); ?>'" width="32" height="32" />
+        </td>
+        <td align="center">
+            <input type="button" value="Logout" class="touch_button touch_button_menu" onclick="document.location.href='<?php echo $this->getLogoutUrl(); ?>'" />
+        </td>
+    </tr>
+
+</table>
+
+<script>
+	enableCatchKeys("document.getElementById('query').value=KC_value;form1.submit();");
+</script>

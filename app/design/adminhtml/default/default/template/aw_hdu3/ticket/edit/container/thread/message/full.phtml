@@ -1,0 +1,48 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Adminhtml_Ticket_Edit_Form_Thread_Renderer_Message $this */?>
+<div class="awhdu3-ticket-edit-thread-full-<?php echo $this->isAdminMessage()?'admin-message':'customer-message';?>">
+    <div>
+        <h4><?php echo $this->getEventInitiatorName();?></h4>
+        <span class="separator">|</span>
+        <?php echo $this->formatDate($this->getEvent()->getCreatedAt(), Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM, true);?>
+    </div>
+    <p><?php echo $this->getMessageText();?></p>
+    <?php if ($this->getEvent()->getAttachmentCollection()->getSize()):?>
+    <div class="awhdu3-ticket-edit-thread-tabs-content-item-message-attachmentbox">
+        <span><?php echo $this->__('Attachments:');?></span>
+        <ul>
+        <?php foreach ($this->getEvent()->getAttachmentCollection() as $attachment):?>
+            <li>
+                <a href="<?php echo $this->getUrl('helpdesk_admin/adminhtml_ticket/download', array('id' => $attachment->getId()));?>" target="_blank">
+                    <?php echo $attachment->getFileRealName();?>
+                </a>
+            </li>
+        <?php endforeach;?>
+        </ul>
+    </div>
+    <?php endif;?>
+</div>

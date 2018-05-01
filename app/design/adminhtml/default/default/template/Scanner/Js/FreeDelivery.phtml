@@ -1,0 +1,44 @@
+<script>
+
+    var freeDeliveryProductInfo = new Array();
+    var freeDeliveryCurrentBarcode = '';
+    var freeDeliveryCurrentLocation = '';
+
+    //***************************************************************************************************
+    //Product scanned for free delivery
+    function freeDeliveryAddProduct(barcode)
+    {
+        var mode = '';
+        if (freeDeliveryCurrentBarcode == '')
+            mode = 'barcode';
+        else
+            mode = 'location';
+
+        switch(mode)
+        {
+            case 'barcode':
+                freeDeliveryCurrentBarcode = barcode;
+                var html = '<p>&nbsp;</p>';
+                html += '<p>Barcode : ' + barcode + '</p>'
+                html += '<p>Please scan location</p>'
+                document.getElementById('no_products').innerHTML = html;
+                document.getElementById('div_error').style.display = 'none';
+                document.getElementById('div_success').style.display = 'none';
+                break;
+            case 'location':
+                freeDeliveryCurrentLocation = barcode;
+                var url = freeDeliveryAddProductUrl;
+                url += 'mode/add_product/';
+                url += 'barcode/' + freeDeliveryCurrentBarcode + '/';
+                url += 'location/' + freeDeliveryCurrentLocation + '/';
+                document.location.href = url;
+                break;
+           default:
+               alert('unknown mode' + mode);
+               break;
+        }
+
+
+    }
+
+</script>

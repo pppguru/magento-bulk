@@ -1,0 +1,28 @@
+#awhdu3-statistic-tools{
+    padding: 10px;
+}
+#awhdu3-statistic-tools .awhdu3-statistic-tools-column{
+    display: inline-block;
+    vertical-align: top;
+}
+#awhdu3-statistic-tools .awhdu3-statistic-tools-row{
+    min-width: 350px;
+    padding: 5px;
+}
+#awhdu3-statistic-tools .awhdu3-statistic-tools-row label{
+    width: 100px;
+    display: inline-block;
+    vertical-align: top;
+}
+#awhdu3-statistic-tools .awhdu3-statistic-tools-row input, #awhdu3-statistic-tools .awhdu3-statistic-tools-row select{
+    width: 200px;
+}
+
+img.workload-help-image {
+    width: 12px;
+    padding-bottom: 2px;
+}
+
+#awhdu3-statistic-chart {
+    overflow: hidden;
+}

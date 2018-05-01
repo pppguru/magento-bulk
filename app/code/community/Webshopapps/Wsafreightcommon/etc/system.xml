@@ -1,0 +1,509 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Webshopapps Shipping Module
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @author 	WebShopApps
+ * @license www.WebShopApps.com/license/license.txt
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
+ * (c) Webshopapps.com Zowta Ltd 2012 - All rights reserved.
+**/-->
+<config>
+    <sections>
+        <shipping translate="label" module="shipping">
+            <groups>
+                <wsafreightcommon translate="label">
+                    <label>Webshopapps Freight Common Settings</label>
+                    <comment>
+                        <![CDATA[
+                      <div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">
+			             This module was developed by <a href="http://www.webshopapps.com" target="_blank">WebShopApps.com</a> - <b>Magento Shipping Extension Specialists</b>.
+                  		  <br/> Please refer to the WebShopApps <a href="http://support.webshopapps.com/freight/">Knowledge Base</a> for configuration and troubleshooting guide.
+			          </div>
+                      ]]></comment>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>99</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <std_freight_settings translate="label">
+                            <label>Standard Freight Settings</label>
+                            <frontend_model>wsacommon_adminhtml/system_config_form_field_heading
+                            </frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </std_freight_settings>
+                        <default_freight_class translate="label">
+                            <label>Default Freight NMFC class</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>If no NMFC freight class on product will use this. For FedEx Freight, set class in
+                                FedEx Freight configuration
+                            </comment>
+                        </default_freight_class>
+                        <use_parent translate="label">
+                            <label>Use Parent Configurable/Bundled Group?</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                Should shipping settings on parent item (actual configurable/bundle product) be used
+                                for freight calculations or should the child (simple) product be used?
+                            </comment>
+                        </use_parent>
+                        <show_carriers translate="label">
+                            <label>Always Display these Other Carriers</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>wsafreightcommon/carrier_source_carriers</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Will always show these shipping carriers with Freight</comment>
+                        </show_carriers>
+                        <when_show_heading translate="label">
+                            <label>When is Freight Enabled?</label>
+                            <frontend_model>wsacommon_adminhtml/system_config_form_field_heading
+                            </frontend_model>
+                            <sort_order>54</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </when_show_heading>
+                        <min_weight translate="label">
+                            <label>Minimum Weight</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Minimum weight at which Freight Rates are displayed</comment>
+                            <tooltip>Will still show Freight Rates if item is marked with a Freight Class</tooltip>
+                        </min_weight>
+                        <max_package_weight translate="label">
+                            <label>Maximum Package Weight</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>63</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Please consult your shipping carrier for maximum supported shipping weight
+                            </comment>
+                        </max_package_weight>
+                        <minimum_dimensions translate="label">
+                            <label>Minimum Package Dimensions</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>65</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Minimum Dimensions - measured as length + 2*(h+w) - Requires Dimensional Shipping</comment>
+                            <tooltip>Do not use this unless absolutely required as will slow down processing time</tooltip>
+                        </minimum_dimensions>
+                        <minimum_length translate="label">
+                            <label>Minimum Package Length Dimensions</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>66</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Leave empty if unsure - Requires Dimensional Shipping</comment>
+                            <tooltip>Do not use this unless absolutely required as will slow down processing time</tooltip>
+                        </minimum_length>
+                        <display_freight_rules translate="label">
+                            <label>Display only Freight when Any Rules Met</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>wsafreightcommon/carrier_source_displayrules</source_model>
+                            <sort_order>67</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Will display only Freight if any of the rules are met
+                            </comment>
+                        </display_freight_rules>
+                        <ship_freight_rules translate="label">
+                            <label>Ship via Freight when Any Rules Met</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>wsafreightcommon/carrier_source_shiprules</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Will ship via Freight if any of the rules are met
+                            </comment>
+                        </ship_freight_rules>
+                        <advanced_settings translate="label">
+                            <label>Advanced Settings</label>
+                            <frontend_model>wsacommon_adminhtml/system_config_form_field_heading
+                            </frontend_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </advanced_settings>
+                        <generic_name translate="label">
+                            <label>Generic Carrier Method</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>95</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If specified will display this instead of actual Carrier Name when 1 Carrier
+                                Result
+                            </comment>
+                        </generic_name>
+                        <auto_select_cheapest translate="label">
+                            <label>Autoselect Cheapest Rate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Will auto select the cheapest rate if other carriers are set to always display
+                            </comment>
+                        </auto_select_cheapest>
+                        <custom_description translate="label">
+                            <label>Custom description for freight</label>
+                            <frontend_type>textarea</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Display this message at checkout to explain freight rates.</comment>
+                            <tooltip>Leave blank for no description.</tooltip>
+                        </custom_description>
+                        <accessories_heading translate="label">
+                            <label>Destination Accessorial Settings</label>
+                            <frontend_model>wsacommon_adminhtml/system_config_form_field_heading
+                            </frontend_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </accessories_heading>
+                        <use_accessories translate="label">
+                            <label>Calculate Live Accessorial Charge</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>If NO then can use flat fees below</comment>
+                        </use_accessories>
+                        <liftgate_fee translate="label">
+                            <label>Flat Liftgate Fee</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </liftgate_fee>
+                        <residential_fee translate="label">
+                            <label>Flat Residential Fee</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </residential_fee>
+                        <inside_delivery_fee translate="label">
+                            <label>Flat Inside Fee</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </inside_delivery_fee>
+                        <notify_fee translate="label">
+                            <label>Flat Scheduled Appointment Fee</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </notify_fee>
+                        <show_liftgate_fee>
+                            <label>Display Flat Liftgate Fee At Checkout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>175</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><use_accessories>0</use_accessories></depends>
+                        </show_liftgate_fee>
+                        <apply_live_liftgate translate="label">
+                            <label>Always add Liftgate Fee</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>If YES will not give customer option for selecting
+                                liftgate, but will always apply liftgate
+                            </comment>
+                        </apply_live_liftgate>
+                        <apply_live_business translate="label">
+                            <label>Always add Business Fee</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>If YES will not give customer option for selecting
+                                deliver type, but will always apply business delivery
+                            </comment>
+                        </apply_live_business>
+                        <apply_live_notify translate="label">
+                            <label>Always add Scheduled Appointment Fee</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>If YES will not give customer option for selecting
+                                scheduled delivery, but will always apply scheduled
+                            </comment>
+                        </apply_live_notify>
+                        <default_address translate="label">
+                            <label>Set Default Address Type to Business</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>210</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </default_address>
+                        <default_liftgate translate="label">
+                            <label>Set Liftgate to Yes by Default</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>220</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </default_liftgate>
+                        <hide_liftgate translate="label">
+                            <label>Hide Liftgate Options from Frontend for Selected Carriers</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>wsafreightcommon/carrier_source_freightcarriers</source_model>
+                            <sort_order>225</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <comment>Select carriers to hide liftgate option for that carrier</comment>
+                        </hide_liftgate>
+                        <hide_accessorials translate="label">
+                            <label>Hide Accessorial Options from Frontend</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>wsafreightcommon/carrier_source_accessorials</source_model>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <tooltip>Note: Not all Freight Carriers support all accessorials</tooltip>
+                            <comment>Specify any accessorial charges you wish to hide</comment>
+                        </hide_accessorials>
+                        <accessorial_origin_heading translate="label">
+                            <label>Origin Accessorial Settings</label>
+                            <frontend_model>wsacommon_adminhtml/system_config_form_field_heading
+                            </frontend_model>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </accessorial_origin_heading>
+                        <hazardous translate="label">
+                            <label>All products are Hazardous</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>310</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hazardous>
+                        <liftgate_origin translate="label">
+                            <label>Liftgate required at Origin</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>320</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </liftgate_origin>
+                        <residential_origin translate="label">
+                            <label>Residential Origin</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>330</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </residential_origin>
+                    </fields>
+                </wsafreightcommon>
+            </groups>
+        </shipping>
+        <carriers translate="label" module="shipping">
+            <groups>
+                <freefreight translate="label">
+                    <label>Webshopapps Free Freight Shipping</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>
+                        <![CDATA[
+                <div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">
+                This module was developed by <a href="http://www.webshopapps.com" target="_blank">WebShopApps.com</a> - <b>Magento Shipping Extension Specialists</b>.
+                </div>
+                  ]]>
+                    </comment>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <name translate="label">
+                            <label>Method name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </name>
+                        <liftgate_fee translate="label">
+                            <label>Flat Liftgate Fee</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </liftgate_fee>
+                        <residential_fee translate="label">
+                            <label>Flat Residential Fee</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </residential_fee>
+                        <inside_delivery_fee translate="label">
+                            <label>Flat Inside Delivery Fee</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </inside_delivery_fee>
+                        <handling_type translate="label">
+                            <label>Calculate Handling Fee</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>shipping/source_handlingType</source_model>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </handling_type>
+                        <handling_fee translate="label">
+                            <label>Handling Fee</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>225</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </handling_fee>
+                        <specificerrmsg translate="label">
+                            <label>Displayed Error Message</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>240</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificerrmsg>
+                        <sallowspecific translate="label">
+                            <label>Ship to applicable countries</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>250</sort_order>
+                            <frontend_class>shipping-applicable-country</frontend_class>
+                            <source_model>adminhtml/system_config_source_shipping_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sallowspecific>
+                        <specificcountry translate="label">
+                            <label>Ship to specific countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>260</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificcountry>
+                        <showmethod translate="label">
+                            <label>Show method if Not Applicable</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>270</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <frontend_class>shipping-skip-hide</frontend_class>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showmethod>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>500</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+                    </fields>
+                </freefreight>
+            </groups>
+        </carriers>
+    </sections>
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="1.0.0">
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <block type="authnetcim/adminhtml_customer_tab" name="customer_edit_tab_authnetcim" template="authorizenetcim/tab.phtml">
+            	<block type="authnetcim/adminhtml_customer_view" name="authnetcim.card.manager" template="authorizenetcim/manage.phtml" before="-">
+            		<block type="authnetcim/adminhtml_customer_edit" name="authnetcim.card.edit.form" template="authorizenetcim/edit.phtml" />
+            	</block>
+            </block>
+            <action method="addTab"><name>customer_edit_tab_authnetcim</name><block>customer_edit_tab_authnetcim</block></action>
+        </reference>
+    </adminhtml_customer_edit>
+</layout>

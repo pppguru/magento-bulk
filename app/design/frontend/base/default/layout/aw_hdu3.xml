@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<layout>
+    <contacts_index_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>aw_hdu3/css/customer.css</name></action>
+            <action method="addJs"><name>aw_hdu3/file.js</name></action>
+        </reference>
+        <reference name="content">
+            <block type="aw_hdu3/contacts_fields" name="aw_hdu3.contacts.js" after="-" template="aw_hdu3/contacts/fields.phtml"/>
+        </reference>
+    </contacts_index_index>
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="aw_hdu3" ifconfig="aw_helpdesk3/general/is_enabled">
+                <name>aw_hdu3</name>
+                <path>aw_hdu3/customer/index</path>
+                <label>Help Desk</label>
+            </action>
+        </reference>
+    </customer_account>
+    <aw_hdu3_customer_index>
+        <update handle="customer_account" />
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>aw_hdu3/css/customer.css</name></action>
+            <action method="addJs"><name>aw_hdu3/file.js</name></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="aw_hdu3.customer.container" template="aw_hdu3/customer/ticket_dashboard_container.phtml">
+                <block type="aw_hdu3/customer_ticketList" name="aw_hdu3.customer.ticketList" as="ticket.list" template="aw_hdu3/customer/ticket_list.phtml"/>
+                <block type="aw_hdu3/customer_ticketForm" name="aw_hdu3.customer.ticketForm" as="ticket.createForm" template="aw_hdu3/customer/ticket_form.phtml"/>
+            </block>
+        </reference>
+    </aw_hdu3_customer_index>
+    <aw_hdu3_customer_viewticket>
+        <update handle="customer_account" />
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>aw_hdu3/css/customer.css</name></action>
+            <action method="addJs"><name>aw_hdu3/file.js</name></action>
+        </reference>
+        <reference name="content">
+            <block type="aw_hdu3/customer_ticket_viewContainer" name="aw_hdu3.customer.container" template="aw_hdu3/customer/ticket_view/container.phtml">
+                <block type="aw_hdu3/customer_ticket_view_info" name="aw_hdu3.customer.ticket.info" as="ticket.view.info" template="aw_hdu3/customer/ticket_view/info.phtml"/>
+                <block type="aw_hdu3/customer_ticket_view_escalate" name="aw_hdu3.customer.ticket.escalate" as="ticket.view.escalate" template="aw_hdu3/customer/ticket_view/escalate.phtml"/>
+                <block type="aw_hdu3/customer_ticket_view_action" name="aw_hdu3.customer.ticket.action" as="ticket.view.action" template="aw_hdu3/customer/ticket_view/action.phtml"/>
+                <block type="aw_hdu3/customer_ticket_view_thread" name="aw_hdu3.customer.ticket.thread" as="ticket.view.thread" template="aw_hdu3/customer/ticket_view/thread.phtml"/>
+            </block>
+        </reference>
+    </aw_hdu3_customer_viewticket>
+    <aw_hdu3_external_viewticket>
+        <update handle="root"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>aw_hdu3/css/customer.css</name></action>
+            <action method="addJs"><name>aw_hdu3/file.js</name></action>
+        </reference>
+        <reference name="content">
+            <block type="aw_hdu3/customer_ticket_viewContainer" name="aw_hdu3.customer.container" template="aw_hdu3/customer/ticket_view/container.phtml">
+                <block type="aw_hdu3/customer_ticket_view_info" name="aw_hdu3.customer.ticket.info" as="ticket.view.info" template="aw_hdu3/customer/ticket_view/info.phtml"/>
+                <block type="aw_hdu3/customer_ticket_view_escalate" name="aw_hdu3.customer.ticket.escalate" as="ticket.view.escalate" template="aw_hdu3/customer/ticket_view/escalate.phtml"/>
+                <block type="aw_hdu3/customer_ticket_view_action" name="aw_hdu3.customer.ticket.action" as="ticket.view.action" template="aw_hdu3/customer/ticket_view/action.phtml" />
+                <block type="aw_hdu3/customer_ticket_view_thread" name="aw_hdu3.customer.ticket.thread" as="ticket.view.thread" template="aw_hdu3/customer/ticket_view/thread.phtml"/>
+            </block>
+        </reference>
+    </aw_hdu3_external_viewticket>
+</layout>

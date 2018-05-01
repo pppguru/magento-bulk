@@ -1,0 +1,41 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-account"><?php echo $this->__('Import products into stock transfer'); ?></h4>
+    </div>
+	<div class="fieldset">
+		<form method="POST" enctype="multipart/form-data" action="<?php echo $this->getControllerUrl(); ?>">
+
+			<input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+			
+            <input id="<?php echo $this->getFormTransfertId(); ?>" name="<?php echo $this->getFormTransfertId(); ?>" type="hidden" value="<?php echo $this->getTransfer()->getId(); ?>">
+
+            <table border="0" style="margin-left: 30px;">
+                <tr>
+                    <th width="200" align="center"><?php echo $this->__('CSV File'); ?></th>
+                    <th><input type="file" name="<?php echo $this->getFormFileId(); ?>" id="<?php echo $this->getFormFileId(); ?>"></th>
+                </tr>
+                <tr>
+                    <th width="200" align="center"><?php echo $this->__('Delimiter'); ?></th>
+                    <th><?php echo $this->getDelimiter(); ?></th>
+                </tr>                
+                <tr>
+                    <th width="200" align="center"></th>
+                    <td colspan="2"><input type="submit" value="<?php echo $this->__('Import'); ?>"></td>
+                </tr>
+                <tr>
+                    <th width="200" align="center"><b><?php echo $this->__('Help'); ?></b></th>
+                    <td>
+                        <b><i><?php echo $this->__('File format'); ?> : </i></b><br>
+                        <pre>
+SKU;QTY
+A1;2
+A2;3
+                        </pre>
+                        <b><i><?php echo $this->__('Note'); ?> : </i></b><br/>
+                        - <?php echo $this->__('Import qty on existing products will increase the existing quantity'); ?><br/>
+                    </td>
+                </tr>
+			</table>
+		</form>
+	</div>
+</div>

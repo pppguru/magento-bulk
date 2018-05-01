@@ -1,0 +1,73 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdeskultimate
+ * @version    2.10.7
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+    $coll = $this->getCollection();
+    $coll->load();
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="page-head">
+    <h1><?php echo $this->__('My Support Tickets') ?></h1>
+</div>
+<?php if ($this->getCollection() && $this->count()): ?>
+<?php echo $this->getToolbarHtml() ?>
+<table class="data-table box-table" id="my-reviews-table" cellspacing="0">
+    <col width="65"/>
+    <col width="170"/>
+    <col width="220"/>
+    <col width="40"/>
+    <col width="60"/>
+    <!--col width="30" /-->
+    <thead>
+    <tr>
+        <th><?php echo $this->__('ID') ?></th>
+        <th><?php echo $this->__('Department') ?></th>
+        <th><?php echo $this->__('Title') ?></th>
+        <th><?php echo $this->__('Replies') ?></th>
+        <th><?php echo $this->__('Status') ?></th>
+        <!--th class="last a-center"></th-->
+    </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($coll as $_hd): ?>
+    <tr onclick="window.location.href='<?php echo $this->getTicketLink($_hd->getId())?>'" class="ticket-row">
+        <td onclick="window.location.href='<?php echo $this->getTicketLink($_hd->getId())?>'"
+            style="white-space:nowrap;"><?php echo $_hd->getUid() ?></td>
+        <td onclick="window.location.href='<?php echo $this->getTicketLink($_hd->getId())?>'"><?php echo $this->__($_hd->getDepartment()->getName()) ?></td>
+        <td onclick="window.location.href='<?php echo $this->getTicketLink($_hd->getId())?>'" title="<?php echo $this->htmlEscape($_hd->getTitle());?>"><?php
+            echo Mage::helper('core/string')->truncate($this->htmlEscape($_hd->getTitle()), 22);
+        ?></td>
+        <td onclick="window.location.href='<?php echo $this->getTicketLink($_hd->getId())?>'"><?php echo $_hd->getTotalReplies() ?></td>
+        <td onclick="window.location.href='<?php echo $this->getTicketLink($_hd->getId())?>'"><?php echo $_hd->getStatusText() ?></td>
+        <!--td class="last a-center"><a href="<?php echo $this->getTicketLink($_hd->getId()) ?>"><?php echo $this->__('View') ?></a></td-->
+    </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-reviews-table')</script>
+<?php echo $this->getToolbarHtml() ?>
+<?php else: ?>
+<p><?php echo $this->__('You have submitted no tickets') ?></p>
+<?php endif; ?>

@@ -1,0 +1,33 @@
+<div class="entry-edit-head">
+	<h4 class="icon-head head-customer-address-list"><?php echo $this->__('Payment Data') ?></h4>
+</div>
+<div class="fieldset" style="padding:0">
+	<ol>
+		<?php if( count( $this->getCards() ) > 0 ): ?>
+			<?php foreach( $this->getCards() as $card ): ?>
+				<?php $card = $card->getTypeInstance(); ?>
+				<li class="item info-box <?php if( $card->getExpires() != '' && strtotime( $card->getExpires() ) < time() ): ?>expired<?php endif; ?>" id="tokenbase-<?php echo $card->getMethod(); ?>-<?php echo $card->getId(); ?>" style="cursor:default">
+					<h3 class="box-title">
+						<?php if( $card->getExpires() != '' ): ?>
+							<small class="right"><?php echo date( 'm/Y', strtotime( $card->getExpires() ) ); ?></small>
+						<?php endif; ?>
+						<?php echo $this->__( 'Card: %s', $card->getLabel() ) ?>
+					</h3>
+					<address class="box-content" style="overflow:auto">
+						<?php echo $card->getAddressObject()->format('html'); ?>
+						<div class="right">
+							<?php if( $card->isInUse() ): ?>
+								<abbr title="<?php echo $this->__('This card cannot be modified while associated with open orders.'); ?>"><?php echo $this->__('Card In Use'); ?></abbr>
+							<?php else: ?>
+								<button class="button" type="button" onclick="<?php echo $card->getMethod(); ?>.editCard( <?php echo $card->getId(); ?> );"><span><?php echo $this->__('Edit'); ?></span></button> 
+								<button class="button" type="button" onclick="<?php echo $card->getMethod(); ?>.deleteCard( <?php echo $card->getId(); ?> );"><span><?php echo $this->__('Delete'); ?></span></button>
+							<?php endif; ?>
+						</div>
+					</address>
+				</li>
+			<?php endforeach; ?>
+		<?php else: ?>
+			<li class="item"><?php echo $this->__('No payment data saved yet.') ?></li>
+		<?php endif; ?>
+	</ol>
+</div>

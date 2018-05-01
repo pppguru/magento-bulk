@@ -1,0 +1,798 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+        <Extendware_EWAlsoBought>
+        	<extendware>
+	        	<settings>
+	        		<scopes>
+		        		<main>
+							<tabs>
+						        <main translate="label comment ewhelp" module="ewalsobought">
+						            <label>Also Bought</label>
+						            <sort_order>100</sort_order>
+						        </main>
+						    </tabs>
+							<sections>
+								<ewalsobought translate="label comment ewhelp" module="ewalsobought">
+									<class>separator-top</class>
+									<label>General</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>100</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<groups>
+										<related translate="label comment ewhelp">
+						                    <label>Related Block</label>
+						                    <sort_order>100</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <comment><![CDATA[<b>You must have the related block visible on the frontend already.</b>]]></comment>
+						                    <fields>
+						                    	<enabled translate="label comment ewhelp">
+						                            <label>Enabled</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[Enable or the showing of the also viewed products for this block.]]></comment>
+						                        </enabled>
+						                        <listing_mode translate="label comment ewhelp">
+						                            <label>Listing Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_listingmode</source_model>
+						                            <sort_order>11</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The manner that existing associated products are handled.]]></comment>
+						                        </listing_mode>
+						                        <maximum_existing_products translate="label comment ewhelp">
+						                            <label>Max Existing Products</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>12</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[Maximum number of existing associated products that will be shown.]]></comment>
+						                        	<depends><listing_mode separator=",">existing_first,existing_last</listing_mode></depends>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        </maximum_existing_products>
+						                        <existing_sort_order translate="label comment ewhelp">
+						                            <label>Existing Products Sort Order</label>
+													<frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_existingsortorder</source_model>
+						                            <sort_order>13</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The way that existing products should be sorted.]]></comment>
+						                        	<depends><listing_mode separator=",">existing_first,existing_last</listing_mode></depends>
+						                        </existing_sort_order>
+						                        <maximum_products translate="label comment ewhelp">
+						                            <label>Max Products</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The maximum number of products that will be displayed in the block]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        </maximum_products>
+						                        <also_sort_order translate="label comment ewhelp">
+						                            <label>Also Bought Product Sort Order</label>
+													<frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_existingsortorder</source_model>
+						                            <sort_order>25</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The way that the "Also Bought" products should be ordered. Useful for including some randomness]]></comment>
+						                        </also_sort_order>
+						                        <also_basket_size translate="label comment ewhelp">
+						                            <label>Basket Size</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>26</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[When sort order is random it will select random products from the top X products. X is the basket size. This should be larger than the number of products you are displaying.]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <depends><also_sort_order separator=",">random</also_sort_order></depends>
+						                        </also_basket_size>
+						                        <in_stock_required translate="label comment ewhelp">
+						                            <label>Require In Stock</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If disabled then out-of-stock products will not be shown.]]></comment>
+						                        </in_stock_required>
+						                        <category_filter_mode translate="label comment ewhelp">
+						                            <label>Category Filter Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_categoryfiltermode</source_model>
+						                            <sort_order>50</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If a category filter mode is selected, then products will only be displayed if they match the category]]></comment>
+								                    <ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;">
+								                    	<li><b>None</b> - no category filtering will be done</li>
+								                    	<li><b>Any</b> - a product will only match if it matches at least one of the categories of the primary product</li>
+								                    	<li><b>Current</b> - a product will only match if it is within the current category</li>
+								                    </ul>]]></ewhelp>
+						                        </category_filter_mode>
+						                    </fields>
+						            	</related>
+										<upsells translate="label comment ewhelp">
+						                    <label>Up-Sells Block</label>
+						                    <sort_order>200</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <comment><![CDATA[<b>You must have the up-sells block visible on the frontend already.</b>]]></comment>
+						                    <fields>
+						                    	<enabled translate="label comment ewhelp">
+						                            <label>Enabled</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>5</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[Enable or the showing of the also viewed products for this block.]]></comment>
+						                        </enabled>
+						                       	<listing_mode translate="label comment ewhelp">
+						                            <label>Listing Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_listingmode</source_model>
+						                            <sort_order>11</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The manner that existing associated products are handled.]]></comment>
+						                        </listing_mode>
+						                        <maximum_existing_products translate="label comment ewhelp">
+						                            <label>Max Existing Products</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>12</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[Maximum number of existing associated products that will be shown.]]></comment>
+						                        	<depends><listing_mode separator=",">existing_first,existing_last</listing_mode></depends>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        </maximum_existing_products>
+						                        <existing_sort_order translate="label comment ewhelp">
+						                            <label>Existing Products Sort Order</label>
+													<frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_existingsortorder</source_model>
+						                            <sort_order>13</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The way that existing products should be sorted.]]></comment>
+						                        	<depends><listing_mode separator=",">existing_first,existing_last</listing_mode></depends>
+						                        </existing_sort_order>
+						                        <maximum_products translate="label comment ewhelp">
+						                            <label>Max Products</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The maximum number of products that will be displayed in the block]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        </maximum_products>
+						                        <also_sort_order translate="label comment ewhelp">
+						                            <label>Also Bought Product Sort Order</label>
+													<frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_existingsortorder</source_model>
+						                            <sort_order>25</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The way that the "Also Bought" products should be ordered. Useful for including some randomness]]></comment>
+						                        </also_sort_order>
+						                        <also_basket_size translate="label comment ewhelp">
+						                            <label>Basket Size</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>26</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[When sort order is random it will select random products from the top X products. X is the basket size. This should be larger than the number of products you are displaying.]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <depends><also_sort_order separator=",">random</also_sort_order></depends>
+						                        </also_basket_size>
+						                        <in_stock_required translate="label comment ewhelp">
+						                            <label>Require In Stock</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If disabled then out-of-stock products will not be shown.]]></comment>
+						                        </in_stock_required>
+						                        <category_filter_mode translate="label comment ewhelp">
+						                            <label>Category Filter Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_categoryfiltermode</source_model>
+						                            <sort_order>50</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If a category filter mode is selected, then products will only be displayed if they match the category]]></comment>
+								                    <ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;">
+								                    	<li><b>None</b> - no category filtering will be done</li>
+								                    	<li><b>Any</b> - a product will only match if it matches at least one of the categories of the primary product</li>
+								                    	<li><b>Current</b> - a product will only match if it is within the current category</li>
+								                    </ul>]]></ewhelp>
+						                        </category_filter_mode>
+						                    </fields>
+						            	</upsells>
+						            	<checkout_crosssells translate="label comment ewhelp">
+						                    <label>Checkout Cross-Sells Block</label>
+						                    <sort_order>300</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <comment><![CDATA[<b>You must have the checkout cross-sell block visible on the frontend already.</b>]]></comment>
+						                    <fields>
+						                    	<enabled translate="label comment ewhelp">
+						                            <label>Enabled</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>5</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[Enable or the showing of the also viewed products for this block.]]></comment>
+						                        </enabled>
+						                        <generation_mode translate="label comment ewhelp">
+						                            <label>Generation Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_crosssell_generationmode</source_model>
+						                            <sort_order>6</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[Last product will be fastest, but hybrid or whole cart gives the best results.]]></comment>
+						                        </generation_mode>
+						                        <listing_mode translate="label comment ewhelp">
+						                            <label>Listing Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_listingmode</source_model>
+						                            <sort_order>11</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The manner that existing associated products are handled.]]></comment>
+						                        </listing_mode>
+						                        <maximum_existing_products translate="label comment ewhelp">
+						                            <label>Max Existing Products</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>12</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[Maximum number of existing associated products that will be shown.]]></comment>
+						                        	<depends><listing_mode separator=",">existing_first,existing_last</listing_mode></depends>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        </maximum_existing_products>
+						                        <existing_sort_order translate="label comment ewhelp">
+						                            <label>Existing Products Sort Order</label>
+													<frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_existingsortorder</source_model>
+						                            <sort_order>13</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The way that existing products should be sorted.]]></comment>
+						                        	<depends><listing_mode separator=",">existing_first,existing_last</listing_mode></depends>
+						                        </existing_sort_order>
+						                        <maximum_products translate="label comment ewhelp">
+						                            <label>Max Products</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The maximum number of products that will be displayed in the block]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        </maximum_products>
+						                        <also_sort_order translate="label comment ewhelp">
+						                            <label>Also Bought Product Sort Order</label>
+													<frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_existingsortorder</source_model>
+						                            <sort_order>25</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The way that the "Also Bought" products should be ordered. Useful for including some randomness]]></comment>
+						                        </also_sort_order>
+						                        <also_basket_size translate="label comment ewhelp">
+						                            <label>Basket Size</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>26</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[When sort order is random it will select random products from the top X products. X is the basket size. This should be larger than the number of products you are displaying.]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <depends><also_sort_order separator=",">random</also_sort_order></depends>
+						                        </also_basket_size>
+						                        <in_stock_required translate="label comment ewhelp">
+						                            <label>Require In Stock</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If disabled then out-of-stock products will not be shown.]]></comment>
+						                        </in_stock_required>
+						                        <category_filter_mode translate="label comment ewhelp">
+						                            <label>Category Filter Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_categoryfiltermode</source_model>
+						                            <sort_order>50</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If a category filter mode is selected, then products will only be displayed if they match the category]]></comment>
+								                    <ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;">
+								                    	<li><b>None</b> - no category filtering will be done</li>
+								                    	<li><b>Any</b> - a product will only match if it matches at least one of the categories of the primary product</li>
+								                    	<li><b>Current</b> - a product will only match if it is within the current category</li>
+								                    </ul>]]></ewhelp>
+						                        </category_filter_mode>
+						                    </fields>
+						            	</checkout_crosssells>
+						            	<crosssells translate="label comment ewhelp">
+						                    <label>Cross-Sells Block</label>
+						                    <sort_order>400</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <comment><![CDATA[<b>You must have the cross-sells block visible on the frontend already.</b>]]></comment>
+						                    <fields>
+						                    	<enabled translate="label comment ewhelp">
+						                            <label>Enabled</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[Enable or the showing of the also viewed products for this block.]]></comment>
+						                        </enabled>
+						                        <listing_mode translate="label comment ewhelp">
+						                            <label>Listing Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_listingmode</source_model>
+						                            <sort_order>11</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The manner that existing associated products are handled.]]></comment>
+						                        </listing_mode>
+						                        <maximum_existing_products translate="label comment ewhelp">
+						                            <label>Max Existing Products</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>12</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[Maximum number of existing associated products that will be shown.]]></comment>
+						                        	<depends><listing_mode separator=",">existing_first,existing_last</listing_mode></depends>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        </maximum_existing_products>
+						                        <existing_sort_order translate="label comment ewhelp">
+						                            <label>Existing Products Sort Order</label>
+													<frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_existingsortorder</source_model>
+						                            <sort_order>13</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The way that existing products should be sorted.]]></comment>
+						                        	<depends><listing_mode separator=",">existing_first,existing_last</listing_mode></depends>
+						                        </existing_sort_order>
+						                        <maximum_products translate="label comment ewhelp">
+						                            <label>Max Products</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The maximum number of products that will be displayed in the block]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        </maximum_products>
+						                        <also_sort_order translate="label comment ewhelp">
+						                            <label>Also Bought Product Sort Order</label>
+													<frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_existingsortorder</source_model>
+						                            <sort_order>25</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The way that the "Also Bought" products should be ordered. Useful for including some randomness]]></comment>
+						                        </also_sort_order>
+						                        <also_basket_size translate="label comment ewhelp">
+						                            <label>Basket Size</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>26</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[When sort order is random it will select random products from the top X products. X is the basket size. This should be larger than the number of products you are displaying.]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <depends><also_sort_order separator=",">random</also_sort_order></depends>
+						                        </also_basket_size>
+						                        <in_stock_required translate="label comment ewhelp">
+						                            <label>Require In Stock</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If disabled then out-of-stock products will not be shown.]]></comment>
+						                        </in_stock_required>
+						                        <category_filter_mode translate="label comment ewhelp">
+						                            <label>Category Filter Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_categoryfiltermode</source_model>
+						                            <sort_order>50</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If a category filter mode is selected, then products will only be displayed if they match the category]]></comment>
+								                    <ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;">
+								                    	<li><b>None</b> - no category filtering will be done</li>
+								                    	<li><b>Any</b> - a product will only match if it matches at least one of the categories of the primary product</li>
+								                    	<li><b>Current</b> - a product will only match if it is within the current category</li>
+								                    </ul>]]></ewhelp>
+						                        </category_filter_mode>
+						                    </fields>
+						            	</crosssells>
+						            	<bought translate="label comment ewhelp">
+						                    <label>Custom Block</label>
+						                    <sort_order>500</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <comment><![CDATA[<b>This is only if you have added the block directly to your theme.</b>]]></comment>
+						                    <ewhelp><![CDATA[You can add it via layouts or you &lt;?php echo $this-&gt;getLayout()-&gt;createBlock('ewalsobought/catalog_product_list_viewed')-&gt;<br>setTemplate('extendware/ewalsobought/catalog/product/list/viewed.phtml')-&gt;toHtml(); ?&gt;.]]></ewhelp>
+						                    <fields>
+						                    	<enabled translate="label comment ewhelp">
+						                            <label>Enabled</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[Enable or the showing of the also viewed products for this block.]]></comment>
+						                        </enabled>
+						                        <maximum_products translate="label comment ewhelp">
+						                            <label>Max Products</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The maximum number of products that will be displayed in the block]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        </maximum_products>
+						                        <also_sort_order translate="label comment ewhelp">
+						                            <label>Also Bought Product Sort Order</label>
+													<frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_existingsortorder</source_model>
+						                            <sort_order>25</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The way that the "Also Bought" products should be ordered. Useful for including some randomness]]></comment>
+						                        </also_sort_order>
+						                        <also_basket_size translate="label comment ewhelp">
+						                            <label>Basket Size</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>26</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[When sort order is random it will select random products from the top X products. X is the basket size. This should be larger than the number of products you are displaying.]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <depends><also_sort_order separator=",">random</also_sort_order></depends>
+						                        </also_basket_size>
+						                        <in_stock_required translate="label comment ewhelp">
+						                            <label>Require In Stock</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If disabled then out-of-stock products will not be shown.]]></comment>
+						                        </in_stock_required>
+						                        <category_filter_mode translate="label comment ewhelp">
+						                            <label>Category Filter Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_categoryfiltermode</source_model>
+						                            <sort_order>50</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If a category filter mode is selected, then products will only be displayed if they match the category]]></comment>
+								                    <ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;">
+								                    	<li><b>None</b> - no category filtering will be done</li>
+								                    	<li><b>Any</b> - a product will only match if it matches at least one of the categories of the primary product</li>
+								                    	<li><b>Current</b> - a product will only match if it is within the current category</li>
+								                    </ul>]]></ewhelp>
+						                        </category_filter_mode>
+						                    </fields>
+						            	</bought>
+						            	<bought_sidebar translate="label comment ewhelp">
+						                    <label>Custom Sidebar Block</label>
+						                    <sort_order>600</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <comment><![CDATA[<b>This is only if you have added the block directly to your theme.</b>]]></comment>
+						                    <ewhelp><![CDATA[You can add it via layouts or you &lt;?php echo $this-&gt;getLayout()-&gt;createBlock('ewalsobought/catalog_product_list_viewed_sidebar')-&gt;<br>setTemplate('extendware/ewalsobought/catalog/product/list/viewed/sidebar.phtml')-&gt;toHtml(); ?&gt;.]]></ewhelp>
+						                    <fields>
+						                    	<enabled translate="label comment ewhelp">
+						                            <label>Enabled</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[Enable or the showing of the also viewed products for this block.]]></comment>
+						                        </enabled>
+						                        <maximum_products translate="label comment ewhelp">
+						                            <label>Max Products</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The maximum number of products that will be displayed in the block]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        </maximum_products>
+						                        <also_sort_order translate="label comment ewhelp">
+						                            <label>Also Bought Product Sort Order</label>
+													<frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_existingsortorder</source_model>
+						                            <sort_order>25</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The way that the "Also Bought" products should be ordered. Useful for including some randomness]]></comment>
+						                        </also_sort_order>
+						                        <also_basket_size translate="label comment ewhelp">
+						                            <label>Basket Size</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>26</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[When sort order is random it will select random products from the top X products. X is the basket size. This should be larger than the number of products you are displaying.]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <depends><also_sort_order separator=",">random</also_sort_order></depends>
+						                        </also_basket_size>
+						                        <in_stock_required translate="label comment ewhelp">
+						                            <label>Require In Stock</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If disabled then out-of-stock products will not be shown.]]></comment>
+						                        </in_stock_required>
+						                        <category_filter_mode translate="label comment ewhelp">
+						                            <label>Category Filter Mode</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewalsobought/adminhtml_config_data_option_categoryfiltermode</source_model>
+						                            <sort_order>50</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[If a category filter mode is selected, then products will only be displayed if they match the category]]></comment>
+								                    <ewhelp><![CDATA[<ul style="list-style-type:disc; margin-left: 20px;">
+								                    	<li><b>None</b> - no category filtering will be done</li>
+								                    	<li><b>Any</b> - a product will only match if it matches at least one of the categories of the primary product</li>
+								                    	<li><b>Current</b> - a product will only match if it is within the current category</li>
+								                    </ul>]]></ewhelp>
+						                        </category_filter_mode>
+						                    </fields>
+						            	</bought_sidebar>
+									</groups>
+								</ewalsobought>
+								<ewalsobought_advanced translate="label comment ewhelp" module="ewalsobought">
+									<class>separator-top</class>
+									<label>Advanced</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>200</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<groups>
+										<general translate="label comment ewhelp">
+						                    <label>General</label>
+						                    <sort_order>1</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <fields>
+						                        <maximum_products translate="label comment ewhelp">
+						                            <label>Max Products</label>
+													<frontend_type>text</frontend_type> 
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+								                    <show_in_website>1</show_in_website>
+								                    <show_in_store>1</show_in_store>
+								                    <comment><![CDATA[The maximum number of products retrieved prior to filtering. This only needs to be large enough that after filtering there is enough products to display.]]></comment>
+						                        	<validate>required-entry validate-zero-or-greater</validate>
+						                        	<validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                        </maximum_products>
+						                    </fields>
+						            	</general>
+									</groups>
+								</ewalsobought_advanced>
+							</sections>
+						</main>
+					</scopes>
+				</settings>
+			</extendware>
+		</Extendware_EWAlsoBought>
+	</modules>
+</config>

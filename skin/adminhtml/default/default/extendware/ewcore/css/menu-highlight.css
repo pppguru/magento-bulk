@@ -1,0 +1,4 @@
+#nav li.ewcore-main > a > span { font-weight: bold; color: #bff405}
+#nav li.active > a > span { color: white; }
+
+#nav li.parent li.ewcore-main > a > span { color: #000000}

@@ -1,0 +1,190 @@
+#helpdeskultimate_tabs_form_section_content TD.value {
+    width: 500px;
+}
+
+#helpdeskultimate_tabs_form_section_content .form-list td.value select {
+    width: 346px;
+}
+
+/* +++ Quoting */
+.note-list .do-quote {
+    float: right;
+}
+
+.helpdesk-message table {
+    border: 0;
+    padding: 0;
+    border-collapse: collapse;
+    border-color: #999999;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+}
+
+.helpdesk-message td {
+    padding: 3px;
+    border-color: #999999;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+}
+
+.helpdesk-message div a, .helpdesk-message p a {
+    color: #39668E;
+}
+
+.helpdesk-message div li {
+    border: 0px;
+    background: none;
+    list-style: disc;
+    padding: 0px;
+    margin: 0px !important;
+    margin-left: 20px !important;
+}
+
+.helpdesk-message fieldset {
+    border: 0px none;
+    border-left: 1px solid #999;
+    padding: 5px;
+    margin-left: 10px;
+    font-style: italic;
+}
+
+.helpdesk-message fieldset legend {
+    padding: 5px;
+    font-weight: bold;
+    display: inline;
+}
+
+.helpdesk-message .message-image {
+    border: 1px dashed #ccc;
+    color: #999;
+    font-size: 10px;
+    width: 40px;
+    height: 20px;
+    text-align: center;
+}
+/* +++ Quoting */
+
+/* +++ IMAGE BLOCK */
+div#image-list-box {
+    margin-top: 1.0em;
+    margin-left: -15px;
+}
+
+div#image-list-box h4 {
+    width: 300px;
+    background: #d8d8d8;
+    font-weight: bold;
+    height: 2.0em;
+    padding: 0em 0.8em;
+    line-height: 2.0em;
+    color: #2F2F2F;
+}
+
+#image-list-box .image-list li {
+    background: none;
+    margin: 0px !important;
+    padding: 0px;
+    border: 0px;
+    font-weight: normal;
+}
+
+.image-list {
+    list-style-type: decimal;
+    margin-left: 15px;
+}
+/* --- Image Block */
+
+/* +++ Attachment */
+.helpdesk-message .attachment {
+    font-weight: bold;
+    margin-bottom: 0px;
+    margin-left: -15px;
+    margin-top: 1.0em;
+    min-height: 2.0em;
+    padding: 0em 0.8em;
+    background: #d8d8d8;
+    line-height: 2.0em;
+    width: 300px;
+}
+
+.helpdesk-message .attachment a {
+    font-weight: normal;
+    color: #39668E;
+    display: block;
+}
+
+.helpdeskultimate-ticket-edit  .attachment {
+    font-weight: bold;
+    margin-bottom: 0px;
+    margin-top: 1.0em;
+    height: 2.0em;
+    padding: 0em 0.8em;
+    background: #d8d8d8;
+    line-height: 2.0em;
+}
+
+.helpdeskultimate-ticket-edit .attachment A {
+    font-weight: normal;
+    color: #39668E;
+}
+/* --- Attachment*/
+
+.helpdesk-message blockquote {
+    height: 0px;
+    width: 10px;
+    overflow: hidden;
+    background: url('../images/quotation.png');
+    cursor: pointer;
+    padding-top: 14px;
+    padding-left: 6px;
+    margin-bottom: 3px;
+    font-style: italic;
+}
+
+.helpdesk-message blockquote.active {
+    padding-top: 0px;
+    border-left: 2px solid #999;
+    padding-left: 10px;
+    height: auto;
+    width: auto;
+    background: none;
+}
+
+.helpdesk-message h5 {
+    float: left;
+}
+
+.helpdesk-message SMALL {
+    clear: both;
+    line-height: 1.3em;
+
+}
+
+#gridDepartmentsStats_table TBODY TD.disabled {
+    color: gray;
+
+}
+
+#order_autocomplete_choices li, #customer_autocomplete_choices li {
+    min-height: 10px;
+}
+
+#order_autocomplete_choices .total-count, #customer_autocomplete_choices .total-count {
+    height: 18px;
+    font-size: 10px;
+    padding-right: 10px;
+    background: #bbccdd;
+    color: #111111;
+    text-align: right;
+    cursor: default;
+}
+
+#assign-to-order-note {
+    display: none;
+}
+
+.span-note {
+    color: #D40707 !important;
+    font-size: 10px;
+    display: block;
+}

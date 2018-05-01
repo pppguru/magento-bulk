@@ -1,0 +1,464 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+        <Extendware_EWCrawler>
+        	<extendware>
+	        	<settings>
+	        		<scopes>
+		        		<main>
+							<tabs>
+						        <main translate="label comment ewhelp" module="ewcrawler">
+						            <label>Crawler</label>
+						            <sort_order>100</sort_order>
+						        </main>
+						    </tabs>
+							<sections>
+								<ewcrawler translate="label comment ewhelp" module="ewcrawler">
+									<class>separator-top</class>
+									<label>General</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>100</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<groups>
+										<general translate="label comment ewhelp" module="ewcrawler">
+						                    <label>General</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>100</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <fields>
+						                    	<enabled translate="label comment ewhelp">
+						                            <label>Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Enable or disable the crawler]]></comment>
+						                        </enabled>
+						                        <flush_full_page_cache_enabled translate="label comment ewhelp">
+						                            <label>Flush Full Page Cache</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>2</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Flush the cache prior to the crawl. Usually should be disabled.]]></comment>
+						                            <ewhelp><![CDATA[This should almost always be disabled. This option is only compatible with the Extendware Full Page Cache. If enabled, then your site will be slow during the crawl as the cache will be empty until the crawler rebuilds it.]]></ewhelp>
+						                        </flush_full_page_cache_enabled>
+						                        <flush_magento_cache_enabled translate="label comment ewhelp">
+						                            <label>Flush Magento Cache</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>3</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Flush magento cache prior to the crawl]]></comment>
+						                        	<ewhelp><![CDATA[Flushing the magento cache ensures all the block caches are refreshed and will ensure crawled URLs are showing the most recent information.]]></ewhelp>
+						                        </flush_magento_cache_enabled>
+						                        <refresh_pages_enabled translate="label comment ewhelp">
+						                            <label>Refresh Pages</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>3</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[If disabled then an already cached page will not be refreshed with a new version, which can dramatically increase crawl speed. <b>Note: </b> this only works with Extendware Full Page Cache]]></comment>
+						                        </refresh_pages_enabled>
+						                        <crawl_delay translate="label comment ewhelp">
+						                            <label>Crawl Delay</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>7</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-zero-or-greater</validate>
+						                            <comment><![CDATA[The minimum number of minutes to wait after the last crawl until a new crawl starts. "0" means a crawl will queue as soon as the last crawl finishes (continuous crawling).]]></comment>
+						                        	<ewhelp><![CDATA[You should set this to as high of a value as you can tolerate. Crawling does take server resources, so there is no reason to keep crawl very frequently unless your use case requires it.]]></ewhelp>
+						                        </crawl_delay>
+												<max_threads translate="label comment ewhelp">
+						                            <label>Max Threads</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>8</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            			<max_value>500</max_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-number-range number-range-1-500</validate>
+						                            <comment><![CDATA[The maximum number of concurrent requests to your Web site at one time. Be careful about setting this too high]]></comment>
+						                        	<ewhelp><![CDATA[The higher the number the faster the crawls, in general. Keep in mind, 2 threads is 2 concurrent requests, 3 is 3 concurrent requests, etc. If you set this to a higher number than your server can handle, then your store will become very slow.]]></ewhelp>
+						                        </max_threads>
+						                        <wait_time translate="label comment ewhelp">
+						                            <label>Wait Time (ms)</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>0</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-zero-or-greater</validate>
+						                            <comment><![CDATA[Time in milliseconds to sleep after each request finishes. This should normally be 0. 1 second = 1000 milliseconds]]></comment>
+						                        	<ewhelp><![CDATA[The main thing this can be used for is if a server has limited resources you can set max threads to one and then add a wait between each request to give the server a break.]]></ewhelp>
+						                        </wait_time>
+											</fields>
+										</general>
+										<generated_urls translate="label comment ewhelp" module="ewcrawler">
+						                    <label>Generated Urls</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>200</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <ewhelp><![CDATA[Generated URLs consist of your products, default category pages (no pagination, no sort by options, etc), and CMS pages.]]></ewhelp>
+						                    <fields>
+						                    	<enabled translate="label comment ewhelp">
+						                            <label>Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Enable generating URLs from the core rewrite table]]></comment>
+						                        </enabled>
+						                        <exclude_disabled_products_enabled translate="label comment ewhelp">
+						                            <label>Exclude Disabled Products</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>4</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Exclude disabled products from being crawled]]></comment>
+						                            <ewhelp><![CDATA[Almost always enable this. There is no reason to crawl a product that has been disabled.]]></ewhelp>
+						                        </exclude_disabled_products_enabled>
+						                        <exclude_hidden_products_enabled translate="label comment ewhelp">
+						                            <label>Exclude Hidden Products</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>5</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Exclude hidden products from being crawler]]></comment>
+						                        	<ewhelp><![CDATA[Hidden products are products that your customers will most likely never see. For example, a simple product that is not visible in the category as it is only used as part of a configurable product.]]></ewhelp>
+						                        </exclude_hidden_products_enabled>
+						                        <disabled_currencies translate="label comment ewhelp">
+						                            <label>Disabled Currencies</label>
+						                            <frontend_type>multiselect</frontend_type>
+						                            <source_model>ewcrawler/adminhtml_config_data_option_currency</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <can_be_empty>1</can_be_empty>
+						                            <comment><![CDATA[Currencies that are disabled when generating URLs. CTRL-Click to select more than one]]></comment>
+						                        </disabled_currencies>
+						                        <type_filters translate="label comment ewhelp">
+						                            <label>Filters</label>
+						                            <frontend_type>multiselect</frontend_type>
+						                            <source_model>ewcrawler/adminhtml_config_data_option_typefilter</source_model>
+						                            <sort_order>19</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <can_be_empty>1</can_be_empty>
+						                            <comment><![CDATA[If an item is selected here then it will be excluded from the generated url list. Category products are product urls with categories in them.]]></comment>
+						                        </type_filters>
+						                        <regexp_filters translate="label comment ewhelp">
+						                            <label>RegExp Filters</label>
+						                            <frontend_model>ewcrawler/adminhtml_config_form_field_regexpfilters</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>1</splittable_min_items>
+						                            			<splittable_max_items>1</splittable_max_items>
+						                            			<splittable_item_types>string</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[When a URL matches one of the above regular expressions it will be excluded from the crawl.]]></comment>
+						                        </regexp_filters>
+						                        <customer_groups translate="label comment ewhelp">
+						                            <label>Customer Groups</label>
+						                            <frontend_type>multiselect</frontend_type>
+						                            <source_model>ewcrawler/adminhtml_config_data_option_customergroup</source_model>
+						                            <sort_order>22</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Select which customers groups should be crawled. Please note, each customer group will multiply the # of urls needing to be crawled. <b>Note:</b> Normally you should ONLY select NOT LOGGED IN unless you have a good reason to otherwise]]></comment>
+						                            <ewhelp><![CDATA[Usually you only have to crawl separate customer groups if you receive lots of logged in traffic from that customer group and the cache is segmented on that customer group. You must be using the Extendware Page Cache to crawl as a customer group.]]></ewhelp>
+						                        </customer_groups>
+											</fields>
+										</generated_urls>
+										<logged_urls translate="label comment ewhelp" module="ewcrawler">
+						                    <label>Deep Crawling</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>300</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <ewhelp><![CDATA[Deep Crawling / Logged URLs are every page in your site that a visitor has been to. Deep Crawling / Logged URLs are read from the Extendware Full Page Cache extension. If you are using another Full Page Cache Extension, then no logged URLs will be crawled unless they create a compatible log file for our crawler.]]></ewhelp>
+						                    <ewfield_setifnotset>
+						                    	<ewoverrides>
+													<licensing>
+						                        		<ifhelper>ewcrawler/layout/isLoggedUrlsAllowed</ifhelper>
+						                        		<ifvalue>0</ifvalue>
+						                        		<field_option>
+						                        			<disabled>1</disabled>
+						                        			<comment><![CDATA[<b>Only available with the "Deep Crawling / Logged URLs" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+						                        		</field_option>
+						                        	</licensing>
+					                        	</ewoverrides>
+						                    </ewfield_setifnotset>
+						                    <fields>
+						                    	<enabled translate="label comment ewhelp">
+						                            <label>Status</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Enable or disable reading URLs from a directory]]></comment>
+						                        	<ewhelp><![CDATA[This feature is for if you run Extendware Full Page Cache. Otherwise, you will need to create correctly formatted CSV files to use this feature.]]></ewhelp>
+						                        </enabled>
+						                        <directory translate="label comment ewhelp">
+						                            <label>Directory</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[The relative path to the directory from the mage root that contains the *.log files]]></comment>
+						                            <ewoverrides>
+														<hide>
+							                        		<ifhelper>ewcore/config/isWhiteLabeled</ifhelper>
+							                        		<ifvalue>1</ifvalue>
+							                        		<field_option>
+							                        			<show_in_default>0</show_in_default>
+																<show_in_website>0</show_in_website>
+																<show_in_store>0</show_in_store>
+							                        		</field_option>
+							                        	</hide>
+							                        	<licensing>
+							                        		<ifhelper>ewcrawler/layout/isLoggedUrlsAllowed</ifhelper>
+							                        		<ifvalue>0</ifvalue>
+							                        		<field_option>
+							                        			<disabled>1</disabled>
+							                        			<comment><![CDATA[<b>Only available with the "Deep Crawling / Logged URLs" addon. Please <a href="http://www.extendware.com/rwcore/redirect/normal/to/purchase_addon/" target="_blank">purchase addon</a> to enable.</b>]]></comment>
+							                        		</field_option>
+							                        	</licensing>
+						                        	</ewoverrides>
+						                        </directory>
+						                        <max_age translate="label comment ewhelp">
+						                            <label>Max Age (days)</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-greater-than-zero</validate>
+						                            <comment><![CDATA[URLs longer than this number of days will not be included in the crawl]]></comment>
+						                        	<ewhelp><![CDATA[The higher this number the more likely the crawler will crawl old / expired URLs. Set this to a value that lets the crawler build history, but is not so long that old, invalid URLs can never be "forgotten".]]></ewhelp>
+						                        </max_age>
+						                        <threshold translate="label comment ewhelp">
+						                            <label>Threshold</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-greater-than-zero</validate>
+						                            <comment><![CDATA[The number of occurrences a url must be in a the log before it is crawled. Usually this should not be set for more than 5.]]></comment>
+						                        	<ewhelp><![CDATA[Only crawl a URL if it has been logged this number of times. This ensures the crawler does not crawl tens of thousands of pages that no one will ever visit again (such as an uncommon search string). Keep in mind that a URL is only log on cache. So, if your pages expire every 5 days, then the maximum times that page will be logged in a month is around 6.]]></ewhelp>
+						                        </threshold>
+						                        <num_generation_segmentations translate="label comment ewhelp">
+						                            <label>Generation Segmentations</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>31</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            			<max_value>100</max_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-number-range number-range-1-100</validate>
+						                            <comment><![CDATA[The number of segments used to process the logged urls.]]></comment>
+						                        	<ewhelp><![CDATA[The more segments the longer processing will take, but it will use less memory. 2 and 3 segments will be 2 and 3 time slowers than 1 segment, but memory can be dramatically reduced. Maximum: 100]]></ewhelp>
+						                        </num_generation_segmentations>
+						                        <customer_groups translate="label comment ewhelp">
+						                            <label>Customer Groups</label>
+						                            <frontend_type>multiselect</frontend_type>
+						                            <source_model>ewcrawler/adminhtml_config_data_option_customergroup</source_model>
+						                            <sort_order>32</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[Select which customers groups should be crawled. Please note, each customer group will multiply the # of urls needing to be crawled.  <b>Note:</b> Normally you should ONLY select NOT LOGGED IN unless you have a good reason to otherwise]]></comment>
+						                            <ewhelp><![CDATA[Usually you only have to crawl separate customer groups if you receive lots of logged in traffic from that customer group and the cache is segmented on that customer group. You must be using the Extendware Page Cache to crawl as a customer group.]]></ewhelp>
+						                        </customer_groups>
+						                        <regexp_filters translate="label comment ewhelp">
+						                            <label>RegExp Filters</label>
+						                            <frontend_model>ewcrawler/adminhtml_config_form_field_regexpfilters</frontend_model>
+                            						<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+						                            <sort_order>50</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_serialized_array</model>
+						                            		<options>
+						                            			<splittable_min_items>1</splittable_min_items>
+						                            			<splittable_max_items>1</splittable_max_items>
+						                            			<splittable_item_types>string</splittable_item_types>
+						                            			<splittable_item_min_length>1</splittable_item_min_length>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <comment><![CDATA[When a URL matches one of the above regular expressions it will be excluded from the crawl.]]></comment>
+						                        </regexp_filters>
+											</fields>
+										</logged_urls>
+										<advanced translate="label comment ewhelp" module="ewcrawler">
+						                    <label>Developer</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>400</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <fields>
+						                    	<script_filename translate="label comment ewhelp">
+						                            <label>Script Name</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>1</show_in_website>
+						                            <show_in_store>1</show_in_store>
+						                            <comment><![CDATA[The name of the main script for your store. Usually this is index.php. This is only used if you have rewrites disabled]]></comment>
+						                       		<ewhelp><![CDATA[This usually does not need to be changed. If your store URLs are like this: http://www.domain.com/scriptname.php/, then you will need to change this to the name of the script.]]></ewhelp>
+						                        </script_filename>
+						                    	<verbose_log_enabled translate="label comment ewhelp">
+						                            <label>Verbose Log</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable or disable the verbose log. Be careful, this can create a large log file.]]></comment>
+						                        	<ewhelp><![CDATA[This log every URL that is crawled to the ewcrawler.log file. Be careful leaving this enabled as it can create a huge log file.]]></ewhelp>
+						                        </verbose_log_enabled>
+						                        <destroy_session_enabled translate="label comment ewhelp">
+						                            <label>Destroy Session</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>30</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Enable or disabling destroying session after each crawl request.]]></comment>
+						                        	<ewhelp><![CDATA[This is recommended to always be on. Each crawl request creates a new session, so without destroying these new sessions your session data will increase by a lot.]]></ewhelp>
+						                        </destroy_session_enabled>
+						                        <request_timeout translate="label comment ewhelp">
+						                            <label>Request Timeout (secs)</label>
+						                            <frontend_type>text</frontend_type>
+						                            <sort_order>40</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <validators>
+						                            	<validator>
+						                            		<model>ewcore/data_validator_integer</model>
+						                            		<options>
+						                            			<min_value>1</min_value>
+						                            		</options>
+						                            	</validator>
+						                            </validators>
+						                            <validate>required-entry validate-greater-than-zero</validate>
+						                            <comment><![CDATA[Max time to wait for a request to complete. Setting too low could cause increased server load.]]></comment>
+						                        </request_timeout>
+						                        <close_database_connection translate="label comment ewhelp">
+						                            <label>Close DB Connection</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>50</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[If enabled the db connection will be closed and reopened throughout the crawl process. If disabled then the db connection will be maintained.]]></comment>
+						                        </close_database_connection>
+											</fields>
+										</advanced>
+									</groups>
+								</ewcrawler>
+							</sections>
+						</main>
+					</scopes>
+				</settings>
+			</extendware>
+		</Extendware_EWCrawler>
+	</modules>
+</config>

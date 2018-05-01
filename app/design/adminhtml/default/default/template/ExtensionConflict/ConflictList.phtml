@@ -1,0 +1,110 @@
+<div class="entry-edit">
+
+    <div class="content-header">
+        <table cellspacing="0" class="grid-header">
+            <tr>
+                <td><h3><?php echo $this->__('Extension Conflicts'); ?></h3></td>
+                <td align="right">
+                    <button onclick="document.location.href='<?php echo $this->getRefreshUrl() ?>'" class="scalable"
+                            type="button"><span><?php echo $this->__('REFRESH CONFLICT LIST') ?></span></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="box" style="margin:20px;">
+        <p><?php echo $this->__('An extension conflict happens when two or more modules rewrite the same magento class.'); ?></p>
+        <p><?php echo $this->__('To ensure a safe usage of Magento, all conflicts have to be fixed.'); ?></p>
+        <br>
+        <p><b><?php echo $this->__('PROCESS'); ?></b></p>
+        <p><?php echo $this->__('1) Enable and refresh magento cache'); ?></p>
+        <p><?php echo $this->__('2) Refresh the conflict list with the button REFRESH CONFLICT LIST above.'); ?></p>
+        <p><?php echo $this->__('3) Backup every conflict listed using the link "Backup Conflict". They will be saved in /var/ExtensionConflictsBackup/'); ?></p>
+        <p><?php echo $this->__('4) Fix the conflict using the tutorial into the link "Display Fix"'); ?></p>
+        <p><?php echo $this->__('5) Once the conflict is solved, refresh the list, and "Display Object Trace" link enables you to check what you have done'); ?></p>
+        <br>
+        <p><b><?php echo $this->__('TIPS'); ?></b></p>
+        <p><?php echo $this->__('Conflicts on a MODEL are the more important and can cause Magento to does not work properly.'); ?></p>
+        <p><?php echo $this->__('Conflicts on a BLOCK can cause display crash on missing information.'); ?></p>
+        <p><?php echo $this->__('Conflicts on a HELPER can cause the impacted functionality to does not work properly.'); ?></p>
+        <p><?php echo $this->__('When they are two rewrite on the same core function, you MUST merge their code if it is technically possible.'); ?></p>
+        <p><?php echo $this->__('If not, you have to disable one of the two extensions.'); ?></p>
+        <br>
+    </div>
+
+    <?php $problems = mage::helper('ExtensionConflict')->checkCachesAndCompiler(); ?>
+    <?php if (count($problems)>0): ?>
+    <div class="box" style="margin:20px;">
+        <font color="red">
+            <p><b><?php echo $this->__('POTENTIAL WARNING :'); ?></b></p>
+            <?php foreach($problems as $problem): ?>
+                <p> - <i><?php echo $problem; ?></i></p>
+            <?php endforeach; ?>
+            <p><?php echo $this->__('We recommend to disable the elements listed above before solving a conflict.'); ?></p>
+        </font>
+    </div>
+    <?php endif; ?>
+
+    <?php echo $this->getGridParentHtml() ?>
+
+</div>
+
+<!-- placed here because other tab are loaded in jax so JS is cleared by magento -->
+<script type="text/javascript">
+    function compare() {
+        var url = '<?php echo $this->getCompareUrl(); ?>';
+        var request = new Ajax.Request(
+            url,
+            {
+                method: 'get',
+                onSuccess: function onSuccess(transport) {
+                    var response = transport.responseText;
+                    $('compareResultZone').innerHTML = response;
+                },
+                onFailure: function onFailure(transport) {
+                    $('compareResultZone').innerHTML = 'ERROR HTTP';
+                }
+            }
+        );
+    }
+</script>
+
+<script type="text/javascript">
+    function cleanFolder() {
+        var url = '<?php echo $this->getCleanComparerFolderUrl(); ?>';
+        var request = new Ajax.Request(
+            url,
+            {
+                method: 'get',
+                onSuccess: function onSuccess(transport) {
+                    var response = transport.responseText;
+                    $('compareResultZone').innerHTML = response;
+                },
+                onFailure: function onFailure(transport) {
+                    $('compareResultZone').innerHTML = 'ERROR HTTP';
+                }
+            }
+        );
+    }
+</script>
+
+<script type="text/javascript">
+    function backupDifferences() {
+        var url = '<?php echo $this->getBackupUrl(); ?>';
+        var request = new Ajax.Request(
+            url,
+            {
+                method: 'get',
+                onSuccess: function onSuccess(transport) {
+                    var response = transport.responseText;
+                    $('compareResultZone').innerHTML = response;
+                },
+                onFailure: function onFailure(transport) {
+                    $('compareResultZone').innerHTML = 'ERROR HTTP';
+                }
+            }
+        );
+    }
+</script>
+

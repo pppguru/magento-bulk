@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<config>
+	<extendware>
+		<quickaccess>
+			<ewgppercent>
+                <resource>extendware/ewgppercent</resource>
+				<children>
+					<catalog_product translate="title" module="ewgppercent">
+						<title>Manage Products</title>
+						<action>adminhtml/catalog_product/</action>
+						<resource>catalog/products</resource>
+						<sort_order>1</sort_order>
+					</catalog_product>
+				</children>
+				<title/>
+			</ewgppercent>
+		</quickaccess>
+	</extendware>
+	<menu>
+	    <ewcore translate="title" module="ewgppercent">
+			<title>Extendware</title>
+			<sort_order>89</sort_order>
+			<resource>extendware/ewcore</resource>
+			<class>ewcore-main</class>
+	        <children>
+	            <quickaccess translate="title" module="ewgppercent">
+	                <title>Manage Extensions</title>
+	                <sort_order>1</sort_order>
+	                <resource>extendware/ewgppercent</resource>
+	                <children>
+	                	<ewgppercent translate="title" module="ewgppercent">
+			                <title>Tier / Group Price Percents</title>
+			                <sort_order>56470</sort_order>
+			                <resource>extendware/ewgppercent</resource>
+			                <children>
+			                	<catalog_product translate="title" module="ewgppercent">
+									<title>Manage Products</title>
+									<action>adminhtml/catalog_product/</action>
+									<resource>catalog/products</resource>
+									<sort_order>1</sort_order>
+								</catalog_product>
+								<configure translate="title" module="ewgppercent">
+									<title>Configure</title>
+									<sort_order>9999999</sort_order>
+									<action>adminhtml/ewgppercent_config/index</action>
+									<resource>extendware/ewgppercent/configure</resource>
+								</configure>
+			                </children>
+			            </ewgppercent>
+	                </children>
+	            </quickaccess>
+	            <userguides translate="title" module="ewgppercent">
+	                <title>User Guides / Help</title>
+	                <sort_order>9</sort_order>
+	                <action>adminhtml/ewgppercent_config/gotoExtendwareUserguides</action>
+	                <resource>extendware/ewcore/redirect/userguide</resource>
+	                <class>ewcore-extendware-userguide</class>
+	            </userguides>
+	            <storelink translate="title" module="ewgppercent">
+		            <title>Improve Your Store</title>
+		            <sort_order>9999</sort_order>
+		            <action>adminhtml/ewgppercent_config/gotoExtendware</action>
+		            <resource>extendware/ewcore/redirect/extendware</resource>
+		            <class>ewcore-extendware-link</class>
+		        </storelink>
+	        </children>
+	    </ewcore>
+	</menu>
+	<acl>
+		<resources>
+            <admin>
+                <children>
+                    <extendware translate="title" module="ewgppercent">
+                    	<title>Extendware</title>
+                    	<sort_order>0</sort_order>
+                        <children>
+                        	<ewgppercent translate="title" module="ewgppercent">
+                        		<title>Tier / Group Price Percents</title>
+                        		<children>
+                        			<settings translate="title">
+                        				<title>Settings</title>
+                        				<children>
+				                            <main translate="title">
+				                                <title>Main</title>
+				                                <children>
+					                                <ewgppercent translate="title">
+						                                <title>General</title>
+						                            </ewgppercent>
+					                            </children>
+				                            </main>
+			                            </children>
+			            			</settings>
+			            		</children>
+			            	</ewgppercent>
+                        </children>
+                    </extendware>
+                </children>
+            </admin>
+        </resources>
+	</acl>
+</config>

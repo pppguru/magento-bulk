@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+	    <ewcore translate="title" module="ewcore">
+			<title>Extendware</title>
+			<sort_order>89</sort_order>
+			<resource>extendware/ewcore</resource>
+			<class>ewcore-main</class>
+	        <children>
+	            <quickaccess translate="title" module="ewcore">
+	                <title>Manage Extensions</title>
+	                <sort_order>1</sort_order>
+	                <resource>extendware/ewcore</resource>
+	                <children>
+	                	<overview translate="title" module="ewcore">
+			                <title>Overview</title>
+			                <sort_order>10</sort_order>
+			                <action>adminhtml/ewcore_module</action>
+			                <resource>extendware/ewcore/module</resource>
+			                <class>ewcore-overview</class>
+			            </overview>
+	                </children>
+	            </quickaccess>
+	            <userguides translate="title" module="ewcore">
+	                <title>User Guides / Help</title>
+	                <sort_order>9</sort_order>
+	                <action>adminhtml/ewcore_config/gotoExtendwareUserguides</action>
+	                <resource>extendware/ewcore/redirect/userguide</resource>
+	                <class>ewcore-extendware-userguide</class>
+	            </userguides>
+	            <messages translate="title" module="ewcore">
+	                <title>Message Inbox</title>
+	                <sort_order>10</sort_order>
+	                <action>adminhtml/ewcore_message</action>
+	                <resource>extendware/ewcore/message</resource>
+	            </messages>
+	            <system translate="title" module="ewcore">
+	                <title>System / Developer</title>
+	                <sort_order>20</sort_order>
+	                <resource>extendware/ewcore/system</resource>
+	                <children>
+	                	<information translate="title" module="ewcore">
+			                <title>Information</title>
+			                <sort_order>1</sort_order>
+			                <action>adminhtml/ewcore_system_information</action>
+			                <resource>extendware/ewcore/system/information</resource>
+			            </information>
+			            <messages translate="title" module="ewcore">
+			                <title>Messages</title>
+			                <sort_order>2</sort_order>
+			                <action>adminhtml/ewcore_system_message</action>
+			                <resource>extendware/ewcore/system/message</resource>
+			            </messages>
+			            <cronjobs translate="title" module="ewcore">
+			                <title>Cronjobs</title>
+			                <sort_order>3</sort_order>
+			                <action>adminhtml/ewcore_system_cronjob</action>
+			                <resource>extendware/ewcore/system/cronjob</resource>
+			            </cronjobs>
+			            <logs translate="title" module="ewcore">
+			                <title>Logs</title>
+			                <sort_order>4</sort_order>
+			                <resource>extendware/ewcore/system</resource>
+			                <children>
+			                	<logs translate="title" module="ewcore">
+					                <title>Logs</title>
+					                <sort_order>20</sort_order>
+					                <action>adminhtml/ewcore_system_log</action>
+					                <resource>extendware/ewcore/system/log</resource>
+					            </logs>
+					            <reports translate="title" module="ewcore">
+					                <title>Reports</title>
+					                <sort_order>30</sort_order>
+					                <action>adminhtml/ewcore_system_report</action>
+					                <resource>extendware/ewcore/system/report</resource>
+					            </reports>
+			                </children>
+			            </logs>
+	                </children>
+	            </system>
+	            <storelink translate="title" module="ewcore">
+	                <title>Improve Your Store</title>
+	                <sort_order>60</sort_order>
+	                <action>adminhtml/ewcore_redirect/extendware</action>
+	                <resource>extendware/ewcore/redirect/extendware</resource>
+	                <class>ewcore-extendware-link</class>
+	            </storelink>
+	        </children>
+	    </ewcore>
+	</menu>
+	<acl>
+		<resources>
+            <admin>
+                <children>
+                	<system>
+                        <children>
+                            <config>
+                                <children>
+                                	<ewcore_store translate="title" module="ewcore">
+                                        <title>Extendware Store</title>
+                                        <sort_order>20</sort_order>
+                                    </ewcore_store>
+                                    <ewcore_extensions translate="title" module="ewcore">
+                                        <title>Extendware Extensions</title>
+                                        <sort_order>30</sort_order>
+                                    </ewcore_extensions>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <extendware translate="title" module="ewcore">
+                    	<title>Extendware</title>
+                    	<sort_order>0</sort_order>
+                        <children>
+                        	<ewcore translate="title" module="ewcore">
+                        		<title>Extendware Core</title>
+                        		<children>
+                        			<module translate="title">
+                        				<title>Overview</title>
+			            			</module>
+			            			<message translate="title">
+                        				<title>Messages</title>
+			            			</message>
+                        			<system translate="title">
+                        				<title>System</title>
+                        				<children>
+	                        				<log translate="title">
+		                        				<title>Log Viewer</title>
+					            			</log>
+					            			<report translate="title">
+		                        				<title>Report Viewer</title>
+					            			</report>
+					            			<message translate="title">
+		                        				<title>Message Viewer</title>
+					            			</message>
+					            			<cronjob translate="title">
+		                        				<title>Cronjob Viewer</title>
+					            			</cronjob>
+					            			<information translate="title">
+		                        				<title>System Information</title>
+					            			</information>
+                        				</children>
+			            			</system>
+			            			<redirect translate="title">
+                        				<title>Redirects</title>
+                        				<children>
+	                        				<help translate="title">
+		                        				<title>Community / Help Link</title>
+					            			</help>
+					            			<extendware translate="title">
+		                        				<title>Extendware Link</title>
+					            			</extendware>
+                        				</children>
+			            			</redirect>
+                        			<settings translate="title">
+                        				<title>Settings</title>
+                        				<children>
+				                            <main translate="title">
+				                                <title>Main</title>
+				                                <children>
+					                                <ewcore translate="title">
+						                                <title>General</title>
+						                            </ewcore>
+						                            <ewcore_messaging translate="title">
+						                                <title>Messaging</title>
+						                            </ewcore_messaging>
+						                            <ewcore_developer translate="title">
+						                                <title>Developer</title>
+						                            </ewcore_developer>
+					                            </children>
+				                            </main>
+			                            </children>
+			            			</settings>
+			            		</children>
+			            	</ewcore>
+                        </children>
+                    </extendware>
+                </children>
+            </admin>
+        </resources>
+	</acl>
+</config>

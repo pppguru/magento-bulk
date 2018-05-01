@@ -1,0 +1,107 @@
+<?php $requireClass	= ( $this->haveStoredCards() ? $this->getMethodCode() . '_require' : 'required-entry' ); ?>
+<?php $newClass		= $this->getMethodCode() . '_new'; ?>
+<ul class="form-list" id="payment_form_<?php echo $this->getMethodCode(); ?>" style="display:none;">
+	<?php if( $this->haveStoredCards() ): ?>
+		<li>
+			<label for="<?php echo $this->getMethodCode(); ?>_payment_id"><?php echo $this->__('Pay with account on file'); ?></label>
+			<div class="input-box">
+				<select name="payment[card_id]" id="<?php echo $this->getMethodCode(); ?>_card_id" class="<?php echo $this->getMethodCode(); ?>_require required-entry">
+					<option value=""><?php echo $this->__('-- Select One --'); ?></option>
+					<?php foreach( $this->getStoredCards() as $card ): ?>
+						<?php $card = $card->getTypeInstance(); ?>
+						<option value="<?php echo $card->getId(); ?>" <?php if( $card->getId() == $this->getInfoData('tokenbase_id') || count( $this->getStoredCards() ) == 1 ): ?>selected="selected"<?php endif; ?>><?php echo $card->getLabel(); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</li>
+		<li>
+			<div class="input-box">
+				<?php echo $this->__('Or,'); ?> <a href="#" id="<?php echo $this->getMethodCode(); ?>_add_new"><?php echo $this->__('use a different account.'); ?></a>
+			</div>
+		</li>
+	<?php endif; ?>
+	<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>">
+		<label for="<?php echo $this->getMethodCode(); ?>_echeck_account_name"><?php echo $this->__('Name on Account') ?> <span class="required">*</span></label>
+		<div class="input-box">
+			<input type="text" id="<?php echo $this->getMethodCode(); ?>_echeck_account_name" name="payment[echeck_account_name]" title="<?php echo $this->__('Name on Account') ?>" class="input-text <?php echo $requireClass; ?>" value="<?php echo $this->escapeHtml( $this->getInfoData('echeck_account_name') ); ?>" maxlength="22" />
+		</div>
+	</li>
+	<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>">
+		<label for="<?php echo $this->getMethodCode(); ?>_echeck_bank_name"><?php echo $this->__('Bank Name') ?> <span class="required">*</span></label>
+		<div class="input-box">
+			<input type="text" id="<?php echo $this->getMethodCode(); ?>_echeck_bank_name" name="payment[echeck_bank_name]" title="<?php echo $this->__('Bank Name') ?>" class="input-text <?php echo $requireClass; ?>" value="<?php echo $this->escapeHtml( $this->getInfoData('echeck_bank_name') ); ?>" maxlength="50" autocomplete="off" />
+		</div>
+	</li>
+	<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>">
+		<label for="<?php echo $this->getMethodCode(); ?>_echeck_routing_number"><?php echo $this->__('Routing Number') ?> <span class="required">*</span></label>
+		<div class="input-box">
+			<input type="text" id="<?php echo $this->getMethodCode(); ?>_echeck_routing_no" name="payment[echeck_routing_no]" title="<?php echo $this->__('Routing Number') ?>" class="input-text validate-number <?php echo $requireClass; ?>" value="<?php echo $this->escapeHtml( $this->getInfoData('echeck_routing_no') ); ?>" maxlength="9" autocomplete="off" />
+		</div>
+	</li>
+	<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>">
+		<label for="<?php echo $this->getMethodCode(); ?>_echeck_account_number"><?php echo $this->__('Account Number') ?> <span class="required">*</span></label>
+		<div class="input-box">
+			<input type="text" id="<?php echo $this->getMethodCode(); ?>_echeck_account_no" name="payment[echeck_account_no]" title="<?php echo $this->__('Account Number') ?>" class="input-text validate-number <?php echo $requireClass; ?>" value="<?php echo $this->escapeHtml( $this->getInfoData('echeck_account_no') ); ?>" maxlength="17" autocomplete="off" />
+		</div>
+	</li>
+	<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>">
+		<label for="<?php echo $this->getMethodCode(); ?>_echeck_account_type"><?php echo $this->__('Account Type') ?> <span class="required">*</span></label>
+		<div class="input-box">
+			<select id="<?php echo $this->getMethodCode(); ?>_echeck_account_type" name="payment[echeck_account_type]" class="<?php echo $requireClass; ?>">
+				<?php foreach( Mage::helper('authnetcim_ach')->getAchAccountTypes() as $k => $v ): ?>
+					<option value="<?php echo $k; ?>" <?php if( $k == $this->getInfoData('echeck_account_type') ): ?>selected="selected"<?php endif ?>><?php echo $v; ?></option>
+				<?php endforeach ?>
+			</select>
+		</div>
+	</li>
+	<?php echo $this->getChildHtml(); ?>
+	<?php if( !$this->isNominalCheckout() && $this->getMethod()->getConfigData('allow_unsaved') ): ?>
+		<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>">
+			<label>&nbsp;</label>
+			<input type="hidden" name="payment[save]" value="0" />
+			<input type="checkbox" name="payment[save]" id="<?php echo $this->getMethodCode(); ?>_save" value="1" <?php if( $this->getMethod()->getConfigData('savecard_opt_out') ): ?>checked="checked" <?php endif; ?>autocomplete="on" /> 
+			<label for="<?php echo $this->getMethodCode(); ?>_save" style="float:none;font-weight:normal;"><?php echo $this->__('Save for next time'); ?></label>
+		</li>
+	<?php else: /* Guests are not given any choice or warning, because the card can never be reused. */ ?>
+		<li <?php if( $this->haveStoredCards() ): ?>style="display:none"<?php endif; ?> class="<?php echo $newClass; ?>">
+			<?php echo $this->__('<strong>Note:</strong> For your convenience, this data will be stored securely by our payment processor.'); ?>
+		</li>
+	<?php endif; ?>
+</ul>
+<?php if( $this->haveStoredCards() ): ?>
+	<script type="text/javascript">
+	//<![CDATA[
+		$('<?php echo $this->getMethodCode(); ?>_add_new').observe( 'click', function(e) {
+			e.preventDefault();
+			
+			$$('.<?php echo $newClass; ?>').each(function(el) {
+				el.toggle();
+			});
+			
+			$$('.<?php echo $this->getMethodCode(); ?>_require').each(function(el) {
+				el.toggleClassName('required-entry');
+			});
+			
+			$('<?php echo $this->getMethodCode(); ?>_card_id').setValue(0);
+			
+			return false;
+		});
+		
+		$('<?php echo $this->getMethodCode(); ?>_card_id').observe( 'change', function(e) {
+			$$('.<?php echo $newClass; ?>').each(function(el) {
+				el.hide();
+			});
+			
+			$$('.<?php echo $newClass; ?> .<?php echo $this->getMethodCode(); ?>_require').each(function(el) {
+				el.removeClassName('required-entry');
+			});
+			
+			$$('#<?php echo $this->getMethodCode(); ?>_saved_cc_cid, #<?php echo $this->getMethodCode(); ?>_card_id').each(function(el) {
+				el.addClassName('required-entry');
+			});
+			
+			return false;
+		});
+	//]]>
+	</script>
+<?php endif; ?>

@@ -1,0 +1,41 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Add products to transfer (%s)', $this->getTransfer()->getst_name()) ?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl(); ?>'" class="scalable back" type="button"><span><?php echo $this->__('Back') ?></span></button>
+                <button onclick="objScanner.commit();" class="scalable save" type="button"><span><?php echo $this->__('Add products') ?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<table border="0" width="100%">
+    <tr><td width="50%">
+            <div id="div_instruction" style="font-size: 24px; font-weight: bold; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; padding: 10px;">
+
+            </div>
+        </td><td width="50%">
+            <div id="div_message" style="font-size: 18px; font-weight: bold; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; padding: 10px;">
+
+            </div>
+        </td></tr>
+</table>
+
+<div class="clear"></div>
+
+<div id="div_summary" style="align: center; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; margin-top: 10px;">
+
+</div>
+
+
+<script>
+    var objScanner = new transferAddProducts('<?php echo $this->getProductInformationUrl(); ?>');
+    objScanner.waitForScan();
+</script>
+
+<form method="POST" action="<?php echo $this->getSubmitUrl(); ?>" id="form">
+    <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    <input type="hidden" name="st_id" value="<?php echo $this->getTransfer()->getId(); ?>">
+    <input type="hidden" name="data" id="data">
+</form>

@@ -1,0 +1,95 @@
+<?php if( !$this->isAjax() ): ?>
+<table id="tokenbase-edit-<?php echo $this->getCode(); ?>" class="form-edit" cellspacing="0">
+<?php endif; ?>
+	<tr>
+		<td id="tokenbase-cards-<?php echo $this->getCode(); ?>" class="address-list">
+			<?php echo $this->getChildHtml('tokenbase_customer_method_left'); ?>
+		</td>
+		<td id="tokenbase-form-<?php echo $this->getCode(); ?>">
+			<?php echo $this->getChildHtml('tokenbase_customer_method_right'); ?>
+		</td>
+	</tr>
+<?php if( !$this->isAjax() ): ?>
+</table>
+<?php endif; ?>
+
+<?php if( !$this->isAjax() ): ?>
+	<script type="text/javascript">
+	//<![CDATA[
+		var <?php echo $this->getCode(); ?> = {
+			deleteCard: function( id ) {
+				if( confirm("<?php echo $this->__('Are you sure you want to delete this?'); ?>") ) {
+					Element.show('loading-mask');
+					new Ajax.Request("<?php echo $this->getUrl('*/customer_paymentinfo/delete', array('method' => $this->getCode(), 'id' => $this->getCustomer()->getId())); ?>", {
+						method: 'post',
+						parameters: "card_id="+id,
+						evalScripts: true,
+						onComplete: function(data) {
+							Element.hide('loading-mask');
+							
+							try {
+								var json = data.responseText.evalJSON();
+							} catch(e) {}
+							
+							if( typeof json != 'undefined' && json.success == false ) {
+								alert( json.message );
+							}
+							else {
+								$('tokenbase-<?php echo $this->getCode(); ?>-'+data.request.parameters.card_id).hide();
+							}
+						}
+					});
+				}
+			},
+			
+			editCard: function( id ) {
+				Element.show('loading-mask');
+				new Ajax.Request("<?php echo $this->getUrl('*/customer_paymentinfo/load', array('method' => $this->getCode(), 'id' => $this->getCustomer()->getId())); ?>", {
+					method: 'post',
+					parameters: "card_id="+id,
+					evalScripts: true,
+					onComplete: function(data) {
+						Element.hide('loading-mask');
+						
+						try {
+							var json = data.responseText.evalJSON();
+						} catch(e) {}
+						
+						if( typeof json != 'undefined' && json.success == false ) {
+							alert( json.message );
+						}
+						else {
+							$('tokenbase-form-<?php echo $this->getCode(); ?>').update( data.responseText );
+						}
+					}
+				});
+			},
+			
+			saveCard: function() {
+				Element.show('loading-mask');
+				new Ajax.Request("<?php echo $this->getUrl('*/customer_paymentinfo/save', array('method' => $this->getCode(), 'id' => $this->getCustomer()->getId())); ?>", {
+					method: 'post',
+					parameters: Form.serialize('edit_form'),
+					evalScripts: true,
+					onComplete: function(data) {
+						Element.hide('loading-mask');
+						
+						try {
+							var json = data.responseText.evalJSON();
+						} catch(e) {}
+						
+						if( typeof json != 'undefined' && json.success == false ) {
+							alert( json.message );
+						}
+						else {
+							$('tokenbase-cards-<?php echo $this->getCode(); ?>').update( data.responseText );
+							
+							<?php echo $this->getCode(); ?>.editCard(0);
+						}
+					}
+				});
+			}
+		}
+	//]]!>
+	</script>
+<?php endif; ?>

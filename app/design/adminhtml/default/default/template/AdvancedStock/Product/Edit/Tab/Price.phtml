@@ -1,0 +1,84 @@
+<script>
+	var taxRate = <?php echo $this->getPricerTaxRate(); ?>;
+    var decimalCount = <?php echo $this->getPriceRouding(); ?>;
+</script>
+
+<div class="entry-edit-head">
+	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Price'); ?></h4> 
+</div>
+
+<div class="entry-edit">    
+        <div class="grid">	        
+            <table class="data" cellspacing="0" width="100%">
+
+            	<thead>
+	                <tr class="headings">                       
+	                    <th class="a-center"><?php echo $this->__('Buy Price (Cost)')?></th>
+	                    <th class="a-center"><?php echo $this->__('Sell Price Excl. tax')?></th>	                    
+	                    <th class="a-center"><?php echo $this->__('Special price')?></th>
+                        <th class="a-center"><?php echo $this->__('Sell Price All taxes included')?></th>
+	                    <th class="a-center"><?php echo $this->__('Margin %')?></th>
+	                    <th class="a-center"><?php echo $this->__('Taxe rate')?></th>
+	                    <th class="a-center"><?php echo $this->__('Tax included in price')?></th>
+	                    <th class="a-center"><?php echo $this->__('Currency')?></th>
+	                </tr>
+	            </thead>
+
+	            <tbody>
+	                <tr>
+                        <!-- COST -->
+	                    <td class="a-center">
+                            <div id="cost" name="cost"><?php $cost=$this->getProductCost(); echo ($cost)?round($cost,$this->getPriceRouding()):$this->__('Not defined'); ?></div>
+                        </td>
+
+                        <!-- PRICE Excl tax -->
+	                    <td class="a-center">
+	                    	<div id="price" name="price"><?php if (!mage::getStoreConfig('tax/calculation/price_includes_tax')) { echo $this->getProductPrice(); } ?></div>
+	                    </td>
+
+                        <!-- SPECIAL PRICE -->
+                        <td class="a-center">
+                            <div id="special_price" name="special_price"><?php $sp=$this->getProductCurrentSpecialPrice(); echo ($sp)?round($sp,$this->getPriceRouding()):$this->__('Not defined'); ?></div>
+                        </td>
+
+                        <!-- PRICE Incl tax -->
+	                    <td class="a-center">
+	                    	<div id="price_ttc" name="price_ttc"><?php if (mage::getStoreConfig('tax/calculation/price_includes_tax')) { echo round($this->getProductPrice(),$this->getPriceRouding()); } ?></div>
+	                    </td>                        
+
+                         <!-- Margin -->
+                        <td class="a-center">
+                            <div id="margin_percent" name="margin_percent"><?php echo $this->__('Not defined'); ?></div>
+                        </td>
+
+                         <!-- Tax rate -->
+                        <td class="a-center">                            
+                            <a href="<?php echo $this->getUrl('adminhtml/system_config/edit/section/purchase/'); ?>" target="_blank">
+                                <i><?php echo $this->__('Used tax rate : ').' '.$this->getPricerTaxRate().'%'; ?></i>
+                            </a>
+                        </td>
+
+                        <!-- Tax rate -->
+                        <td class="a-center">
+                            <a href="<?php echo $this->getUrl('adminhtml/system_config/edit/section/tax/'); ?>" target="_blank">
+                                <b><?php echo (mage::getStoreConfig('tax/calculation/price_includes_tax')) ? $this->__('Yes') : $this->__('No'); ?></b>
+                            </a>
+                        </td>
+
+                        <!-- Currency -->
+                        <td class="a-center">
+                            <div id="store_currency" name="store_currency"><?php echo Mage::app()->getStore(Mage::app()->getStore()->getStoreId())->getCurrentCurrencyCode(); ?></div>
+                        </td>
+	                </tr>      
+	            </tbody>                
+			</table>
+		</div>
+</div>
+<script>
+    <?php if (mage::getStoreConfig('tax/calculation/price_includes_tax')): ?>
+        refreshPrices('price_ttc');
+    <?php else: ?>
+        refreshPrices('price');
+    <?php endif; ?>
+
+</script>

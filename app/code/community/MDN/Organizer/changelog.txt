@@ -1,0 +1,40 @@
+__________________________________________________________________________________________
+v1.2 - ERP 2.9.5.2
+- RMA link fix follow 6788 patch
+
+__________________________________________________________________________________________
+v1.2 - ERP 2.9.5.0
+
+Feature :
+- Enable to filter efficiently late and completed organizers
+- Create automatically an organizer to log who has packed an order (in order preparation packing screen)
+
+Fix :
+- Fix Graphical bug when deleting an Organizer
+
+__________________________________________________________________________________________
+v 1.2
+
+- Replace sales order view tab rewrite with layout to avoid conflict
+- Replace catalog product view tab rewrite with layout to avoid conflict
+
+__________________________________________________________________________________________
+v 1.1
+
+- Fix issue with SSL
+- Fix JS errors with magento 1.6
+
+__________________________________________________________________________________________
+v 1.0
+
+- Add email template in default config
+- Code pool is now community
+__________________________________________________________________________________________
+v 0.2.0
+- Add adminhtml.xml
+- Fix : properly display organizers in erp product sheet
+- Fix : rma entity link was wrong
+- Add Organizer tab in product return sheet
+- Add organizer column in product return grid
+- Fix : display correct rma reference in task
+

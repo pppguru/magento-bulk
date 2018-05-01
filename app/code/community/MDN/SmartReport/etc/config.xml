@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MDN_SmartReport>
+            <version>1.1.12</version>
+        </MDN_SmartReport>
+    </modules>
+    <global>
+
+        <helpers>
+            <SmartReport>
+                <class>MDN_SmartReport_Helper</class>
+            </SmartReport>
+        </helpers>
+
+        <blocks>
+            <SmartReport>
+                <class>MDN_SmartReport_Block</class>
+            </SmartReport>
+
+        </blocks>
+
+        <models>
+            <SmartReport>
+                <class>MDN_SmartReport_Model</class>
+                <resourceModel>SmartReport_mysql4</resourceModel>
+            </SmartReport>
+
+            <SmartReport_mysql4>
+                <class>MDN_SmartReport_Model_Mysql4</class>
+                <entities>
+                    <Report>
+                        <table>smart_report_report</table>
+                    </Report>
+                </entities>
+            </SmartReport_mysql4>
+        </models>
+
+        <resources>
+            <SmartReport_setup>
+                <setup>
+                    <module>MDN_SmartReport</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </SmartReport_setup>
+            <SmartReport_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </SmartReport_write>
+            <SmartReport_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </SmartReport_read>
+        </resources>
+
+        <events>
+            <purchase_supplier_tabs>
+                <observers>
+                    <SmartReport>
+                        <type>singleton</type>
+                        <class>SmartReport/Observer</class>
+                        <method>purchase_supplier_tabs</method>
+                    </SmartReport>
+                </observers>
+            </purchase_supplier_tabs>
+            <advancedstock_product_edit_create_tabs>
+                <observers>
+                    <SmartReport>
+                        <type>singleton</type>
+                        <class>SmartReport/Observer</class>
+                        <method>advancedstock_product_edit_create_tabs</method>
+                    </SmartReport>
+                </observers>
+            </advancedstock_product_edit_create_tabs>
+        </events>
+
+    </global>
+
+    <adminhtml>
+
+        <routers>
+            <SmartReport>
+                <use>standard</use>
+                <args>
+                    <module>MDN_SmartReport</module>
+                    <frontName>SmartReport</frontName>
+                </args>
+            </SmartReport>
+        </routers>
+
+        <layout>
+            <updates>
+                <SmartReport>
+                    <file>SmartReport.xml</file>
+                </SmartReport>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <MDN_SmartReport>
+                    <files>
+                        <default>MDN_SmartReport.csv</default>
+                    </files>
+                </MDN_SmartReport>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <frontend>
+        <secure_url>
+            <SmartReport>/SmartReport/</SmartReport>
+        </secure_url>
+        <routers>
+            <SmartReport>
+                <use>standard</use>
+                <args>
+                    <module>MDN_SmartReport</module>
+                    <frontName>SmartReport</frontName>
+                </args>
+            </SmartReport>
+        </routers>
+
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <SmartReport before="Mage_Adminhtml">MDN_SmartReport_Adminhtml</SmartReport>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <default>
+        <smartreport>
+            <filters>
+                <group>%d %b %y</group>
+                <period>this_month</period>
+            </filters>
+            <misc>
+                <days_for_all_stock>30</days_for_all_stock>
+            </misc>
+        </smartreport>
+    </default>
+
+</config>

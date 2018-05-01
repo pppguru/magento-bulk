@@ -1,0 +1,96 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+/* @var $this Mage_Wishlist_Block_Share_Wishlist */
+?>
+<div class="wishlist">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+    <?php if ($this->hasWishlistItems()): ?>
+        <ul class="wishlist__items">
+            <?php foreach($this->getWishlistItems() as $item): ?>
+                <?php
+                    $product = $item->getProduct();
+                    $isVisibleProduct = $product->isVisibleInSiteVisibility();
+                ?>
+
+                <li class="wishlist__item wishlist-item">
+                    <div class="wishlist-item__product product-card product-card--horizontal">
+                        <p class="product-card__image-wrapper">
+                            <a class="product-card__image-link" href="<?php echo $this->getProductUrl($item) ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>">
+                                <img class="product-card__image" src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(90) ?>" srcset="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(180) ?> 2x" width="90" height="90" alt="<?php echo $this->escapeHtml($product->getName()) ?>">
+                            </a>
+                        </p>
+
+                        <div class="product-card__info">
+                            <h3 class="product-card__title">
+                                <a class="product-card__title-link" href="<?php echo $this->getProductUrl($item) ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>"><?php echo $this->escapeHtml($product->getName()) ?></a>
+                            </h3>
+
+                            <div class="product-card__description">
+                                <?php echo $this->escapeHtml($this->stripTags($product->getShortDescription())) ?>
+                            </div>
+
+                            <p class="product-card__price">
+                                <?php echo $this->getPriceHtml($product) ?>
+                            </p>
+
+                            <div><?php echo $this->getDetailsHtml($item) ?></div>
+
+                            <div><?php echo $this->getEscapedDescription($item) ?></div>
+                        </div><!-- .product-card__info -->
+                    </div><!-- .wishlist-item__product product-card product-card--horizontal -->
+
+                    <ul class="wishlist-item__controls">
+                        <?php if ($product->isSaleable() && $isVisibleProduct): ?>
+                            <li class="wishlist-item__control-wrapper">
+                                <button class="wishlist-item__control button btn-cart" type="button" title="<?php echo $this->__('Add to Cart') ?>" onclick="setLocation('<?php echo $this->getSharedItemAddToCartUrl($item) ?>')">
+                                    <?php echo $this->__('Add to Cart') ?>
+                                </button>
+                            </li>
+                        <?php endif; ?>
+
+                        <li class="wishlist-item__control-wrapper">
+                            <a class="wishlist-item__control button button--grey" href="<?php echo $this->getAddToWishlistUrl($item) ?>" onclick="setLocation(this.href); return false;">
+                                <?php echo $this->__('Add to Wishlist') ?>
+                            </a>
+                        </li>
+                    </ul><!-- .wishlist-item__controls -->
+                </li>
+            <?php endforeach ?>
+        </ul>
+
+        <?php if ($this->isSaleable()): ?>
+            <div class="wishlist__controls">
+                <button class="wishlist__control button" type="button" title="<?php echo $this->__('Add All to Cart') ?>" onclick="setLocation('<?php echo $this->getUrl('*/*/allcart', array('_current'=>true)) ?>')">
+                    <?php echo $this->__('Add All to Cart') ?>
+                </button>
+            </div>
+        <?php endif; ?>
+    <?php else: ?>
+        <p><?php echo $this->__('Wishlist is empty now.') ?></p>
+    <?php endif ?>
+</div>

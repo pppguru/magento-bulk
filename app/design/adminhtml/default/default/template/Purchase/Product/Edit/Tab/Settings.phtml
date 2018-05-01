@@ -1,0 +1,80 @@
+
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Purchase Settings'); ?></h4> 
+</div>
+<div class="entry-edit">
+
+    <fieldset id="my-fieldset">
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td width="250"><?php echo $this->__('Exclude from Supply Needs') ?></td>
+                <td class="input-ele">
+                    <?php echo $this->getExcludeFromSupplyDelayCombo('purchase[exclude_from_supply_needs]', $this->getProduct()->getexclude_from_supply_needs()); ?>
+                </td>
+            </tr>
+            <tr>
+                <td width="250"><?php echo $this->__('Default Purchase Tax Rate') ?></td>
+                <td>
+                    <?php echo $this->getDefaultPurchaseTaxRateCombo('purchase[purchase_tax_rate]'); ?>
+                </td>
+            </tr>
+            <tr>
+                <td><?php echo $this->__('Next Supply Date') ?></td>
+                <td class="input-ele">
+                    <?php
+                    if ($this->getProduct()->getsupply_date() != '')
+                        echo $this->formatDate($this->getProduct()->getsupply_date(), 'long');
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <td><?php echo $this->__('Waiting for delivery qty') ?></td>
+                <td class="input-ele">
+                    <?php echo $this->getProduct()->getwaiting_for_delivery_qty(); ?>
+                </td>
+            </tr>
+            <tr>
+                <td><?php echo$this->__('Default Supply Delay') ?></td>
+                <td class="input-ele"><?php echo $this->getSupplyDelayCombo('purchase[default_supply_delay]', $this->getProduct()->getdefault_supply_delay()); ?> <?php echo $this->__('days') ?></td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Manual Supply Need'); ?></h4> 
+</div>
+<div class="entry-edit">
+    <fieldset id="my-fieldset">
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td width="250"><?php echo $this->__('Quantity to purchase') ?></td>
+                <td class="input-ele">
+                    <input type="text" name="purchase[manual_supply_need_qty]" id="purchase[manual_supply_need_qty]" value="<?php echo $this->getProduct()->getmanual_supply_need_qty(); ?>">
+                </td>
+            </tr>
+            <tr>
+                <td width="250"><?php echo $this->__('Comments') ?></td>
+                <td class="input-ele">
+                    <textarea cols="50" rows="4" id="purchase[manual_supply_need_comments]" name="purchase[manual_supply_need_comments]"><?php echo $this->getProduct()->getmanual_supply_need_comments(); ?></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td width="250"><?php echo $this->__('Dead line') ?></td>
+                <td class="input-ele">
+                    <input size="8" type="text" id="purchase[manual_supply_need_date]" name="purchase[manual_supply_need_date]" value="<?php echo $this->getProduct()->getmanual_supply_need_date(); ?>">
+                    <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_manual_supply_need_date" />
+                    <script type="text/javascript">
+                        Calendar.setup({
+                            inputField : 'purchase[manual_supply_need_date]',
+                            ifFormat : '%Y-%m-%e',
+                            button : 'img_manual_supply_need_date',
+                            align : 'Bl',
+                            singleClick : true
+                        });
+                    </script>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>

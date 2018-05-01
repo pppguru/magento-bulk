@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Webshopapps
+ * @copyright  Copyright (c) 2012 Zowta Ltd (http://www.webshopapps.com)
+ * @license    http://www.webshopapps.com/license/license.txt - Commercial license
+ */
+ -->
+
+<layout version="0.1.0">
+    <!-- CREATE ORDERS -->
+    <adminhtml_sales_order_create_index>
+        <reference name="shipping_method">
+            <block type="wsacommon_adminhtml/sales_order_create_shipping_method_form" name="form">
+                <action method="setTemplate">
+                    <template helper="wsacommon/template/adminTemplate">
+                        <arg>adminhtml_sales_order_create_index</arg>
+                    </template>
+                </action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_create_index>
+
+    <adminhtml_sales_order_create_load_block_data>
+        <reference name="shipping_method">
+            <block type="wsacommon_adminhtml/sales_order_create_shipping_method_form" name="form">
+                <action method="setTemplate">
+                    <template helper="wsacommon/template/adminTemplate">
+                        <arg>adminhtml_sales_order_create_load_block_data</arg>
+                    </template>
+                </action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_create_load_block_data>
+
+    <adminhtml_sales_order_create_load_block_shipping_method>
+        <reference name="shipping_method">
+            <block type="wsacommon_adminhtml/sales_order_create_shipping_method_form" name="form">
+                <action method="setTemplate">
+                    <template helper="wsacommon/template/adminTemplate">
+                        <arg>adminhtml_sales_order_create_load_block_shipping_method</arg>
+                    </template>
+                </action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_create_load_block_shipping_method>
+
+  </layout>

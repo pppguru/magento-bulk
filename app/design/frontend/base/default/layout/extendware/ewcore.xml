@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<layout>
+	<ewcore_core_handle>
+		<reference name="head">
+			<action method="addJs"><script>extendware/ewcore/core.js</script></action>
+		</reference>
+	</ewcore_core_handle>
+	
+	<ewcore_modalbox_handle>
+		<update handle="ewcore_core_handle" ewminify_inherit="1"/>
+		<update handle="ewcore_ajax_handle" ewminify_inherit="1"/>
+		<reference name="head">
+			<action method="addJs"><script>extendware/ewcore/modalbox.js</script></action>
+			<action method="addCss"><script>extendware/ewcore/css/modalbox.css</script></action>
+		</reference>
+	</ewcore_modalbox_handle>
+	
+	<ewcore_ajax_handle>
+		<reference name="head">
+			<action method="addJs"><script>extendware/ewcore/ajax.js</script></action>
+		</reference>
+	</ewcore_ajax_handle>
+	
+	<ewcore_center_handle>
+		<reference name="head">
+			<action method="addJs"><script>extendware/ewcore/center.js</script></action>
+		</reference>
+	</ewcore_center_handle>
+	
+	<ewcore_frontend_widget_grid_handle>
+		<reference name="head">
+			<action method="addJs"><script>mage/adminhtml/tools.js</script></action>
+			<action method="addJs"><script>mage/adminhtml/hash.js</script></action>
+        	<action method="addJs"><script>mage/adminhtml/grid.js</script></action>
+        	<action method="addJs"><script>mage/adminhtml/events.js</script></action>
+        	<action method="addJs"><script>mage/adminhtml/form.js</script></action>
+        	<action method="addJs"><script>extendware/ewcore/widget.js</script></action>
+        	<action method="addCss"><script>extendware/ewcore/css/widgets.css</script></action>
+        	<action method="addCss"><script>extendware/ewcore/css/widgets_rwd.css</script></action>
+        	<action method="addItem"><type>skin_css</type><name>extendware/ewcore/css/widgets-ie7less.css</name><params/><if>lt IE 8</if></action>
+        	<action method="addCss"><script>extendware/ewcore/css/widgets-custom.css</script></action>
+		</reference>
+	</ewcore_frontend_widget_grid_handle>
+	
+	<ewcore_frontend_widget_form_handle>
+		<update handle="ewcore_opentip_handle"/>
+		<reference name="head">
+			<action method="addJs"><script>mage/adminhtml/tools.js</script></action>
+			<action method="addJs"><script>mage/adminhtml/hash.js</script></action>
+        	<action method="addJs"><script>mage/adminhtml/events.js</script></action>
+        	<action method="addJs"><script>mage/adminhtml/form.js</script></action>
+        	<action method="addJs"><script>extendware/ewcore/widget.js</script></action>
+        	<action method="addCss"><script>extendware/ewcore/css/widgets.css</script></action>
+        	<action method="addItem"><type>skin_js</type><name>extendware/ewcore/js/widgets.js</name></action>
+        	<action method="addItem"><type>skin_css</type><name>extendware/ewcore/css/widgets-ie7less.css</name><params/><if>lt IE 8</if></action>
+        	<action method="addCss"><script>extendware/ewcore/css/widgets-custom.css</script></action>
+		</reference>
+	</ewcore_frontend_widget_form_handle>
+	
+	<ewcore_opentip_handle>
+		<reference name="head">
+			<action method="addJs"><script>extendware/ewcore/opentip/opentip-prototype-excanvas.min.js</script></action>
+        	<action method="addItem"><type>skin_css</type><name>extendware/ewcore/css/opentip.css</name></action>
+		</reference>
+	</ewcore_opentip_handle>
+</layout>

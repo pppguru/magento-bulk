@@ -1,0 +1,43 @@
+<form method="POST" action="<?php echo $this->getSubmitUrl(); ?>">
+    <input type="hidden" name="qty" id="qty" value="<?php echo (int) $this->getStock()->getQty(); ?>">
+    <input type="hidden" name="stock_id" id="stock_id" value="<?php echo $this->getStock()->getId(); ?>">
+    <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+
+    <table border="0" width="100%">
+        <tr>
+            <td>
+                <?php if ($this->getImageUrl()): ?>
+                    <img src="<?php echo $this->getImageUrl(); ?>" width="50" height="50">
+                <?php endif; ?>
+                </td>
+                <td>
+                    <h3><?php echo $this->getProduct()->getName(); ?></h3>
+                    <p><i><?php echo $this->getProduct()->getSku(); ?></i></p>
+                </td>    
+            </tr>
+            <tr>
+                <th class="a-center" bgcolor="#cccccc" colspan="2"><?php echo $this->__('Edit Stock %s', $this->getWarehouse()->getstock_name()); ?></th>
+            </tr>
+            <tr>
+                <th class="a-center" colspan="2">
+                        <img height="32" src="<?php echo $this->getSkinUrl('images/scanner/minus.gif'); ?>" onclick="decrementQty('qty', 'span_qty');"> &nbsp;
+                        <span id="span_qty" style="font-size: 32px;"><?php echo (int) $this->getStock()->getQty(); ?></span>
+                        <img height="32" src="<?php echo $this->getSkinUrl('images/scanner/plus.gif'); ?>" onclick="incrementQty('qty', 'span_qty');"> &nbsp;
+                </th>
+            </tr>
+            <tr>
+                <th class="a-center" bgcolor="#cccccc" colspan="2"><?php echo $this->__('Description'); ?></th>
+            </tr>
+            <tr>
+                <td align="center" colspan="2">
+                    <input type="text" name="description" id="description" value="<?php echo $this->__('Adjustment'); ?>">
+                </td>
+            </tr>
+        </table>
+
+        <center>
+            <p><input type="submit" value="<?php echo $this->__('Save'); ?>"></p>
+        <p>&nbsp;</p>
+    </center>
+
+</form>

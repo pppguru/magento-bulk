@@ -1,0 +1,140 @@
+<script>
+
+//************************************************************************************************************************************************
+//Suppression d'un manufacturer associ�
+function deleteAssociatedManufacturer(id)
+{
+	if (confirm('<?php echo $this->__('Are you sure ?'); ?>'))
+	{
+		//d�finit l'url
+		var url = '';
+		url = '<?php echo $this->getUrl('adminhtml/Purchase_Suppliers/DeleteAssociatedManufacturer', array('pms_num' => 'XXX')); ?>';
+		url = url.replace('XXX', id);
+		
+		//Appel en ajax
+		var request = new Ajax.Request(url,
+		    {
+		        method:'get',
+		        onSuccess: function onSuccess(transport)
+		        			{
+		        				//Rafraichit la page
+								RefreshList();
+		        			},
+		        onFailure: function onFailure() 
+		        			{
+		        				alert('error');
+		        			}
+		    }
+	    );
+	}
+}
+
+//************************************************************************************************************
+//Rafraichit la liste sans recharger toute la page
+function RefreshList()
+{
+	//definit l'url
+	var url = '';
+	url = '<?php echo $this->getUrl('adminhtml/Purchase_Suppliers/getAssociatedManufacturers', array('sup_id' => $this->getSupplierId())); ?>';
+	
+	//affiche l'url dans le cadre
+	var updater = new Ajax.Updater('div_complete_associatedmanufacturers', url, {method: 'get'});
+}
+
+//************************************************************************************************************
+//sauvegarde les modifs sur les manufacturers associ�s
+function SaveAssociatedManufacturers()
+{
+	//Save en ajax
+	var url = '';
+	url = '<?php echo $this->getUrl('adminhtml/Purchase_Suppliers/SaveManufacturersSuppliers'); ?>';
+	
+    var request = new Ajax.Request(
+        url,
+        {
+            method: 'post',
+            onSuccess: function onSuccess(transport)
+		        			{
+		        				//Rafraichit la page
+								RefreshList();
+		        			},
+			onFailure: function onFailure(transport)
+		        			{
+		        				//Rafraichit la page
+								alert('error');
+		        			},
+            parameters: Form.serialize(document.getElementById('form_associated_manufacturers'))
+        }
+    );
+}
+
+</script>
+
+
+
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Associated Manufacturers')?></h3></td>
+            <td align="right">
+                 <button onclick="javascript:SaveAssociatedManufacturers();" class="scalable save" type="button"><span><?php echo $this->__('Save')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="entry-edit" id="div_contact_list" name="div_contact_list">
+    
+        <div class="grid">
+        	<form name="form_associated_manufacturers" id="form_associated_manufacturers">
+	        	<input type="hidden" id="sup_id" name="sup_id" value="<?php echo $this->getSupplierId(); ?>">
+				<table cellspacing="0" class="data" width="100%">
+		        	<thead>
+						<tr class="headings">
+							<th><?php echo$this->__('Manufacturers')?></th>
+							<th class="a-center"><?php echo$this->__('Officiel ?')?></th>
+							<th class="a-center"><?php echo$this->__('Price')?></th>
+							<th class="a-center"><?php echo$this->__('Range')?></th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+							//Affiche la liste
+							$collection = $this->getManufacturers();
+							foreach ($collection as $item)
+							{
+								echo '<tr>';
+								echo '<td>'.$item->getman_name().'</td>';
+								$checked = '';
+								if ($item->getpms_official() == '1')
+									$checked = ' checked ';
+								echo '<td class="a-center"><input type="checkbox" id="pms_official_'.$item->getpms_num().'" name="pms_official_'.$item->getpms_num().'" value="1" '.$checked.'></td>';
+								echo '<td class="a-center">'.$this->getPricePositionAsCombo('pms_price_position_'.$item->getpms_num(), $item->getpms_price_position()).'</td>';
+								echo '<td class="a-center"><input type="text" id="pms_gamme_'.$item->getpms_num().'" name="pms_gamme_'.$item->getpms_num().'" value="'.$item->getpms_gamme().'"></td>';
+								echo '<td class="a-center">';
+								echo '<a href="javascript:deleteAssociatedManufacturer('.$item->getpms_num().');">'.$this->__('Delete').'</a></td>';
+								echo '</tr>';
+							}
+						?>
+					</tbody>
+		        	<thead>
+						<tr class="headings">
+							<th class="a-center" colspan="5"><?php echo $this->__('Add Manufacturer'); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="a-center"><?php echo $this->getOtherManufacturesAsCombo('add_pms_manufacturer_id'); ?></td>
+							<td class="a-center"><input type="checkbox" value="1" id="add_pms_official" name="add_pms_official"></td>
+							<td class="a-center"><?php echo $this->getPricePositionAsCombo('add_pms_price_position', ''); ?></td>
+							<td class="a-center"><input type="text" value="" id="add_pms_gamme" name="add_pms_gamme"></td>
+							<td class="a-center">&nbsp;</td>
+						</tr>
+					</tbody>
+				</table>
+       		</form>
+	    </div>
+</div>

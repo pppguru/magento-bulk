@@ -1,0 +1,53 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Select an order to initiate a product return.') ?></h1>
+</div>
+
+<?php if ($this->getList()->getSize()): ?>
+    <table cellspacing="0" class="data-table" id="my-orders-table">
+        <thead>
+        <tr>
+            <th><?php echo $this->__('Order #') ?></th>
+            <th><?php echo $this->__('Date') ?></th>
+            <th><?php echo $this->__('Ship to') ?></th>
+            <th><?php echo $this->__('Order Total') ?></th>
+            <th><?php echo $this->__('Order Status') ?></th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $_odd = ''; ?>
+        <?php $_NbOrderAvailable = 0; ?>
+        <?php foreach ($this->getList() as $_order): ?>
+            <?php $_NbOrderAvailable++; ?>
+            <tr>
+                <td><?php echo $_order->getRealOrderId() ?></td>
+                <td><?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?></td>
+                <td><?php echo $_order->getShippingAddress() ? $this->htmlEscape($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
+                <td><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></td>
+                <td><em><?php echo $_order->getStatusLabel() ?></em></td>
+                <td class="a-center">
+                    <?php $status = $this->IsOrderAvailable($_order); ?>
+                    <?php if ($status == 1): ?>
+                        <a href="<?php echo $this->getSelectUrl($_order); ?>"><?php echo $this->__('Select'); ?></a>
+                    <?php else: ?>
+                        <?php echo $status; ?>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+
+        <?php if ($_NbOrderAvailable == 0): ?>
+            <tr>
+                <td colspan="6" style="text-align:center;">
+                    <p><?php echo $this->__('There are no existing orders in your account to initiate a product return.'); ?></p></td>
+            </tr>
+        <?php endif; ?>
+        </tbody>
+    </table>
+    <script type="text/javascript">decorateTable('my-orders-table')</script>
+
+<?php else: ?>
+    <p><?php echo $this->__('There are no existing orders in your account to initiate a product return.') ?></p>
+<?php endif ?>

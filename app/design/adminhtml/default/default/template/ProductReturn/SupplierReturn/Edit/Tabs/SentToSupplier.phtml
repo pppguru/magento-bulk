@@ -1,0 +1,30 @@
+<script>
+    function sendToSupplier(){
+        document.getElementById('send_to_supplier').value = 1;
+        validateSupplierReturnForm();
+    }
+</script>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Send return request to supplier'); ?></h4>
+    </div>
+    <fieldset id="my-fieldset">
+        <input type="hidden" id="data[rsr_id]" name="data[rsr_id]" value="<?php echo $this->getRsr()->getId(); ?>">
+        <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+        <?php echo $this->__('Fill comments and click button to send return request to supplier by email.');
+              echo '<br />';
+              echo $this->__('Supplier email address:').' ';
+              $supMail = $this->getRsr()->getSupplier()->getsup_rma_mail();
+              if ($supMail == null)
+                  echo '<font color="red">'.$this->__('Warning: Supplier email is not set !').'</font>';
+              else
+                  echo $supMail;
+        ?>
+        <p>&nbsp;</p>
+        <center>
+        <textarea rows ="20" cols="180" name="data[mail_content]" id="data[mail_content]"><?php echo $this->__("Hello,\n\nPlease find attached the list of products for those we request a supplier return.\n\nBest regards"); ?></textarea></td>
+        <p><input type="checkbox" name="data[change_status]" id="data[change_status]" /> <?php echo $this->__('Set supplier return status to inquiry after sending mail'); ?></p>
+        <p><input type="hidden" name="send_to_supplier" id="send_to_supplier" value="0" /><button type="button" class="scalable" onClick="sendToSupplier();"><span><?php echo $this->__('Send Email'); ?></span></button></p>
+        </center>
+    </fieldset>
+</div>

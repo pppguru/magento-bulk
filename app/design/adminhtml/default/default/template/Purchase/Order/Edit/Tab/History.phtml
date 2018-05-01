@@ -1,0 +1,19 @@
+<div class="entry-edit">
+
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('History'); ?></h4>
+    </div>
+
+    <fieldset id="my-fieldset">
+
+        <?php foreach($this->getHistory() as $history): ?>
+            <ul class="note-list">
+                <li>
+                    <strong><?php echo $this->helper('core')->formatDate($history->getpoh_created_at(),'medium',true); ?></strong><span class="separator">|</span>
+                    <?php echo $history->getpoh_message(); ?>
+                </li>
+            </ul>
+        <?php endforeach; ?>
+
+    </fieldset>
+</div>

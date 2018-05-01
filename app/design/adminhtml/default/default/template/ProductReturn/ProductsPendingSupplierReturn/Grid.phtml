@@ -1,0 +1,88 @@
+<?php $_recap =  mage::helper('ProductReturn/SupplierReturn')->getPendingProductsPerSupplier(); ?>
+<?php $_no_supplier = mage::helper('ProductReturn/SupplierReturn')->getPendingProductsWithoutSupplier(); ?>
+<div class="entry_edit">    
+    <div class="content-header">
+        <table cellspacing="0" class="grid-header">
+            <tr>
+                <td><h3><?php echo $this->__('Products Pending Supplier Return')?></h3></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="grid">
+    <table class="data" cellspacing="0" width="100%" >
+        <thead>
+            <tr class="headings">
+                <th class="a-center" style="width: 100px;"><?php echo $this->__('Supplier ID') ?></th>
+                <th class="a-center"><?php echo $this->__('Supplier') ?></th>
+                <th class="a-center"><?php echo $this->__('Total Number Of Products') ?></th>
+                <th class="a-center"><?php echo $this->__('Total Purchase Price') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <?php $i = 0 ?>
+            <?php if (count($_recap) > 0): ?>
+            <?php foreach ($_recap as $k => $v): ?>
+            <?php if ($k != 'invalid' && $k != 'total'): ?>
+            <?php $class = ($i % 2 == 0) ? 'event pointer' : 'pointer'; ?>
+                <tr class="<?php echo $class; ?>">
+                    <td class="a-center"><?php echo $k ?></td>
+                    <td class="a-center"><?php echo $v['supplier_name'] ?></td>
+                    <td class="a-center"><?php echo $v['qty'] ?></td>
+                    <td class="a-center"><?php echo number_format($v['amount'], 2, '.', ',') ?></td>
+                </tr>
+            <?php $i++ ?>
+            <? endif; ?>
+            <?php endforeach; ?>
+            <?php endif; ?>
+            <?php if (count($_no_supplier) > 0): ?>
+            <?php if ($_no_supplier['qty'] > 0): ?>
+            <?php $class = ($i % 2 == 0) ? 'event pointer' : 'pointer'; ?>
+                <tr class="<?php echo $class; ?>">
+                    <td class="a-center">&nbsp;</td>
+                    <td class="a-center"><?php echo $this->__('Unknown supplier'); ?></td>
+                    <td class="a-center"><?php echo $_no_supplier['qty']; ?></td>
+                    <td class="a-center">&nbsp;</td>
+                </tr>
+            <?php $i++; ?>
+                <tr class="<?php echo $class; ?>">
+                    <td class="a-center">&nbsp;</td>
+                    <td class="a-center" style="font-weight: bold;"><?php echo $this->__('Total'); ?></td>
+                    <td class="a-center" style="font-weight: bold;"><?php echo $_recap['total']['qty']; ?></td>
+                    <td class="a-center" style="font-weight: bold;"><?php echo round($_recap['total']['amount'],2); ?></td>
+                </tr>
+            <?php $i++; ?>
+            <?php endif; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    </div>
+    <?php if (isset($_recap['invalid']) && is_array($_recap['invalid'])): ?>
+        <div id="messages">
+            <ul class="messages">
+                <li class="error-msg">
+                    <ul>
+                        <li>
+                            <span><?php echo $this->__('Unable to find purchase price for some products'); ?></span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    <?php endif; ?>
+    
+    <div class="separator" style="height: 50px;"></div>
+        <fieldset>
+            <div align="right">
+                <button onclick="addProduct();" class="scalable" type="button"><span><?php echo $this->__('Add product') ?></span></button>
+            </div>
+            <?php echo $this->getGridParentHtml() ?>
+        </fieldset>
+    </div>
+
+<script type="text/javascript">
+    function addProduct() {
+        window.location.href="<?php echo $this->getUrl('adminhtml/ProductReturn_ProductsPendingSupplierReturn/add'); ?>";
+    }
+</script>

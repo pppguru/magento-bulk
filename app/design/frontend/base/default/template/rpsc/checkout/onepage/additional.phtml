@@ -1,0 +1,33 @@
+<?php /* @var $this Conlabz_Rpsc_Block_Checkout_Onepage_Shipping_Method_Additional */ ?>
+<?php if($this->hasNonShippableProducts()): ?>
+<div class="restricted-products">
+    <div class="error-msg items-remove">
+        <p><strong><?php echo $this->__('Warning!') ?></strong></p>
+        <p><?php echo $this->__('The following items are not available for shipment in your country and will be remove from your cart!') ?></p>
+    </div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th><?php echo $this->__('Name') ?></th>
+                <th><?php echo $this->__('Sku') ?></th>
+                <th><?php echo $this->__('Price') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach($this->getNonShippableProducts() as $product): ?>
+            <tr>
+                <td>
+                    <?php echo $this->escapeHtml($product->getName()) ?>
+                </td>
+                <td>
+                    <?php echo $this->escapeHtml($product->getSku()) ?>
+                </td>
+                <td>
+                    <?php echo $this->helper('core')->formatPrice($product->getFinalPrice()) ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php endif; ?>

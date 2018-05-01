@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+   <modules>
+      <Extendware_EWEntityIncrement>
+         <active>true</active>
+         <codePool>local</codePool>
+         <depends>
+            <Extendware_EWCore/>
+         </depends>
+         <extendware>
+            <name>Custom Order Numbers</name>
+         </extendware>
+      </Extendware_EWEntityIncrement>
+   </modules>
+</config>

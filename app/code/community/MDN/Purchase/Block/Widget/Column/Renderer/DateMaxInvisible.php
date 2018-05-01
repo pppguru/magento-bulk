@@ -1,0 +1,32 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @copyright  Copyright (c) 2009 Maison du Logiciel (http://www.maisondulogiciel.com)
+ * @author : Olivier ZIMMERMANN
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+/*
+* retourne les éléments à envoyer pour une commande sélectionnée pour la préparation de commandes
+*/
+class MDN_Purchase_Block_Widget_Column_Renderer_DateMaxInvisible
+	extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract 
+{
+    public function render(Varien_Object $row)
+    {
+    	$fieldName = $this->getColumn()->getindex();
+    	$retour = $row->getData($fieldName);
+    	if (($retour == '2099-12-31') || ($retour == null))
+    		$retour = '';
+    	else 
+    		$retour = $this->formatDate($retour, 'medium', false);
+		return $retour;
+    }
+    
+}

@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<layout>
+	<!-- Authorize.Net CIM (CC) -->
+	<adminhtml_customer_edit>
+		<reference name="customer_edit_tabs">
+			<block type="authnetcim/adminhtml_customer_link" name="customer_edit_link_authnetcim" template="paradoxlabs/tokenbase/customer/link.phtml">
+				<block type="tokenbase/adminhtml_customer_method" name="tokenbase_manage_authnetcim" template="paradoxlabs/tokenbase/customer/method.phtml" before="-">
+					<action method="setCode"><code>authnetcim</code></action>
+					
+					<block type="tokenbase/adminhtml_customer_cards" name="tokenbase_manage_authnetcim_cards" as="tokenbase_customer_method_left" template="paradoxlabs/tokenbase/customer/cards.phtml">
+						<action method="setCode"><code>authnetcim</code></action>
+					</block>
+					<block type="tokenbase/adminhtml_customer_form" name="tokenbase_manage_authnetcim_form" as="tokenbase_customer_method_right" template="paradoxlabs/tokenbase/customer/form.phtml">
+						<action method="setCode"><code>authnetcim</code></action>
+					</block>
+				</block>
+			</block>
+			<action method="addTab"><name>customer_edit_link_authnetcim</name><block>customer_edit_link_authnetcim</block></action>
+		</reference>
+	</adminhtml_customer_edit>
+	
+	<adminhtml_customer_edit_paymentinfo_index_authnetcim>
+		<block type="tokenbase/adminhtml_customer_method" name="root" template="paradoxlabs/tokenbase/customer/method.phtml">
+			<action method="setCode"><code>authnetcim</code></action>
+			
+			<block type="tokenbase/adminhtml_customer_cards" name="tokenbase_manage_authnetcim_cards" as="tokenbase_customer_method_left" template="paradoxlabs/tokenbase/customer/cards.phtml">
+				<action method="setCode"><code>authnetcim</code></action>
+			</block>
+			<block type="tokenbase/adminhtml_customer_form" name="tokenbase_manage_authnetcim_form" as="tokenbase_customer_method_right" template="paradoxlabs/tokenbase/customer/form.phtml">
+				<action method="setCode"><code>authnetcim</code></action>
+			</block>
+		</block>
+	</adminhtml_customer_edit_paymentinfo_index_authnetcim>
+	
+	<adminhtml_customer_edit_paymentinfo_load_authnetcim>
+		<block type="tokenbase/adminhtml_customer_form" name="root" template="paradoxlabs/tokenbase/customer/form.phtml">
+			<action method="setCode"><code>authnetcim</code></action>
+		</block>
+	</adminhtml_customer_edit_paymentinfo_load_authnetcim>
+	
+	<adminhtml_customer_edit_paymentinfo_save_authnetcim>
+		<block type="tokenbase/adminhtml_customer_cards" name="root" template="paradoxlabs/tokenbase/customer/cards.phtml">
+			<action method="setCode"><code>authnetcim</code></action>
+		</block>
+	</adminhtml_customer_edit_paymentinfo_save_authnetcim>
+	
+	<!-- Authorize.Net CIM ACH (eCheck) -->
+	<adminhtml_customer_edit>
+		<reference name="customer_edit_tabs">
+			<block type="authnetcim_ach/adminhtml_customer_link" name="customer_edit_link_authnetcim_ach" template="paradoxlabs/tokenbase/customer/link.phtml">
+				<block type="tokenbase/adminhtml_customer_method" name="tokenbase_manage_authnetcim_ach" template="paradoxlabs/tokenbase/customer/method.phtml" before="-">
+					<action method="setCode"><code>authnetcim_ach</code></action>
+					
+					<block type="tokenbase/adminhtml_customer_cards" name="tokenbase_manage_authnetcim_ach_cards" as="tokenbase_customer_method_left" template="paradoxlabs/authnetcim_ach/customer/cards.phtml">
+						<action method="setCode"><code>authnetcim_ach</code></action>
+					</block>
+					<block type="tokenbase/adminhtml_customer_form" name="tokenbase_manage_authnetcim_ach_form" as="tokenbase_customer_method_right" template="paradoxlabs/authnetcim_ach/customer/form.phtml">
+						<action method="setCode"><code>authnetcim_ach</code></action>
+					</block>
+				</block>
+			</block>
+			<action method="addTab"><name>customer_edit_link_authnetcim_ach</name><block>customer_edit_link_authnetcim_ach</block></action>
+		</reference>
+	</adminhtml_customer_edit>
+	
+	<adminhtml_customer_edit_paymentinfo_index_authnetcim_ach>
+		<block type="tokenbase/adminhtml_customer_method" name="root" template="paradoxlabs/tokenbase/customer/method.phtml">
+			<action method="setCode"><code>authnetcim_ach</code></action>
+			
+			<block type="tokenbase/adminhtml_customer_cards" name="tokenbase_manage_authnetcim_ach_cards" as="tokenbase_customer_method_left" template="paradoxlabs/authnetcim_ach/customer/cards.phtml">
+				<action method="setCode"><code>authnetcim_ach</code></action>
+			</block>
+			<block type="tokenbase/adminhtml_customer_form" name="tokenbase_manage_authnetcim_ach_form" as="tokenbase_customer_method_right" template="paradoxlabs/authnetcim_ach/customer/form.phtml">
+				<action method="setCode"><code>authnetcim_ach</code></action>
+			</block>
+		</block>
+	</adminhtml_customer_edit_paymentinfo_index_authnetcim_ach>
+	
+	<adminhtml_customer_edit_paymentinfo_load_authnetcim_ach>
+		<block type="tokenbase/adminhtml_customer_form" name="root" template="paradoxlabs/authnetcim_ach/customer/form.phtml">
+			<action method="setCode"><code>authnetcim_ach</code></action>
+		</block>
+	</adminhtml_customer_edit_paymentinfo_load_authnetcim_ach>
+	
+	<adminhtml_customer_edit_paymentinfo_save_authnetcim_ach>
+		<block type="tokenbase/adminhtml_customer_cards" name="root" template="paradoxlabs/authnetcim_ach/customer/cards.phtml">
+			<action method="setCode"><code>authnetcim_ach</code></action>
+		</block>
+	</adminhtml_customer_edit_paymentinfo_save_authnetcim_ach>
+</layout>

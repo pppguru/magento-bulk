@@ -1,0 +1,82 @@
+<script>
+    var printLabelUrl = '<?php echo $this->getPrintLabelUrl(); ?>';
+</script>
+
+<div class="entry-edit-head">
+	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Barcodes'); ?></h4> 
+</div>
+<div class="entry-edit">
+    
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td width="250"><?php echo $this->__('Product barcodes'); ?></td>
+                    <td class="input-ele">
+                        <?php if ($this->isAllowedToEdit()): ?>
+                            <?php if (Mage::helper('AdvancedStock/Product_Barcode')->useStandardErpBarcodeManagement()): ?>
+                                    <textarea id="barcodes" name="barcodes" cols="30" rows="5"><?php echo $this->getBarcodesAsString(); ?></textarea> <i>(<?php echo $this->__('1 barcode per line'); ?>)</i>
+                            <?php else: ?>
+                                    <input type="text" id="barcodes" name="barcodes" value="<?php echo $this->getBarcodesAsString(); ?>" />
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <input type="hidden" id="barcodes" name="barcodes" value="<?php echo $this->getBarcodesAsString(); ?>" />
+                            <?php echo $this->getBarcodesAsString(); ?>
+                        <?php endif; ?>
+                    </td>
+               	</tr>
+                <tr>
+                    <td width="250"><?php echo $this->__('Print labels'); ?></td>
+                    <td class="input-ele">
+                        <input type="text" name="label_count" id="label_count" size="3" value="10">
+                        <button onclick="printLabels();" class="scalable" type="button"><span><?php echo $this->__('Print')?></span></button>
+                        <?php if (mage::helper('AdvancedStock/Product_Barcode')->useStandardErpBarcodeManagement()) : ?>
+                            <i>(<?php echo $this->__('Last barcode of the list'); ?>)</i>
+                        <?php endif; ?>
+                        <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/barcode/edit_barcode')): ?>
+                        <br><p><i><a href="<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/system_config/edit/', array('section' => 'advancedstock'));?>" target="_blank">
+                                    <?php echo $this->__('Conf'); ?></a></i></p>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        
+</div>
+
+<?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/barcode/serial_numbers')): ?>
+
+    <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Serials Numbers'); ?></h4> 
+    </div>
+    <?php
+            //add product serial grid
+            echo $this->getLayout()
+                                    ->createBlock('AdvancedStock/Product_Edit_Tabs_Serials')
+                                    ->setTemplate('AdvancedStock/Product/Edit/Tab/Serials.phtml')
+                                    ->setProduct($this->getProduct())
+                                    ->toHtml();
+    ?>
+
+<?php endif; ?>
+
+<?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/barcode/add_serial')): ?>
+
+    <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Add Serials'); ?></h4> 
+    </div>
+    <div class="entry-edit">
+            <fieldset id="my-fieldset">
+                <table cellspacing="0" class="form-list">
+                    <tr>
+                        <td width="250">
+                            <?php echo $this->__('New serials'); ?>
+                        </td>
+                        <td class="input-ele">
+                            <textarea id="serials_to_add" name="serials_to_add" cols="60" rows="10"></textarea> <i>(<?php echo $this->__('1 serial per line'); ?>)</i>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+    </div>
+
+<?php endif; ?>

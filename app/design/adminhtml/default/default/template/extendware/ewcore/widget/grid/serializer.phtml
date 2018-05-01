@@ -1,0 +1,107 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * @var Mage_Adminhtml_Block_Widget_Grid_Serializer
+ */
+?>
+<?php $_id = 'id_' . md5(microtime()) ?>
+<?php $formId = $this->getFormId()?>
+<?php if (!empty($formId)) :?>
+<script type="text/javascript">
+    Event.observe(window, "load", function(){
+        var serializeInput  = document.createElement('input');
+        serializeInput.type = 'hidden';
+        serializeInput.name = '<?php echo $this->getInputElementName()?>';
+        serializeInput.id   = '<?php echo $_id?>';
+        try {
+            document.getElementById('<?php echo $formId?>').appendChild(serializeInput);
+            new serializerController('<?php echo $_id?>', <?php echo $this->getDataAsJSON() ?>, <?php echo $this->getColumnInputNames(true) ?>, <?php echo $this->getGridBlock()->getJsObjectName() ?>, '<?php echo $this->getReloadParamName()?>');
+        } catch(e) {
+            //Error add serializer
+        }
+    });
+</script>
+<?php else :?>
+<input type="hidden" name="<?php echo $this->getInputElementName()?>"  value="" id="<?php echo $_id?>" />
+<script type="text/javascript">
+	serializerController.prototype.serializeObject = function(){
+        if(this.multidimensionalMode){
+            var clone = this.gridData.clone();
+            var data = $H();
+            
+            clone.each(function(pair) {
+        		if (typeof(pair.value) == 'object') {
+        			data.set(pair.key, encode_base64(Object.toQueryString(pair.value)));
+        		}
+            });
+            
+            return data.toQueryString();
+        }
+        else{
+            return this.gridData.values().join('&');
+        }
+    };
+
+    serializerController.prototype.rowClick = function(grid, event) {
+        var trElement = Event.findElement(event, 'tr');
+        var isInput   = Event.element(event).tagName == 'INPUT' || Event.element(event).tagName == 'SELECT' || Event.element(event).tagName == 'OPTION';
+        if(trElement){
+            var checkbox = Element.select(trElement, 'input');
+            if(checkbox[0]){
+                var checked = isInput ? checkbox[0].checked : !checkbox[0].checked;
+                this.grid.setCheckboxChecked(checkbox[0], checked);
+            }
+        }
+        this.getOldCallback('row_click')(grid, event);
+    }
+    serializerController.prototype.rowInit = function(grid, row) {
+        if(this.multidimensionalMode){
+            var checkbox = $(row).select('.checkbox')[0];
+            var selectors = this.inputsToManage.map(function (name) { return ['input[name="' + name + '"]', 'select[name="' + name + '"]']; });
+            var inputs = $(row).select.apply($(row), selectors.flatten());
+            if(checkbox && inputs.length > 0) {
+                checkbox.inputElements = inputs;
+                for(var i = 0; i < inputs.length; i++) {
+                    inputs[i].checkboxElement = checkbox;
+                    if(this.gridData.get(checkbox.value) && this.gridData.get(checkbox.value)[inputs[i].name]) {
+                        inputs[i].value = this.gridData.get(checkbox.value)[inputs[i].name];
+                    }
+                    inputs[i].disabled = !checkbox.checked;
+                    inputs[i].tabIndex = this.tabIndex++;
+                    Event.observe(inputs[i],'keyup', this.inputChange.bind(this));
+                    Event.observe(inputs[i],'change', this.inputChange.bind(this));
+                }
+            }
+        }
+        this.getOldCallback('init_row')(grid, row);
+    };
+    
+    new serializerController('<?php echo $_id?>', <?php echo $this->getDataAsJSON() ?>, <?php echo $this->getColumnInputNames(true) ?>, <?php echo $this->getGridBlock()->getJsObjectName() ?>, '<?php echo $this->getReloadParamName()?>');
+</script>
+<?php endif;?>
+

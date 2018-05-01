@@ -1,0 +1,26 @@
+<script>
+
+    //**************************************************************************************************************
+    //Increment qty
+    function incrementQty(inputId, divId)
+    {
+        var value = document.getElementById(inputId).value;
+        value++;
+        document.getElementById(inputId).value = value;
+        if (document.getElementById(divId))
+            document.getElementById(divId).innerHTML = value;
+    }
+
+    //**************************************************************************************************************
+    //Decrement qty
+    function decrementQty(inputId, divId)
+    {
+        var value = document.getElementById(inputId).value;
+        if (value > 0)
+            value--;
+        document.getElementById(inputId).value = value;
+        if (document.getElementById(divId))
+            document.getElementById(divId).innerHTML = value;
+    }
+
+</script>

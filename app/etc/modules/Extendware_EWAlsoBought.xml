@@ -1,0 +1,14 @@
+<config>
+   <modules>
+      <Extendware_EWAlsoBought>
+         <active>true</active>
+         <codePool>local</codePool>
+         <depends>
+            <Extendware_EWCore/>
+         </depends>
+         <extendware>
+            <name>Also Bought</name>
+         </extendware>
+      </Extendware_EWAlsoBought>
+   </modules>
+</config>

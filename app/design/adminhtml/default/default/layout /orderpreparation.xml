@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+    <orderpreparation_orderpreparation_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/onePagePreparation.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="Orderpreparation/OrderPreparationEdit" name="orderpreparationedit" template="Orderpreparation/OrderPreparationEdit.phtml">
+                <block type="Orderpreparation/OrderContentGrid" name="ordercontentgrid" as="ordercontentgrid" template="Orderpreparation/OrderContentGrid.phtml">
+                </block>
+                <block type="Orderpreparation/Progressgraph" name="progressgraph" as="progressgraph" template="Orderpreparation/Progressgraph.phtml">
+                </block>
+            </block>
+        </reference>
+    </orderpreparation_orderpreparation_edit>
+    
+    <adminhtml_sales_order_view>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/onePagePreparation.js</script>
+            </action>
+        </reference>
+        <reference name="sales_order_tabs">
+            <action method="addTab">
+                <name>order_preparation</name>
+                <block>Orderpreparation/Adminhtml_Sales_Order_View_Tab_Preparation</block>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+    
+
+    <orderpreparation_carriertemplate_importtracking>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/orderPreparation.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/onePagePreparation.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="Orderpreparation/Header" name="onepagepreparationheader" as="onepagepreparationheader" template="Orderpreparation/Header.phtml">
+            </block>
+            <block type="Orderpreparation/CarrierTemplate_ImportTracking" name="importtracking" as="importtracking" template="Orderpreparation/CarrierTemplate/ImportTracking.phtml">
+            </block>
+        </reference>
+    </orderpreparation_carriertemplate_importtracking>
+    
+    <orderpreparation_carriertemplate_grid>
+        <reference name="content">
+            <block type="Orderpreparation/CarrierTemplate_Grid" name="carriertemplategrid" as="carriertemplategrid" template="Orderpreparation/CarrierTemplate/Grid.phtml">
+            </block>
+        </reference>
+    </orderpreparation_carriertemplate_grid>
+
+    <orderpreparation_carriertemplate_edit>
+        <reference name="head">
+          <action method="addJs">
+              <script>prototype/window.js</script>
+          </action>
+          <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+          </action>
+          <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/alphacube.css</name>
+          </action>
+        </reference>
+        <reference name="content">
+            <block type="Orderpreparation/CarrierTemplate_Edit" name="carriertemplateedit" as="carriertemplateedit" template="Orderpreparation/CarrierTemplate/Edit.phtml">
+                <block type="Orderpreparation/CarrierTemplate_Fields" name="fields_export" as="fields_export" template="Orderpreparation/CarrierTemplate/Fields.phtml">
+                </block>
+                <block type="Orderpreparation/CarrierTemplate_Fields" name="fields_import" as="fields_import" template="Orderpreparation/CarrierTemplate/Fields.phtml">
+                </block>
+            </block>
+        </reference>
+    </orderpreparation_carriertemplate_edit>
+
+    <orderpreparation_carriertemplate_new>
+        <reference name="content">
+            <block type="Orderpreparation/CarrierTemplate_New" name="carriertemplatenew" as="carriertemplatenew" template="Orderpreparation/CarrierTemplate/New.phtml">
+            </block>
+        </reference>
+    </orderpreparation_carriertemplate_new>
+    
+    <orderpreparation_onepagepreparation_index>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/orderPreparation.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/onePagePreparation.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/ScannerReader.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="Orderpreparation/Header" name="onepagepreparationheader" as="onepagepreparationheader" template="Orderpreparation/Header.phtml">
+            </block>
+            <block type="Orderpreparation/Adminhtml_OnePagePreparation" name="onepagepreparation" as="onepagepreparation" template="Orderpreparation/OnePagePreparation.phtml">
+            </block>
+        </reference>
+    </orderpreparation_onepagepreparation_index>
+    
+    <orderpreparation_orderpreparation_index>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/orderPreparation.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/onePagePreparation.js</script>
+            </action>
+        </reference>
+    </orderpreparation_orderpreparation_index>
+    
+    <orderpreparation_orderpreparation_shipmentandinvoicescreated>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/orderPreparation.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/onePagePreparation.js</script>
+            </action>
+        </reference>
+    </orderpreparation_orderpreparation_shipmentandinvoicescreated>
+
+    <orderpreparation_pickupdelivery_grid>
+        <reference name="content">
+            <block type="Orderpreparation/PickupDeliveryOrders_Grid" name="pickupdeliveriesorders_grid" as="pickupdeliveriesorders_grid" template="Orderpreparation/PickupDeliveryOrders/Grid.phtml">
+            </block>
+        </reference>
+    </orderpreparation_pickupdelivery_grid>
+
+    <orderpreparation_pickupdelivery_pickupform>
+        <reference name="content">
+            <block type="Orderpreparation/PickupDeliveryOrders_PickupForm" name="pickupdeliveriesorders_pickupform" as="pickupdeliveriesorders_pickupform" template="Orderpreparation/PickupDeliveryOrders/PickupForm.phtml">
+            </block>
+        </reference>
+    </orderpreparation_pickupdelivery_pickupform>
+
+    <adminhtml_sales_order_view>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productStockWindow.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/purchaseOrder.js</script>
+            </action>
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mdn/StockDetails.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/alphacube.css</name>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+
+
+    <orderpreparation_packing_index>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/orderPreparation.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/onePagePreparation.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/ScannerReader.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/OrderPreparation/Packing.js</script>
+            </action>
+            <action method="addCss">
+                <name>css/OrderPreparation.css</name>
+            </action>
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+            <action method="addItem">
+                  <type>js_css</type>
+                  <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                  <type>js_css</type>
+                  <name>prototype/windows/themes/alphacube.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="Orderpreparation/Header" name="onepagepreparationheader" as="onepagepreparationheader" template="Orderpreparation/Header.phtml">
+            </block>
+            <block type="Orderpreparation/Packing_Index" name="onepagepreparation" as="onepagepreparation" template="Orderpreparation/Packing/Index.phtml">
+            </block>
+        </reference>
+    </orderpreparation_packing_index>
+    
+</layout>

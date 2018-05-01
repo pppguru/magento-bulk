@@ -1,0 +1,14 @@
+<config>
+   <modules>
+      <Extendware_EWGPPercent>
+         <active>true</active>
+         <codePool>local</codePool>
+         <depends>
+            <Extendware_EWCore/>
+         </depends>
+         <extendware>
+            <name>Tier / Group Price Percents</name>
+         </extendware>
+      </Extendware_EWGPPercent>
+   </modules>
+</config>

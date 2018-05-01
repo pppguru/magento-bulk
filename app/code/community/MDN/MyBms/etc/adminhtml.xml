@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config>
+    <layout>
+        <updates>
+            <MyBms>
+                <file>MyBms.xml</file>
+            </MyBms>
+        </updates>
+    </layout>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <erp>
+                        <children>
+                            <MyBms module="MyBms">
+                                <title>MyBms</title>
+                            </MyBms>
+                        </children>
+                    </erp>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+</config>

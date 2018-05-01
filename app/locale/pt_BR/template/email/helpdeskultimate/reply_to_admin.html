@@ -1,0 +1,40 @@
+﻿<!--@subject [#{{var ticket.uid}}] Ticket replied: {{var ticket.title}}@-->
+
+<style type="text/css">
+    body, td {
+        color: #2f2f2f;
+        font: 11px/1.35em Verdana, Arial, Helvetica, sans-serif;
+    }
+</style>
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+    <table cellspacing="0" cellpadding="0" border="0" width="98%"
+           style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+        <tr>
+            <td align="center" valign="top">
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top" align="left">
+                            <p>
+                                <span class="_CONTENT_">
+                                {{var message.content}}
+                                </span>
+                            </p>
+                            <p><strong>Detalhes do chamado:</strong></p>
+                            <p style="border:1px solid #BEBCB7; padding:13px 18px; background:#F8F7F5; line-height: 20px;">
+                                <b>Chamado Nro.:</b> <a href="{{var ticket.getAdminUrl()}}">{{var ticket.uid}}</a><br/>
+                                <b>Assunto:</b> {{var ticket.title}}<br/>
+                                <b>Nome:</b> {{var ticket.getCustomer().name}} &lt;{{var ticket.getCustomer().email}}&gt;<br/>
+                            </p>
+                            <p>
+                                <br/>
+                                <br/>
+                                Você pode visualizar o chamado e reponder através da inteface web  <a href="{{var ticket.getAdminUrl()}}">aqui</a>.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

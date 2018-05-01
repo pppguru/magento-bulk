@@ -1,0 +1,12 @@
+<?php
+$text = '';
+$quantity = (int)$this->getQty();
+if ($quantity == 1) {
+	$text = $this->__('My Cart (%s item)', $quantity);
+} elseif ($quantity > 0) {
+	$text = $this->__('My Cart (%s items)', $quantity);
+} else {
+	$text = $this->__('My Cart');
+}
+?>
+<a href="<?php echo Mage::getModel('core/url')->getUrl('checkout/cart'); ?>" title="<?php echo $text; ?>" class="top-link-cart"><?php echo $text; ?></a>

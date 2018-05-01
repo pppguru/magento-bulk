@@ -1,0 +1,92 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
+$pid = "-1";
+
+$website = Mage::app()->getWebsite();
+
+if (Mage::registry('current_product')) {
+
+    $id_template = $website->getConfig("googletrustedstores/gts/gs_product_id");
+    if ($id_template != "") {
+
+        $pid = $id_template;
+        preg_match_all('/{[^}]+}/', $id_template, $m, PREG_OFFSET_CAPTURE);
+        $matches = array_reverse($m[0], true);
+
+
+        $current_product_id = Mage::registry('current_product')->getId();
+        $product = Mage::getModel('catalog/product')->load($current_product_id);
+
+        foreach ($matches as $matche) {
+            $m = $matche[0];
+            $index = $matche[1];
+            $att = str_replace(array('{', '}'), array('', ''), $m);
+            $val = eval('return $product->get' . ucfirst($att) . '();');
+            $pid = substr_replace($pid, $val, $index, strlen($m));
+        }
+    }
+}
+?>
+
+
+<?php if ($website->getConfig("googletrustedstores/gts/country") == "US") { ?>
+<!-- Tursted stores script -->
+<?php } else { ?>
+<!-- Certified shops script -->
+<?php } ?>
+<script type="text/javascript">
+    var gts = gts || [];
+
+    gts.push(["id", "<?php echo $website->getConfig("googletrustedstores/gts/gts_id"); ?>"]);
+
+    
+    <?php if ($website->getConfig("googletrustedstores/gts/country") != "US") { ?>
+        <?php if ($website->getConfig("googletrustedstores/gts/badge_position") == "BOTTOM_RIGHT") { ?>
+            gts.push(["badge_position", "BOTTOM_RIGHT"]);
+        <?php } else if ($website->getConfig("googletrustedstores/gts/badge_position") == "USER_DEFINED") { ?>
+            gts.push(["badge_position", "USER_DEFINED"]);
+            gts.push(["badge_container", "gts_container"]);
+        <?php } ?>
+    <?php } ?>
+
+    <?php if ($pid != "-1") { ?>
+        gts.push(["google_base_offer_id", "<?php echo $pid; ?>"]);
+    <?php } else { ?>
+	gts.push(["google_base_offer_id", "1"]);
+	<?php } ?>
+    gts.push(["locale", "<?php echo $website->getConfig("googletrustedstores/gts/language"); ?>"]);
+    gts.push(["google_base_subaccount_id", "<?php echo $website->getConfig("googletrustedstores/gts/gb_id"); ?>"]);
+    gts.push(["google_base_country", "<?php echo $website->getConfig("googletrustedstores/gts/country"); ?>"]);
+    gts.push(["google_base_language", "<?php echo substr($website->getConfig("googletrustedstores/gts/language"), 0, 2); ?>"]);
+
+
+    (function () {
+        <?php if ($website->getConfig("googletrustedstores/gts/country") == "US") { ?>
+        var scheme = (("https:" == document.location.protocol) ? "https://" : "http://");
+        <?php } ?>
+        var gts = document.createElement("script");
+        gts.type = "text/javascript";
+        gts.async = true;
+        
+        <?php if ($website->getConfig("googletrustedstores/gts/country") == "US") { ?>
+        gts.src = scheme + "www.googlecommerce.com/trustedstores/gtmp_compiled.js";
+        <?php } else { ?>
+        gts.src = "https://www.googlecommerce.com/trustedstores/api/js";
+        <?php } ?>
+            
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(gts, s);
+    })();
+</script>
+
+<?php if ($website->getConfig("googletrustedstores/gts/country") != "US") { ?>
+    <?php if ($website->getConfig("googletrustedstores/gts/badge_position") == "USER_DEFINED") { ?>
+        <div id="gts_container"></div>
+        <style>
+            div#gts_container {
+            <?php echo $website->getConfig("googletrustedstores/gts/badge_container_css"); ?>
+            }
+        </style>
+    <?php } ?>
+<?php }

@@ -1,0 +1,79 @@
+<script>
+	//load products information
+	var products = new Array();
+	
+	<?php $i = 0; ?>
+	<?php foreach ($this->getProducts() as $product): ?>
+		products['<?php echo $i; ?>'] = new Array();
+		products['<?php echo $i; ?>']['id'] = <?php echo $product->getid(); ?>;
+		products['<?php echo $i; ?>']['expected_qty'] = <?php echo ($product->getpop_qty() - $product->getpop_supplied_qty() ) ?>;
+		products['<?php echo $i; ?>']['location'] = '';
+		products['<?php echo $i; ?>']['name'] = '<?php echo str_replace("'", ' ', $product->getpop_product_name()); ?>';
+		products['<?php echo $i; ?>']['barcodes'] = new Array();
+		<?php $j = 0; ?>
+		<?php foreach ($this->getBarcodes($product->getpop_product_id()) as $barcode): ?>
+			products['<?php echo $i; ?>']['barcodes'][<?php echo $j; ?>] = "<?php echo str_replace("\n", "", $barcode->getppb_barcode()); ?>";
+			<?php $j++; ?>
+		<?php endforeach; ?>
+		<?php $i++; ?>
+	<?php endforeach; ?>	
+	
+	var deleteRowWhenQtyReached = <?php echo (int)mage::getStoreConfig('scanner/misc/hide_product_row_when_qty_reached'); ?>;
+	var scanLocationAfterProduct = <?php echo (int)mage::getStoreConfig('scanner/purchase_order/scan_location'); ?>;
+	
+</script>
+
+<form action="<?php echo $this->getSubmitUrl(); ?>" method="POST" name="frm_po" id="frm_po">
+<input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+<input id="po_num" name="po_num" value="<?php echo $this->getOrder()->getId(); ?>" type="hidden">
+
+
+
+<table border="1" cellspacing="0" cellpadding="5" width="100%">
+	<tr>
+		<th class="a-center" bgcolor="#cccccc" colspan="3"><?php echo $this->__('Purchase Order #%s', $this->getOrder()->getpo_order_id()); ?></th>
+	</tr>
+	<?php if ($this->getProducts()->getSize() == 0): ?>
+		<tr>
+			<td>
+				<?php echo $this->__('No Products'); ?>
+			</td>
+		</tr>
+	<?php else: ?>
+                <tr>
+                    <td colspan="3">
+                        <center>
+                        <img src="<?php echo $this->getSkinUrl('images/scanner/btn_create_delivery.gif'); ?>" onclick="document.getElementById('frm_po').submit();" style="margin-top: 5px;">
+                        </center>
+                    </td>
+                </tr>
+		<?php foreach ($this->getProducts() as $product): ?>
+			<tr id="tr_product_<?php echo $product->getId(); ?>">
+				<td><?php echo $product->getpop_product_name(); ?></td>
+				<td align="center" nowrap>
+					<input type="hidden" size="1" id="product_<?php echo $product->getId(); ?>" name="product_<?php echo $product->getId(); ?>" value="0">
+					<input type="hidden" size="1" id="location_<?php echo $product->getId(); ?>" name="location_<?php echo $product->getId(); ?>" value="">
+					<input type="hidden" size="1" id="barcode_<?php echo $product->getId(); ?>" name="barcode_<?php echo $product->getId(); ?>" value="">
+					<span id="span_product_<?php echo $product->getId(); ?>">0</span> / <?php echo ($product->getpop_qty() - $product->getpop_supplied_qty() ); ?><br>
+					<img src="<?php echo $this->getSkinUrl('images/scanner/minus.gif'); ?>" onclick="decrementProductQty(<?php echo $product->getId(); ?>);">
+					<img src="<?php echo $this->getSkinUrl('images/scanner/plus.gif'); ?>" onclick="incrementProductQty(<?php echo $product->getId(); ?>);">
+				</td>
+				<td align="center">
+					<img src="<?php echo $this->getSkinUrl('images/scanner/barcode.gif'); ?>" onclick="linkBarcodeForPo(<?php echo $product->getId(); ?>);"><br>
+					<img src="<?php echo $this->getSkinUrl('images/scanner/location.gif'); ?>" onclick="addLocationForPo(<?php echo $product->getId(); ?>);">
+				</td>
+			</tr>
+		<?php endforeach; ?>
+	<?php endif; ?>
+</table>
+
+</form>
+
+<script>
+	<?php foreach ($this->getProducts() as $product): ?>
+		colorProductCell(<?php echo $product->getId(); ?>);
+	<?php endforeach; ?>	
+	
+	enableCatchKeys('newScanEntryForPurchaseOrder(KC_value);');
+	
+</script>

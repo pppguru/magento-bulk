@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<config>
+
+    <routers>
+        <Scanner>
+            <use>standard</use>
+            <args>
+                <module>MDN_Scanner</module>
+                <frontName>Scanner</frontName>
+            </args>
+        </Scanner>
+    </routers>
+
+    <layout>
+        <updates>
+            <Scanner>
+                <file>Scanner.xml</file>
+            </Scanner>
+        </updates>
+    </layout>
+        
+    <translate>
+        <modules>
+            <MDN_Scanner>
+                <files>
+                    <default>MDN_Scanner.csv</default>
+                </files>
+            </MDN_Scanner>
+        </modules>
+    </translate>
+        
+    <menu>
+        <erp>
+            <children>
+                <scanner translate="title" module="Scanner">
+                    <title>Scanner</title>
+                    <action>adminhtml/Scanner_index/index</action>
+                    <sort_order>50</sort_order>
+                </scanner>
+                
+            </children>
+        </erp>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <erp>
+                        <children>
+                            <scanner module="Scanner">
+                                <title>Scanner</title>
+                            </scanner>		
+                        </children>
+                    </erp>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <scanner module="Scanner">
+                                        <title>Scanner</title>
+                                    </scanner>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+
+</config>

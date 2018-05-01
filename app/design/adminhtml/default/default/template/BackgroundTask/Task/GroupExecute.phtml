@@ -1,0 +1,77 @@
+<script>
+
+//**********************************************************************************************************************
+//Execute group tasks using javascript until every tasks are complete
+function executeTasks()
+{
+	var url;
+	url = '<?php echo $this->getAjaxUrl(); ?>';
+	
+	//Appel en ajax
+	var request = new Ajax.Request(url,
+	    {
+	        method:'get',
+	        onSuccess: function onSuccess(transport)
+	        			{
+	        				//retrieve and display progress
+	        				var elementValues;
+	        				var error = false;
+	        				try
+	        				{
+		        				elementValues = eval('(' + transport.responseText + ')');
+		        				if (elementValues['error'] == 1)
+		        				{
+		        					alert(elementValues['error_message']);
+		        				}
+	        				}
+	        				catch(err)
+	        				{
+	        					alert(transport.responseText);
+	        					error = true;
+	        				}
+
+	        				if (true)
+	        				{
+		        				document.getElementById('progress_percent').innerHTML = elementValues['progress'] + ' %';
+		        				//if not finished, re-call function
+		        				if (!elementValues['finished'])
+			        				executeTasks();
+			        			else
+			        				document.location.href = '<?php echo $this->getFinishedUrl(); ?>';
+	        				}
+	        			},
+	        onFailure: function onAddressFailure(xhr) 
+	        			{
+	        				executeTasks();
+	        				//alert('An error occured while executing tasks : ' + xhr.status + ' : ' + xhr.statusText);
+	        			}
+	    }
+    );	
+}
+
+//Launch first execution on window load
+<?php if ($this->getGroup() != null): ?>
+window.onload = executeTasks();
+<?php endif; ?>
+
+</script>
+
+<center>
+	<div class="entry-edit" style="width: 400px;"> 
+		<div class="entry-edit-head"><h4><?php if ($this->getGroup() != null): ?><?php echo $this->getGroup()->getbtg_description(); ?><?php else: ?><?php echo $this->__('Task group does not exist'); ?><?php endif; ?></h4></div> 
+		<fieldset class="bold"> 
+			<span class="a-left" style="font-size:18px;">
+				<?php if ($this->getGroup() != null): ?>
+					<div id="progress_percent" style="width: 100%; text-align: center;">0 %</div>
+				<?php else: ?>
+					<a href="javascript:history.back();"><?php echo $this->__('Back'); ?></a>
+				<?php endif; ?>
+			</span>
+		</fieldset> 
+	</div>
+
+	<?php if ($this->getGroup() != null): ?>
+		<p><font color="Red"><?php echo $this->__('Please wait until tasks are complete...'); ?></font></p>
+	<?php endif; ?>
+</center>
+

@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Webshopapps Shipping Module
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * WebShopApps Shipping Module
+ *
+ * @category    WebShopApps
+ * @package     WebShopApps_Wsaolddominion
+ * User         Genevieve Eddison
+ * Date         19 May 2013
+ * Time         09:00
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
+ * @license     http://www.WebShopApps.com/license/license.txt - Commercial license
+ *
+-->
+<config>
+   <modules>
+        <Webshopapps_Wsaolddominion>
+          <version>0.0.1</version>
+           <depends>
+               <Mage_Shipping />
+               <Webshopapps_Wsafreightcommon />
+           </depends>
+    	</Webshopapps_Wsaolddominion>
+    </modules>
+ <global>
+    <models>
+      <wsaolddominion>
+        <class>Webshopapps_Wsaolddominion_Model</class>
+      </wsaolddominion>
+	  <wsaolddominion_shipping>
+			<class>Webshopapps_Wsaolddominion_Model</class>
+		</wsaolddominion_shipping>
+    </models>
+    <resources>
+      <wsaolddominion_setup>
+        <setup>
+          <module>Webshopapps_Wsaolddominion</module>
+          <class>Webshopapps_Wsaolddominion_Model_Resource_Eav_Mysql4_Setup</class>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </wsaolddominion_setup>
+    </resources>
+     <sales>
+         <quote>
+             <item>
+                 <product_attributes>
+                     <freight_class_select/>
+                 </product_attributes>
+             </item>
+         </quote>
+     </sales>
+	<shipping>
+	    <carriers>
+			<wsaolddominion>
+				<class>Webshopapps_Wsaolddominion_Model_Carrier_Wsaolddominion</class>
+			</wsaolddominion>
+	    </carriers>
+	</shipping>
+     <helpers>
+         <wsaolddominion>
+             <class>Webshopapps_Wsaolddominion_Helper</class>
+         </wsaolddominion>
+     </helpers>
+  </global>
+   <frontend>
+        <translate>
+            <modules>
+                <Webshopapps_Wsaolddominion>
+                    <files>
+                        <default>Webshopapps_Wsaolddominion.csv</default>
+                    </files>
+                </Webshopapps_Wsaolddominion>
+            </modules>
+        </translate>
+    </frontend>
+      <adminhtml>
+        <translate>
+            <modules>
+                <Webshopapps_Wsaolddominion>
+                    <files>
+                        <default>Webshopapps_Wsaolddominion.csv</default>
+                    </files>
+                </Webshopapps_Wsaolddominion>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <carriers>
+            <wsaolddominion>
+                <password backend_model="adminhtml/system_config_backend_encrypted"/>
+                <access_key backend_model="adminhtml/system_config_backend_encrypted"/>
+                <active>0</active>
+                <serial backend_model="adminhtml/system_config_backend_encrypted" />
+                <sallowspecific>0</sallowspecific>
+                <model>wsaolddominion_shipping/carrier_wsaolddominion</model>
+                <title>Wsaolddominion</title>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+                <allowed_methods>wsaolddominion</allowed_methods>
+				<ship_once>0</ship_once>
+                <sandbox_mode>1</sandbox_mode>
+                <mode_xml>0</mode_xml>
+                <show_cheapest>0</show_cheapest>
+            </wsaolddominion>
+        </carriers>
+    </default>
+
+</config>

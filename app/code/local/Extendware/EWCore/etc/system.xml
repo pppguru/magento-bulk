@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<extendware translate="label" module="ewcore">
+			<label>EXTENDWARE EXTENSIONS</label>
+			<sort_order>100</sort_order>
+			<class>tab-extendware-extensions</class>
+		</extendware>
+	</tabs>
+	<sections>
+		<ewcore_extensions translate="label" module="ewcore">
+			<label>Installed Extensions</label>
+			<tab>extendware</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>1</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<extensions translate="label">
+					<label>Extendware Extensions</label>
+					<frontend_type>text</frontend_type>
+					<frontend_model>ewcore/system_config_form_extensions</frontend_model>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+				</extensions>
+			</groups>
+		</ewcore_extensions>
+		<ewcore_store translate="label" module="ewcore">
+			<label></label>
+			<tab>extendware</tab>
+			<class>tab-extendware-extensions-store</class>
+			<frontend_type>text</frontend_type>
+			<sort_order>100</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<extensions translate="label">
+					<label>Extendware Extensions Store</label>
+					<frontend_type>text</frontend_type>
+					<frontend_model>ewcore/system_config_form_store</frontend_model>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+				</extensions>
+			</groups>
+		</ewcore_store>
+	</sections>
+</config>

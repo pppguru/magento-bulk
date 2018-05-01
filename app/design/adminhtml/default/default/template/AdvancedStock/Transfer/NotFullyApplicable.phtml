@@ -1,0 +1,17 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Some products cant be transfered')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl()?>'" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+                <button onclick="document.location.href='<?php echo $this->getForceUrl()?>'" class="scalable save" type="button"><span><?php echo $this->__('Apply')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<?php echo $this->getGridParentHtml() ?>
+
+</div>

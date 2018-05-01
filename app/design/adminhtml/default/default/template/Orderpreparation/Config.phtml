@@ -1,0 +1,36 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?=$this->__('Config')?></h3></td>
+        </tr>
+    </table>
+</div>
+
+<?php echo $this->getGridParentHtml() ?>
+<?php if($this->canDisplayContainer()): ?>
+<script type="text/javascript">
+//<!--
+wishlistControl = {
+	removeItem: function (itemId) {
+		if(!confirm('<?php echo Mage::helper('customer')->__('Are you sure that you want to remove this item?') ?>')) {
+			return false;
+		}
+
+		var url = <?php echo $this->getJsObjectName() ?>.url;
+
+		new Ajax.Updater(
+                <?php echo $this->getJsObjectName() ?>.containerId,
+                url+'?ajax=true&delete='+itemId,
+                {onComplete:<?php echo $this->getJsObjectName() ?>.initGrid.bind(<?php echo $this->getJsObjectName() ?>), evalScripts:true}
+            );
+
+        return false;
+	}
+}
+//-->
+</script>
+<?php endif ?>
+    
+</div>

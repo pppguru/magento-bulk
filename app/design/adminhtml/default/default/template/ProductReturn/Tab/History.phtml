@@ -1,0 +1,18 @@
+		<div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('History'); ?></h4> 
+	    </div>
+		<fieldset id="my-fieldset">
+				<?php
+					$collection = $this->getRmahistory();
+					foreach($collection as $item){
+					?>
+					<ul class="note-list">
+						<li>
+							<strong><?php echo $this->helper('core')->formatDate($item->getrh_date(),'medium',true); ?></strong><span class="separator">|</span>
+							<strong><?php echo $this->__($this->fixKey($item->getrh_comments())); ?></strong>
+						</li>
+					</ul>
+				<?php
+					}
+				?>
+        </fieldset>

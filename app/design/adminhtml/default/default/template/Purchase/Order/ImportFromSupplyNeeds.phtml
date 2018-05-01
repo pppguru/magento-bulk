@@ -1,0 +1,19 @@
+<input type="hidden" name="supply_needs_log" id="supply_needs_log" />
+
+<div class="entry-edit" style="margin: 20px;">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Import from Supply Needs')?></h3></td>
+            <td align="right">
+                <button onclick="importSupplyNeeds();" class="scalable" type="button"><span><?php echo $this->__('Import selected supply needs in order')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<?php echo $this->getGridParentHtml() ?>
+<script>persistantGrid = new persistantGridControl(SupplyNeedsGridJsObject, 'supply_needs_log', 'qty_', '');</script>
+
+</div>

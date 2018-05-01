@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addCss">
+                <name>aw_advancedreports/css/styles.css</name>
+            </action>
+        </reference>
+    </default>
+    <advancedreports_admin_setup_edit>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_advancedreports/js/columns.js</name>
+            </action>
+        </reference>
+    </advancedreports_admin_setup_edit>
+    <advancedreports_admin_product_index>
+        <reference name="head">
+            <action method="addJs">
+                <name>advancedreports/sku.js</name>
+            </action>
+        </reference>
+    </advancedreports_admin_product_index>
+    <advancedreports_admin_country_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_advancedreports/js/country.js</name>
+            </action>
+        </reference>
+    </advancedreports_admin_country_index>
+</layout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<config>
+	<api>
+		<resources>
+			<tokenbase translate="title" module="tokenbase">
+				<model>tokenbase/api_api</model>
+				<title>ParadoxLabs Stored Cards API</title>
+				<acl>tokenbase</acl>
+				<methods>
+					<getCard translate="title" module="tokenbase">
+						<title>Get a stored payment record by ID</title>
+						<acl>tokenbase/getCard</acl>
+						<method>getCard</method>
+					</getCard>
+					<getCardsByCustomer translate="title" module="tokenbase">
+						<title>Get all active stored payment data for a given customer</title>
+						<acl>tokenbase/getCardsByCustomer</acl>
+						<method>getCardsByCustomer</method>
+					</getCardsByCustomer>
+					<deleteCard translate="title" module="tokenbase">
+						<title>Delete a stored card</title>
+						<acl>tokenbase/deleteCard</acl>
+						<method>deleteCard</method>
+					</deleteCard>
+					<updateCard translate="title" module="tokenbase">
+						<title>Create or update a stored card</title>
+						<acl>tokenbase/updateCard</acl>
+						<method>updateCard</method>
+					</updateCard>
+				</methods>
+				<faults module="tokenbase">
+					<customer_invalid>
+						<code>101</code>
+						<message>The given customer data does not match what is on file for that card.</message>
+					</customer_invalid>
+					<method_invalid>
+						<code>102</code>
+						<message>Invalid method. A valid and active payment method code is required.</message>
+					</method_invalid>
+					<address_invalid>
+						<code>103</code>
+						<message>Address validation failed. See the additional message for more info.</message>
+					</address_invalid>
+					<unable_to_save>
+						<code>104</code>
+						<message>Unable to save card data. See the additional message for more info.</message>
+					</unable_to_save>
+					<tokenbase_id_invalid>
+						<code>105</code>
+						<message>No payment record was found for the given ID.</message>
+					</tokenbase_id_invalid>
+				</faults>
+			</tokenbase>
+		</resources>
+		<v2>
+			<resources_function_prefix>
+				<tokenbase>tokenbase</tokenbase>
+			</resources_function_prefix>
+		</v2>
+		<acl>
+			<resources>
+				<tokenbase translate="title" module="tokenbase">
+					<title>ParadoxLabs Stored Cards API</title>
+					<sort_order>100</sort_order>
+					<getCard translate="title" module="tokenbase">
+						<title>Get a stored card by ID</title>
+					</getCard>
+					<getCardsByCustomer translate="title" module="tokenbase">
+						<title>Get a customer's stored cards</title>
+					</getCardsByCustomer>
+					<deleteCard translate="title" module="tokenbase">
+						<title>Delete a stored card</title>
+					</deleteCard>
+					<updateCard translate="title" module="tokenbase">
+						<title>Create or update a stored card</title>
+					</updateCard>
+				</tokenbase>
+			</resources>
+		</acl>
+	</api>
+</config>

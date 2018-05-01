@@ -1,0 +1,5 @@
+<?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+	<?php echo $this->__('Welcome, %s!', Mage::getSingleton('customer/session')->getCustomer()->getName()); ?>
+<?php else: ?>
+	<?php echo Mage::getStoreConfig('design/header/welcome'); ?>
+<?php endif; ?>

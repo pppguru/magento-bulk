@@ -1,0 +1,10 @@
+
+<p>&nbsp;</p>
+<div class="a-right"><a href="javascript:toggleDiv('comments_selected');"><?php echo Mage::helper('Orderpreparation')->__('Display / Hide Comments'); ?></a></div>
+<div class="order_preparation_comments" id="comments_selected" name="comments_selected" <?php if (mage::getStoreConfig('orderpreparation/misc/show_order_comments') == 0) { echo 'style="display: none;"'; } ?>><?php echo $this->getAllComments(); ?></div>
+<p>&nbsp;</p>
+<div class="entry-edit">
+
+<?php 	echo $this->getGridParentHtml() ; ?>
+
+<br>

@@ -1,0 +1,221 @@
+<?php $manageStocks = mage::helper('AdvancedStock/Product_Base')->ManageStock($this->getProduct()->getId()); ?>
+
+<input type="hidden" id="product_id" name="product_id" value="<?php echo $this->getProduct()->getId(); ?>">
+<input type="hidden" id="current_tab" name="current_tab" value="">
+
+
+<table border="0" width="100%" border="0" cellpadding="0">
+    <tr>
+        <td width="70%">
+
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Main informations'); ?></h4>
+            </div>
+            <div class="entry-edit">
+                <fieldset>
+                    <table cellspacing="0" class="form-list">
+                        <tr>
+                            <td width="110">
+                                <?php echo $this->__('Created at'); ?>
+                                <br/><i><?php echo mage::helper('core')->formatDate($this->getProduct()->getcreated_at(), 'medium'); ?></i>
+                            </td>
+                            <td width="110">
+                                <?php echo $this->__('Updated at'); ?>
+                                <br/><i><?php echo mage::helper('core')->formatDate($this->getProduct()->getupdated_at(), 'medium'); ?></i>
+                            </td>
+                            <td width="110">
+                                <?php echo $this->__('Type'); ?>
+                                <br/><i><?php echo ucfirst($this->getProduct()->gettype_id()); ?></i>
+                            </td>
+                            <td width="110">
+                                <?php echo $this->__('Status'); ?>
+                                <br/><i><?php echo ($this->getProduct()->isDisabled())?$this->__('Disabled'):$this->__('Enabled'); ?></i>
+                            </td>
+                            <td width="110">
+                                <?php echo $this->__('Visibility'); ?>
+                                <?php
+                                if($this->getProduct()->isVisibleInSiteVisibility()) {
+                                    $visibilityArray = mage::getModel('catalog/Product_Visibility')->getOptionArray();
+                                    echo '<br/><i>' . $this->__($visibilityArray[$this->getProduct()->getVisibility()]) . '</i>';
+                                }
+                                ?>
+                            </td>
+                            <td width="110">
+                                <?php echo $this->__('Attribute set'); ?>
+                                <br/><i><?php echo Mage::getModel("eav/entity_attribute_set")->load($this->getProduct()->getAttributeSetId())->getAttributeSetName(); ?>
+                            </td>
+                            <td width="110">
+                                <?php echo $this->__('Websites'); ?>
+                                <?php
+                                foreach ($this->getProduct()->getWebsiteIds() as $websiteId){
+                                    echo '<br/><i>'. Mage::app()->getWebsite($websiteId)->getName().'</i>';
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+            <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/stock/stock_settings')): ?>
+                <div class="entry-edit-head">
+                    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Stock settings'); ?></h4>
+                </div>
+                <div class="entry-edit">
+                    <fieldset>
+                        <table cellspacing="0" class="form-list">
+                            <tr>
+                                <td width="100"><?php echo $this->__('Manage stocks'); ?></td>
+                                <td class="input-ele" width="150">
+                                    <?php echo $this->getManageStockCombo('stocks[manage_stock]'); ?>
+                                </td>
+                                <td>
+                                    &nbsp;&nbsp;<?php echo $this->getUseDefaultCombo('stocks[use_config_manage_stock]', $this->useConfigManageStock(), 'stocks[manage_stock]'); ?>
+                                </td>
+                            </tr>
+                            <?php if ($this->getProduct()->getStockItem()->getManageStock()): ?>
+                                <tr>
+                                    <td width="100"><?php echo $this->__('Backorders'); ?></td>
+                                    <td class="input-ele">
+                                        <?php echo $this->getBackordersCombo('stocks[backorders]'); ?>
+                                    </td>
+                                    <td>
+                                        &nbsp;&nbsp;<?php echo $this->getUseDefaultCombo('stocks[use_config_backorders]', $this->useConfigBackorders(), 'stocks[backorders]'); ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="100"><?php echo $this->__('Is in stock'); ?></td>
+                                    <td class="input-ele" width="150">
+                                        <?php echo $this->getIsInStockCombo('stocks[is_in_stock]'); ?>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                        </table>
+                    </fieldset>
+                </div>
+            <?php endif; ?>
+        </td>
+        <td width="30%">
+            <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/stock/supplyneeds_summary')): ?>
+                <?php
+                //programmatically add block
+                $block = $this->getLayout()->createBlock('core/template');
+                $block->setProduct($this->getProduct());
+                $block->setTemplate('Purchase/Product/Edit/Tab/SupplyNeedsSummary.phtml');
+                echo $block->toHtml();
+                ?>
+            <?php endif; ?>
+        </td>
+    </tr>
+</table>
+
+
+<script>
+    toggleFieldFromCombo('stocks[use_config_manage_stock]', 'stocks[manage_stock]');
+    toggleFieldFromCombo('stocks[use_config_backorders]', 'stocks[backorders]');
+</script>
+
+<?php if ($manageStocks): ?>
+
+    <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/stock/stocks')): ?>
+
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Stocks'); ?></h4>
+        </div>
+        <div class="entry-edit">
+            <div class="grid">
+                <?php
+                //display advanced stock stocks grid
+                $block = $this->getLayout()->createBlock('AdvancedStock/Product_Stocks');
+                $block->setProductId($this->getProduct()->getId());
+                $block->setTemplate('AdvancedStock/Product/Stocks.phtml');
+                echo $block->toHtml();
+                ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/stock/warehouse_association')): ?>
+
+        <?php if ($this->hasNonAffectedWarehouses()): ?>
+
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Associate product to warehouse'); ?></h4>
+            </div>
+            <div class="entry-edit">
+                <fieldset>
+                    <table cellspacing="0" class="form-list">
+                        <tr>
+                            <td width="100"><?php echo $this->__('Warehouse'); ?></td>
+                            <td class="input-ele">
+                                <?php echo $this->getAffectToWarehouseCombo('affect_to_warehouse[warehouse_id]'); ?>
+                            </td>
+                            <td width="50">&nbsp;</td>
+                            <td width="100"><?php echo $this->__('Is favorite'); ?></td>
+                            <td class="input-ele"><?php echo $this->getIsFavoriteCombo("affect_to_warehouse[is_favorite]", 0); ?></td>
+                            <td width="50">&nbsp;</td>
+                            <td width="160"><?php echo $this->__('Warning stock level'); ?></td>
+                            <td class="input-ele"><input type="text" size="4" name="affect_to_warehouse[prefered_stock_level]" id="affect_to_warehouse[prefered_stock_level]" ></td>
+                            <td width="50">&nbsp;</td>
+                            <td width="160"><?php echo $this->__('Ideal stock level'); ?></td>
+                            <td class="input-ele"><input type="text" size="4" name="affect_to_warehouse[ideal_stock_level]" id="affect_to_warehouse[ideal_stock_level]" ></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+        <?php endif; ?>
+    <?php endif; ?>
+
+    <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/stock/new_stock_movement')): ?>
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('New stock movement'); ?></h4>
+        </div>
+        <div class="entry-edit">
+            <div class="grid">
+                <?php
+                //display form to create a new stock movement
+                $block = $this->getLayout()->createBlock('AdvancedStock/Product_StockMovement_New');
+                $block->setProductId($this->getProduct()->getId());
+                $block->setTemplate('AdvancedStock/Product/StockMovement/New.phtml');
+                echo $block->toHtml();
+                ?>
+            </div>
+        </div>
+
+    <?php endif; ?>
+
+    <p>&nbsp;</p>
+
+    <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/stock/stock_movement')): ?>
+
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Stock movements'); ?></h4>
+        </div>
+        <div class="entry-edit">
+            <?php
+            //add stock movement grid
+            echo $this->getLayout()
+                    ->createBlock('AdvancedStock/Product_Edit_Tabs_StockMovements')
+                    //->setTemplate('AdvancedStock/Product/Edit/Tab/Serials.phtml')
+                    ->setProduct($this->getProduct())
+                    ->toHtml();
+            ?>
+        </div>
+
+    <?php endif; ?>
+
+<?php else: ?>
+    <?php if(Mage::getStoreConfig('planning/general/calculate_for_non_stock_managed_product')): ?>
+        <?php if ($this->getProduct()->gettype_id() != 'bundle' && $this->getProduct()->gettype_id() != 'simple'): ?>
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Associated products stock summary'); ?></h4>
+            </div>
+            <div class="entry-edit">
+                <div class="grid">
+                    <?php echo $this->getSubProductsStocks(); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

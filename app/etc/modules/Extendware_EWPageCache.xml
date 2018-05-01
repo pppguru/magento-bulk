@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+   <modules>
+      <Extendware_EWPageCache>
+         <active>true</active>
+         <codePool>local</codePool>
+         <depends>
+            <Extendware_EWCore/>
+         </depends>
+         <extendware>
+            <name>Page Cache</name>
+         </extendware>
+      </Extendware_EWPageCache>
+   </modules>
+</config>

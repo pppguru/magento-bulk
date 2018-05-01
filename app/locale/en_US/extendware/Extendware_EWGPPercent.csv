@@ -1,0 +1,45 @@
+Action,Action
+"and above","and above"
+Configuration,Configuration
+Configure,Configure
+Cost,Cost
+"Customer Group","Customer Group"
+Delete,Delete
+"Delete Group Price","Delete Group Price"
+"Delete Tier","Delete Tier"
+Extendware,Extendware
+General,General
+"If a product has a price of $100 and the tier price is 90%, then the resultant tier price would be the following depending on the mode:<br/><br/>
+						                            <ul style=""list-style-type:disc; margin-left: 20px;"">
+						                            <li><b>Percent of Price</b> - $90.00</li>
+						                            <li><b>Percent Off Price</b> - $10.00</li>
+						                            </ul><br/>
+						                            <b>Note: </b> Percent Off Price is experimental. Ensure to backup and test.
+						                            ","If a product has a price of $100 and the tier price is 90%, then the resultant tier price would be the following depending on the mode:<br/><br/>
+						                            <ul style=""list-style-type:disc; margin-left: 20px;"">
+						                            <li><b>Percent of Price</b> - $90.00</li>
+						                            <li><b>Percent Off Price</b> - $10.00</li>
+						                            </ul><br/>
+						                            <b>Note: </b> Percent Off Price is experimental. Ensure to backup and test.
+						                            "
+"Improve Your Store","Improve Your Store"
+"Insert a percent (e.g., 75%) to use the percent of the product price","Insert a percent (e.g., 75%) to use the percent of the product price"
+"Invalid Tier Prices","Invalid Tier Prices"
+Main,Main
+"Manage Extensions","Manage Extensions"
+"Manage Products","Manage Products"
+"Percent of Price","Percent of Price"
+"Percent Off Price (experimental)","Percent Off Price (experimental)"
+"Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs.","Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs."
+Price,Price
+"Pricing Mode","Pricing Mode"
+Qty,Qty
+"Reference Price","Reference Price"
+Settings,Settings
+"The preferred choice is Percent of Price. The other option is experimental. You will need to re-update all products if you change this option.","The preferred choice is Percent of Price. The other option is experimental. You will need to re-update all products if you change this option."
+"Tier / Group Price Percents","Tier / Group Price Percents"
+"Tier prices are calculated in reference to another price. By default this is the products price. You can also select ""cost"" and it will reference by cost. After changing this you must run the script in /shell/extendware/ewgppercent/resave_all.php in order to resave any existing tier prices.","Tier prices are calculated in reference to another price. By default this is the products price. You can also select ""cost"" and it will reference by cost. After changing this you must run the script in /shell/extendware/ewgppercent/resave_all.php in order to resave any existing tier prices."
+"User Guides / Help","User Guides / Help"
+"Value for ""%s"" is invalid.","Value for ""%s"" is invalid."
+"Value for ""%s"" is invalid: %s","Value for ""%s"" is invalid: %s"
+Website,Website

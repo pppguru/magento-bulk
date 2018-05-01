@@ -1,0 +1,55 @@
+<!--@subject [#{{var ticket_uid}}] Ticket replied: {{var ticket_subject}}@-->
+<style type="text/css">
+    body, td {
+        color: #2f2f2f;
+        font: 11px/1.35em Verdana, Arial, Helvetica, sans-serif;
+    }
+    .star {
+        color: #888888;
+        cursor: pointer;
+        text-decoration: none;
+        font-size:medium;
+    }
+    .star:hover {
+        color: #ffe800;
+    }
+
+</style>
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+    <table cellspacing="0" cellpadding="0" border="0" width="98%"
+           style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+        <tr>
+            <td align="center" valign="top">
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <p>
+                                <span class="_CONTENT_">
+                                {{var message|nl2br}}
+                                </span>
+                                {{depend is_status_changed}}
+                                <p>2Ticket status has been changed to <b>{{var ticket_status}}</b></p>
+                                {{/depend}}
+                                <br/><br/>
+                                <strong>With best regards,<br/> {{var agent_name}}</strong>
+                            </p>
+                            <p>
+                                <small>
+                                    <br/>
+                                    {{var external_link_html}}
+                                </small>
+                            </p>
+                            {{depend allow_rate}}You can rate the quality of this support reply:
+                                <a href="{{var external_link_rate_1}}" class="star">&#9733;</a>
+                                <a href="{{var external_link_rate_2}}" class="star">&#9733;</a>
+                                <a href="{{var external_link_rate_3}}" class="star">&#9733;</a>
+                                <a href="{{var external_link_rate_4}}" class="star">&#9733;</a>
+                                <a href="{{var external_link_rate_5}}" class="star">&#9733;</a>
+                            {{/depend}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config>
+    <events>
+        <core_block_abstract_to_html_before>
+            <observers>
+                <amorderattach>
+                    <type>singleton</type>
+                    <class>ampaction/observer</class>
+                    <method>onCoreBlockAbstractToHtmlBefore</method>
+                </amorderattach>
+            </observers>
+        </core_block_abstract_to_html_before>
+    </events>
+    <translate>
+        <modules>
+            <Amasty_Paction>
+                <files>
+                    <default>Amasty_Paction.csv</default>
+                </files>
+            </Amasty_Paction>
+        </modules>
+    </translate>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <ampaction translate="title" module="ampaction">
+                                        <title>Mass Product Actions</title>
+                                    </ampaction>
+                                </children>
+                            </config>
+                        </children>
+                    </system> 
+                 </children>
+            </admin> 
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,52 @@
+<div class="entry-edit">
+
+<div class="entry-edit-head">
+	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Packaging'); ?></h4> 
+</div>
+
+	<div class="grid">
+		<table cellspacing="0" class="data" width="100%">
+			<thead>
+				<tr class="headings">
+					<th class="a-center"><?php echo $this->__('Name')?></th>
+					<th class="a-center"><?php echo $this->__('Qty')?></th>
+					<th class="a-center"><?php echo $this->__('Default for sales')?></th>
+					<th class="a-center"><?php echo $this->__('Default for purchase')?></th>
+					<th class="a-center"><?php echo $this->__('Delete')?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="a-center"><?php echo $this->__('None'); ?></td>
+					<td class="a-center">1</td>
+					<td class="a-center"><input type="radio" name="packaging[none][pp_is_default_sales]" id="packaging[none][pp_is_default_sales]" value="1" <?php echo (!$this->hasDefaultSalesPackage() ? ' checked ' : ""); ?> onclick="unselectOtherDefaultSales(this);"></td>
+					<td class="a-center"><input type="radio" name="packaging[none][pp_is_default]" id="packaging[none][pp_is_default]" value="1" <?php echo (!$this->hasDefaultPurchasePackage() ? ' checked ' : ""); ?> onclick="unselectOtherDefaultPurchase(this);"></td>
+					<td class="a-center">&nbsp;</td>
+				</tr>
+				<?php foreach($this->getPackagings() as $packaging): ?>
+					<tr>
+						<td class="a-center"><input type="text" name="packaging[<?php echo $packaging->getId(); ?>][pp_name]" id="packaging[<?php echo $packaging->getId(); ?>][pp_name]" value="<?php echo $packaging->getpp_name(); ?>"></td>
+						<td class="a-center"><input type="text" name="packaging[<?php echo $packaging->getId(); ?>][pp_qty]" id="packaging[<?php echo $packaging->getId(); ?>][pp_qty]" value="<?php echo $packaging->getpp_qty(); ?>"></td>
+						<td class="a-center"><input type="radio" name="packaging[<?php echo $packaging->getId(); ?>][pp_is_default_sales]" id="packaging[<?php echo $packaging->getId(); ?>][pp_is_default_sales]" value="1" <?php echo (($packaging->getpp_is_default_sales() == 1) ? ' checked ': ''); ?> onclick="unselectOtherDefaultSales(this);"></td>
+						<td class="a-center"><input type="radio" name="packaging[<?php echo $packaging->getId(); ?>][pp_is_default]" id="packaging[<?php echo $packaging->getId(); ?>][pp_is_default]" value="1" <?php echo (($packaging->getpp_is_default() == 1) ? ' checked ': ''); ?> onclick="unselectOtherDefaultPurchase(this);"></td>
+						<td class="a-center"><input type="checkbox" name="packaging[<?php echo $packaging->getId(); ?>][delete]" id="packaging[<?php echo $packaging->getId(); ?>][delete]" value="1"></td>						
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+			<thead>
+				<tr class="headings">
+					<th class="a-center" colspan="5"><?php echo $this->__('Add new packaging')?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="a-center"><input type="text" name="packaging[new][pp_name]" id="packaging[new][pp_name]"></td>
+					<td class="a-center"><input type="text" name="packaging[new][pp_qty]" id="packaging[new][pp_qty]"></td>
+					<td class="a-center"><input type="radio" name="packaging[new][pp_is_default_sales]" id="packaging[new][pp_is_default_sales]" value="1" onclick="unselectOtherDefaultSales(this);"></td>
+					<td class="a-center"><input type="radio" name="packaging[new][pp_is_default]" id="packaging[new][pp_is_default]" value="1" onclick="unselectOtherDefaultPurchase(this);"></td>
+					<td class="a-center">&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

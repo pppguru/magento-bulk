@@ -1,0 +1,142 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+
+<div class="page-title">
+    <h1><?php echo $this->__('Product Return #%s', $this->getRma()->getrma_ref()) ?></h1>
+</div>
+
+<form method="POST" id="edit_form" name="edit_form" action="<?php echo $this->getSubmitUrl(); ?>">
+    <input type="hidden" id="data[rma_id]" name="data[rma_id]" value="<?php echo $this->getRma()->getId(); ?>">
+    <input type="hidden" id="data[rma_order_id]" name="data[rma_order_id]"
+           value="<?php echo $this->getRma()->getSalesOrder()->getId(); ?>">
+    <input type="hidden" id="data[rma_customer_id]" name="data[rma_customer_id]"
+           value="<?php echo $this->getRma()->getrma_customer_id(); ?>">
+    <input type="hidden" id="data[rma_ref]" name="data[rma_ref]"
+           value="<?php echo $this->getRma()->getrma_ref(); ?>">
+    <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>"/>
+
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Contact Information'); ?></h2>
+
+        <?php if ($this->CustomerCanEdit()): ?>
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label" width="150"><label
+                            for="data[rma_customer_phone]"><?php echo $this->__('Phone'); ?></label></td>
+                    <td class="input-ele"><input type="text" name="data[rma_customer_phone]"
+                                                 id="data[rma_customer_phone]"
+                                                 value="<?php echo $this->escapeHtml($this->getRma()->getrma_customer_phone()); ?>">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="data[rma_customer_email]"><?php echo $this->__('Email'); ?></label>
+                    </td>
+                    <td class="input-ele"><input type="text" name="data[rma_customer_email]"
+                                                 id="data[rma_customer_email]"
+                                                 value="<?php echo $this->escapeHtml($this->getRma()->getrma_customer_email()); ?>">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="data[rma_address_id]"><?php echo $this->__('Address'); ?></label></td>
+                    <td class="input-ele"><?php echo $this->getCustomerAddressesAsText($this->getRma()->getrma_address_id()); ?></td>
+                </tr>
+            </table>
+        <?php else: ?>
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('Status'); ?></td>
+                    <td class="input-ele"><?php echo $this->__($this->getRma()->getrma_status()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label" width="150"><?php echo $this->__('Phone'); ?></td>
+                    <td class="input-ele"><?php echo $this->escapeHtml($this->getRma()->getrma_customer_phone()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Email'); ?></td>
+                    <td class="input-ele"><?php echo $this->escapeHtml($this->getRma()->getrma_customer_email()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Address'); ?></td>
+                    <?php //todo : check the use of getrma_address_id ?>
+                    <td class="input-ele"><?php echo $this->getCustomerAddressesAsText($this->getRma()->getrma_address_id()); ?></td>
+                </tr>
+            </table>
+        
+            <p>&nbsp;</p>
+        
+            <center>
+                <?php if (Mage::helper('ProductReturn/Returnlabel')->isExists($this->getRma())): ?>
+                    <?php $filelabel = Mage::helper('ProductReturn/Returnlabel')->getReturnlabelUrl($this->getRma()); ?>
+                    <button type="button" class="button a-center" onclick="setLocation('<?php echo $filelabel; ?>')"
+                            target="_blank"><span><span><?php echo $this->__('Download return label'); ?></span></span></button>
+                <?php endif; ?>
+                &nbsp;
+                <?php if ($this->getRma()->getrma_status() == 'product_return_accepted'): ?>
+                    <button type="button" class="button a-center"
+                            onclick="setLocation('<?php echo $this->getReturnCGVUrl(); ?>');">
+                        <span><span><?php echo $this->__('Print Product Return Form'); ?></span></span></button>
+                <?php endif; ?>
+            </center>
+        
+        <?php endif; ?>
+    </div>
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Products'); ?></h2>
+
+        <div class="rma-items">
+            <?php foreach ($this->getRma()->getProducts() as $product): ?>
+
+                <?php if ($product->getrp_qty() > 0): ?>
+                    <div class="fieldset" style="position: relative">
+                        <h2 class="legend"><?php echo $this->getProductName($product); ?></h2>
+
+                        <div class="right" style="position: absolute;top:-15px;right: -15px;">
+                            <img class="block"
+                                 src="<?php echo mage::helper('ProductReturn')->getProductImage($product->getproduct_id(), 100); ?>"/>
+                        </div>
+                        <div>
+
+                            <ul class="form-list">
+                                <li class="fields">
+                                    <?php echo $this->getNameBlockHtml() ?>
+                                </li>
+                                <li class="fields">
+                                    <div class="field">
+                                        <label style="margin-right: 10px;"><?php echo $this->__('Qty'); ?></label>
+                                        <?php echo $product->getrp_qty(); ?>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="field">
+                                        <label style="margin-right: 10px;"><?php echo $this->__('Reason'); ?></label>
+                                        <?php echo $this->__($product->getrp_reason()); ?>
+                                    </div>
+                                    <div class="field">
+                                        <label
+                                            style="margin-right: 10px;"><?php echo $this->__('Request type'); ?></label>
+                                        <?php echo $this->__($product->getrp_request_type()); ?>
+                                    </div>
+                                </li>
+                                <li class="wide">
+                                    <label><?php echo $this->__('Comments'); ?></label>
+                                    <br/>
+                                    <?php echo $this->escapeHtml($product->getrp_description()); ?>
+                                </li>
+                            </ul>
+                        </div>
+                        <br style="clear: both;"/>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Comments'); ?></h2>
+
+        <?php echo $this->getRma()->getrma_public_description(); ?>
+    </div>
+
+</form>
+
+<?php echo $this->getChildHtml('productreturn_view_messages'); ?>

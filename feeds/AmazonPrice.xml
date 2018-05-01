@@ -1,0 +1,2059 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="amzn-envelope.xsd">
+<Header>
+    <DocumentVersion><![CDATA[1.01]]></DocumentVersion>
+    <MerchantIdentifier><![CDATA[YOUR_MERCHANT_ID_HERE]]></MerchantIdentifier>
+</Header>
+<MessageType><![CDATA[Price]]></MessageType>
+<Message>
+    <MessageID><![CDATA[1]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ALCAR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[2]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-ARGHCL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[3]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-ARGB]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[4]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-AAKG]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[5]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-ALA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[6]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-GLY]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[7]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[8]]></MessageID>
+    <Price>
+        <SKU><![CDATA[EDTA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[9]]></MessageID>
+    <Price>
+        <SKU><![CDATA[EDTACD]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[10]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DL-PHEN]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[11]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DL-MTH]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[12]]></MessageID>
+    <Price>
+        <SKU><![CDATA[D-AA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[13]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CM]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[14]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CEE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[15]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BCAA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[16]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[17]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-ARGPYR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[18]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-AA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[19]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-CB]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[20]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-CARN]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[24.83]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[21]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-CITR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[22]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-C-DL-M-11]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[23]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-CYS-HCL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[24]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-GLU]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[25]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-HISB]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[22.67]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[26]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-HIS- HCL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[27]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-ISO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[28]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-LEU]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[29]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-LYS-HCL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[30]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-MTH]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[31]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-NOR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[32]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-OAKG]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[33]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-ORN-HCL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[34]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-PHEN]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[35]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-PRO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[36]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-SER]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[37]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-THE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[38]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-THR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[39]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-TRY]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[40]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-TYR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[41]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-VAL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[42]]></MessageID>
+    <Price>
+        <SKU><![CDATA[NALCAR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[35.65]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[43]]></MessageID>
+    <Price>
+        <SKU><![CDATA[N-ACE-L-CYS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[44]]></MessageID>
+    <Price>
+        <SKU><![CDATA[NALT]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[45]]></MessageID>
+    <Price>
+        <SKU><![CDATA[TAU]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[46]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ASCA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[47]]></MessageID>
+    <Price>
+        <SKU><![CDATA[N-ACE-L-GLU]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[48]]></MessageID>
+    <Price>
+        <SKU><![CDATA[AP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[49]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BC]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[4567.13]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[50]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[51]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[52]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CB]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[53]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CINB]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[54]]></MessageID>
+    <Price>
+        <SKU><![CDATA[COQ10-C]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[55]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CURC]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[56]]></MessageID>
+    <Price>
+        <SKU><![CDATA[EA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.95]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[57]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GAR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[58]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[59]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GTEGCG]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[60]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GTP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[61]]></MessageID>
+    <Price>
+        <SKU><![CDATA[IH]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[62]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LUT]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[63]]></MessageID>
+    <Price>
+        <SKU><![CDATA[NNDG-HCL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[64]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PABA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[65]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PBE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[66]]></MessageID>
+    <Price>
+        <SKU><![CDATA[POMEEA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[20.51]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[67]]></MessageID>
+    <Price>
+        <SKU><![CDATA[POP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[68]]></MessageID>
+    <Price>
+        <SKU><![CDATA[R-ALA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[20.51]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[69]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RES]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[19.42]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[70]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RUT]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[19.42]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[71]]></MessageID>
+    <Price>
+        <SKU><![CDATA[VEO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[82.19]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[72]]></MessageID>
+    <Price>
+        <SKU><![CDATA[VEP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[26.99]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[73]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ZG]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[74]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ZO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[75]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BETA-HCL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[76]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CHLOR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[77]]></MessageID>
+    <Price>
+        <SKU><![CDATA[VAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[78]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[79]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BATMG]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[80]]></MessageID>
+    <Price>
+        <SKU><![CDATA[NATTO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[81]]></MessageID>
+    <Price>
+        <SKU><![CDATA[NIA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[82]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RYR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[83]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BLE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[84]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GINK]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[85]]></MessageID>
+    <Price>
+        <SKU><![CDATA[HOOD]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[86]]></MessageID>
+    <Price>
+        <SKU><![CDATA[HORS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[24.83]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[87]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LJ]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[88]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DAND]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[89]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MTS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[90]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RCE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[91]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RRR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[24.83]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[92]]></MessageID>
+    <Price>
+        <SKU><![CDATA[SLE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[93]]></MessageID>
+    <Price>
+        <SKU><![CDATA[SJW]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[94]]></MessageID>
+    <Price>
+        <SKU><![CDATA[WWBE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[95]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CALCARB]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[96]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CALCITR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[97]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CALCGLUC]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[98]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CPS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[633.72]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[99]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DMAE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[100]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GABA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[101]]></MessageID>
+    <Price>
+        <SKU><![CDATA[HA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[102]]></MessageID>
+    <Price>
+        <SKU><![CDATA[VB8]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[103]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MSM]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[104]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PhHCL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[105]]></MessageID>
+    <Price>
+        <SKU><![CDATA[SPIR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[106]]></MessageID>
+    <Price>
+        <SKU><![CDATA[B5CP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[19.42]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[107]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BIO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[108]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PURBIO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[36.73]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[109]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RIBO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[19.42]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[110]]></MessageID>
+    <Price>
+        <SKU><![CDATA[B1HCL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[111]]></MessageID>
+    <Price>
+        <SKU><![CDATA[B1TM]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[19.42]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[112]]></MessageID>
+    <Price>
+        <SKU><![CDATA[B12PC]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[74.58]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[113]]></MessageID>
+    <Price>
+        <SKU><![CDATA[B121%]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[114]]></MessageID>
+    <Price>
+        <SKU><![CDATA[B3]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[115]]></MessageID>
+    <Price>
+        <SKU><![CDATA[B6]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[24.83]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[116]]></MessageID>
+    <Price>
+        <SKU><![CDATA[D3]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[117]]></MessageID>
+    <Price>
+        <SKU><![CDATA[EDL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[25.42]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[118]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DIM]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[119]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GFE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[120]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MEL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[121]]></MessageID>
+    <Price>
+        <SKU><![CDATA[QD]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[20.51]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[122]]></MessageID>
+    <Price>
+        <SKU><![CDATA[5HTP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[21.59]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[123]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-C-DL-M-21]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[124]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GG]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[125]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RRS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[126]]></MessageID>
+    <Price>
+        <SKU><![CDATA[TT]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[127]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[128]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[129]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DCP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[130]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MCARB]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[131]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MCIT]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[132]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MGLUC]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[133]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MGLY]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[134]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MHYD]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[135]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MANGGLU]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[136]]></MessageID>
+    <Price>
+        <SKU><![CDATA[POTCHL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[137]]></MessageID>
+    <Price>
+        <SKU><![CDATA[POTCIT]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[138]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PG]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[139]]></MessageID>
+    <Price>
+        <SKU><![CDATA[POTDATE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[140]]></MessageID>
+    <Price>
+        <SKU><![CDATA[POTASP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[184.89]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[141]]></MessageID>
+    <Price>
+        <SKU><![CDATA[SCAL20G]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[48.62]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[142]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RIB]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[143]]></MessageID>
+    <Price>
+        <SKU><![CDATA[WPISO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[144]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MANN]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[145]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CRA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[146]]></MessageID>
+    <Price>
+        <SKU><![CDATA[SRL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[22.67]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[147]]></MessageID>
+    <Price>
+        <SKU><![CDATA[STV]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[148]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RK]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[149]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DL-MLC]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[150]]></MessageID>
+    <Price>
+        <SKU><![CDATA[XY]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[87.56]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[151]]></MessageID>
+    <Price>
+        <SKU><![CDATA[SBC]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[152]]></MessageID>
+    <Price>
+        <SKU><![CDATA[D-GSP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[153]]></MessageID>
+    <Price>
+        <SKU><![CDATA[D-MNS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[154]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DHEA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[19.42]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[155]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BG]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[19.42]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[156]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[24.83]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[157]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DGS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[158]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ERY]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[159]]></MessageID>
+    <Price>
+        <SKU><![CDATA[WHEYCON]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[160]]></MessageID>
+    <Price>
+        <SKU><![CDATA[FOG-300]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[9.96]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[161]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CLA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.96]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[162]]></MessageID>
+    <Price>
+        <SKU><![CDATA[SCALE-01]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[41.05]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[163]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GAR60HCA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[164]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BSTS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[5.41]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[165]]></MessageID>
+    <Price>
+        <SKU><![CDATA[AA-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[166]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DAA-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[167]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CM-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[168]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ALCAR-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[169]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BCAA-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[170]]></MessageID>
+    <Price>
+        <SKU><![CDATA[AP-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[171]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BA-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[172]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CBGA-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[173]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CB-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[174]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CINB-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[175]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DL-MTH-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[176]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GABA-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[177]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GS-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[178]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GFE-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[179]]></MessageID>
+    <Price>
+        <SKU><![CDATA[HOOD-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[180]]></MessageID>
+    <Price>
+        <SKU><![CDATA[VB8-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[181]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ARGB-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[182]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-CARN-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[38.89]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[183]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GLU-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[184]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LYS-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[185]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LMETH-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[186]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-THE-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[187]]></MessageID>
+    <Price>
+        <SKU><![CDATA[L-TYR-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[188]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MACA-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[189]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MGLUC-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[190]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MSM-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[191]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DMG-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[192]]></MessageID>
+    <Price>
+        <SKU><![CDATA[NAC-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[193]]></MessageID>
+    <Price>
+        <SKU><![CDATA[NALG-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[194]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PBE-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[195]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RUT-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[19.42]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[196]]></MessageID>
+    <Price>
+        <SKU><![CDATA[SJW-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[197]]></MessageID>
+    <Price>
+        <SKU><![CDATA[TAU-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[198]]></MessageID>
+    <Price>
+        <SKU><![CDATA[TT-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[199]]></MessageID>
+    <Price>
+        <SKU><![CDATA[B3-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[200]]></MessageID>
+    <Price>
+        <SKU><![CDATA[WWB-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[201]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GAR50HCA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[202]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GAR60-CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[203]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GRNCOFF]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[204]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BCAA312]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[205]]></MessageID>
+    <Price>
+        <SKU><![CDATA[AGMASUL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[206]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CREAHCL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[207]]></MessageID>
+    <Price>
+        <SKU><![CDATA[FLAX]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.96]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[208]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DMANCAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[209]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PEAPRO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[210]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GRCAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[55.11]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[211]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RASPCAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[212]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PSYLHU]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[213]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PSYLHUCAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[214]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LECI]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[215]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BETA1CWS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[216]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ACAICAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[217]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GTEGCGCAPS]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[218]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ACAI]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[219]]></MessageID>
+    <Price>
+        <SKU><![CDATA[COP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[23.75]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[220]]></MessageID>
+    <Price>
+        <SKU><![CDATA[COCO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[221]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LGA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[222]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GFWHEY]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[26.99]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[223]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CASEP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[224]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LGLUTHCL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[225]]></MessageID>
+    <Price>
+        <SKU><![CDATA[HYDWHEY]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[226]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ALA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[22.67]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[227]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LCHOL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[228]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ORGSPI]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[229]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LCHOLCAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[230]]></MessageID>
+    <Price>
+        <SKU><![CDATA[RESCAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[52.95]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[231]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LCARNT]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[232]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LCARNF]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[233]]></MessageID>
+    <Price>
+        <SKU><![CDATA[0CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[6.45]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[234]]></MessageID>
+    <Price>
+        <SKU><![CDATA[00CAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[7.53]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[235]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CAPMACH0]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[236]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CAPMACH00]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[237]]></MessageID>
+    <Price>
+        <SKU><![CDATA[TDRI]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[5.41]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[238]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ZINCIT]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[239]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LTANK]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[5.41]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[240]]></MessageID>
+    <Price>
+        <SKU><![CDATA[COLL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[241]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BEET]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[242]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MORLE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[243]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CRAN]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[244]]></MessageID>
+    <Price>
+        <SKU><![CDATA[FENU]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[245]]></MessageID>
+    <Price>
+        <SKU><![CDATA[HMB]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[246]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GIN]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[247]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MANGO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[248]]></MessageID>
+    <Price>
+        <SKU><![CDATA[INSTCRE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[249]]></MessageID>
+    <Price>
+        <SKU><![CDATA[KID]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[250]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BLUBY]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[251]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BEE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[252]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BERB]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[253]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GOAT]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[254]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ECHIPUR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[255]]></MessageID>
+    <Price>
+        <SKU><![CDATA[HOLYB]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[256]]></MessageID>
+    <Price>
+        <SKU><![CDATA[WOLF]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[257]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BROOM]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[258]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MARSH]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[259]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LHG]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[260]]></MessageID>
+    <Price>
+        <SKU><![CDATA[BARLEY]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[261]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MACA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[17.26]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[262]]></MessageID>
+    <Price>
+        <SKU><![CDATA[DGLUL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[263]]></MessageID>
+    <Price>
+        <SKU><![CDATA[COLFI]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[264]]></MessageID>
+    <Price>
+        <SKU><![CDATA[COLCHI]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[265]]></MessageID>
+    <Price>
+        <SKU><![CDATA[SUL]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[15.10]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[266]]></MessageID>
+    <Price>
+        <SKU><![CDATA[SODAC]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[267]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ALOE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[268]]></MessageID>
+    <Price>
+        <SKU><![CDATA[GALLA]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[269]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CREEK]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[270]]></MessageID>
+    <Price>
+        <SKU><![CDATA[STAR]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[271]]></MessageID>
+    <Price>
+        <SKU><![CDATA[LPYRO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[272]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MELON]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[273]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ROSE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[274]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PASSFLO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[275]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PAPSEED]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[276]]></MessageID>
+    <Price>
+        <SKU><![CDATA[PAPFRUIT]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[277]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ORGWG]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[278]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MOTHWORT]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[279]]></MessageID>
+    <Price>
+        <SKU><![CDATA[HORCHE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[280]]></MessageID>
+    <Price>
+        <SKU><![CDATA[VITD3SG]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[8.96]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[281]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CALORO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[282]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MAGORO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[283]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MAGOXI]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[10.77]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[284]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CLAPOW]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[285]]></MessageID>
+    <Price>
+        <SKU><![CDATA[P-ORO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[16.18]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[286]]></MessageID>
+    <Price>
+        <SKU><![CDATA[MALTO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[7.53]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[287]]></MessageID>
+    <Price>
+        <SKU><![CDATA[EWPRO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[19.42]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[288]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CAFFCAP]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[9.69]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[289]]></MessageID>
+    <Price>
+        <SKU><![CDATA[ASC100M]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[0.00]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[290]]></MessageID>
+    <Price>
+        <SKU><![CDATA[HORDE]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[14.02]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[291]]></MessageID>
+    <Price>
+        <SKU><![CDATA[INU]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[11.85]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[292]]></MessageID>
+    <Price>
+        <SKU><![CDATA[SOYPRO]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[12.93]]></StandardPrice>
+    </Price>
+</Message>
+<Message>
+    <MessageID><![CDATA[293]]></MessageID>
+    <Price>
+        <SKU><![CDATA[CAPMACH1]]></SKU>
+        <StandardPrice currency="USD"><![CDATA[18.34]]></StandardPrice>
+    </Price>
+</Message>
+</AmazonEnvelope>

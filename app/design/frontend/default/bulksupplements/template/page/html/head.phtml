@@ -1,0 +1,120 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<title><?php echo $this->getTitle() ?></title>
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />-->
+
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+	var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+	var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+<!--[if lt IE 8]>
+<div style=' clear: both; text-align:center; position: relative;'>
+ <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a>
+</div>
+<![endif]-->
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+
+<?php /*
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+	   jQuery("a[data-gal^='prettyPhoto']").prettyPhoto({
+			animationSpeed: 'normal',
+			padding: 40,
+			opacity: 0.35,
+			showTitle: true,
+			allowresize: true,
+			counter_separator_label: '/',
+			theme: 'facebook'
+		});
+	});
+</script>
+<script type="text/javascript">
+	preloadImages([
+//                '<?php echo $this->getSkinUrl('images/cart_button_active.png') ?>',
+				'<?php echo $this->getSkinUrl('images/menu_item_marker_active.png') ?>'
+//                '<?php echo $this->getSkinUrl('images/top_search_button_active.png') ?>',
+//        '<?php echo $this->getSkinUrl('images/bkg_button_active.png') ?>'
+	]);
+</script>
+<?php */ ?>
+
+<?php $injector_key_name = "customer_login"; ?>
+<?php /*if (Extendware::helper('ewpagecache') !== false)*/ echo Mage::helper('ewpagecache')->getBeginMarker($injector_key_name); ?>
+<script type="text/javascript">
+<?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+	var isLogin = 1;
+<?php else: ?>
+	var isLogin = 0;
+<?php endif; ?>
+</script>
+<?php /*if (Extendware::helper('ewpagecache') !== false)*/ echo Mage::helper('ewpagecache')->getEndMarker($injector_key_name); ?>
+
+
+<?php
+	 $currentUrl = Mage::helper('core/url')->getCurrentUrl();
+	 if(strstr($currentUrl,"checkout/onepage/success"))   {
+		 $_customerId = Mage::getSingleton('customer/session')->getCustomerId();
+		 $lastOrderId = Mage::getSingleton('checkout/session')->getLastOrderId(); 
+		 $order = Mage::getSingleton('sales/order'); 
+		 $order->load($lastOrderId); 
+		 $_totalData =$order->getData();
+		 $_sub = $_totalData['subtotal'];
+?>
+
+		<!-- Facebook Conversion Code for Facebook Sale -->
+		<script>(function() {
+		var _fbq = window._fbq || (window._fbq = []);
+		if (!_fbq.loaded) {
+		var fbds = document.createElement('script');
+		fbds.async = true;
+		fbds.src = '//connect.facebook.net/en_US/fbds.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(fbds, s);
+		_fbq.loaded = true;
+		}
+		})();
+		window._fbq = window._fbq || [];
+		var value_sub = '<?php echo $_sub ?>';
+		window._fbq.push(['track', '6019385415896', {'value':value_sub,'currency':'USD'}]);
+		</script>
+		<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6019385415896&amp;cd[value]=<?php echo $_sub ?>&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
+		
+<?php } ?>		
+

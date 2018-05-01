@@ -1,0 +1,93 @@
+<?php
+        $collection = Mage::getResourceModel('sales/order_grid_collection')
+            ->addFieldToFilter('customer_id', Mage::registry('current_customer')->getId())
+            ->setIsCustomerMode(true)
+			->setOrder('entity_id', 'DESC')
+			//->setPageSize(5)
+            ->setCurPage(1);
+		$recent_order = $collection->getData();
+?>
+
+<div id="customer_view_orders_grid">
+    <div class="grid">
+    <div class="hor-scroll">
+    <table cellspacing="0" id="customer_view_orders_grid_table" class="data">
+        <colgroup>
+            <col width="100">
+            <col>
+            <col>
+            <col>
+            <col width="100">
+            <col width="100">
+        </colgroup>
+        <?php if(count($recent_order)>0 ): ?>
+        <thead>
+            <tr class="headings">
+            		<th class=" no-link"><span class="nobr"></span></th>
+                    <th class=" no-link"><span class="nobr">Order #</span></th>
+                    <th class=" no-link"><span class="nobr">Purchased On</span></th>
+                    <th class=" no-link"><span class="nobr">Bill to Name</span></th>
+                    <th class=" no-link"><span class="nobr">Shipped to Name</span></th>
+                    <th class=" no-link"><span class="nobr">Order Total</span></th>
+                    <th class=" no-link last"><span class="nobr"> </span></th>
+             </tr>
+        </thead>
+        <tbody>
+			<?php $i=0;foreach($collection as $rec_order): ?>
+                      <tr class="main <?php if($i%2==0) { echo "even "; } else { echo "odd"; }?> odds pointer">
+                      		<td class="arrow-selection"><div class="arrow"></div></td>
+							<!--Adding link to order id so that the order can be viewed from this link. Mohin - April 27, 2016-->
+                            <td><a target="_blank" href="<?php echo $this->getUrl('*/sales_order/view', array('order_id'=>$rec_order->getEntityId())) ?>"><?php echo $rec_order->getIncrementId(); ?></a></td>
+                            <td class=" "><!-- Jun 11, 2014 4:43:31 AM -->
+                                <?php echo Mage::app()->getLocale()->date(strtotime($rec_order->getCreatedAt()), null, null, true)->toString('MMM d, yyyy h:mm:ss a'); ?>          
+                            </td>
+                            <td class=" "><?php echo $rec_order->getBillingName(); ?></td>
+                            <td class=" "><?php echo $rec_order->getShippingName(); ?></td>
+                            <td class=" a-right "><?php echo $this->helper('checkout')->formatPrice($rec_order->getGrandTotal()) ?></td>
+                            <td class=" last">
+                                <a href="<?php echo $this->getUrl('*/sales_order_create/reorder', array('order_id'=>$rec_order->getEntityId()))?>">Reorder</a>     					</td>                                
+                      </tr>
+                      <tr class="main">
+                          <td colspan="7">
+                            <table id="recent_order_item_data">
+                                <tbody>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>SKU</th>
+                                        <th>Price</th>
+                                        <th>Product Type</th>
+                                        <th>Shipped Quantity</th>
+                                    </tr>
+									  <?php
+                                        $orderid = $rec_order->getEntityId();
+                                        $order = Mage::getModel('sales/order')->load($orderid);
+                                        $order_item_collection = $order->getItemsCollection();
+                                        foreach($order_item_collection as $item){ ?>
+											<?php if($item->getProductType()=="simple") { ?>
+												<tr class="">
+													<td style="padding-left: 15px;text-align: left;"><?php echo $item->getName(); ?></td>
+													<td style="text-align: left;padding-left: 15px;"><?php echo $item->getSku(); ?></td>
+													<td><?php echo Mage::helper('checkout')->formatPrice($item->getPrice()) ?></td>
+													 <td><?php echo $item->getProductType(); ?></td>
+													 <td><?php echo round($item->getQtyOrdered()); ?></td>
+												</tr>
+											<?php } ?>
+                                        <?php } ?>
+                        		</tbody>
+                               </table>
+                           </td>
+                      </tr>
+             <?php $i++;endforeach; ?>
+		</tbody>
+        <?php else: ?>
+            <tbody>
+                <tr class="even">
+                    <td colspan="6" class="empty-text a-center">No records found.</td>
+                </tr>
+             </tbody>
+        <?php endif; ?>
+        
+    </table>
+    </div>
+</div>
+</div>

@@ -1,0 +1,81 @@
+
+	.tab-selected
+	{
+		background-color: #ffffff;
+		
+		border-bottom: 1px solid #ffffff;
+		border-top: 1px solid #CCCCCC;
+		border-left: 1px solid #CCCCCC;
+		border-right: 1px solid #CCCCCC;
+		
+		margin: 5px;
+		padding: 5px;
+		display: block;
+		width: 100px;
+		float: left;
+		text-align: center;
+	}
+	
+	.tab-unselected
+	{
+		background-color: #E2E2E2;
+		
+		border-bottom: 1px solid #CCCCCC;
+		border-top: 1px solid #CCCCCC;
+		border-left: 1px solid #CCCCCC;
+		border-right: 1px solid #CCCCCC;
+		
+		margin: 5px;
+		padding: 5px;
+		display: block;
+		width: 100px;
+		float: left;
+		text-align: center;
+	}
+	
+	.tab-selected a
+	{
+		color: #000000;
+		text-decoration: none;
+	}
+	
+	.tab-selected a:hover
+	{
+		color: #000000;
+	}
+	
+	.tab-unselected a
+	{
+		color: #000000;
+		text-decoration: none;
+	}
+	
+	.tab-unselected a:hover
+	{
+		color: #000000;
+	}
+	
+	.tab-content-invisible
+	{
+		display: none;
+	}
+	.tab-content-visible
+	{
+		display: block;
+	}
+
+	.stock-details-summary
+	{
+		float: right;
+		background-color: #E2E2E2;
+		
+		color: #ff0000;
+		
+		border-bottom: 1px solid #CCCCCC;
+		border-top: 1px solid #CCCCCC;
+		border-left: 1px solid #CCCCCC;
+		border-right: 1px solid #CCCCCC;
+		
+		padding: 5px;
+		margin: 5px;
+	}

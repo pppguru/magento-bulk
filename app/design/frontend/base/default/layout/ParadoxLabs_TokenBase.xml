@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<layout>
+	<customer_account>
+		<reference name="customer_account_navigation">
+			<block type="tokenbase/customer_link" name="tokenbase_customer_link">
+				<action method="addProfileLink"></action>
+			</block>
+		</reference>
+	</customer_account>
+	
+	<customer_paymentinfo_index>
+		<label>Customer Payment Data Manager</label>
+		<update handle="customer_account" />
+		
+		<!-- referencing content rather than my.account for compatibility back to 1.4. -->
+		<reference name="content">
+			<!-- The active payment method can inject itself into this wrapper with handle customer_paymentinfo_index_{method}. -->
+			<block type="tokenbase/customer_wrapper" name="tokenbase_customer_wrapper" template="paradoxlabs/tokenbase/customer/wrapper.phtml" />
+			
+			<block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml" />
+		</reference>
+	</customer_paymentinfo_index>
+</layout>

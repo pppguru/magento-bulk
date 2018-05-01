@@ -1,0 +1,40 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><table class="dynamic-grid" cellspacing="0" id="labels-table">
+    <tr>
+        <?php foreach ($this->getStores() as $_store): ?>
+            <th><?php echo $_store->getName() ?></th>
+        <?php endforeach; ?>
+    </tr>
+    <tr>
+        <?php $_labels = $this->getLabelValues() ?>
+        <?php foreach ($this->getStores() as $_store): ?>
+            <td>
+                <input class="input-text<?php if($_store->getId()==0): ?> required-entry<?php endif; ?>" type="text" name="label_values[<?php echo $_store->getId() ?>]" value="<?php echo $this->htmlEscape(@$_labels[$_store->getId()]) ?>"/>
+            </td>
+        <?php endforeach; ?>
+    </tr>
+</table>

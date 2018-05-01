@@ -1,0 +1,71 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php $_items = $this->getReviewsCollection()->getItems() ?>
+<?php if (count($_items)): ?>
+    <?php foreach ($_items as $_review): ?>
+        <article class="review">
+            <?php $reviewSummary = 0; $_votes = $_review->getRatingVotes(); ?>
+
+            <?php if (count($_votes)): ?>
+                <?php foreach ($_votes as $_vote): ?>
+                    <?php $reviewSummary += (int)$_vote->getPercent() ?>
+                <?php endforeach; ?>
+
+                <?php $reviewSummary = $reviewSummary / count($_votes) ?>
+            <?php endif; ?>
+
+            <p class="review__rating rating">
+                <span class="rating__bar" style="width:<?php echo $reviewSummary ?>%"></span>
+            </p>
+
+            <p class="review__title">
+                <?php echo $this->escapeHtml($_review->getTitle()) ?>
+            </p>
+
+            <div class="review__text">
+                <?php echo nl2br($this->htmlEscape($_review->getDetail())) ?>*
+            </div>
+
+            <footer class="review__footer">
+                <span class="review__author">
+                    <?php echo $this->__('by %s', $this->htmlEscape($_review->getNickname())) ?>
+                </span>
+
+                <span class="review__date">
+                    <?php echo $this->formatDate($_review->getCreatedAt(), 'long') ?>
+                </span>
+            </footer>
+        </article>
+    <?php endforeach; ?>
+<?php endif ?>
+
+<?php
+    $reviewFormBlock = $this->getLayout()->createBlock('review/form');
+
+    if ($reviewFormBlock) {
+        echo trim($reviewFormBlock->toHtml());
+    }
+?>

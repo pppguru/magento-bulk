@@ -1,0 +1,110 @@
+<script>
+    
+if (typeof(Translator) == 'undefined') {
+    var Translator = new Translate(<?php echo $this->getTranslateJson(); ?>);
+} else {
+    Translator.add(<?php echo $this->getTranslateJson(); ?>);
+}              
+
+var allowQuantityButtons = <?php echo (Mage::getStoreConfig('purchase/scanner/display_quantity_button')); ?>;
+var allowAssignBarcodeButton = <?php echo (Mage::getStoreConfig('purchase/scanner/allow_barcode_assigment')); ?>;
+
+</script>
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Create delivery for order #%s (%s)', $this->getPurchaseOrder()->getpo_order_id(), $this->getPurchaseOrder()->getSupplier()->getsup_name()) ?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl(); ?>'" class="scalable back" type="button"><span><?php echo $this->__('Back') ?></span></button>
+                <button onclick="objScannerDelivery.commit();"
+                        class="scalable save" id="po_scanner_commit_button" name="po_scanner_commit_button" type="button">
+                        <span><?php echo $this->__('Commit Reception') ?></span>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<table border="0" width="100%">
+    <tr><td width="50%">
+            <div id="div_instruction" style="font-size: 24px; font-weight: bold; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; padding: 10px;">
+
+            </div>
+        </td><td width="50%">
+            <div id="div_message" style="font-size: 18px; font-weight: bold; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; padding: 10px;">
+
+            </div>
+        </td></tr>
+</table>
+
+<div class="clear"></div>
+
+<div id="div_main" style="align: center; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; margin-top: 10px;">
+    <center>
+        <table border="0" width="100%">
+            <tr>
+                <td width="50%" align="center" rowspan="6"><img id="img_main_picture" width="200"></td>
+                <td width="50%" align="center"><div id="div_main_name" class="po_scanner_h1"></div></td>
+            </tr>
+            <tr><td align="center"><div id="div_main_sku" class="po_scanner_h1"></div></td></tr>
+            <tr><td align="center"><div id="div_main_barcode" class="po_scanner_h1"></div></td></tr>
+            <tr><td align="center"><div id="div_main_location" class="po_scanner_h1"></div></td></tr>
+            <tr><td align="center">
+                <div id="div_qty_container" style="margin-bottom: 20px;">
+                    <?php if (Mage::getStoreConfig('purchase/scanner/display_quantity_button')): ?>
+                        <input type="button" id="btn_decrease" class="po_scanner_button" style="display: none;" value=" - " onclick="objScannerDelivery.decreaseQty(objScannerDelivery.currentProduct.pop_id)">
+                    <?php endif; ?>
+                    <span id="div_main_qty" class="po_scanner_h1"></span>
+                    <?php if (Mage::getStoreConfig('purchase/scanner/display_quantity_button')): ?>
+                        <input type="button" id="btn_increase" class="po_scanner_button" style="display: none;" value=" + " onclick="objScannerDelivery.increaseQty(objScannerDelivery.currentProduct.pop_id)">
+                    <?php endif; ?>
+                </div>
+            </td></tr>
+            <tr><td align="center"><div id="div_main_packaging" class="po_scanner_h1"></div></td></tr>
+            <tr><td><input id="btn_skip_location" class="po_scanner_button" type="button" value=" <?php echo $this->__('Skip location'); ?> " onclick="objScannerDelivery.skipLocation();" style="display: none;"></td></tr>
+        </table>
+    </center>
+    <div id="div_confirm_qty" style="display: none; border : 2px solid #000000; padding: 5px;">
+        <input type="text" name="qty" value="1">
+        <input type="button" value="<?php echo $this->__('Confirm'); ?>" onclick="objScannerDelivery.confirmQty()">
+        <input type="button" value="<?php echo $this->__('Cancel'); ?>" onclick="objScannerDelivery.cancelQty()">
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<div id="div_affect_barcode" style="align: center; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; margin-top: 10px; display: none;">
+
+</div>
+
+<div class="clear"></div>
+<div class="clear"></div>
+<p>&nbsp;</p>
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Scanned products') ?></h3></td>
+        </tr>
+    </table>
+</div>
+
+<div class="clear"></div>
+
+<div id="div_summary" style="align: center; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; margin-top: 10px;">
+
+</div>
+
+<script>
+    var objScannerDelivery = new scannerDelivery(<?php echo $this->getJsonData(); ?>, <?php echo $this->getPurchaseOrder()->getId(); ?>, <?php echo $this->scanLocation(); ?>, <?php echo $this->scanSerial(); ?>, <?php echo $this->displayPackaging(); ?>, <?php echo $this->assignBarcode(); ?>);
+    objScannerDelivery.waitForScan();
+</script>
+
+<form method="POST" action="<?php echo $this->getFormUrl(); ?>" id="form_delivery">
+    <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    <input type="hidden" name="po_id" value="<?php echo $this->getPurchaseOrder()->getId(); ?>">
+    <input type="hidden" name="data" id="data">
+</form>
+
+<audio id="audio" src="<?php echo $this->getSkinUrl('media/wrong.mp3'); ?>" ></audio>
+

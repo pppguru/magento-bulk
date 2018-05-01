@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<additional>
+    <newvsreturning>
+        <title>New vs Returning Customers</title>
+        <sort_order>15</sort_order>
+        <required_version>2.2.1</required_version>
+        <active>true</active>
+    </newvsreturning>
+</additional>
+ 

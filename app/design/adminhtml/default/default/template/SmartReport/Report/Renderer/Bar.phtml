@@ -1,0 +1,80 @@
+<div id="report_<?php echo $this->getReport()->getId(); ?>" style="<?php echo $this->getContainerStyle(); ?>"></div>
+
+<script type="text/javascript">
+
+    document.observe("dom:loaded", function() {
+
+
+        jQuery('#report_<?php echo $this->getReport()->getId(); ?>').highcharts({
+            chart: {
+                type: 'column'
+            },
+            credits: { enabled: false },
+            title:{ text:'<?php echo $this->__($this->getReport()->getName()); ?>'},
+            subtitle: {
+                text: '<?php echo $this->getSubtitle(); ?>'
+            },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    },
+                    formatter: function () {
+                        <?php echo $this->getLabelFormatter(); ?>
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '<?php echo $this->getYLabel(); ?>'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    point: {
+                        events: {
+                            click: function () {
+                                <?php echo $this->onClick(); ?>
+                            }
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '<?php echo $this->getYLabel(); ?>',
+                data: <?php echo json_encode($this->getReportDatas()); ?>,
+                dataLabels: {
+                    enabled: false,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    format: '{point.y}', // one decimal
+                    y: 10, // 10 pixels down from the top
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            }],
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        menuItems: [{
+                            text: 'Excel Export',
+                            onclick: function () {
+                                <?php echo $this->exportJs(); ?>
+                            }
+                        }]
+                    }
+                }
+            }
+        });
+    });
+</script>

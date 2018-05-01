@@ -1,0 +1,19 @@
+<?php $_product = $this->getProduct() ?>
+<?php $productkind = $_product->getTypeId(); ?>
+<?php $theGoods = Mage::helper('customstockstatus')->getTheGoods($_product->getId()); ?>
+<?php $availabilitytext = Mage::helper('customstockstatus')->getAvailabilityText($theGoods, $productkind); ?>
+<?php $stockInfo = Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product); ?>
+<?php $stocklevel = (int)$stockInfo->getQty(); ?>
+<?php $backordered = $stockInfo->getBackorders(); ?>
+<?php $stockmanaged = $stockInfo->getManageStock(); ?>
+<?php $restrictionsText = Mage::helper('customstockstatus')->getRestrictionsText(); ?>
+
+<?php if ($_product->isAvailable()): ?>
+	<?php if(($productkind == 'simple' || $productkind == 'virtual') && $stockmanaged == 1 && $backordered != 1): ?>
+		<?php if($stocklevel > 0): ?>
+			<p class="shipsin"><?php echo Mage::helper('customstockstatus')->getShipDateHtml($theGoods, $productkind);?></p>
+		<?php endif; ?>
+	<?php else: ?>
+		<p class="shipsin"><?php echo Mage::helper('customstockstatus')->getShipDateHtml($theGoods, $productkind);?></p>
+	<?php endif; ?>
+<?php endif; ?>

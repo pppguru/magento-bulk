@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MDN_CompetitorPrice>
+            <version>1.1.1</version>
+        </MDN_CompetitorPrice>
+    </modules>
+    <global>
+
+        <helpers>
+            <CompetitorPrice>
+                <class>MDN_CompetitorPrice_Helper</class>
+            </CompetitorPrice>
+        </helpers>
+
+        <blocks>
+            <CompetitorPrice>
+                <class>MDN_CompetitorPrice_Block</class>
+            </CompetitorPrice>
+        </blocks>
+
+        <models>
+
+            <CompetitorPrice>
+                <class>MDN_CompetitorPrice_Model</class>
+                <resourceModel>CompetitorPrice_mysql4</resourceModel>
+            </CompetitorPrice>
+
+            <CompetitorPrice_mysql4>
+                <class>MDN_CompetitorPrice_Model_Mysql4</class>
+                <entities>
+                    <Product>
+                        <table>bms_competitor_price_product</table>
+                    </Product>
+                </entities>
+            </CompetitorPrice_mysql4>
+
+        </models>
+
+        <resources>
+            <CompetitorPrice_setup>
+                <setup>
+                    <module>MDN_CompetitorPrice</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </CompetitorPrice_setup>
+            <CompetitorPrice_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </CompetitorPrice_write>
+            <CompetitorPrice_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </CompetitorPrice_read>
+        </resources>
+
+        <events>
+
+            <controller_action_layout_render_before_adminhtml_catalog_product_index>
+                <observers>
+                    <CompetitorPrice>
+                        <type>singleton</type>
+                        <class>CompetitorPrice/Observer</class>
+                        <method>controller_action_layout_render_before_adminhtml_catalog_product_index</method>
+                    </CompetitorPrice>
+                </observers>
+            </controller_action_layout_render_before_adminhtml_catalog_product_index>
+            <controller_action_layout_render_before_adminhtml_catalog_product_grid>
+                <observers>
+                    <CompetitorPrice>
+                        <type>singleton</type>
+                        <class>CompetitorPrice/Observer</class>
+                        <method>controller_action_layout_render_before_adminhtml_catalog_product_index</method>
+                    </CompetitorPrice>
+                </observers>
+            </controller_action_layout_render_before_adminhtml_catalog_product_grid>
+
+            <advancedstock_product_grid_preparecolumns>
+                <observers>
+                    <CompetitorPrice>
+                        <type>singleton</type>
+                        <class>CompetitorPrice/Observer</class>
+                        <method>advancedstock_product_grid_preparecolumns</method>
+                    </CompetitorPrice>
+                </observers>
+            </advancedstock_product_grid_preparecolumns>
+
+            <marketplace_products_grid_addcolumns>
+                <observers>
+                    <CompetitorPrice>
+                        <type>Singleton</type>
+                        <class>CompetitorPrice/Observer</class>
+                        <method>marketplace_products_grid_addcolumns</method>
+                    </CompetitorPrice>
+                </observers>
+            </marketplace_products_grid_addcolumns>
+
+        </events>
+
+    </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <CompetitorPrice>
+                    <file>CompetitorPrice.xml</file>
+                </CompetitorPrice>
+            </updates>
+        </layout>
+
+
+        <translate>
+            <modules>
+                <MDN_CompetitorPrice>
+                    <files>
+                        <default>MDN_CompetitorPrice.csv</default>
+                    </files>
+                </MDN_CompetitorPrice>
+            </modules>
+        </translate>
+
+    </adminhtml>
+
+    <frontend>
+        <routers>
+            <CompetitorPrice>
+                <use>standard</use>
+                <args>
+                    <module>MDN_CompetitorPrice</module>
+                    <frontName>CompetitorPrice</frontName>
+                </args>
+            </CompetitorPrice>
+        </routers>
+
+        <layout>
+            <updates>
+                <CompetitorPrice>
+                    <file>CompetitorPrice.xml</file>
+                </CompetitorPrice>
+            </updates>
+        </layout>
+
+
+        <translate>
+            <modules>
+                <MDN_CompetitorPrice>
+                    <files>
+                        <default>MDN_CompetitorPrice.csv</default>
+                    </files>
+                </MDN_CompetitorPrice>
+            </modules>
+        </translate>
+
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <CompetitorPrice before="Mage_Adminhtml">MDN_CompetitorPrice_Adminhtml</CompetitorPrice>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <default>
+        <competitorprice>
+            <general>
+                <host>http://offers.api.boostmyshop.com/</host>
+                <enable>1</enable>
+                <frequency>daily</frequency>
+                <wizarded>0</wizarded>
+            </general>
+            <account>
+                <user>kgb951@gmail.com</user>
+                <secret_key>c9e0402aa249b7274e9f49bf763d12776fa2c9f7</secret_key>
+            </account>
+            <display>
+                <sort_mode>total</sort_mode>
+                <number_of_seller>2</number_of_seller>
+            </display>
+        </competitorprice>
+    </default>
+
+</config> 

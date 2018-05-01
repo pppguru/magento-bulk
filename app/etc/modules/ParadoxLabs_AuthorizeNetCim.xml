@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<config>
+	<modules>
+		<ParadoxLabs_AuthorizeNetCim>
+			<active>true</active>
+			<codePool>community</codePool>
+			<depends>
+				<ParadoxLabs_TokenBase />
+			</depends>
+		</ParadoxLabs_AuthorizeNetCim>
+	</modules>
+</config>

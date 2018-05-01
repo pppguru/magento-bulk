@@ -1,0 +1,34 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Print return form') ?></h1>
+</div>
+
+<div style="border: solid 1px grey; padding: 4px; ">
+
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('cgv_rma')->toHtml(); ?>
+
+</div>
+
+<p>&nbsp;</p>
+
+<form name="formcgv" id="formcgv" method="POST" action="<?php echo $this->getReturnPrintUrl(); ?>">
+    <input type="hidden" name="rma_id" value="<?php echo $this->getRma()->getrma_id(); ?>"/>
+
+    <div style="text-align:center;">
+        <label for="cgv"><INPUT type="checkbox" id="cgv" name="cgv" value="1"
+                                class="formcgv required-entry"/> <?php echo $this->__('I agree'); ?></label>
+    </div>
+    <p>&nbsp;</p>
+
+    <div style="text-align:center;">
+        <button type="submit" class="button"><span><span><?php echo $this->__('Submit'); ?></span></span></button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('formcgv');
+    //]]>
+</script>
+		

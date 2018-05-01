@@ -1,0 +1,39 @@
+.ampgrid_input_text
+{
+    width: 95%;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #AAAAAA #C8C8C8 #C8C8C8 #AAAAAA;
+    border-style: solid;
+    border-width: 1px;
+    font: 12px arial,helvetica,sans-serif;
+}
+
+.ampgrid_input_date
+{
+    width: 70%;
+}
+
+.ampgrid_input_select
+{
+    width: 95%;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #AAAAAA #C8C8C8 #C8C8C8 #AAAAAA;
+    border-style: solid;
+    border-width: 1px;
+    font: 12px arial,helvetica,sans-serif;
+}
+
+.ampgrid_sortable
+ {
+     background: url(../../images/ampgrid/move.png) 98% 3px no-repeat;
+ }
+
+.ampgrid_sortable a
+{
+    cursor: move;
+}
+
+.ampgrid_sortable_insertafter
+{
+    border-right: 4px solid #e1d900 !important;
+}

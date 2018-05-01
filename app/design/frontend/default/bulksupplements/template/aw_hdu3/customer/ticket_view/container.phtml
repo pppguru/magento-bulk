@@ -1,0 +1,48 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Customer_Ticket_ViewContainer $this */?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="page-title awhdu3-customer-ticketview-page-title">
+    <h1 title="<?php echo $this->getPageTitle() ?>"><?php echo $this->getPageTitle() ?></h1>
+</div>
+<div class="col2-set">
+    <div class="col-1">
+        <?php echo $this->getChildHtml('ticket.view.info');?>
+    </div>
+    <div class="col-2">
+        <?php echo $this->getChildHtml('ticket.view.escalate');?>
+    </div>
+</div>
+<?php echo $this->getChildHtml('ticket.view.action');?>
+<?php if ($this->isLoggedIn()): ?>
+    <div class="back">
+        <a href="<?php echo $this->getBackUrl() ?>"><?php echo $this->__('%s Back to my Support Tickets', '&laquo;') ?></a>
+    </div>
+<?php else: ?>
+    <br>
+<?php endif; ?>
+<br>
+<?php echo $this->getChildHtml('ticket.view.thread');?>

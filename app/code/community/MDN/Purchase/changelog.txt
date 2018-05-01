@@ -1,0 +1,363 @@
+____________________________________________________________________________________________________________________
+v 2.8.4.8 - ERP 2.9.5.2
+
+- Add recalculate cost button on complete order
+- Late Order : order is late if the order is late regarding announced date OR regarding current date
+- Fix pending qty calculation, display and filter on "pending Customer order qty" column on "remaining supplier qty" screen
+- Fix sku link "remaining supplier qty" screen
+- Po product grid : sub total calculation with 4 decimals
+- Add "updated at" date on Purchase orders
+
+____________________________________________________________________________________________________________________
+v 2.8.4.6 - ERP 2.9.5.0
+
+Feature :
+- Play error sound in PO scanner delivery screen when scan an incorrect barcode
+- Add Import product packaging
+- Add Excel / CSv export for suppliers grid Display PO count & total in supplier grid
+- Add history tab in purchase order view
+- Add custom product name in purchase / product association Remove "price position" in purchase product association
+- Add default products discount field in purchase order
+- Add shipping instructions in supplier view and purchase order PDF
+- Add Purchase order count & total in supplier grid
+- Export supply need from the grid in Excel + CSV
+- Displays Supplier shipping delay in supply need
+- Add packaging column in "Add product" tab for a PO
+- Scanner delivery - display packaging information
+- Improve layout for top buttons in supply needs screen
+
+Fix :
+- Add security to avoid multiple deliveries on scanner delivery
+- Prevent to add products with qty = 0 from supply needs stats screen, clicking on button "create"
+- Increase and homogenize length of pop_supplier_ref and pps_reference to avoid supplier_ref cut at 25
+- Correct Line wrap on PO delivery note
+- Prevent to scan empty barcode in PO scanner delivery
+- Use target warehouse as default warehouse in delivery tab in a purchase order
+- Fix margin calculation in margins tab (uses currency base values now)
+- Fix filter crash by manufacturer on remaining supply qty
+- Fix search via purchase orders column in remaining supply quantity
+- Fix : specific delivery date  for product in PO was not used in remaining supply qty screen
+- Enable multiple line on all pdf if a field have no space and is too long
+- fix Option allow scanned barcode that disappeared in Scanner delivery
+- Default sort for PO grid in product view
+
+____________________________________________________________________________________________________________________
+v 2.8.3.9 - ERP 2.9.3.4
+
+Features :
+ - Add Import Purchase order products from a CSV file
+ - PO delivery Note : add shelf location
+ - Add possibility to unlock a purchase order
+ - Add PDF option to use true type font for international Supplier
+
+Fixes :
+ - Fix the PO total rounding calculation : subtotal and total calculation of a PO was not absolutly exact : fix all the round are done after the calculation
+ - fix currency and change rate correctly set on creating a Purchase Order from supply need
+ - Export product : fix SQL syntax error that make a crash on export on some magento version
+ - Export suppliers is now safely formatted in excel
+ - All PDF : avoid crash if logo is corrupted
+ - Purchase order PDF : wrap sku on multiple line if too long sku
+ - Speed Optimization the purchase order GenerateOrderNumber
+ - Update FR Translation
+
+____________________________________________________________________________________________________________________
+v 2.8.3.8 - ERP 2.9.3.3
+
+Fixes :
+- Fix Scan Location and Scan Serials options in Purchase delivery
+- Improve ScannerDelivery compatibility with all browsers
+- Avoid to use Product delivery date if option has been disabled in Availability Date
+- Update FR Translation
+
+____________________________________________________________________________________________________________________
+v 2.8.3.7 - ERP 2.9.3.0
+
+Features :
+- New feature to lock a PO (save and lock) : permission in "erp >purchasing > purchase order > can edit locked PO" gives user ability to edit a locked PO
+- Add option : Cost repartition by Weight 
+- AdvancedStock+Purchase : add mass action to link a product to a supplier
+- Manage Special price Purchase order product grid
+- Improve serial number management at PO delivery
+- RemainingSupplieQty  : improve search in filter
+- Purchase Supplier order list : add columns
+- Purchase Contact add missings columns on contacts grid
+- Display a popup after clicking on All product delivered 
+- Merge DEEE/WEEE options 
+- Multiple mail en cc in Purchase order notification 
+- Order Delivery : open product in a new tab on Image click
+- PO PDF : Display header and footer by store on Order pdf comment
+- PO PDF : date regionalized
+- PO PDF : add missing packaging value in PDF printing
+- PO PDF : Hide column in PO PDF, depending of options 
+- PO PDF : Clean formatAdress function + Add State in all addresses
+- Check qty on purchase order delivery  
+- Save the last message sent to a supplier and display it 
+- Manufacturer attribute usage is now totally linked to the option Manufacturer en Purchase  + Secure Manufacturer attribute usage if manufacturer attribute delete d+ not set in conf 
+- Add options in system > configuration > purchase > scanner to hide +/buttons and disable assign to barcode function
+- Add option in system > configuration > purchase > scanner delivery to scan product serial numbers
+- Add barcode columns in products and add products grid in a purchase order
+- Support products with multiple barcodes in PO scanner delivery screen
+- PO : Ability To print Delivery Note
+- Remove 'Purchase nature' functionnality
+- Add permissions to control print / import / scanner delivery / export / delete / save buttons in a purchase order
+- Add permissions to add / edit / delete / create_orde for suppliers and display / hide show miscellaneous / contacts tab
+
+Fixes :
+- Optimization : fast up Import product Supplier
+- Fix PDF order alignement issue
+- Fix : initLocale function were missing in "print locations" for a purchase order
+- Fix : PO product grid was scrolling when you hit Lamp icon or date pickup icon when you were at bottom of the screen.
+- Prevent to write some incorrect values in PO 
+- PO PDF : auto adjust multiline width and heigth when product name is very long 
+- PO's CSV downloaded fileName was incorrect 
+- Prevent crash on cost calculation
+- Export profile fix export profile "product" 
+- Contact link was broken + translation was not coded + add security
+- Fix link not clicable on supplier product grid + open on new tab on product supplier edition to avoid modification change
+- Fix manufacturer attribute selection (compatibility if attribute change or is deleted)
+- Fix : purchase_suppliers_edit had 2 entries in layout -> merged -> Skin still not yet displayed
+- SQL : Change label "Mise de fond" to "Initial Stock" + remove bad UFT-8 char to perhaps avoid install errors !
+- Fix  : don't delete stock movement after a PO deletion 
+- PO Info tab : fix crash when clicking on Supplier email + smart color on PO delivery %
+- SQL : Init ERP with most used VAT rate + remove word "TVA"
+- Fix :Open product view in a new tab from purchase order
+- Restore Export Supply need from Advanced profile 
+- Limit some field to numeric to avoid potentials crashes 
+- Purchase order default Paiement methods in english
+- Fix issue with OrderLocations.php PDF in a PO
+- Fix ?UTF-8? bug in Purchase order mail notification 
+- Hide WEEE column in PO PDF, depending of options ( now all column width re parameterizable and the width of description is adjusted depending if WEE is enable or not)
+- Fix issue with PO currency when creating a new PO from supply needs 
+- Fix waiting for delivery quantity coudl be negative
+- Fix issue in PO, in product pages, packagin & JS issue from page #2
+
+
+
+____________________________________________________________________________________________________________________
+v 2.8.3.6 - ERP 2.9.2
+
+- Remove default value of 5 on supply delay attribute
+- Fix : issue creating packaging in product sheet (undefined index error)
+- New option in system > configuration > purchase > misc to select what barcode labels are printed from purchase order delivery tab
+- Fix issue with max prices in purchase order : you can now set prices bigger than 9999
+- Add fill all min & fill all max buttons in supply needs
+- Fix the create order feature in supply needs > statistics
+- Fix missing logo on PO PDF on magento 1.7
+- Add error msg in supply needs when manufacturer attribute is not set
+- Improve PDF layout
+- Display packaging information & quantities on PDF
+- Fix : prefered stock level between brackets were always 0 in sypply needs
+- Add suppliers column (with filter possibility) in erp > products grid
+- Add suppliers sku column (with filter possibility) in erp > products grid
+- You can now delete a supplier if he has no PO associated
+- Add supplier & supplier sku columns in mass stock editor
+- Add confirmation msg in PO when deliveries are about to be created
+- Fix JS issue in purchase order if subtotal and / or discount columns are not displayed
+- New feature to print products location from a purchase order (in deliveries tab)
+
+____________________________________________________________________________________________________________________
+v 2.8.3.4 - ERP 2.9.1
+
+- Refresh supply needs button removed in product "purchasse settings" tab
+- Fix : update progress delivery and toggle order status with scanner delivery on PO
+- Fix : PDF was not in attachment for emails send to CC
+- New feature : possibility to filter supply needs by warehouse
+- Fix issue with manufacturer / supplier association : didnt work if attribute was not manufacturer
+- Fix : price in supplier currency was not saved from suppliers tab in erp product sheet
+
+____________________________________________________________________________________________________________________
+v 2.8.3.3 - ERP 2.9.0
+
+- New feature in system > configuration > purchase > miscellaneous to create supplier from manufacturers and synchronize product / supplier association based on the product manufacturer
+- Add stock summary, manufacturer and supply needs overview in "add products" tab in purchase order
+- Fix issue in PO on price calculation when % discount is applied : % discount is applied on the unit price, rounded and then multiplied with the quantity
+- Create PO delivery using barcode scanner : available from a PO, with "Scanner delivery" button
+- In purchase order, "products" tab, display configurable product picture when available
+- Supply needs doesnt use background task anymore, supply needs screen layout improved
+- Add supply needs summary in product selection tab in purchase order
+- Cost update for background tasks are low priority
+- Add manufacturer atttribute setting in system > configuraiton > puchase > supplyneeds > 
+- Enhance change rate, shipping cost and tax fields explanation
+- Convert minimum order of amount and free carriage limit into the PO currency
+
+____________________________________________________________________________________________________________________
+v 2.8.2.8
+
+- Fix : sale price column was empty in PO products list on pages > 1
+- Fix : qty was missing in CSV export for PO
+- Fix : import/export profiles are now in advanced profiles
+- Fix : reset purchase order data in product on duplication
+- Add unique indexes on purchase tables
+- Fix : error was thrown in purchase order if product had several main barcode
+- Add sku column in purchase order view
+- Fix : remove filtre on qty column in "add products " tab in PO
+- Disable shipment controller rewrite
+
+____________________________________________________________________________________________________________________
+v2.8.2.5
+
+- Add default currency in supplier sheet (used when creating new purchase order)
+- Add default tax rate in supplier sheet (used when creating new purchase order and adding product to PO)
+- New feature : manage defect qty in purchase order delivery
+- New feature : you can set a estimate delivery at product level in purchase order. To enable it, go in system > configuration > purchae module > purchase product grid
+- Add new status : waiting for supplier 
+- New button in purchase order to export products in csv file
+- New setting in system > configuration > purchase > purchase product to prevent to add a product to a purchase order if product / supplier association doesnt exist
+- new field in supplier view : you can set payment delay value (in days)
+- new feature in erp > purchasing > suppliers liabilities : this screen summarizes not paid suppier invoice with a due date based on the invoice date & supplier payment delay
+- new feature : you can set the product supply delay in product / supplier association
+- fix : adding a product to a purchase order, product wasnt retrieved from product / supplier association
+- New feature : ERP stores now purchase unit price with supplier currency and use it when creating a new PO
+- Fix : issue when creating shipment : stock level check was done on the default warehouse, not on the warehouse associated to order item
+
+____________________________________________________________________________________________________________________
+v2.8.2.0
+
+- Code pool is now community
+- Add target warehouse combobox in PO (for external logistic purposes)
+- Add target warehouse in PO grid
+- Fix ajax issue in ERP product sheet, tab "supplier" with IE
+- Add can drop ship & is default supplier to product / supplier association
+- improve supplier sheet to fill in default supply delay
+- new feature; can set favorite supplier and if a supplier allow product drop ship
+- fix : consider supply delay calculation (global, supplier, product) in dead line for purchase in supply needs
+- Improve supply needs refresh task
+- Set default value for cost reparatition method in a PO
+- Fix issue in erp product sheet with safari
+- Add button in purchase order creation screen to create a new supplier
+- add button in supplier sheet to create a new PO
+- Add products grid in supplier sheet (display products associated to supplier)
+- Product cost calculation use supplier prices if there is no purchase order deliveries
+- keep tab selection when saving purchase order
+- Refactor accounting tab in a PO
+- The system now uses target warehouse address in PO PDF
+- Fix : extended costs were not saved in database (caused wrong cost calculation)
+- Fix issue on stock management with Enterprise Edition 1.10
+- FIx purchase order text alignement shifts
+- Add shipping delay in supplier sheet
+- Keep current tab after saving in supplier sheet
+- Manage free carriage at supplier level, display notice in purchase order 
+- Add a new screen "statistic" in supply needs to display per supplier a summary of products to purchase
+- New profile to export product / supplier association
+- Improve cost calculation background task performance
+- Fix: when adding a new product packaging, default for sales and default for purchase values were not applied
+- Fix: wrong currency was displayed on shipping cost & tax & duties in purchase order form
+- Add permission to allow view / edit purchase information in erp product view
+- Supplier discount management in supplier view, product / supplier association and purchase order items
+- New feature : in supply needs screen, ability to import a csv file to update prefered stock levels
+- Use pagination in products and delivery tabs in purchase order
+- Add sales history in product popup
+
+____________________________________________________________________________________________________________________
+v2.8.1.1
+
+- Fix : in product cost calculation, do not consider PO having product price = 0
+- Fix : issue with "disable supply needs" feature for warehouse
+- Improvement : sort supplier list asc in erp > product > suppliers tab
+- Fix : store name was not displayed in transactional email
+
+____________________________________________________________________________________________________________________
+v2.8.1
+
+- New option in system > configuraiton > purchase module > purchase order to hide product picture in purchase order sheet
+- New option in system > configuraiton > purchase module > purchase order to display last buy price for product in a PO
+- In supply needs, displays last price for each supplier
+- New feature : print barcode labels from purchase order
+- Add locale setting for supplier
+- Add products packaging management for purchase
+- Fix: update product cost when change_rate change in a PO
+- Add advanced profile to import/update product / supplier association
+- Add advanced profile to import/update suppliers
+- Add supplier code in supplier grid
+- Improve interface for association between product & supplier (ajax)
+
+____________________________________________________________________________________________________________________
+v2.7.8
+
+- Purchase rewrites advancedstock/product_cost helper to consider purchase orders
+- Add allowAddToSupplyNeeds method in supply needs model to allow custom logic
+- Fix : issue with supply needs priority calculation
+- Product popup window is now draggable
+- Improve Product popup window
+- Fix issue on supplyNeeds status
+- Add comment about manual supply needs in product popup window
+- Ability to set shelf locaiton when creating a purchase order delivery
+
+____________________________________________________________________________________________________________________
+v2.7.7
+
+- Fix : saving product's price from PO was issued when using price_including_taxes
+- Fix : installation script was wrong (creation column: psop_real_payment_date datetime)
+
+____________________________________________________________________________________________________________________
+v2.7.6
+
+- In a PO, Add product tab : display 0 instead of negative qty in available qty column
+- Fix: do not store cost if = 0
+- Fix: consider option system/configuration/purchase/purchase_order/store_product_cost
+- Add compatibility with Magento 1.1, 1.2
+- Fix : wrong js path for prototype/window.js
+- Fix : cant display product popup when product name contains "
+- Add filter on supply needs grid, qty column to display only supply needs for valid orders
+- Add new option in "System > configuration > purchase > supply needs" to hide disabled products in supply needs
+- Add new feature : Remaining supply quantities available in ERP > Purchasing. Can be configured in system > configuration > purchase module
+- In purchase order deliveries tab, display both product sku and supplier reference
+
+____________________________________________________________________________________________________________________
+v2.7.5
+
+- Fix : available qty column missing in archive
+- Fix: issue with database table prefix for FlatOrder->isFlatOrder
+
+____________________________________________________________________________________________________________________
+v2.7.4
+
+- Fix: wrong margin calculation in purchase product sheet
+- Fix: when small_image attribute missing, product was not displayed in Purchase Order
+- Fix : product information popup (from the light button) didn't work if product name contains a quote
+- Add index on column purchase_order_product.pop_product_id
+- Merge branches 1.4 & 1.4.1
+- Add manufacturer delete button
+- Fix : Update product waiting for delivery qty and date on order deletion
+- Also update product delivery date and qty when clicking on "Force stock update" button from ERP Product sheet
+- Add sku column in Purchase Order delivery
+
+____________________________________________________________________________________________________________________
+v2.7.2
+
+- New method in order model : create delivery
+
+____________________________________________________________________________________________________________________
+v2.7.1
+
+- Add new event purchase_order_edit_create_tabs to add custom tabs in purchase order sheet
+- In purchase order pdf: displays product sku if there is no supplier ref
+- Add getProducts method in supplier model
+
+____________________________________________________________________________________________________________________
+v2.7
+
+- Add adminhtml.xml
+- Improve purchase order sheet display (join with product tables, ajax for delivery tab)
+- Improve speedness on saving purchase order information, adding product etc...
+- Check for waiting for delivery quantities and next supply date in stock errors
+
+____________________________________________________________________________________________________________________
+v2.6.7
+
+- Remove settings for consider orders (settings belong to advanced stock know)
+- Move sales_order_place_after and sales_order_invoice_pay events handler to advancedstock module
+- Move creditmemo rewrite to advanced stock module
+____________________________________________________________________________________________________________________
+v2.6.6
+
+- Purchase module is now dedicating to purchasing features (other feature are now under advancedstock / salesorderplanning modules)
+- New parameter to set product default supply delay (system > config > puchase module > purchase product)
+- Supply needs can now works with multiple warehouse
+- Improved product popup
+- Improve Purchase Order saving
+- New calculation mode for product cost (cost is computed using real stock and source PO)
+- Purchase menu have moved under ERP menu
+- When creating deliveries, user can select target warehouse
+- DEEE management in purchase orders
+- 

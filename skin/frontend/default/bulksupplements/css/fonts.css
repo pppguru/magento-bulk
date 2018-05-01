@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'HelveticaCondensedBlack_Oblique';
+    src: url('fonts/HelveticaCondensedBlack_Oblique.eot');
+    src: local('☺'), url('fonts/HelveticaCondensedBlack_Oblique.woff') format('woff'), url('fonts/HelveticaCondensedBlack_Oblique.ttf') format('truetype'), url('fonts/HelveticaCondensedBlack_Oblique.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

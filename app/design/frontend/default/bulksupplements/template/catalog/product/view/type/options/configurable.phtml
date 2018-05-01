@@ -1,0 +1,182 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php
+$_product    = $this->getProduct();
+$_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
+?>
+
+<?php
+if($_product->getTypeId() == "configurable"): ?>
+
+<?php $img_confg = (string)Mage::helper('catalog/image')->init($_product, 'image')->resize(265,265);?>
+	<img src="<?php echo $img_confg;?>"  style="display:none;" id="<?php echo $_product->getId();?>" alt="<?php echo $this->escapeHtml($_product->getLabel()) ?>">
+	
+	<?php $_images = Mage::getModel('catalog/product')->load($_product->getId())->getMediaGalleryImages(); ?>
+		<?php if($_images){?> 
+			<div class="more-views" id="config_simple_img<?php echo $_product->getId()?>" style="display:none">
+				<ul>
+				<?php foreach ($_images as $_image_simp): ?>
+					<li>
+						<a href="javascript:void(0)" onclick="$('image').src='<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image_simp->getFile())->resize(265); ?>';$('org-image').href='<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image_simp->getFile()) ?>';">
+							<img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image_simp->getFile())->resize(67); ?>" width="67" height="67" alt="<?php echo $this->escapeHtml($_image_simp->getLabel()) ?>" />
+						</a>
+					</li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+		<?php } ?>
+		
+		
+<?php
+    $conf = Mage::getModel('catalog/product_type_configurable')->setProduct($_product);
+    $simple_collection = $conf->getUsedProductCollection()->addAttributeToSelect('*')->addFilterByRequiredOptions();
+    foreach($simple_collection as $simple_product){?>
+		<?php $img = (string)Mage::helper('catalog/image')->init($simple_product, 'image')->resize(265,265);?>
+		<img src="<?php echo $img;?>"  style="display:none;" id="<?php echo $simple_product->getId();?>" alt="<?php echo $this->escapeHtml($simple_product->getLabel()) ?>">
+		
+		<!-- For Media Gallary Started -->
+		
+		<?php $_images = Mage::getModel('catalog/product')->load($simple_product->getId())->getMediaGalleryImages(); ?>
+		<?php if($_images){?> 
+			<div class="more-views" id="config_simple_img<?php echo $simple_product->getId()?>" style="display:none">
+				<ul>
+				<?php foreach ($_images as $_image_simp): ?>
+					<li>
+						<a href="javascript:void(0)" onclick="$('image').src='<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image_simp->getFile())->resize(265); ?>';$('org-image').href='<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image_simp->getFile()) ?>';">
+							<img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image_simp->getFile())->resize(67); ?>" width="67" height="67" alt="<?php echo $this->escapeHtml($_image_simp->getLabel()) ?>" />
+						</a>
+					</li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+		<?php } ?>
+		
+		<!-- For Media Gallary Ended  -->		
+		
+	<?php } ?>
+
+<?php endif; ?>
+
+
+<?php // if ($_product->isSaleable() && count($_attributes)):?>
+<?php if (count($_attributes)):?>
+	<dl>
+	<?php foreach($_attributes as $_attribute): ?>
+		<!--<dt><label class="required"><em>*</em><?php echo str_replace('Weight &amp; Form', 'Size', $_attribute->getLabel()); ?></label></dt>-->
+		<dt><label class="required"><em>*</em><?php echo $this->__('Size'); ?></label></dt>
+		<dd<?php if ($_attribute->decoratedIsLast){?> class="last"<?php }?>>
+			<div class="input-box">
+				<select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]" id="attribute<?php echo $_attribute->getAttributeId() ?>" class="required-entry super-attribute-select">
+					<option><?php echo $this->__('Choose a Size...') ?></option>
+				  </select>
+			  </div>
+		</dd>
+	<?php endforeach; ?>
+	</dl>
+	<script type="text/javascript">
+		var spConfig = new Product.Config(<?php echo $this->getJsonConfig() ?>);
+		
+		jQuery( document ).ready(function() {
+		
+			jQuery('.select-buttons li a').click(function(elem){
+				var pro_id = jQuery(".super-attribute-select").find("option:selected").attr("pro_id");
+				var get_img = jQuery("img#"+pro_id).attr("src");
+				jQuery(".product-image #image").attr("src",get_img); 
+				jQuery(".product-image .fancybox").attr("href",get_img); 
+				
+				var get_simple_pro_img = jQuery("div#config_simple_img"+pro_id).html();
+				jQuery("#media_gallary_collection").html(get_simple_pro_img); 				
+			});			
+		})		
+		
+
+	/* auto selecting */
+		/*function fireEvent(element,event)
+		{
+			if (document.createEventObject)
+			{
+				// dispatch for IE
+				var evt = document.createEventObject();
+				return element.fireEvent('on'+event,evt);
+			}
+			else
+			{
+				// dispatch for firefox + others
+				var evt = document.createEvent("HTMLEvents");
+				evt.initEvent(event, true, true );
+				return !element.dispatchEvent(evt);
+			}
+		}
+
+		function setDefaultConfigOptions()
+		{
+			if (spConfigIndex >= spConfig.settings.length)
+			{
+				return; // stop
+			}
+
+			spConfig.settings[spConfigIndex].selectedIndex = 1;
+			var obj = spConfig.settings[spConfigIndex];
+
+			++spConfigIndex;
+
+			Event.observe(obj,'change',function(){});
+			fireEvent(obj,'change');
+
+			window.setTimeout("setDefaultConfigOptions()", 1); // Add a small delay before moving onto the next option
+		}
+
+		var spConfigIndex = 0;
+		Event.observe(window, 'load', function() {
+			setDefaultConfigOptions();
+		});*/
+
+		// SET THE DEFAULTS TO THE FIRST OPTION
+		/*for(var i=spConfig.settings.length-1;i>=0;i--) {
+		  spConfig.settings[i].selectedIndex = 1;
+		}
+		spConfig.reloadPrice();
+
+		//remove "Choose option..." option
+		$$('select.super-attribute-select').each(function(elem){
+			removeSelectOptByVal($(elem).identify(), '');
+		});
+
+		function removeSelectOptByVal(selectId, value) {
+			var select = document.getElementById(selectId);
+			var kids = select.childNodes;
+			var numkids = kids.length;
+			for (var i = 0; i < numkids; i++) {
+				if (kids[i].value == value) {
+					select.removeChild(kids[i]);
+					break;
+				}
+			}
+		}*/
+	</script>
+<?php endif;?>

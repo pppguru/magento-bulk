@@ -1,0 +1,18 @@
+<div id="subscription-to-save" class="block">
+    <div><strong>Get 5%</strong> Off when you subscribe to our Newsletter!</div>
+    <h1>SAVE 5%</h1>
+    <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="newsletter-validate-detail-two">            
+        <div class="input-box">
+            <label for="newsletter"><?php echo $this->__('Email Address:') ?></label>
+            <input type="text" name="email" id="newsletter-two" title="<?php echo $this->__('Sign up for our newsletter') ?>" class="input-text required-entry validate-email" />
+        </div>
+        <div class="actions">
+            <button type="submit" class="button"><span><span>SIGN UP NOW</span></span></button>
+        </div>        
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail-two');
+    //]]>
+    </script>
+</div>

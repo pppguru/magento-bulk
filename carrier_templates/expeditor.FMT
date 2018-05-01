@@ -1,0 +1,23 @@
+[GENERAL]
+DELIMITE=O
+SEPARATEUR=9
+DELIMITEUR=34
+FINDELIGNE=CRLF
+Unité poids=KG
+CN23=0
+[CHAMPS]
+ReferenceExpedition=1
+CodeDestinataire=2
+Adresse1=3
+NomDestinataire=4
+Adresse2=5
+Adresse3=6
+CodePostal=7
+Commune=8
+CodePays=9
+InstructionLivraison=10
+Telephone=11
+Poids=12
+Recommandation=13
+CodeProduit=14
+MontantADV=15

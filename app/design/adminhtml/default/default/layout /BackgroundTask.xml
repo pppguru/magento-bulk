@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+    <default>
+        <reference name="notifications">
+                <block type="BackgroundTask/CheckCron" name="check_cron" as="check_cron"></block>
+		</reference>
+	</default>
+	
+    <backgroundtask_admin_grid>
+        <reference name="content">
+            <block type="BackgroundTask/Task_Grid" name="backgroundtaskgrid" template="BackgroundTask/Task/Grid.phtml">
+           </block>
+        </reference>
+    </backgroundtask_admin_grid>
+    
+    <backgroundtask_admin_executetaskgroup>
+    	<remove name="menu" />
+    	<remove name="notification_toolbar" />
+    	<reference name="content">
+            <block type="BackgroundTask/Task_GroupExecute" name="backgroundtaskgroupexecute" template="BackgroundTask/Task/GroupExecute.phtml">   		
+           </block>    		
+    	</reference>
+    </backgroundtask_admin_executetaskgroup>
+    
+    <backgroundtask_admin_view>
+        <reference name="content">
+            <block type="BackgroundTask/Task_View" name="backgroundtaskview" template="BackgroundTask/Task/View.phtml">
+           </block>
+        </reference>
+    </backgroundtask_admin_view>
+    
+    <backgroundtask_admin_stats>
+        <reference name="content">
+            <block type="BackgroundTask/Task_Stats" name="backgroundtaskstats" template="BackgroundTask/Task/Stats.phtml">
+           </block>
+        </reference>
+    </backgroundtask_admin_stats>
+
+</layout>

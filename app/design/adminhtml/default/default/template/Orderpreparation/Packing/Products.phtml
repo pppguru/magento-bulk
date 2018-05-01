@@ -1,0 +1,94 @@
+<table border="0" width="100%">
+    <tr>
+        <td align="left"><h1><?php echo $this->__('Order #%s', $this->getOrder()->getincrement_id()) ?></h1></td>
+        <td align="right">
+            <?php if (Mage::getStoreConfig('orderpreparation/packing/enable_shipping_method_change')): ?>
+                <?php echo $this->__('Current shipping method : %s', $this->getOrder()->getShippingDescription()); ?><br>
+                <?php echo $this->__('change to'); ?> :
+                <select id="change_shipping_method" name="change_shipping_method" onchange="objPacking.changeShippingMethod();">
+                    <option></option>
+                    <?php foreach($this->getShippingMethods() as $k => $v): ?>
+                        <option value="<?php echo $k; ?>"><?php echo $v; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <p>&nbsp;</p>
+            <?php endif; ?>
+
+            <p><?php echo $this->getCarrierTemplateFormHtml(); ?></p>
+
+        </td>
+    </tr>
+</table>
+
+<table border="1" width="100%" cellspacing="0">
+    
+    <tr>
+        <td class="packing_th"><?php echo $this->__('Image'); ?></th>
+        <td class="packing_th"><?php echo $this->__('Sku'); ?></th>
+        <?php if ($this->displayBarcodes()): ?>
+            <td class="packing_th"><?php echo $this->__('Barcode'); ?></th>
+        <?php endif; ?>
+        <td class="packing_th"><?php echo $this->__('Name'); ?></th>
+        <td class="packing_th"><?php echo $this->__('Qty to Ship'); ?></th>
+        <td class="packing_th"><?php echo $this->__('Qty scanned'); ?></th>
+        <td class="packing_th"><?php echo $this->__('Qty to scan'); ?></th>
+        <?php if ($this->displaySerials()): ?>
+            <td class="packing_th"><?php echo $this->__('Serial numbers'); ?></th>
+        <?php endif; ?>
+    </tr>
+
+    <?php foreach($this->getGroups() as $groupId => $groupLabel): ?>
+        <tr class="group_<?php echo $groupId; ?>">
+            <td  id="tr_header_group_<?php echo $groupId; ?>" colspan="<?php echo $this->getNumberOfColumns(); ?>" class="packing_th"><?php echo $groupLabel; ?></td>
+        </tr>
+        <?php foreach($this->getProducts($groupId) as $product): ?>
+            <?php
+                if (!$this->productManageStock($product))
+                    continue;
+            ?>
+            <tr class="preparation_group group_<?php echo $groupId; ?>" id="preparation_line_<?php echo $product->getId(); ?>" >
+                <td class="packing_td" width="200"><img src="<?php echo $this->getProductImageUrl($product); ?>" height="<?php echo $this->getImageSize(); ?>)"></td>
+                <td class="packing_td"><?php echo $product->getSalesOrderItem()->getSku(); ?></td>
+                <?php if ($this->displayBarcodes()): ?>
+                <td class="packing_td"><?php echo mage::helper('AdvancedStock/Product_Barcode')->getBarcodeForProduct($product->getproduct_id()); ?></td>
+                <?php endif; ?>
+                <td class="packing_td"><?php echo $product->getSalesOrderItem()->getName(); ?></td>
+                <td class="packing_td"><b><?php echo $product->getQty(); ?></b></td>
+                <td class="packing_td" class="a-center">
+                    <table border="0" align="center" width="100%">
+                    <tr>
+                    <?php if ($this->displayQuantityButtons()): ?>
+                        <td>
+                            <input type="button" value=" <?php echo $this->__('Min'); ?> " onclick="objPacking.decreaseProductToMin(<?php echo $product->getId(); ?>);">
+                            <input type="button" value=" - " onclick="objPacking.decreaseProduct(<?php echo $product->getId(); ?>);">
+                        </td>
+                    <?php endif; ?>
+                    <td><b><div id="qty_scanned_<?php echo $product->getId(); ?>">0</div></b></td>
+                    <?php if ($this->displayQuantityButtons()): ?>
+                        <td>
+                            <input type="button" value=" + " onclick="objPacking.increaseProduct(<?php echo $product->getId(); ?>);">
+                            <input type="button" value=" <?php echo $this->__('Max'); ?> " onclick="objPacking.increaseProductToMax(<?php echo $product->getId(); ?>);">
+                        </td>
+                    <?php endif; ?>
+                    </tr>
+                    </table>
+                </td>
+                <td class="packing_td">
+                  <b><div id="qty_to_scan_<?php echo $product->getId(); ?>"></div></b>
+                </td>
+                <?php if ($this->displaySerials()): ?>
+                    <td class="packing_td"><textarea name="serials_<?php echo $product->getId(); ?>" id="serials_<?php echo $product->getId(); ?>" rows="3" cols="25"><?php echo $product->getSalesOrderItem()->getErpOrderItem()->getserials(); ?></textarea></td>
+                <?php endif; ?>
+            </tr>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
+</table>
+<p>&nbsp;</p>
+
+
+<input type="button" id="packing_btn" class="touchscreen-button green-button" value="<?php echo $this->__('COMMIT PACKING'); ?>" onclick="objPacking.commit(<?php echo $this->askForWeight(); ?>, <?php echo $this->getWeight(); ?>, <?php echo $this->askForParcelCount(); ?>);">
+<?php if ($this->displayOnlyCurrentGroup()): ?>
+    <input type="button" class="touchscreen-button yellow-button" value="<?php echo $this->__('NEXT GROUP'); ?> >" onclick="objPacking.nextGroup();">
+<?php endif; ?>
+&nbsp;<input type="button" class="touchscreen-button red-button" value="<?php echo $this->__('CANCEL'); ?>" onclick="objPacking.cancel();">
+<div id="packing_log" style="display: none;"><?php echo $this->__('Action history'); ?></div>

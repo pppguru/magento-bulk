@@ -1,0 +1,8 @@
+<script>
+Event.observe(document, 'dom:loaded', function() {
+	try {
+		ewuserguide = new EWUserGuide(<?php echo json_encode($this->getOptions()); ?>);
+		ewuserguide.rewritePage();
+	} catch (e) { }
+});
+</script>

@@ -1,0 +1,83 @@
+<div class="grid">
+    <table cellspacing="0" class="data" width="100%">
+    	<thead>
+            <tr class="headings">
+                <th class="a-center"><?php echo $this->__('Position'); ?></th>
+                <th class="a-center"><?php echo $this->__('Name'); ?></th>
+                <th class="a-center"><?php echo $this->__('Size'); ?></th>
+                <th class="a-center"><?php echo $this->__('Content'); ?></th>
+                <?php if ($this->_Type == 'export'): ?>
+	                <th class="a-center"><?php echo $this->__('Format'); ?></th>
+	                <th class="a-center"><?php echo $this->__('Format argument'); ?></th>
+	            <?php endif; ?>
+                <th class="a-center"><?php echo $this->__('Delete'); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+        	<?php foreach($this->getFields() as $field): ?>
+        		<tr>
+	        		<td class="a-center"><input type="text" size="3" name="fields[<?php echo $field->getId(); ?>][ctf_position]" id="fields[<?php echo $field->getId(); ?>][ctf_position]" value="<?php echo $field->getctf_position(); ?>"></td>        		
+	        		<td class="a-center"><input type="text" name="fields[<?php echo $field->getId(); ?>][ctf_name]" id="fields[<?php echo $field->getId(); ?>][ctf_name]" value="<?php echo $field->getctf_name(); ?>"></td>        		
+	        		<td class="a-center"><input type="text" size="3" name="fields[<?php echo $field->getId(); ?>][ctf_size]" id="fields[<?php echo $field->getId(); ?>][ctf_size]" value="<?php echo $field->getctf_size(); ?>"></td>        		
+	                <?php if ($this->_Type == 'export'): ?>
+		        		<td class="a-center">
+                            <input type="text" name="fields[<?php echo $field->getId(); ?>][ctf_content]" id="fields[<?php echo $field->getId(); ?>][ctf_content]" value="<?php echo htmlentities($field->getctf_content(), ENT_QUOTES); ?>">
+                            <img src="<?php echo $this->getSkinUrl('images/Organizer/comments.gif'); ?>" onclick="showUsageCodeAsPopup();">
+                        </td>
+		        		<td class="a-center"><?php echo $this->getFormatCombo('fields['.$field->getId().'][ctf_format]', $field->getctf_format()); ?></td>
+		        		<td class="a-center"><input type="text" name="fields[<?php echo $field->getId(); ?>][ctf_format_argument]" id="fields[<?php echo $field->getId(); ?>][ctf_format_argument]" value="<?php echo $field->getctf_format_argument(); ?>"></td>        		
+		        	<?php else: ?>
+		        		<td class="a-center"><?php echo $this->getImportContentAsCombo('fields['.$field->getId().'][ctf_content]', $field->getctf_content()); ?></td>        		    			        	
+		        	<?php endif; ?>
+	        		<td class="a-center"><input type="checkbox" name="fields[<?php echo $field->getId(); ?>][delete]" id="fields[<?php echo $field->getId(); ?>][delete]" value="1"></td>
+        		</tr>
+        	<?php endforeach; ?>
+    	<thead>
+        	<tr class="headings">
+        		<th colspan="<?php echo ($this->_Type == 'export'?'7':'5'); ?>" class="a-center">Add New Field</th>
+        	</tr>
+        </thead>
+        <?php if ($this->_Type == 'export'): ?>
+        <div id="popup_list" style="visibility: hidden; display: none;"><?php echo $this->getUsableCodesInstructions(); ?></div>
+        <?php endif; ?>
+        <tbody>
+        	<tr>
+        		<td class="a-center"><input type="text" size="3" name="fields[new_<?php echo $this->_Type; ?>][ctf_position]" id="fields[new][ctf_position]"></td>        		
+        		<td class="a-center"><input type="text" name="fields[new_<?php echo $this->_Type; ?>][ctf_name]" id="fields[new][ctf_name]"></td>        		
+        		<td class="a-center"><input type="text" size="3" name="fields[new_<?php echo $this->_Type; ?>][ctf_size]" id="fields[new][ctf_size]"></td>        		
+                <?php if ($this->_Type == 'export'): ?>
+	        		<td class="a-center">
+                      <input type="text" name="fields[new_<?php echo $this->_Type; ?>][ctf_content]" id="fields[new][ctf_content]">
+                      <img src="<?php echo $this->getSkinUrl('images/Organizer/comments.gif'); ?>" onclick="showUsageCodeAsPopup();">
+                    </td>
+	        		<td class="a-center"><?php echo $this->getFormatCombo('fields[new_'.$this->_Type.'][ctf_format]', ''); ?></td>
+	        		<td class="a-center"><input type="text" name="fields[new_<?php echo $this->_Type; ?>][ctf_format_argument]" id="fields[new][ctf_format_argument]"></td>        		
+	        	<?php else: ?>
+	        		<td class="a-center"><?php echo $this->getImportContentAsCombo('fields[new_'.$this->_Type.'][ctf_content]', ''); ?></td>        		    	
+	        	<?php endif; ?>
+        		<td>&nbsp;</td>
+        	</tr>
+        </tfoot>
+    </table>
+</div>
+
+<script>
+function showUsageCodeAsPopup()
+{
+      var content = document.getElementById('popup_list').innerHTML;
+      //display windows
+      win = new Window({
+          className: "alphacube",
+          title: "Codes",
+          width:800,
+          height:600,
+          destroyOnClose:true,
+          closable:true,
+          draggable:true,
+          recenterAuto:true,
+          okLabel: "OK"
+      });
+      win.setHTMLContent(content);
+      win.showCenter();
+}
+</script>

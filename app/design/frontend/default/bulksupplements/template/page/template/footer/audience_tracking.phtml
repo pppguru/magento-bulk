@@ -1,0 +1,36 @@
+<?php
+	$moduleName = Mage::app()->getRequest()->getModuleName();
+	$ctrlName = Mage::app()->getRequest()->getControllerName();
+	$actionName = Mage::app()->getRequest()->getActionName();
+
+if ($moduleName=='checkout' && $ctrlName == 'onepage' && $actionName=='success') {
+	$lastOrderId = Mage::getSingleton('checkout/session')->getLastOrderId();
+	$order = Mage::getSingleton('sales/order');
+	$order->load($lastOrderId);
+	$_orderNumber = $order->getIncrementId();
+	$_subTotal = number_format($order->getSubtotal(), 2);
+}
+?>
+
+
+<script type="text/javascript">
+//Perfect Audience Tracking Code
+(function() {
+	window._pa = window._pa || {};
+	// _pa.orderId = "myOrderId"; // OPTIONAL: attach unique conversion identifier to conversions
+	// _pa.revenue = "19.99"; // OPTIONAL: attach dynamic purchase values to conversions
+	// _pa.productId = "myProductId"; // OPTIONAL: Include product ID for use with dynamic ads
+
+<?php if ($moduleName=='checkout' && $ctrlName == 'onepage' && $actionName=='success'): ?>
+	_pa.orderId = "<?php echo $_orderNumber; ?>"; // OPTIONAL: attach unique conversion identifier to conversions
+	_pa.revenue = "<?php echo $_subTotal; ?>"; // OPTIONAL: attach dynamic purchase values to conversions
+<?php endif; ?>
+<?php if ($ctrlName == 'product' && Mage::registry('product')): ?>
+	<?php $product = Mage::registry('product'); ?>
+	_pa.productId = "<?php echo $product->getSku() ?>"; // OPTIONAL: Include product ID for use with dynamic ads
+<?php endif; ?>
+	var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.async = true;
+	pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.perfectaudience.com/serve/531d9f7a6fe1883956000069.js";
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+})();
+</script>

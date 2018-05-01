@@ -1,0 +1,474 @@
+" and "," and "
+"%s User Guide","%s User Guide"
+"%s::update() - this function is deprecated","%s::update() - this function is deprecated"
+"3rd Party Extensions","3rd Party Extensions"
+"<b>Note: </b> View <a href=""%s"" target=""_blank"">product page</a> to see any available addon features","<b>Note: </b> View <a href=""%s"" target=""_blank"">product page</a> to see any available addon features"
+"<b>Warning: </b>There are Extendware extensions that have their module output disabled in System -> Configuration -> Advanced. You can disable extensions in Extendware -> Manage Extensions -> Overview if needed.","<b>Warning: </b>There are Extendware extensions that have their module output disabled in System -> Configuration -> Advanced. You can disable extensions in Extendware -> Manage Extensions -> Overview if needed."
+"<u>Enterprise only.</u> Selecting this will ignore staging Web sites when performing licensing checks. It is slightly slower than not enabling it so it is disabled unless needed.","<u>Enterprise only.</u> Selecting this will ignore staging Web sites when performing licensing checks. It is slightly slower than not enabling it so it is disabled unless needed."
+[none],[none]
+"Access denied or nothing to configure","Access denied or nothing to configure"
+Action,Action
+Actions,Actions
+"Add after","Add after"
+"Admin Menu Location","Admin Menu Location"
+"After a config section has been shown this number of times, the notice will disappear","After a config section has been shown this number of times, the notice will disappear"
+"After a configuration screen has been saved this number of times, then the notice that appears above the configuration screen that tells you that some fields may have helpful hints (such as this tooltip) will be hidden.","After a configuration screen has been saved this number of times, then the notice that appears above the configuration screen that tells you that some fields may have helpful hints (such as this tooltip) will be hidden."
+"All Extensions","All Extensions"
+Always,Always
+"An error occurred while flushing the cache","An error occurred while flushing the cache"
+"An error occurred while saving this configuration:","An error occurred while saving this configuration:"
+"An extension may be disabled manually in Extendware -> Manage Extensions -> Overview or it may become disabled due to a licensing issue. Enable this to be notified when an extension is disabled.","An extension may be disabled manually in Extendware -> Manage Extensions -> Overview or it may become disabled due to a licensing issue. Enable this to be notified when an extension is disabled."
+Appearance,Appearance
+"Are you sure you want to change read state?","Are you sure you want to change read state?"
+"Are you sure you want to delete message?","Are you sure you want to delete message?"
+"Are you sure you want to flush the cache?","Are you sure you want to flush the cache?"
+"Are you sure you want to mark message as read?","Are you sure you want to mark message as read?"
+"Are you sure?","Are you sure?"
+"Arguments are not supported for option model special methods","Arguments are not supported for option model special methods"
+"Ask us for more ways that you can improve your store!","Ask us for more ways that you can improve your store!"
+"At least one section must be selected","At least one section must be selected"
+Automatic,Automatic
+"Automatic or always is usually best. Automatic will avoid notification after upgrading.","Automatic or always is usually best. Automatic will avoid notification after upgrading."
+"Automatically Disable Extensions","Automatically Disable Extensions"
+Back,Back
+"Base Path","Base Path"
+"Big Image","Big Image"
+Body,Body
+Caller,Caller
+"Can only read the default config scope when in fallback storage mode","Can only read the default config scope when in fallback storage mode"
+"Cannot change module status. Please manually disable module","Cannot change module status. Please manually disable module"
+"Cannot find configuration files for module: %s","Cannot find configuration files for module: %s"
+"Cannot remove the base directory: %s","Cannot remove the base directory: %s"
+"Cannot run action when store is compiled","Cannot run action when store is compiled"
+"Cannot write to config file: %s","Cannot write to config file: %s"
+"Cannot write to config when in fallback mode","Cannot write to config when in fallback mode"
+Category,Category
+"Change state","Change state"
+"Changing module status is disabled in the demo","Changing module status is disabled in the demo"
+"Choose how the help popups are triggered on configuration pages","Choose how the help popups are triggered on configuration pages"
+"Choose how the help popups are triggered on form pages","Choose how the help popups are triggered on form pages"
+Class,Class
+"Class (%s) should never be loaded more than once","Class (%s) should never be loaded more than once"
+"Class Key","Class Key"
+"Class Rewrites","Class Rewrites"
+Code,Code
+"Code Pool","Code Pool"
+Community,Community
+"Community / Help Link","Community / Help Link"
+"Compilation is disabled because compilation has been rewritten by an extension that can cause compatability issues. Deleting this rewrite may solve the issue: %s","Compilation is disabled because compilation has been rewritten by an extension that can cause compatability issues. Deleting this rewrite may solve the issue: %s"
+"Config Help Notice Threshold","Config Help Notice Threshold"
+"Config Help Trigger","Config Help Trigger"
+Configuration,Configuration
+"Configuration could not be saved. Field named ""%s"" was invalid","Configuration could not be saved. Field named ""%s"" was invalid"
+Configure,Configure
+"Configure ","Configure "
+"Constraint #%s: %s","Constraint #%s: %s"
+"Context Information","Context Information"
+"Copied file is corrupted: %s","Copied file is corrupted: %s"
+Core,Core
+"Could not change to directory: %s","Could not change to directory: %s"
+"Could not copy file %s to %s","Could not copy file %s to %s"
+"Could not create directory %s","Could not create directory %s"
+"Could not create directory: %s","Could not create directory: %s"
+"Could not delete directory: %s","Could not delete directory: %s"
+"Could not delete log file","Could not delete log file"
+"Could not delete report file","Could not delete report file"
+"Could not determine redirect path","Could not determine redirect path"
+"Could not enable module (%s) because license or serial is invalid","Could not enable module (%s) because license or serial is invalid"
+"Could not find option model in %s for %s","Could not find option model in %s for %s"
+"Could not move file %s to %s","Could not move file %s to %s"
+"Could not unencrypt field (%s) with provided decryption keys","Could not unencrypt field (%s) with provided decryption keys"
+"Could not unlink file: %s","Could not unlink file: %s"
+"Could not write file: %s","Could not write file: %s"
+Created,Created
+Critical,Critical
+critical,critical
+Cronjob,Cronjob
+"Cronjob Scheduled Tasks","Cronjob Scheduled Tasks"
+"Cronjob Viewer","Cronjob Viewer"
+Cronjobs,Cronjobs
+CSV,CSV
+"Current Configuration Scope:","Current Configuration Scope:"
+"Current timestamp is %s","Current timestamp is %s"
+"Database Fallback","Database Fallback"
+date,date
+"Date Sent","Date Sent"
+Delete,Delete
+"Delete Efficiently","Delete Efficiently"
+Demo,Demo
+"Dependency Information","Dependency Information"
+Dependents,Dependents
+Developer,Developer
+"Diagnostic Information","Diagnostic Information"
+"Did you know purchasing %s can improve your store?","Did you know purchasing %s can improve your store?"
+"Disable compilation if the compiler process has been rewritten by a 3rd party.","Disable compilation if the compiler process has been rewritten by a 3rd party."
+"Disable extension if it is violating its license. If the extension is not disabled it will cause errors in your store.","Disable extension if it is violating its license. If the extension is not disabled it will cause errors in your store."
+"Disable On Violation","Disable On Violation"
+"Disable Unknown Compiler","Disable Unknown Compiler"
+Disabled,Disabled
+"Disabled %s because license is about to expire","Disabled %s because license is about to expire"
+"Disabled %s because license is not respected","Disabled %s because license is not respected"
+"Disabled Extensions","Disabled Extensions"
+"Disabling this will allow the writing of file paths even if you use symlinks.","Disabling this will allow the writing of file paths even if you use symlinks."
+Download,Download
+Edit,Edit
+Email,Email
+"Enable / Disable","Enable / Disable"
+"Enable / disable the highlighting of the Extendware menu item in the admin menu","Enable / disable the highlighting of the Extendware menu item in the admin menu"
+"Enable / disable the user guide button","Enable / disable the user guide button"
+"Enable or disable updating licenses on admin login","Enable or disable updating licenses on admin login"
+"Enable or disable updating licenses via cronjob","Enable or disable updating licenses via cronjob"
+"Enable this to be notified if an Extendware extension is disabled","Enable this to be notified if an Extendware extension is disabled"
+"Enable this to be notified if files that Extendware depends on are not writeable when they should be","Enable this to be notified if files that Extendware depends on are not writeable when they should be"
+"Enable this to be notified if licenses have not been able to update or if a lease / trial term is about to end. <b>Disabling this is dangerous</b>","Enable this to be notified if licenses have not been able to update or if a lease / trial term is about to end. <b>Disabling this is dangerous</b>"
+"Enable this to be notified if licenses will expire shortly. <b>Disabling this is dangerous</b>","Enable this to be notified if licenses will expire shortly. <b>Disabling this is dangerous</b>"
+Enabled,Enabled
+"Encoder License","Encoder License"
+"Encoder license file is invalid. If you are confident the license is valid, you can force the license to be accepted by going to Extendware -> Manage Extensions -> Extendware Core -> Configure, for each of the 3 Verify Integrity options set the value to Disabled. Try to update the license again after you do this and then re-enable Verify Integrity as it protects your store.","Encoder license file is invalid. If you are confident the license is valid, you can force the license to be accepted by going to Extendware -> Manage Extensions -> Extendware Core -> Configure, for each of the 3 Verify Integrity options set the value to Disabled. Try to update the license again after you do this and then re-enable Verify Integrity as it protects your store."
+"Encoder license file path has been disallowed due to security. You can disable this extra security in Extendware -> Manage Extensions -> Extendware Core -> Configure, click on Licensing, under Encoder License select Disable for Verify File Path","Encoder license file path has been disallowed due to security. You can disable this extra security in Extendware -> Manage Extensions -> Extendware Core -> Configure, click on Licensing, under Encoder License select Disable for Verify File Path"
+"Encoder License Information","Encoder License Information"
+"Encoder license updater could not write license file Please ensure that /var/extendware/system/ and all sub-directories/files have 0777 file permissions.","Encoder license updater could not write license file Please ensure that /var/extendware/system/ and all sub-directories/files have 0777 file permissions."
+"Encoder license updater could not write license file. Please ensure that /var/extendware/system/ and all sub-directories/files have 0777 file permissions.","Encoder license updater could not write license file. Please ensure that /var/extendware/system/ and all sub-directories/files have 0777 file permissions."
+"Encoder license updater did not receive the correct response item type","Encoder license updater did not receive the correct response item type"
+Error,Error
+"Error encountered. Ensure you have not deleted the files at /var/extendware. Please check your store log for details (/var/log/extendware/ewcore.log). [Extendware error: serial]","Error encountered. Ensure you have not deleted the files at /var/extendware. Please check your store log for details (/var/log/extendware/ewcore.log). [Extendware error: serial]"
+"Error encountered. Please check your store log for details (/var/log/extendware/ewcore.log) [Extendware error: license]","Error encountered. Please check your store log for details (/var/log/extendware/ewcore.log) [Extendware error: license]"
+"Error encountered. Please check your store log for details [Extendware error: elicense]","Error encountered. Please check your store log for details [Extendware error: elicense]"
+"Event Observers","Event Observers"
+"Exec Enabled","Exec Enabled"
+Executed,Executed
+Expiry,Expiry
+"Export to:","Export to:"
+Extendware,Extendware
+"Extendware API could not complete request: %s","Extendware API could not complete request: %s"
+"Extendware API could not decode response","Extendware API could not decode response"
+"Extendware API did not return a valid payload","Extendware API did not return a valid payload"
+"Extendware API returned a status different than ""success"": %s - %s","Extendware API returned a status different than ""success"": %s - %s"
+"Extendware Core","Extendware Core"
+"Extendware core cache includes CSS, JS, and overrides.","Extendware core cache includes CSS, JS, and overrides."
+"EXTENDWARE EXTENSIONS","EXTENDWARE EXTENSIONS"
+"Extendware Extensions","Extendware Extensions"
+"Extendware Extensions Store","Extendware Extensions Store"
+"Extendware Link","Extendware Link"
+"Extendware Store","Extendware Store"
+Extension,Extension
+"Extension does not have any configuration to reset","Extension does not have any configuration to reset"
+"Extension trial will end in %d day(s). <b>Please purchase the Extendware extension to continue using it.</b>","Extension trial will end in %d day(s). <b>Please purchase the Extendware extension to continue using it.</b>"
+"Extension upgrade / support / access selected when ordering the extension will end in %d day(s). <b>Please extend your Extendware plan to continue using the extension.</b>","Extension upgrade / support / access selected when ordering the extension will end in %d day(s). <b>Please extend your Extendware plan to continue using the extension.</b>"
+"Extension upgrade / support / access will end in %d day(s). <b>Please contact Extendware to renew your plan.</b>","Extension upgrade / support / access will end in %d day(s). <b>Please contact Extendware to renew your plan.</b>"
+"Extensions %s does not exist","Extensions %s does not exist"
+"Extensions Disabled","Extensions Disabled"
+Fail,Fail
+"Failed to get all licenses and serial for module","Failed to get all licenses and serial for module"
+"Failed to update extension license. Please check <u>ewcore.log</u> in <a href=""%s"">Extendware -> System -> Logs -> Logs</a> for more information [<a href=""%s"">click here</a>]. The last log message is: %s","Failed to update extension license. Please check <u>ewcore.log</u> in <a href=""%s"">Extendware -> System -> Logs -> Logs</a> for more information [<a href=""%s"">click here</a>]. The last log message is: %s"
+"Failed to update messages","Failed to update messages"
+"Fallback config could not be parsed: %s","Fallback config could not be parsed: %s"
+"Fallback config is invalid: %s","Fallback config is invalid: %s"
+"Fallback storage could not be loaded","Fallback storage could not be loaded"
+"Feature Information","Feature Information"
+"Fetch Missing Licenses / Serial","Fetch Missing Licenses / Serial"
+"Field contains invalid data: %s","Field contains invalid data: %s"
+"File at %s should be either writable or deleted","File at %s should be either writable or deleted"
+"File checksum failed: %s","File checksum failed: %s"
+"File does not exist or is not readable: %s","File does not exist or is not readable: %s"
+"File is not writeable: %s","File is not writeable: %s"
+"File Path","File Path"
+"File was modified since script execution: %s","File was modified since script execution: %s"
+"Files such as module config files and licenses need to be writeable in order for Extendware to function optimally in all circumstances. If the files are not and this option is enabled, then a message will be shown in the admin header advising you to make these files writeable.","Files such as module config files and licenses need to be writeable in order for Extendware to function optimally in all circumstances. If the files are not and this option is enabled, then a message will be shown in the admin header advising you to make these files writeable."
+Finished,Finished
+"Flush Cache","Flush Cache"
+"Flush Extendware Core Cache","Flush Extendware Core Cache"
+"Form Help Trigger","Form Help Trigger"
+From,From
+General,General
+"General Information","General Information"
+"General Messages","General Messages"
+"Get help for this page","Get help for this page"
+"Get More Extensions","Get More Extensions"
+Gift,Gift
+"Have a look at <a href=""%s""><b>more great extensions</b></a> and improve your store!","Have a look at <a href=""%s""><b>more great extensions</b></a> and improve your store!"
+"Header Recommendations","Header Recommendations"
+Hover,Hover
+ID,ID
+Identifier,Identifier
+"If an extension is in violation of its license it can automatically disable. This will prevent errors in your store. If you disable this, then the extension will still not run, but has a high chance of causing store errors.","If an extension is in violation of its license it can automatically disable. This will prevent errors in your store. If you disable this, then the extension will still not run, but has a high chance of causing store errors."
+"If enabled the database will be used as a fallback if the license files cannot be found. Recommended especially in multi-server environments. <b>Note: </b>Disabling this is NOT recommended.","If enabled the database will be used as a fallback if the license files cannot be found. Recommended especially in multi-server environments. <b>Note: </b>Disabling this is NOT recommended."
+"If enabled, then the <i>rm</i> command will be used to delete directories recursively.","If enabled, then the <i>rm</i> command will be used to delete directories recursively."
+"If system compilation is enabled then you will not be able to change the status. If you change the status you will need re-run system compilation if you use system compilation.","If system compilation is enabled then you will not be able to change the status. If you change the status you will need re-run system compilation if you use system compilation."
+"If the compiler is rewritten by a 3rd party then there is a good chance that running compilation will break your store. <u>Only disable this if you know what you are doing and know how to manually restore a store broken from compilation</u>","If the compiler is rewritten by a 3rd party then there is a good chance that running compilation will break your store. <u>Only disable this if you know what you are doing and know how to manually restore a store broken from compilation</u>"
+"If you disable this option, then you may not be notified if your licenses have stopped updating. This can cause those extensions to become disabled, which may interrupt the operation of your store. Disable this with caution.","If you disable this option, then you may not be notified if your licenses have stopped updating. This can cause those extensions to become disabled, which may interrupt the operation of your store. Disable this with caution."
+"If you do not have cron enabled (such as this is your development server), then enabling this option will ensure licenses still update without manually having to update licenses.","If you do not have cron enabled (such as this is your development server), then enabling this option will ensure licenses still update without manually having to update licenses."
+"If you enabled an extension, you will need to logout and re-login before you can access it.","If you enabled an extension, you will need to logout and re-login before you can access it."
+"Ignore staging Web sites when checking license.","Ignore staging Web sites when checking license."
+"Ignore Staging Websites","Ignore Staging Websites"
+Images,Images
+"Improve Your Store","Improve Your Store"
+Information,Information
+Installation,Installation
+"Installed Extensions","Installed Extensions"
+Instance,Instance
+"Invalid date passed to function","Invalid date passed to function"
+"Invalid Form Key. Please refresh the page.","Invalid Form Key. Please refresh the page."
+"Invalid scope entered for config item","Invalid scope entered for config item"
+"Invalid sign passed to function","Invalid sign passed to function"
+"Item #%s Information","Item #%s Information"
+"Item does not exist","Item does not exist"
+"Item does not exist or cannot be read","Item does not exist or cannot be read"
+"items selected","items selected"
+"Label click","Label click"
+"Label hover","Label hover"
+License,License
+"License / Serial Expiring","License / Serial Expiring"
+"License / Serial Failed Update","License / Serial Failed Update"
+"License / Serials Update Issue","License / Serials Update Issue"
+"License Information","License Information"
+"License updater could not write license file: %s","License updater could not write license file: %s"
+"License updater did not receive the correct response item type","License updater did not receive the correct response item type"
+"License updater did not return a container with a valid value","License updater did not return a container with a valid value"
+"License updater did not return a valid license file","License updater did not return a valid license file"
+"License updater did not return serialized data","License updater did not return serialized data"
+"License updater received a license file that is not respected","License updater received a license file that is not respected"
+"License updater received a license that has fewer features (%s) than the current license. If this is acceptable, you can force the license to be accepted by going to Extendware -> Manage Extensions -> Extendware Core -> Configure, click on Licensing, under License select Disable for Verify Integrity. Try to update the license again after you do this and then re-enable Verify Integrity as it protects your store. If this feature should not be missing, then please contact support.","License updater received a license that has fewer features (%s) than the current license. If this is acceptable, you can force the license to be accepted by going to Extendware -> Manage Extensions -> Extendware Core -> Configure, click on Licensing, under License select Disable for Verify Integrity. Try to update the license again after you do this and then re-enable Verify Integrity as it protects your store. If this feature should not be missing, then please contact support."
+"License updater received a license with a lower expiry than the current license: %s < %s. This will usually resolve itself and is not a concern unless licenses cannot be updated for more than 48 hours. You can force the license to be accepted by going to Extendware -> Manage Extensions -> Extendware Core -> Configure, click on Licensing, under License select Disable for Verify Integrity. Try to update the license again after you do this and then re-enable Verify Integrity as it protects your store.","License updater received a license with a lower expiry than the current license: %s < %s. This will usually resolve itself and is not a concern unless licenses cannot be updated for more than 48 hours. You can force the license to be accepted by going to Extendware -> Manage Extensions -> Extendware Core -> Configure, click on Licensing, under License select Disable for Verify Integrity. Try to update the license again after you do this and then re-enable Verify Integrity as it protects your store."
+"License Updating","License Updating"
+"Licensee Information","Licensee Information"
+"Licenses / serials <u>will expire</u> in %s day(s) or less. <b>Failing to fix this will cause your Extendware extensions to disable</b>. Please click read more for more info.","Licenses / serials <u>will expire</u> in %s day(s) or less. <b>Failing to fix this will cause your Extendware extensions to disable</b>. Please click read more for more info."
+"Licenses / serials have failed to update %s times. <b>Failing to fix this will cause your Extendware extensions to disable</b>","Licenses / serials have failed to update %s times. <b>Failing to fix this will cause your Extendware extensions to disable</b>"
+"Licenses and serial updater did not receive the correct response item type","Licenses and serial updater did not receive the correct response item type"
+Licensing,Licensing
+Line,Line
+Local,Local
+"Log file has been deleted","Log file has been deleted"
+"Log files are viewable in Extendware -> System -> Logs","Log files are viewable in Extendware -> System -> Logs"
+"Log Viewer","Log Viewer"
+"Log: %s","Log: %s"
+Logs,Logs
+"Magento Timestamp","Magento Timestamp"
+"Magento Version","Magento Version"
+Main,Main
+Major,Major
+"Manage Cronjobs","Manage Cronjobs"
+"Manage Extensions","Manage Extensions"
+"Manage Logs","Manage Logs"
+"Manage Messages","Manage Messages"
+"Manage Reports","Manage Reports"
+"Manage Software","Manage Software"
+"Manage Stores","Manage Stores"
+"Mark as Read","Mark as Read"
+"Max Lines","Max Lines"
+"Max Messages","Max Messages"
+"Menu Highlight","Menu Highlight"
+Message,Message
+"Message has been deleted","Message has been deleted"
+"Message has been marked as read","Message has been marked as read"
+"Message Inbox","Message Inbox"
+"Message updater did not receive the correct response item type","Message updater did not receive the correct response item type"
+"Message Viewer","Message Viewer"
+Messages,Messages
+"Messages have been updated","Messages have been updated"
+"Messages over this number will be deleted. This prevents the system message database from becoming too large.","Messages over this number will be deleted. This prevents the system message database from becoming too large."
+Messaging,Messaging
+Method,Method
+Minor,Minor
+Miscellaneous,Miscellaneous
+"Miscellaneous Information","Miscellaneous Information"
+Missing,Missing
+"Missing argument 1 for function: %s","Missing argument 1 for function: %s"
+"Missing data for item","Missing data for item"
+"Module does not have anything to configure","Module does not have anything to configure"
+"Module has been saved","Module has been saved"
+"Module Information","Module Information"
+"Module Output Disabled","Module Output Disabled"
+"Module Overview","Module Overview"
+"Module serial and licenses have been fetched. There is no guarantee the right files were fetched. Try and enable the extension.","Module serial and licenses have been fetched. There is no guarantee the right files were fetched. Try and enable the extension."
+"Module serial and licenses have been updated","Module serial and licenses have been updated"
+"Module Views","Module Views"
+"Multiple limit not allowed.","Multiple limit not allowed."
+N/A,N/A
+Name,Name
+Namespace,Namespace
+Never,Never
+"Next page","Next page"
+No,No
+none,none
+Normal,Normal
+Notice,Notice
+"Num Domains","Num Domains"
+"Num Store Views","Num Store Views"
+"Num Stores","Num Stores"
+"Num Websites","Num Websites"
+"Number Needed","Number Needed"
+"of %s pages","of %s pages"
+"On Admin Login","On Admin Login"
+"Only Extendware extensions can have their config reset","Only Extendware extensions can have their config reset"
+"Only scalars accepted in encrypted fields","Only scalars accepted in encrypted fields"
+Operator,Operator
+Overview,Overview
+"Package Type","Package Type"
+Page,Page
+Pass,Pass
+Path,Path
+Pending,Pending
+"per page","per page"
+"Permission denied","Permission denied"
+"Permission denied: %s","Permission denied: %s"
+"PHP Information","PHP Information"
+"Plan Expiring","Plan Expiring"
+"Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs.","Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs."
+"Please select an item(s) before submitting to the mass processor","Please select an item(s) before submitting to the mass processor"
+"Previous page","Previous page"
+"Prior to writing the license file, the updater will verify the destination of the license is within your var directory. This is a security precation, so this should not be disabled unless told to by support.","Prior to writing the license file, the updater will verify the destination of the license is within your var directory. This is a security precation, so this should not be disabled unless told to by support."
+"Priority Name","Priority Name"
+Promotion,Promotion
+"Purchase Trial","Purchase Trial"
+Read,Read
+"Read more","Read more"
+Redirects,Redirects
+"Release Variant","Release Variant"
+"Release Version","Release Version"
+Report,Report
+"Report file has been deleted","Report file has been deleted"
+"Report Viewer","Report Viewer"
+"Report: %s","Report: %s"
+Reports,Reports
+Requirements,Requirements
+"Reset Config","Reset Config"
+"Reset Module Configuration","Reset Module Configuration"
+"Resolve this issue (click here)","Resolve this issue (click here)"
+"Restore Defaults","Restore Defaults"
+"Resulting Class","Resulting Class"
+"Rewrite Class","Rewrite Class"
+Running,Running
+"Save and Reload","Save and Reload"
+"Scheduled For","Scheduled For"
+"Scope Information","Scope Information"
+"Script Name","Script Name"
+Sections,Sections
+"Select All","Select All"
+"Select Visible","Select Visible"
+"Select where the Extendware menu should be displayed","Select where the Extendware menu should be displayed"
+"Selected item(s) (%d) have been mass processed by the %s processor","Selected item(s) (%d) have been mass processed by the %s processor"
+"Selected item(s) (%d) have been skipped by the %s processor","Selected item(s) (%d) have been skipped by the %s processor"
+"Selected item(s) (%d) have failed to be mass processed by the %s processor","Selected item(s) (%d) have failed to be mass processed by the %s processor"
+"Serial Information","Serial Information"
+"Serial updater could not write serial file: %s","Serial updater could not write serial file: %s"
+"Serial updater did not receive the correct response item type","Serial updater did not receive the correct response item type"
+"Serial updater did not return a consistent license","Serial updater did not return a consistent license"
+"Serial updater did not return a consistent serial. You can force the serial to be accepted by going to Extendware -> Manage Extensions -> Extendware Core -> Configure, for each of the 3 Verify Integrity options set the value to Disabled. Try to update the license again after you do this and then re-enable Verify Integrity as it protects your store.","Serial updater did not return a consistent serial. You can force the serial to be accepted by going to Extendware -> Manage Extensions -> Extendware Core -> Configure, for each of the 3 Verify Integrity options set the value to Disabled. Try to update the license again after you do this and then re-enable Verify Integrity as it protects your store."
+"Serial updater did not return a valid license","Serial updater did not return a valid license"
+"Serial updater did not return a valid serial","Serial updater did not return a valid serial"
+"Serial updater did not return serialized data","Serial updater did not return serialized data"
+Serials,Serials
+Settings,Settings
+Severity,Severity
+"Should not be called","Should not be called"
+"Show Logs ","Show Logs "
+"Show non-extendware related logs in Extendware -> System -> Logs -> Logs","Show non-extendware related logs in Extendware -> System -> Logs -> Logs"
+"Show Reports","Show Reports"
+"Show reports in Extendware -> System -> Logs -> Reports","Show reports in Extendware -> System -> Logs -> Reports"
+Size,Size
+Skin,Skin
+"Sort Order","Sort Order"
+State,State
+Status,Status
+Subject,Subject
+Success,Success
+System,System
+"System -> Configuration -> Developer -> Logging must be enabled. This will slow down your store. Use only when needed.","System -> Configuration -> Developer -> Logging must be enabled. This will slow down your store. Use only when needed."
+"System / Developer","System / Developer"
+"System Exception Logging","System Exception Logging"
+"System Extensions","System Extensions"
+"System Information","System Information"
+"System Message","System Message"
+"System message has been deleted","System message has been deleted"
+"System Messages","System Messages"
+"System messages are viewable in Extendware -> System -> Messages","System messages are viewable in Extendware -> System -> Messages"
+"System Timestamp","System Timestamp"
+"Technical Name","Technical Name"
+"The cache has been flushed","The cache has been flushed"
+"The configuration has been saved.","The configuration has been saved."
+"The license updater will refuse licenses that are not valid or would cause extensions to be disabled. Disabling this could cause the updater to accept a bad license. Only disable this if you are told to by support.","The license updater will refuse licenses that are not valid or would cause extensions to be disabled. Disabling this could cause the updater to accept a bad license. Only disable this if you are told to by support."
+"The maximum number of lines to read from a log file. The higher the number the more memory used when viewing the log file","The maximum number of lines to read from a log file. The higher the number the more memory used when viewing the log file"
+"The minimum number of disabled extension needed before the message is shown","The minimum number of disabled extension needed before the message is shown"
+"The number of domains you have for licensing purposes","The number of domains you have for licensing purposes"
+"The sections of the config that will be reset. Use CTRL + Click to select more than one section","The sections of the config that will be reset. Use CTRL + Click to select more than one section"
+"The serial updater will refuse serials that are not valid or would cause extensions to be disabled. Disabling this could cause the updater to accept a bad license. Only disable this if you are told to by support.","The serial updater will refuse serials that are not valid or would cause extensions to be disabled. Disabling this could cause the updater to accept a bad license. Only disable this if you are told to by support."
+"The timestamp based on the time reported by PHP","The timestamp based on the time reported by PHP"
+"The timestamp based on the timezone settings set in Magento","The timestamp based on the timezone settings set in Magento"
+"The value in parenthesis is how many store views you have for licensing purposes","The value in parenthesis is how many store views you have for licensing purposes"
+"The value in parenthesis is how many stores you have for licensing purposes","The value in parenthesis is how many stores you have for licensing purposes"
+"The value in parenthesis is how many Web sites you have for licensing purposes","The value in parenthesis is how many Web sites you have for licensing purposes"
+"There are %s Extendware extensions installed that are currently disabled","There are %s Extendware extensions installed that are currently disabled"
+"There is no configuration screen for this extension.","There is no configuration screen for this extension."
+"There was an error with your request. Please contact support or try again","There was an error with your request. Please contact support or try again"
+"There were %s config items deleted","There were %s config items deleted"
+"These are the messages that we send and appear in Extendware -> Message Inbox. <b>Warning: </b>If this is disabled, then you will not receive discounts or security notices regarding your extensions.","These are the messages that we send and appear in Extendware -> Message Inbox. <b>Warning: </b>If this is disabled, then you will not receive discounts or security notices regarding your extensions."
+"These extensions will only work if this extension is enabled","These extensions will only work if this extension is enabled"
+"This error is usually caused by enabling an extension while still being logged into the admin area. <u>Please try to logout and sign in again</u>. If that does not work, this error may also be caused by there being nothing to configure in this configuration scope.","This error is usually caused by enabling an extension while still being logged into the admin area. <u>Please try to logout and sign in again</u>. If that does not work, this error may also be caused by there being nothing to configure in this configuration scope."
+"This extension will only work if these extensions are also enabled","This extension will only work if these extensions are also enabled"
+"This is a list of all Magento cronjobs. These cronjobs do not necessary relate to Extendware in any way.","This is a list of all Magento cronjobs. These cronjobs do not necessary relate to Extendware in any way."
+"This log will viewable in Extendware -> System -> Logs. Please note, this log file can become very large, so you must ensure it does not become too large and disable this option when not needed.","This log will viewable in Extendware -> System -> Logs. Please note, this log file can become very large, so you must ensure it does not become too large and disable this option when not needed."
+"This log will viewable in Extendware -> System -> Logs. Please note, this log file can become very large, so you must ensure it does not become too large and disable this option when not needed. <b>Note</b>: You MUST uncomment the function <i>__extendwareErrorHandler</i> in <i>app/code/local/Varien/Autoload.php</a> in order for this to work.","This log will viewable in Extendware -> System -> Logs. Please note, this log file can become very large, so you must ensure it does not become too large and disable this option when not needed. <b>Note</b>: You MUST uncomment the function <i>__extendwareErrorHandler</i> in <i>app/code/local/Varien/Autoload.php</a> in order for this to work."
+"This refers to the license installed on your server. The license will periodically update.","This refers to the license installed on your server. The license will periodically update."
+"This resource does not support exists","This resource does not support exists"
+"This resource does not support exists by data","This resource does not support exists by data"
+"This resource does not support loadByData","This resource does not support loadByData"
+"This section is not allowed.","This section is not allowed."
+"This will attempt to fetch your missing license files. This is not always possible. If the right files cannot be fetched, then you will have to manually re-install the license files / extension.","This will attempt to fetch your missing license files. This is not always possible. If the right files cannot be fetched, then you will have to manually re-install the license files / extension."
+"This will restore default extension configuration options by deleting custom settings from the database. Please backup prior to using this tool.","This will restore default extension configuration options by deleting custom settings from the database. Please backup prior to using this tool."
+Thumbnail,Thumbnail
+To,To
+Top,Top
+"Total %d records found","Total %d records found"
+Trace,Trace
+Trial,Trial
+"Trial Expiring","Trial Expiring"
+Trigger,Trigger
+Type,Type
+"Unable to list current working directory. Access forbidden.","Unable to list current working directory. Access forbidden."
+"Underneath System","Underneath System"
+"Unexpected data returned from fallback storage","Unexpected data returned from fallback storage"
+"Unknown config method mode encountered: %s","Unknown config method mode encountered: %s"
+"Unknown config scope encountered: %s","Unknown config scope encountered: %s"
+"Unknown date increment type.","Unknown date increment type."
+"Unknown permission mode for model method","Unknown permission mode for model method"
+Unread,Unread
+"Unrecognized field encountered","Unrecognized field encountered"
+"Unrecognized status of encryption object encountered","Unrecognized status of encryption object encountered"
+"Unselect All","Unselect All"
+"Unselect Visible","Unselect Visible"
+"Unsupported action for model data %s","Unsupported action for model data %s"
+"Unsupported action for option model data %s","Unsupported action for option model data %s"
+"Unsupported option model sort method encountered","Unsupported option model sort method encountered"
+"Unsupported type for option model data %s","Unsupported type for option model data %s"
+"Update License","Update License"
+"Update Licenses","Update Licenses"
+"Update Messages","Update Messages"
+Updated,Updated
+"Updater could not write combined contents file (%s). You should change file permissions so file can be written.","Updater could not write combined contents file (%s). You should change file permissions so file can be written."
+"Updater could not write combined file (%s). You should change file permissions so file can be written.","Updater could not write combined file (%s). You should change file permissions so file can be written."
+Url,Url
+"User Guide","User Guide"
+"User Guide Button","User Guide Button"
+"User Guides / Help","User Guides / Help"
+Value,Value
+"Verbose Exception Logging","Verbose Exception Logging"
+"Verify File Path","Verify File Path"
+"Verify Integrity","Verify Integrity"
+Version,Version
+View,View
+"View Content","View Content"
+"View Info","View Info"
+"View Information","View Information"
+"View Message","View Message"
+"View Store","View Store"
+"View User Guides","View User Guides"
+"View your <a href=""%s""><b>overview page</b></a> to see installed extensions!","View your <a href=""%s""><b>overview page</b></a> to see installed extensions!"
+"Viewing system information is disabled in the demo","Viewing system information is disabled in the demo"
+"Visit Url","Visit Url"
+Warning,Warning
+"Writeable Notice Status","Writeable Notice Status"
+XML,XML
+Yes,Yes
+"You can view what classes are being rewritten by the system. This is useful when debugging extension conflicts.","You can view what classes are being rewritten by the system. This is useful when debugging extension conflicts."
+"You have %s unread message(s). <a href=""%s"">Go to messages inbox</a>","You have %s unread message(s). <a href=""%s"">Go to messages inbox</a>"

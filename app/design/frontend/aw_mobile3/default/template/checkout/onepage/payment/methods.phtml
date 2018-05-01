@@ -1,0 +1,83 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+    $oneMethod = sizeof($this->getMethods()) <= 1;
+?>
+
+<div class="checkout-payment__methods" id="checkout-payment-method-load">
+    <?php foreach ($this->getMethods() as $_method): $_code = $_method->getCode() ?>
+        <div class="checkout-payment__method checkout-step__island">
+            <?php if (!$oneMethod): ?>
+                <span class="radio">
+                    <input class="radio__self" type="radio" name="payment[method]" id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" onclick="payment.switchMethod('<?php echo $_code ?>')" <?php if($this->getSelectedMethodCode()==$_code): ?>checked<?php endif; ?>>
+                    <label class="form__label radio__label" for="p_method_<?php echo $_code ?>">
+                        <span class="radio__icon-wrapper">
+                            <svg class="radio__icon radio__icon--unchecked svg-icon"><use xlink:href="#icon-radio" /></svg>
+                            <svg class="radio__icon radio__icon--checked svg-icon"><use xlink:href="#icon-radio--checked" /></svg>
+                        </span>
+                        <span class="radio__text"><?php echo $this->getMethodTitle($_method) ?> <?php echo $this->getMethodLabelAfterHtml($_method) ?></span>
+                    </label>
+                </span>
+            <?php else: ?>
+                <span class="radio radio--disabled">
+                    <input class="radio__self" type="radio" name="payment[method]" id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" checked>
+                    <label class="form__label radio__label" for="p_method_<?php echo $_code ?>">
+                        <span class="radio__icon-wrapper">
+                            <svg class="radio__icon radio__icon--unchecked svg-icon"><use xlink:href="#icon-radio" /></svg>
+                            <svg class="radio__icon radio__icon--checked svg-icon"><use xlink:href="#icon-radio--checked" /></svg>
+                        </span>
+                        <span class="radio__text"><?php echo $this->getMethodTitle($_method) ?> <?php echo $this->getMethodLabelAfterHtml($_method) ?></span>
+                    </label>
+                </span>
+
+                <?php $oneMethod = $_code; ?>
+            <?php endif; ?>
+
+            <?php if ($html = $this->getPaymentMethodFormHtml($_method)): ?>
+                <?php echo $html; ?>
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<?php echo $this->getChildChildHtml('additional'); ?>
+
+<script>
+    <?php echo $this->getChildChildHtml('scripts'); ?>
+
+    window.payment.init();
+    payment.init();
+
+    <?php if (is_string($oneMethod)): ?>
+        window.payment.switchMethod('<?php echo $oneMethod ?>');
+    <?php endif; ?>
+
+    window.paymentLabels = [];
+
+    <?php foreach ($this->getMethods() as $_method): $_code = $_method->getCode() ?>
+        window.paymentLabels[<?php echo Zend_Json::encode($_code) ?>] = "<?php echo $this->htmlEscape($_method->getTitle()) ?>";
+    <?php endforeach; ?>
+</script>

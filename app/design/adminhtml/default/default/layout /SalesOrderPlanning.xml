@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- ce fichier doit se trouver dans adminhtml/default/default sinon pas pris en compte.. -->
+<layout version="0.1.0">
+    
+    <salesorderplanning_shippingdelay_list>
+    	<reference name="content">
+    		<block type="SalesOrderPlanning/ShippingDelay_List" name="sp" template="SalesOrderPlanning/ShippingDelay/List.phtml" />
+    	</reference>    
+    </salesorderplanning_shippingdelay_list>
+
+    
+    <!-- Sales Order -->
+	<adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+            <action method="addTab"><name>sales_order_planning</name><block>SalesOrderPlanning/Adminhtml_Sales_Order_View_Tab_Planning</block></action>
+        </reference>
+    </adminhtml_sales_order_view>
+    
+    
+    <salesorderplanning_productavailabilityrange_list>
+    	<reference name="content">
+    		<block type="SalesOrderPlanning/ProductAvailabilityRange_List" name="pa" template="SalesOrderPlanning/ProductAvailabilityRange/List.phtml" />
+    	</reference>    
+    </salesorderplanning_productavailabilityrange_list>
+    
+    <salesorderplanning_productavailabilitystatus_grid>
+    	<reference name="content">
+    		<block type="SalesOrderPlanning/ProductAvailabilityStatus_Grid" name="pas" template="SalesOrderPlanning/ProductAvailabilityStatus/Grid.phtml" />
+    	</reference>    
+    </salesorderplanning_productavailabilitystatus_grid>
+    
+    <salesorderplanning_lateorders_index>
+    	<reference name="content">
+	           <block type="SalesOrderPlanning/LateOrders_Grid" name="lateorders" as="lateorders" template="SalesOrderPlanning/LateOrders/Grid.phtml">
+	           </block>
+    	</reference>
+    </salesorderplanning_lateorders_index>
+
+
+    
+</layout>

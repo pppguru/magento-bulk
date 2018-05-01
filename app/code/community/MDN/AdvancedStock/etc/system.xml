@@ -1,0 +1,542 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <ERP translate="label" module="AdvancedStock">
+            <label>ERP</label>
+            <sort_order>1</sort_order>
+        </ERP>
+    </tabs>
+    <sections>
+        <advancedstock translate="label" module="AdvancedStock">
+            <label>Advanced Stock</label>
+            <tab>ERP</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>101</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general>
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <auto_validate_payment>
+                            <label>Validate payment when invoice created</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Set payment validated to true when invoice is created</comment>
+                        </auto_validate_payment>
+                        <restore_isinstock>
+                            <label>Restore is in stock when product back in stock</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </restore_isinstock>
+                        <replace_magento_inventory_tab>
+                            <label>Replace magento inventory tab in product sheet</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If enabled, standard inventory tab in product sheet is replaced by stock levels summary</comment>
+                        </replace_magento_inventory_tab>
+                        <disable_product_reindex>
+                            <label>Disable product reindex</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>To use only if you experience performance issues</comment>
+                        </disable_product_reindex>
+                        <display_image_in_product_list>
+                            <label>Display picture in ERP product grid</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_image_in_product_list>
+                        <avoid_magento_auto_reindex>
+                            <label>Deadlock protection</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>To use only if you experience MySQL Deadlock issues</comment>
+                        </avoid_magento_auto_reindex>
+                        <pdf_use_truetype_font translate="label">
+                            <label>PDF use truetype font</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Use this option if you encounter accent issues or if international characters does not display</comment>
+                        </pdf_use_truetype_font>
+                        <log_adjustment_stock_movement translate="label">
+                            <label>Log adjustment stock movement</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Use this option if you get adjustment stock movement and need to understand why it happens</comment>
+                        </log_adjustment_stock_movement>
+                        <prevent_non_reserved_shipment translate="label">
+                            <label>ERP Strict Mode : prevent to ship order products if they have not been reserved</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Use this option if you encounter some negative stock issue. Once activated, it prevents to ship any order that has not been reserved by ERP</comment>
+                        </prevent_non_reserved_shipment>
+                    </fields>
+                </general>
+                <valid_orders>
+                    <label>Valid orders</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <require_payment_validated translate="label">
+                            <label>Require payment validated flag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Payment validated must be true to make order valid. Payment validated is usually toggled to yes when invoice is created</comment>
+                        </require_payment_validated>
+                        <do_not_consider_invalid_orders_for_stocks translate="label">
+                            <label>Don't consider stock for invalid order</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Automatic stock reservation and availibilty status impact will be disable for not valid order</comment>
+                        </do_not_consider_invalid_orders_for_stocks>
+                        <force_shipping_method>
+                            <label>Force order to valid if shipping method is</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </force_shipping_method>
+                        <force_customer_group>
+                            <label>Force order to valid if customer group is</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_customer_group</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </force_customer_group>
+                        <force_payment_method>
+                            <label>Force order to valid if payment method is</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allmethods</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </force_payment_method>
+                        <exclude_status>
+                            <label>Exclude order with status</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>AdvancedStock/System_Config_Source_OrderStatus</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </exclude_status>                        
+                        <update_is_valid_for_all_orders>
+                            <label>Update is_valid for all orders</label>
+                            <frontend_model>AdvancedStock/System_Config_Button_UpdateIsValidForAllOrders</frontend_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>When you change order validity conditions, after saving new conditions click on this button to update orders validity</comment>
+                        </update_is_valid_for_all_orders>
+                    </fields>
+                </valid_orders>
+                <cron>
+                    <label>Cron</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <order_update_stocks_max translate="label">
+                            <label>Update order product stock max</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </order_update_stocks_max>
+                        <debug>
+                            <label>Show debug html output</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Display debug html output when executing cron</comment>
+                        </debug>
+                    </fields>
+                </cron>
+                <barcode>
+                    <label>Barcodes</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <barcode_attribute>
+                            <label>Barcode attribute</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>AdvancedStock/System_Config_Source_ProductAttributeOfTypeText</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Note : if you prefer to use a product attribute rather than the standard ERP barcode management system</comment>
+                        </barcode_attribute>
+                    </fields>
+                </barcode>
+                <barcode_labels>
+                    <label>Barcode labels</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <paper_width translate="label">
+                            <label>Paper width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>cm</comment>
+                        </paper_width>
+                        <paper_height translate="label">
+                            <label>Paper height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>cm (0 for no limit)</comment>
+                        </paper_height>
+                        <labels_per_row translate="label">
+                            <label>Labels per row</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </labels_per_row>
+                        <row_count translate="label">
+                            <label>Row count</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>0 for no limit</comment>
+                        </row_count>
+                        <top_margin translate="label">
+                            <label>Top margin</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>cm</comment>
+                        </top_margin>
+                        <left_margin translate="label">
+                            <label>Left margin</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>cm</comment>
+                        </left_margin>
+                        <right_margin translate="label">
+                            <label>Right margin</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>cm</comment>
+                        </right_margin>
+                        <bottom_margin translate="label">
+                            <label>Bottom margin</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>cm</comment>
+                        </bottom_margin>
+                        <vertical_inter_margin translate="label">
+                            <label>Vertical inter margin</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>cm</comment>
+                        </vertical_inter_margin>
+                        <horizontal_inter_margin translate="label">
+                            <label>Horizontal inter margin</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment>cm</comment>
+                        </horizontal_inter_margin>
+                    </fields>
+                </barcode_labels>
+                <miscellaneous>
+                    <label>Miscellaneous</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <display_configurable_attributes>
+                            <label>Display configurable attributes</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Display configurable atribute values in product list</comment>
+                        </display_configurable_attributes>
+                    </fields>
+                </miscellaneous>
+                <router>
+                    <label>Router to associate order items to warehouse</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>6</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <priority>
+                            <label>Priority</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>AdvancedStock/System_Config_Source_RouterMode</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Select algorithm to select the warehouse to associate to sale order items</comment>
+                        </priority>
+                        <default_warehouse>
+                            <label>Default warehouse</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>AdvancedStock/System_Config_Source_Warehouse</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </default_warehouse>
+                    </fields>
+                </router>
+                <sales_history>
+                    <label>Sales History</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>6</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>  
+					<show_in_store>1</show_in_store>					
+                    <fields>
+                        <enable_auto_update>
+                            <label>Enable auto update (every sunday night)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable_auto_update>
+                        <period_1 translate="label">
+                            <label>Week number for period 1</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website> 
+							<show_in_store>1</show_in_store>							
+                            <validate>validate-number</validate>
+                        </period_1>
+                        <period_2 translate="label">
+                            <label>Week number for period 2</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>  
+							<show_in_store>1</show_in_store>
+                            <validate>validate-number</validate>
+                        </period_2>
+                        <period_3 translate="label">
+                            <label>Week number for period 3</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>  
+							<show_in_store>1</show_in_store>
+                            <validate>validate-number</validate>
+                        </period_3>
+                        <apply_now>
+                            <label>Update for all products</label>
+                            <frontend_model>AdvancedStock/System_Config_Button_UpdateSalesHistoryForAllProducts</frontend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </apply_now>
+                    </fields>
+                </sales_history>
+                <prefered_stock_level>
+                    <label>Warning stock level / Ideal stock</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>7</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>  
+					<show_in_store>1</show_in_store>
+                    <fields>
+                        <ideal_stock_default_value translate="label">
+                            <label>Ideal stock default value</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+                            <validate>validate-number</validate>
+                        </ideal_stock_default_value>
+                        <enable_auto_calculation>
+                            <label>Enable auto calculation</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </enable_auto_calculation>
+                        <calculation_weeks translate="label">
+                            <label>Calculate needed qty for X weeks</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                            <validate>validate-number</validate>
+                        </calculation_weeks>
+                        <formula translate="label">
+                            <label>Formula</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+                        </formula>
+                        <minimum_levels_to_apply translate="label">
+                            <label>Minimum value to apply</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+                            <validate>validate-number</validate>
+                            <comment>Minimum value applied by autocalculation on warning stock level and iideal stock level</comment>
+                        </minimum_levels_to_apply>
+                        <enable_for_warehouses>
+                            <label>Enable for Warehouses</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>AdvancedStock/System_Config_Source_Warehouse</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website> 
+							<show_in_store>0</show_in_store>                           
+                        </enable_for_warehouses>
+                        <substract_percent_to_calculate_warning_stock_level translate="label">
+                            <label>Substract X% to calculate warning stock level</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+                            <validate>validate-number</validate>
+                        </substract_percent_to_calculate_warning_stock_level>
+                        <apply_now>
+                            <label>Update for all products</label>
+                            <frontend_model>AdvancedStock/System_Config_Button_UpdateSalesHistoryForAllProducts</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </apply_now>
+                    </fields>
+                </prefered_stock_level>
+                <stock_take>
+                    <label>Stock take</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <prevent_to_edit_a_close_stocktake>
+                            <label>Prevent to edit a stock take when closed</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </prevent_to_edit_a_close_stocktake>                        
+                        <display_quantity_buttons>
+                            <label>Display buttons to update quantity</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_quantity_buttons>
+                        <displayed_product_limit translate="label">
+                            <label>Maximum products displayed</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <validate>validate-number</validate>
+                        </displayed_product_limit>
+                        <random_default_value translate="label">
+                            <label>Number of random products</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <validate>validate-number</validate>
+                        </random_default_value>
+
+                    </fields>
+                </stock_take>
+            </groups>
+        </advancedstock>
+    </sections>
+</config>

@@ -1,0 +1,48 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+/* @var Mage_Wishlist_Model_Item $item */
+$item = $this->getItem();
+$product = $item->getProduct();
+?>
+<div class="product-card__info">
+    <h3 class="product-card__title">
+        <a class="product-card__title-link" href="<?php echo $this->getProductUrl($item) ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>"><?php echo $this->escapeHtml($product->getName()) ?></a>
+    </h3>
+
+    <div class="product-card__description">
+        <?php echo $this->escapeHtml($this->stripTags($product->getShortDescription())) ?>
+    </div>
+
+    <?php if ($this->getSortedChildren()): ?>
+        <div class="item-manage">
+            <?php foreach($this->getSortedChildren() as $childName): ?>
+                <?php echo $this->getChildHtml($childName, false) ?>
+            <?php endforeach;?>
+        </div>
+    <?php endif; ?>
+
+    <textarea name="description[<?php echo $item->getWishlistItemId() ?>]" style="display: none;" tabindex="-1"><?php echo ($this->escapeHtml($item->getDescription())) ?></textarea>

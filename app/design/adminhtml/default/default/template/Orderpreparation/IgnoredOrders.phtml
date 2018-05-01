@@ -1,0 +1,5 @@
+<p>&nbsp;</p>
+<div class="a-right"><a href="javascript:toggleDiv('comments_ignored');"><?php echo Mage::helper('Orderpreparation')->__('Display / Hide Comments'); ?></a></div>
+<div class="order_preparation_comments" id="comments_ignored" name="comments_ignored" style="display: none;"><?php echo $this->getAllComments(); ?></div>
+<p>&nbsp;</p>
+<?php echo $this->getGridParentHtml() ?>

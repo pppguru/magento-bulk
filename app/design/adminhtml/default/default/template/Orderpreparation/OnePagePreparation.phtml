@@ -1,0 +1,207 @@
+<script>
+
+	var saveDataUrl = '<?php echo $this->getSaveUrl(); ?>';
+	var printDocumentUrl = '<?php echo $this->getPrintDocumentUrl(); ?>';
+	var downloadDocumentUrl = '<?php echo $this->getDownloadDocumentUrl(); ?>';
+	var printShipmentUrl = '<?php echo $this->getPrintShipmentUrl(); ?>';
+	var nextOrderUrl = '<?php echo $this->getNextOrderUrl(); ?>';
+	var refreshUrl = '<?php echo $this->getRefreshPageUrl(); ?>';
+
+        var scannedOkImageUrl = '<?php echo $this->getSkinUrl('images/scanner/ok.png'); ?>';
+
+	//handler for enter key
+	function stopRKey(evt) { 
+	  var evt = (evt) ? evt : ((event) ? event : null); 
+	  var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+	  if ((evt.keyCode == 13) && (node.type=="text"))
+	  {
+	  	<?php echo $this->getCommitJsAction(); ?>;
+	  } 
+	} 
+	document.onkeypress = stopRKey; 
+
+</script>
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('One Page Preparation').' - '.$this->getProgress(); ?></h3></td>
+            <td align="right">
+                <button onclick="commit(true, false, false, false, false, false)" class="scalable" type="button"><span><?php echo $this->__('Save')?></span></button>
+                <button id="commit_button" onclick="<?php echo $this->getCommitJsAction(); ?>" class="scalable" type="button"><span><?php echo $this->__('Commit')?></span></button>
+				<?php if (!$this->isLastOrder()): ?>
+					<button id="next_order_button" onclick="document.location.href='<?php echo $this->getNextOrderUrl(); ?>'" class="scalable" type="button"><span><?php echo $this->__('Next order')?></span></button>
+				<?php endif; ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<table border="0" width="100%">
+<tr>
+	<td>
+		<b><?php echo $this->__('Orders : '); ?></b>
+		<?php echo $this->getOrderListAsCombo('order_list', "document.location.href=this.value;"); ?>	
+	</td>
+	<td align="right">
+		<b><?php echo $this->__('Actions : '); ?></b>
+		<?php echo $this->getActionsAsCombo('actions_list', "performAction(this.value);"); ?>	
+	</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+
+<table border="0" width="100%">
+<tr>
+	<td width="300">
+		<div class="entry-edit">
+		    <div class="entry-edit-head"> 
+			    <h4 class="icon-head head-edit-form fieldset-legend"><a href="<?php echo $this->getUrl('adminhtml/sales_order/view', array('order_id' => $this->getCurrentOrder()->getId())); ?>"><?php echo $this->__('Order #').$this->getCurrentOrder()->getincrement_id(); ?></a></h4> 
+		    </div>
+			<fieldset>
+				<?php if ($this->getCurrentOrder()->getBillingAddress()): ?>
+					<p>
+						<b><?php echo $this->__('Billing address : '); ?></b><br>
+						<?php echo $this->getCurrentOrder()->getBillingAddress()->getFormated(false); ?>
+					</p>			
+				<?php endif; ?>
+				
+				<?php if ($this->getCurrentOrder()->getShippingAddress()): ?>
+					<p>
+						<b><?php echo $this->__('Shipping address : '); ?></b><br>
+						<?php echo $this->getCurrentOrder()->getShippingAddress()->getFormated(false); ?>
+					</p>			
+				<?php endif; ?>
+					<p>
+						<b><?php echo $this->__('Other : '); ?></b><br>
+						<?php echo $this->__('Created at %s', $this->formatDate(Mage::getSingleton('AdvancedStock/Sales_Order_Tool')->getOrderPlaceDate($this->getCurrentOrder()), 'medium', true)); ?><br>
+						<?php echo $this->__('Status : %s', $this->getCurrentOrder()->getStatusLabel()); ?><br>
+						<?php echo $this->__('Total : %s', $this->getCurrentOrder()->formatPrice($this->getCurrentOrder()->getGrandTotal())); ?><br>
+						<?php if ($this->getCurrentOrder()->getPayment()->getMethodInstance()): ?>
+							<?php echo $this->__('Payment method : %s', $this->getCurrentOrder()->getPayment()->getMethodInstance()->gettitle()); ?><br>
+						<?php endif; ?>
+						<?php echo $this->__('Payment validated : %s', ($this->getCurrentOrder()->getpayment_validated() == 1?'<font color="green">'.$this->__('Yes'):'<font color="red">'.$this->__('No'))); ?></font><br>
+						<?php echo $this->__('Store : %s', $this->getOrderStoreName()); ?><br>
+					</p>			
+			</fieldset>
+		</div>
+	</td>
+	<td>
+		<form method="POST" name="form_onepage_preparation" id="form_onepage_preparation">
+			<input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+			<input type="hidden" id="order_id" name="order_id" value="<?php echo $this->getCurrentOrder()->getId(); ?>">
+			<input type="hidden" id="create" name="create" value="0">
+			<input type="hidden" id="print_documents" name="print_documents" value="0">
+			<input type="hidden" id="print_shipping_label" name="print_shipping_label" value="0">
+			<div class="entry-edit">
+			    <div class="entry-edit-head"> 
+				    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Preparation information'); ?></h4> 
+			    </div>
+				<fieldset>
+					<table width="100%">
+						<tr>
+							<th class="a-center"><?php echo $this->__('Shipping method'); ?></th>
+							<th class="a-center"><?php echo $this->__('Total weight'); ?></th>
+							<th class="a-center"><?php echo $this->__('Shipment'); ?></th>
+							<th class="a-center"><?php echo $this->__('Invoice'); ?></th>
+						</tr>
+						<tr>
+							<td class="a-center"><?php echo $this->getCurrentOrder()->getShippingDescription(); ?></td>
+							<td class="a-center">
+								<input type="text" name="real_weight" id="real_weight" value="<?php echo $this->getOrderPreparationItem()->getreal_weight(); ?>" size="5">							
+							</td>
+							<td class="a-center">
+								<?php if ($this->getShipment()): ?>
+									<a href="<?php echo $this->getUrl('adminhtml/sales_order_shipment/print', array('invoice_id' => $this->getShipment()->getId())); ?>"><?php echo $this->getShipment()->getIncrementId(); ?></a>
+								<?php else: ?>
+									-
+								<?php endif; ?>
+							</td>
+							<td class="a-center">
+								<?php if ($this->getInvoice()): ?>
+									<a href="<?php echo $this->getUrl('adminhtml/sales_order_invoice/print', array('invoice_id' => $this->getInvoice()->getId())); ?>"><?php echo $this->getInvoice()->getIncrementId(); ?></a>
+								<?php else: ?>
+									-
+								<?php endif; ?>
+							</td>
+						</tr>
+					<?php if ($this->getCarrierTemplate() != null): ?>
+						<tr height="30px;">
+							
+						</tr>
+							<tr>
+								<?php foreach($this->getCarrierTemplate()->getCustomFields() as $customField): ?>
+									<th class="a-center"><?php echo $customField->getctf_name(); ?></th>
+								<?php endforeach; ?>
+							</tr>
+							<tr>
+								<?php foreach($this->getCarrierTemplate()->getCustomFields() as $customField): ?>
+									<td class="a-center"><?php echo $customField->getCustomFieldControl($this->getCarrierTemplate()->getDataArray($this->getOrderPreparationItem())); ?></td>
+								<?php endforeach; ?>
+							</tr>
+						<?php endif; ?>
+					</table>
+				</fieldset>
+			</div>
+			
+			<?php if ($this->getComments()): ?>
+				<div class="entry-edit">
+				    <div class="entry-edit-head"> 
+					    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Comments'); ?></h4> 
+				    </div>
+					<fieldset>
+						<?php echo $this->getComments(); ?>
+					</fieldset>
+				</div>
+			<?php endif; ?>
+			
+			<div class="entry-edit">
+			    <div class="entry-edit-head"> 
+				    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Products'); ?></h4> 
+			    </div>
+				<fieldset>
+					<table width="100%">
+						<tr>
+							<th class="a-center"><?php echo $this->__('Qty to scan'); ?></th>
+							<th class="a-center"><?php echo $this->__('Product name'); ?></th>
+							<th class="a-center"><?php echo $this->__('Location'); ?></th>
+							<th class="a-center"><?php echo $this->__('Reserved qty'); ?></th>
+							<th class="a-center"><?php echo $this->__('Qty to ship'); ?></th>
+							<?php if (mage::getStoreConfig('barcode/general/disable') != 1): ?>
+								<th class="a-center"><?php echo $this->__('Serials'); ?></th>
+							<?php endif; ?>
+						</tr>
+				    	<?php foreach($this->getItemsToShip() as $product): ?>
+				    		<?php if ($this->canEditQty($product)): ?>
+								<tr>
+									<td class="a-center">
+										<img src="" name="scanned_ok_<?php echo $product->getId(); ?>" id="scanned_ok_<?php echo $product->getId(); ?>" width="16" height="16" style="display: none" />
+										<input type="hidden" name="barcode_<?php echo $product->getId(); ?>" id="barcode_<?php echo $product->getId(); ?>" value="<?php echo $this->getBarcode($product); ?>" size="2" />
+										<input type="hidden" name="ordered_qty_<?php echo $product->getId(); ?>" id="ordered_qty_<?php echo $product->getId(); ?>" value="<?php echo $this->getOrderedQty($product); ?>" size="2" />
+										<input type="hidden" name="scanned_qty_<?php echo $product->getId(); ?>" id="scanned_qty_<?php echo $product->getId(); ?>" value="0" size="2" />
+										<div id="remaining_to_scan_<?php echo $product->getId(); ?>"><?php echo $this->getOrderedQty($product); ?></div>
+									</td>
+									<td><?php echo $product->getorder_item()->getName(); ?> <i>(<a href="<?php echo $this->getUrl('adminhtml/AdvancedStock_Products/Edit', array('product_id' => $product->getproduct_id())); ?>">View</a>)</i><br><?php echo $this->getSubitems($product); ?></td>
+									<td class="a-center"><?php echo $this->getProductLocation($product->getproduct_id()); ?></td>
+									<td class="a-center"><?php echo $product->getorder_item()->getreserved_qty(); ?></td>
+									<td class="a-center"><?php echo $this->getQtyCombo($product, 'qty_'.$product->getId()); ?></td>
+									<?php if (mage::getStoreConfig('barcode/general/disable') != 1): ?>
+										<td class="a-center"><textarea cols="30" rows="3" name="serials_<?php echo $product->getId(); ?>" id="serials_<?php echo $product->getId(); ?>" onkeyup="displaySerialCount(<?php echo $product->getId(); ?>)"><?php echo $product->getserials(); ?></textarea><br><span id="serial_nb_<?php echo $product->getId(); ?>"></span></td>							
+									<?php endif; ?>
+								</tr>		
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</table>
+				</fieldset>
+			</div>	
+		</form>
+	</td>
+</tr>
+</table>
+
+<script>
+    //enable barcode scanner
+    document.onkeypress = handleKey;
+    enableCatchKeys(null, 'packingObj.();');
+</script>

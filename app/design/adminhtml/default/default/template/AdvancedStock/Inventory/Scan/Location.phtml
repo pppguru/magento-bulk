@@ -1,0 +1,25 @@
+<table border="0" cellspacing="10">
+    <!-- //ERP-318 -->
+    <?php if($this->getLocation() !=  MDN_AdvancedStock_Helper_Inventory::TAG_BY_LOCATION):?>
+    <tr>
+
+        <td><?php echo $this->__('Location'); ?> : </td>
+        <td><?php echo $this->getLocation(); ?></td>
+    </tr>
+    <?php endif; ?>
+    <tr>
+        <td><?php echo $this->__('Expected qty'); ?> : </td>
+        <td><?php echo $this->getTotalExpectedQty(); ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $this->__('Scanned qty'); ?> : </td>
+        <td><div id="total_scanned_qty" style="display: inline;">0</div></td>
+    </tr>
+</table>
+
+
+<?php if($this->getLocation() !=  MDN_AdvancedStock_Helper_Inventory::TAG_BY_LOCATION):?>
+    <p><input type="button" class="touch-big-button red-button" value="Cancel" onclick="inventoryObj.cancel();" /></p>
+<?php endif; ?>
+
+    <p><input type="button" class="touch-big-button green-button" value="Commit" onclick="inventoryObj.commit();" /></p>

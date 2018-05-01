@@ -1,0 +1,63 @@
+<div id="report_<?php echo $this->getReport()->getId(); ?>" style="<?php echo $this->getContainerStyle(); ?>"></div>
+
+<script type="text/javascript">
+
+    document.observe("dom:loaded", function() {
+
+
+        jQuery('#report_<?php echo $this->getReport()->getId(); ?>').highcharts({
+            chart: {
+                type: 'column'
+            },
+            credits: { enabled: false },
+            title:{ text:'<?php echo $this->__($this->getReport()->getName()); ?>'},
+            subtitle: {
+                text: '<?php echo $this->getSubtitle(); ?>'
+            },
+            xAxis: {
+                type: 'category',
+                categories: <?php echo json_encode($this->getCategories()); ?>,
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    },
+                    formatter: function () {
+                        <?php echo $this->getLabelFormatter(); ?>
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '<?php echo $this->getYLabel(); ?>'
+                }
+            },
+            plotOptions: {
+                series: {
+                    point: {
+                        events: {
+                            click: function () {
+                                <?php echo $this->onClick(); ?>
+                            }
+                        }
+                    }
+                }
+            },
+            series: <?php echo json_encode($this->getSeries()); ?>,
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        menuItems: [{
+                            text: 'Excel Export',
+                            onclick: function () {
+                                <?php echo $this->exportJs(); ?>
+                            }
+                        }]
+                    }
+                }
+            }
+        });
+    });
+</script>

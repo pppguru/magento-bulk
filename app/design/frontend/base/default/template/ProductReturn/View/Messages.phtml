@@ -1,0 +1,23 @@
+<?php if(Mage::getStoreConfig('productreturn/messages/enable')): ?>
+<div style="padding-top:20px;">
+ <form method="POST" id="rma_message_form" name="rma_message_form" action="<?php echo $this->getSubmitUrl(); ?>">
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Messages'); ?></h2>
+
+        <div>
+            <input type="hidden" name="rma_id" value="<?php echo $this->getRma()->getId(); ?>"/>
+            <input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>"/>
+            <p><textarea name="rma_message" id="rma_message" style="width: 80%; height: 100px;"></textarea></p>
+            <button class="button"><?php echo $this->__('Submit'); ?></button>
+        </div>
+        <?php foreach ($this->getRma()->getMessages() as $message): ?>
+            <div class="rma-msg-<?php echo $message->getrmam_author(); ?>">
+                <p><strong><?php echo $message->getrmam_date(); ?>, <?php echo $this->__('by'); ?> <?php echo $this->__($message->getrmam_author()); ?></strong>
+                </p>
+                <p><?php echo $message->getrmam_message(); ?></p>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</form>
+</div>
+<?php endif; ?>

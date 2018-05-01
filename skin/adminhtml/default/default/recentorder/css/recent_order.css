@@ -1,0 +1,12 @@
+#customer_view_orders_grid_table { }
+#customer_view_orders_grid_table tbody td { color:#000; padding:4px; }
+#customer_view_orders_grid_table tbody tr.odds td { cursor:pointer; }
+#customer_view_orders_grid_table div.arrow { background:transparent url("../images/arrows.png") no-repeat scroll 0px -16px; width:16px; height:16px; display:block;}
+#customer_view_orders_grid_table div.up { background-position:0px 0px;}
+#customer_view_orders_grid_table div.arrow.up{margin:0;}
+.arrow-selection {
+	width: 1%;
+}
+#recent_order_item_data th { background:#7CB8E2 url(header_bkg.png) repeat-x scroll center left; color:#fff; padding:7px 15px; text-align:center;}
+#recent_order_item_data td { background:#C7DDEE none repeat-x scroll center left; color:#000; padding:7px 15px; }
+#recent_order_item_data tr td { text-align:center; }

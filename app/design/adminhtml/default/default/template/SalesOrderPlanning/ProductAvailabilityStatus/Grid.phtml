@@ -1,0 +1,17 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Product Availability Statuses')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getRefreshMissingUrl()?>'" class="scalable" type="button"><span><?php echo $this->__('Refresh only missing')?></span></button>
+                <button onclick="document.location.href='<?php echo $this->getRefreshUrl()?>'" class="scalable" type="button"><span><?php echo $this->__('Refresh All')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<?php echo $this->getGridParentHtml() ?>
+
+</div>

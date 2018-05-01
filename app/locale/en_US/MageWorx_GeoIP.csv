@@ -1,0 +1,8 @@
+Database Type,Database Type
+GeoIP,GeoIP
+GeoIP City,GeoIP City
+GeoIP Country,GeoIP Country
+GeoIP Location,GeoIP Location
+IP Location,IP Location
+n/a,n/a
+Path to GeoIP database file. Can be either relative to Magento root folder or absolute to your file system,Path to GeoIP database file. Can be either relative to Magento root folder or absolute to your file system

@@ -1,0 +1,47 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="cart panel panel--from-bottom <?php if($this->helper('aw_mobile3')->isCanOpenCartPopup()):?>is-open<?php endif;?>">
+
+    <div class="panel__inner">
+
+        <div class="panel__header">
+            <h2 class="panel__title"><span class="panel__title-text"><?php echo $this->__("Your cart");?></span></h2>
+            <button class="panel__close panel__action"><svg class="panel__action-icon panel__action-icon--close svg-icon"><use xlink:href="#icon-close" /></svg><span class="hide"><?php echo $this->__("Close") ?></span></button>
+        </div>
+
+        <div class="panel__content">
+        	<div class="cart__container panel__container">
+        		<div class="cart__content">
+            		<?php echo $this->getChildHtml('checkout_cart');?>
+            	</div>
+
+                <div class="panel__container-shadow"></div>
+            </div><!-- .panel__container -->
+        </div><!-- .panel__content -->
+
+    </div>
+
+</div>

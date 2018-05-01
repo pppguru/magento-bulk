@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+    /**
+     * aheadWorks Co.
+     *
+     * NOTICE OF LICENSE
+     *
+     * This source file is subject to the EULA
+     * that is bundled with this package in the file LICENSE.txt.
+     * It is also available through the world-wide-web at this URL:
+     * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+     *
+     * @category   AW
+     * @package    AW_ARUnits_Salesstatistics
+     * @copyright  Copyright (c) 2009-2011 aheadWorks Co. (http://www.aheadworks.com)
+     * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+     */
+-->
+<additional>
+    <salesstatistics>
+        <title>Sales Statistics</title>
+        <sort_order>13</sort_order>
+        <required_version>2.2.2</required_version>
+        <active>true</active>
+    </salesstatistics>
+</additional>
+ 

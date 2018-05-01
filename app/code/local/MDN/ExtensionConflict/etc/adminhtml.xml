@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <system>
+            <children>
+                <extensionconflict translate="title" module="ExtensionConflict">
+                    <title>Extension Conflict</title>
+                    <action>adminhtml/ExtensionConflict_Admin/List</action>
+                </extensionconflict>
+            </children>
+        </system>
+    </menu>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <extensionconflict module="ExtensionConflict">
+                                <title>Extension Conflict</title>
+                            </extensionconflict>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+
+    <routers>
+        <adminhtml>
+            <args>
+                <modules>
+                    <ExtensionConflict before="Mage_Adminhtml">MDN_ExtensionConflict_Adminhtml</ExtensionConflict>
+                </modules>
+            </args>
+        </adminhtml>
+    </routers>
+
+    <layout>
+        <updates>
+            <ExtensionConflict>
+                <file>ExtensionConflict.xml</file>
+            </ExtensionConflict>
+        </updates>
+    </layout>
+</config>

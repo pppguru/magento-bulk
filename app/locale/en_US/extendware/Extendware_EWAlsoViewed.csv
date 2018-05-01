@@ -1,0 +1,71 @@
+"<b>This is only if you have added the block directly to your theme.</b>","<b>This is only if you have added the block directly to your theme.</b>"
+"<b>You must have the checkout cross-sell block visible on the frontend already.</b>","<b>You must have the checkout cross-sell block visible on the frontend already.</b>"
+"<b>You must have the cross-sells block visible on the frontend already.</b>","<b>You must have the cross-sells block visible on the frontend already.</b>"
+"<b>You must have the related block visible on the frontend already.</b>","<b>You must have the related block visible on the frontend already.</b>"
+"<b>You must have the up-sells block visible on the frontend already.</b>","<b>You must have the up-sells block visible on the frontend already.</b>"
+"<ul style=""list-style-type:disc; margin-left: 20px;"">
+								                    	<li><b>None</b> - no category filtering will be done</li>
+								                    	<li><b>Any</b> - a product will only match if it matches at least one of the categories of the primary product</li>
+								                    	<li><b>Current</b> - a product will only match if it is within the current category</li>
+								                    </ul>","<ul style=""list-style-type:disc; margin-left: 20px;"">
+								                    	<li><b>None</b> - no category filtering will be done</li>
+								                    	<li><b>Any</b> - a product will only match if it matches at least one of the categories of the primary product</li>
+								                    	<li><b>Current</b> - a product will only match if it is within the current category</li>
+								                    </ul>"
+"Add to Wishlist","Add to Wishlist"
+Advanced,Advanced
+"Also Viewed","Also Viewed"
+"Also Viewed Product Sort Order","Also Viewed Product Sort Order"
+Any,Any
+"Basket Size","Basket Size"
+"Category Filter Mode","Category Filter Mode"
+"Check items to add to the cart or","Check items to add to the cart or"
+"Checkout Cross-Sells Block","Checkout Cross-Sells Block"
+Configuration,Configuration
+"Cross-Sells Block","Cross-Sells Block"
+Current,Current
+"Custom Block","Custom Block"
+"Custom Sidebar Block","Custom Sidebar Block"
+"Default position","Default position"
+"Enable or the showing of the also viewed products for this block.","Enable or the showing of the also viewed products for this block."
+Enabled,Enabled
+"Existing Products Sort Order","Existing Products Sort Order"
+Extendware,Extendware
+General,General
+"Generation Mode","Generation Mode"
+Hybrid,Hybrid
+"If a category filter mode is selected, then products will only be displayed if they match the category","If a category filter mode is selected, then products will only be displayed if they match the category"
+"If disabled then out-of-stock products will not be shown.","If disabled then out-of-stock products will not be shown."
+"Last added product","Last added product"
+"Last product will be fastest, but hybrid or whole cart gives the best results.","Last product will be fastest, but hybrid or whole cart gives the best results."
+"Listing Mode","Listing Mode"
+Main,Main
+"Max Existing Products","Max Existing Products"
+"Max Products","Max Products"
+"Max Visitors","Max Visitors"
+"Maximum number of existing associated products that will be shown.","Maximum number of existing associated products that will be shown."
+None,None
+"Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs.","Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs."
+"Random order","Random order"
+"Related Block","Related Block"
+"Related Products","Related Products"
+"Replace existing","Replace existing"
+"Require In Stock","Require In Stock"
+"select all","select all"
+Settings,Settings
+"Show existing first","Show existing first"
+"Show existing last","Show existing last"
+"Show only if there are no existing","Show only if there are no existing"
+"The manner that existing associated products are handled.","The manner that existing associated products are handled."
+"The maximum number of products retrieved prior to filtering. This only needs to be large enough that after filtering there is enough products to display.","The maximum number of products retrieved prior to filtering. This only needs to be large enough that after filtering there is enough products to display."
+"The maximum number of products that will be displayed in the block","The maximum number of products that will be displayed in the block"
+"The maximum number of visitors that will be analyzed when calculating viewed with data","The maximum number of visitors that will be analyzed when calculating viewed with data"
+"The way that existing products should be sorted.","The way that existing products should be sorted."
+"The way that the ""Also Viewed"" products should be ordered. Useful for including some randomness","The way that the ""Also Viewed"" products should be ordered. Useful for including some randomness"
+"unselect all","unselect all"
+"Up-Sells Block","Up-Sells Block"
+"When sort order is random it will select random products from the top X products. X is the basket size. This should be larger than the number of products you are displaying.","When sort order is random it will select random products from the top X products. X is the basket size. This should be larger than the number of products you are displaying."
+"Whole cart","Whole cart"
+"You can add it via layouts or you &lt;?php echo $this-&gt;getLayout()-&gt;createBlock('ewalsoviewed/catalog_product_list_viewed')-&gt;<br>setTemplate('extendware/ewalsoviewed/catalog/product/list/viewed.phtml')-&gt;toHtml(); ?&gt;.","You can add it via layouts or you &lt;?php echo $this-&gt;getLayout()-&gt;createBlock('ewalsoviewed/catalog_product_list_viewed')-&gt;<br>setTemplate('extendware/ewalsoviewed/catalog/product/list/viewed.phtml')-&gt;toHtml(); ?&gt;."
+"You can add it via layouts or you &lt;?php echo $this-&gt;getLayout()-&gt;createBlock('ewalsoviewed/catalog_product_list_viewed_sidebar')-&gt;<br>setTemplate('extendware/ewalsoviewed/catalog/product/list/viewed/sidebar.phtml')-&gt;toHtml(); ?&gt;.","You can add it via layouts or you &lt;?php echo $this-&gt;getLayout()-&gt;createBlock('ewalsoviewed/catalog_product_list_viewed_sidebar')-&gt;<br>setTemplate('extendware/ewalsoviewed/catalog/product/list/viewed/sidebar.phtml')-&gt;toHtml(); ?&gt;."
+"You may also be interested in the following product(s)","You may also be interested in the following product(s)"

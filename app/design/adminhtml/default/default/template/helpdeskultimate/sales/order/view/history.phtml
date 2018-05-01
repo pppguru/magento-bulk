@@ -1,0 +1,90 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdeskultimate
+ * @version    2.10.7
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div id="order_history_block">
+    <?php if ($this->canAddComment()): ?>
+    <div id="history_form" class="order-history-form">
+        <div><?php echo Mage::helper('sales')->__('Add Order Comments') ?></div>
+        <span class="field-row">
+            <label class="normal" for="history_status"><?php echo Mage::helper('sales')->__('Status') ?></label><br/>
+            <select name="history[status]" class="select" id="history_status">
+                <?php foreach ($this->getStatuses() as $_code => $_label): ?>
+                <option value="<?php echo $_code ?>"<?php if ($_code == $this->getOrder()->getStatus()): ?>
+                        selected="selected"<?php endif; ?>><?php echo $_label ?></option>
+                <?php endforeach; ?>
+            </select>
+        </span>
+        <span class="field-row">
+            <label class="normal" for="history_comment"><?php echo Mage::helper('sales')->__('Comment') ?></label>
+            <textarea name="history[comment]" rows="3" cols="5" style="height:6em; width:99%;"
+                      id="history_comment"></textarea>
+        </span>
+        <?php if ($this->canSendCommentEmail()): ?>
+        <div class="f-left">
+            <input name="history[is_customer_notified]" type="checkbox" id="history_notify" value="1"/>
+            <label class="normal"
+                   for="history_notify"><?php echo Mage::helper('sales')->__('Notify Customer') ?></label>
+        </div>
+        <?php endif; ?>
+        <div class="f-right">
+            <?php echo $this->getChildHtml('submit_button') ?>
+            <?php if (Mage::helper('helpdeskultimate')->isCanSubmitTicket()): ?>
+            <button class="scalable save" style=""
+                    onclick="submitAndReloadArea($('order_history_block').parentNode, '<?php echo $this->getUrl('*/*/addComment', array('order_id' => $this->getOrder()->getId(), 'create_ticket' => 1))?>')"
+                    type="button">
+                <span><?php echo Mage::helper('helpdeskultimate')->__('Submit Comment &amp; create ticket');?></span>
+            </button>
+            <?php endif;?>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="divider"></div>
+    <?php endif;?>
+    <ul class="note-list">
+        <?php foreach ($this->getOrder()->getStatusHistoryCollection(true) as $_history): ?>
+        <li>
+            <strong><?php echo $this->helper('core')->formatDate($_history->getCreatedAtDate(), 'medium') ?></strong>
+            <?php echo $this->helper('core')->formatTime($_history->getCreatedAtDate(), 'medium') ?><span
+                class="separator">|</span><strong><?php echo $_history->getStatusLabel() ?></strong><br/>
+            <small><?php echo $this->helper('sales')->__('Customer') ?>
+                <strong class="subdue">
+                    <?php if ($_history->getIsCustomerNotified()): ?>
+                    <?php echo $this->helper('sales')->__('Notified') ?>
+                    <img src="<?php echo $this->getSkinUrl('images/ico_success.gif') ?>" width="16" height="16" alt=""/>
+                    <?php else: ?>
+                    <?php echo $this->helper('sales')->__('Not Notified') ?>
+                    <?php endif; ?>
+                </strong></small>
+            <?php if ($_history->getComment()): ?>
+            <br/><?php echo $this->htmlEscape($_history->getComment(), array('b', 'br', 'strong', 'i', 'u')) ?>
+            <?php endif; ?>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+    <script type="text/javascript">
+        if ($('order_status'))$('order_status').update('<?php echo $this->getOrder()->getStatusLabel() ?>');
+    </script>
+</div>

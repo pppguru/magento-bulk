@@ -1,0 +1,64 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+    $_helper = $this->helper('catalog/output');
+    $_product = $this->getProduct();
+?>
+
+<div class="add-to-cart-options panel panel--from-right">
+    <div class="panel__inner">
+
+        <div class="panel__header">
+            <h2 class="panel__title"><span class="panel__title-text"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span></h2>
+            <button class="panel__close panel__action"><svg class="panel__action-icon panel__action-icon--close svg-icon"><use xlink:href="#icon-close" /></svg><span class="hide"><?php echo $this->__("Close") ?></span></button>
+        </div>
+
+        <div class="panel__content">
+            <div class="panel__container add-to-cart-options__container">
+                <div class="product-options" id="product-options-wrapper">
+                    <?php echo $this->getChildHtml('', true, true) ?>
+
+                    <p class="add-to-cart-options__submit-wrapper">
+                        <button type="submit" class="button button--alternative"><?php echo $this->__('Add to Cart');?></button>
+                    </p>
+
+                    <?php
+                        $wishlistButtonBlock = $this->getLayout()->getBlock('product.info.addto.option.panel');
+                    ?>
+
+                    <?php if ($wishlistButtonBlock): ?>
+                        <p class="add-to-cart-options__wishlist">
+                            <?php echo trim($wishlistButtonBlock->setLinkToProcess(true)->toHtml()) ?>
+                        </p>
+                    <?php endif; ?>
+                </div>
+
+                <div class="panel__container-shadow"></div>
+            </div><!-- .panel__container -->
+        </div><!-- .panel__content -->
+
+    </div><!-- .panel__inner -->
+</div><!-- .panel -->

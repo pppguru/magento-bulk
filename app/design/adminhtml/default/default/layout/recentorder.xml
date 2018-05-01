@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_customer_edit>
+        <reference name="head">
+			<action method="addJs"><file>recentorder/jquery-1.7.2.min.js</file></action>
+			 <action method="addCss">
+                <name>recentorder/css/recent_order.css</name>
+            </action>
+        </reference>
+		<reference name="customer_edit_tab_view">
+            <action method="setTemplate"><template>recentorder/tab/view.phtml</template></action>
+        </reference>
+    </adminhtml_customer_edit>
+</layout>

@@ -1,0 +1,106 @@
+<script>
+
+    //**************************************************************************************************************
+//Check if all products qty for 1 manufacturer are ok
+function sortObjectProductsQtyReached(sortValue)
+{
+    var i;
+    for (i=0;i<products.length;i++)
+    {
+        if (products[i]['sort_value'] == sortValue)
+        {
+            var productId = products[i]['id'];
+            var expectedQty = products[i]['expected_qty'];
+            var scannedQty = document.getElementById('product_' + productId).value;
+            if (scannedQty < expectedQty)
+                return false;
+        }
+    }
+
+    return true;
+}
+
+
+//***************************************************************************************************
+//Color cell in green whe delivered qty = expected qty
+function colorProductCell(productId)
+{
+    var qty = document.getElementById('product_' + productId).value;
+    var color = '';
+
+
+    var i;
+    for (i=0;i<products.length;i++)
+    {
+        if (products[i]['id'] == productId)
+        {
+            color = '#ff0000';
+            if (qty == products[i]['expected_qty'])
+            {
+                color = '#00FF00';
+
+                //delete row
+                var rowId = 'tr_product_' + productId;
+                document.getElementById(rowId).style.display = 'none';
+
+                var sortValue = products[i]['sort_value'];
+                if (sortObjectProductsQtyReached(sortValue))
+                {
+                    rowId = 'tr_sortvalue_' + sortValue;
+                    document.getElementById(rowId).style.display = 'none';
+                }
+            }
+            if (qty > products[i]['expected_qty'])
+            {
+                color = '#0000FF';
+
+                //display row if qty greater
+                var rowId = 'tr_product_' + productId;
+                document.getElementById(rowId).style.display = '';
+            }
+        }
+    }
+
+}
+
+
+//***************************************************************************************************
+//New scan entry
+function newScanEntry(barcode)
+{
+    //search for product
+    var productId = null;
+    var i;
+
+    for (i=0;i<products.length;i++)
+    {
+        //search for barcode
+        var j;
+        for(j=0;j<products[i]['barcodes'].length;j++)
+        {
+            if (barcode == products[i]['barcodes'][j])
+            {
+                //increment qty
+                var productId = products[i]['id'];
+                var qty = document.getElementById('product_' + productId).value;
+                qty++;
+
+                document.getElementById('product_' + productId).value = qty;
+                document.getElementById('span_product_' + productId).innerHTML = qty;
+
+                colorProductCell(productId);
+
+                resetHandledKey();
+                return productId;
+            }
+
+        }
+    }
+
+    //if not found..
+    showSimpleMessage('Unable to find product with barcode = ' + barcode);
+    resetHandledKey();
+    return '';
+}
+
+</script>

@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<layout>
+    <aw_hdu3_admin_adminhtml_ticket_list>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>aw_hdu3/css/ticket.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>aw_hdu3/js/ticket.js</name></action>
+        </reference>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_ticket" name="aw_hdu3.ticket" template="aw_hdu3/ticket.phtml">
+                <block type="aw_hdu3/adminhtml_ticket_grid_switcher" name="aw_hdu3.ticket.grid.switcher" as="store_switcher" template="aw_hdu3/ticket/grid/switcher.phtml"/>
+                <block type="aw_hdu3/adminhtml_ticket_grid_search" name="aw_hdu3.ticket.grid.search" as="search" template="aw_hdu3/ticket/grid/search.phtml"/>
+            </block>
+        </reference>
+    </aw_hdu3_admin_adminhtml_ticket_list>
+    <aw_hdu3_admin_adminhtml_ticket_edit>
+        <update handle="editor"/>
+        <reference name="head">
+            <action method="addJs"><name>aw_hdu3/file.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>aw_hdu3/css/ticket.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>aw_hdu3/js/ticket.js</name></action>
+            <action method="setCanLoadTinyMce"><flag>1</flag></action>
+        </reference>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_ticket_edit" name="aw_hdu3.ticket.edit">
+                <block type="core/messages" name="messages" as="messages"/>
+            </block>
+        </reference>
+    </aw_hdu3_admin_adminhtml_ticket_edit>
+    <aw_hdu3_admin_adminhtml_ticket_new>
+        <update handle="editor"/>
+        <reference name="head">
+            <action method="addJs"><name>aw_hdu3/file.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>aw_hdu3/css/ticket.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>aw_hdu3/js/ticket.js</name></action>
+            <action method="setCanLoadTinyMce"><flag>1</flag></action>
+        </reference>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_ticket_new" name="aw_hdu3.ticket.new" />
+        </reference>
+    </aw_hdu3_admin_adminhtml_ticket_new>
+    <aw_hdu3_admin_adminhtml_department_list>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_department" name="aw_hdu3.department"/>
+        </reference>
+    </aw_hdu3_admin_adminhtml_department_list>
+    <aw_hdu3_admin_adminhtml_department_edit>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>aw_hdu3/js/department/test_connection.js</name></action>
+        </reference>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_department_edit" name="aw_hdu3.department.edit" />
+        </reference>
+        <reference name="left">
+            <block type="aw_hdu3/adminhtml_department_edit_tabs" name="aw_hdu3.department.edit.tabs">
+                <block type="aw_hdu3/adminhtml_department_edit_tab_general" name="aw_hdu3.department.edit.tab.general"/>
+                <action method="addTab">
+                    <name>department_general</name>
+                    <block>aw_hdu3.department.edit.tab.general</block>
+                </action>
+                <block type="aw_hdu3/adminhtml_department_edit_tab_notification" name="aw_hdu3.department.edit.tab.notification"/>
+                <action method="addTab">
+                    <name>department_notification</name>
+                    <block>aw_hdu3.department.edit.tab.notification</block>
+                </action>
+                <block type="aw_hdu3/adminhtml_department_edit_tab_agent" name="aw_hdu3.department.edit.tab.agent"/>
+                <action method="addTab">
+                    <name>department_agent</name>
+                    <block>aw_hdu3.department.edit.tab.agent</block>
+                </action>
+                <block type="aw_hdu3/adminhtml_department_edit_tab_gateway" name="aw_hdu3.department.edit.tab.gateway"/>
+                <action method="addTab">
+                    <name>department_gateway</name>
+                    <block>aw_hdu3.department.edit.tab.gateway</block>
+                </action>
+                <block type="aw_hdu3/adminhtml_department_edit_tab_permissions" name="aw_hdu3.department.edit.tab.permissions"/>
+                <action method="addTab">
+                    <name>department_permissions</name>
+                    <block>aw_hdu3.department.edit.tab.permissions</block>
+                </action>
+            </block>
+        </reference>
+    </aw_hdu3_admin_adminhtml_department_edit>
+    <aw_hdu3_admin_adminhtml_rejecting_pattern_list>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_rejecting_pattern" name="aw_hdu3.rejecting_pattern"/>
+        </reference>
+    </aw_hdu3_admin_adminhtml_rejecting_pattern_list>
+    <aw_hdu3_admin_adminhtml_rejecting_pattern_edit>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_rejecting_pattern_edit" name="aw_hdu3.rejecting_pattern.edit" />
+        </reference>
+    </aw_hdu3_admin_adminhtml_rejecting_pattern_edit>
+    <aw_hdu3_admin_adminhtml_rejecting_email_list>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_rejecting_email" name="aw_hdu3.rejecting_email"/>
+        </reference>
+    </aw_hdu3_admin_adminhtml_rejecting_email_list>
+    <aw_hdu3_admin_adminhtml_quickresponse_list>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_quickresponse" name="aw_hdu3.quickresponse"/>
+        </reference>
+    </aw_hdu3_admin_adminhtml_quickresponse_list>
+    <aw_hdu3_admin_adminhtml_quickresponse_edit>
+        <update handle="editor"/>
+        <reference name="head">
+            <action method="setCanLoadTinyMce"><flag>1</flag></action>
+        </reference>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_quickresponse_edit" name="aw_hdu3.quickresponse.edit" />
+        </reference>
+    </aw_hdu3_admin_adminhtml_quickresponse_edit>
+    <aw_hdu3_admin_adminhtml_customization_status_list>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_customization_status" name="aw_hdu3.customization_status"/>
+        </reference>
+    </aw_hdu3_admin_adminhtml_customization_status_list>
+    <aw_hdu3_admin_adminhtml_customization_status_edit>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_customization_status_edit" name="aw_hdu3.customization_status.edit" />
+        </reference>
+    </aw_hdu3_admin_adminhtml_customization_status_edit>
+    <aw_hdu3_admin_adminhtml_customization_priority_list>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_customization_priority" name="aw_hdu3.customization_priority"/>
+        </reference>
+    </aw_hdu3_admin_adminhtml_customization_priority_list>
+    <aw_hdu3_admin_adminhtml_customization_priority_edit>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_customization_priority_edit" name="aw_hdu3.customization_priority.edit" />
+        </reference>
+    </aw_hdu3_admin_adminhtml_customization_priority_edit>
+    <aw_hdu3_admin_adminhtml_statistic_workload_view>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>aw_hdu3/css/statistic.css</name></action>
+        </reference>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_statistic_workload" name="aw_hdu3.statistic_workload"/>
+        </reference>
+    </aw_hdu3_admin_adminhtml_statistic_workload_view>
+    <aw_hdu3_admin_adminhtml_statistic_agent_view>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>aw_hdu3/css/statistic.css</name></action>
+        </reference>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_statistic_agent" name="aw_hdu3.statistic_agent"/>
+        </reference>
+    </aw_hdu3_admin_adminhtml_statistic_agent_view>
+    <aw_hdu3_admin_adminhtml_statistic_status_view>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>aw_hdu3/css/statistic.css</name></action>
+        </reference>
+        <reference name="content">
+            <block type="aw_hdu3/adminhtml_statistic_status" name="aw_hdu3.statistic_status"/>
+        </reference>
+    </aw_hdu3_admin_adminhtml_statistic_status_view>
+    <adminhtml_sales_order_view>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>aw_hdu3/js/ticket.js</name></action>
+        </reference>
+        <reference name="order_history">
+            <action method="setTemplate">
+                <template>aw_hdu3/sales/order/view/history.phtml</template>
+            </action>
+        </reference>
+        <reference name="sales_order_tabs">
+            <block type="aw_hdu3/adminhtml_sales_order_view_tabs_tickets" name="aw_hdu3_tickets"/>
+            <action method="addTab">
+                <name>Tickets</name>
+                <block>aw_hdu3_tickets</block>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+    <adminhtml_customer_edit>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>aw_hdu3/css/ticket.css</name></action>
+        </reference>
+        <reference name="customer_edit_tabs">
+            <block type="aw_hdu3/adminhtml_customer_edit_tabs_tickets" name="aw_hdu3_tickets"/>
+            <action method="addTab">
+                <name>Tickets</name>
+                <block>aw_hdu3_tickets</block>
+            </action>
+        </reference>
+    </adminhtml_customer_edit>
+    <adminhtml_sales_order_addcomment>
+        <block type="aw_hdu3/adminhtml_sales_order_view_history" name="order_history" template="aw_hdu3/sales/order/view/history.phtml" output="toHtml"/>
+    </adminhtml_sales_order_addcomment>
+</layout>

@@ -1,0 +1,89 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Methods
+ */
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tbody>
+            <tr>
+                <td style="width: 50%;"><h3 class="icon-head head-adminhtml-status"><?php echo $this->__($this->getMethodsType(). ' Methods Visibility'); ?></h3></td>
+                <td class="form-buttons">
+                    <button style="" onclick="editForm.submit();" class="scalable save" type="button"><span>Save Visibility Settings</span></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="entry-edit">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Current Scope'); ?></h4>
+        </div>
+        <div id="base_fieldset" class="fieldset">
+            <div class="hor-scroll">
+                <?php $_websites = $this->getWebsites(); ?>
+                <select onchange="location.href=this.options[this.selectedIndex].getAttribute('url')" class="system-config-store-switcher" id="website_switcher">
+                    <?php foreach ($_websites as $_website): ?>
+                    <option value="<?php echo $_website->getCode(); ?>" url="<?php echo $this->getWebsiteUrl($_website); ?>" <?php if ($this->getCurrentWebsite() == $_website->getId()) echo 'selected="selected"'; ?>><?php echo $_website->getName(); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<form method="post" action="<?php echo $this->getSaveUrl(); ?>" id="edit_form">
+<input type="hidden" value="<?php echo $this->getFormKey(); ?>" name="form_key">
+
+<?php $_methods = $this->getMethods(); ?>
+<?php $_groups = $this->getCustomerGroups(); ?>
+<div class="entry-edit">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__($this->getMethodsType(). ' Methods'); ?></h4>
+        </div>
+        <div id="base_fieldset" class="fieldset">
+            <div class="hor-scroll">
+                <table cellspacing="0" class="form-list">
+                    <tbody>
+                        <?php foreach ($_methods as $_methodCode => $_method): ?>
+                            <?php
+                                $title = '';
+                                if (isset($_method['title']) && $_method['title'])
+                                    $title = $_method['title'];
+                                if (!$title && isset($_method['name']) && $_method['name'])
+                                    $title = $_method['name'];
+                                if (!$title)
+                                    $title = $_methodCode;
+                                if ($title):
+                            ?>
+                                <tr>
+                                    <td class="label"><?php echo $title; ?></td>
+                                    <td class="value">
+                                        <input type="hidden" name="ammethods_codes[]" value="<?php echo $_methodCode; ?>" />
+                                        <select multiple="multiple" class="select multiselect" name="ammethods[<?php echo $_methodCode; ?>][]">
+                                            <?php foreach ($_groups as $_group): ?>
+                                            <option <?php if ($this->isGroupSelected($_group, $_methodCode)) echo 'selected="selected"' ?> value="<?php echo $_group['value']; ?>"><?php echo $_group['label']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</form>
+
+<script type="text/javascript">
+    editForm = new varienForm('edit_form');
+</script>

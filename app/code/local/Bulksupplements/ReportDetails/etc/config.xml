@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+
+<config>
+
+	<modules>
+
+		<Bulksupplements_ReportDetails>
+
+			<version>0.1.0</version>
+
+		</Bulksupplements_ReportDetails>
+
+	</modules>
+
+	<admin>
+
+		<routers>
+
+			<!--
+
+			Tell router to look in Wcl_ReportNewOrders_controllers
+
+			when the url /admin/reportneworders is used -->
+
+			<reportdetails>
+
+				<use>admin</use>
+
+				<args>
+
+					<module>Bulksupplements_ReportDetails</module>
+
+					<frontName>reportdetails</frontName>
+
+				</args>
+
+			</reportdetails>
+
+		</routers>
+
+	</admin>
+
+	<adminhtml>
+
+		<menu>
+
+			<report>
+
+				<children>
+
+					<reportdetails translate="title" module="reportdetails">
+
+						<!-- This is the name to be displayed in the admin panel under Reports -->
+
+						<title>Products by Report Details</title>
+
+						<!--
+
+						Specify the controller and location, using the router (defined above),
+
+						followed by the controller.
+
+						I.e.  Wcl_Reportneworders_controllers_Adminhtml_ReportnewordersController.php -->
+
+						<action>reportdetails/adminhtml_reportdetails</action>
+
+					</reportdetails>
+
+				</children>
+
+			</report>
+
+		</menu>
+
+		<acl>
+
+			<resources>
+
+				<all>
+
+					<title>Allow Everything</title>
+
+				</all>
+
+				<admin>
+
+					<children>
+
+						<report>
+
+							<children>
+
+								<reportdetails translate="title" module="reportdetails">
+
+									<!-- This is the name shown in the Admin role resources -->
+
+									<title>New Orders Report</title>
+
+									<action>reportdetails/adminhtml_reportdetails</action>
+
+								</reportdetails>
+
+							</children>
+
+						</report>
+
+					</children>
+
+				</admin>
+
+			</resources>
+
+		</acl>
+
+		<layout>
+
+			<updates>
+
+				<reportdetails>
+
+					<file>reportdetails.xml</file>
+
+				</reportdetails>
+
+			</updates>
+
+		</layout>
+
+	</adminhtml>
+
+	<global>
+
+		<models>
+
+			<reportdetails>
+
+				<class>Bulksupplements_ReportDetails_Model</class>
+
+				<resourceModel>reportdetails</resourceModel>
+
+			</reportdetails>
+
+		</models>
+
+		<resources>
+
+			<reportdetails_setup>
+
+				<setup>
+
+					<module>Bulksupplements_ReportDetails</module>
+
+				</setup>
+
+				<connection>
+
+					<use>core_setup</use>
+
+				</connection>
+
+			</reportdetails_setup>
+
+			<reportdetails_write>
+
+				<connection>
+
+					<use>core_write</use>
+
+				</connection>
+
+			</reportdetails_write>
+
+			<reportdetails_read>
+
+				<connection>
+
+					<use>core_read</use>
+
+				</connection>
+
+			</reportdetails_read>
+
+		</resources>
+
+		<blocks>
+
+			<reportdetails>
+
+				<class>Bulksupplements_ReportDetails_Block</class>
+
+			</reportdetails>
+
+		</blocks>
+
+		<helpers>
+
+			<reportdetails>
+
+				<class>Bulksupplements_ReportDetails_Helper</class>
+
+			</reportdetails>
+
+		</helpers>
+
+	</global>
+
+</config>
+

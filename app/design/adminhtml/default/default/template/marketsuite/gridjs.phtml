@@ -1,0 +1,92 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Marketsuite
+ * @version    2.1.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="no-display" id="aw-mss-progress-container">
+    <span class="aw-mss-pg-progressbar">
+        <span class="aw-mss-pg-progress">
+            <span class="aw-mss-pg-progressstyle"></span>
+            <span class="aw-mss-pg-text"></span>
+        </span>
+     </span>
+</div>
+<?php
+$initData = Mage::helper('marketsuite/filter')->getFilterCollectionGridData();
+$initDataAsJson = Mage::helper('core')->jsonEncode($initData);
+?>
+<script type="text/javascript">
+    var awMssUpdateFn = function (data) {
+        data.each(function (item) {
+            var customerTD = $("customer_" + item.key);
+            var orderTD = $("order_" + item.key);
+            var progressTD = $("progress_" + item.key);
+
+            if (customerTD && orderTD && progressTD) {
+                customerTD.innerHTML = item.customer_count;
+                orderTD.innerHTML = item.order_count;
+
+                if (item.progress == null) {
+                    progressTD.writeAttribute('class', '');
+                    progressTD.addClassName('grid-severity-major');
+
+                    progressTD.select('.aw-mss-progress').first().hide();
+                    progressTD.select('.aw-mss-status').first().update('<?php echo $this->__('Reindex Required'); ?>');
+                    progressTD.select('.aw-mss-status').first().show();
+                } else if (parseInt(item.progress) == 100) {
+                    progressTD.writeAttribute('class', '');
+                    progressTD.addClassName('grid-severity-notice');
+
+                    progressTD.select('.aw-mss-progress').first().hide();
+                    progressTD.select('.aw-mss-status').first().update('<?php echo $this->__('Ready'); ?>');
+                    progressTD.select('.aw-mss-status').first().show();
+                } else {
+                    progressTD.writeAttribute('class', '');
+                    progressTD.select('.aw-mss-progress').first().innerHTML = $('aw-mss-progress-container').innerHTML;
+                    progressTD.select('.aw-mss-pg-text').first().update(item.progress + "%");
+                    progressTD.select('.aw-mss-pg-progressstyle').first().style.width = item.progress + "%";
+
+                    progressTD.select('.aw-mss-progress').first().show();
+                    progressTD.select('.aw-mss-status').first().hide();
+                }
+            }
+        });
+    };
+    var awMssInitData = <?php echo $initDataAsJson;?>;
+    awMssUpdateFn(awMssInitData);
+    new PeriodicalExecuter(function () {
+        new Ajax.Request("<?php echo $this->getUrl('marketsuite/adminhtml_filter/check'); ?>", {
+            method: 'get',
+            loaderArea: false,
+            onComplete: function (data) {
+                try {
+                    var jsonResponse = data.responseText.evalJSON();
+                } catch (ex) {
+                    consolog.log('error');
+                    return;
+                }
+                awMssUpdateFn(jsonResponse);
+            }
+        })
+    }, 10);
+</script>

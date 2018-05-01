@@ -1,0 +1,88 @@
+#EWMOverlay {
+	position: absolute;
+	margin: auto;
+	top: 0;	left: 0;
+	width: 100%; height: 100%;
+	z-index: 9999;
+	background-color: #000!important;
+}
+#EWMOverlay[id] { position: fixed; }
+
+#EWMWindow {
+	position: absolute;
+	top: 0;
+	border: 0 solid;
+	text-align: left;
+	z-index: 10000;
+}
+
+#EWMFrame {
+	position: relative;
+	background: white;
+	height: 100%;
+}
+
+#EWMHeader {
+	margin: 0;
+	padding: 0;
+}
+
+#EWMContent {
+	padding: 6px .75em;
+	overflow: auto;
+	position: relative;
+}
+
+#EWMCaption {
+	font: bold 100% "Lucida Grande", Arial, sans-serif;
+	text-shadow: #FFF 0 1px 0;
+	padding: .5em 2em .5em .75em;
+	margin: 0;
+	text-align: left;
+}
+
+#EWMClose {
+	display: block;
+	position: absolute;
+	right: 5px; top:0px;
+	padding: 2px 3px;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 15px;
+}
+#EWMClose:hover {
+	background: transparent;
+}
+
+#EWMLoading {
+	padding: 1.5em;
+	text-indent: -10000px;
+	background: transparent url(../images/spinner.gif) 50% 0 no-repeat;
+}
+
+/* Color scheme */
+#EWMFrame {
+	padding-bottom: 7px;
+	-webkit-border-radius: 7px; 
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
+#EWMWindow {
+	background-color: #EFEFEF;
+	color: #000;
+	-webkit-box-shadow: 0 8px 64px #000; 
+	-moz-box-shadow: 0 0 64px #000; 
+	box-shadow: 0 0 64px #000;
+	
+	-webkit-border-radius: 7px; 
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
+#EWMContent { border-top: 1px solid #F9F9F9; }
+#EWMHeader {
+  background-color: #DDD;
+  border-bottom: 1px solid #CCC;
+}
+#EWMCaption { color: #000 }
+#EWMClose { color: #777 }
+#EWMClose:hover { color: #000 }

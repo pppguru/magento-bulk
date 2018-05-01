@@ -1,0 +1,68 @@
+<script>
+    var getProductInformationUrl = '<?php echo $this->getProductInformationUrl(); ?>';
+    var getNewBarcodeUrl = '<?php echo $this->getNewBarcodeUrl(); ?>';
+    var changeProductLocationUrl = '<?php echo $this->changeProductLocationUrl(); ?>';
+</script>
+
+<table border="0" width="100%">
+    <tr>
+    <td>
+        <?php if ($this->getImageUrl()): ?>
+            <img src="<?php echo $this->getImageUrl(); ?>" width="50" height="50">
+        <?php endif; ?>
+        </td>
+        <td>
+            <h3><?php echo $this->getProduct()->getAttributeText('manufacturer').' '.$this->getProduct()->getName(); ?></h3>
+            <p><i><?php echo $this->getProduct()->getSku(); ?></i></p>
+        </td>
+    </tr>
+</table>
+
+<?php $barcodesCount = count($this->getBarcodes()); ?>
+<?php if ($barcodesCount == 0): ?>
+    <center>
+        <input type="button" value="Link barcode" class="touch_button" onclick="linkBarcode(<?php echo $this->getProduct()->getId(); ?>);" />
+    </center>
+<?php endif; ?>
+
+
+    <?php foreach ($this->getStocks() as $stock): ?>
+                    <table width="100%">
+                        <tr>
+                            <th class="a-center" bgcolor="#cccccc" colspan="3"><?php echo $stock->getstock_name();
+                    ; ?></th>
+            </tr>
+            <tr>
+                <td><b><?php echo $this->__('Stock'); ?> : </b></td>
+                <td class="a-center">
+                    <input type="button" value="&nbsp;<?php echo (int) $stock->getqty(); ?>&nbsp;" class="touch_button" onclick="document.location.href='<?php echo $this->getUrl('adminhtml/Scanner_Inventory/EditStock', array('stock_id' => $stock->getId())); ?>'" />
+                </td>
+        </tr>
+        <tr>
+            <td><b><?php echo $this->__('Available'); ?> : </b></td>
+            <td class="a-center"><?php echo (int) $stock->getAvailableQty(); ?></td>
+        </tr>
+        <tr>
+            <td><b><?php echo $this->__('Location'); ?> : </b></td>
+            <td class="a-center">
+                    <input type="button" value="<?php echo ($stock->getshelf_location() ? $stock->getshelf_location() : $this->__('Set location')); ?>" class="touch_button" onclick="setProductStockLocation(<?php echo $stock->getId(); ?>);" />
+            </td>
+        </tr>
+    </table>
+
+    <?php endforeach; ?>
+
+    <table width="100%">
+        <tr>
+            <th class="a-center" bgcolor="#cccccc" colspan="5"><?php echo $this->__('Barcodes'); ?></th>
+        </tr>         
+        <?php foreach ($this->getBarcodes() as $barcode): ?>
+            <tr>
+                <td align="center"><?php echo $barcode->getppb_barcode(); ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <script>
+        enableCatchKeys("document.getElementById('query').value=KC_value;form1.submit();");
+    </script>

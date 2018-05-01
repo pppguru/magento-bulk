@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Bulksupplements_CustomOrder>
+			<active>true</active>
+			<codePool>local</codePool>
+			<version>0.1.0</version>
+		</Bulksupplements_CustomOrder>
+	</modules>
+</config>

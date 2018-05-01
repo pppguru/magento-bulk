@@ -1,0 +1,45 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="product__tabs tabs">
+    <div class="tabs__labels-wrapper js-sticky">
+        <ul class="tabs__labels">
+            <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+                <?php //strip HTML comments which adds FPC magento 1.4.2.2 ?>
+                <?php if(preg_replace('/<!--(.*)-->/Uis', '', $this->getChildHtml($_tab['alias']))): ?>
+                    <li class="tabs__label <?php echo !$_index ? 'is-current' : '';?>" id="product_tabs_<?php echo $_tab['alias'] ?>"><?php echo $_tab['title']?></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <div class="tabs__container">
+        <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+            <?php //strip HTML comments which adds FPC magento 1.4.2.2 ?>
+            <?php if(preg_replace('/<!--(.*)-->/Uis', '', $this->getChildHtml($_tab['alias']))): ?>
+                <section class="tabs__tab <?php echo !$_index ? 'is-visible' : '';?>" id="product_tabs_<?php echo $_tab['alias'] ?>_contents"><?php echo $this->getChildHtml($_tab['alias']) ?></section>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+</div>

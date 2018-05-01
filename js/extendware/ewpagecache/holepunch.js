@@ -1,0 +1,1 @@
+function ewpagecacheProcessHolePunchces(a,b,c){new Ajax.Request(a,{method:"get",evalJS:"force",parameters:{id:b,ruri:c},onFailure:function(){}})};

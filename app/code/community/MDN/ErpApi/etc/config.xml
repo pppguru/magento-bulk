@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<config>
+    
+    <modules>
+        <MDN_ErpApi>
+            <version>1.1.0</version>
+        </MDN_ErpApi>
+    </modules>
+    
+    
+    <global>
+        <helpers>
+            <ErpApi>
+                <class>MDN_ErpApi_Helper</class>
+            </ErpApi>
+        </helpers>
+        
+        <blocks>
+            <ErpApi>
+                <class>MDN_ErpApi_Block</class>
+            </ErpApi>
+           
+        </blocks>
+
+        <models>
+            <ErpApi>
+                <class>MDN_ErpApi_Model</class>
+                <resourceModel>ErpApi_mysql4</resourceModel>
+            </ErpApi>
+
+        </models>
+    </global>
+
+    <admin>
+        <routers>
+            <ErpApi>
+                <use>admin</use>
+                <args>
+                    <module>MDN_ErpApi</module>
+                    <frontName>ErpApi</frontName>
+                </args>
+            </ErpApi>
+        </routers>
+    </admin>
+    
+    <frontend>
+        <routers>
+            <ErpApi>
+                <use>standard</use>
+                <args>
+                    <module>MDN_ErpApi</module>
+                    <frontName>ErpApi</frontName>
+                </args>
+            </ErpApi>
+        </routers>
+    </frontend>
+
+
+</config>

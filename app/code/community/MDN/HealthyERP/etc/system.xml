@@ -1,0 +1,335 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <healthyerp translate="label" module="HealthyERP">
+            <label>ERP Info</label>
+            <tab>ERP</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <versionning translate="label" module="HealthyERP">
+                    <label>Version</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Installed versions</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_version</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>ERP version + each ERP's sub modules versions (XML+SQL versions)</comment>
+                        </sender>
+                    </fields>
+                </versionning>
+                <erp translate="label" module="HealthyERP">
+                    <label>ERP Magento integration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enable ERP</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>ERP automatic functionalities (cron, order consideration ...)</comment>
+                        </enabled>
+                        <disable_cron translate="label">
+                            <label>Disable ERP Magento cron - Use erpcron.php instead</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </disable_cron>
+                    </fields>
+                </erp>
+                <views translate="label" module="HealthyERP">
+                    <label>SQL Views status</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender>   
+                            <label>Check the presence of the required Views</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_views</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </views>
+                <bgtasks translate="label" module="HealthyERP">
+                    <label>Background Tasks status</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Pending backgrounds tasks</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_backgroundtasks</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                     </fields>
+                </bgtasks>
+                <order_not_considered translate="label" module="HealthyERP">
+                    <label>Orders not yet considered by ERP</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Display the orders not yet processed by ERP</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_ordernotconsideredyet</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </order_not_considered>
+                <qty_different_sum_stock_movements translate="label" module="HealthyERP">
+                    <label>Product stock qty differents from the Sum of stock movements</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Product which the stock Qty is different from the sum of the stock movements for each warehouse</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_QtyDifferentSumStockMovements</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </qty_different_sum_stock_movements>
+                <missing_stock_movements translate="label" module="HealthyERP">
+                    <label>Product stock qty without any stock movements by warehouse</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>6</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Product which the stock Qty does not match with any stock movements for each warehouse</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_MissingStockMovements</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </missing_stock_movements>
+                <unconsistant_product_availibility_status translate="label" module="HealthyERP">
+                    <label>Unconsistant Product Availibility Status</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>7</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Product which the Availibility Status is not consistant</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_UnconsistantProductAvailibilityStatus</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </unconsistant_product_availibility_status>
+                <missing_product_availibility_status translate="label" module="HealthyERP">
+                    <label>Missing Product Availibility Status</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>8</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Product without Availibility Status</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_MissingProductAvailibilityStatus</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </missing_product_availibility_status>
+                <waiting_for_delivery_qty_incorrect translate="label" module="HealthyERP">
+                    <label>Products with unconsistant waiting for delivery quantity</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Product which the Waiting for delivery Qty is not consistant</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_UnconsistantWaitingForDeliveryQty</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </waiting_for_delivery_qty_incorrect>
+                <qty_ordered_by_customer_is_not_correct translate="label" module="HealthyERP">
+                    <label>Product with unconsistant quantity ordered</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Product which the ordered qty is not consistant</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_UnconsistantQtyOrdered</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </qty_ordered_by_customer_is_not_correct>
+                <qty_negative translate="label" module="HealthyERP">
+                    <label>Product with negative quantity</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>11</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Product with negative quantity</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_QtyNegative</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </qty_negative>
+                <missed_reserved_qty translate="label" module="HealthyERP">
+                    <label>Missing order product reservations</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>12</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Orders with non reserved item</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_MissedReservedQty</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </missed_reserved_qty>
+                <check_options translate="label" module="HealthyERP">
+                    <label>Check options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>13</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Check mandatory settings that garanty ERP correct behaviour</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_CheckOptions</frontend_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </check_options>
+                <check_attributes translate="label" module="HealthyERP">
+                    <label>Check attributes</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>14</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sender translate="label">
+                            <label>Check missing mandatory attributes</label>
+                            <frontend_model>HealthyERP/adminhtml_system_config_probe_CheckAttributes</frontend_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sender>
+                    </fields>
+                </check_attributes>
+                <options translate="label" module="HealthyERP">
+                    <label>Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>15</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <display_basic_message translate="label">
+                            <label>Displays the basic messages</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_basic_message>
+                        <display_advanced_message translate="label">
+                            <label>Displays the advanced messages</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_advanced_message>
+                        <display_notifications translate="label">
+                            <label>Displays the ERP Info notifications in Magento notifications</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </display_notifications>
+                    </fields>
+                </options>
+            </groups>
+        </healthyerp>
+    </sections>
+</config>

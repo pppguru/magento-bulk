@@ -1,0 +1,15 @@
+<div class="page-title title-buttons">
+	<h1><?php echo $this->__('My Payment Data') ?></h1>
+</div>
+
+<?php if( count( $this->getActiveMethods() ) > 1 ): ?>
+	<ul class="links">
+		<?php foreach( $this->getActiveMethods() as $method ): ?>
+			<li <?php if( Mage::registry('method') == $method ): ?>class="active"<?php endif; ?>><a href="<?php echo $this->getUrl( '*/*/*', array( 'method' => $method ) ); ?>"><?php echo Mage::getStoreConfig( 'payment/' . $method . '/title' ); ?></a></li>
+		<?php endforeach; ?>
+	</ul>
+<?php endif; ?>
+
+<div class="manage-payment-method">
+	<?php echo $this->getChildHtml(); ?>
+</div>

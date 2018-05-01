@@ -1,0 +1,61 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdeskultimate
+ * @version    2.10.7
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="page-title">
+    <h1 title="<?php echo $this->htmlEscape($this->getTitle());?>">[#<?php echo $this->getUid()?>] <?php
+        echo Mage::helper('core/string')->truncate($this->htmlEscape($this->getTitle()), 60)
+    ?></h1>
+</div>
+
+<fieldset class="group-select fieldset">
+    <h4 class="legend"><?php echo Mage::helper('helpdeskultimate')->__("Ticket information")?></h4>
+
+    <!-- Common ticket info -->
+    <table width="100%">
+        <col width="50%"/>
+        <col width="50%"/>
+        <tbody>
+            <tr>
+                <td>
+                    <span class="label"><?php echo Mage::helper('helpdeskultimate')->__("Department")?>:</span>
+                    <?php echo $this->getDepartment()->getName();?>
+                </td>
+                <td>
+                    <span class="label"><?php echo Mage::helper('helpdeskultimate')->__("Status")?>:</span>
+                    <?php echo $this->getStatusText();?>
+                </td>
+            </tr>
+            <?php if ($this->getOrder()): ?>
+            <tr>
+                <td>
+                    <span class="label"><?php echo Mage::helper('helpdeskultimate')->__("Order")?>:</span>
+                    <a href="<?php echo $this->getUrl('sales/order/view', array('order_id' => $this->getOrder()->getId()))?>">#<?php echo $this->getOrder()->getIncrementId();?></a>
+                </td>
+                <td></td>
+            </tr>
+            <?php endif;?>
+        </tbody>
+    </table>
+</fieldset>

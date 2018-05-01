@@ -1,0 +1,114 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdeskultimate
+ * @version    2.10.7
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php if ($this->canShowForm()): ?>
+<br/>
+<a class="ticket-create-form" name="ticket-create-form">
+    <h3><?php echo $this->__('Create new ticket') ?></h3>
+</a>
+<?php
+    $deps = $this->getDepartments();
+?>
+<form action="<?php echo $this->getAction() ?>" method="post" id="helpdesk-ticket-form" enctype="multipart/form-data">
+    <?php if (Mage::getStoreConfig('helpdeskultimate/advanced/visible_priority')): ?>
+    <div>
+        <label for="title_field"><?php echo $this->__('Priority') ?><span class="required">*</span></label><br/>
+        <select name="priority">
+            <?php foreach (Mage::getModel('helpdeskultimate/source_ticket_priority')->getAllOptions() as $pr): ?>
+            <option value="<?php echo $pr['value']?>" <?php if ($pr['value'] == 'todo'): ?>selected="selected"<?php endif;?>><?php echo $pr['label']?></option>
+            <?php endforeach;?>
+        </select>
+    </div>
+    <?php endif;?>
+    <div>
+        <label for="title_field"><?php echo $this->__('Title') ?><span class="required">*</span></label><br/>
+        <input class="input-text required-entry" name="title" id="title" style="width: 450px;" type="text"
+               value="<?php echo $this->htmlEscape($data->getTitle()) ?>"/>
+    </div>
+
+
+
+    <?php if (Mage::getStoreConfig('helpdeskultimate/advanced/visible_deps') && count($deps)): ?>
+    <div>
+        <label for="title_field"><?php echo $this->__('Department') ?><span class="required">*</span></label><br/>
+
+        <select name="department_id" id="department_id" style="width: 457px;">
+
+            <?php foreach ($deps as $dep): ?>
+            <option value="<?php echo $dep->getId()?>" <?php if (Mage::app()->getStore()->getId() == $dep->getPrimaryStoreId()) echo " selected ";?>><?php echo $dep->getName()?></option>
+            <?php endforeach;?>
+        </select>
+    </div>
+    <?php else: ?>
+    <input type="hidden" name="department_id" value="0"/>
+    <?php endif;?>
+
+
+    <?php if (Mage::getStoreConfig('helpdeskultimate/advanced/orders_enabled')): ?>
+    <div>
+        <label for="title_field"><?php echo $this->__('Assign order') ?></label><br/>
+        <select name="order_id" id="order_id" style="width: 457px;">
+            <option value="0" <?php if (!$data->getOrderId()) echo " selected ";?>><?php echo$this->__('--- Select an order ---')?></option>
+            <?php
+                $orders = Mage::getModel('sales/order')->getCollection()
+                ->setOrder("created_at", "DESC")
+                ->addAttributeToFilter('customer_id', Mage::getSingleton('customer/session')->getCustomer()->getId())
+                ->load();
+            $str = ('#%s at %s (%s)');
+            ?>
+
+            <?php foreach ($orders as $order): ?>
+            <option value="<?php echo $order->getId()?>" <?php if ($data->getOrderId() == $order->getId() || ($order->getId() == $this->getRequest()->getParam('order'))) echo " selected ";?>><?php echo $this->__($str, $order->getIncrementId(), $this->formatDate($order->getCreatedAt()), $order->formatPrice($order->getGrandTotal()))?></option>
+            <?php endforeach;?>
+        </select>
+    </div>
+    <?php endif;?>
+    <div>
+        <label for="content_field"><?php echo $this->__('Message') ?><span class="required">*</span></label><br/>
+        <textarea class="required-entry" name="content" id="content_field" cols="53" rows="10"
+                  style="width: 450px;"><?php echo $this->htmlEscape($data->getContent()) ?></textarea>
+    </div>
+
+    <?php if (Mage::getStoreConfig(AW_Helpdeskultimate_Helper_Config::XML_PATH_ADVANCED_MANAGEFILES)): ?>
+    <div>
+        <label for="filename"><?php echo $this->__('Attachment') . $this->__(' (%sMb limit)', Mage::getStoreConfig('helpdeskultimate/advanced/maxupload')); ?></label><br/>
+        <input class="input-file" name="filename" id="filename" style="width: 450px;" type="file"/>
+    </div>
+    <?php endif; ?>
+
+    <?php if (!$this->isExternal()): ?>
+    <div class="button-set">
+        <a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"
+           class="left">&laquo; <?php echo $this->__('Back') ?></a>
+        <button class="button right form-button" type="submit"><span><span><?php echo $this->__('Submit ticket') ?></span></span>
+        </button>
+    </div>
+    <?php else: ?>
+    <input type="hidden" name="uid" value="<?php echo $this->getRequest()->getParam('uid');?>"/>
+    <input type="hidden" name="key" value="<?php echo $this->getRequest()->getParam('key');?>"/>
+    <?php endif;?>
+</form>
+
+<?php endif; ?>

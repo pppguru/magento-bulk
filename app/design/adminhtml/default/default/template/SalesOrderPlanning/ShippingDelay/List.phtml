@@ -1,0 +1,55 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Shipping Delay')?></h3></td>
+	       <td align="right">
+	            <button onclick="document.location.href='<?php echo $this->getUpdateCarrierUrl(); ?>';" class="scalable" type="button"><span><?php echo $this->__('Update Carriers')?></span></button>
+	            <button onclick="document.getElementById('form_delays').submit();" class="scalable save" type="button"><span><?php echo $this->__('Save')?></span></button>
+	        </td>
+        </tr>
+		<tr>
+			<td colspan="2">
+				<i>
+				<?php echo $this->__('This is only a configuration screen for the sales order planning step called Delivery.'); ?>
+				<?php echo $this->__('It enables you to customize the shipping delay by shipping method, and to tune it using the exception field, by customer country (syntax example: FR:2,GB:3,DE:4 ...)'); ?>
+				</i>
+			</td>
+		</tr>
+    </table>
+</div>
+
+<form id="form_delays" name="form_delays" method="POST" action="<?php echo $this->getUrl('adminhtml/SalesOrderPlanning_ShippingDelay/Save') ?>">
+<input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+<div class="grid">
+	<table cellspacing="0" class="data" width="100%">
+		<thead>
+			<tr class="headings">
+				<th class="a-center"><?php echo $this->__('Method')?></th>
+				<th class="a-center"><?php echo $this->__('Carrier')?></th>
+				<th class="a-center"><?php echo $this->__('Default delay')?></th>
+				<th class="a-center"><?php echo $this->__('Exceptions')?></th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php $lastCarrierTitle = ''; ?>
+			<?php foreach ($this->getList() as $item): ?>
+				<?php
+				$carrierTitle = $item->getpsd_carrier_title();
+				list($code, $titleToDisplay) = explode('] ',$carrierTitle);
+				$currentCarrierTitle = str_replace(array('[',']'),'',$code);
+				if($lastCarrierTitle != $currentCarrierTitle){
+					echo '<tr><td colspan="4" class="a-center"><b>'.$currentCarrierTitle.'</b></td></tr>';
+					$lastCarrierTitle = $currentCarrierTitle;
+				}
+				?>
+				<tr>
+					<td class="a-center"><?php echo $item->getpsd_carrier(); ?></td>
+					<td class="a-center"><?php echo $titleToDisplay; ?></td>
+					<td class="a-center"><input type="text" name="psd_default<?php echo $item->getId(); ?>" id="psd_default<?php echo $item->getId(); ?>" value="<?php echo $item->getpsd_default(); ?>" size="3"></td>
+					<td class="a-center"><textarea name="psd_exceptions<?php echo $item->getId(); ?>" id="psd_exceptions<?php echo $item->getId(); ?>" cols="50" rows="2"><?php echo $item->getpsd_exceptions(); ?></textarea></td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+</div>
+</form>

@@ -1,0 +1,77 @@
+<div class="content-header">
+    <table cellspacing="0">
+        <tbody><tr>
+                <td style="width:50%;"><h3 class="icon-heads">Product Return - Report by Products</h3></td>
+                <td class="form-buttons">
+                    <button type="button" class="scalable " onclick="document.getElementById('csv').value=1;filterForm.submit()" style=""><span><?php echo $this->__('CSV Export'); ?></span></button>
+                    <button type="button" class="scalable save" onclick="document.getElementById('csv').value=0;filterForm.submit()" style=""><span><?php echo $this->__('Show Report'); ?></span></button>
+                </td>
+            </tr>
+        </tbody></table>
+</div>
+
+<form method="POST" action="<?php echo $this->getUrl('*/*/*'); ?>" name="filter_form" id="filter_form">
+    <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+    <input name="csv" id="csv" type="hidden" value="0" />
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Settings'); ?></h4>
+        </div>
+        <div class="fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><label for="report_from"><?php echo $this->__('From'); ?> <span class="required">*</span></label></td>
+                    <td class="value">
+                        <input name="from" id="report_from" value="<?php echo $this->getRequest()->getPost('from'); ?>" title="<?php echo $this->__('From'); ?>" type="text" class=" required-entry input-text" style="width:110px !important;">
+                        <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif'); ?>" alt="" class="v-middle" id="report_from_trig" title="Select Date" style="">
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            Calendar.setup({
+                                inputField: "report_from",
+                                ifFormat: "%m/%e/%y",
+                                showsTime: false,
+                                button: "report_from_trig",
+                                align: "Bl",
+                                singleClick : true
+                            });
+                            //]]>
+                        </script>            </td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="report_to"><?php echo $this->__('To'); ?> <span class="required">*</span></label></td>
+                    <td class="value">
+                        <input name="to" id="report_to" value="<?php echo $this->getRequest()->getPost('to'); ?>" title="<?php echo $this->__('To'); ?>" type="text" class=" required-entry input-text" style="width:110px !important;">
+                        <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif'); ?>" alt="" class="v-middle" id="report_to_trig" title="Select Date" style="">
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            Calendar.setup({
+                                inputField: "report_to",
+                                ifFormat: "%m/%e/%y",
+                                showsTime: false,
+                                button: "report_to_trig",
+                                align: "Bl",
+                                singleClick : true
+                            });
+                            //]]>
+                        </script>            </td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="group_by"><?php echo $this->__('Group by'); ?> <span class="required">*</span></label></td>
+                    <td class="value">
+                        <select name="group_by" id="group_by">
+                            <?php $selectedValue = $this->getRequest()->getPost('group_by'); ?>
+                            <option value="month" <?php echo ($selectedValue == 'month' ? ' selected ' : ''); ?>><?php echo $this->__('Month'); ?></option>
+                            <option value="year" <?php echo ($selectedValue == 'year' ? ' selected ' : ''); ?>><?php echo $this->__('Year'); ?></option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var filterForm = new varienForm('filter_form', '');
+</script>
+
+<i>(<?php echo $this->__('Note : only the 100 first record are displayed, to get the full report, use the CSV Export button'); ?>)</i>

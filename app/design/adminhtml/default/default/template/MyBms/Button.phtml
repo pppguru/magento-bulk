@@ -1,0 +1,137 @@
+<style type="text/css">
+    .wrap {
+        width: 50px;
+        height: 25px;
+        padding: 3px; /* espacement interne - inverse de margin (espace externe) */
+        position:fixed;
+        right: -20px;
+        top: 27%;
+        float: right;
+        box-shadow: 5px 0px 0px 0px #D1DEDF;  /*position x, position y, flou, distance*/
+        border-radius:0 0 5px 5px;
+        background: #D8E6E6;
+        transform: rotate(90deg);
+        margin-top: 20px;
+    }
+
+    .wrap p{
+        transition: 0.5s; /* transition qui s'applique à chaque changement de "p", dans notre cas le hover */
+    }
+
+    .wrap p:hover {
+        cursor: pointer;
+        text-shadow: 1px 1px 1px #ccc;
+    }
+
+    .vericaltext {
+        text-align: center;
+        font-size: 12px;
+        color: #666E73;
+        line-height: 25px;
+        font-weight: bold;
+    }
+
+    #bmsDocLinks {
+        position:fixed;
+        right: 0px;
+        top: 27%;
+        width: 240px;
+        max-height: 300px;
+        background: #D8E6E6;
+        box-shadow: 0px 5px 0px 0px #D1DEDF;
+        border-radius: 0px 5px 5px 5px;
+        padding: 10px;
+    }
+
+    #bmsDocLinks li{
+        padding: 5px;
+    }
+
+    #bmsDocLinks ol {counter-reset: nb;} /* on initialise et nomme un compteur */
+
+    #bmsDocLinks li {
+        list-style-type: none;
+        counter-increment: nb; /* on incrémente le compteur à chaque nouveau li */
+        border-bottom: 1px dotted #152F35;/* permet de créer une bordeur, 1px taille, solid (la consistance), #fff (couleur)*/
+    }
+
+    #bmsDocLinks li:before {
+        content: counter(nb); /* ajout des puces numérotés avec le conteur */
+        margin-right: 8px;
+        vertical-align: top;
+        font-size: 1em;
+        color: #152F35;
+    }
+
+    .li-doc {
+        list-style-type:none;
+    }
+
+    .li-doc a{ /* liens dans les listes*/
+        color: #fff;
+        text-decoration: none;
+    }
+
+    /*=== backgroun scroll bar ===*/
+    .scrollbar {
+        margin-left: 30px; /* eviter que le contenu vienne toucher la scrollbar */
+        float: left;
+        height: 300px;
+        width: 65px;
+        background: #F5F5F5;
+        overflow-y: scroll;/* si contenu depasse en "y" alors acrollbar */
+        margin-bottom: 25px;
+    }
+
+    /*=== Custom scroll bar ===*/
+    .scrollbar-black::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+
+    .scrollbar-black::-webkit-scrollbar {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    .scrollbar-black::-webkit-scrollbar-thumb {
+        background-color: #000000;
+    }
+
+    [draggable=true] {
+        cursor: move;
+    }
+
+
+</style>
+
+    <?php if ($this->getMenu() != null): ?>
+        <div onclick="displayLinksTab()" class="wrap" id="help">
+            <p class="vericaltext"><?php echo $this->__('HELP'); ?></p>
+        </div>
+    <?php endif; ?>
+    <div class="scrollbar scrollbar-black" id="bmsDocLinks" style="display: none">
+        <div class="force-overflow">
+            <a href="https://www.boostmyshop.com" target="_blank"><img src="<?php echo $this->getSkinUrl('images/logo_bms.png'); ?>" alt="logobms" width="64" height="35"></a>
+            <p>Links to Boostmyshop documentation pages:</p>
+            <?php echo $this->getMenu() ?>
+        </div>
+    </div>
+
+<script>
+    function displayLinksTab()
+    {
+        var help = document.getElementById("help");
+        var e = document.getElementById("bmsDocLinks");
+        if(e.style.display == 'block')
+        {
+            e.style.display = 'none';
+            help.style.right = "-20px";
+        }
+        else
+        {
+            e.style.display = 'block';
+            help.style.right = "240px";
+        }
+    }
+</script>

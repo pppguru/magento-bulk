@@ -1,0 +1,109 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Adminhtml_Ticket_Edit_Form_CustomerOrders $this */?>
+<?php if ($this->isCanShow()):?>
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Last Customer Orders');?></h4>
+</div>
+<div class="fieldset">
+    <div>
+        <span style="display: inline-block;width:100px;">
+            <strong><?php echo $this->__('Total Orders:');?></strong>
+        </span>
+        <?php echo $this->__('%s (%s Completed orders)', $this->getTotalOrderCount(), $this->getCompletedOrderCount());?>
+    </div>
+    <div>
+        <span style="display: inline-block;width:100px;">
+            <strong><?php echo $this->__('Total Invoiced:');?></strong>
+        </span>
+        <?php echo $this->formatBaseCurrency($this->getTotalInvoicedSummary());?>
+    </div>
+    <div class="awhdu3-ticket-edit-orders-list-container">
+        <?php foreach($this->getOrderCollection() as $order):?>
+            <?php /** @var Mage_Sales_Model_Order $order */?>
+            <div class="awhdu3-ticket-edit-orders-list-item">
+                <div class="awhdu3-ticket-edit-orders-list-item-summary">
+                    <ul>
+                        <li>
+                            <a href="<?php echo $this->getUrl('adminhtml/sales_order/view', array('order_id' => $order->getId()));?>">
+                                #<?php echo $order->getIncrementId();?>
+                            </a>
+                        </li>
+                        <li title="<?php echo $this->formatDate($order->getCreatedAt(), 'medium', true);?>">
+                            <?php echo $this->formatDate($order->getCreatedAt(), 'medium');?>
+                        </li>
+                        <li>
+                            <span style="<?php echo $this->isOrderComplete($order)?'color:green':''?>">
+                                <?php echo $order->getStatusLabel();?>
+                            </span>
+                        </li>
+                        <li>
+                            <strong style="font-size: 16px">
+                                <?php echo $order->getBaseCurrency()->format($order->getBaseGrandTotal());?>
+                            </strong>
+                        </li>
+                        <?php if($order->getBaseCurrencyCode() != $order->getOrderCurrencyCode()):?>
+                        <li>
+                            <strong>[<?php echo $order->getOrderCurrency()->format($order->getGrandTotal());?>]</strong>
+                        </li>
+                        <?php endif;?>
+                    </ul>
+                </div>
+                <div class="awhdu3-ticket-edit-orders-list-item-orderitems">
+                    <?php if ($order->getItemsCollection()->getSize()):?>
+                    <table cellspacing="0">
+                        <thead></thead>
+                        <tbody>
+                            <?php foreach($order->getItemsCollection() as $item):?>
+                            <?php /** @var Mage_Sales_Model_Order_Item $item */?>
+                                <?php if(!$this->isCanRenderOrderItem($item)): ?>
+                                    <?php continue;?>
+                                <?php endif;?>
+                                <tr>
+                                    <td>
+                                        <a href="<?php echo $this->getFrontendProductUrlForOrderItem($item);?>">
+                                            <?php echo $item->getName();?>
+                                        </a>
+                                    </td>
+                                    <td style="text-align:right">
+                                        <strong>
+                                            <?php echo $this->getFrontendProductBasePrice($item);?>
+                                        </strong>
+                                        <?php if($order->getBaseCurrencyCode() != $order->getOrderCurrencyCode()):?>
+                                            &nbsp;[<?php echo $this->getFrontendProductPrice($item);?>]
+                                        <?php endif;?>
+                                    </td>
+                                </tr>
+                            <?php endforeach;?>
+                        </tbody>
+                    </table>
+                    <?php endif;?>
+                </div>
+            </div>
+        <?php endforeach;?>
+    </div>
+</div>
+<?php endif;?>

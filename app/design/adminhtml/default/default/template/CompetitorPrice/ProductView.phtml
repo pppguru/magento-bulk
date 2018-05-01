@@ -1,0 +1,5 @@
+<?php if ($barcode = $this->getBarcode()): ?>
+    <script>
+        competitorPriceObj.addOffersInProductView('<?php echo $barcode ?>', '<?php echo $this->getChannel(); ?>');
+    </script>
+<?php endif; ?>

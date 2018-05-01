@@ -1,0 +1,49 @@
+1.0 - Initial Release
+1.1 - FREIGHT-54 Added all freight classes to dropdown. Changed call to dropdown to be AttributeText.
+2.0 - FREIGHT-59 Official release of refactored extension without extra step in checkout
+2.1 - New Freight Common
+2.1.2  - new version of freight common
+2.1.3  - New version of Freight Common
+2.1.4  - SHIPMAN-7 Updated to include latest FreightCommon
+2.1.5  - Ensuring latest version of FreightCommon
+2.1.6  - New FreightCommon
+2.1.7  - FREIGHT-135 Compatibility with IWD OPC
+2.1.8  - Freight Common 4.5
+2.1.9  - FREIGHT-140 Freight information no longer displayed if no freight items are in the cart.
+2.1.9  - Includes latest Freight Commom
+2.1.10  - New FreightCommon
+2.1.11  - FREIGHT-143 - Fixed logic around free shipping promotions within the checkout
+2.1.12  - New FreightCommon
+2.1.13  - New FreightCommon
+2.1.14  - Latest version of Freight common
+2.1.15  - New FreightCommon
+2.1.16  - New FreightCommon
+2.1.17  - New FreightCommon
+2.1.18  - New Freight Common
+2.1.19  - New FreightCommon
+2.1.20  - New FreightCommon
+2.1.21  - New FreightCommon
+2.1.22  - DIMSHIP-147 - Added minimum package length option to work with Dimensional Shipping when installed
+2.1.23  - New FreightCommon
+2.1.24  - New FreightCommon
+2.1.25  - New FreightCommon
+2.1.26 -  FREIGHT-172 Per carrier accessorial logic2.1.26  - FREIGHT-172 - Checks for validity of notify and inside delivery per carrier
+2.1.27  - FREIGHT-172 - Checks for validity of notify and inside delivery per carrier
+2.1.28  - FREIGHT-177 - resolved accessorials via ajax not setting correctly
+2.1.29  - FREIGHT-178 - Altered param name for res selector at checkout
+2.1.30  - New FreightCommon
+2.1.31  - New FreightCommon
+2.1.32  - New FreightCommon
+2.1.33  - COMMON-39 Reverted getProduct() change as wasnt working on earlier magento versions
+2.1.34  - New Freight Common
+2.1.35  - New FreightCommon
+2.1.36  - New FreightCommon
+2.1.37  - New FreightCommon
+2.1.38  - New FreightCommon
+2.1.39  - New FreightCommon
+2.1.40  - New WSA Common
+2.1.41  - New FreightCommon
+2.1.42  - New FreightCommon
+2.2.1  - New FreightCommon
+2.2.2  - New FreightCommon
+2.2.3  - New WSA Logger

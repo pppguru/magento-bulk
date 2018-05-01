@@ -1,0 +1,47 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php if (!$this->getAgreements()) return; ?>
+
+<form action="" class="form" id="checkout-agreements" onsubmit="return false;">
+    <ul class="checkout-agreements">
+        <?php foreach ($this->getAgreements() as $_a): ?>
+            <li class="checkout-agreements__aggreement">
+                <a href="" class="checkout-agreements__read js-open-panel" data-open-panel="agreement-<?php echo $_a->getId()?>">Read</a>
+
+                <span class="checkout-agreements__checkbox checkbox">
+                    <input class="checkbox__self" type="checkbox" name="agreement[<?php echo $_a->getId()?>]" id="agreement-<?php echo $_a->getId()?>">
+                    <label class="form__label checkbox__label" for="agreement-<?php echo $_a->getId()?>">
+                        <span class="checkbox__icon-wrapper">
+                            <svg class="checkbox__icon checkbox__icon--unchecked svg-icon"><use xlink:href="#icon-checkbox" /></svg>
+                            <svg class="checkbox__icon checkbox__icon--checked svg-icon"><use xlink:href="#icon-checkbox--checked" /></svg>
+                        </span>
+                        <span class="checkbox__text"><?php echo $this->htmlEscape($_a->getCheckboxText()) ?></span>
+                    </label>
+                </span>
+            </li>
+        <?php endforeach ?>
+    </ul>
+</form>

@@ -1,0 +1,121 @@
+<script>
+    var urlSaveShippingInformation = '<?php echo $this->getUrl('OrderPreparation/OrderPreparation/SaveShippingInformation'); ?>';
+</script>
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Orders shipping settings') ?></h3></td>
+            <td align="right"><button onclick="submitShippingInformation();" class="scalable save" type="button"><span><?php echo $this->__('Save') ?></span></button></td>
+        </tr>
+    </table>
+</div>
+
+<div class="entry-edit">
+    <form id="form_data" name="form_data">
+        <div class="grid">
+            <table class="data" cellspacing="0" width="100%">
+                <thead>
+                    <tr class="headings">
+                        <th class="a-center"><?php echo $this->__('Order id') ?></th>
+                        <th class="a-center"><?php echo $this->__('Shipment id') ?></th>
+                        <th class="a-center"><?php echo $this->__('Shipping Name') ?></th>
+                        <th class="a-center"><?php echo $this->__('Shipping Method') ?></th>
+                        <th class="a-center"><?php echo $this->__('Weight') ?></th>
+                        <th class="a-center"><?php echo $this->__('Tracking number') ?></th>
+                        <th class="a-center"><?php echo $this->__('Additional information') ?></th>
+                        <th class="a-center"><?php echo $this->__('Shipworks status') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($this->getOrders() as $order): ?>
+                        <tr>
+                            <td class="a-center"><a href="<?php echo $this->getUrl('adminhtml/sales_order/view', array('order_id' => $order->getorder_id())); ?>"><?php echo $order->getIncrementId(); ?></a></td>
+                            <td class="a-center"><?php echo $order->getshipment_id(); ?></td>
+                            <td class="a-center"><?php echo $order->getshipping_name(); ?></td>
+                            <td class="a-center"><?php echo $order->getshipping_description(); ?></td>
+                            <td class="a-center"><input type="text" name="data[<?php echo $order->getid(); ?>][weight]" id="data[<?php echo $order->getid(); ?>][weight]" value="<?php echo $order->getreal_weight(); ?>" size="4"></td>
+                            <td class="a-center">
+                                <?php if($order->getshipment_id()): ?>
+                                    <textarea name="data[<?php echo $order->getid(); ?>][tracking]" id="data[<?php echo $order->getid(); ?>][tracking]" cols="25" rows="2"><?php echo $this->getTrackingNumbers($order); ?></textarea>
+                                <?php else: ?>
+                                    <i><?php echo $this->__('No shipment created yet'); ?></i>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <table border="0" cellspacing="0">
+                                <?php $carrierTemplate = $this->getCarrierTemplateForOrder($order); ?>
+                                <?php if ($carrierTemplate != null): ?>
+                                <?php foreach ($carrierTemplate->getCustomFields() as $customField): ?>
+                                        <tr>
+                                            <td><b><?php echo $customField->getctf_name(); ?></b> : </td>
+                                            <td><?php echo $customField->getCustomFieldControl($carrierTemplate->getDataArray($order), 'data[' . $order->getid() . '][custom_values]'); ?></td>
+                                        </tr>
+                                <?php endforeach; ?>
+                                <?php endif; ?>
+                                    </table>
+                                </td>
+                                <td align="center">
+                                    <?php if ($order->getsent_to_shipworks()): ?>
+                                        <font color="green">downloaded</font>
+                                        <br><a href="<?php echo $this->getUrl('Shipworks/Admin/Reset', array('id' => $order->getshipment_id())); ?>">(reset)</a>
+                                    <?php else: ?>
+                                        <font color="red">Not downloaded</font>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="content-header">
+                        <table cellspacing="0" class="grid-header">
+                            <tr>
+                                <td><h3><?php echo$this->__('Download order list for shipping Software') ?></h3></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="entry-edit">
+                        <fieldset>
+                               <?php foreach ($this->getTemplateList() as $item): ?>
+                                   <p>
+                                     <a href="<?php echo $this->getUrl('OrderPreparation/OnePagePreparation/DownloadCarrierExportFile', array('template_id' => $item->getId())); ?>"><?php echo $this->__('Download for') ?> <?php echo $item->getct_name(); ?></a>
+                                     &nbsp;
+                                     <?php echo $this->getShippingMethodCount($item); ?>
+                                   </p>
+                               <?php endforeach; ?>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="content-header">
+                                        <table cellspacing="0" class="grid-header">
+                                            <tr>
+                                                <td><h3><?php echo$this->__('Import tracking file') ?></h3></td>
+                                                <td align="right">
+                                                    <button onclick="document.getElementById('edit_form').submit();" class="scalable save" type="button"><span><?php echo $this->__('Import') ?></span></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="entry-edit">
+                                        <fieldset>
+                                            <form method="POST" name="edit_form" id="edit_form" enctype="multipart/form-data" action="<?php echo $this->getUrl('*/*/SubmitTrackingFile'); ?>">
+                                                <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+                                                <table border="0" style="margin-left: 30px;">
+                                                    <tr>
+                                                        <td width="200"><?php echo $this->__('Shipping Sofware'); ?></td>
+                                                        <td><?php echo $this->getCarrierTemplateAsCombo('ct_id'); ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="200"><?php echo $this->__('File'); ?></td>
+                    <td	><input type="file" name="file"></td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</div>

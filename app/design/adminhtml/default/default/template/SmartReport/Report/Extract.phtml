@@ -1,0 +1,24 @@
+<p align="right">
+    <button title="Excel Export" type="button" class="scalable save" onclick="setLocation('<?php echo $this->getDownloadUrl(); ?>')"><span><span><span>Excel Export</span></span></span></button>
+</p>
+
+<div class="grid">
+    <table cellspacing="0" class="data" width="100%">
+        <thead>
+        <tr class="headings">
+            <?php foreach($this->getColumns() as $col): ?>
+                <th class="a-center"><?php echo $col; ?></th>
+            <?php endforeach; ?>
+        </tr>
+        </thead>
+        <tbody>
+            <?php foreach($this->getCollection() as $item): ?>
+                <tr>
+                    <?php foreach($item as $k => $v): ?>
+                        <td class="a-center"><?php echo $v; ?></td>
+                    <?php endforeach; ?>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

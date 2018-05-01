@@ -1,0 +1,194 @@
+<?php if ($this->getShowForm()): ?>
+    <form id="form_associated_suppliers" name="form_associated_suppliers">
+    <?php endif; ?>
+
+    <div id="div_associated_suppliers">
+
+        <script>
+
+            var linkSupplierUrl = '<?php echo $this->getUrl('adminhtml/Purchase_Products/LinkSupplier', array('product_id' => 'XXX', 'supplier_id' => 'YYY')); ?>';
+            var refreshSupplierUrl = '<?php echo $this->getUrl('adminhtml/Purchase_Products/AjaxSuppliers', array('product_id' => $this->getProduct()->getId())) ?>';
+            var removeSupplierUrl = '<?php echo $this->getUrl('adminhtml/Purchase_Products/DeleteAssociatedSupplier', array('pps_id' => 'XXX')); ?>';
+            var loadSupplierUrl = '<?php echo $this->getUrl('adminhtml/Purchase_Products/GetSupplierInformation', array('pps_id' => 'XXX')); ?>';
+            var saveSupplierUrl = '<?php echo $this->getUrl('adminhtml/Purchase_Products/SaveAssociatedSupplier'); ?>';
+
+        </script>
+
+        <div class="entry-edit">
+
+            <div class="grid">
+                <table cellspacing="0" class="data" width="100%">
+                    <thead>
+                        <tr class="headings">
+                            <th><?php echo $this->__('Name') ?></th>
+                            <th class="a-center">Date</th>
+                            <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/suppliers/display_unit_price')): ?>
+                                <th class="a-center"><?php echo $this->__('Last Unit Price') ?></th>
+                            <?php endif; ?>
+                            <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/suppliers/display_last_price')): ?>
+                                <th class="a-center"><?php echo $this->__('Last Price + cost') ?></th>
+                            <?php endif; ?>
+                            <th class="a-center"><?php echo $this->__('Stock') ?></th>
+                            <th class="a-center"><?php echo $this->__('Dropship') ?></th>
+                            <th class="a-center"><?php echo $this->__('Favorite<br>supplier') ?></th>
+                            <th class="a-center"><?php echo $this->__('Ref') ?></th>
+                            <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/suppliers/display_discount')): ?>
+                                <th class="a-center"><?php echo $this->__('Discount') ?></th>
+                            <?php endif; ?>
+                            <th class="a-center"><?php echo $this->__('Action') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $Suppliers = $this->getSuppliers();
+                        foreach ($Suppliers as $Supplier) {
+                            echo '<tr>';
+                            echo '<td><a href="' . $this->getUrl('adminhtml/Purchase_Suppliers/Edit') . 'sup_id/' . $Supplier->getpps_supplier_num() . '" target="_blanck">' . $Supplier->getsup_name() . '</a></td>';
+                            echo '<td class="a-center">' . $Supplier->getpps_last_order_date() . '&nbsp;</td>';
+                            if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/suppliers/display_unit_price'))
+                            {
+                                echo '<td class="a-center">';
+                                if ($Supplier->getpps_last_unit_price() > 0)
+                                    echo $this->getDefaultCurrency()->formatTxt($Supplier->getpps_last_unit_price());
+                                echo '&nbsp;</td>';
+                            }
+                            if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/suppliers/display_last_price'))
+                            {
+                                echo '<td class="a-center">';
+                                if ($Supplier->getpps_last_price() > 0)
+                                    echo $this->getDefaultCurrency()->formatTxt($Supplier->getpps_last_price());
+                                echo '&nbsp;</td>';
+                            }
+                            
+                            echo '<td class="a-center">';
+                            if ($Supplier->getpps_quantity_product() != null)
+                                echo $Supplier->getpps_quantity_product();
+                            echo '&nbsp;</td>';
+                            echo '<td class="a-center">' . ($Supplier->getpps_can_dropship() ? 'X' : '') . '</td>';
+                            echo '<td class="a-center">' . ($Supplier->getpps_is_default_supplier() ? 'X' : '') . '</td>';
+
+                            echo '<td class="a-center">' . $Supplier->getpps_reference() . '&nbsp;</td>';
+                            
+                            if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/suppliers/display_discount'))
+                                echo '<td class="a-center">' . $Supplier->getpps_discount_level() . '%&nbsp;</td>';
+                            
+                            echo '<td class="a-center">';
+                            if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/suppliers/edit'))
+                                echo '<a  href="javascript:loadSupplier(' . $Supplier->getpps_num() . ');">' . $this->__('Edit') . '</a>';
+                            echo ' - ';
+                            if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/suppliers/delete'))
+                                echo '<a href="javascript:removeSupplier(' . $Supplier->getpps_num() . ');">' . $this->__('Delete') . '</a></td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                    </tbody>
+                    <?php if (Mage::getSingleton('admin/session')->isAllowed('admin/erp/products/view/suppliers/add')): ?>
+                        <thead>
+                            <tr class="headings">
+                                <th class="a-center" colspan="10"><?php echo $this->__('Add Supplier') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="a-center" colspan="10"><?php echo $this->getNonLinkedSuppliersAsCombo(); ?> <input type="button" value="<?php echo $this->__('Add') ?>" onclick="linkSupplier();"></td>
+                            </tr>
+                        </tbody>
+                    <?php endif; ?>
+                </table>
+            </div>
+
+            <div id="div_supplier_edit" name="div_supplier_edit" style="display: none">
+
+                <div class="entry-edit-head">
+                    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Edit supplier / product association'); ?></h4>
+                </div>
+
+                <fieldset>
+                    <input type="hidden" id="pps_num" name="pps_num" value="">
+                    <table border="0" width="100%">
+                        <tr>
+                            <td><?php echo $this->__('Supplier') ?></td>
+                            <td><b></b><span id="sup_name"></span></b></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->__('Supplier Reference') ?></td>
+                            <td><input type="text" id="pps_reference" name="pps_reference"></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->__('Supplier Product Name') ?></td>
+                            <td><input type="text" id="pps_product_name" name="pps_product_name"></td>
+                        </tr>
+                        <tr><td colspan="2"><hr/></td></tr>
+                        <tr>
+                            <td><?php echo $this->__('Buying price (store currency)') ?></td>
+                            <td><input type="text" id="pps_last_unit_price" name="pps_last_unit_price" size="6"> <?php echo Mage::getStoreConfig(Mage_Directory_Model_Currency::XML_PATH_CURRENCY_BASE); ?></td>
+                        </tr>
+                        <tr>
+                            <td><b><?php echo $this->__('Buying price (supplier currency)') ?></b></td>
+                            <td nowrap><input type="text" id="pps_last_unit_price_supplier_currency" name="pps_last_unit_price_supplier_currency" size="6"> <span id="sup_currency"></span></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->__('Buying price + landing costs') ?></td>
+                            <td><input type="text" id="pps_last_price" name="pps_last_price" size="6"> <?php echo Mage::getStoreConfig(Mage_Directory_Model_Currency::XML_PATH_CURRENCY_BASE); ?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->__('Default discount level') ?></td>
+                            <td><input type="text" id="pps_discount_level" name="pps_discount_level" size="6"> %</td>
+                        </tr>
+                        <tr><td colspan="2"><hr/></td></tr>
+                        <tr>
+                            <td><?php echo $this->__('Supplier stock qty') ?></td>
+                            <td><input type="text" id="pps_quantity_product" name="pps_quantity_product" size="4"></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->__('Dropship ?') ?></td>
+                            <td>
+                                <select id="pps_can_dropship" name="pps_can_dropship">
+                                    <option value="0"><?php echo $this->__('No'); ?></option>
+                                    <option value="1"><?php echo $this->__('Yes'); ?></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->__('Supply delay') ?></td>
+                            <td>
+                                <select id="pps_supply_delay" name="pps_supply_delay">
+                                    <option value=""></option>
+                                    <?php for ($i = 1; $i < 365; $i++): ?>
+                                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                    <?php endfor; ?>
+                                </select>
+                                &nbsp;<?php echo $this->__('days') ?>
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr/></td></tr>
+                        <tr>
+                            <td><?php echo $this->__('Is favorite supplier ?') ?></td>
+                            <td>
+                                <select id="pps_is_default_supplier" name="pps_is_default_supplier">
+                                    <option value="0"><?php echo $this->__('No'); ?></option>
+                                    <option value="1"><?php echo $this->__('Yes'); ?></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->__('Comments') ?></td>
+                            <td><textarea id="pps_comments" name="pps_comments" cols="50" rows="3"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->__('Save') ?></td>
+                            <td><input type="button" value="<?php echo $this->__('Save') ?>" onclick="SaveAssociatedSupplier()"></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <?php if ($this->getShowForm()): ?>
+    </form>
+<?php endif; ?>
+

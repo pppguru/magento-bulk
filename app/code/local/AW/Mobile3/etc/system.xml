@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <aw_mobile3 translate="label" module="aw_mobile3">
+            <label>iPhone Theme 3</label>
+            <tab>awall</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>110</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <is_enabled translate="label">
+                            <label>Enable Module</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <backend_model>aw_mobile3/source_moduleEnableValidator</backend_model>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </is_enabled>
+                        <iphone_home_page translate="label">
+                            <label>Mobile Home Page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>aw_mobile3/source_cmsPage</source_model>
+                        </iphone_home_page>
+                        <!--ipad_home_page translate="label">
+                            <label>Tablet Home Page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>aw_mobile3/source_cmsPage</source_model>
+                        </ipad_home_page-->
+                        <display_stock_status_at_catalog translate="label">
+                            <label>Display stock status at catalog</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </display_stock_status_at_catalog>
+                    </fields>
+                </general>
+                <design>
+                    <label>Design</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <mobile_theme_name translate="label">
+                            <label>Mobile Theme Name</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>aw_mobile3/source_mobileTheme</source_model>
+                        </mobile_theme_name>
+                        <!--<tablet_theme_name translate="label">-->
+                            <!--<label>Tablet Theme Name</label>-->
+                            <!--<frontend_type>select</frontend_type>-->
+                            <!--<sort_order>6</sort_order>-->
+                            <!--<show_in_default>1</show_in_default>-->
+                            <!--<show_in_website>1</show_in_website>-->
+                            <!--<show_in_store>1</show_in_store>-->
+                            <!--<source_model>aw_mobile3/source_tabletTheme</source_model>-->
+                        <!--</tablet_theme_name>-->
+                        <mobile_logo_src translate="label,comment">
+                            <label>Mobile Logo Image</label>
+                            <comment>Recommended maximum image height is 72px, but you feel free to add image with any size</comment>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>aw_mobile3/source_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">aw_mobile3</upload_dir>
+                            <base_url type="media" scope_info="1">aw_mobile3</base_url>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mobile_logo_src>
+                        <!--tablet_logo_src translate="label,comment">
+                            <label>Tablet Logo Image</label>
+                            <comment>If not specified, 'Mobile Logo Image' will be used for tablets. Recommended image size is 240x30px</comment>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">aw_mobile3</upload_dir>
+                            <base_url type="media" scope_info="1">aw_mobile3</base_url>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tablet_logo_src-->
+                        <bookmarks_src translate="label">
+                            <label>Bookmarks Icon Source</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">aw_mobile3</upload_dir>
+                            <base_url type="media" scope_info="1">aw_mobile3</base_url>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bookmarks_src>
+                        <footer_links_block translate="label">
+                            <label>Footer Links Block</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>aw_mobile3/source_footerlink</source_model>
+                        </footer_links_block>
+                        <cyrillic_fonts translate="label">
+                            <label>Enable Cyrillic Fonts</label>
+                            <comment>If this option is disabled, saving user traffic to fonts about 50%</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </cyrillic_fonts>
+                    </fields>
+                </design>
+                <behavior>
+                    <label>Behavior</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <switcher>
+                            <label>Display Desktop/Mobile Switcher at Footer</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </switcher>
+                        <mobile_detect>
+                            <label>Mobile Device Detection</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>aw_mobile3/source_detection</source_model>
+                        </mobile_detect>
+                        <tablet_detect>
+                            <label>Auto Detection Tablet Device</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </tablet_detect>
+                        <mobile_redirect>
+                            <label>Enable redirect to store</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Not applicable with single store</comment>
+                        </mobile_redirect>
+                        <redirect_to>
+                            <label>Redirect to store</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_store</source_model>
+                            <depends><mobile_redirect>1</mobile_redirect></depends>
+                        </redirect_to>
+                    </fields>
+                </behavior>
+                <ganalytics translate="label">
+                    <label>Google Analytics</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>40</sort_order>
+                    <fields>
+                        <gacode translate="label">
+                            <label>Account Number</label>
+                            <frontend_type></frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>You need to enable 'Google Analytics' in System - Configuration - Sales - Google API - Google Analytics</comment>
+                        </gacode>
+                    </fields>
+                </ganalytics>
+            </groups>
+        </aw_mobile3>
+    </sections>
+</config>

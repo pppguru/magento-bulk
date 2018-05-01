@@ -1,0 +1,92 @@
+<script>
+    FORM_KEY = '<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>';
+</script>
+
+<form id="edit_form_task_<?php echo $this->getTask()->getId(); ?>" name="edit_form_task_<?php echo $this->getTask()->getId(); ?>">
+    <input type="hidden" id="ot_id" name="ot_id" value="<?php echo $this->getTask()->getId(); ?>">
+    <input type="hidden" id="ot_entity_type" name="ot_entity_type" value="<?php echo $this->getTask()->getot_entity_type(); ?>">
+    <input type="hidden" id="ot_entity_id" name="ot_entity_id" value="<?php echo $this->getTask()->getot_entity_id(); ?>">
+    <input type="hidden" id="ot_entity_description" name="ot_entity_description" value="<?php echo $this->getTask()->getot_entity_description(); ?>">
+    <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    <div style="margin-left: 30px;<?php
+if ($this->getTask()->getId() == '') {
+    echo ';display: none;"';
+}
+?>" id="div_edit_task_<?php echo $this->getTask()->getId(); ?>">
+
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" border="0">
+                <tr>
+                    <td class="label" width="18%"><?php echo $this->__('Entity'); ?></td>            	
+                    <td class="input-ele" colspan="3"><a href="<?php echo $this->getTask()->getEntityLink(); ?>"><?php echo $this->getTask()->getot_entity_description() ?></a></td>
+                    <td><?php echo $this->__('Created at '); ?> <?php echo $this->getTask()->getot_created_at(); ?></td>
+                    <td colspan="3" align="right">
+<?php if ($this->getTask()->getId()): ?>
+                            <button onclick="Delete('<?php echo $this->getTask()->getId(); ?>', <?php echo $this->getGuid(); ?>);" class="scalable delete" type="button"><span><?php echo $this->__('delete') ?></span></button>
+                            <button onclick="Notify('<?php echo $this->getTask()->getId(); ?>');" class="scalable" type="button"><span><?php echo $this->__('Notify Target') ?></span></button>
+<?php endif; ?>
+                            <button onclick="SubmitForm('<?php echo $this->getTask()->getId(); ?>', '<?php echo $this->getGuid(); ?>');" class="scalable save" type="button"><span><?php echo $this->__('Save') ?></span></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label" width="16%"><?php echo $this->__('Author'); ?></td>
+                        <td class="input-ele" width="16%">
+<?php echo mage::helper('Organizer')->getUsersAsCombo('ot_author_user', $this->getTask()->getot_author_user()); ?>
+                        </td>
+                        <td class="label" width="16%"><?php echo $this->__('Notification Date'); ?></td>
+                        <td class="input-ele" width="16%">
+                            <input size="6" type="text" id="ot_notify_date" name="ot_notify_date" value="<?php echo $this->getTask()->getot_notify_date(); ?>">
+                            <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_ot_notify_date" />
+                            <script type="text/javascript">
+                                Calendar.setup({
+                                    inputField : document.getElementById('edit_form_task_<?php echo $this->getTask()->getId(); ?>').elements['ot_notify_date'],
+                                    ifFormat : '%Y-%m-%e',
+                                    button : document.getElementById('edit_form_task_<?php echo $this->getTask()->getId(); ?>').elements['img_ot_notify_date'],
+                                    align : 'Bl',
+                                    singleClick : true
+                                });
+                            </script>
+                        </td>
+                        <td class="label" width="16%"><?php echo $this->__('Priority'); ?></td>
+                        <td class="input-ele" width="16%"><?php echo mage::helper('Organizer')->getPriorityAsCombo('ot_priority', $this->getTask()->getot_priority()); ?></td>
+                    </tr>
+                    <tr>
+                        <td class="label" width="16%"><?php echo $this->__('Target'); ?></td>
+                        <td class="input-ele" width="16%">
+<?php echo mage::helper('Organizer')->getUsersAsCombo('ot_target_user', $this->getTask()->getot_target_user(), true); ?>
+                        <?php if ($this->getTask()->getId() == ''): ?>
+                                <input type="checkbox" value="1" name="notify_target" id="notify_target"> <?php echo $this->__('Notify'); ?>
+<?php endif; ?>
+                            </td>
+                            <td class="label" width="16%"><?php echo $this->__('Dead line'); ?></td>
+                            <td class="input-ele" width="16%">
+                                <input size="6" type="text" id="ot_deadline" name="ot_deadline" value="<?php echo $this->getTask()->getot_deadline(); ?>">
+                                <img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_ot_deadline" />
+                                <script type="text/javascript">
+                                    Calendar.setup({
+                                        inputField : document.getElementById('edit_form_task_<?php echo $this->getTask()->getId(); ?>').elements['ot_deadline'],
+                                        ifFormat : '%Y-%m-%e',
+                                        button : document.getElementById('edit_form_task_<?php echo $this->getTask()->getId(); ?>').elements['img_ot_deadline'],
+                                        align : 'Bl',
+                                        singleClick : true
+                                    });
+                                </script>
+                            </td>
+                            <td class="label" width="16%"><?php echo $this->__('Complete'); ?></td>
+                            <td class="input-ele" width="16%"><?php echo mage::helper('Organizer')->getYesNoCombo('ot_finished', $this->getTask()->getot_finished()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label" width="16%"><?php echo $this->__('Caption'); ?></td>
+                    <td class="input-ele" colspan="7"><input type="text" name="ot_caption" id="ot_caption" value="<?php echo $this->getTask()->getot_caption() ?>" size="120"></td>
+                </tr>
+                <tr>
+                    <td class="label" width="16%"><?php echo $this->__('Description'); ?></td>
+                    <td class="input-ele" colspan="7"><textarea name="ot_description" id="ot_description" cols="120" rows="5"><?php echo $this->getTask()->getot_description() ?></textarea></td>
+                </tr>
+            </table>
+        </fieldset>
+
+    </div>
+
+
+</form>

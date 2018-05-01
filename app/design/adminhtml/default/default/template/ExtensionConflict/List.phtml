@@ -1,0 +1,78 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Extension Conflicts')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getRefreshUrl()?>'" class="scalable" type="button"><span><?php echo $this->__('Refresh')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<?php echo $this->getGridParentHtml() ?>
+
+<p>&nbsp;</p>
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Virtual Module')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getDeleteVirtualModuleUrl()?>'" class="scalable" type="button"><span><?php echo $this->__('Delete Virtual Module')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+<form id="form_upload" name="form_upload" action="<?php echo $this->getUploadUrl()?>" enctype="multipart/form-data" method="post" >
+<input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+
+<i>To test if another module has conflict with installed extensions, select module's config.xml file and click on upload button</i>
+<p>&nbsp;</p>
+
+File to upload : <input type="file" id="config_file" name="config_file">
+
+<button onclick="document.getElementById('form_upload').submit();" class="scalable" type="button"><span><?php echo $this->__('Upload !')?></span></button>
+</form>
+<p>&nbsp;</p>
+</div>
+
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Installed Extensions')?></h3></td>
+        </tr>
+    </table>
+</div>
+
+    <div class="grid">
+        <table class="data" cellspacing="0" width="100%">
+        	<thead>
+                <tr class="headings">
+                    <th class="a-center"><?php echo $this->__('Extension')?></th>
+                    <th class="a-center"><?php echo $this->__('Active')?></th>
+                    <th class="a-center"><?php echo $this->__('Code pool')?></th>
+                    <th class="a-center"><?php echo $this->__('Version')?></th>
+                </tr>
+            </thead>
+            <tbody>
+            	<?php $extensions = mage::helper('ExtensionConflict/Extension')->getInstalledExtensions(); ?>
+				<?php foreach ($extensions as $key => $info): ?>
+            		<tr>
+            			<td><?php echo $key; ?></td>
+						<?php foreach ($info->children() as $key => $value): ?>
+							<?php if ($key != 'depends'): ?>
+		            			<td align="center"><?php echo $value; ?></td>
+		            		<?php endif; ?>
+            			<?php endforeach; ?>
+            		</tr>
+				<?php endforeach; ?>
+            </tbody>
+		</table>
+	</div>
+</div>
+

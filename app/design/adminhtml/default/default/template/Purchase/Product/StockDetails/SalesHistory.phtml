@@ -1,0 +1,32 @@
+<div class="entry-edit">
+    
+        <div class="grid">
+            <table class="data" cellspacing="0" width="100%">
+            	<thead>
+	                <tr class="headings">
+						<td class="a-center"><?php echo $this->__('Warehouse')?></td>
+						<td class="a-center"><?php echo $this->__('Updated at')?></td>
+						<?php foreach($this->getRanges() as $range): ?>
+							<td class="a-center"><?php echo $this->__('Last %s week(s)', $range)?></td>
+						<?php endforeach; ?>
+	                </tr>
+	            </thead>
+	            <tbody>
+						<?php $_history = $this->getHistory(); ?>
+						<?php foreach($_history as $h): ?>
+							<tr>
+								<?php if ($h->getId()): ?>
+									<td class="a-center"><?php echo $h->getstock_name(); ?></td>
+									<td class="a-center"><?php echo $h->getsh_updated_at(); ?></td>
+									<td class="a-center"><?php echo $h->getsh_period_1(); ?></td>
+									<td class="a-center"><?php echo $h->getsh_period_2(); ?></td>
+									<td class="a-center"><?php echo $h->getsh_period_3(); ?></td>
+								<?php else: ?>
+									<td class="a-center" colspan="4"><?php echo $this->__('No history available'); ?></td>
+								<?php endif; ?>
+							</tr>
+						<?php endforeach; ?>
+	            </tbody>
+			</table>
+		</div>
+</div>

@@ -1,0 +1,61 @@
+<div class="entry-edit">
+
+    <div class="content-header">
+        <table cellspacing="0" class="grid-header">
+            <tr>
+                <td><h3><?php echo $this->__('Installed Extensions') ?></h3></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="grid">
+        <table class="data" cellspacing="0" width="100%">
+            <thead>
+            <tr class="headings">
+                <th class="a-center"><?php echo $this->__('Editor') ?></th>
+                <th class="a-center"><?php echo $this->__('Extension') ?></th>
+                <th class="a-center"><?php echo $this->__('Active') ?></th>
+                <th class="a-center"><?php echo $this->__('Code pool') ?></th>
+                <th class="a-center"><?php echo $this->__('Version') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php $extensions = mage::helper('ExtensionConflict/Extension')->getInstalledExtensions(); ?>
+            <?php foreach ($extensions as $extCompleteName => $info): ?>
+                <?php $editor = substr($extCompleteName, 0, strpos($extCompleteName, '_')); ?>
+                <?php $extName = substr($extCompleteName, strpos($extCompleteName, '_') + 1); ?>
+                <?php if ($editor != 'Mage'): ?>
+                    <tr>
+                        <td><?php echo $editor; ?></td>
+                        <td><?php echo $extName; ?></td>
+                        <?php foreach ($info->children() as $key => $value): ?>
+                            <?php
+                            if ($key == 'active') {
+                                echo '<td align="center">' . $this->getColor($value);
+                                if ($editor != 'Mage') {
+                                    if ($value == 'true') {
+                                        $label = 'Disable';
+                                    }
+                                    if ($value == 'false') {
+                                        $label = 'Enable';
+                                    }
+                                    echo '<br> <a href="' . $this->getUrl("adminhtml/ExtensionConflict_Admin/EnableDisableExtension", array('extName' => $extCompleteName, 'currentState' => (string)$value)) . '" >' . $this->__($label) . '</a>';
+                                }
+                                echo '</td>';
+                            }
+                            if ($key == 'codePool') {
+                                echo '<td align="center">' . $value . '</td>';
+                            }
+                            if ($key == 'version') {
+                                echo '<td align="center">' . $value . '</td>';
+                            }
+                            ?>
+                        <?php endforeach; ?>
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MDN_Organizer>
+            <version>1.2.1</version>
+        </MDN_Organizer>
+    </modules>
+    <global>
+    
+        <helpers>
+            <Organizer>
+                <class>MDN_Organizer_Helper</class>
+            </Organizer>
+        </helpers>
+        	    
+        <blocks>
+            <Organizer>
+                <class>MDN_Organizer_Block</class>
+            </Organizer>
+
+            <Quotation>
+                <rewrite>
+                    <adminhtml_customer_edit_tabs>MDN_Organizer_Block_Adminhtml_Customer_Edit_Tabs</adminhtml_customer_edit_tabs>
+                </rewrite>
+            </Quotation>
+        </blocks>
+    	
+        <models>
+            <Organizer>
+                <class>MDN_Organizer_Model</class>
+                <resourceModel>Organizer_mysql4</resourceModel>
+            </Organizer>
+            
+            <Organizer_mysql4>
+                <class>MDN_Organizer_Model_Mysql4</class>
+                <entities>
+                    <Task>
+                        <table>organizer_task</table>
+                    </Task>
+                    <TaskCategory>
+                        <table>organizer_task_category</table>
+                    </TaskCategory>
+                    <TaskOrigin>
+                        <table>organizer_task_origin</table>
+                    </TaskOrigin>
+                </entities>
+            </Organizer_mysql4>
+        </models>
+        
+        <resources>
+            <Organizer_setup>
+                <setup>
+                    <module>MDN_Organizer</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </Organizer_setup>
+            <Organizer_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </Organizer_write>
+            <Organizer_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </Organizer_read>
+        </resources>
+        
+        <events>
+            
+            <!-- event to interact with advanced stock -->
+            <advancedstock_product_edit_create_tabs>
+                <observers>
+                    <Organizer>
+                        <type>singleton</type>
+                        <class>Organizer/ErpObserver</class>
+                        <method>advancedstock_product_edit_create_tabs</method>
+                    </Organizer>
+                </observers>
+            </advancedstock_product_edit_create_tabs>
+            <productreturn_edit_create_tabs>
+                <observers>
+                    <Organizer>
+                        <type>singleton</type>
+                        <class>Organizer/ErpObserver</class>
+                        <method>productreturn_edit_create_tabs</method>
+                    </Organizer>
+                </observers>
+            </productreturn_edit_create_tabs>
+            <productreturn_grid_preparecolumns>
+                <observers>
+                    <Organizer>
+                        <type>singleton</type>
+                        <class>Organizer/ErpObserver</class>
+                        <method>productreturn_grid_preparecolumns</method>
+                    </Organizer>
+                </observers>
+            </productreturn_grid_preparecolumns>
+            <advancedstock_sales_order_grid_before_render>
+                <observers>
+                    <Organizer>
+                        <type>singleton</type>
+                        <class>Organizer/ErpObserver</class>
+                        <method>advancedstock_sales_order_grid_before_render</method>
+                    </Organizer>
+                </observers>
+            </advancedstock_sales_order_grid_before_render>
+
+            <controller_action_layout_render_before_adminhtml_customer_index>
+                <observers>
+                    <Organizer>
+                        <type>singleton</type>
+                        <class>Organizer/Observer</class>
+                        <method>controller_action_layout_render_before_adminhtml_customer_index</method>
+                    </Organizer>
+                </observers>
+            </controller_action_layout_render_before_adminhtml_customer_index>
+
+            <controller_action_layout_render_before_adminhtml_customer_grid>
+                <observers>
+                    <Organizer>
+                        <type>singleton</type>
+                        <class>Organizer/Observer</class>
+                        <method>controller_action_layout_render_before_adminhtml_customer_index</method>
+                    </Organizer>
+                </observers>
+            </controller_action_layout_render_before_adminhtml_customer_grid>
+
+            <customer_grid_before_render>
+                <observers>
+                    <Organizer>
+                        <type>singleton</type>
+                        <class>Organizer/ErpObserver</class>
+                        <method>customer_grid_before_render</method>
+                    </Organizer>
+                </observers>
+            </customer_grid_before_render>
+        </events>
+		
+        <!-- Email templates -->
+        <template>
+            <email>
+                <organizer_notification_email_template translate="label" module="Organizer">
+                    <label>Organizer notification</label>
+                    <file>Organizer/Notification.html</file>
+                    <type>html</type>
+                </organizer_notification_email_template>
+            </email>
+        </template>
+            
+    </global>
+    
+    <adminhtml>
+
+        <routers>
+            <Organizer>
+                <use>standard</use>
+                <args>
+                    <module>MDN_Organizer</module>
+                    <frontName>Organizer</frontName>
+                </args>
+            </Organizer>
+        </routers>
+
+        <layout>
+            <updates>
+                <organizer>
+                    <file>organizer.xml</file>
+                </organizer>
+            </updates>
+        </layout>
+        
+        <translate>
+            <modules>
+                <MDN_Organizer>
+                    <files>
+                        <default>MDN_Organizer.csv</default>
+                    </files>
+                </MDN_Organizer>
+            </modules>
+        </translate>
+    </adminhtml>
+    
+    <frontend>
+        <secure_url>
+            <organizer>/Organizer/</organizer>
+        </secure_url>
+        <routers>
+            <Organizer>
+                <use>standard</use>
+                <args>
+                    <module>MDN_Organizer</module>
+                    <frontName>Organizer</frontName>
+                </args>
+            </Organizer>
+        </routers>
+        
+    </frontend>
+    
+	
+    <default>
+        <organizer>
+            <notification>
+                <email_identity>general</email_identity>
+                <email_template>organizer_notification_email_template</email_template>
+            </notification>
+        </organizer>
+    </default>
+	
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Organizer before="Mage_Adminhtml">MDN_Organizer_Adminhtml</Organizer>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    
+</config> 

@@ -1,0 +1,27 @@
+<div class="grid">
+	<fieldset id="my-fieldset">
+
+        <table cellspacing="0" class="data" width="100%">
+        	<thead>
+        		<tr class="headings">
+	        		<th class="a-center"><?php echo $this->__('Website'); ?></th>
+	        		<?php foreach ($this->getAssignments() as $assignment): ?>
+	        			<th class="a-center"><?php echo $this->__($assignment); ?></th>
+	        		<?php endforeach; ?>
+	        	</tr>
+        	</thead>
+        	<tbody>
+        		<?php $_websites = $this->getWebsites(); ?>        		
+        		<?php foreach ($_websites as $website): ?>
+        			<tr>
+        				<td><?php echo $website->getName(); ?></td>
+		        		<?php foreach ($this->getAssignments() as $assignment): ?>
+		        			<td class="a-center"><?php echo $this->getWebsiteAssigmentCheckbox($website, $assignment); ?></td>
+		        		<?php endforeach; ?>        				
+        			</tr>
+        		<?php endforeach; ?>
+        	</tbody>
+        </table>
+        
+	</fieldset>
+</div>        

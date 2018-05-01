@@ -1,0 +1,14 @@
+/app/etc/local.xml
+/errors
+/includes
+/lib
+/media
+/pkginfo
+/shell
+/var
+/downloader
+/extensions
+/wordpress
+/wp
+.idea
+.DS_Store

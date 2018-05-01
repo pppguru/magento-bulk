@@ -1,0 +1,176 @@
+<?php
+$_coreHelper = $this->helper('core');
+$checkoutHelper = Mage::helper('onestepcheckout/checkout');
+//Added for restrict country feature - Mohin, 22 Oct 2015
+$nonShippableProducts = Mage::helper('restrictcountry')->getNonShippableProducts();
+?>
+<?php 
+//Check if there is non shippable products  - Mohin, 22 Oct 2015
+if(count($nonShippableProducts)>0) {
+?>
+<div class="restricted-products">
+    <div class="error-msg items-remove">
+        <p><strong><?php echo $this->__('Warning!') ?></strong></p>
+        <p><?php echo $this->__('The following items are not available for shipment to your country and will be remove from your cart!') ?></p>
+    </div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th><?php echo $this->__('Name') ?></th>
+                <th><?php echo $this->__('Sku') ?></th>
+                <th><?php echo $this->__('Price') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach($nonShippableProducts as $product){ ?>
+            <tr>
+                <td>
+                    <?php echo $this->escapeHtml($product->getName()) ?>
+                </td>
+                <td>
+                    <?php echo $this->escapeHtml($product->getSku()) ?>
+                </td>
+                <td>
+                    <?php echo $this->helper('core')->formatPrice($product->getFinalPrice()) ?>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+	<div id="dvRemoveNonShippableProducts" class="onestepcheckout-place-order-wrapper">
+		<a href="<?php echo $this->getUrl('restrictshipping/index/removeNonShippableProducts/'); ?>">
+		<button type="button" class="button" onclick="javascript:void(0);"><span><span>Continue</span></span></button>
+		</a>
+	</div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+//Hide Place Order button - Mohin, 22 Oct 2015
+if(document.getElementById('dvPlaceOrderHolder')){
+	document.getElementById('dvPlaceOrderHolder').style.display = "none";    
+}
+//]]>
+</script>
+<?php 
+} 
+else { 
+//Display regular feature, actually the order summary - Mohin, 22 Oct 2015
+?>
+<table class="onestepcheckout-summary">
+    <thead>
+        <tr>
+            <th class="name" colspan="2"><?php echo $this->__('Product'); ?></th>
+            <th class="qty"><?php echo $this->__('Qty'); ?></th>
+            <th></th>
+            <th class="total"><?php echo $this->__('Subtotal'); ?></th>
+        </tr>
+    </thead>
+    <?php foreach($this->getItems() as $item): ?>
+	<tr>
+		<?php //echo '<pre>';print_r($item->getProduct()); echo '</pre>';?>
+        <td class="name">
+            <?php echo $item->getName(); ?>
+            <?php if($checkoutHelper->settings['show_custom_options']): ?>
+                <?php $options = $item->getProduct()->getTypeInstance(true)->getOrderOptions($item->getProduct()); ?>
+                <?php if(isset($options['options']) && count($options['options']) > 0): ?>
+                <ul class="onestepcheckout-custom-options">
+                <?php foreach($options['options'] as $option): ?>
+                    <li><b><?php echo $option['label'] . ':</b> ' . $option['value']; ?></li>
+                <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+
+                <?php if($item->getProduct()->isConfigurable()): ?>
+
+                <?php
+                $configurable_options = $item->getProduct()->getTypeInstance(true)->getSelectedAttributesInfo($item->getProduct());
+                ?>
+
+                <?php if(is_array($configurable_options) && count($configurable_options) > 0): ?>
+                <ul class="onestepcheckout-custom-options">
+                <?php foreach($configurable_options as $option): ?>
+                    <li><b><?php echo $option['label']; ?>:</b> <?php echo $option['value']; ?></li>
+                <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+
+                <?php endif; ?>
+
+            <?php endif; ?>
+        </td>
+        <td class="editcart">
+            <a href="#" class="subsqty" name="substract">-</a>
+        </td>
+        <td class="qty" nowrap>
+                <input type="hidden" value="<?php echo $item->getQty(); ?>" id="qty_<?php echo $item->getId(); ?>" name="cart[<?php echo $item->getId(); ?>][qty]" class="qtyinput" size="1" />
+                <!--Using span to display the qty to be able to parse it in the client side for 25kg display feature. Look at mantis#362. Mohin, 1 April 2016 -->
+				<span class="item-qty"><?php echo $item->getQty(); ?></span>
+        </td>
+        <td class="editcart wider" nowrap>
+            <a href="#" class="addsqty" name="add">+</a>
+        </td>
+        <td class="total">
+            <?php if($checkoutHelper->settings['display_tax_included']): ?>
+            <?php echo $this->helper('checkout')->formatPrice($this->helper('checkout')->getSubtotalInclTax($item)); ?>
+            <?php else: ?>
+            <?php echo $this->helper('checkout')->formatPrice($item->getRowTotal()); ?>
+            <?php endif; ?>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<table class="onestepcheckout-totals">
+    <?php echo $this->renderTotals(); ?>
+    <?php echo $this->renderTotals('footer'); ?>
+</table>
+<script type="text/javascript">
+//<![CDATA[
+var total = <?php echo $this->getGrandTotal();?>;
+if(payment.reloadcallback){
+    var url = '<?php echo $this->getUrl('onestepcheckout/ajax/paymentrefresh', array('_secure'=>true)); ?>';
+    paymentrefresh(url);
+    payment.countreload = 0;
+    payment.reloadcallback = false;
+}
+
+$$('a.subsqty, a.addsqty, a.removeqty').each(
+    function(e){
+        e.observe('click', function(e){
+            e.stop();
+            oscUpdateCart(e.element(), '<?php echo $this->getUrl('onestepcheckout/ajax/updatecart', array('_secure'=>true)); ?>', '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>' );
+        });
+    }
+);
+$$('input.qtyinput').each(
+    function(e){
+        e.observe('change', function(e){
+            e.stop();
+
+            oscUpdateCart(e.element(), '<?php echo $this->getUrl('onestepcheckout/ajax/updatecart', array('_secure'=>true)); ?>','<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>');
+        });
+    }
+);
+//]]>
+</script>
+<script type="text/javascript" language="javascript">
+//<![CDATA[
+//Diplay Place Order button - Mohin, 22 Oct 2015
+if(document.getElementById('dvPlaceOrderHolder')){
+	document.getElementById('dvPlaceOrderHolder').style.display = "block";    
+}
+//Display 25kg items qty in kgs in onestepcheckout summary. Look at mantis#362. Mohin, 1 April 2016
+if(customProductWeightQty != null){
+	customProductWeightQty.redesignOneStepCheckoutItemRows();
+}
+
+var total = <?php echo $this->getGrandTotal();?>;
+    if(payment.reloadcallback){
+        var url = '<?php echo $this->getUrl('onestepcheckout/ajax/paymentrefresh', array('_secure'=>true)); ?>';
+        paymentrefresh(url);
+        payment.countreload = 0;
+        payment.reloadcallback = false;
+    }
+//]]>
+</script>
+<?php } ?>

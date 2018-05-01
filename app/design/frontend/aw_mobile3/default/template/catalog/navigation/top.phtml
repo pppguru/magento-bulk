@@ -1,0 +1,73 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php $rootCategories = $this->getRootCategories();?>
+
+<nav class="nav panel panel--from-bottom">
+    <div class="panel__inner">
+
+        <div class="panel__header">
+            <button class="panel__back panel__action"><svg class="panel__action-icon panel__action-icon panel__action-icon--back svg-icon"><use xlink:href="#icon-arrow-back" /></svg><span class="hide"><?php echo $this->__("Back") ?></span></button>
+            <h2 class="panel__title"><span class="panel__title-text"><?php echo $this->__('Menu') ?></span></h2>
+            <button class="panel__close panel__action"><svg class="panel__action-icon panel__action-icon--close svg-icon"><use xlink:href="#icon-close" /></svg><span class="hide"><?php echo $this->__("Close") ?></span></button>
+        </div><!-- .panel__header -->
+
+        <div class="panel__content">
+            <?php if (count($rootCategories) > 0):?>
+                <div class="panel__container" data-title="<?php echo $this->__('Menu') ?>">
+                    <ul class="list-group">
+                        <?php foreach($rootCategories as $key=>$rootCategory):?>
+                            <?php $isCurrent = $this->getCurrentCategory()->getEntityId() === $rootCategory->getEntityId();?>
+                            <?php $countActiveSubCategories = $this->getActiveChildren($rootCategory); ?>
+                            <li class="list-group__item <?php if (count($countActiveSubCategories) > 0) echo "list-group__item--with-sublist"; ?>">
+                                <a class="list-group__item-title <?php echo ($isCurrent && !count($countActiveSubCategories)) ? ' is-current':''?>"
+                                   <?php if (count($countActiveSubCategories) > 0) echo 'data-open-container="'.($key+1).'"'; ?>
+                                   title="<?php echo $this->escapeHtml($rootCategory->getName());?>"
+                                   href="<?php if (count($countActiveSubCategories) == 0) echo $this->getCategoryUrl($rootCategory); ?>">
+                                    <?php echo $this->escapeHtml($rootCategory->getName());?>
+                                    <?php echo ($isCurrent && !count($countActiveSubCategories) ) ? '<svg class="list-group__icon list-group__icon--current-nav svg-icon"><use xlink:href="#icon-checkmark" /></svg>':''?>
+                                    <?php echo (count($countActiveSubCategories) > 0) ? '<svg class="list-group__icon list-group__icon--arrow svg-icon"><use xlink:href="#icon-list-arrow" /></svg>' : '' ?>
+                                </a>
+                            </li>
+                        <?php endforeach;?>
+                        <!--'All Products' Mobile view. Mohin - Aug 13, 2015-->
+                        <!-- We have added this code again for updating mobile theme 2.0.6 to 3.0.3. Erik, 11 Nov 2016, mantis-400 -->
+                        <li data-category="all-products" class="nav__item">
+                            <a class="nav__item-title" title="All Products" href="<?php echo $this->getUrl('') ?>all-products">All Products</a>
+                        </li>
+                        <!--END: 'All Products' Mobile view-->
+                    </ul>
+                    <div class="panel__container-shadow"></div>
+                </div><!-- .panel__container -->
+
+                <?php foreach($rootCategories as $key => $rootCategory):?>
+                    <?php echo $this->getChildCategoriesHtml($key+1, $rootCategory);?>
+                <?php endforeach;?>
+
+            <?php endif;?>
+        </div><!-- .panel__content -->
+
+    </div><!-- .panel__inner -->
+</nav><!-- .panel -->

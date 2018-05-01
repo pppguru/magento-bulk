@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<config>
+    <sections>
+        <m2eerppatch translate="label" module="M2eErpPatch">
+            <label>M2eErpPatch</label>
+            <tab>ERP</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>500</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <general>
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <init_mode translate="label">
+                            <label>Initialisation mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </init_mode>
+                        <qty_attribute translate="label">
+                            <label>Qty Attribute</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>M2eErpPatch/System_Config_ProductAttribute</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </qty_attribute>
+                        <allowed_websites translate="label">
+                            <label>Allowed websites</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>M2eErpPatch/System_Config_AllowedWebsites</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </allowed_websites>
+                        <m2epro_notify translate="label">
+                            <label>Notify M2ePro that qty has changed</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </m2epro_notify>
+                    </fields>
+                </general>
+            </groups>
+        </m2eerppatch>
+    </sections>
+</config>           

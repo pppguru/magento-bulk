@@ -1,0 +1,204 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Edit Supplier')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl()?>'" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+                <button onclick="document.getElementById('edit_form').submit();" class="scalable save" type="button"><span><?php echo $this->__('Save')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form id="edit_form" name="edit_form" action="<?php echo $this->getUrl('*/*/Save')?>">
+<input type="hidden" id="sup_id" name="sup_id" value="<?php echo $this->getSupplier()->getId(); ?>">
+<div class="entry-edit">
+    
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label">Id</td>
+                    <td class="input-ele"><?php echo $this->getSupplier()->getId(); ?></td>
+                    <td rowspan="7" width="20">&nbsp;</td>
+					<td class="label"><?php echo$this->__('City')?></td>
+                    <td class="input-ele"><input type="text" id="sup_city" name="sup_city" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_city(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo$this->__('Name')?></td>
+                    <td class="input-ele"><input type="text" id="sup_name" name="sup_name" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_name(); ?>"></td>
+                    <td class="label"><?php echo$this->__('Country')?></td>
+                    <td class="input-ele"><?php echo $this->getCountryCombo('sup_country', $this->getSupplier()->getsup_country()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo$this->__('Main Contact')?></td>
+                    <td class="input-ele"><input type="text" id="sup_contact" name="sup_contact" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_contact(); ?>"></td>
+                    <td class="label"><?php echo$this->__('Phone')?></td>
+                    <td class="input-ele"><textarea id="sup_tel" name="sup_tel" cols="50" rows="2"><?php echo $this->getSupplier()->getsup_tel(); ?></textarea></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo$this->__('Address 1')?></td>
+                    <td class="input-ele"><input type="text" id="sup_address1" name="sup_address1" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_address1(); ?>"></td>
+                    <td class="label">Fax</td>
+                    <td class="input-ele"><input type="text" id="sup_fax" name="sup_fax" value="<?php echo $this->getSupplier()->getsup_fax(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo$this->__('Address 2')?></td>
+                    <td class="input-ele"><input type="text" id="sup_address2" name="sup_address2" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_address2(); ?>"></td>
+                    <td class="label">Email</td>
+                    <td class="input-ele"><input type="text" id="sup_mail" name="sup_mail" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_mail(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo$this->__('Zip Code')?></td>
+                    <td class="input-ele"><input type="text" id="sup_zipcode" name="sup_zipcode" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_zipcode(); ?>"></td>
+                    <td class="label"><?php echo$this->__('Website')?></td>
+                    <td class="input-ele"><input type="text" id="sup_website" name="sup_website" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_website(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo$this->__('Comments')?></td>
+                    <td colspan="4" class="input-ele"><textarea id="sup_comments" name="sup_comments" cols="100" rows="5"><?php echo $this->getSupplier()->getsup_comments(); ?></textarea></td>
+                </tr>
+            </table>
+        </fieldset>
+</div>
+
+
+</div>
+
+
+<table border="0" width="100%">
+<tr>
+	<td>
+	
+		<div class="content-header">
+		    <table cellspacing="0" class="grid-header">
+		        <tr>
+		            <td><h3><?php echo$this->__('Account Information')?></h3></td>
+		            <td align="right">
+		
+		            </td>
+		        </tr>
+		    </table>
+		</div>
+		
+		<div class="entry-edit">
+		        <fieldset id="my-fieldset">
+		            <table cellspacing="0" class="form-list">
+		                <tr>
+		                    <td class="label"><?php echo$this->__('Account Login')?></td>
+		                    <td class="input-ele"><input type="text" id="sup_account_login" name="sup_account_login" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_account_login(); ?>"></td>
+		                </tr>
+		                <tr>
+		                    <td class="label"><?php echo$this->__('Account Password')?></td>
+		                    <td class="input-ele"><input type="text" id="sup_account_password" name="sup_account_password" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_account_password(); ?>"></td>
+		                </tr>
+		
+		            </table>
+		        </fieldset>
+		</div>
+	
+	</td>
+	<td>&nbsp;</td>
+	<td>
+
+		<div class="content-header">
+		    <table cellspacing="0" class="grid-header">
+		        <tr>
+		            <td><h3><?php echo$this->__('After Sale Information')?></h3></td>
+		            <td align="right">
+		
+		            </td>
+		        </tr>
+		    </table>
+		</div>
+		
+		<div class="entry-edit">
+		        <fieldset id="my-fieldset">
+		            <table cellspacing="0" class="form-list">
+		                <tr>
+		                    <td class="label"><?php echo$this->__('Phone')?></td>
+		                    <td class="input-ele"><textarea id="sup_rma_tel" name="sup_rma_tel" cols="50" rows="2"><?php echo $this->getSupplier()->getsup_rma_tel(); ?></textarea></td>
+		                </tr>
+		                <tr>
+		                    <td class="label">Email</td>
+		                    <td class="input-ele"><input type="text" id="sup_rma_mail" name="sup_rma_mail" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_rma_mail(); ?>"></td>
+		                </tr>
+		                <tr>
+		                    <td class="label"><?php echo$this->__('Comments')?></td>
+		                    <td class="input-ele"><textarea id="sup_rma_comments" name="sup_rma_comments" cols="100" rows="5"><?php echo $this->getSupplier()->getsup_rma_comments(); ?></textarea></td>
+		                </tr>
+		            </table>
+		        </fieldset>
+		</div>
+	
+	</td>
+</tr>
+</table>
+
+
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Purchase Information')?></h3></td>
+            <td align="right">
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="entry-edit">
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo$this->__('Sale Online')?></td>
+                    <td class="input-ele"><input type="checkbox" value="1" id="sup_sale_online" name="sup_sale_online" style="width:400px;" <?php if ($this->getSupplier()->getsup_sale_online() == 1) {echo " checked ";} ?>></td>
+                    <td rowspan="3" width="20">&nbsp;</td>
+                    <td class="label"><?php echo$this->__('Carrier')?></td>
+                    <td class="input-ele"><input type="text" id="sup_carrier" name="sup_carrier" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_carrier(); ?>"></td>
+                </tr>
+
+                <tr>
+                    <td class="label"><?php echo$this->__('Order Mini')?></td>
+                    <td class="input-ele"><input type="text" id="sup_order_mini" name="sup_order_mini" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_order_mini(); ?>"></td>
+                    <td class="label"><?php echo$this->__('Supply Delay Max')?></td>
+                    <td class="input-ele"><input type="text" id="sup_supply_delay_max" name="sup_supply_delay_max" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_supply_delay_max(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo$this->__('Supply Delay')?></td>
+                    <td class="input-ele"><input type="text" id="sup_supply_delay" name="sup_supply_delay" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_supply_delay(); ?>"></td>
+                </tr>
+            </table>
+        </fieldset>
+</div>
+
+<script type="text/javascript">
+    var editForm = new varienForm('new_form');
+</script>
+
+</form>
+
+<div id="div_complete_contact">
+<?php echo $this->getChildHtml('contacts'); ?>
+</div>
+
+<div id="div_complete_associatedmanufacturers">
+<?php echo $this->getChildHtml('associatedmanufacturers'); ?>
+</div>
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Associated Orders')?></h3></td>
+            <td align="right">
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="div_complete_associatedorders">
+<?php echo $this->getChildHtml('associatedorders'); ?>
+</div>

@@ -1,0 +1,194 @@
+<?php
+//Added this code for product country restriction implementation. Mohin - Jan 02, 2016
+$nonShippableProducts = Mage::helper('restrictcountry')->getNonShippableProducts(true);
+if(count($nonShippableProducts)>0){
+?>
+<style>
+	.error-msg{padding: 8px 8px 8px 32px ! important; font-weight: bold;}	
+	.restricted-products th, .restricted-products td { border: 1px solid #bebcb7; padding: 3px;}
+	.restricted-products .data-table {border-collapse:collapse; width:100%; overflow-x:auto; margin-bottom:5px;}
+	.restricted-products .form-button {
+		text-decoration: none;
+	}
+</style>
+<div class="restricted-products">
+    <div class="error-msg">
+        <p><strong><?php echo $this->__('Warning!') ?></strong></p>
+        <p><?php echo $this->__('The following items are not available for shipment to your country and will be remove from your cart!') ?></p>
+    </div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th><?php echo $this->__('Name') ?></th>
+                <th><?php echo $this->__('Sku') ?></th>
+                <th><?php echo $this->__('Price') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach($nonShippableProducts as $product){ ?>
+            <tr>
+                <td>
+                    <?php echo $this->escapeHtml($product->getName()) ?>
+                </td>
+                <td>
+                    <?php echo $this->escapeHtml($product->getSku()) ?>
+                </td>
+                <td>
+                    <?php echo $this->helper('core')->formatPrice($product->getFinalPrice()) ?>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+	<a class="form-button" href="<?php echo Mage::getUrl('adminhtml/restrictcountry/removeNonShippableProducts'); ?>">Continue</a>
+</div>
+<?php
+}
+else{
+//Original Extension Code
+$this->setCustomShippingRate(Mage::getSingleton('core/session')->getCustomshiprateAmount());
+$this->setCustomShippingTitle(Mage::getSingleton('core/session')->getCustomshiprateDescription());
+?>
+<?php if($_shippingRateGroups = $this->getShippingRates()){ ?>
+    <div id="order-shipping-method-choose" style="display:none">
+    <dl class="shipment-methods">
+    <?php foreach ($_shippingRateGroups as $code => $_rates){ ?>
+		<?php if ($code == 'customshiprate'){ ?>
+        <dt><strong><?php echo $this->getCarrierName($code) ?></strong></dt>
+        <dd style="margin-top:1em">
+            <ul>
+            <?php foreach ($_rates as $_rate){ ?>
+                <?php $_code=$_rate->getCode() ?>
+                <li>
+                   <?php if ($_rate->getErrorMessage()){ ?>
+                        <ul class="messages">
+                            <li class="error-msg"><?php echo $_rate->getErrorMessage() ?></li>
+                        </ul>
+                   <?php } else { ?>
+                        <label class="normal" for="s_method_<?php echo $_code ?>">							
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $this->__('Rate:'); ?></strong>&nbsp;&nbsp;<input id="custom-shipping-rate" type="text" style="width: 175px;" value="<?php if ($this->getCustomShippingRate()){ echo sprintf("%.2f", $this->getCustomShippingRate()); } ?>" /></p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $this->__('Title:'); ?></strong>&nbsp;&nbsp;&nbsp;<input id="custom-shipping-title" type="text" style="width: 175px;" value="<?php echo $this->getCustomShippingTitle() ?>" />&nbsp;&nbsp;<button id="custom-shipping-button" type="button" class="scalable " onclick="order.setCustomShippingValues(document.getElementById('custom-shipping-rate').value,document.getElementById('custom-shipping-title').value,'customshiprate_customshiprate');return false"><span><?php echo $this->__('Save'); ?></span></button></p>
+                        </label>						
+                   <?php } ?>
+                </li>
+            <?php } ?>
+            </ul>
+            <ul class="messages">
+                <li class="notice-msg"><?php echo $this->__('Note: This will override any other shipping method selected.'); ?></li>
+            </ul>
+            <script type="text/javascript">
+                //<![CDATA[
+                AdminOrder.addMethods({
+                    setCustomShippingValues : function(amount, description, method){
+                        var data = {};
+                        data['order[shipping_method]'] = method;
+                        data['order[shipping_amount]'] = amount;
+                        data['order[base_shipping_amount]'] = amount;
+                        data['order[shipping_description]'] = description;
+                        data['collect_shipping_rates'] = 1;
+                        this.loadArea(['shipping_method', 'totals', 'billing_method'], true, data);
+                    },
+
+                    submit : function()
+                    {
+                        if (this.orderItemChanged) {
+                            if (confirm('You have item changes')) {
+                                if (editForm.submit()) {
+                                    disableElements('save');
+                                }
+                            } else {
+                                this.itemsUpdate();
+                            }
+                        } else {
+                            if (editForm.submit()) {
+                                disableElements('save');
+                            }
+                        }
+                    }
+                });
+                //]]>
+            </script>
+        </dd>
+        <?php } else { ?>
+        <dt><strong><?php echo $this->getCarrierName($code) ?></strong></dt>
+        <dd>
+            <ul>
+            <?php foreach ($_rates as $_rate){ ?>
+                <?php $_radioProperty = 'name="order[shipping_method]" type="radio" onclick="order.setShippingMethod(this.value)"' ?>
+                <?php $_code=$_rate->getCode() ?>
+                <li>
+                   <?php if ($_rate->getErrorMessage()){ ?>
+                        <ul class="messages">
+                            <li class="error-msg"><?php echo $_rate->getErrorMessage() ?></li>
+                        </ul>
+                   <?php 
+					} else { 
+					?>
+                        <?php $_checked = $this->isMethodActive($_code) ? 'checked="checked"' : '' ?>
+                        <input <?php echo $_radioProperty ?> value="<?php echo $_code ?>" id="s_method_<?php echo $_code ?>" <?php echo $_checked ?>/>
+                        <label class="normal" for="s_method_<?php echo $_code ?>">
+                            <?php echo $_rate->getMethodTitle() ? $_rate->getMethodTitle() : $_rate->getMethodDescription()?> -
+                            <strong>
+                                <?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
+                                <?php $_incl = $this->getShippingPrice($_rate->getPrice(), true); ?>
+
+                                <?php echo $_excl; ?>
+                                <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                                    (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+                                <?php endif; ?>
+                            </strong>
+                        </label>
+                   <?php } ?>
+                </li>
+            <?php } ?>
+            </ul>
+        </dd>
+        <?php } ?>
+    <?php } ?>
+    </dl>
+    </div>
+    <?php if ($_rate = $this->getActiveMethodRate()){ ?>
+        <div id="order-shipping-method-info">
+            <strong><?php echo $this->getCarrierName($_rate->getCarrier()) ?></strong><br/>
+            <?php if (($_rate->getCode() == 'customshiprate_customshiprate') && ($this->getCustomTitle())){ ?>
+                <?php if ($this->getCustomTitle()) { echo $this->getCustomTitle(); } ?> -
+            <?php } else { ?>
+                <?php echo $_rate->getMethodTitle() ? $_rate->getMethodTitle() : $_rate->getMethodDescription() ?> -
+            <?php } ?>
+            <strong>
+                <?php if (($_rate->getCode() == 'customshiprate_customshiprate') && ($this->getCustomShippingPrice())){ ?>
+                    <?php $_excl = $this->getShippingPrice($this->getCustomShippingPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
+                    <?php $_incl = $this->getShippingPrice($this->getCustomShippingPrice(), true); ?>
+                <?php } else { ?>
+                    <?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
+                    <?php $_incl = $this->getShippingPrice($_rate->getPrice(), true); ?>
+                <?php } ?>
+                <?php echo $_excl; ?>
+                <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl){ ?>
+                    (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+                <?php } ?>
+            </strong>
+            <br/>
+            <a href="#" onclick="$('order-shipping-method-info').hide();$('order-shipping-method-choose').show();return false">
+                <?php echo Mage::helper('sales')->__('Click to change shipping method') ?>
+            </a>
+        </div>
+    <?php } else { ?>
+        <script type="text/javascript">$('order-shipping-method-choose').show();</script>
+<?php } ?>
+<?php } else if($this->getIsRateRequest()){ ?>
+    <strong><?php echo Mage::helper('sales')->__('Sorry, no quotes are available for this order at this time.') ?></strong>
+<?php } else { ?>
+    <div id="order-shipping-method-summary">
+        <a href="#" onclick="order.loadShippingRates();return false">
+            <?php echo Mage::helper('sales')->__('Get shipping methods and rates') ?>
+        </a>
+        <input type="hidden" name="order[has_shipping]" value="" class="required-entry">
+    </div>
+<?php } ?>
+<div style="display:none;" id="shipping-method-overlay" class="overlay"><span><?php echo $this->__('Shipping method selection is not applicable') ?></span></div>
+<script type="text/javascript">
+order.overlay('shipping-method-overlay', <?php if ($this->getQuote()->isVirtual()): ?>false<?php else: ?>true<?php endif; ?>);
+order.overlay('address-shipping-overlay', <?php if ($this->getQuote()->isVirtual()): ?>false<?php else: ?>true<?php endif; ?>);
+</script>
+<?php } ?>

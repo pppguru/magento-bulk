@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<layout version="1.0.0">
+	<customer_account>
+		<reference name="customer_account_navigation">
+        	<block type="authnetcim/profilelink" name="authnetcim_profilelink">
+                <action method="addProfileLink"></action>
+        	</block>
+		</reference>
+	</customer_account>
+	<authnetcim_manage_index>
+        <label>Customer My Account Card Manager</label>
+        <update handle="customer_account"/>
+        <reference name="content">
+			<block type="authnetcim/manage" name="authnetcim_manage" template="authorizenetcim/manage.phtml" />
+            <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+        </reference>
+	</authnetcim_manage_index>
+</layout>

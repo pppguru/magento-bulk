@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bulksupplements_Adminhtml>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Bulksupplements_Adminhtml>
+    </modules>
+</config>

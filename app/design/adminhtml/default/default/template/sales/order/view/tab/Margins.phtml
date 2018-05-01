@@ -1,0 +1,43 @@
+<?php if (Mage::getSingleton('admin/session')->isAllowed('admin/sales/erp_tabs/margins')): ?>
+
+<fieldset id="my-fieldset">
+	<div class="grid"> 
+		<table cellspacing="0" class="data" width="100%">
+			<thead> 
+                <tr class="headings"> 
+	            	<th class="a-center"><span class="nobr"><?php echo $this->__('Product'); ?></span></th> 
+	            	<th class="a-center"><span class="nobr"><?php echo $this->__('Ordered qty'); ?></span></th> 
+	            	<th class="a-center"><span class="nobr"><?php echo $this->__('Unit Cost'); ?></span></th> 
+	            	<th class="a-center"><span class="nobr"><?php echo $this->__('Unit Price'); ?></span></th> 
+	            	<th class="a-center"><span class="nobr"><?php echo $this->__('Total Margin'); ?></span></th> 
+	            	<th class="a-center"><span class="nobr"><?php echo $this->__('Total Margin %'); ?></span></th> 
+	            </tr>
+	        </thead>
+	        <tbody>
+        		<?php foreach($this->getItems() as $item): ?>
+					<tr>
+						<td><?php echo $this->getProductDisplayName($item); ?></td>
+						<td align="center"><?php echo (int)$item->getqty_ordered(); ?></td>
+						<td class="a-right"><?php echo $this->formatPrice($item->getData(mage::helper('AdvancedStock/MagentoVersionCompatibility')->getSalesOrderItemCostColumnName())); ?></td>
+						<td class="a-right"><?php echo $this->formatPrice($item->getbase_price()); ?></td>
+						<td class="a-right"><?php echo $this->formatPrice($item->GetMargin()); ?></td>
+						<td class="a-right"><?php echo $this->formatMargin($item->GetMarginPercent()); ?></td>
+					</tr>        		
+        		<?php endforeach; ?>
+	        </tbody>
+	        <tfoot>
+	        		<tr>
+	        			<td colspan="4"></td>
+	        			<td class="a-right"><b><?php echo $this->formatPrice($this->getOrderMargin()); ?></b></td>
+	        			<td class="a-right"><b><?php echo $this->formatMargin($this->getOrderMarginPercent()); ?></b></td>
+	        		</tr>
+	        </tfoot>
+		</table>
+	</div>
+</fieldset>
+
+<?php else: ?>
+
+	<?php echo $this->__('Access denied'); ?>
+
+<?php endif; ?>

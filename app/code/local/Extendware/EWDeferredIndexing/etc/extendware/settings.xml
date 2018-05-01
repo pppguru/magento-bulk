@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+        <Extendware_EWDeferredIndexing>
+        	<extendware>
+	        	<settings>
+	        		<scopes>
+		        		<main>
+							<tabs>
+						        <main translate="label comment ewhelp" module="ewdeferredindexing">
+						            <label>Deferred Indexing</label>
+						            <sort_order>100</sort_order>
+						        </main>
+						    </tabs>
+							<sections>
+								<ewdeferredindexing translate="label comment ewhelp" module="ewdeferredindexing">
+									<class>separator-top</class>
+									<label>General</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>100</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>0</show_in_website>
+									<show_in_store>0</show_in_store>
+									<groups>
+										<general translate="label comment ewhelp" module="ewdeferredindexing">
+						                    <label>General</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>10</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <fields>
+						                        <full_indexing_deferrable translate="label comment ewhelp">
+						                            <label>Full Indexing Deferrment</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Defer the full rebuild of the index (when selecting rebuild index in system -> index management)]]></comment>
+						                        	<ewhelp><![CDATA[]]></ewhelp>
+						                        </full_indexing_deferrable>
+						                        <partial_indexing_deferrable translate="label comment ewhelp">
+						                            <label>Partial Indexing Deferrment</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Defer re-indexing of partial index events such as when an individual product is saved]]></comment>
+						                        	<ewhelp><![CDATA[]]></ewhelp>
+						                       </partial_indexing_deferrable>
+						                       <reindex_order translate="label comment ewhelp">
+						                            <label>Reindex Order</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewdeferredindexing/adminhtml_config_data_option_reindexorder</source_model>
+						                            <sort_order>15</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[Select the ordering used when reindexing. Older Magento versions should always use "Events"]]></comment>
+						                        	<ewhelp><![CDATA[Process order processes each process sequentially by processing their events. Event order processes each event sequentially by calling each related process on the event.]]></ewhelp>
+						                       </reindex_order>
+						                       <ignored_indexes translate="label comment ewhelp">
+						                            <label>Ignored Indexes</label>
+						                            <frontend_type>select</frontend_type>
+						                            <frontend_type>multiselect</frontend_type>
+						                            <source_model>ewdeferredindexing/adminhtml_config_data_option_index</source_model>
+						                            <sort_order>20</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <can_be_empty>1</can_be_empty>
+						                            <comment><![CDATA[These indexes will not be processed by the deferred indexing engine. Use CTRL-C to select multiple items.]]></comment>
+						                        	<ewhelp><![CDATA[]]></ewhelp>
+						                        </ignored_indexes>
+											</fields>
+						                </general>
+									</groups>
+								</ewdeferredindexing>
+								<ewdeferredindexing_developer translate="label comment ewhelp" module="ewdeferredindexing">
+									<class>separator-top</class>
+									<label>Developer</label>
+									<tab>main</tab>
+									<frontend_type>text</frontend_type>
+									<sort_order>200</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>0</show_in_website>
+									<show_in_store>0</show_in_store>
+									<groups>
+										<general translate="label comment ewhelp" module="ewdeferredindexing">
+						                    <label>General</label>
+						                    <frontend_type>text</frontend_type>
+						                    <sort_order>10</sort_order>
+						                    <show_in_default>1</show_in_default>
+						                    <show_in_website>1</show_in_website>
+						                    <show_in_store>1</show_in_store>
+						                    <fields>
+						                    	<logging_enabled translate="label comment ewhelp">
+						                            <label>Logging</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>1</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[If enabled, then some debug and informative logs will be created.]]></comment>
+						                        	<ewhelp><![CDATA[]]></ewhelp>
+						                        </logging_enabled>
+						                        <magento_cron_enabled translate="label comment ewhelp">
+						                            <label>Magento Cron</label>
+						                            <frontend_type>select</frontend_type>
+						                            <source_model>ewcore/adminhtml_config_data_option_enabledisable</source_model>
+						                            <sort_order>10</sort_order>
+						                            <show_in_default>1</show_in_default>
+						                            <show_in_website>0</show_in_website>
+						                            <show_in_store>0</show_in_store>
+						                            <comment><![CDATA[If you disable the Magento cron you must add [Magento root]/shell/extendware/ewdeferredindexing/process.php to your cron.]]></comment>
+						                        	<ewhelp><![CDATA[]]></ewhelp>
+						                        </magento_cron_enabled>
+											</fields>
+						                </general>
+									</groups>
+								</ewdeferredindexing_developer>
+							</sections>
+						</main>
+					</scopes>
+				</settings>
+			</extendware>
+		</Extendware_EWDeferredIndexing>
+	</modules>
+</config>

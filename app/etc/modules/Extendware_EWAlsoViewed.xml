@@ -1,0 +1,14 @@
+<config>
+   <modules>
+      <Extendware_EWAlsoViewed>
+         <active>true</active>
+         <codePool>local</codePool>
+         <depends>
+            <Extendware_EWCore/>
+         </depends>
+         <extendware>
+            <name>Also Viewed</name>
+         </extendware>
+      </Extendware_EWAlsoViewed>
+   </modules>
+</config>

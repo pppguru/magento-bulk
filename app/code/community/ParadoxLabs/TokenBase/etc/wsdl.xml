@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns:typens="urn:{{var wsdl.name}}" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}">
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">
+			<import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/" />
+			<complexType name="tokenbaseCardEntity">
+				<all>
+					<element name="id" type="xsd:string" minOccurs="0" />
+					<element name="customer_id" type="xsd:string" minOccurs="0" />
+					<element name="customer_email" type="xsd:string" minOccurs="0" />
+					<element name="customer_ip" type="xsd:string" minOccurs="0" />
+					<element name="profile_id" type="xsd:string" minOccurs="0" />
+					<element name="payment_id" type="xsd:string" minOccurs="0" />
+					<element name="method" type="xsd:string" minOccurs="0" />
+					<element name="created_at" type="xsd:string" minOccurs="0" />
+					<element name="updated_at" type="xsd:string" minOccurs="0" />
+					<element name="last_use" type="xsd:string" minOccurs="0" />
+					<element name="expires" type="xsd:string" minOccurs="0" />
+					<element name="additional" type="xsd:string" minOccurs="0" />
+					<element name="address" type="typens:tokenbaseCardAddressEntity" minOccurs="0" />
+					<element name="label" type="xsd:string" minOccurs="0" />
+					<element name="cc_type" type="xsd:string" minOccurs="0" />
+					<element name="cc_last4" type="xsd:string" minOccurs="0" />
+					<element name="hash" type="xsd:string" minOccurs="0" />
+				</all>
+			</complexType>
+			<complexType name="tokenbaseCardAddressEntity">
+				<all>
+					<element name="firstname" type="xsd:string" minOccurs="0" />
+					<element name="lastname" type="xsd:string" minOccurs="0" />
+					<element name="company" type="xsd:string" minOccurs="0" />
+					<element name="street" type="xsd:string" minOccurs="0" />
+					<element name="city" type="xsd:string" minOccurs="0" />
+					<element name="region" type="xsd:string" minOccurs="0" />
+					<element name="postcode" type="xsd:string" minOccurs="0" />
+					<element name="country_id" type="xsd:string" minOccurs="0" />
+					<element name="telephone" type="xsd:string" minOccurs="0" />
+					<element name="fax" type="xsd:string" minOccurs="0" />
+					<element name="region_id" type="xsd:string" minOccurs="0" />
+				</all>
+			</complexType>
+			<complexType name="tokenbaseCardCustomerEntity">
+				<all>
+					<element name="customer_id" type="xsd:string" minOccurs="0" />
+					<element name="customer_email" type="xsd:string" minOccurs="0" />
+					<element name="customer_ip" type="xsd:string" minOccurs="0" />
+				</all>
+			</complexType>
+			<complexType name="tokenbaseCardPaymentEntity">
+				<all>
+					<element name="po_number" type="xsd:string" minOccurs="0" />
+					<element name="method" type="xsd:string" minOccurs="0" />
+					<element name="cc_cid" type="xsd:string" minOccurs="0" />
+					<element name="cc_owner" type="xsd:string" minOccurs="0" />
+					<element name="cc_number" type="xsd:string" minOccurs="0" />
+					<element name="cc_type" type="xsd:string" minOccurs="0" />
+					<element name="cc_exp_year" type="xsd:string" minOccurs="0" />
+					<element name="cc_exp_month" type="xsd:string" minOccurs="0" />
+					<element name="echeck_account_name" type="xsd:string" minOccurs="0" />
+					<element name="echeck_bank_name" type="xsd:string" minOccurs="0" />
+					<element name="echeck_routing_no" type="xsd:string" minOccurs="0" />
+					<element name="echeck_account_no" type="xsd:string" minOccurs="0" />
+					<element name="echeck_account_type" type="xsd:string" minOccurs="0" />
+				</all>
+			</complexType>
+			<complexType name="tokenbaseCardEntityArray">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="typens:tokenbaseCardEntity[]" />
+					</restriction>
+				</complexContent>
+			</complexType>
+			
+			<complexType name="shoppingCartPaymentMethodEntity">
+				<all>
+					<element name="card_id" type="xsd:string" minOccurs="0" />
+					<element name="save" type="xsd:string" minOccurs="0" />
+					<element name="echeck_account_name" type="xsd:string" minOccurs="0" />
+					<element name="echeck_bank_name" type="xsd:string" minOccurs="0" />
+					<element name="echeck_routing_no" type="xsd:string" minOccurs="0" />
+					<element name="echeck_account_no" type="xsd:string" minOccurs="0" />
+					<element name="echeck_account_type" type="xsd:string" minOccurs="0" />
+				</all>
+			</complexType>
+			<complexType name="shoppingCartPaymentEntity">
+				<all>
+					<element name="tokenbase_id" type="xsd:string" minOccurs="0" />
+				</all>
+			</complexType>
+			<complexType name="salesOrderPaymentEntity">
+				<all>
+					<element name="tokenbase_id" type="xsd:string" minOccurs="0" />
+				</all>
+			</complexType>
+		</schema>
+	</types>
+	<message name="tokenbaseGetCardRequest">
+		<part name="sessionId" type="xsd:string" />
+		<part name="cardId" type="xsd:string" />
+	</message>
+	<message name="tokenbaseGetCardResponse">
+		<part name="card" type="typens:tokenbaseCardEntity" />
+	</message>
+	<message name="tokenbaseGetCardsByCustomerRequest">
+		<part name="sessionId" type="xsd:string" />
+		<part name="customerId" type="xsd:string" />
+	</message>
+	<message name="tokenbaseGetCardsByCustomerResponse">
+		<part name="cards" type="typens:tokenbaseCardEntityArray" />
+	</message>
+	<message name="tokenbaseDeleteCardRequest">
+		<part name="sessionId" type="xsd:string" />
+		<part name="customerId" type="xsd:string" />
+		<part name="cardId" type="xsd:string" />
+	</message>
+	<message name="tokenbaseDeleteCardResponse">
+		<part name="result" type="xsd:boolean" />
+	</message>
+	<message name="tokenbaseUpdateCardRequest">
+		<part name="sessionId" type="xsd:string" />
+		<part name="method" type="xsd:string" />
+		<part name="customer" type="typens:tokenbaseCardCustomerEntity" />
+		<part name="address" type="typens:tokenbaseCardAddressEntity" />
+		<part name="payment" type="typens:tokenbaseCardPaymentEntity" />
+		<part name="cardId" type="xsd:string" />
+	</message>
+	<message name="tokenbaseUpdateCardResponse">
+		<part name="cardId" type="xsd:string" />
+	</message>
+	<portType name="{{var wsdl.handler}}PortType">
+		<operation name="tokenbaseGetCard">
+			<documentation>Get a stored payment record by ID</documentation>
+			<input message="typens:tokenbaseGetCardRequest" />
+			<output message="typens:tokenbaseGetCardResponse" />
+		</operation>
+		<operation name="tokenbaseGetCardsByCustomer">
+			<documentation>Get all active stored payment data for a given customer</documentation>
+			<input message="typens:tokenbaseGetCardsByCustomerRequest" />
+			<output message="typens:tokenbaseGetCardsByCustomerResponse" />
+		</operation>
+		<operation name="tokenbaseDeleteCard">
+			<documentation>Delete a stored card for a given customer</documentation>
+			<input message="typens:tokenbaseDeleteCardRequest" />
+			<output message="typens:tokenbaseDeleteCardResponse" />
+		</operation>
+		<operation name="tokenbaseUpdateCard">
+			<documentation>Create or update a stored card for a given customer</documentation>
+			<input message="typens:tokenbaseUpdateCardRequest" />
+			<output message="typens:tokenbaseUpdateCardResponse" />
+		</operation>
+	</portType>
+	<binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="tokenbaseGetCard">
+			<soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+			<input>
+				<soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="tokenbaseGetCardsByCustomer">
+			<soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+			<input>
+				<soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="tokenbaseDeleteCard">
+			<soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+			<input>
+				<soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="tokenbaseUpdateCard">
+			<soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+			<input>
+				<soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+	</binding>
+	<service name="{{var wsdl.name}}Service">
+		<port name="{{var wsdl.handler}}Port" binding="typens:{{var wsdl.handler}}Binding">
+			<soap:address location="{{var wsdl.url}}" />
+		</port>
+	</service>
+</definitions>

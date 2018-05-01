@@ -1,0 +1,49 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Followupemail
+ * @version    3.5.8
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php if($this->getItems()->getSize()): ?>
+    <div class="block block-related">
+        <div class="block-title">
+            <strong><span><?php echo $this->__('Related Products') ?></span></strong>
+        </div>
+        <div class="block-content">
+            <ol class="mini-products-list" id="block-related">
+                <?php foreach($this->getItems() as $_item): ?>
+                    <li style="display: inline-table; margin-left: 10px;">
+                        <div class="product">
+                            <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>" class="product-image">
+                                <img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(75, 75) ?>" width="75" height="75" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" />
+                            </a>
+                            <div class="product-details">
+                                <p class="product-name"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a></p>
+                                <?php echo $this->getPriceHtml($_item, true, '-related') ?>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach ?>
+            </ol>
+        </div>
+    </div>
+<?php endif ?>

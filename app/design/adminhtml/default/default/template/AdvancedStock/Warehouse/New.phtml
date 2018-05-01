@@ -1,0 +1,34 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Create new warehouse')?></h3></td>
+            <td align="right">
+                <button onclick="editForm.submit();" class="scalable save" type="button"><span><?php echo $this->__('Save')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form id="edit_form" method="POST" name="edit_form" action="<?php echo $this->getSubmitUrl()?>">
+<input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+<div class="entry-edit">
+    
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('Name'); ?></td>
+                    <td class="input-ele"><input type="text" name="data[stock_name]" id="data[stock_name]" class="required-entry"></td>
+                </tr>
+            </table>
+        </fieldset>
+
+</div>
+</form>
+
+</div>
+
+<script type="text/javascript"> 
+    var editForm = new varienForm('edit_form', '');
+</script> 

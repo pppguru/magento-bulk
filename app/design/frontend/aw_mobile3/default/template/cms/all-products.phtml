@@ -1,0 +1,71 @@
+<!--'All Products' Mobile view. Mohin - Aug 13, 2015-->
+<!-- We have added this code again for updating mobile theme 2.0.6 to 3.0.3. Erik, 11 Nov 2016, mantis-400 -->
+<?php
+$products = Mage::getModel('catalog/product')->getCollection();
+$products->addAttributeToFilter('visibility', array(
+							'in' => array(2, 3, 4),
+						))
+		 ->addAttributeToSelect('name')
+		 ->addAttributeToSelect('product_url')
+		 ->addAttributeToSort('name', 'ASC');
+
+$alphas = range('A', 'Z');
+$azProduts = array();
+foreach($products as $product) {
+	$az = strtoupper(substr(trim($product->getName()), 0, 1));
+	if (in_array($az, $alphas))
+		$azProduts[$az][] =  $product;
+	else
+		$azProduts['#'][] =  $product;
+}
+array_unshift($alphas, '#');
+?>
+
+<div class="alpha-head" id="alpha-head">
+	<ul>
+	<?php foreach($alphas as $i): ?>
+		<?php if (!isset($azProduts[$i])) continue; ?>
+		<li><a href="#alpah_<?php echo $i ?>"><?php echo $i ?></a></li>
+	<?php endforeach; ?>
+	</ul>
+</div>
+<div class="alpha-content">
+<?php foreach($alphas as $i): ?>
+	<?php if (!isset($azProduts[$i])) continue; ?>
+
+	<dl>
+		<dt id="alpah_<?php echo $i ?>">
+			<h2><?php echo $this->__('All "%s" Products', $i) ?></h2>
+			<a href="#alpha-head"><?php echo $this->__('Back to top') ?></a>
+		</dt>
+		<dd>
+			<ul>
+			<?php $partitions = partition( $azProduts[$i], 2); ?>
+			<?php foreach ( $partitions as $partition ): ?>
+				<li>
+				<?php foreach($partition as $product): ?>
+					<a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $product->getName(); ?>"><?php echo Mage::helper('core/string')->truncate($product->getName(), 58) ?></a>
+				<?php endforeach; ?>
+				</li>
+			<?php endforeach; ?>
+			</ul>
+		</dd>
+	</dl>
+<?php endforeach; ?>
+</div>
+
+<?php
+function partition( $list, $p ) {
+	$listlen = count( $list );
+	$partlen = floor( $listlen / $p );
+	$partrem = $listlen % $p;
+	$partition = array();
+	$mark = 0;
+	for ($px = 0; $px < $p; $px++) {
+		$incr = ($px < $partrem) ? $partlen + 1 : $partlen;
+		$partition[$px] = array_slice( $list, $mark, $incr );
+		$mark += $incr;
+	}
+	return $partition;
+}
+?>

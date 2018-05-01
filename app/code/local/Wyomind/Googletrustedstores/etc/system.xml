@@ -1,0 +1,479 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <WYOMIND translate="label">
+            <label>WYOMIND</label>
+            <sort_order>1000000</sort_order>
+        </WYOMIND>
+    </tabs>
+    <sections>
+        <googletrustedstores translate="label">
+            <label>Google Trusted Stores</label>
+            <tab>WYOMIND</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>999</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <license translate="label">
+                    <label>License activation</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>98</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <version translate="label comment">
+                            <label>Extension version</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>Wyomind_Googletrustedstores_Block_Adminhtml_System_Config_Form_Field_Link</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </version>
+                        <activation_key translate="label comment">
+                            <label>Activation key</label>
+                            <comment>
+                                <![CDATA[<span class="notice">1- Fill this field with your activation key.</span>]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </activation_key>
+                        <get_online_license translate="label comment">
+                            <label>Remote activation :</label>
+                            <comment>
+                                <![CDATA[<span class="notice">2- Choose your activation method.
+                                    <br/>[yes = automatic activation]
+                                    <br/>[no = manual activation]
+                                </span>]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </get_online_license>
+                        <activation_code translate="label comment">
+                            <label>License code</label>
+                            <comment>
+                                <![CDATA[<span class="notice">3 - Fill this field with the license code you get.
+                                </span>]]>
+                            </comment>
+                            <depends>
+                                <get_online_license>0</get_online_license>
+                            </depends>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </activation_code>
+                    </fields>
+                </license>
+                <gts translate="label">
+                    <label>Google Trusted Stores settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>99</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <gts_id translate="label comment">
+                            <label>Google Trusted Stores Account Id</label>
+                            <comment>Fill this field with your google trusted stores id</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </gts_id>
+                        <gb_id translate="label comment">
+                            <label>Google Merchant Account Id</label>
+                            <comment>Fill this field with your google merchant id</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </gb_id>
+                        <country translate="label comment">
+                            <label>Country</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Number of days to include in the shipments feed
+                            <script>
+                                function show_hide_certified_shops() {
+                                    if ($('googletrustedstores_gts_country')) {
+                                        var country = $('googletrustedstores_gts_country').value;
+                                        if (country == 'US') {
+                                            if ($('googletrustedstores_feed_update-head').up().up() && $('googletrustedstores_feed_update-head').up().up().hasClassName('section-config')) {
+                                                $('googletrustedstores_feed_update-head').up().up().style.display = 'block';
+                                                $('googletrustedstores_shipments_settings-head').up().up().style.display = 'block';
+                                                $('googletrustedstores_cancellations_settings-head').up().up().style.display = 'block';
+                                                $('googletrustedstores_carriers-head').up().up().style.display = 'block';
+                                            } else {
+                                                $('googletrustedstores_feed_update-head').up().style.display = 'block';
+                                                $('googletrustedstores_shipments_settings-head').up().style.display = 'block';
+                                                $('googletrustedstores_cancellations_settings-head').up().style.display = 'block';
+                                                $('googletrustedstores_carriers-head').up().style.display = 'block';
+                                            }
+                                            $('row_googletrustedstores_gts_badge_position').style.display = 'none';
+                                            $('row_googletrustedstores_gts_badge_container_css').style.display = 'none';
+                                        } else {
+                                            if ($('googletrustedstores_feed_update-head').up().up() && $('googletrustedstores_feed_update-head').up().up().hasClassName('section-config')) {
+                                                $('googletrustedstores_feed_update-head').up().up().style.display = 'none';
+                                                $('googletrustedstores_shipments_settings-head').up().up().style.display = 'none';
+                                                $('googletrustedstores_cancellations_settings-head').up().up().style.display = 'none';
+                                                $('googletrustedstores_carriers-head').up().up().style.display = 'none';
+                                            } else {
+                                                $('googletrustedstores_feed_update-head').up().style.display = 'none';
+                                                $('googletrustedstores_shipments_settings-head').up().style.display = 'none';
+                                                $('googletrustedstores_cancellations_settings-head').up().style.display = 'none';
+                                                $('googletrustedstores_carriers-head').up().style.display = 'none';
+                                            }
+                                            $('row_googletrustedstores_gts_badge_position').style.display = 'table-row';
+                                            if ($('row_googletrustedstores_gts_badge_position').value == "USER_DEFINED")
+                                                $('row_googletrustedstores_gts_badge_container_css').style.display = 'table-row';
+                                        }
+                                    }
+                                }
+                                document.observe('dom:loaded',function() {
+                                    show_hide_certified_shops();
+                                    $('googletrustedstores_gts_country').observe('change',function(evt) {
+                                        show_hide_certified_shops();
+                                    });
+                                });
+                            </script>
+                            ]]></comment>
+                        </country>
+                        <language translate="label comment">
+                            <label>Language</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>googletrustedstores/system_config_source_lang</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </language>
+                        <badge_position translate="label comment">
+                            <label>Trusted Stores Badge position</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>googletrustedstores/system_config_source_badgeposition</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </badge_position>
+                        <badge_container_css translate="label comment">
+                            <label>Trusted Stores Badge container style</label>
+                            <comment>Css rules to apply to the container</comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <badge_position>USER_DEFINED</badge_position>
+                            </depends>
+                        </badge_container_css>
+                        <gs_product_id translate="label comment">
+                            <label>Google shopping products id template</label>
+                            <comment>Template for the google shopping products' id (default : {sku})</comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </gs_product_id>
+                    </fields>
+                </gts>
+                <gts_orders translate="label">
+                    <label>Orders confirmation page settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <eta translate="label comment">
+                            <label>Estimated delivery date offset</label>
+                            <comment>Days to add to the order date (default 0)</comment>
+                            <validate>validate-number</validate>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </eta>
+                        <eta_ship translate="label comment">
+                            <label>Estimated shipment date offset</label>
+                            <comment>Days to add to the order date (default 0)</comment>
+                            <validate>validate-number</validate>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </eta_ship>
+                    </fields>
+                </gts_orders>
+                <feed_update translate="label">
+                    <label>Feeds update settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>101</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <gts_dynamic_link translate="label comment">
+                            <label>Shipments and Cancellations data feeds generation method</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>googletrustedstores/system_config_source_updatemethod</source_model> 
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[
+                                - <b>Dynamic link</b> : generation on the fly, no cron task schedule needed.<br/>
+                                - <b>Cron schedule</b> : create physical files on your server periodically. Files need to be uploaded/fetched in your Google Merchant account.
+                            ]]></comment>
+                        </gts_dynamic_link>
+                    </fields>
+                </feed_update>
+                <shipments_settings translate="label">
+                    <label>Shipments feed's settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>110</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <filepath translate="label comment">
+                            <label>Filepath</label>
+                            <comment>Fill this field with the path where the shipments feed will be saved</comment>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </filepath>
+                        <filename translate="label comment">
+                            <label>Filename</label>
+                            <comment>Fill this field with the filename of the shipments feed</comment>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </filename>
+                        <previous_days translate="label comment">
+                            <label>Get the shipments for</label>
+                            <comment><![CDATA[Number of days to include in the shipments feed
+                            <script>
+                                function show_hide_links(val) {
+                                    if (val == 0) { // dynamic
+                                        if ($('googletrustedstores_schedule-head')) {
+                                        	if ($('googletrustedstores_schedule-head').up().up() && $('googletrustedstores_schedule-head').up().up().hasClassName('section-config'))
+	                                            $('googletrustedstores_schedule-head').up().up().style.display = 'none';
+	                                        else
+	                                            $('googletrustedstores_schedule-head').up().style.display = 'none';
+                                            }
+                                        $('row_googletrustedstores_cancellations_settings_cancellation_link').style.display = 'none';
+                                        $('row_googletrustedstores_cancellations_settings_dcancellation_link').style.display = '';
+                                        $('row_googletrustedstores_cancellations_settings_filename').style.display = 'none';
+                                        $('row_googletrustedstores_cancellations_settings_filepath').style.display = 'none';
+                                        $('row_googletrustedstores_shipments_settings_shipment_link').style.display = 'none';
+                                        $('row_googletrustedstores_shipments_settings_dshipment_link').style.display = '';
+                                        $('row_googletrustedstores_shipments_settings_filename').style.display = 'none';
+                                        $('row_googletrustedstores_shipments_settings_filepath').style.display = 'none';
+                                    } else {
+                                        if ($('googletrustedstores_schedule-head')) {
+                                        	if ($('googletrustedstores_schedule-head').up().up() && $('googletrustedstores_schedule-head').up().up().hasClassName('section-config'))
+	                                            $('googletrustedstores_schedule-head').up().up().style.display = '';
+	                                        else
+	                                            $('googletrustedstores_schedule-head').up().style.display = '';
+                                            }
+                                        $('row_googletrustedstores_cancellations_settings_cancellation_link').style.display = '';
+                                        $('row_googletrustedstores_cancellations_settings_dcancellation_link').style.display = 'none';
+                                        $('row_googletrustedstores_cancellations_settings_filename').style.display = '';
+                                        $('row_googletrustedstores_cancellations_settings_filepath').style.display = '';
+                                        $('row_googletrustedstores_shipments_settings_shipment_link').style.display = '';
+                                        $('row_googletrustedstores_shipments_settings_dshipment_link').style.display = 'none';
+                                        $('row_googletrustedstores_shipments_settings_filename').style.display = '';
+                                        $('row_googletrustedstores_shipments_settings_filepath').style.display = '';
+                                    }
+                                }
+
+                                document.observe('dom:loaded',function() {
+                                    show_hide_links($F('googletrustedstores_feed_update_gts_dynamic_link'));
+                                    $('googletrustedstores_feed_update_gts_dynamic_link').observe('change',function(evt) {
+                                        show_hide_links(evt.element().value);
+                                    });
+                                });
+                                </script>]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>googletrustedstores/system_config_source_days</source_model> 
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </previous_days>
+                        <shipment_link translate="label comment">
+                            <label>Shipments feed Url</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>Wyomind_Googletrustedstores_Block_Adminhtml_System_Config_Form_Field_Shipmentlink</frontend_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </shipment_link>
+                        <dshipment_link translate="label comment">
+                            <label>Shipments feed Url</label>
+                            <frontend_type>text</frontend_type> 
+                            <frontend_model>Wyomind_Googletrustedstores_Block_Adminhtml_System_Config_Form_Field_Dynamicshipmentlink</frontend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </dshipment_link>
+                    </fields>
+                </shipments_settings>
+                <cancellations_settings translate="label">
+                    <label>Cancellations feed's settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>120</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <filepath translate="label comment">
+                            <label>Filepath</label>
+                            <comment>Fill this field with the path where the cancellations feed will be saved</comment>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </filepath>
+                        <filename translate="label comment">
+                            <label>Filename</label>
+                            <comment>Fill this field with the filename of the cancellations feed</comment>
+                            <frontend_type>text</frontend_type> 
+                            <sort_order>2</sort_order>
+                            <show_in_default>2</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </filename>
+                        <previous_days translate="label comment">
+                            <label>Get the cancellations for</label>
+                            <comment>Number of days to include in the cancellations feed</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>googletrustedstores/system_config_source_days</source_model> 
+                            <sort_order>3</sort_order>
+                            <show_in_default>3</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </previous_days>
+                        <cancellation_link translate="label comment">
+                            <label>Cancellations feed Url</label>
+                            <frontend_type>text</frontend_type> 
+                            <frontend_model>Wyomind_Googletrustedstores_Block_Adminhtml_System_Config_Form_Field_Cancellationlink</frontend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </cancellation_link>
+                        <dcancellation_link translate="label comment">
+                            <label>Cancellations feed Url</label>
+                            <frontend_type>text</frontend_type> 
+                            <frontend_model>Wyomind_Googletrustedstores_Block_Adminhtml_System_Config_Form_Field_Dynamiccancellationlink</frontend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </dcancellation_link>
+                    </fields>
+                </cancellations_settings>
+                <carriers translate="label">
+                    <label>Carrier codes mapping</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>130</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <carriers_mapping translate="label comment">
+                            <label>Carriers</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>Wyomind_Googletrustedstores_Block_Adminhtml_System_Config_Form_Field_Carriers</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </carriers_mapping>
+                    </fields>
+                </carriers>
+                <schedule translate="label">
+                    <label>Cron task settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>140</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <cron translate="label comment">
+                            <label>Cron job schedule</label>
+                            <frontend_type>text</frontend_type> 
+                            <frontend_model>Wyomind_Googletrustedstores_Block_Adminhtml_System_Config_Form_Field_Cron</frontend_model>
+                            <sort_order>10</sort_order>
+                            <comment><![CDATA[<span class="notice">Please be sure that your main cron task is well configured on your server (<a target="_blank" href="https://www.wyomind.com/faq.html?directlink=faq#How_do_I_fix_the_issues_with_scheduled_tasks">Learn more</a>)</span>]]></comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </cron>
+                        <enable_report translate="label comment">
+                            <label>Enable cron job reporting</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable_report>
+                        <emails translate="label comment">
+                            <label>Send the reports to </label>
+                            <comment>Emails must be separated with a comma (,).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </emails>
+                        <report_title translate="label comment">
+                            <label>Report title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </report_title>
+                    </fields>
+                </schedule>
+            </groups>
+        </googletrustedstores>
+    </sections>
+</config>
+
+
+
+

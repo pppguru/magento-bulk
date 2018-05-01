@@ -1,0 +1,45 @@
+<div id="report_<?php echo $this->getReport()->getId(); ?>" style="<?php echo $this->getContainerStyle(); ?>">
+
+    <div style="background-color: #ffffff; padding: 5px; height: 98%;">
+
+        <img src="<?php echo $this->getSkinUrl('images/smartreport/more.png'); ?>" style="float: right;" onclick="<?php echo $this->onClick(); ?>">
+
+        <p align="center" style='font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif; font-size: 18px; margin-top: 10px; margin-bottom: 20px;'><?php echo $this->__($this->getReport()->getName()); ?></p>
+
+        <?php if (count($this->getReportDatas()) == 0): ?>
+
+            <center>
+                <p><?php echo $this->__('No data available'); ?></p>
+            </center>
+
+        <?php else: ?>
+
+            <table width="95%" class="smart-report-grid">
+                <tr>
+                    <?php foreach($this->getColumns() as $col): ?>
+                        <th><?php echo $this->__($this->getColumnSetting($col, 'label', $col)); ?></th>
+                    <?php endforeach; ?>
+                </tr>
+                <?php $i = 0; ?>
+                <?php foreach($this->getReportDatas() as $row): ?>
+                    <tr <?php echo ($i % 2 == 1 ? ' class="alt"' : ""); ?>>
+                        <?php foreach($this->getColumns() as $col): ?>
+                            <td <?php echo $this->getColumnHtmlAttributes($col); ?>><?php echo $this->renderCell($col, $row[$col], $row); ?></td>
+                        <?php endforeach; ?>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+                <?php if ($this->needTotalRow()): ?>
+                    <tr>
+                        <?php foreach($this->getColumns() as $col): ?>
+                            <td class="total"><?php echo $this->getColumnTotal($col); ?></td>
+                        <?php endforeach; ?>
+                    </tr>
+                <?php endif; ?>
+            </table>
+
+        <?php endif; ?>
+
+    </div>
+
+</div>

@@ -1,0 +1,158 @@
+<?php
+
+$website = Mage::app()->getWebsite();
+
+$orderId = Mage::getSingleton('checkout/session')->getLastOrderId();
+$order = Mage::getModel('sales/order')->load($orderId);
+if (!$order->getId()) {
+    throw new RuntimeException('Unable to load the order.');
+}
+
+$order_id = $order->getIncrementId();
+
+//------------------------------------------------------------------------------
+$domain = Mage::getModel('core/url')->parseUrl(Mage::getBaseUrl())->getHost();
+
+//------------------------------------------------------------------------------
+$email = $order->getCustomerEmail();
+
+//------------------------------------------------------------------------------
+$address = "";
+if ($address = $order->getShippingAddress()) {
+    $country = $address->getCountry();
+} else {
+    $country = $order->getBillingAddress()->getCountry();
+}
+
+//------------------------------------------------------------------------------
+$currency_code = $order->getOrderCurrencyCode();
+
+//------------------------------------------------------------------------------
+$order_total = sprintf("%01.2F",$order->getGrandTotal()); 
+$order_discount = sprintf("%01.2F",$order->getDiscountAmount());
+$order_shipping = sprintf("%01.2F",$order->getShippingAmount());
+$order_tax = sprintf("%01.2F",$order->getTaxAmount());
+
+
+$date = new Datetime();
+$date->setTimestamp($order->getCreatedAtDate()->toString('U'));
+$add_days = $website->getConfig("googletrustedstores/gts_orders/eta_ship");
+if ($add_days != '' && $add_days > 0) 
+    $date->add(new DateInterval('P'.$add_days.'D')); // add x day to the order date
+
+$order_shipdate = $date->format('Y-m-d');
+
+
+$date = new Datetime();
+$date->setTimestamp($order->getCreatedAtDate()->toString('U'));
+$add_days = $website->getConfig("googletrustedstores/gts_orders/eta");
+if ($add_days != '' && $add_days > 0) 
+    $date->add(new DateInterval('P'.$add_days.'D')); // add x day to the order date
+
+$delivery_date = $date->format('Y-m-d');
+
+//$order_shipdate = $order->getCreatedAtDate()->toString('yyyy-MM-dd');
+
+//------------------------------------------------------------------------------
+$order_items = $order->getAllVisibleItems();
+
+//------------------------------------------------------------------------------
+$has_preorder = 'N';
+foreach ($order_items as $item) {
+    if($item->getQtyBackordered() > 0) {
+        $has_preorder = 'Y';
+        break;
+    }
+}
+
+//------------------------------------------------------------------------------
+$has_digital = 'N';
+foreach ($order_items as $item) {
+    if($item->getIsVirtual() > 0) {
+        $has_digital = 'Y';
+        break;
+    }
+}
+
+//------------------------------------------------------------------------------
+$items = array();
+
+foreach ($order_items as $item) {
+    $itemInfo = array(
+        'name' => $this->escapeHtml($item->getName()),
+        'price' => sprintf("%01.2F",$item->getPrice()),
+        'qty_ordered' => sprintf($item->getIsQtyDecimal() ? '%F' : '%d', $item->getQtyOrdered()),
+    );
+    
+    
+    $product = Mage::getModel('catalog/product')->load($item->getProductId());
+    
+    $gs_item = null;
+    if ($product->getId()) {
+        //$storeId = $item->getStoreId();
+        $id_template =  $website->getConfig("googletrustedstores/gts/gs_product_id");
+        
+        
+        $pid = $id_template;
+        preg_match_all('/{[^}]+}/',$id_template,$m,PREG_OFFSET_CAPTURE);
+        $matches = array_reverse($m[0],true);
+        
+        foreach ($matches as $matche) {
+            $m = $matche[0];
+            $index = $matche[1];    
+            $att = str_replace(array('{','}'),array('',''),$m);
+            $val = eval('return $product->get'.ucfirst($att).'();');
+            $pid = substr_replace($pid, $val, $index, strlen($m));
+        }
+        
+        
+        if ($pid) {
+            $gs_item = array(
+                'gbase_id' => $this->escapeHtml($pid),
+                'gbase_account_id' => $this->escapeHtml($website->getConfig("googletrustedstores/gts/gb_id")),
+                'gbase_country' => $website->getConfig("googletrustedstores/gts/country"),
+                'gbase_language' => $website->getConfig("googletrustedstores/gts/language"),
+            );
+        }
+    }
+    if ($gs_item) {
+        $itemInfo['google_shopping'] = $gs_item;
+    }
+    $items[] = $itemInfo;
+}
+
+
+?>
+
+<?php if ($order) : ?>
+<div id="gts-order" style="display:none;" translate="no">
+    
+    <span id="gts-o-id"><?php echo $order_id; ?></span>
+    <span id="gts-o-domain"><?php echo $domain; ?></span>
+    <span id="gts-o-email"><?php echo $email ?></span>
+    <span id="gts-o-country"><?php echo $country ?></span>
+    <span id="gts-o-currency"><?php echo $currency_code; ?></span>
+    <span id="gts-o-total"><?php echo $order_total; ?></span>
+    <span id="gts-o-discounts"><?php echo $order_discount; ?></span>
+    <span id="gts-o-shipping-total"><?php echo $order_shipping; ?></span>
+    <span id="gts-o-tax-total"><?php echo $order_tax; ?></span>
+    <span id="gts-o-est-ship-date"><?php echo $order_shipdate; ?></span>
+    <span id="gts-o-est-delivery-date"><?php echo $delivery_date; ?></span>
+    <span id="gts-o-has-preorder"><?php echo $has_preorder ?></span>
+    <span id="gts-o-has-digital"><?php echo $has_digital ?></span>
+
+    <?php foreach ($items as $k => $item) : ?>
+        <span class="gts-item">
+            <span class="gts-i-name"><?php echo $item['name'] ?></span>
+            <span class="gts-i-price"><?php echo $item['price'] ?></span>
+            <span class="gts-i-quantity"><?php echo $item['qty_ordered'] ?></span>
+            <?php if (isset($item['google_shopping'])) : ?>
+                <span class="gts-i-prodsearch-id"><?php echo $item['google_shopping']['gbase_id'] ?></span>
+                <span class="gts-i-prodsearch-store-id"><?php echo $item['google_shopping']['gbase_account_id'] ?></span>
+                <span class="gts-i-prodsearch-country"><?php echo $item['google_shopping']['gbase_country'] ?></span>
+                <span class="gts-i-prodsearch-language"><?php $tmp = explode('_',$item['google_shopping']['gbase_language']);echo $tmp[0]; ?></span>
+            <?php endif; ?>
+        </span>
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>

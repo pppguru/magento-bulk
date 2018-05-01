@@ -1,0 +1,72 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+    $_product = $this->getProduct();
+?>
+
+<div class="gallery">
+    <ul class="gallery__list">
+        <?php if (count($this->getGalleryImages()) == 0 || ($_product->getImage() != 'no_selection' && $_product->getImage())): ?>
+            <?php
+                $objFirstImage = $this->helper('catalog/image')->init($_product, 'image')->keepAspectRatio(true)->keepFrame(false)->constrainOnly(true)->resize(1000, 1000);
+                $firstImage = $objFirstImage->__toString();
+                list($width, $height) = $this->helper('aw_mobile3')->getResizeDimensions(1000, 1000, $objFirstImage->getOriginalWidth(), $objFirstImage->getOriginalHeigh());
+
+                $objFirstImageThumbnail = $this->helper('catalog/image')->init($_product, 'image')->keepAspectRatio(true)->keepFrame(false)->constrainOnly(true)->resize(null, 200);
+                $firstImageThumbnail = $objFirstImageThumbnail->__toString();
+                list($thumbnailWidth, $thumbnailHeight) = $this->helper('aw_mobile3')->getResizeDimensions(null, 200, $objFirstImageThumbnail->getOriginalWidth(), $objFirstImageThumbnail->getOriginalHeigh());
+            ?>
+
+            <li class="gallery__item">
+                <a class="gallery__link" href="<?php echo $firstImage ?>" data-size="<?php echo $width ?>x<?php echo $height ?>">
+                    <img class="gallery__image" src="<?php echo $firstImageThumbnail ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" width="<?php echo $thumbnailWidth ?>" height="<?php echo $thumbnailHeight ?>">
+                </a>
+            </li>
+        <?php endif; ?>
+
+        <?php if(count($this->getGalleryImages())): ?>
+            <?php foreach ($this->getGalleryImages() as $_image): ?>
+                <?php if(strcasecmp($_product->getImage(), $_image['file']) != 0): ?>
+                    <?php //if not base image
+                        $_objImgSrc = $this->helper('catalog/image')->init($_product, 'thumbnail', $_image->getFile())->keepAspectRatio(true)->keepFrame(false)->constrainOnly(true)->resize(1000, 1000);
+                        $_imgSrc = $_objImgSrc->__toString();
+                        list($width, $height) = $this->helper('aw_mobile3')->getResizeDimensions(1000, 1000, $_objImgSrc->getOriginalWidth(), $_objImgSrc->getOriginalHeigh());
+
+                        $objThumbnail = $this->helper('catalog/image')->init($_product, 'thumbnail', $_image->getFile())->keepAspectRatio(true)->keepFrame(false)->constrainOnly(true)->resize(null, 200);
+                        $thumbnail = $objThumbnail->__toString();
+                        list($thumbnailWidth, $thumbnailHeight) = $this->helper('aw_mobile3')->getResizeDimensions(null, 200, $objThumbnail->getOriginalWidth(), $objThumbnail->getOriginalHeigh());
+                    ?>
+
+                    <li class="gallery__item">
+                        <a class="gallery__link" href="<?php echo $_imgSrc ?>" data-size="<?php echo $width ?>x<?php echo $height ?>">
+                            <img class="gallery__image" src="<?php echo $thumbnail ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" width="<?php echo $thumbnailWidth ?>" height="<?php echo $thumbnailHeight ?>">
+                        </a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </ul>
+</div>

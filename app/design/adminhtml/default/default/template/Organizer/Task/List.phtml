@@ -1,0 +1,35 @@
+<div class="entry-edit" id="div_task_list">
+
+
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__($this->getTitle())?></h3></td>
+            <td align="right">
+            	<?php if ($this->getEnableAdd() == 1): ?>
+		            <button type="button" class="scalable add" onclick="toggleNewTask(<?php echo $this->getGuid(); ?>)" style=""><span><?php echo $this->__('Show / Hide New Task'); ?></span></button>
+		        <?php endif; ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<?php
+
+	if ($this->getEnableAdd() == 1)
+	{
+		//rajoute la zone pour créer une tache
+		$block = $this->getLayout()
+			->createBlock('Organizer/Task_Edit')
+			->setEntityType($this->getEntityType())
+			->setEntityId($this->getEntityId())
+			->setGuid($this->getGuid())
+			->setTemplate('Organizer/Task/Edit.phtml');
+		echo $block->toHtml();
+	}
+?>
+
+<?php echo $this->getGridParentHtml() ?>
+
+</div>

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MDN_M2eErpPatch>
+            <version>2.0</version>
+        </MDN_M2eErpPatch>
+    </modules>
+    
+    <global>
+    
+        <helpers>
+            <M2eErpPatch>
+                <class>MDN_M2eErpPatch_Helper</class>
+            </M2eErpPatch>
+        </helpers>
+
+        <models>
+            <M2eErpPatch>
+                <class>MDN_M2eErpPatch_Model</class>
+            </M2eErpPatch>
+        </models>
+
+        <resources>
+            <M2eErpPatch_setup>
+                <setup>
+                    <module>MDN_M2eErpPatch</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </M2eErpPatch_setup>
+            <M2eErpPatch_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </M2eErpPatch_write>
+            <M2eErpPatch_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </M2eErpPatch_read>
+        </resources>
+        <events>
+            <salesorderplanning_productavailabilitystatus_aftersave>
+                <observers>
+                    <M2eErpPatch>
+                        <type>singleton</type>
+                        <class>M2eErpPatch/Observer</class>
+                        <method>salesorderplanning_productavailabilitystatus_aftersave</method>
+                    </M2eErpPatch>
+                </observers>
+            </salesorderplanning_productavailabilitystatus_aftersave>
+        </events>
+    </global>
+
+	<adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <m2eerppatch module="M2eErpPatch">
+                                            <title>M2eErpPatch</title>
+                                        </m2eerppatch>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+	</adminhtml>
+           
+</config>

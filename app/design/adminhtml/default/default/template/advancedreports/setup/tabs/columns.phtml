@@ -1,0 +1,71 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Advancedreports
+ * @version    2.5.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="entry-edit">
+    <div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Choose columns to show'); ?></h4>
+        <div class="form-buttons">
+    <!--        <button style="" onclick="alert('default');" class="scalable delete" type="button" id=""><span><?php echo $this->__('Set defaults'); ?> </span></button>-->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <?php if (count($this->getColumns())): ?>
+    <script type="text/javascript">
+        _columns = new AWAdvancedReportsColumns();
+    </script>
+    <ul class="aw-column-container" id="aw-column-container">
+        <?php foreach ($this->getColumns() as $column): ?>
+        <li class="aw-column" id="<?php echo $column->getId(); ?>">
+            <div class="aw-column-overlay" id="overlay-<?php echo $column->getId(); ?>"></div>
+            <div id="aw-header-<?php echo $column->getId(); ?>" class="aw-header">
+                <span><?php echo $column->getHeader(); ?></span>
+            </div>
+            <div class="text-container">
+                <center>
+                    <input class="text" type="text" id="aw-column-header-<?php echo $column->getId(); ?>" name="aw-column-header-<?php echo $column->getId(); ?>" value="<?php echo $column->getCustomHeader(); ?>" title="<?php echo $this->__('Header customization') ?>" />
+                </center>
+            </div>
+            <center>
+                <input type="checkbox" id="aw-column-checkbox-<?php echo $column->getId(); ?>" name="aw-column-checkbox-<?php echo $column->getId(); ?>" <?php if ($column->getCustomVisible()): ?> checked="checked"<?php endif; ?> />
+            </center>
+            <script type="text/javascript">
+                _columns.registerColumn('<?php echo $column->getId(); ?>','<?php echo $column->getCustomHeader(); ?>',<?php echo $column->getCustomVisible() ? 'true' : 'false'; ?>);
+            </script>
+        </li>
+        <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <?php echo $this->__('No columns to display'); ?>
+    <?php endif; ?>
+
+    <div class="clear"></div>
+    <input id="custom_columns" type="hidden" name="custom_columns" value="" />
+    <script type="text/javascript">
+        if (typeof(_columns) != 'undefined') {
+            _columns.renderColumns();
+        }
+        decorateList('aw-column-container', 'none-recursive');
+    </script>
+</div>

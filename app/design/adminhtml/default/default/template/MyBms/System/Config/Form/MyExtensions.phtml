@@ -1,0 +1,37 @@
+<p><?php echo $this->__('To download the latest version of the extensions, login on <a href="%s">Boostmyshop</a>, go in your <a href="%s">Customer account</a> and select the <a href="%s">"Download" tab</a>.', 'https://www.boostmyshop.com', 'https://www.boostmyshop.com/customer/account', 'https://www.boostmyshop.com/customer/account/') ?></p>
+
+
+<table class="grid" id="myExtensionGrid" cellspacing="0" width="100%">
+    <thead>
+    <tr class="headings">
+        <th class="no-link"><span class="nobr"><?php echo $this->__('Extension code'); ?></span></th>
+        <th class="no-link"><span class="nobr"><?php echo $this->__('Extension Name'); ?></span></th>
+        <th class="no-link"><span class="nobr"><?php echo $this->__('Installed version'); ?></span></th>
+        <th class="no-link"><span class="nobr"><?php echo $this->__('Last version'); ?></span></th>
+        <th class="no-link"><span class="nobr"><?php echo $this->__('Status'); ?></span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php $i = 0; ?>
+    <?php foreach ($this->listMyExtensions() as $array): ?>
+        <tr<?php if ($i % 2 == 0): ?> class="even" <?php endif ?>>
+            <td class="a-left"><?php echo $array['code']; ?></td>
+            <td class="a-left"><?php echo $array['name']; ?></td>
+            <td class="a-left"><?php echo $array['version']; ?></td>
+            <td class="a-left"><?php echo $array['lastrelease']; ?></td>
+            <?php if ($array['status'] == $this->__('Up to date')): ?>
+                <td class="a-left" style="color:green;"><?php echo $array['status']; ?></td>
+            <?php elseif($array['status'] == $this->__('New version available')): ?>
+                <td>
+                    <a href="<?php echo $this->getDownloadChangelogUrl($array['code'],$array['lastrelease']) ?>">
+                        <div class="a-left" style="color:red;"><?php echo $array['status']; ?></div>
+                    </a>
+                </td>
+                <?php else: ?>
+                <td class="a-left"><?php echo $array['status']; ?></td>
+            <?php endif; ?>
+        </tr>
+        <?php $i++ ?>
+    <?php endforeach; ?>
+    </tbody>
+</table>

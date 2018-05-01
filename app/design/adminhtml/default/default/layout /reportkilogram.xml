@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<reportkilogram_adminhtml_reportkilogram_index>
+		<reference name="content">
+			<block type="reportkilogram/adminhtml_reportkilogram" name="reportkilogram" />
+		</reference>
+	</reportkilogram_adminhtml_reportkilogram_index>
+</layout>

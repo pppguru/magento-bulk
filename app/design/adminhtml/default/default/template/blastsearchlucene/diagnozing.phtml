@@ -1,0 +1,109 @@
+<?php
+   /**
+ 	* @category   Php4u
+	* @package    Php4u_BlastLuceneSearch
+	* @author     Marcin Szterling <marcin@php4u.co.uk>
+	* @copyright  Php4u Marcin Szterling (c) 2013
+	* @license http://php4u.co.uk/licence/
+	* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	* THE SOFTWARE.
+	* Any form of distribution, sell, transfer forbidden see licence above
+	*/
+?>
+<?php $info = $this->getInfoObject(); ?>
+<div id="pagemain-container">
+
+	<div class="blast mt">Blast Search Lucene Diagnostics</div>
+	
+	<div class="lucene">License</div>
+	<div class="fl mbot"><img src="<?php echo $this->getSkinUrl('blastsearchlucene/images/line-bg.png'); ?>" width="1214" height="6" alt="" /></div>
+	<div class="php_list">
+	<ul>
+	<li><span>License information is available on extension settings screen</span></li>
+	</ul>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="clear"></div>
+	<div class="installation">Installation</div>
+	<div class="fl mbot"><img src="<?php echo $this->getSkinUrl('blastsearchlucene/images/line-bg.png'); ?>" width="1214" height="6" alt="" /></div>
+	<div class="php_list">
+	<ul>
+	<li><span><?php echo $info->getEav1(); ?></span></li>
+	<li class="col"><span><?php echo $info->getEav2(); ?></span></li>
+	<li><span><?php echo $info->getVersion(); ?></span></li>
+	</ul>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="php">Php  &amp; Server</div>
+	<div class="fl mbot"><img src="<?php echo $this->getSkinUrl('blastsearchlucene/images/line-bg.png'); ?>" width="1214" height="6" alt="" /></div>
+	<div class="php_list">
+	<ul>
+	<li><span>Php version: <?php echo $info->getPhpVersion(); ?></span></li>
+	<li class="col"><span><?php echo $info->getServerSoftware(); ?></span></li>
+	<li><span>PHP Log errors?: <?php echo $info->getPhpErrorLogEnabled(); ?></span></li>
+	<li class="col"><span>PHP Error log: <?php echo $info->getPhpErrorLog(); ?> </span></li>
+	<li><span>PHP execution time limit (max_execution_time): <?php echo $info->getMaxExecutionTime(); ?></span></li>
+	<li class="col"><span>Above can have impact on lucene index generation time, increase it if indexer times out</span></li>
+	<li><span>Memory limit: <?php echo $info->getMemoryLimit(); ?></span></li>
+	<li class="col"><span>Info: Memory is required to generate index, optimize it and search so make sure that you have enough</span></li>
+	</ul>
+	</div>
+	
+	<div class="clear"></div>
+	<div class="magento">Magento General</div>
+	<div class="fl mbot"><img src="<?php echo $this->getSkinUrl('blastsearchlucene/images/line-bg.png'); ?>" width="1214" height="6" alt="" /></div>
+	<div class="php_list">
+	<ul>
+	<li><span>Is extension enabled? <?php echo $info->getExtensionEnabled(); ?><?php echo $info->getExtensionEnabledInfo(); ?></span></li>
+	<li class="col"><span><?php echo $info->getNewProductsInfo(); ?></span></li>
+	<li><span>Below in "Lucene Indexes" section check how many products require indexing</span></li>
+	</ul>
+	</div>
+	
+	
+	
+	<div class="logs">Logs</div>
+	<div class="fl mbot"><img src="<?php echo $this->getSkinUrl('blastsearchlucene/images/line-bg.png'); ?>" width="1214" height="6" alt="" /></div>
+	<div class="clear"></div>
+	<div class="php_list">
+	<ul>
+	<li><span>Is logging enabled in magento? <?php echo $info->getMagentoLoggingEnabledInfo(); ?></span></li>
+	<li class="col"><span><?php echo $info->getExtLogEnabledInfo();?></span></li>
+	<li><span><?php echo $info->getExtLogFileExistsInfo(); ?></span></li>
+	<li class="col"><span><?php echo $info->getExtLogFileWritableInfo();?></span></li>
+	<li><span><?php echo $info->getExtLogModTimeInfo(); ?></span></li>
+	<li class="col"><span>Last entries: (will refresh every 10 seconds)</span></li>
+	</ul>
+	</div>
+	
+	<?php echo $info->getExtLogLastEntries(); ?>
+
+	<div class="clear"></div>
+	
+	<div class="clear"></div>
+	<div class="lucene_index">Lucene Indexes</div>
+	<div class="fl mbot"><img src="<?php echo $this->getSkinUrl('blastsearchlucene/images/line-bg.png'); ?>" width="1214" height="6" alt="" /></div>
+	<div class="php_list">
+	<ul>
+	<li><span><?php echo $info->getUtf8AnalyserInfo(); ?></span></li>
+	<li class="col"><span><?php echo $info->getMbStringInfo(); ?></span></li>
+	<li><span><?php echo $info->getMainIndexerFolderInfo(); ?></span></li>
+	</ul>
+	<h3>Lucene index directories present:</h3>
+	</div>
+	
+	<div class="clear"></div>
+	
+	
+	<?php echo $info->getDirectoriesPresentInfo();?>
+	
+</div>
+<?php echo $info->getAjaxHtml(); ?>

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<config>
+	<sections>
+		<payment_services>
+			<groups>
+				<tokenbase translate="label" module="tokenbase">
+					<label>ParadoxLabs Payment Module Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>100</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<clean_old_cards>
+							<label>Erase archived cards after 120 days</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment><![CDATA[All cards (including for guests and 'do not save') are always stored internally. If yes, those records will be permanently removed 120 days after their last use (the maximum refund period). We strongly recommend this.]]></comment>
+						</clean_old_cards>
+					</fields>
+				</tokenbase>
+			</groups>
+		</payment_services>
+	</sections>
+</config>

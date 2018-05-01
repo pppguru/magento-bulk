@@ -1,0 +1,23 @@
+<IfModule mod_rewrite.c>
+
+############################################
+## enable rewrites
+
+    Options +FollowSymLinks
+    RewriteEngine on
+
+############################################
+## you can put here your magento root folder
+## path relative to web root
+
+    RewriteBase /
+
+############################################
+## rewrite requests to pre-generated files
+	<IfModule !mod_litespeed>
+		RewriteRule ^([^/]+).(js|css)$ media/extendware/ewminify/files/$2/$1.$2.var
+	</IfModule>
+	<IfModule mod_litespeed>
+		RewriteRule ^([^/]+).(js|css)$ media/extendware/ewminify/files/$2/$1.$2
+	</IfModule>
+</IfModule>

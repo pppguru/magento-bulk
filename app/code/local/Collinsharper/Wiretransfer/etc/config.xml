@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+       <Collinsharper_Wiretransfer>
+          <version>0.2.5</version>
+       </Collinsharper_Wiretransfer>
+    </modules>
+ 
+    <global>
+<!-- declare model group for new module -->
+        <models>
+<!-- model group alias to be used in Mage::getModel('interac/...') -->
+            <wiretransfer>
+<!-- base class name for the model group -->
+                <class>Collinsharper_Wiretransfer_Model</class>
+            </wiretransfer>
+        </models>
+		<blocks>
+            <wiretransfer><class>Collinsharper_Wiretransfer_Block</class></wiretransfer>
+        </blocks>
+   <helpers>
+       <wiretransfer>
+           <class>Collinsharper_Wiretransfer_Helper</class>
+       </wiretransfer>
+   </helpers> 
+   
+<!-- declare resource setup for new module -->
+        <resources>
+<!-- resource identifier -->
+            <wiretransfer_setup>
+<!-- specify that this resource is a setup resource and used for upgrades -->
+                <setup>
+<!-- which module to look for install/upgrade files in -->
+                    <module>Collinsharper_Wiretransfer</module>
+                </setup>
+<!-- specify database connection for this resource -->
+                <connection>
+<!-- do not create new connection, use predefined core setup connection -->
+                    <use>core_setup</use>
+                </connection>
+            </wiretransfer_setup>
+            <wiretransfer_write>
+                <connection>
+                  <use>core_write</use>
+                </connection>
+            </wiretransfer_write>
+            <wiretransfer_read>
+               <connection>
+                <use>core_read</use>
+              </connection>
+            </wiretransfer_read>
+        </resources>
+    </global>
+     <frontend>
+        <translate>
+            <modules>
+                <Collinsharper_Wiretransfer>
+                    <files>
+                        <default>Collinsharper_Wiretransfer.csv</default>
+                    </files>
+                </Collinsharper_Wiretransfer>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <wiretransfer>
+                    <file>wiretransfer.xml</file>
+                </wiretransfer>
+            </updates>
+        </layout>
+    </frontend>
+	
+<!-- declare default configuration values for this module -->
+    <default>
+<!-- 'payment' configuration section (tab) -->
+        <payment>
+<!-- 'interac' configuration group (fieldset) -->
+            <wiretransfer>
+<!-- by default this payment method is inactive -->
+                <active>0</active>
+<!-- model to handle logic for this payment method -->
+                <model>wiretransfer/Standard</model>
+<!-- order status for new orders paid by this payment method -->
+                <order_status>1</order_status>
+<!-- default title for payment checkout page and order view page -->
+                <title>Wire Transfer</title>
+                <payment_action>pending</payment_action>
+                <allowspecific>0</allowspecific>
+            </wiretransfer>
+         </payment>
+    </default>
+</config>

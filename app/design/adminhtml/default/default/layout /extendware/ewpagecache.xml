@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout>
+	<adminhtml_cache_index>
+		<reference name="cache.additional">
+			<block type="ewpagecache/adminhtml_cache_additional_fullpage" name="cache.additional.ewpagecache" template="extendware/ewpagecache/cache/additional/fullpage.phtml" />
+		</reference>
+	</adminhtml_cache_index>
+</layout>

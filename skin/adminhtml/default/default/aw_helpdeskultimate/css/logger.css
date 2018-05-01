@@ -1,0 +1,15 @@
+/*minimize tr*/
+div.aw-hdu-min-cell {
+    height: 20px;
+    overflow: hidden;
+}
+
+/*standart tr*/
+div.aw-hdu-optimal-cell {
+    height: auto;
+    overflow: visible;
+}
+
+#awcoreLogGrid_table tbody tr {
+    cursor: pointer;
+}

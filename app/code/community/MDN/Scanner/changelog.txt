@@ -1,0 +1,60 @@
+_______________________________________________________________________________________________________________
+v1.3.5
+
+- Scanner Improve compatibility with scanner without Postamble : If No postamble defined in conf set Enter key as terminating Char automatically.
+
+_______________________________________________________________________________________________________________
+v1.3.4
+
+- Fix : when creating a PO delivery, use the PO target warehouse
+
+_______________________________________________________________________________________________________________
+v1.3.3
+
+- Fix update issue on supply needs when creating purchase order delivery
+
+_______________________________________________________________________________________________________________
+v1.3.2
+
+- Ability to link a barcode from product view
+
+_______________________________________________________________________________________________________________
+v1.3.1
+
+- In product information, if no image, try to retrieve picture from configurable parent
+- Ability to set product shelf location from product sheet
+
+_______________________________________________________________________________________________________________
+v1.3
+
+- Code pool is now community
+
+_______________________________________________________________________________________________________________
+v1.2
+
+- Add shelf location in product sheet
+- Purchase order are sorted using delivery date ascendant
+- Add shortcut in Purchase order delivery screen to add a barcode to a product
+- Add shortcut in Purchase order delivery screen to set location for a product
+
+_______________________________________________________________________________________________________________
+v1.1
+
+
+- Add settings in system > configuration > scanner to set screen size and remove scroll bars
+- Add reset buttons
+- Fix issue when scanning on picking
+- Fix barcode add feature
+- New option in system > configuration > scanner to hide product row when product qty is reached in picking and PO delivery
+- Limit results to 25 records
+- New feature to compare 2 barcodes and check they match
+- Add postamble setting in system > configuration > scanner
+- Add js/mdn/scanner.css
+
+_______________________________________________________________________________________________________________
+v1.0
+
+- Add logout button in menu
+- Fix issue if no image available for product
+- Fix : undefined was displayed in prompt box when we add a new product
+- When linking a barcode to a product, display "barcode already used" if barcode already linked to a product

@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<!-- ce fichier doit se trouver dans adminhtml/default/default sinon pas pris en compte.. -->
+<layout version="0.1.0">
+       
+	<!-- manufacturer -->
+
+    <purchase_manufacturers_list>
+        <reference name="content">
+            <block type="Purchase/Manufacturer_Grid" name="manufacturerlist" template="Purchase/Manufacturer/Grid.phtml" />
+        </reference>
+    </purchase_manufacturers_list>
+
+    <purchase_manufacturers_new>
+        <reference name="content">
+            <block type="Purchase/Manufacturer_New" name="manufacturernew" template="Purchase/Manufacturer/New.phtml" />
+        </reference>
+    </purchase_manufacturers_new>
+
+    <purchase_manufacturers_edit>
+        <reference name="content">
+            <block type="Purchase/Manufacturer_Edit" name="manufactureredit" template="Purchase/Manufacturer/Edit.phtml">
+                <block type="Purchase/Contact_SubGrid" name="contacts" as="contacts" template="Purchase/Contact/SubGrid.phtml">
+                </block>
+            </block>
+        </reference>
+    </purchase_manufacturers_edit>
+
+    <!-- Supplier -->		
+    <purchase_suppliers_list>
+        <reference name="content">
+            <block type="Purchase/Supplier_Grid" name="supplierlist" template="Purchase/Supplier/Grid.phtml" />
+        </reference>
+    </purchase_suppliers_list>
+
+    <purchase_suppliers_new>
+        <reference name="content">
+            <block type="Purchase/Supplier_New" name="suppliernew" template="Purchase/Supplier/New.phtml" />
+        </reference>
+    </purchase_suppliers_new>
+
+    <purchase_suppliers_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productStockWindow.js</script>
+            </action>
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mdn/StockDetails.css</name>
+            </action>
+            <!-- CSS -->
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/alphacube.css</name>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="Purchase/Supplier_Edit_Tabs" name="suppliertabs">
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="Purchase/Supplier_Edit" name="supplier_edit"></block>
+        </reference>
+    </purchase_suppliers_edit>
+        
+    <!-- Contacts -->   
+    <purchase_contacts_list>
+        <reference name="content">
+            <block type="Purchase/Contact_Grid" name="contactlist" template="Purchase/Contact/Grid.phtml" />
+        </reference>
+    </purchase_contacts_list>
+
+    <purchase_contacts_edit>
+        <reference name="content">
+            <block type="Purchase/Contact_Edit" name="contactedit" template="Purchase/Contact/Edit.phtml" />
+        </reference>
+    </purchase_contacts_edit>
+
+    <!-- Purchase Order -->            
+    <purchase_orders_list>
+        <reference name="content">
+            <block type="Purchase/Order_Grid" name="orderlist" template="Purchase/Order/Grid.phtml" />
+        </reference>
+    </purchase_orders_list>
+    <purchase_orders_new>
+        <reference name="content">
+            <block type="Purchase/Order_New" name="neworder" template="Purchase/Order/New.phtml" />
+        </reference>
+    </purchase_orders_new>
+    <purchase_orders_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productStockWindow.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/purchaseOrder.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/persistantGridControl.js</script>
+            </action>
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mdn/StockDetails.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/alphacube.css</name>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="Purchase/Order_Edit_Tabs" name="ordertabs">
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="Purchase/Order_Edit" name="order_edit"></block>
+        </reference>
+    </purchase_orders_edit>
+    <purchase_orders_importfromsupplyneeds>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productStockWindow.js</script>
+            </action>
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/SupplyNeeds.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mdn/StockDetails.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/alphacube.css</name>
+            </action>
+            <action method="addJs">
+                <script>mdn/persistantGridControl.js</script>
+            </action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/popup.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="Purchase/SupplyNeeds_Grid" name="importfromsupplyneeds" template="Purchase/Order/ImportFromSupplyNeeds.phtml" />
+        </reference>
+    </purchase_orders_importfromsupplyneeds>
+
+    <!-- Supply needs -->
+    
+    <purchase_supplyneeds_grid>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productStockWindow.js</script>
+            </action>
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/persistantGridControl.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/SupplyNeeds.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mdn/StockDetails.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/alphacube.css</name>
+            </action>
+        </reference>
+    </purchase_supplyneeds_grid>
+	
+    <purchase_supplyneeds_stats>
+        <reference name="content">
+            <block type="Purchase/SupplyNeeds_Stats" name="supplyneeds_stats" template="Purchase/SupplyNeeds/Stats.phtml" />
+        </reference>
+    </purchase_supplyneeds_stats>
+
+    <!-- remaining supply qty -->
+    <purchase_remainingsupplyquantities_list>
+        <reference name="content">
+            <block type="Purchase/RemainingSupplyQuantities_Grid" name="remainingsupplyquantitieslist" template="Purchase/RemainingSupplyQuantities/Grid.phtml" />
+        </reference>
+    </purchase_remainingsupplyquantities_list>
+    
+    <!-- Misc -->
+
+    <purchase_tax_list>
+        <reference name="content">
+            <block type="Purchase/Tax_List" name="taxlist" template="Purchase/Tax/Grid.phtml" />
+        </reference>
+    </purchase_tax_list>
+    <purchase_tax_edit>
+        <reference name="content">
+            <block type="Purchase/Tax_Edit" name="taxedit" template="Purchase/Tax/Edit.phtml" />
+        </reference>
+    </purchase_tax_edit>
+    <purchase_tax_new>
+        <reference name="content">
+            <block type="Purchase/Tax_New" name="taxnew" template="Purchase/Tax/New.phtml" />
+        </reference>
+    </purchase_tax_new>
+
+    <advancedstock_products_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/packaging.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/purchaseProduct.js</script>
+            </action>
+        </reference>
+    </advancedstock_products_edit>
+
+
+    <!-- Liabilities -->
+    <purchase_orders_liabilities>
+        <reference name="content">
+            <block type="Purchase/Order_Liabilities_Grid" name="liabilities_grid" template="Purchase/Order/Liabilities/Grid.phtml" />
+        </reference>
+    </purchase_orders_liabilities>
+
+    <!-- PO Scanner delivery -->
+    <purchase_orders_scannerdelivery>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/PurchaseOrder/ScannerDelivery.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/ScannerReader.js</script>
+            </action>
+            <action method="addCss">
+                <name>css/Purchase.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="Purchase/Order_ScannerDelivery" name="scanner_delivery" template="Purchase/Order/ScannerDelivery.phtml" />
+        </reference>
+    </purchase_orders_scannerdelivery>
+
+
+</layout>

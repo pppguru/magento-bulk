@@ -1,0 +1,93 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+    $_category = $this->getCategory();
+    $_helper = $this->helper('catalog/output');
+    $menuTitle = $this->getMenuTitle();
+    if (is_object($_category)) {
+        $menuTitle = $_helper->categoryAttribute($_category, $_category->getName(), 'name');
+    }
+?>
+
+<div class="sorting panel panel--from-bottom">
+    <div class="panel__inner">
+
+        <form class="sorting__form">
+
+            <div class="panel__header">
+                <h2 class="panel__title"><span class="panel__title-text"><?php echo $this->__('Sort By') ?></span></h2>
+                <button class="panel__close panel__action"><svg class="panel__action-icon panel__action-icon--close svg-icon"><use xlink:href="#icon-close" /></svg><span class="hide"><?php echo $this->__("Close") ?></span></button>
+            </div><!-- .panel__header -->
+
+            <div class="panel__content">
+                <div class="sorting__container panel__container panel__container--with-button">
+                    <ul class="list-group">
+                        <?php foreach($this->getAvailableOrders() as $_key => $_order): ?>
+                        <li class="list-group__item sorting__parameter">
+                            <span class="radio">
+                                <input class="radio__self" type="radio" name="<?php echo $this->getOrderVarName();?>" id="<?php echo $this->getOrderVarName();?>-<?php echo $_key;?>" value="<?php echo $_key;?>" <?php if($this->isOrderCurrent($_key)): ?>checked<?php endif; ?>>
+                                <label class="list-group__item-title radio__label" for="<?php echo $this->getOrderVarName();?>-<?php echo $_key;?>">
+                                    <span class="list-group__icon list-group__icon--radio radio__icon-wrapper">
+                                        <svg class="radio__icon radio__icon--unchecked svg-icon"><use xlink:href="#icon-radio" /></svg>
+                                        <svg class="radio__icon radio__icon--checked svg-icon"><use xlink:href="#icon-radio--checked" /></svg>
+                                    </span>
+                                    <span class="radio__text"><?php echo $_order ?></span>
+                                </label>
+                            </span>
+                        </li>
+                        <?php endforeach; ?>
+                        <li class="list-group__item sorting__parameter">
+                            <span class="radio radio--sort">
+                                <input class="radio__self" type="radio" name="<?php echo $this->getDirectionVarName();?>" id="<?php echo $this->getDirectionVarName();?>-asc" value="asc" <?php if($this->getCurrentDirection() == 'asc'): ?>checked<?php endif; ?>>
+                                <label class="list-group__item-title radio__label" for="<?php echo $this->getDirectionVarName();?>-asc">
+                                    <span class="radio__icon-wrapper radio__icon-wrapper--sort-asc">
+                                        <svg class="radio__icon svg-icon"><use xlink:href="#icon-sort-arrow--down" /></svg>
+                                    </span><span class="radio__text"><?php echo $this->__('Low to high');?></span>
+                                </label>
+                            </span>
+                        </li>
+                        <li class="list-group__item sorting__parameter">
+                            <span class="radio radio--sort">
+                                <input class="radio__self" type="radio" name="<?php echo $this->getDirectionVarName();?>" id="<?php echo $this->getDirectionVarName();?>-desc" value="desc" <?php if($this->getCurrentDirection() == 'desc'): ?>checked<?php endif; ?>>
+                                <label class="list-group__item-title radio__label" for="<?php echo $this->getDirectionVarName();?>-desc">
+                                    <span class="radio__icon-wrapper radio__icon-wrapper--sort-desc">
+                                        <svg class="radio__icon svg-icon"><use xlink:href="#icon-sort-arrow--up" /></svg>
+                                    </span><span class="radio__text"><?php echo $this->__('High to low');?></span>
+                                </label>
+                            </span>
+                        </li>
+                    </ul>
+
+                    <div class="panel__container-shadow"></div>
+                </div><!-- .panel__container -->
+            </div><!-- .panel__content -->
+
+            <button class="panel__bottom-button button" type="submit"><?php echo $this->__('Apply sorting'); ?></button>
+
+        </form>
+
+    </div><!-- .panel__inner -->
+</div><!-- .panel -->

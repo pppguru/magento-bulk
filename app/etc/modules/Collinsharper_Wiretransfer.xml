@@ -1,0 +1,12 @@
+<config>
+    <modules>
+        <Collinsharper_Wiretransfer>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Payment />
+            </depends>
+            <version>0.2.5</version>
+        </Collinsharper_Wiretransfer>
+    </modules>
+</config>

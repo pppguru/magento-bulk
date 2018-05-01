@@ -1,0 +1,57 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="recent-orders" id="customer_order_list">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+    <?php $_orders = $this->getOrders(); ?>
+
+    <?php if ($_orders->getSize()): ?>
+        <?php foreach ($_orders as $_order): ?>
+            <dl class="recent-orders__order">
+
+                <dt class="recent-orders__name"><?php echo $this->__('Order #');?></dt>
+                <dd class="recent-orders__value"><a href="<?php echo $this->getViewUrl($_order) ?>"><?php echo $_order->getRealOrderId() ?></a></dd>
+
+                <dt class="recent-orders__name"><?php echo $this->__('Date');?></dt>
+                <dd class="recent-orders__value"><?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?></dd>
+
+                <dt class="recent-orders__name"><?php echo $this->__('Total');?></dt>
+                <dd class="recent-orders__value"><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></dd>
+
+            </dl><!-- .recent-orders__order -->
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p class="recent-orders-no-orders"><?php echo $this->__('You have placed no orders.'); ?></p>
+    <?php endif ?>
+</div>
+
+<?php echo $this->getPagerHtml(); ?>
+
+<script>
+    if (typeof pager !== 'undefined') {
+        pager.containerId = 'customer_order_list';
+    }
+</script>

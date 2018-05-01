@@ -1,0 +1,95 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Adminhtml_Statistic_Workload_View_Department $this */?>
+<div class="a-right">
+    <img src="<?php echo $this->getSkinUrl('images/icon_export.gif') ?>" alt="" class="v-middle"/>&nbsp; <?php echo $this->__('Export to:') ?>
+    <select name="departments_export" id="departments_export" style="width:8em;">
+        <option value="<?php echo $this->getExportCsvUrl()?>"><?php echo $this->__('CSV') ?></option>
+        <option value="<?php echo $this->getExportExcelUrl()?>"><?php echo $this->__('Excel XML') ?></option>
+    </select>
+    <button type="button" class="task" onclick="setLocation($('departments_export').getValue())">
+        <span>
+            <span>
+                <?php echo $this->__('Export') ?>
+            </span>
+        </span>
+    </button>
+</div>
+<div class="grid">
+    <table cellspacing="0" class="data">
+        <thead>
+            <tr class="headings">
+                <th><?php echo $this->__('Department Name');?></th>
+                <th><?php echo $this->__('New and Open Tickets');?></th>
+                <th><?php echo $this->__('New Tickets');?></th>
+                <th><?php echo $this->__('Open Tickets');?></th>
+                <th>
+                    <?php echo $this->__('Urgent Tickets');?>
+                    <img class="v-middle workload-help-image" src="<?php echo Mage::getDesign()->getSkinUrl('aw_hdu3/images/icon.gif');?>" title="<?php echo $this->__("Here only new and open tickets with 'Urgent' status are counted")?>" />
+                </th>
+                <th>
+                    <?php echo $this->__('ASAP Tickets');?>
+                    <img class="v-middle workload-help-image" src="<?php echo Mage::getDesign()->getSkinUrl('aw_hdu3/images/icon.gif');?>" title="<?php echo $this->__("Here only new and open tickets with 'ASAP' status are counted")?>" />
+                </th>
+                <th><?php echo $this->__('Waiting for Customer Tickets');?></th>
+                <?php foreach ($this->getExtraStatusOptionHash() as $statusLabel):?>
+                    <th><?php echo $this->__('%s Tickets', $statusLabel);?></th>
+                <?php endforeach;?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->getDepartmentOptionHash() as $departmentId => $departmentLabel):?>
+                <tr>
+                    <td class="a-left"><?php echo $departmentLabel;?></td>
+                    <td class="a-right">
+                        <a href="<?php echo $this->getTicketGridFilterUrl($departmentId, AW_Helpdesk3_Model_Source_Ticket_Status::NEW_AND_OPEN_VALUE);?>" target="_blank"><?php echo $this->getNewTicketCountForDepartment($departmentId) + $this->getOpenTicketCountForDepartment($departmentId);?></a>
+                    </td>
+                    <td class="a-right">
+                        <a href="<?php echo $this->getTicketGridFilterUrl($departmentId, AW_Helpdesk3_Model_Source_Ticket_Status::NEW_VALUE);?>" target="_blank"><?php echo $this->getNewTicketCountForDepartment($departmentId);?></a>
+                    </td>
+                    <td class="a-right">
+                        <a href="<?php echo $this->getTicketGridFilterUrl($departmentId, AW_Helpdesk3_Model_Source_Ticket_Status::OPEN_VALUE);?>" target="_blank"><?php echo $this->getOpenTicketCountForDepartment($departmentId);?></a>
+                    </td>
+
+                    <td class="a-right">
+                        <a href="<?php echo $this->getTicketGridFilterUrl($departmentId, AW_Helpdesk3_Model_Source_Ticket_Status::NEW_AND_OPEN_VALUE, AW_Helpdesk3_Model_Source_Ticket_Priority::URGENT_VALUE);?>" target="_blank"><?php echo $this->getUrgentTicketCountForDepartment($departmentId);?></a>
+                    </td>
+                    <td class="a-right">
+                        <a href="<?php echo $this->getTicketGridFilterUrl($departmentId, AW_Helpdesk3_Model_Source_Ticket_Status::NEW_AND_OPEN_VALUE, AW_Helpdesk3_Model_Source_Ticket_Priority::ASAP_VALUE);?>" target="_blank"><?php echo $this->getASAPTicketCountForDepartment($departmentId);?></a>
+                    </td>
+                    <td class="a-right">
+                        <a href="<?php echo $this->getTicketGridFilterUrl($departmentId, AW_Helpdesk3_Model_Source_Ticket_Status::WAITING_VALUE);?>" target="_blank"><?php echo $this->getWaitingTicketCountForDepartment($departmentId);?></a>
+                    </td>
+                    <?php foreach ($this->getExtraStatusOptionHash() as $statusId => $statusLabel):?>
+                        <td class="a-right">
+                            <a href="<?php echo $this->getTicketGridFilterUrl($departmentId, $statusId);?>" target="_blank"><?php echo $this->getValue($departmentId, $statusId);?></a>
+                        </td>
+                    <?php endforeach;?>
+                </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,100 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php
+
+    $_category = $this->getCategory();
+    $_helper = $this->helper('catalog/output');
+    $menuTitle = $this->getMenuTitle();
+
+    if (is_object($_category)) {
+        $menuTitle = $_helper->categoryAttribute($_category, $_category->getName(), 'name');
+    }
+
+?>
+
+<?php if($this->canShowBlock()):?>
+
+<div class="filter panel panel--from-bottom">
+    <div class="panel__inner">
+
+        <form class="filter__form">
+
+            <div class="panel__header">
+                <button class="panel__back panel__action"><svg class="panel__action-icon panel__action-icon panel__action-icon--back svg-icon"><use xlink:href="#icon-arrow-back" /></svg><span class="hide"><?php echo $this->__("Back") ?></span></button>
+                <h2 class="panel__title"><span class="panel__title-text"><?php echo $this->__('Filter By')?></span></h2>
+                <button class="panel__close panel__action"><svg class="panel__action-icon panel__action-icon--close svg-icon"><use xlink:href="#icon-close" /></svg><span class="hide"><?php echo $this->__("Close") ?></span></button>
+            </div><!-- .panel__header -->
+
+            <div class="panel__content">
+                <div class="panel__container panel__container--with-button" data-title="<?php echo $this->__('Filter By')?>">
+                    <ul class="list-group">
+                        <?php $_filters = $this->getFilters() ?>
+
+                        <?php echo $this->getStateHtml() ?>
+
+                        <?php foreach ($_filters as $index => $_filter): ?>
+                            <?php if($_filter->getItemsCount()): ?>
+                                <li class="filter__parameter list-group__item <?php if (count($_filter->getItems()) > 0) echo 'list-group__item--with-sublist'; ?>" data-open-container="<?php echo $index ?>">
+                                    <a class="list-group__item-title">
+                                        <?php echo $_filter->getName() ?>
+
+                                        <span class="filter__selected-option" data-default-title="<?php echo $this->__('Filter By') ?>: " data-filter-title="<?php echo $_filter->getName() ?>"></span>
+
+                                        <?php if (count($_filter->getItems()) > 0): ?>
+                                            <svg class="list-group__icon list-group__icon--arrow svg-icon"><use xlink:href="#icon-list-arrow" /></svg>
+                                        <?php endif; ?>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>
+
+                    <div class="panel__container-shadow"></div>
+                </div><!-- .panel__container -->
+
+                <?php if($this->canShowOptions()): ?>
+                    <?php foreach ($_filters as $index => $_filter): ?>
+                        <?php if($_filter->getItemsCount()): ?>
+
+                            <div class="panel__container panel__container--with-button" data-container="<?php echo $index ?>" data-title="<?php echo $this->__($_filter->getName()) ?>">
+                                <?php echo $_filter->getHtml();?>
+
+                                <div class="panel__container-shadow"></div>
+                            </div><!-- .panel__container -->
+                        <?php endif; ?>
+                    <?php endforeach;?>
+                <?php endif; ?>
+
+            </div><!-- .panel__content -->
+
+            <button class="panel__bottom-button button js-apply-filter" disabled><?php echo $this->__('Apply the filter');?></button>
+
+        </form>
+
+    </div><!-- .panel__inner -->
+</div><!-- .panel -->
+
+<?php endif; ?>

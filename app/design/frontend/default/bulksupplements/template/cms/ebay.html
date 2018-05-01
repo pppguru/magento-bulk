@@ -1,0 +1,47 @@
+<style type="text/css">
+.product-collateral table         { border:0; border-collapse:collapse; border-spacing:0; empty-cells:show; font-size:100%; }
+.product-collateral caption,th,td { vertical-align:top; text-align:left; font-weight:normal; }
+.product-collateral th            { font-weight: bold; }                  
+.product-collateral { width: 640px; }
+.product-collateral .box-collateral { padding: 0px 0 20px; }
+.product-collateral .box-collateral .half { width: 310px; }
+.product-collateral .box-collateral h2{ /*margin-bottom:10px; color: #ff7a01; font-size: 16px;*/ }
+.product-collateral .box-collateral h3 { font-style: italic; }
+.product-collateral h1{margin-bottom:10px; color: #FF7A01; font-weight: bold;}
+.product-collateral .std table { width: 100%; }
+.product-collateral .nut-info .supp-facts { border: 1px solid #333; padding: 5px; margin-bottom: 20px; }
+.product-collateral .nut-info .supp-facts h2 { font-size: 20px; font-weight: normal; }
+.product-collateral .nut-info table { border-width: 10px 0 8px 0; border-color: #333; border-style: solid; }
+.product-collateral .nut-info table th { border-bottom: 2px solid #333; padding: 5px 0; }
+.product-collateral .nut-info table td { border-bottom: 1px solid #666; padding: 3px 0; }
+.product-collateral .nut-info table .desc { padding-left: 10px; }
+.product-collateral .nut-info p label { margin-right: 20px; }
+.product-collateral .nut-info table.us-spoons { border: 1px solid #333; }
+.product-collateral .nut-info table.us-spoons th,
+.product-collateral .nut-info table.us-spoons td { padding: 2px 15px 2px 10px; border: none; font-weight: normal; }
+.product-collateral .nut-info table.us-spoons th { padding: 2px 20px 2px 15px; }
+.product-collateral .clearer { clear: both; }
+</style>
+
+<div class="product-collateral">
+    <div class="box-collateral">
+        <div class="std">
+            #short_description# #description#
+        </div>
+    </div>
+    <div class="box-collateral">
+        <div class="half" style="float:left;">
+            <h2 class="title">Directions</h2>
+            <div class="std">#directions#</div>
+        </div>
+        <div class="half" style="float:right;">
+            <h2 class="title">Nutritional Information</h2>
+            <div class="std nut-info">#nutritional_information#</div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="box-collateral">
+        <h2 class="title">INGREDIENTS & FURTHER INFORMATION</h2>
+        <div class="std">#ingredients_further#</div>        
+    </div>
+</div>

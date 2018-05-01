@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<template>
+    <information>
+        <data name="ct_id" value="4" />
+        <data name="ct_name" value="TNT Microjet" />
+        <data name="ct_shipping_method" value="owebiashipping3" />
+        <data name="ct_export_filename" value="AUTOEXPL.TXT" />
+        <data name="ct_export_format" value="fixed" />
+        <data name="ct_export_file_separator" value="none" />
+        <data name="ct_export_file_delimiter" value="none" />
+        <data name="ct_export_add_header" value="0" />
+        <data name="ct_import_format" value="fixed" />
+        <data name="ct_import_file_separator" value="none" />
+        <data name="ct_import_file_delimiter" value="none" />
+        <data name="ct_import_skip_first_record" value="0" />
+        <data name="ct_export_custom_header" value="" />
+        <data name="ct_export_remove_accent" value="1" />
+        <data name="ct_export_convert_utf8" value="0" />
+        <data name="ct_export_line_end" value="n" />
+        <data name="ct_export_witness_filename" value="AUTOEXPL.TEM" />
+    </information>
+    <fields>
+        <field>
+            <data name="ctf_id" value="65" />
+            <data name="ctf_name" value="Account" />
+            <data name="ctf_size" value="8" />
+            <data name="ctf_content" value="06314014" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="0" />
+        </field>
+        <field>
+            <data name="ctf_id" value="66" />
+            <data name="ctf_name" value="unknown" />
+            <data name="ctf_size" value="16" />
+            <data name="ctf_content" value="" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="import" />
+            <data name="ctf_position" value="0" />
+        </field>
+        <field>
+            <data name="ctf_id" value="67" />
+            <data name="ctf_name" value="Expedition type" />
+            <data name="ctf_size" value="1" />
+            <data name="ctf_content" value="C" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="1" />
+        </field>
+        <field>
+            <data name="ctf_id" value="68" />
+            <data name="ctf_name" value="tracking" />
+            <data name="ctf_size" value="16" />
+            <data name="ctf_content" value="tracking" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="import" />
+            <data name="ctf_position" value="1" />
+        </field>
+        <field>
+            <data name="ctf_id" value="69" />
+            <data name="ctf_name" value="weight" />
+            <data name="ctf_size" value="6" />
+            <data name="ctf_content" value="{weight}" />
+            <data name="ctf_format" value="number_format" />
+            <data name="ctf_format_argument" value="%06.1f" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="2" />
+        </field>
+        <field>
+            <data name="ctf_id" value="70" />
+            <data name="ctf_name" value="unknown" />
+            <data name="ctf_size" value="12" />
+            <data name="ctf_content" value="" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="import" />
+            <data name="ctf_position" value="2" />
+        </field>
+        <field>
+            <data name="ctf_id" value="72" />
+            <data name="ctf_name" value="Shipment" />
+            <data name="ctf_size" value="9" />
+            <data name="ctf_content" value="shipment" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="import" />
+            <data name="ctf_position" value="3" />
+        </field>
+        <field>
+            <data name="ctf_id" value="71" />
+            <data name="ctf_name" value="Shipment" />
+            <data name="ctf_size" value="15" />
+            <data name="ctf_content" value="{shipment_ref}" />
+            <data name="ctf_format" value="pad_left" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="3" />
+        </field>
+        <field>
+            <data name="ctf_id" value="73" />
+            <data name="ctf_name" value="Declared value" />
+            <data name="ctf_size" value="9" />
+            <data name="ctf_content" value="0" />
+            <data name="ctf_format" value="pad_right" />
+            <data name="ctf_format_argument" value="0" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="4" />
+        </field>
+        <field>
+            <data name="ctf_id" value="74" />
+            <data name="ctf_name" value="Package Count" />
+            <data name="ctf_size" value="2" />
+            <data name="ctf_content" value="" />
+            <data name="ctf_format" value="custom_list" />
+            <data name="ctf_format_argument" value="01:01;02:02;03:03;04:04;05:05" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="5" />
+        </field>
+        <field>
+            <data name="ctf_id" value="75" />
+            <data name="ctf_name" value="Customer ref" />
+            <data name="ctf_size" value="10" />
+            <data name="ctf_content" value="{cust_ref2}" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="6" />
+        </field>
+        <field>
+            <data name="ctf_id" value="76" />
+            <data name="ctf_name" value="Customer name" />
+            <data name="ctf_size" value="32" />
+            <data name="ctf_content" value="{company} {prefix} {lastname} {firstname} " />
+            <data name="ctf_format" value="pad_right" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="7" />
+        </field>
+        <field>
+            <data name="ctf_id" value="77" />
+            <data name="ctf_name" value="Address1" />
+            <data name="ctf_size" value="32" />
+            <data name="ctf_content" value="{street1}" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="8" />
+        </field>
+        <field>
+            <data name="ctf_id" value="78" />
+            <data name="ctf_name" value="Address2" />
+            <data name="ctf_size" value="32" />
+            <data name="ctf_content" value="{street2}" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="9" />
+        </field>
+        <field>
+            <data name="ctf_id" value="79" />
+            <data name="ctf_name" value="Post code" />
+            <data name="ctf_size" value="10" />
+            <data name="ctf_content" value="{postcode}" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="10" />
+        </field>
+        <field>
+            <data name="ctf_id" value="80" />
+            <data name="ctf_name" value="City" />
+            <data name="ctf_size" value="27" />
+            <data name="ctf_content" value="{city}" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="11" />
+        </field>
+        <field>
+            <data name="ctf_id" value="81" />
+            <data name="ctf_name" value="Country" />
+            <data name="ctf_size" value="2" />
+            <data name="ctf_content" value="{country_code}" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="12" />
+        </field>
+        <field>
+            <data name="ctf_id" value="82" />
+            <data name="ctf_name" value="Product code" />
+            <data name="ctf_size" value="2" />
+            <data name="ctf_content" value="" />
+            <data name="ctf_format" value="custom_list" />
+            <data name="ctf_format_argument" value="J:13h;JZ:13h dom" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="13" />
+        </field>
+        <field>
+            <data name="ctf_id" value="83" />
+            <data name="ctf_name" value="Instructions" />
+            <data name="ctf_size" value="60" />
+            <data name="ctf_content" value="" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="14" />
+        </field>
+        <field>
+            <data name="ctf_id" value="84" />
+            <data name="ctf_name" value="User zone" />
+            <data name="ctf_size" value="25" />
+            <data name="ctf_content" value="" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="15" />
+        </field>
+        <field>
+            <data name="ctf_id" value="85" />
+            <data name="ctf_name" value="Payment return" />
+            <data name="ctf_size" value="12" />
+            <data name="ctf_content" value="0.00" />
+            <data name="ctf_format" value="pad_left" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="16" />
+        </field>
+        <field>
+            <data name="ctf_id" value="86" />
+            <data name="ctf_name" value="Shipping date" />
+            <data name="ctf_size" value="8" />
+            <data name="ctf_content" value="" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="17" />
+        </field>
+        <field>
+            <data name="ctf_id" value="87" />
+            <data name="ctf_name" value="Expeditor" />
+            <data name="ctf_size" value="32" />
+            <data name="ctf_content" value="Maison du numerique" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="18" />
+        </field>
+        <field>
+            <data name="ctf_id" value="88" />
+            <data name="ctf_name" value="Expeditor address" />
+            <data name="ctf_size" value="32" />
+            <data name="ctf_content" value="112 rue docteur guerin" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="19" />
+        </field>
+        <field>
+            <data name="ctf_id" value="89" />
+            <data name="ctf_name" value="Expeditor address 2" />
+            <data name="ctf_size" value="32" />
+            <data name="ctf_content" value="" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="20" />
+        </field>
+        <field>
+            <data name="ctf_id" value="90" />
+            <data name="ctf_name" value="Expeditor postcode" />
+            <data name="ctf_size" value="10" />
+            <data name="ctf_content" value="83210" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="21" />
+        </field>
+        <field>
+            <data name="ctf_id" value="91" />
+            <data name="ctf_name" value="Expeditor city" />
+            <data name="ctf_size" value="27" />
+            <data name="ctf_content" value="La Farlede" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="22" />
+        </field>
+        <field>
+            <data name="ctf_id" value="92" />
+            <data name="ctf_name" value="Expeditor country" />
+            <data name="ctf_size" value="2" />
+            <data name="ctf_content" value="FR" />
+            <data name="ctf_format" value="" />
+            <data name="ctf_format_argument" value="" />
+            <data name="ctf_template_id" value="4" />
+            <data name="ctf_type" value="export" />
+            <data name="ctf_position" value="23" />
+        </field>
+    </fields>
+</template>

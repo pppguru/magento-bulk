@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MDN_Shipworks>
+            <version>1.2.1</version>
+        </MDN_Shipworks>
+    </modules>
+    
+    <global>
+        <helpers>
+            <Shipworks>
+                <class>MDN_Shipworks_Helper</class>
+            </Shipworks>
+        </helpers>
+        <blocks>
+            <Shipworks>
+                <class>MDN_Shipworks_Block</class>
+            </Shipworks>
+        </blocks>
+        <models>
+            <Shipworks>
+                <class>MDN_Shipworks_Model</class>
+                <resourceModel>Shipworks_mysql4</resourceModel>
+            </Shipworks>
+            <Shipworks_mysql4>
+                <class>MDN_Shipworks_Model_Mysql4</class>
+                <!-- defini les tables utilisables -->
+                <entities>
+                    
+                </entities>
+            </Shipworks_mysql4>
+        </models>
+
+        <resources>
+            <Shipworks_setup>
+                <setup>
+                    <module>MDN_Shipworks</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </Shipworks_setup>
+            <Shipworks_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </Shipworks_write>
+            <Shipworks_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </Shipworks_read>
+        </resources>
+        
+      
+      
+        
+    </global>
+    
+    <adminhtml>
+    	
+        
+        <translate>
+            <modules>
+                <MDN_Shipworks>
+                    <files>
+                        <default>MDN_Shipworks.csv</default>
+                    </files>
+                </MDN_Shipworks>
+            </modules>
+        </translate>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <shipworks module="Shipworks">
+                                            <title>Shipworks</title>
+                                        </shipworks>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+
+
+        <routers>
+            <Shipworks>
+                <use>standard</use>
+                <args>
+                    <module>MDN_Shipworks</module>
+                    <frontName>Shipworks</frontName>
+                </args>
+            </Shipworks>
+        </routers>
+        
+        <layout>
+            <updates>
+                <Shipworks>
+                    <file>Shipworks.xml</file>
+                </Shipworks>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <MDN_Shipworks>
+                    <files>
+                        <default>MDN_Shipworks.csv</default>
+                    </files>
+                </MDN_Shipworks>
+            </modules>
+        </translate>
+
+    </adminhtml>
+    
+    <frontend>
+    
+        <secure_url>
+            <shipworks_front>/Shipworks/Front</shipworks_front>
+            <shipworks_front_index>/Shipworks/Front/Index</shipworks_front_index>
+        </secure_url>
+        
+        <routers>
+            <Shipworks>
+                <use>standard</use>
+                <args>
+                    <module>MDN_Shipworks</module>
+                    <frontName>Shipworks</frontName>
+                </args>
+            </Shipworks>
+        </routers>
+        
+
+        <translate>
+            <modules>
+                <MDN_Shipworks>
+                    <files>
+                        <default>MDN_Shipworks.csv</default>
+                    </files>
+                </MDN_Shipworks>
+            </modules>
+        </translate>
+        
+    </frontend>
+    
+    <admin>
+        <routers>
+            <Shipworks>
+                <use>admin</use>
+                <args>
+                    <module>MDN_Shipworks</module>
+                    <frontName>Shipworks</frontName>
+                </args>
+            </Shipworks>
+        </routers>
+    </admin>
+
+</config>

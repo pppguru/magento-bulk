@@ -1,0 +1,43 @@
+<input type="hidden" id="data[rsr_id]" name="data[rsr_id]" value="<?php echo $this->getRsr()->getId(); ?>">
+<input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+
+<div class="entry-edit">
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend">General</h4> 
+	    </div>
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('Reference'); ?></td>
+                    <td class="input-ele"><input type="text" name="data[rsr_reference]" value="<?php echo $this->getRsr()->getrsr_reference(); ?>"/></td>
+                    <td width="100">&nbsp;</td>
+                    <td class="label"><?php echo $this->__('Status'); ?></td>
+                    <td class="input-ele"><?php echo $this->getStatusesAsCombo('data[rsr_status]', $this->getRsr()->getrsr_status()); ?></td>
+                </tr>
+                <tr>
+                    <td style="height:20px"></td>
+                    
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Supplier'); ?></td>
+                    <td class="input-ele"><a href="<?php echo $this->getUrl('Purchase/Suppliers/Edit', array('sup_id' => $this->getRsr()->getSupplier()->getsup_id())); ?>"><?php echo $this->getRsr()->getSupplier()->getsup_name(); ?></a>
+                    <td width="100">&nbsp;</td>
+                    <td class="label"><?php echo $this->__('Comments'); ?></td>
+                    <td class="input-ele" rowspan="5"><textarea cols="60" rows="10" name="data[rsr_comments]" id="data[rsr_comments]"><?php echo $this->getRsr()->getrsr_comments(); ?></textarea></td>
+                <tr>
+                    <td class="label"><?php echo $this->__('Supplier Reference'); ?></td>
+                    <td class="input-ele"><input type="text" name="data[rsr_supplier_reference]" value="<?php echo $this->getRsr()->getrsr_supplier_reference(); ?>"/></td>
+                    </tr>
+                <tr>
+                    <td style="height:20px"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Created at'); ?></td>
+                    <td class="input-ele"><?php echo $this->formatDate($this->getRsr()->getrsr_created_at(), 'medium'); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Updated at'); ?></td>
+                    <td class="input-ele"><?php echo $this->formatDate($this->getRsr()->getrsr_updated_at(), 'medium'); ?></td>
+                </tr>
+            </table>
+        </fieldset>

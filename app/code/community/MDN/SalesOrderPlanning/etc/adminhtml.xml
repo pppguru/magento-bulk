@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<config>
+
+    <routers>
+        <SalesOrderPlanning>
+            <use>standard</use>
+            <args>
+                <module>MDN_SalesOrderPlanning</module>
+                <frontName>SalesOrderPlanning</frontName>
+            </args>
+        </SalesOrderPlanning>
+    </routers>
+
+    <layout>
+        <updates>
+            <SalesOrderPlanning>
+                <file>SalesOrderPlanning.xml</file>
+            </SalesOrderPlanning>
+        </updates>
+    </layout>
+        
+    <translate>
+        <modules>
+            <MDN_SalesOrderPlanning>
+                <files>
+                    <default>MDN_SalesOrderPlanning.csv</default>
+                </files>
+            </MDN_SalesOrderPlanning>
+        </modules>
+    </translate>
+        
+    <menu>
+        <erp>
+            <children>
+                <tools>
+                    <children>
+                        <purchase_shipping_delay translate="title" module="SalesOrderPlanning">
+                            <title>Shipping Delay</title>
+                            <action>adminhtml/SalesOrderPlanning_ShippingDelay/List</action>
+                        </purchase_shipping_delay>
+                        <product_availability_label translate="title" module="SalesOrderPlanning">
+                            <title>Product availability ranges</title>
+                            <action>adminhtml/SalesOrderPlanning_ProductAvailabilityRange/List</action>
+                        </product_availability_label> 
+                        <product_availability_status> 
+                            <title>Product Availability Statuses</title>
+                            <action>adminhtml/SalesOrderPlanning_ProductAvailabilityStatus/Grid</action>
+                        </product_availability_status> 
+                    </children>
+                </tools>       
+                <order_preparation>
+                    <children>	                    
+                        <late_orders translate="title" module="Orderpreparation">
+                            <title>Late orders</title>
+                            <action>adminhtml/SalesOrderPlanning_LateOrders</action>
+                            <sort_order>20</sort_order>
+                        </late_orders>
+                    </children>
+                </order_preparation>
+            </children>
+        </erp>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <erp>
+                        <children>
+                            <tools>
+                                <children>
+                                    <purchase_shipping_delay module="SalesOrderPlanning">
+                                        <title>Shipping Delay</title>
+                                    </purchase_shipping_delay>		
+                                    <product_availability_label module="SalesOrderPlanning">
+                                        <title>Product Availability Ranges</title>
+                                    </product_availability_label>		
+                                    <product_availability_status module="SalesOrderPlanning">
+                                        <title>Product Availability Status</title>
+                                    </product_availability_status>		
+                                </children>
+                            </tools>
+                            <sales_order_planning>
+                                <title>Planning</title>
+                                <children>
+                                    <display_planning module="SalesOrderPlanning">
+                                        <title>Display planning</title>
+                                    </display_planning>
+                                </children>
+                            </sales_order_planning>
+                            <order_preparation>
+                                <children>
+                                    <late_orders module="Orderpreparation">
+                                        <title>Late orders</title>
+                                    </late_orders>
+                                </children>
+                            </order_preparation>
+                           <products>
+                                <children>
+                                    <view>
+                                        <children>
+                                            <outofstock_period module="SalesOrderPlanning">
+                                                <title>Out of stock period tab</title>
+                                            </outofstock_period>
+                                            <availability_status module="SalesOrderPlanning">
+                                                <title>Availability status tab</title>
+                                            </availability_status>
+                                        </children>
+                                    </view>
+                                </children>
+                            </products>
+                        </children>
+                    </erp>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

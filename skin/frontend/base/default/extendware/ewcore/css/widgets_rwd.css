@@ -1,0 +1,11 @@
+.ewfwidget .actions img {
+	display: inline;
+}
+
+.ewfwidget .actions .pager {
+	float: none;
+}
+
+.ewfwidget .actions button span span {
+	color: white;
+}

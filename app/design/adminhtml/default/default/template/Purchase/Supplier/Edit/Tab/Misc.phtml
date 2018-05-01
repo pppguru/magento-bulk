@@ -1,0 +1,105 @@
+		
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo$this->__('Account Information') ?></h4>
+    </div>
+    <fieldset id="my-fieldset">
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td class="label"><?php echo$this->__('Account Login') ?></td>
+                <td class="input-ele"><input type="text" id="sup_account_login" name="sup_account_login" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_account_login(); ?>"></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo$this->__('Account Password') ?></td>
+                <td class="input-ele"><input type="text" id="sup_account_password" name="sup_account_password" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_account_password(); ?>"></td>
+            </tr>
+
+        </table>
+    </fieldset>
+</div>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo$this->__('After Sale Information') ?></h4>
+    </div>
+    <fieldset id="my-fieldset">
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td class="label"><?php echo$this->__('Phone') ?></td>
+                <td class="input-ele"><textarea id="sup_rma_tel" name="sup_rma_tel" cols="50" rows="2"><?php echo $this->getSupplier()->getsup_rma_tel(); ?></textarea></td>
+            </tr>
+            <tr>
+                <td class="label">Email</td>
+                <td class="input-ele"><input type="text" id="sup_rma_mail" name="sup_rma_mail" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_rma_mail(); ?>"></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo$this->__('Comments') ?></td>
+                <td class="input-ele"><textarea id="sup_rma_comments" name="sup_rma_comments" cols="100" rows="5"><?php echo $this->getSupplier()->getsup_rma_comments(); ?></textarea></td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo$this->__('Purchase Information') ?></h4>
+    </div>
+    <fieldset id="my-fieldset">
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td class="label"><?php echo$this->__('Minimum of order') ?></td>
+                <td class="input-ele"><input type="text" id="sup_order_mini" name="sup_order_mini" style="width:100px;" value="<?php echo $this->getSupplier()->getsup_order_mini(); ?>"> <?php echo $this->getDefaultCurrency()->getcode() ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo$this->__('Carriage free order amount') ?></td>
+                <td class="input-ele"><input type="text" id="sup_free_carriage_amount" name="sup_free_carriage_amount" style="width:100px;" value="<?php echo $this->getSupplier()->getsup_free_carriage_amount(); ?>"> <?php echo $this->getDefaultCurrency()->getcode() ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo$this->__('Carriage free order weight') ?></td>
+                <td class="input-ele"><input type="text" id="sup_free_carriage_weight" name="sup_free_carriage_weight" style="width:100px;" value="<?php echo $this->getSupplier()->getsup_free_carriage_weight(); ?>"></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo$this->__('Supply Delay') ?></td>
+                <td class="input-ele">
+                    <select id="sup_supply_delay" name="sup_supply_delay">
+                        <option value=""></option>
+                        <?php
+                        for ($i = 0; $i < 255; $i++) {
+                            $selected = '';
+                            if ($i == $this->getSupplier()->getsup_supply_delay())
+                                $selected = ' selected ';
+                            echo '<option value="' . $i . '" ' . $selected . '>' . $i . '</option>';
+                        }
+                        ?>
+                    </select>
+                    &nbsp;<i><?php echo $this->__('days, used when supplier stock is not set or equal to 0'); ?></i>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo$this->__('Shipping Delay') ?></td>
+                <td class="input-ele">
+                    <select id="sup_shipping_delay" name="sup_shipping_delay">
+                        <option value=""></option>
+                        <?php
+                        for ($i = 0; $i < 255; $i++) {
+                            $selected = '';
+                            if ($i == $this->getSupplier()->getsup_shipping_delay())
+                                $selected = ' selected ';
+                            echo '<option value="' . $i . '" ' . $selected . '>' . $i . '</option>';
+                        }
+                        ?>
+                    </select>
+                    &nbsp;<i><?php echo $this->__('days, used when supplier stock is greater than 0'); ?></i>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo$this->__('Permanent discount level') ?></td>
+                <td class="input-ele"><input type="text" id="sup_discount_level" name="sup_discount_level" style="width:100px;" value="<?php echo $this->getSupplier()->getsup_discount_level(); ?>"> % </td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo$this->__('Payment delay') ?></td>
+                <td class="input-ele"><input type="text" id="sup_payment_delay" name="sup_payment_delay" style="width:100px;" value="<?php echo $this->getSupplier()->getsup_payment_delay(); ?>"> <i><?php echo $this->__('days'); ?></i> </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>

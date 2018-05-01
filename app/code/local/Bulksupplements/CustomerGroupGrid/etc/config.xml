@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bulksupplements_CustomerGroupGrid>
+            <version>0.1.0</version>
+        </Bulksupplements_CustomerGroupGrid>
+    </modules>
+    <global>
+        <models>
+            <example_salesgrid>
+                <class>Bulksupplements_CustomerGroupGrid_Model</class>
+            </example_salesgrid>
+        </models>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_create_customer_grid>Bulksupplements_CustomerGroupGrid_Block_Adminhtml_Sales_Order_Create_Customer_Grid</sales_order_create_customer_grid>
+                    <!-- SalesOrderGrid is overwritten by the other extension, -->
+                    <!-- so we are overriding it by layout -->
+                    <!-- <sales_order_grid>Bulksupplements_CustomerGroupGrid_Block_Adminhtml_Sales_Order_Grid</sales_order_grid> -->
+                </rewrite>
+            </adminhtml>
+            <bulksupplements_customergroupgrid>
+                <class>Bulksupplements_CustomerGroupGrid_Block</class>
+            </bulksupplements_customergroupgrid>
+        </blocks>
+        <!-- SalesOrderGrid is overwritten by the other extension, -->
+        <!-- so we are overriding it by layout -->
+        <!-- <events>
+            <adminhtml_block_html_before>
+                <observers>
+                    <add_customer_group_column>
+                        <type>singleton</type>
+                        <class>Bulksupplements_CustomerGroupGrid_Model_Observer</class>
+                        <method>addCustomerGroupColumn</method>
+                    </add_customer_group_column>
+                </observers>
+            </adminhtml_block_html_before>
+        </events> -->
+        <resources>
+            <customergroupid_setup>
+                <setup>
+                    <module>Bulksupplements_CustomerGroupGrid</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </customergroupid_setup>
+            <customergroupid_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </customergroupid_write>
+            <customergroupid_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </customergroupid_read>
+        </resources>
+    </global>
+    <adminhtml>
+        <layout>
+            <!-- layout upgrade configuration -->
+            <updates>
+                <bulksupplements_customergroupgrid>
+                    <file>bulksupplements/customergroupgrid.xml</file>
+                </bulksupplements_customergroupgrid>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

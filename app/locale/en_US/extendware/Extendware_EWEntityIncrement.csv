@@ -1,0 +1,63 @@
+"<b>Note: </b> This is used for viewing format example only. Even if duplicate numbers are shown a duplicate number is never allowed. If two entity types (such as orders and invoicing) have the same starting / increment range, then they will increment synchronously.","<b>Note: </b> This is used for viewing format example only. Even if duplicate numbers are shown a duplicate number is never allowed. If two entity types (such as orders and invoicing) have the same starting / increment range, then they will increment synchronously."
+"A non-numeric prefix (or no prefix) is generally recommended","A non-numeric prefix (or no prefix) is generally recommended"
+"A rebuild is already in progress or has failed. Please try again in %s minutes if your numbers have not been rebuilt.","A rebuild is already in progress or has failed. Please try again in %s minutes if your numbers have not been rebuilt."
+Advanced,Advanced
+"All entity type numbers have been rebuilt successfully. You should probably delete last ID cache now.","All entity type numbers have been rebuilt successfully. You should probably delete last ID cache now."
+"An example number using the current numbering scheme. <b>Note: </b>Change the numbering scheme in the configuration if you do not like this scheme.","An example number using the current numbering scheme. <b>Note: </b>Change the numbering scheme in the configuration if you do not like this scheme."
+"An ID of 1 with a padding of 3 will be 003","An ID of 1 with a padding of 3 will be 003"
+"Are you sure you want to delete the last ID cache? If your starting number is 1 and your first and last order ID is 100, it will make your next order ID 1 (assuming no order exists with the ID of 1). Backup the database before using!","Are you sure you want to delete the last ID cache? If your starting number is 1 and your first and last order ID is 100, it will make your next order ID 1 (assuming no order exists with the ID of 1). Backup the database before using!"
+Configuration,Configuration
+Configure,Configure
+"Could not load entity type","Could not load entity type"
+"Credit Memo Numbers","Credit Memo Numbers"
+"Custom Order Numbers","Custom Order Numbers"
+"Date Prefix","Date Prefix"
+"Date Source","Date Source"
+"Delete Last ID Cache","Delete Last ID Cache"
+"Ensure you save the configuration before previewing! If you have saved, then please continue.","Ensure you save the configuration before previewing! If you have saved, then please continue."
+"Entity Numbers Preview","Entity Numbers Preview"
+Extendware,Extendware
+"For example, if you have configured the date prefix to be YYYYMMDD and you enable <i>reset on date change</i>, then every day the number portion would reset to the starting number. If the date prefix format is set to YYYYMM, then the starting number would reset every month.","For example, if you have configured the date prefix to be YYYYMMDD and you enable <i>reset on date change</i>, then every day the number portion would reset to the starting number. If the date prefix format is set to YYYYMM, then the starting number would reset every month."
+"For example, if you have configured the date prefix to be YYYYMMDD and you enable reset numbering, then every day the number portion would reset to the starting number.","For example, if you have configured the date prefix to be YYYYMMDD and you enable reset numbering, then every day the number portion would reset to the starting number."
+General,General
+"If an item created now then this would be the next number. If you use date reseting, then this will oftentimes be the same as the starting number. <b>Note: </b>If this number does not seem correct you might need to delete your last number cache.","If an item created now then this would be the next number. If you use date reseting, then this will oftentimes be the same as the starting number. <b>Note: </b>If this number does not seem correct you might need to delete your last number cache."
+"If customer A orders and gets number 100 and customer B orders immediately after, the increment amount determines what number customer B will receive. If increment amoun is 1, then the next number is 101, if it is 5, then the next number will be 105. If the increment amount is 1-5, then a random number between 1-5 will be added to 100 to obtain the next ID.","If customer A orders and gets number 100 and customer B orders immediately after, the increment amount determines what number customer B will receive. If increment amoun is 1, then the next number is 101, if it is 5, then the next number will be 105. If the increment amount is 1-5, then a random number between 1-5 will be added to 100 to obtain the next ID."
+"If you already have orders in your store and you set the start number below the last order ID, then nothing will happen. You will have to rebuild your numbers / reset your last ID cache in this situation. If you set a range such as 1-5, then the starting number will be a randomly number within this range. This is especially useful for date prefixes where the starting number resets every date period.","If you already have orders in your store and you set the start number below the last order ID, then nothing will happen. You will have to rebuild your numbers / reset your last ID cache in this situation. If you set a range such as 1-5, then the starting number will be a randomly number within this range. This is especially useful for date prefixes where the starting number resets every date period."
+"Increment Amount","Increment Amount"
+"Invoice Numbers","Invoice Numbers"
+"Last ID number cache has been deleted","Last ID number cache has been deleted"
+Locale,Locale
+Main,Main
+"Next Number","Next Number"
+None,None
+"Number Previewing","Number Previewing"
+Numbers,Numbers
+"Order Numbers","Order Numbers"
+"Padding Length","Padding Length"
+"Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs.","Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs."
+Prefix,Prefix
+"Prefix numbers by date. This goes after the prefix and before the number: [prefix][date_prefix][number]","Prefix numbers by date. This goes after the prefix and before the number: [prefix][date_prefix][number]"
+"Preview Numbers","Preview Numbers"
+"Rebuild already in progress. Cannot initiate new rebuild.","Rebuild already in progress. Cannot initiate new rebuild."
+"Rebuild Numbers","Rebuild Numbers"
+"Rebuild numbers only if you want your old olders to be updated to the current numbering scheme.","Rebuild numbers only if you want your old olders to be updated to the current numbering scheme."
+"Reset On Date Change","Reset On Date Change"
+"Reset the numbering when the date prefix changes (e.g., the year changing from 2011 to 2012)","Reset the numbering when the date prefix changes (e.g., the year changing from 2011 to 2012)"
+"Select the source that will be used for date prefixes. System time will use the time configured on your system / database. Locale will attempt to adjust it for your configured locale.","Select the source that will be used for date prefixes. System time will use the time configured on your system / database. Locale will attempt to adjust it for your configured locale."
+Settings,Settings
+"Shipment Numbers","Shipment Numbers"
+"Starting Number","Starting Number"
+System,System
+"The next ID will be the last ID + the increment amount. Format: [num] or [min-num]-[max-num]","The next ID will be the last ID + the increment amount. Format: [num] or [min-num]-[max-num]"
+"The number the first ID will have. Format: [num] or [min-num]-[max-num]","The number the first ID will have. Format: [num] or [min-num]-[max-num]"
+"The prefix will go in front of your number. For example, if the next number is 100 and you have a prefix ABC, the real number will be ABC100.","The prefix will go in front of your number. For example, if the next number is 100 and you have a prefix ABC, the real number will be ABC100."
+"There was an error rebuilding one of the entity type numbers","There was an error rebuilding one of the entity type numbers"
+"This will irreversibly update numbers to new number scheme. Backup the database prior to using!","This will irreversibly update numbers to new number scheme. Backup the database prior to using!"
+"Unsupported entity type encountered","Unsupported entity type encountered"
+"View Entity Numbers","View Entity Numbers"
+"YY (Ex: 12)","YY (Ex: 12)"
+"YYMM (Ex: 1201)","YYMM (Ex: 1201)"
+"YYMMDD (Ex: 120115)","YYMMDD (Ex: 120115)"
+"YYYY (Ex: 2012)","YYYY (Ex: 2012)"
+"YYYYMM (Ex: 201201)","YYYYMM (Ex: 201201)"
+"YYYYMMDD (Ex: 20120115)","YYYYMMDD (Ex: 20120115)"

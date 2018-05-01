@@ -1,0 +1,58 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Advancedreports
+ * @version    2.5.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><tr>
+    <td class="label"></td>
+    <td class="value">
+        <button class="scalable delete" onclick="resetAllEDStatistics('<?php echo $this->getResetAllUrl(); ?>'); return false;" type="button">
+            <span><?php echo $this->getTitle() ?></span>
+        </button>
+    </td>
+</tr>
+<script type="text/javascript">
+    //<![CDATA[
+    var resetAllEDStatistics = function (url) {
+        var loader_id = 'loading-mask';
+
+        if (confirm('<?php echo $this->__('Are you sure?'); ?>')) {
+            new Ajax.Request(url + (url.match(new RegExp('\\?')) ? '&ajax=true' : '?ajax=true' ), {
+                parameters: this.reloadParams || {},
+                onCreate: function (obj) {
+                    Element.show(loader_id);
+                },
+                onFailure: function () {
+                    alert('<?php echo $this->__('Cache clean error'); ?>');
+                },
+                onComplete: function (transport) {
+                    Element.hide(loader_id);
+                },
+                onSuccess: function (transport) {
+                    alert('<?php echo $this->__('Cache is clear now'); ?>');
+                }
+            });
+        }
+    };
+    //]]>
+</script>

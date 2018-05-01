@@ -1,0 +1,124 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="account-info">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <form class="form" action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate">
+        <?php echo $this->getBlockHtml('formkey')?>
+
+        <p class="form__field form__required-hint">
+            <?php echo $this->__('Required Fields') ?>
+        </p>
+
+        <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
+
+        <p class="form__field form__field--required">
+            <label class="form__label form__label--required"><?php echo $this->__('Email Address') ?></label>
+            <input type="email" name="email" id="email" value="<?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="form__textfield textfield required-entry validate-email">
+        </p><!-- .form__field -->
+
+        <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob')->setClassName('edit_customer_dob') ?>
+        <?php if ($_dob->isEnabled()): ?>
+            <?php echo $_dob->setDate($this->getCustomer()->getDob())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+        <?php if ($_taxvat->isEnabled()): ?>
+            <?php echo $_taxvat->setTaxvat($this->getCustomer()->getTaxvat())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+        <?php if ($_gender->isEnabled()): ?>
+            <?php echo $_gender->setGender($this->getCustomer()->getGender())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $userDefinedAttributes = $this->getLayout()->getBlock('customer_form_user_attributes'); ?>
+        <?php if ($userDefinedAttributes && $userDefinedAttributes instanceof Enterprise_Customer_Block_Form):?>
+            <?php echo $userDefinedAttributes->setEntity($this->getCustomer())->toHtml(); ?>
+        <?php endif;?>
+
+        <div class="form__field">
+            <span class="checkbox">
+                <input class="checkbox__self" type="checkbox" name="change_password" id="change_password" <?php if ($this->getCustomer()->getChangePassword() == 1): ?> checked<?php endif; ?>>
+                <label class="form__label checkbox__label" for="change_password">
+                    <span class="checkbox__icon-wrapper">
+                        <svg class="checkbox__icon checkbox__icon--unchecked svg-icon"><use xlink:href="#icon-checkbox" /></svg>
+                        <svg class="checkbox__icon checkbox__icon--checked svg-icon"><use xlink:href="#icon-checkbox--checked" /></svg>
+                    </span>
+                    <span class="checkbox__text"><?php echo $this->__('Change Password') ?></span>
+                </label>
+            </span>
+        </div><!-- .form__field -->
+
+        <div class="account-info__passwords form__field is-hidden">
+            <p class="form__field form__field--required">
+                <label class="form__label form__label--required"><?php echo $this->__('Current Password') ?></label>
+                <input type="password" title="<?php echo $this->__('Current Password') ?>" name="current_password" id="current_password" class="form__textfield textfield">
+            </p><!-- .form__field -->
+
+            <p class="form__field form__field--required">
+                <label class="form__label form__label--required"><?php echo $this->__('New Password') ?></label>
+                <input type="password" title="<?php echo $this->__('New Password') ?>" name="password" id="password" class="form__textfield textfield validate-password">
+            </p><!-- .form__field -->
+
+            <p class="form__field form__field--required">
+                <label class="form__label form__label--required"><?php echo $this->__('Confirm New Password') ?></label>
+                <input type="password" title="<?php echo $this->__('Confirm New Password') ?>" name="confirmation" id="confirmation" class="form__textfield textfield validate-cpassword">
+            </p><!-- .form__field -->
+        </div>
+
+        <p class="form__field">
+            <button class="form__submit button" type="submit"><?php echo $this->__('Save') ?></button>
+        </p>
+        <p class="account__back-button">
+            <a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>" class="button button--invert"><?php echo $this->__('Back') ?></a>
+        </p><!-- .form__submit-wrapper -->
+    </form>
+</div>
+<script type="text/javascript">
+    //<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+    function setPasswordForm(arg){
+        if(arg){
+            $('current_password').up(1).removeClassName('is-hidden');
+            $('current_password').addClassName('required-entry');
+            $('password').addClassName('required-entry');
+            $('confirmation').addClassName('required-entry');
+
+        }else{
+            $('current_password').up(1).addClassName('is-hidden');
+            $('current_password').removeClassName('required-entry');
+            $('password').removeClassName('required-entry');
+            $('confirmation').removeClassName('required-entry');
+        }
+    }
+    $('change_password').observe('change', function(e){
+        setPasswordForm($('change_password').checked);
+    });
+    <?php if($this->getCustomer()->getChangePassword()): ?>
+    setPasswordForm(true);
+    <?php endif; ?>
+    //]]>
+</script>

@@ -1,0 +1,109 @@
+<script>
+
+//*********************************************************************************************************
+//method to store current tab in a hidden field
+function beforeSaveSupplier()
+{
+	//Stock current tab in hidden form item
+	var currentTabId = purchase_supplier_tabsJsTabs .activeTab.name;
+	document.getElementById('current_tab').value = currentTabId;
+
+	//submit form
+	editForm.submit();
+}
+
+</script>
+
+<input type="hidden" id="sup_id" name="sup_id" value="<?php echo $this->getSupplier()->getId(); ?>">
+<input type="hidden" id="current_tab" name="current_tab" value="">
+
+<div class="entry-edit">
+
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend">General</h4> 
+	    </div>
+
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label">Id</td>
+                    <td class="input-ele"><?php echo $this->getSupplier()->getId(); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Name')?></td>
+                    <td class="input-ele"><input type="text" id="sup_name" name="sup_name" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_name(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Locale')?></td>
+                    <td class="input-ele"><?php echo $this->getLocaleCombo('sup_locale', $this->getSupplier()->getsup_locale()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Currency')?></td>
+                    <td class="input-ele"><?php echo $this->getCurrencyCombo('sup_currency', $this->getSupplier()->getsup_currency()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Tax rate')?></td>
+                    <td class="input-ele"><?php echo $this->getTaxRateCombo('sup_tax_rate', $this->getSupplier()->getsup_tax_rate()); ?></td>
+                    
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Code')?></td>
+                    <td class="input-ele"><input type="text" id="sup_code" name="sup_code" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_code(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Main Contact')?></td>
+                    <td class="input-ele"><input type="text" id="sup_contact" name="sup_contact" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_contact(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Address 1')?></td>
+                    <td class="input-ele"><input type="text" id="sup_address1" name="sup_address1" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_address1(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Address 2')?></td>
+                    <td class="input-ele"><input type="text" id="sup_address2" name="sup_address2" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_address2(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Zip Code')?></td>
+                    <td class="input-ele"><input type="text" id="sup_zipcode" name="sup_zipcode" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_zipcode(); ?>"></td>
+                </tr>
+                <tr>
+					<td class="label"><?php echo $this->__('City')?></td>
+                    <td class="input-ele"><input type="text" id="sup_city" name="sup_city" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_city(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Country')?></td>
+                    <td class="input-ele"><?php echo $this->getCountryCombo('sup_country', $this->getSupplier()->getsup_country()); ?></td>
+                </tr>
+                <!-- TCK 13007 -->
+                 <tr>
+                    <td class="label"><?php echo $this->__('State')?></td>
+                    <td class="input-ele"><input type="text" id="sup_state" name="sup_state" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_state(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Phone')?></td>
+                    <td class="input-ele"><textarea id="sup_tel" name="sup_tel" cols="50" rows="2"><?php echo $this->getSupplier()->getsup_tel(); ?></textarea></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Fax')?></td>
+                    <td class="input-ele"><input type="text" id="sup_fax" name="sup_fax" value="<?php echo $this->getSupplier()->getsup_fax(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Email')?></td>
+                    <td class="input-ele"><input type="text" id="sup_mail" name="sup_mail" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_mail(); ?>"></td>
+                </tr>
+
+                <tr>
+                    <td class="label"><?php echo $this->__('Website')?></td>
+                    <td class="input-ele"><input type="text" id="sup_website" name="sup_website" style="width:400px;" value="<?php echo $this->getSupplier()->getsup_website(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Comments')?></td>
+                    <td colspan="4" class="input-ele"><textarea id="sup_comments" name="sup_comments" cols="100" rows="5"><?php echo $this->getSupplier()->getsup_comments(); ?></textarea></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Shipping instructions')?></td>
+                    <td colspan="4" class="input-ele"><textarea id="sup_shipping_instructions" name="sup_shipping_instructions" cols="100" rows="5"><?php echo $this->getSupplier()->getsup_shipping_instructions(); ?></textarea></td>
+                </tr>
+            </table>
+        </fieldset>
+</div>

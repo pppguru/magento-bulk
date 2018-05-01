@@ -1,0 +1,23 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo Mage::helper('AdvancedStock')->__('Payment validation') ?></h4>
+    </div>
+    <form name="form_payment" id="form_payment" action="<?php echo $this->getSubmitPaymentUrl(); ?>" method="GET">
+    	<input type="hidden" value="<?php echo $this->getOrder()->getId(); ?>" id="order_id" name="order_id" />
+        <fieldset>
+        	<table border="0">
+        	<tr>
+        		<td width="150"><?php echo Mage::helper('AdvancedStock')->__('Payment validated') ?> : </td>
+        		<td width="150">
+        			<select name="payment_validated" id="payment_validated">
+        				<option value="0" <?php if ($this->getOrder()->getpayment_validated() == 0) { echo " selected "; } ?>><?php echo Mage::helper('AdvancedStock')->__('No') ?></option>
+        				<option value="1" <?php if ($this->getOrder()->getpayment_validated() == 1) { echo " selected "; } ?>><?php echo Mage::helper('AdvancedStock')->__('Yes') ?></option>
+        			</select>
+        		</td>
+        		<td colspan="2" align="center">
+        			<button onclick="document.getElementById('form_payment').submit()" class="scalable " type="button"><span><?php echo $this->__('Save')?></span></button>
+        		</td>
+        	</table>
+        </fieldset>
+    </form>
+</div>

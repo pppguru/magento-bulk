@@ -1,0 +1,89 @@
+<script>
+    
+if (typeof(Translator) == 'undefined') {
+    var Translator = new Translate(<?php echo $this->getTranslateJson(); ?>);
+} else {
+    Translator.add(<?php echo $this->getTranslateJson(); ?>);
+}               
+
+</script>
+
+<script>
+    var objPacking = new packing('<?php echo $this->getOrderInformationUrl(); ?>', '<?php echo $this->getChangeShippingMethodUrl(); ?>', <?php echo $this->allowScanSerial(); ?>, <?php echo $this->displayOnlyCurrentGroup(); ?>);
+</script>
+
+<table border="0" width="100%">
+    <tr>
+        <td width="30%">
+            <div id="div_orderlist" style="font-size: 14px; font-weight: bold; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; padding: 10px;">
+              <b><?php echo $this->__('Orders : '); ?></b>
+              <?php echo $this->getOrderListAsCombo('order_list', "objPacking.pushOrderOrBarcodeAsKeyEvent(this.value);"); ?>
+            </div>
+        </td>
+        <td width="30%">
+            <div id="div_instruction" style="font-size: 24px; font-weight: bold; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; padding: 10px;">
+
+            </div>
+        </td>
+        <td width="30%">
+            <div id="div_message" style="font-size: 18px; font-weight: bold; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; padding: 10px;">
+
+            </div>
+        </td>        
+    </tr>
+</table>
+
+<div class="clear"></div>
+
+<div id="div_main" style="align: center; text-align: center; border: 1px solid #D6D6D6; background: #FAFAFA; margin-top: 10px;">
+    <?php $orderToConfirm = $this->getOrderToConfirm(); ?>
+    <?php if ($orderToConfirm): ?>
+        <h1><?php echo $this->__('Order #%s packed', $orderToConfirm->GetOrder()->getincrement_id()); ?></h1>
+        <center>
+            <table border="0">
+                <tr>
+                    <td class="a-center" width="33%">
+                        <a href="<?php echo $this->getDownloadInvoiceUrl(); ?>"><img src="<?php echo $this->getSkinUrl('images/orderpreparation/pdf.png'); ?>" width="100"></a>
+                        <br><h2><?php echo $this->__('Download invoice'); ?></h2>
+                    </td>
+                    <td class="a-center" width="33%">
+                        <a href="<?php echo $this->getDownloadPackingSlipUrl(); ?>"><img src="<?php echo $this->getSkinUrl('images/orderpreparation/pdf.png'); ?>" width="100"></a>
+                        <br><h2><?php echo $this->__('Download packing slip'); ?></h2>
+                    </td>
+                    <td class="a-center" width="33%">
+                        <a href="<?php echo $this->getDownloadShippingLabelFileUrl(); ?>"><img src="<?php echo $this->getSkinUrl('images/orderpreparation/csv.png'); ?>" width="100"></a>
+                        <br><h2><?php echo $this->__('Download shipping label file'); ?></h2>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    <?php endif ?>
+</div>
+
+<div class="clear"></div>
+
+<script>
+    objPacking.waitForScan();
+</script>
+
+
+<script>
+    var checkedImageUrl = '<?php echo $this->getCheckedImageUrl(); ?>';
+</script>
+
+<form id="frm_packing" name="frm_packing" action="<?php echo $this->getCommitPackingUrl(); ?>" method="POST">
+    <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    <input type="hidden" id="order_id" name="order_id">
+    <input type="hidden" id="weight" name="weight">
+    <input type="hidden" id="parcel_count" name="parcel_count">
+    <input type="hidden" id="serials" name="serials">
+    <input type="hidden" id="carriertemplatedata" name="carriertemplatedata">
+</form>
+    
+<audio id="audio" src="<?php echo $this->getSkinUrl('media/wrong.mp3'); ?>" ></audio>
+
+<?php if ($orderId = $this->getForcedOrderId()): ?>
+    <script>
+        objPacking.pushOrderOrBarcodeAsKeyEvent('<?php echo $orderId; ?>');
+    </script>
+<?php endif; ?>

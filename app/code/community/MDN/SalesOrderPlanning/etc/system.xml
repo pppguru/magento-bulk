@@ -1,0 +1,272 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <planning>
+            <label>Sales Order Planning</label>
+            <tab>ERP</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>103</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general>
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable_planning translate="label">
+                            <label>Enable planning</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable_planning>
+                        <auto_create_if_not_exist translate="label">
+                            <label>Auto create missing product availability status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Create missing product availability status of products on any product view</comment>
+                        </auto_create_if_not_exist>
+                        <calculate_for_non_stock_managed_product translate="label">
+                            <label>Calculate product availability status for non stock managed product</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>ERP can calculate the product availability status of Configurable and Grouped products</comment>
+                        </calculate_for_non_stock_managed_product>
+                    </fields>
+                </general>
+                <consider>
+                    <label>Order Consideration Date Calculation</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <consider_order_when_placed translate="label">
+                            <label>Consider Order when placed</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </consider_order_when_placed>
+                        <consider_order_when_invoiced translate="label">
+                            <label>Consider Order when invoiced</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </consider_order_when_invoiced>
+                        <consider_order_on_paypment_validated translate="label">
+                            <label>Consider Order on Payment Validated</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </consider_order_on_paypment_validated>
+                        <include_holy_days translate="label">
+                            <label>Include holy days</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </include_holy_days>
+                        <non_working_days translate="label">
+                            <label>List of non-working days</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Define here the list the non-working days of the current year. Format 01-01,01-05,25-12</comment>
+                        </non_working_days>
+                        <consider_order_tomorow_if_placed_after translate="label">
+                            <label>Consider Order for Tomorow if placed after</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>(hour with 2 digits)</comment>
+                        </consider_order_tomorow_if_placed_after>
+
+                    </fields>
+                </consider>
+                <fullstock>
+                    <label>Order Ready to Prepare Date Calculation</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <avoid_holy_days translate="label">
+                            <label>Avoid holy days</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </avoid_holy_days>
+                        <maxdate_calculation_mode translate="label">
+                            <label>Worst date calculation Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Purchase/System_Config_Source_MaxDateCalculationMode</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </maxdate_calculation_mode>
+                        <maxdate_calculation_value translate="label">
+                            <label>Worst date calculation value</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </maxdate_calculation_value>
+                    </fields>
+                </fullstock>
+                <shipping>
+                    <label>Order Shipping Date Calculation</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <order_preparation_duration translate="label">
+                            <label>Order Preparation Duration</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_preparation_duration>
+                        <maxdate_calculation_mode translate="label">
+                            <label>Worst date calculation Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Purchase/System_Config_Source_MaxDateCalculationMode</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </maxdate_calculation_mode>
+                        <maxdate_calculation_value translate="label">
+                            <label>Worst date calculation value</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </maxdate_calculation_value>
+                        <avoid_holy_days translate="label">
+                            <label>Avoid holy days</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </avoid_holy_days>
+                    </fields>
+                </shipping>
+                <delivery>
+                    <label>Order Delivery Date Calculation</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <maxdate_calculation_mode translate="label">
+                            <label>Worst date calculation Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Purchase/System_Config_Source_MaxDateCalculationMode</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </maxdate_calculation_mode>
+                        <maxdate_calculation_value translate="label">
+                            <label>Worst date calculation value</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </maxdate_calculation_value>
+                        <avoid_holy_days translate="label">
+                            <label>Avoid holy days</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </avoid_holy_days>
+                        <default_shipping_delay translate="label">
+                            <label>Default Shipping Delay</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_shipping_delay>
+                    </fields>
+                </delivery>
+                <quote_options>
+                    <label>Quote options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <immediate_payment_method translate="label">
+                            <label>Immediate payment methods</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>Purchase/source_sac_paymentMethods</source_model>
+                            <can_be_empty>1</can_be_empty>
+                        </immediate_payment_method>
+                        <delayed_payment_delay translate="label">
+                            <label>Delayed payment method delay</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </delayed_payment_delay>                        
+                    </fields>
+                </quote_options>
+            </groups>
+        </planning>
+    </sections>
+</config>           

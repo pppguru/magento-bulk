@@ -1,0 +1,22 @@
+<?php 
+$_queuedCount = Mage::getModel('ewdeferredindexing/queue')->size();
+$_processCollection = Mage::getModel('index/process')->getCollection();
+$_processCollection->addFieldToFilter('mode', 'manual');
+$_processCount = $_processCollection->getSize();
+?>
+<?php if ($_processCount <= 0): ?>
+	<div id="messages"><ul class="messages"><li class="warning-msg"><ul><li><span>
+		<?php echo $this->__('Indexes must be in manual mode if you want to use deferred indexing'); ?>
+	</span></li></ul></li></ul></div>
+<?php else: ?>
+	<div id="messages"><ul class="messages"><li class="notice-msg"><ul><li><span>
+	<?php if ($_queuedCount > 0): ?>
+		<?php echo $this->__('There are %d deferred events that will be processed shortly.', $_queuedCount); ?>
+		<button style="margin-left: 10px;" onclick="confirmSetLocation('<?php echo $this->__('Are you sure? If cronjob is setup, then queued events will be processed automatically.'); ?>','<?php echo $this->getUrl('extendware_ewdeferredindexing/adminhtml_queue/process', array('return_to' => 'indexing')); ?>')" class="scalable save" type="button" title="<?php echo $this->__('Force Process Queue'); ?>" id="id_3a6e92c699984f8d0cd878a731322304"><span><span><span><?php echo $this->__('Force Process Queue'); ?></span></span></span></button>
+	<?php elseif (Mage::helper('ewdeferredindexing/config')->getProcessedEvents() > 0): ?>
+		<?php echo $this->__('Did you know that there have been a total of %s events processed for a <u>total time savings of %s</u>!', Mage::helper('ewdeferredindexing/config')->getProcessedEvents(), Mage::helper('ewdeferredindexing')->getHumanReadableDuration(Mage::helper('ewdeferredindexing/config')->getTotalTime())); ?>
+	<?php else: ?>
+		<?php echo $this->__('Indexes must be in manual mode and you must do an action (such as saving a product) that triggers an indexing event'); ?>
+	<?php endif; ?>
+	</span></li></ul></li></ul></div>
+<?php endif; ?>

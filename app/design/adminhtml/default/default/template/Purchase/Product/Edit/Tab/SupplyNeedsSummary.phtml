@@ -1,0 +1,16 @@
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Supply Need Summary'); ?></h4>
+</div>
+<div class="entry-edit">
+    <fieldset id="my-fieldset">
+        <?php
+        //programmatically add block
+        $block = $this->getLayout()->createBlock('Purchase/Product_Widget_StockDetails_Summary');
+        $block->setProduct($this->getProduct());
+        $block->setTemplate('Purchase/Product/StockDetails/Summary.phtml');
+        echo $block->toHtml();
+        ?>
+    </fieldset>
+</div>
+
+</div>

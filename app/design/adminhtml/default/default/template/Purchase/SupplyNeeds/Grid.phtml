@@ -1,0 +1,40 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Supply Needs') ?></h3></td>
+            <td></td>
+            <td align="right">
+                <?php echo $this->__('Warehouse filter'); ?> : 
+                <select name="warehouse" id="warehouse" onchange="applyWarehouse('<?php echo $this->getUrl('*/*/*', array('warehouse' => 'XXX')); ?>');" style="margin-right: 50px;">
+                    <option></option>
+                    <?php foreach ($this->getWarehouses() as $warehouse): ?>
+                        <option <?php echo ($warehouse->getId() == $this->getCurrentWarehouse() ? ' selected ' : ''); ?> value="<?php echo $warehouse->getId(); ?>"><?php echo $warehouse->getstock_name(); ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+                <?php echo $this->__('Create a purchase order for supplier '); ?>
+                <form id="frm_add_to_po" name="frm_add_to_po" method="POST" action="<?php echo Mage::helper('adminhtml')->getUrl('*/*/CreatePurchaseOrder'); ?>">
+                    <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+                    <select name="sup_id" id="sup_id">
+                        <option value=""></option>
+                        <?php foreach ($this->getSuppliersAsArray() as $supId => $supName): ?>
+                            <option value="<?php echo $supId; ?>"><?php echo $supName; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <input type="hidden" name="supply_needs_log" id="supply_needs_log" />
+                </form>
+                <button style="margin-right: 50px;" onclick="createPurchaseOrder();" class="scalable" type="button"><span><?php echo $this->__('Create') ?></span></button>
+
+
+                <button onclick="fillAllMin();" class="scalable" type="button"><span><?php echo $this->__('Fill all min') ?></span></button>
+                <button style="margin-right: 50px;" onclick="fillAllMax();" class="scalable" type="button"><span><?php echo $this->__('Fill all max') ?></span></button>
+
+                <button onclick="document.location.href='<?php echo $this->getUrl('adminhtml/Purchase_SupplyNeeds/Stats'); ?>'" class="scalable" type="button"><span><?php echo $this->__('Statistics') ?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<?php echo $this->getGridParentHtml() ?>
+<script>persistantGrid = new persistantGridControl(SupplyNeedsGridJsObject, 'supply_needs_log', 'qty_', '');</script>
+

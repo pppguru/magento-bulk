@@ -1,0 +1,81 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><script>
+
+    window.payment = new Payment('co-payment-form', '<?php echo $this->getUrl('checkout/onepage/savePayment') ?>');
+    var quoteBaseGrandTotal = <?php echo (float)$this->getQuoteBaseGrandTotal(); ?>;
+    var checkQuoteBaseGrandTotal = quoteBaseGrandTotal;
+    var lastPrice;
+
+</script>
+
+<form class="checkout-payment form" action="" id="co-payment-form">
+    <div class="form__field">
+        <?php echo $this->getChildChildHtml('methods_additional', '', true, true) ?>
+        <?php echo $this->getChildHtml('methods') ?>
+    </div><!-- .form__field -->
+
+    <div class="tool-tip" id="payment-tool-tip" style="display:none;">
+        <div class="btn-close"><a href="#" id="payment-tool-tip-close" title="<?php echo $this->__('Close') ?>"><?php echo $this->__('Close') ?></a></div>
+        <div class="tool-tip-content"><img src="<?php echo $this->getSkinUrl('images/cvv.gif') ?>" alt="<?php echo $this->__('Card Verification Number Visual Reference') ?>" title="<?php echo $this->__('Card Verification Number Visual Reference') ?>" /></div>
+    </div>
+
+    <?php echo $this->getChildChildHtml('additional') ?>
+
+</form>
+
+<p id="payment-buttons-container">
+    <button class="button" type="button" onclick="setStepDescription('payment', getPaymentStepDescription());payment.save()"><?php echo $this->__('Choose and continue') ?></button>
+</p>
+
+<script>
+
+    function toggleToolTip(event){
+        if($('payment-tool-tip')){
+            $('payment-tool-tip').setStyle({
+                top: (Event.pointerY(event)-560)+'px'
+            })
+            $('payment-tool-tip').toggle();
+        }
+        Event.stop(event);
+    }
+    if($('payment-tool-tip-close')){
+        Event.observe($('payment-tool-tip-close'), 'click', toggleToolTip);
+    }
+
+    var getPaymentStepDescription = function() {
+        var result = '';
+        $$('input[name="payment[method]"]').each(function(el){
+            if(el.checked) {
+                result = eval("window.paymentLabels['" + el.value + "']");
+            }
+        }.bind(result));
+        return result;
+    }
+
+    window.payment.currentMethod = "<?php echo $this->getChild('methods')->getSelectedMethodCode() ?>";
+    //]]>
+</script>

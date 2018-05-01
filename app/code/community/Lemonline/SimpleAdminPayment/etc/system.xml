@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<config>
+	<sections>
+		<payment>
+			<groups>
+				<simpleadminpayment translate="label" module="simpleadminpayment">
+					<label>Simple Payment Method for Admin</label>
+					<sort_order>5</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<title translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<active translate="label">
+							<label>Enabled</label>
+							<comment>This payment method is enabled only for orders that are created in Magento Admin.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</active>
+						<order_status translate="label">
+							<label>New order status</label>
+							<frontend_type>select</frontend_type>
+<!--                            <source_model>adminhtml/system_config_source_order_status_new</source_model>--> <!-- by default -->
+							<source_model>adminhtml/system_config_source_order_status_newprocessing</source_model><!-- Matthew -->
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</order_status>
+						<capture_auto translate="label">
+							<label>Create and Capture Invoice Automatically</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</capture_auto>
+						<shipment_auto translate="label">
+							<label>Create Shipment Automatically</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</shipment_auto>
+					</fields>
+				</simpleadminpayment>
+			</groups>
+		</payment>
+	</sections>
+</config>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Wholesale_Customer>
+			<version>0.1.0</version>
+		</Wholesale_Customer>
+	</modules>
+	<frontend>
+		<routers>
+			<customer>
+				<args>
+					<modules>
+						<Wholesale_Customer before="Mage_Customer">Wholesale_Customer</Wholesale_Customer>
+					</modules>
+				</args>
+			</customer>
+		</routers>
+		<layout>
+			<updates>
+				<customer>
+					<file>customer.xml</file>
+				</customer>
+			</updates>
+		</layout>
+	</frontend>
+	<global>
+		<helpers>
+			<customer>
+				<class>Wholesale_Customer_Helper</class>
+			</customer>
+		</helpers>
+		<blocks>
+			<customer>
+				<rewrite><form_register>Wholesale_Customer_Block_Form_Register</form_register></rewrite>
+			</customer>
+		</blocks>
+	</global>
+</config>

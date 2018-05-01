@@ -1,0 +1,76 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Advancedreports
+ * @version    2.5.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /* @var Mage_Adminhtml_Block_Store_Switcher $this */ ?>
+<?php if ($this->isShow()): ?>
+<p class="switcher"><label for="store_switcher"><?php echo $this->__('Show Report For') ?>:</label>
+    <select name="store_switcher" id="store_switcher" onchange="return switchStore(this);" disabled="true" >
+    <option value=""><?php echo $this->__('All Websites') ?></option>
+    <?php foreach ($this->getWebsiteCollection() as $_website): ?>
+        <?php $showWebsite=false; ?>
+        <?php foreach ($this->getGroupCollection($_website) as $_group): ?>
+            <?php $showGroup=false; ?>
+            <?php foreach ($this->getStoreCollection($_group) as $_store): ?>
+                <?php if ($showWebsite == false): ?>
+                    <?php $showWebsite = true; ?>
+                    <option website="true" value="<?php echo $_website->getId() ?>"<?php if($this->getRequest()->getParam('website') == $_website->getId()): ?> selected<?php endif; ?>><?php echo $_website->getName() ?></option>
+                <?php endif; ?>
+                <?php if ($showGroup == false): ?>
+                    <?php $showGroup = true; ?>
+                    <!--optgroup label="&nbsp;&nbsp;&nbsp;<?php echo $_group->getName() ?>"-->
+                    <option group="true" value="<?php echo $_group->getId() ?>"<?php if($this->getRequest()->getParam('group') == $_group->getId()): ?> selected<?php endif; ?>>&nbsp;&nbsp;&nbsp;<?php echo $_group->getName() ?></option>
+                <?php endif; ?>
+                <option value="<?php echo $_store->getId() ?>"<?php if($this->getStoreId() == $_store->getId()): ?> selected<?php endif; ?>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $_store->getName() ?></option>
+            <?php endforeach; ?>
+            <?php if ($showGroup): ?>
+                </optgroup>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
+</select>
+</p>
+<script type="text/javascript">
+    function switchStore(obj){
+        $('store_switcher').disabled = true;
+        if (obj.options[obj.selectedIndex].getAttribute('website') == 'true') {
+            var selectionType = 'website';
+        } else if (obj.options[obj.selectedIndex].getAttribute('group') == 'true') {
+            var selectionType = 'group';
+        } else {
+            var selectionType = 'store';
+        }
+        var storeParam = obj.value ? selectionType + '/' + obj.value + '/' : '';
+        if(obj.switchParams){
+            storeParam+= obj.switchParams;
+        }
+        setLocation('<?php echo $this->getSwitchUrl() ?>'+storeParam);
+
+    }
+
+    document.observe("dom:loaded", function() {
+        $('store_switcher').disabled = false;
+    });
+</script>
+<?php endif; ?>

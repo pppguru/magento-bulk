@@ -1,0 +1,60 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Customer_TicketList $this */?>
+<div class="awhdu3-ticket-list" id="awhdu3_ticket_list">
+<?php if ($this->getCollection()->getSize()): ?>
+    <table class="awhdu3-ticket-list-table" id="awhdu3_ticket_list_table" cellspacing="0">
+        <tbody>
+        <?php foreach ($this->getCollection() as $ticket): ?>
+            <? /** @var AW_Helpdesk3_Model_Ticket $ticket */ ?>
+            <tr class="awhdu3-ticket-list-table-tr">
+                <td class="awhdu3-ticket-list-table-td-subject">
+                    <a href="<?php echo $this->getUrlToTicketView($ticket)?>" title="<?php echo $this->escapeHtml($ticket->getSubject());?>"><?php echo $this->escapeHtml($ticket->getSubject());?></a>
+                </td>
+            </tr>
+            <tr class="awhdu3-ticket-list-table-tr last">
+                <td>
+                    <div class="awhdu3-ticket-list-table-td-dep"><?php echo $ticket->getDepartment()->getTitle() ?></div>
+                    <div class="awhdu3-ticket-list-table-td-label"><?php echo $this->getTicketStatusLabel($ticket) ?></div>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div style="clear:both"></div>
+<?php else: ?>
+    <p><?php echo $this->__('You have submitted no tickets') ?></p>
+<?php endif;?>
+</div>
+<?php echo $this->getToolbarHtml() ?>
+<script type="text/javascript">
+    //<![CDATA[
+    if (typeof pager != 'undefined') {
+        pager.containerId = 'awhdu3_ticket_list';
+        pager.tableId = 'awhdu3_ticket_list_table';
+    }
+    //]]>
+</script>

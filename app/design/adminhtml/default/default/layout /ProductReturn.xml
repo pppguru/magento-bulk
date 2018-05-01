@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+        
+    <productreturn_admin_grid>
+        <reference name="content">
+            <block type="ProductReturn/Admin_Grid" name="productreturngrid" template="ProductReturn/Grid.phtml" />
+        </reference>
+    </productreturn_admin_grid>
+    
+    <productreturn_admin_gridorder>
+        <reference name="content">
+            <block type="ProductReturn/Admin_GridOrder" name="productreturngridorder" template="ProductReturn/GridOrder.phtml" />
+        </reference>
+    </productreturn_admin_gridorder>
+
+    <productreturn_admin_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productReturn.js</script>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="ProductReturn/Productreturn_Edit_Tabs" name="productreturn_tabs">
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="ProductReturn/Productreturn_Edit" name="productreturn_edit"></block>
+        </reference>
+    </productreturn_admin_edit>
+    
+    <adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+            <action method="addTab">
+                <name>product_return</name>
+                <block>ProductReturn/Admin_Sales_Order_View_Tab_ProductReturn</block>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+    
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <action method="addTab">
+                <name>product_return</name>
+                <block>ProductReturn/Admin_Customer_Edit_Tab_ProductReturn</block>
+            </action>
+        </reference>
+    </adminhtml_customer_edit>
+
+    <!--<productreturn_admin_selectedproductreturngrid>-->
+        <!--<block type="ProductReturn/Admin_Customer_Edit_Tab_ProductReturn" name="ProductReturnGrid" output="toHtml"></block>-->
+    <!--</productreturn_admin_selectedproductreturngrid>-->
+
+
+    <productreturn_admin_productexchangeselectionpopup>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productReturn.js</script>
+            </action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>ProductReturn/Popup.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="ProductReturn/Productreturn_Edit_ProductExchangePopup" name="productexchangepopup" template="ProductReturn/ProductExchangePopup.phtml" />
+        </reference>
+    </productreturn_admin_productexchangeselectionpopup>
+
+    <productreturn_pendingproducts_grid>
+        <reference name="content">
+            <block type="ProductReturn/Admin_PendingProducts_Grid" name="pendingproductsgrid" template="ProductReturn/PendingProducts/Grid.phtml" />
+        </reference>
+    </productreturn_pendingproducts_grid>
+    
+    <productreturn_supplierreturn_gridnew>
+        <reference name="content">
+            <block type="ProductReturn/Admin_SupplierReturn_Tabs_TabNewGrid" name="supplierreturn_gridnew" template="ProductReturn/SupplierReturn/Tabs/TabNewGrid.phtml" />
+        </reference>
+    </productreturn_supplierreturn_gridnew>
+    <productreturn_supplierreturn_gridinquiry>
+        <reference name="content">
+            <block type="ProductReturn/Admin_SupplierReturn_Tabs_TabInquiryGrid" name="supplierreturn_gridinquiry" template="ProductReturn/SupplierReturn/Tabs/TabInquiryGrid.phtml" />
+        </reference>
+    </productreturn_supplierreturn_gridinquiry>
+    <productreturn_supplierreturn_gridsenttosupplier>
+        <reference name="content">
+            <block type="ProductReturn/Admin_SupplierReturn_Tabs_TabSentToSupplierGrid" name="supplierreturn_gridsenttosupplier" template="ProductReturn/SupplierReturn/Tabs/TabSentToSupplierGrid.phtml" />
+        </reference>
+    </productreturn_supplierreturn_gridsenttosupplier>
+    <productreturn_supplierreturn_gridcomplete>
+        <reference name="content">
+            <block type="ProductReturn/Admin_SupplierReturn_Tabs_TabCompleteGrid" name="supplierreturn_gridcomplete" template="ProductReturn/SupplierReturn/Tabs/TabCompleteGrid.phtml" />
+        </reference>
+    </productreturn_supplierreturn_gridcomplete>
+    
+    <productreturn_productspendingsupplierreturn_grid>
+        <reference name="content">
+            <block type="ProductReturn/Admin_ProductsPendingSupplierReturn_Grid" name="productspendingsupplierreturngrid" template="ProductReturn/ProductsPendingSupplierReturn/Grid.phtml" />
+        </reference>
+    </productreturn_productspendingsupplierreturn_grid>
+    <productreturn_productspendingsupplierreturn_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productReturn.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="ProductReturn/Admin_ProductsPendingSupplierReturn_Edit" name="productspendingsupplierreturnedit" template="ProductReturn/ProductsPendingSupplierReturn/Edit.phtml" />
+        </reference>
+    </productreturn_productspendingsupplierreturn_edit>
+    <productreturn_productspendingsupplierreturn_add>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productReturn.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="ProductReturn/Admin_ProductsPendingSupplierReturn_Add" name="productspendingsupplierreturn_add" template="ProductReturn/ProductsPendingSupplierReturn/Add.phtml" />
+        </reference>
+    </productreturn_productspendingsupplierreturn_add>
+    <productreturn_supplierreturn_index>
+        <reference name="content">
+            <block type="ProductReturn/Admin_SupplierReturn_SupplierReturn" name="supplierreturn" template="ProductReturn/SupplierReturn/SupplierReturn.phtml">
+                <block type="ProductReturn/Admin_SupplierReturn_Tabs" name="supplierreturn_tabs" as="supplierreturn_tabs" />
+            </block>
+        </reference>
+    </productreturn_supplierreturn_index>
+    
+    <productreturn_supplierreturn_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productReturn.js</script>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="ProductReturn/Admin_SupplierReturn_Edit_Tabs" name="supplierreturn_tabs" />
+        </reference>
+        <reference name="content">
+            <block type="ProductReturn/Admin_SupplierReturn_Edit" name="supplierreturn_edit" />
+        </reference>
+    </productreturn_supplierreturn_edit>
+    <productreturn_supplierreturn_editgrid>
+        <reference name="content">
+            <block type="ProductReturn/Admin_SupplierReturn_Edit_Tab_ProductsGrid" name="supplierreturn_editgrid" template="ProductReturn/SupplierReturn/Edit/Tabs/ProductsGrid.phtml" />
+        </reference>
+    </productreturn_supplierreturn_editgrid>
+
+    <productreturn_report_reason>
+        <reference name="content">
+            <block type="ProductReturn/Report_Reason_Form" name="report_reason_form" template="ProductReturn/Report/Reason/Form.phtml" />
+            <block type="ProductReturn/Report_Reason_Results" name="report_reason_results" template="ProductReturn/Report/Reason/Results.phtml" />
+        </reference>
+    </productreturn_report_reason>
+
+    <productreturn_report_product>
+        <reference name="content">
+            <block type="ProductReturn/Report_Product_Form" name="report_product_form" template="ProductReturn/Report/Product/Form.phtml" />
+            <block type="ProductReturn/Report_Product_Results" name="report_product_results" template="ProductReturn/Report/Product/Results.phtml" />
+        </reference>
+    </productreturn_report_product>
+
+</layout>

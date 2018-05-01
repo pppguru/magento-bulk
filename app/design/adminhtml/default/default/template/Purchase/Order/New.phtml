@@ -1,0 +1,27 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Create New Order')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl()?>'" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+                <button onclick="document.location.href='<?php echo $this->getNewSupplierUrl()?>'" class="scalable add" type="button"><span><?php echo $this->__('New supplier')?></span></button>
+                <button onclick="document.getElementById('edit_form').submit();" class="scalable save" type="button"><span><?php echo $this->__('Save')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form id="edit_form" name="edit_form" action="<?php echo $this->getUrl('*/*/create')?>">
+<div class="entry-edit">
+    
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('Supplier'); ?></td>
+                    <td class="input-ele"><?php echo $this->getSuppliersAsCombo(); ?></td>
+                </tr>
+            </table>
+        </fieldset>
+
+</div>
+</form>

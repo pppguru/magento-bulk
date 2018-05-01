@@ -1,0 +1,50 @@
+<?php 
+$_helper = $this->helper('catalog/output');
+$_product = $this->getProduct();
+$supplementFacts = $_product->getSupplementFacts();
+$suggestedUse = $_product->getSuggestedUse();
+?>
+<ul class="tabs">
+    <li id="product_tabs_desc" class="active"><a href="#">Description</a></li>
+<?php if ($supplementFacts): ?>
+    <li id="product_tabs_supplement"><a href="#">Supplement Facts</a></li>
+<?php endif; ?>
+<?php if ($suggestedUse): ?>
+    <li id="product_tabs_suggested"><a href="#">Suggested Use</a></li>
+<?php endif; ?>
+    <li id="product_tabs_reviews"><a href="#">Reviews</a></li>
+</ul>
+<div class="clear"></div>
+<div class="tabs-contents">
+    <div id="product_tabs_desc_contents">
+        <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'description') ?></div>
+    </div>
+<?php if ($supplementFacts): ?>
+    <div id="product_tabs_supplement_contents">
+        <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($supplementFacts), 'supplement_facts') ?></div>
+    </div>
+<?php endif; ?>
+<?php if ($suggestedUse): ?>
+    <div id="product_tabs_suggested_contents">        
+        <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($suggestedUse), 'suggested_use') ?></div>
+    </div>
+<?php endif; ?>
+    <div id="product_tabs_reviews_contents">
+        <?php echo $this->getChildHtml('product_reviews') ?>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+    new Varien.Tabs('.tabs');
+    
+function gotoReview() {
+    jQuery('.tabs li').removeClass('active');
+    jQuery('.tabs #product_tabs_reviews').addClass('active');
+    jQuery('.tabs-contents #product_tabs_desc_contents').hide();
+    jQuery('.tabs-contents #product_tabs_supplement_contents').hide();
+    jQuery('.tabs-contents #product_tabs_suggested_contents').hide();
+    jQuery('.tabs-contents #product_tabs_reviews_contents').show();
+    jQuery('#review-form').show();
+}
+</script>

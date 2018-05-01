@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<config>
+
+
+    <layout>
+        <updates>
+            <SmartReport>
+                <file>SmartReport.xml</file>
+            </SmartReport>
+        </updates>
+    </layout>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <smartreport module="SmartReport">
+                                        <title>Ultimate Reports</title>
+                                    </smartreport>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <smartreport>
+                        <title>Ultimae Reports</title>
+                        <children>
+                            <dashboard translate="title" module="SmartReport">
+                                <title>Dashboard</title>
+                            </dashboard>
+                            <sales translate="title" module="SmartReport">
+                                <title>Sales</title>
+                                <children>
+                                    <invoice translate="title" module="SmartReport">
+                                        <title>Invoice</title>
+                                    </invoice>
+                                    <refund translate="title" module="SmartReport">
+                                        <title>Refund</title>
+                                    </refund>
+                                    <payment_method translate="title" module="SmartReport">
+                                        <title>Payment method</title>
+                                    </payment_method>
+                                    <shipping_method translate="title" module="SmartReport">
+                                        <title>Shipping method</title>
+                                    </shipping_method>
+                                </children>
+                            </sales>
+
+                            <products translate="title" module="SmartReport">
+                                <title>Products</title>
+                                <children>
+                                    <best_seller translate="title" module="SmartReport">
+                                        <title>Best seller</title>
+                                    </best_seller>
+                                    <category translate="title" module="SmartReport">
+                                        <title>Category</title>
+                                    </category>
+                                    <manufacturer translate="title" module="SmartReport">
+                                        <title>Manufacturer</title>
+                                    </manufacturer>
+                                    <reviews translate="title" module="SmartReport">
+                                        <title>Reviews</title>
+                                    </reviews>
+                                </children>
+                            </products>
+                            <customers translate="title" module="SmartReport">
+                                <title>Customers</title>
+                            </customers>
+                            <coupon_code translate="title" module="SmartReport">
+                                <title>Coupon code</title>
+                            </coupon_code>
+                            <country translate="title" module="SmartReport">
+                                <title>Country</title>
+                            </country>
+
+                            <purchase translate="title" module="SmartReport">
+                                <title>Purchase</title>
+                                <depends>
+                                    <config>advancedstock/erp/is_installed</config>
+                                </depends>
+                            </purchase>
+
+                            <inventory translate="title" module="SmartReport">
+                                <title>Inventory</title>
+                                <depends>
+                                    <config>advancedstock/erp/is_installed</config>
+                                </depends>
+                            </inventory>
+
+                            <configuration translate="title" module="SmartReport">
+                                <title>Configuration</title>
+                            </configuration>
+                        </children>
+                    </smartreport>
+                    <erp>
+                        <children>
+                            <smartreport>
+                                <title>Reports</title>
+                                <children>
+                                    <dashboard translate="title" module="SmartReport">
+                                        <title>Dashboard</title>
+                                    </dashboard>
+                                    <sales translate="title" module="SmartReport">
+                                        <title>Sales</title>
+                                        <children>
+                                            <invoice translate="title" module="SmartReport">
+                                                <title>Invoice</title>
+                                            </invoice>
+                                            <refund translate="title" module="SmartReport">
+                                                <title>Refund</title>
+                                            </refund>
+                                            <payment_method translate="title" module="SmartReport">
+                                                <title>Payment method</title>
+                                            </payment_method>
+                                            <shipping_method translate="title" module="SmartReport">
+                                                <title>Shipping method</title>
+                                            </shipping_method>
+                                        </children>
+                                    </sales>
+
+                                    <products translate="title" module="SmartReport">
+                                        <title>Products</title>
+                                        <children>
+                                            <best_seller translate="title" module="SmartReport">
+                                                <title>Best seller</title>
+                                            </best_seller>
+                                            <category translate="title" module="SmartReport">
+                                                <title>Category</title>
+                                            </category>
+                                            <manufacturer translate="title" module="SmartReport">
+                                                <title>Manufacturer</title>
+                                            </manufacturer>
+                                            <reviews translate="title" module="SmartReport">
+                                                <title>Reviews</title>
+                                            </reviews>
+                                        </children>
+                                    </products>
+                                    <customers translate="title" module="SmartReport">
+                                        <title>Customers</title>
+                                    </customers>
+                                    <coupon_code translate="title" module="SmartReport">
+                                        <title>Coupon code</title>
+                                    </coupon_code>
+                                    <country translate="title" module="SmartReport">
+                                        <title>Country</title>
+                                    </country>
+
+                                    <purchase translate="title" module="SmartReport">
+                                        <title>Purchase</title>
+                                        <depends>
+                                            <config>advancedstock/erp/is_installed</config>
+                                        </depends>
+                                    </purchase>
+
+                                    <inventory translate="title" module="SmartReport">
+                                        <title>Inventory</title>
+                                        <depends>
+                                            <config>advancedstock/erp/is_installed</config>
+                                        </depends>
+                                    </inventory>
+
+                                    <configuration translate="title" module="SmartReport">
+                                        <title>Configuration</title>
+                                    </configuration>
+                                </children>
+                            </smartreport>
+                        </children>
+                    </erp>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+    <menu>
+        <smartreport>
+            <title>Ultimate Reports</title>
+            <sort_order>900</sort_order>
+            <children>
+                        <dashboard translate="title" module="SmartReport">
+                            <title>Dashboard</title>
+                            <action>adminhtml/SmartReport_Reports/Dashboard</action>
+                            <sort_order>0</sort_order>
+                        </dashboard>
+                        <sales translate="title" module="SmartReport">
+                            <title>Sales</title>
+                            <sort_order>10</sort_order>
+                            <children>
+                                <invoice translate="title" module="SmartReport">
+                                    <title>Invoice</title>
+                                    <action>adminhtml/SmartReport_Reports/Invoice</action>
+                                    <sort_order>10</sort_order>
+                                </invoice>
+                                <refund translate="title" module="SmartReport">
+                                    <title>Refund</title>
+                                    <action>adminhtml/SmartReport_Reports/Refund</action>
+                                    <sort_order>10</sort_order>
+                                </refund>
+                                <payment_method translate="title" module="SmartReport">
+                                    <title>Payment method</title>
+                                    <action>adminhtml/SmartReport_Reports/PaymentMethod</action>
+                                    <sort_order>10</sort_order>
+                                </payment_method>
+                                <shipping_method translate="title" module="SmartReport">
+                                    <title>Shipping method</title>
+                                    <action>adminhtml/SmartReport_Reports/ShippingMethod</action>
+                                    <sort_order>20</sort_order>
+                                </shipping_method>
+                            </children>
+                        </sales>
+
+                        <purchase translate="title" module="SmartReport">
+                            <title>Purchase</title>
+                            <action>adminhtml/SmartReport_Reports/Purchase</action>
+                            <sort_order>10</sort_order>
+                            <depends>
+                                <config>advancedstock/erp/is_installed</config>
+                            </depends>
+                        </purchase>
+
+                        <inventory translate="title" module="SmartReport">
+                            <title>Inventory</title>
+                            <action>adminhtml/SmartReport_Reports/Inventory</action>
+                            <sort_order>12</sort_order>
+                            <depends>
+                                <config>advancedstock/erp/is_installed</config>
+                            </depends>
+                        </inventory>
+
+                        <products translate="title" module="SmartReport">
+                            <title>Products</title>
+                            <sort_order>20</sort_order>
+                            <children>
+                                <best_seller translate="title" module="SmartReport">
+                                    <title>Best seller</title>
+                                    <action>adminhtml/SmartReport_Reports/BestSeller</action>
+                                    <sort_order>20</sort_order>
+                                </best_seller>
+                                <category translate="title" module="SmartReport">
+                                    <title>Category</title>
+                                    <action>adminhtml/SmartReport_Reports/Category</action>
+                                    <sort_order>30</sort_order>
+                                </category>
+                                <manufacturer translate="title" module="SmartReport">
+                                    <title>Manufacturer</title>
+                                    <action>adminhtml/SmartReport_Reports/Manufacturer</action>
+                                    <sort_order>40</sort_order>
+                                </manufacturer>
+                                <reviews translate="title" module="SmartReport">
+                                    <title>Reviews</title>
+                                    <action>adminhtml/SmartReport_Reports/Reviews</action>
+                                    <sort_order>50</sort_order>
+                                </reviews>
+                            </children>
+                        </products>
+                        <customers translate="title" module="SmartReport">
+                            <title>Customers</title>
+                            <action>adminhtml/SmartReport_Reports/Customer</action>
+                            <sort_order>30</sort_order>
+                        </customers>
+                        <coupon_code translate="title" module="SmartReport">
+                            <title>Coupon Code</title>
+                            <action>adminhtml/SmartReport_Reports/CouponCode</action>
+                            <sort_order>35</sort_order>
+                        </coupon_code>
+                        <country translate="title" module="SmartReport">
+                            <title>Country</title>
+                            <action>adminhtml/SmartReport_Reports/CountryDetail</action>
+                            <sort_order>30</sort_order>
+                        </country>
+                        <configuration translate="title" module="SmartReport">
+                            <title>Configuration</title>
+                            <action>adminhtml/system_config/edit/section/smartreport</action>
+                            <sort_order>100</sort_order>
+                        </configuration>
+                    </children>
+        </smartreport>
+
+        <erp>
+            <children>
+                <dashboard translate="title" module="SmartReport">
+                    <title>Dashboard</title>
+                    <action>adminhtml/SmartReport_Reports/Dashboard</action>
+                    <sort_order>910</sort_order>
+                </dashboard>
+                <smartreport>
+                    <title>Reports</title>
+                    <sort_order>920</sort_order>
+                    <children>
+                        <sales translate="title" module="SmartReport">
+                            <title>Sales</title>
+                            <sort_order>10</sort_order>
+                            <children>
+                                <invoice translate="title" module="SmartReport">
+                                    <title>Invoice</title>
+                                    <action>adminhtml/SmartReport_Reports/Invoice</action>
+                                    <sort_order>10</sort_order>
+                                </invoice>
+                                <refund translate="title" module="SmartReport">
+                                    <title>Refund</title>
+                                    <action>adminhtml/SmartReport_Reports/Refund</action>
+                                    <sort_order>10</sort_order>
+                                </refund>
+                                <payment_method translate="title" module="SmartReport">
+                                    <title>Payment method</title>
+                                    <action>adminhtml/SmartReport_Reports/PaymentMethod</action>
+                                    <sort_order>10</sort_order>
+                                </payment_method>
+                                <shipping_method translate="title" module="SmartReport">
+                                    <title>Shipping method</title>
+                                    <action>adminhtml/SmartReport_Reports/ShippingMethod</action>
+                                    <sort_order>20</sort_order>
+                                </shipping_method>
+                            </children>
+                        </sales>
+
+                        <products translate="title" module="SmartReport">
+                            <title>Products</title>
+                            <sort_order>20</sort_order>
+                            <children>
+                                <best_seller translate="title" module="SmartReport">
+                                    <title>Best seller</title>
+                                    <action>adminhtml/SmartReport_Reports/BestSeller</action>
+                                    <sort_order>20</sort_order>
+                                </best_seller>
+                                <category translate="title" module="SmartReport">
+                                    <title>Category</title>
+                                    <action>adminhtml/SmartReport_Reports/Category</action>
+                                    <sort_order>30</sort_order>
+                                </category>
+                                <manufacturer translate="title" module="SmartReport">
+                                    <title>Manufacturer</title>
+                                    <action>adminhtml/SmartReport_Reports/Manufacturer</action>
+                                    <sort_order>40</sort_order>
+                                </manufacturer>
+                                <reviews translate="title" module="SmartReport">
+                                    <title>Reviews</title>
+                                    <action>adminhtml/SmartReport_Reports/Reviews</action>
+                                    <sort_order>50</sort_order>
+                                </reviews>
+                            </children>
+                        </products>
+                        <customers translate="title" module="SmartReport">
+                            <title>Customers</title>
+                            <action>adminhtml/SmartReport_Reports/Customer</action>
+                            <sort_order>30</sort_order>
+                        </customers>
+                        <coupon_code translate="title" module="SmartReport">
+                            <title>Coupon Code</title>
+                            <action>adminhtml/SmartReport_Reports/CouponCode</action>
+                            <sort_order>35</sort_order>
+                        </coupon_code>
+                        <country translate="title" module="SmartReport">
+                            <title>Country</title>
+                            <action>adminhtml/SmartReport_Reports/CountryDetail</action>
+                            <sort_order>30</sort_order>
+                        </country>
+
+                        <purchase translate="title" module="SmartReport">
+                            <title>Purchase</title>
+                            <action>adminhtml/SmartReport_Reports/Purchase</action>
+                            <sort_order>40</sort_order>
+                            <depends>
+                                <config>advancedstock/erp/is_installed</config>
+                            </depends>
+                        </purchase>
+
+                        <inventory translate="title" module="SmartReport">
+                            <title>Inventory</title>
+                            <action>adminhtml/SmartReport_Reports/Inventory</action>
+                            <sort_order>50</sort_order>
+                            <depends>
+                                <config>advancedstock/erp/is_installed</config>
+                            </depends>
+                        </inventory>
+
+                        <order_preparation translate="title" module="SmartReport">
+                            <title>Order preparation</title>
+                            <action>adminhtml/SmartReport_Reports/OrderPreparation</action>
+                            <sort_order>60</sort_order>
+                            <depends>
+                                <config>advancedstock/erp/is_installed</config>
+                            </depends>
+                        </order_preparation>
+
+                        <configuration translate="title" module="SmartReport">
+                            <title>Configuration</title>
+                            <action>adminhtml/system_config/edit/section/smartreport</action>
+                            <sort_order>100</sort_order>
+                        </configuration>
+                    </children>
+                </smartreport>
+            </children>
+        </erp>
+    </menu>
+
+
+    <translate>
+        <modules>
+            <MDN_SmartReport>
+                <files>
+                    <default>MDN_SmartReport.csv</default>
+                </files>
+            </MDN_SmartReport>
+        </modules>
+    </translate>
+
+</config>

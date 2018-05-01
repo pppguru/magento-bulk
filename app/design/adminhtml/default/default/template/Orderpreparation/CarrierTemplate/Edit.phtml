@@ -1,0 +1,163 @@
+<script>
+
+function toggleManualFormDiv()
+{
+	return false;
+	
+	var type = document.getElementById('data[ct_type]').value;
+	if (type == 'manual')
+		document.getElementById('form_manual').style.display = '';
+	else
+		document.getElementById('form_manual').style.display = 'none';
+}
+
+</script>
+
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Edit Carrier Template')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl(); ?>';" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+                <button onclick="document.location.href='<?php echo $this->getDeleteUrl(); ?>';" class="scalable delete" type="button"><span><?php echo $this->__('Delete')?></span></button>
+                <button onclick="document.location.href='<?php echo $this->getExportTemplateUrl(); ?>';" class="scalable" type="button"><span><?php echo $this->__('XML export')?></span></button>
+                <button onclick="document.getElementById('edit_form').submit();" class="scalable save" type="button"><span><?php echo $this->__('Save')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form method="POST" id="edit_form" action="<?php echo $this->getUrl('*/*/Save')?>">
+<input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+<input id="ct_id" name="ct_id" type="hidden" value="<?php echo $this->getCarrierTemplate()->getId(); ?>" />
+<div class="entry-edit">
+    
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Template information'); ?></h4> 
+	    </div>
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('Name'); ?></td>
+                    <td class="input-ele"><input type="text" id="data[ct_name]" name="data[ct_name]" style="width:400px;" value="<?php echo $this->getCarrierTemplate()->getct_name(); ?>"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Associated Shipping Method'); ?></td>
+                    <td class="input-ele"><?php echo $this->getShippingMethodAsCombo('data[ct_shipping_method]', $this->getCarrierTemplate()->getct_shipping_method()); ?> </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Type'); ?></td>
+                    <td class="input-ele"><?php echo $this->getTypesAsCombo('data[ct_type]', $this->getCarrierTemplate()->getct_type(), 'toggleManualFormDiv();'); ?> </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Client directory name'); ?></td>
+                    <td class="input-ele"><?php echo $this->getCarrierTemplate()->getClientDirectoryName(); ?> </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Tracking label'); ?></td>
+                    <td class="input-ele"><input type="text" id="data[ct_tracking_label]" name="data[ct_tracking_label]" style="width:400px;" value="<?php echo $this->getCarrierTemplate()->getct_tracking_label(); ?>"></td>
+                </tr>
+            </table>
+        </fieldset>
+
+</div>
+
+<div id="form_manual">
+	
+	<div class="entry-edit">
+	    
+		    <div class="entry-edit-head"> 
+			    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Export file (Magento to carrier software)'); ?></h4> 
+		    </div>
+	        <fieldset id="my-fieldset">
+	            <table cellspacing="0" class="form-list">
+	                <tr>
+	                    <td class="label"><?php echo $this->__('File name'); ?></td>
+	                    <td class="input-ele"><input type="text" id="data[ct_export_filename]" name="data[ct_export_filename]" style="width:400px;" value="<?php echo $this->getCarrierTemplate()->getct_export_filename(); ?>"></td>
+	                </tr>
+	                <tr>
+	                    <td class="label"><?php echo $this->__('Witness File name'); ?></td>
+	                    <td class="input-ele"><input type="text" id="data[ct_export_witness_filename]" name="data[ct_export_witness_filename]" style="width:400px;" value="<?php echo $this->getCarrierTemplate()->getct_export_witness_filename(); ?>"></td>
+	                </tr>                
+	                <tr>
+	                    <td class="label"><?php echo $this->__('File Format'); ?></td>
+	                    <td class="input-ele"><?php echo $this->getFileFormatAsCombo('data[ct_export_format]', $this->getCarrierTemplate()->getct_export_format()); ?> </td>
+	                </tr>
+	                <tr>
+	                    <td class="label"><?php echo $this->__('Field Separator'); ?></td>
+	                    <td class="input-ele"><?php echo $this->getFieldSeparatorAsCombo('data[ct_export_file_separator]', $this->getCarrierTemplate()->getct_export_file_separator()); ?> </td>
+	                </tr>
+	                <tr>
+	                    <td class="label"><?php echo $this->__('Field Delimiter'); ?></td>
+	                    <td class="input-ele"><?php echo $this->getFieldDelimiterAsCombo('data[ct_export_file_delimiter]', $this->getCarrierTemplate()->getct_export_file_delimiter()); ?></td>
+	                </tr>
+	                <tr>
+	                    <td class="label"><?php echo $this->__('Line end'); ?></td>
+	                    <td class="input-ele"><?php echo $this->getLineEndAsCombo('data[ct_export_line_end]', $this->getCarrierTemplate()->getct_export_line_end()); ?></td>
+	                </tr>
+	                <tr>
+	                    <td class="label"><?php echo $this->__('Add header line'); ?></td>
+	                    <td class="input-ele"><input type="checkbox" size="1" id="data[ct_export_add_header]" name="data[ct_export_add_header]" value="1" <?php if ($this->getCarrierTemplate()->getct_export_add_header() == 1) { echo ' checked '; } ?>></td>
+	                </tr>
+	                <tr>
+	                    <td class="label"><?php echo $this->__('Custom header'); ?></td>
+	                    <td class="input-ele"><input type="text" id="data[ct_export_custom_header]" name="data[ct_export_custom_header]" style="width:400px;" value="<?php echo $this->getCarrierTemplate()->getct_export_custom_header(); ?>"></td>
+	                </tr>
+	                <tr>
+	                    <td class="label"><?php echo $this->__('Remove accent'); ?></td>
+	                    <td class="input-ele"><input type="checkbox" size="1" id="data[ct_export_remove_accent]" name="data[ct_export_remove_accent]" value="1" <?php if ($this->getCarrierTemplate()->getct_export_remove_accent() == 1) { echo ' checked '; } ?>></td>
+	                </tr>
+	             </table>
+	
+	            <p>&nbsp;</p>
+	            
+	            <?php echo $this->getChildHtml('fields_export'); ?>
+	            
+	
+	        </fieldset>
+	
+	        
+	        
+	</div>
+	
+	<div class="entry-edit">
+	    
+		    <div class="entry-edit-head"> 
+			    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Import file (Carrier software to Magento)'); ?></h4> 
+		    </div>
+	        <fieldset id="my-fieldset">
+	            <table cellspacing="0" class="form-list">
+	                <tr>
+	                    <td class="label"><?php echo $this->__('File Format'); ?></td>
+	                    <td class="input-ele"><?php echo $this->getFileFormatAsCombo('data[ct_import_format]', $this->getCarrierTemplate()->getct_import_format()); ?> </td>
+	                </tr>
+	                <tr>
+	                    <td class="label"><?php echo $this->__('Field Separator'); ?></td>
+	                    <td class="input-ele"><?php echo $this->getFieldSeparatorAsCombo('data[ct_import_file_separator]', $this->getCarrierTemplate()->getct_import_file_separator()); ?> </td>
+	                </tr>
+	                <tr>
+	                    <td class="label"><?php echo $this->__('Field Delimiter'); ?></td>
+	                    <td class="input-ele"><?php echo $this->getFieldDelimiterAsCombo('data[ct_import_file_delimiter]', $this->getCarrierTemplate()->getct_import_file_delimiter()); ?></td>
+	                </tr>
+	                <tr>
+	                    <td class="label"><?php echo $this->__('Skip first record'); ?></td>
+	                    <td class="input-ele"><input type="checkbox" size="1" id="data[ct_import_skip_first_record]" name="data[ct_import_skip_first_record]" value="1" <?php if ($this->getCarrierTemplate()->getct_import_skip_first_record() == 1) { echo ' checked '; } ?>></td>
+	                </tr>
+	            </table>
+	            
+	            <p>&nbsp;</p>
+	            
+	            <?php echo $this->getChildHtml('fields_import'); ?>
+	            
+	        </fieldset>
+	
+	</div>
+</div>
+</form>
+
+<script type="text/javascript">
+    var editForm = new varienForm('edit_form');
+    toggleManualFormDiv();
+</script>
+

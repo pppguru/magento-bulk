@@ -1,0 +1,48 @@
+<?php
+/**
+ * Mobile view: Featured product. Mohin - Aug 14, 2015
+ * We have added this code again for updating mobile theme 2.0.6 to 3.0.3. Erik, 11 Nov 2016, mantis-400
+ */
+?>
+<?php
+	$_productCollection=$this->getLoadedProductCollection();
+	$_helper = $this->helper('catalog/output');
+?>
+<div id="product_list" class="products">
+    <?php if(!$_productCollection->count()){ ?>
+        <div class="no-products-msg">
+            <?php echo $this->__('There are no products matching the selection.') ?>
+        </div>
+    <?php } else { ?>
+        <?php foreach ($_productCollection as $_product){ ?>
+            <div class="product-card" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')">
+                <p class="product-card__image-wrapper">
+                    <img class="product-card__image" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(90); ?>" />
+                </p>
+                <div class="product-card__info">
+                    <h3 class="product-card__title">
+                        <a href="javascript:setLocation('<?php echo $_product->getProductUrl() ?>');void(0);">
+                            <span class="product_title">
+                                <?php echo $this->stripTags($_product->getName(), null, true) ?>
+                            </span>
+                        </a>
+                    </h3>
+                    <div style="clear:both"></div>
+                    <?php echo $this->getReviewsSummaryHtml($_product, false, false)?>
+                    <?php if (AW_Mobile2_Helper_Config::isCanDisplayStockStatusAtCatalog()){?>
+                        <?php if($_product->isSaleable()){ ?>
+                            <p class="product-card__availability"><?php echo $this->__('In stock') ?></p>
+                        <?php } else{ ?>
+                            <p class="product-card__availability"><?php echo $this->__('Out of stock') ?></p>
+                        <?php } ?>
+                    <?php } ?>
+                    <div class="product-card__prices">
+                        <p class="product-card__price">
+                            <?php echo $this->getPriceHtml($_product, true);?>
+                        </p>
+                    </div>
+                </div><!-- .product-card__info -->
+            </div><!-- .product-card -->
+        <?php } ?>
+    <?php } ?>
+</div>

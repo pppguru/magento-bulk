@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@mageworx.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ * or send an email to sales@mageworx.com
+ *
+ * @category   MageWorx
+ * @package    MageWorx_GeoIP
+ * @copyright  Copyright (c) 2009 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * GeoIP extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_GeoIP
+ * @author     MageWorx Dev Team <dev@mageworx.com>
+ */
+-->
+<config>
+    <modules>
+        <MageWorx_GeoIP>
+            <version>1.0.3</version>
+        </MageWorx_GeoIP>
+    </modules>
+    
+    <frontend>
+        <translate>
+            <modules>
+                <MageWorx_GeoIP>
+                    <files>
+                        <default>MageWorx_GeoIP.csv</default>
+                    </files>
+                </MageWorx_GeoIP>
+            </modules>
+        </translate>
+        <routers>
+            <geoip>
+                <use>standard</use>
+                <args>
+                    <module>MageWorx_GeoIP</module>
+                    <frontName>geoip</frontName>
+                </args>
+            </geoip>
+        </routers>
+        <layout>
+            <updates>
+                <geoip>
+                    <file>geoip.xml</file>
+                </geoip>
+            </updates>
+        </layout>
+    </frontend>
+    
+    <global>
+        <models>
+            <geoip>
+                <class>MageWorx_GeoIP_Model</class>
+                <resourceModel>geoip_mysql4</resourceModel>
+            </geoip>
+            <geoip_mysql4>
+                <class>MageWorx_GeoIP_Model_Mysql4</class>
+            </geoip_mysql4>
+        </models>
+        <resources>
+            <geoip_setup>
+                <setup>
+                    <module>MageWorx_GeoIP</module>
+                    <class>MageWorx_GeoIP_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </geoip_setup>
+            <geoip_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </geoip_write>
+            <geoip_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </geoip_read>
+        </resources>
+        <blocks>
+            <geoip>
+                <class>MageWorx_GeoIP_Block</class>
+            </geoip>
+            <adminhtml>
+            	<rewrite>
+              		<sales_order_view_info>MageWorx_Adminhtml_Block_Geoip_Adminhtml_Sales_Order_View_Info</sales_order_view_info>
+              		<customer_online_grid>MageWorx_Adminhtml_Block_Geoip_Adminhtml_Customer_Online_Grid</customer_online_grid>
+        		</rewrite> 
+        	</adminhtml>
+        </blocks>
+        <helpers>
+            <geoip>
+                <class>MageWorx_GeoIP_Helper</class>
+            </geoip>
+        </helpers>
+    </global>
+    
+    <adminhtml>
+        <acl>
+			<resources>
+				<all><title>Allow Everything</title></all>
+				<admin>
+					<children>
+						<system>
+                            <children>
+                                <config>
+                                    <children>
+                                    	<mageworx_customers translate="title" module="mageworx">
+                                    	<title>MageWorx &gt; Customer</title>
+                                        <sort_order>1</sort_order> 
+	                                    	<children>
+		                                        <geoip translate="title" module="geoip">
+		                                            <title>GeoIP Location</title>
+		                                        </geoip>
+	                                        </children>
+                                        </mageworx_customers>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+               		</children>
+            	</admin>
+			</resources>
+		</acl>
+        <layout>
+            <updates>
+                <geoip>
+                    <file>geoip.xml</file>
+                </geoip>
+            </updates>
+        </layout>
+    </adminhtml>
+    
+    <default>
+    	<mageworx_customers>
+	    	<geoip>
+	    		<db_type>1</db_type>
+	    		<db_path>lib/GeoIP/GeoIP.dat</db_path>
+	    	</geoip>
+    	</mageworx_customers>
+    </default>
+</config>

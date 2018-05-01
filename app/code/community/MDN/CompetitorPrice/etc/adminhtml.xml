@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config>
+
+
+    <layout>
+        <updates>
+            <CompetitorPrice>
+                <file>CompetitorPrice.xml</file>
+            </CompetitorPrice>
+        </updates>
+    </layout>
+        
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+
+
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <competitorprice module="CompetitorPrice">
+                                        <title>Competitor Price</title>
+                                    </competitorprice>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+
+    <translate>
+        <modules>
+            <MDN_CompetitorPrice>
+                <files>
+                    <default>MDN_CompetitorPrice.csv</default>
+                </files>
+            </MDN_CompetitorPrice>
+        </modules>
+    </translate>
+        
+</config>

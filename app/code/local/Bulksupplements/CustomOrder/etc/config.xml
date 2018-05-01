@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Bulksupplements_CustomOrder>
+			<version>0.1.0</version>
+		</Bulksupplements_CustomOrder>
+	</modules>
+	<frontend>
+		<routers>
+			<customorder>
+				<use>standard</use>
+				<args>
+					<module>Bulksupplements_CustomOrder</module>
+					<frontName>customorder</frontName>
+				</args>
+			</customorder>
+		</routers>
+		<layout>
+			<updates>
+				<customorder>
+					<file>customorder.xml</file>
+				</customorder>
+			</updates>
+		</layout>
+	</frontend>
+	<admin>
+		<routers>
+			<customorder>
+				<use>admin</use>
+				<args>
+					<module>Bulksupplements_CustomOrder</module>
+					<frontName>customorder</frontName>
+				</args>
+			</customorder>
+		</routers>
+	</admin>
+	<adminhtml>
+		<layout>
+			<updates>
+				<customorder>
+					<file>customorder.xml</file>
+				</customorder>
+			</updates>
+		</layout>
+	</adminhtml> 
+	<global>
+		<events>
+			<sales_quote_save_before> <!-- Event Called Before Quote Object is saved -->
+				<observers>
+					<save_before>
+						<type>singleton</type>
+						<class>Bulksupplements_CustomOrder_Model_Observer</class> <!-- Over Model Class -->
+						<method>saveQuoteBefore</method> <!-- name of function -->
+					</save_before>
+				</observers>
+			</sales_quote_save_before>
+			<sales_quote_save_after> <!-- Event called After Quote Object is saved -->
+				<observers>
+					<save_after>
+						<type>singleton</type>
+						<class>Bulksupplements_CustomOrder_Model_Observer</class> <!-- Over Model Class -->
+						<method>saveQuoteAfter</method> <!-- name of function -->
+					</save_after>
+				</observers>
+			</sales_quote_save_after>
+			<sales_quote_load_after> <!-- Event called when Quote Object is loaded -->
+				<observers>
+					<load_after>
+						<type>singleton</type>
+						<class>Bulksupplements_CustomOrder_Model_Observer</class> <!-- Over Model Class -->
+						<method>loadQuoteAfter</method> <!-- name of function -->
+					</load_after>
+				</observers>
+			</sales_quote_load_after>
+			<sales_model_service_quote_submit_after> <!-- Event called after order placed -->
+				<observers>
+					<sales_model_service_quote_submit_after>
+						<type>singleton</type>
+						<class>Bulksupplements_CustomOrder_Model_Observer</class> <!-- Over Model Class -->
+						<method>saveOrderAfter</method> <!-- name of function -->
+					</sales_model_service_quote_submit_after>
+				</observers>
+			</sales_model_service_quote_submit_after>
+			<sales_order_load_after> <!-- Event called after Order Object is loaded -->
+				<observers>
+					<sales_order_load_after>
+						<type>singleton</type>
+						<class>Bulksupplements_CustomOrder_Model_Observer</class> <!-- Over Model Class -->
+						<method>loadOrderAfter</method> <!-- name of function -->
+					</sales_order_load_after>
+				</observers>
+			</sales_order_load_after>
+		</events>
+		<models>
+			<sales>
+				<rewrite>
+					<order>Bulksupplements_CustomOrder_Model_Sales_Order</order>
+				</rewrite>
+			</sales>
+			<customorder>
+				<class>Bulksupplements_CustomOrder_Model</class>
+				<resourceModel>customorder_mysql4</resourceModel>
+			</customorder>
+			<customorder_mysql4>
+				<class>Bulksupplements_CustomOrder_Model_Mysql4</class>
+				<entities>
+					<customorder_quote><table>sales_quote_custom</table></customorder_quote>
+				</entities>
+				<entities>
+					<customorder_order><table>sales_order_custom</table></customorder_order>
+				</entities>
+			</customorder_mysql4>
+		</models>
+		<resources>
+			<customorderattribute_setup>
+				<setup>
+					<module>Bulksupplements_CustomOrder</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</customorderattribute_setup>
+			<customorderattribute_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</customorderattribute_write>
+			<customorderattribute_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</customorderattribute_read>
+		</resources>
+		<blocks>
+			<customorder>
+				<class>Bulksupplements_CustomOrder_Block</class>
+			</customorder>
+			<sales>
+				<rewrite>
+					<order_info>Bulksupplements_CustomOrder_Block_Frontend_Sales_Order_Info</order_info>
+				</rewrite>
+			</sales>
+			<adminhtml>
+				<rewrite>
+					<sales_order_invoice_view_form>Bulksupplements_CustomOrder_Block_Adminhtml_Sales_Order_Invoice_View_Form</sales_order_invoice_view_form>
+				</rewrite>
+			</adminhtml>
+		</blocks>
+		<helpers>
+			<customorder>
+				<class>Bulksupplements_CustomOrder_Helper</class>
+			</customorder>
+		</helpers>
+	</global>
+</config> 

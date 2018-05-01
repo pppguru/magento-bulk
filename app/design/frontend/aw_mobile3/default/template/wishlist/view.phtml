@@ -1,0 +1,70 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Mobile3
+ * @version    3.0.3
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php if ($this->helper('wishlist')->isAllow()) : ?>
+    <div class="wishlist">
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+        <form id="wishlist-view-form" action="<?php echo $this->getUrl('*/*/update', array('wishlist_id' => $this->getWishlistInstance()->getId())) ?>" method="post">
+
+            <?php echo $this->getChildHtml('top') ?>
+
+            <?php if ($this->hasWishlistItems()): ?>
+                <?php echo $this->getBlockHtml('formkey') ?>
+
+                <?php $this->getChild('items')->setItems($this->getWishlistItems()); ?>
+
+                <?php echo $this->getChildHtml('items');?>
+            <?php else: ?>
+                <p class="wishlist-empty"><?php echo $this->__('You have no items in your wishlist.') ?></p>
+            <?php endif ?>
+
+            <div class="wishlist__controls">
+                <?php echo $this->getChild('control_buttons')->toHtml() ?>
+            </div>
+
+        </form>
+
+        <script>
+            var wishlistForm = new Validation($('wishlist-view-form'));
+
+            function addAllWItemsToCart() {
+                var url = '<?php echo $this->getUrl('*/*/allcart', array('wishlist_id' => $this->getWishlistInstance()->getId(), 'form_key' => Mage::getSingleton('core/session')->getFormKey())) ?>';
+                var separator = (url.indexOf('?') >= 0) ? '&' : '?';
+
+                $$('.js-wishlist-item-qty').each(
+                    function (input, index) {
+                        url += separator + input.name + '=' + encodeURIComponent(input.value);
+                        separator = '&';
+                    }
+                );
+
+                setLocation(url);
+            }
+        </script>
+    </div>
+
+    <?php echo $this->getChildHtml('bottom') ?>
+<?php endif ?>

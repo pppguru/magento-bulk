@@ -1,0 +1,51 @@
+<div class="entry-edit">
+
+    <div class="content-header">
+        <table cellspacing="0" class="grid-header">
+            <tr>
+                <td><h3><?php echo $this->__('Events') ?></h3></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="box" style="margin:20px;">
+
+        <p><?php echo $this->__('When an extension modifies a functionality of Magento, there are 3 possibilities : '); ?></p>
+        <p><?php echo $this->__(' 1) Overriding the class. You can checks the existing overrides using "Display Object Trace" in the tab "Conflicts List".'); ?></p>
+        <p><?php echo $this->__(' 2) Listening to a predefined "Event", and execute a custom code once this "Event" is catched'); ?></p>
+        <p><?php echo $this->__(' 3) Add an override of the class in app/code/local/ with the same class path'); ?></p>
+        <br>
+        <p><?php echo $this->__('This screen is dedicated to help you for the case 2.'); ?></p>
+        <p><?php echo $this->__('It lists all the extensions that listen to an "Event"'); ?></p>
+        <p><?php echo $this->__('It will helps you to identify if an extension modify a behaviour of Magento.'); ?></p>
+    </div>
+
+    <div class="grid">
+        <table class="data" cellspacing="0" width="100%">
+            <thead>
+            <tr class="headings">
+                <th class="a-center"><?php echo $this->__('(Scope) Event') ?></th>
+                <th class="a-center"><?php echo $this->__('Class::Method') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $events = mage::helper('ExtensionConflict/Events')->getExtensionsEvents();
+            $evenBg = '#ffffff';
+            $oddBg = '#e6e6e6';
+            $count = 0;
+            ?>
+
+            <?php foreach ($events as $eventName => $eventObservedArray): ?>
+                <?php foreach ($eventObservedArray as $data): ?>
+                    <tr bgcolor="<?php echo (($count++ % 2)?$oddBg:$evenBg); ?>">
+                        <td><?php echo '<i>('.$data['scope'].')</i> <b>'.$data['name'].'</b>';  ?></td>
+                        <td><?php echo '<b>'.$data['class'].'</b>::<i>'.$data['method'].'</i>'; ?></td>
+                   </tr>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+</div>

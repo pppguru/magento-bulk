@@ -1,0 +1,237 @@
+<div class="a-right">
+<button onclick="javascript:NewContact();" class="scalable save" type="button"><span><?php echo $this->__('New Contact')?></span></button>
+</div>
+<p>&nbsp;</p>
+<script>
+
+//************************************************************************************************************
+//charge un contact pour l'�diter
+function loadContact(Id)
+{
+	//d�finit l'url
+	var url = '';
+	url = '<?php echo $this->getUrl('adminhtml/Purchase_Contacts/GetContactInformation', array('pc_num' => 'XXX')); ?>';
+	url = url.replace('XXX', Id);
+
+	//Appel en ajax
+	var request = new Ajax.Request(url,
+	    {
+	        method:'get',
+	        onSuccess: function onSuccess(transport)
+	        			{
+	        				//recupere les donn�es
+	        				elementValues = eval('(' + transport.responseText + ')');
+	        				
+	        				//Affiche les donn�es dans les champs
+	        				document.getElementById('pc_num').value = elementValues['pc_num'];
+	        				document.getElementById('pc_firstname').value = elementValues['pc_firstname'];
+	        				document.getElementById('pc_lastname').value = elementValues['pc_lastname'];
+	        				document.getElementById('pc_function').value = elementValues['pc_function'];
+	        				document.getElementById('pc_phone').value = elementValues['pc_phone'];
+	        				document.getElementById('pc_fax').value = elementValues['pc_fax'];
+	        				document.getElementById('pc_mobile').value = elementValues['pc_mobile'];
+	        				document.getElementById('pc_email').value = elementValues['pc_email'];
+	        				document.getElementById('pc_comments').value = elementValues['pc_comments'];
+
+	        				
+	        				//Affiche le calque d'edition
+	        				document.getElementById('div_contact_edit').style.display = 'block';
+	        			},
+	        onFailure: function onAddressFailure() 
+	        			{
+							document.getElementById('div_contact_edit').style.display = 'none';
+	        				alert('error');
+	        			}
+	    }
+    );
+	
+}
+
+//************************************************************************************************************
+//Fonction pour supprimer un contat
+function deleteContact(id)
+{
+	if (confirm('<?php echo $this->__('Are you sure ?'); ?>'))
+	{
+		//d�finit l'url
+		var url = '';
+		url = '<?php echo $this->getUrl('adminhtml/Purchase_Contacts/DeleteContact', array('pc_num' => 'XXX')); ?>';
+		url = url.replace('XXX', id);
+		
+		//Appel en ajax
+		var request = new Ajax.Request(url,
+		    {
+		        method:'get',
+		        onSuccess: function onSuccess(transport)
+		        			{
+		        				//Rafraichit la page
+								RefreshContacts();
+		        			},
+		        onFailure: function onAddressFailure() 
+		        			{
+		        				alert('error');
+		        			}
+		    }
+	    );
+	}
+}
+
+//************************************************************************************************************
+//Fonction pour cr�er un nouveau contact
+function NewContact()
+{
+	//Affiche les donn�es dans les champs
+	document.getElementById('pc_num').value = '-1';
+	document.getElementById('pc_firstname').value = '';
+	document.getElementById('pc_lastname').value = '';
+	document.getElementById('pc_function').value = '';
+	document.getElementById('pc_phone').value = '';
+	document.getElementById('pc_fax').value = '';
+	document.getElementById('pc_mobile').value = '';
+	document.getElementById('pc_email').value = '';
+	document.getElementById('pc_comments').value = '';
+
+	//Affiche le calque d'edition
+	document.getElementById('div_contact_edit').style.display = 'block';
+}
+
+//************************************************************************************************************
+//Rafraichit la liste des contacts
+function RefreshContacts()
+{
+	//definit l'url
+	var url = '';
+	<?php 
+			switch ($this->getEntityType()) {
+				case 'supplier':
+					$url =  $this->getUrl('adminhtml/Purchase_Suppliers/Edit', array('sup_id' => $this->getEntityId(), 'tab' => 'tab_contacts'));
+					break;
+				case 'manufacturer':
+					$url =  $this->getUrl('adminhtml/Purchase_Manufacturers/Edit', array('man_id' => $this->getEntityId(), 'tab' => 'tab_contacts'));
+					break;
+			
+			}
+	?>
+	url = '<?php echo $url; ?>';
+	
+	//affiche l'url dans le cadre
+	//var updater = new Ajax.Updater('div_complete_contact', url, {method: 'get'});
+	document.location.href = url;
+}
+
+//************************************************************************************************************
+//Save un contact
+function SaveContact()
+{
+	//Save en ajax
+	var url = '';
+	url = '<?php echo $this->getUrl('adminhtml/Purchase_Contacts/SaveContact'); ?>';
+	//url = BASE_URL+'Contacts/SaveContact';
+	
+    var request = new Ajax.Request(
+        url,
+        {
+            method: 'post',
+            onSuccess: function onSuccess(transport)
+		        			{
+		        				//Rafraichit la page
+								RefreshContacts();
+		        			},
+			onFailure: function onFailure(transport)
+		        			{
+		        				//Rafraichit la page
+								alert('error');
+		        			},
+            parameters: Form.serialize(document.getElementById('form_contact'))
+        }
+    );
+    
+}
+
+</script>
+
+<div class="entry-edit" id="div_contact_list" name="div_contact_list">
+    
+        <div class="grid">
+			<table cellspacing="0" class="data" width="100%">
+	        	<thead>
+					<tr class="headings">
+						<th><?php echo $this->__('Firstname')?></th>
+						<th><?php echo $this->__('Lastname')?></th>
+						<th><?php echo $this->__('Function')?></th>
+						<th><?php echo $this->__('Phone')?></th>
+						<th>Fax</th>
+						<th>Mobile</th>
+						<th>Email</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						//Affiche la liste des contacts
+						$collection = $this->getContacts();
+						foreach ($collection as $item)
+						{
+							echo '<tr>';
+							echo '<td>'.$item->getpc_firstname().'&nbsp;</td>';
+							echo '<td>'.$item->getpc_lastname().'&nbsp;</td>';
+							echo '<td>'.$item->getpc_function().'&nbsp;</td>';
+							echo '<td>'.$item->getpc_phone().'&nbsp;</td>';
+							echo '<td>'.$item->getpc_fax().'&nbsp;</td>';
+							echo '<td>'.$item->getpc_mobile().'&nbsp;</td>';
+							echo '<td><a href="mailto:'.$item->getpc_email().'">'.$item->getpc_email().'</a>&nbsp;</td>';
+							echo '<td>';
+							echo '<a href="javascript:loadContact('.$item->getpc_num().')">'.$this->__('Edit').'</a> - <a href="javascript:deleteContact('.$item->getpc_num().')">'.$this->__('Delete').'</a></td>';
+							echo '</tr>';
+						}
+					?>
+				</tbody>
+			</table>
+		</div>
+			        
+        <div id="div_contact_edit" style="display: none">
+        	<div class="entry-edit-head"> 
+			    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Edit Contact')?></h4> 
+		    </div>
+        	<fieldset>
+	    		<p>&nbsp;</p>
+				<form id="form_contact" name="form_contact">
+					<input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+					<input type="hidden" name="pc_num" id="pc_num">
+					<input type="hidden" name="pc_type" id="pc_type" value="<?php echo $this->getEntityType(); ?>">
+					<input type="hidden" name="pc_entity_id" id="pc_entity_id" value="<?php echo $this->getEntityId(); ?>">
+					<table border="0" width="100%">
+						<tr>
+							<td><?php echo $this->__('Firstname')?></td>
+							<td><input type="text" name="pc_firstname" id="pc_firstname"></td>
+							<td>Fax</td>
+							<td><input type="text" name="pc_fax" id="pc_fax"></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->__('Lastname')?></td>
+							<td><input type="text" name="pc_lastname" id="pc_lastname"></td>
+							<td>Mobile</td>
+							<td><input type="text" name="pc_mobile" id="pc_mobile"></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->__('Function')?></td>
+							<td><input type="text" name="pc_function" id="pc_function"></td>
+							<td>Email</td>
+							<td><input type="text" name="pc_email" id="pc_email"></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->__('Phone')?></td>
+							<td><input type="text" name="pc_phone" id="pc_phone"></td>
+							<td><?php echo $this->__('Comments')?></td>
+							<td><textarea name="pc_comments" cols="50" rows="3" id="pc_comments"></textarea></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->__('Save')?></td>
+							<td colspan="3"><input type="button" value="<?php echo $this->__('Save')?>" onclick="SaveContact();"></td>
+						</tr>
+					</table>
+				</form>
+			</fieldset>
+		</div>
+
+</div>

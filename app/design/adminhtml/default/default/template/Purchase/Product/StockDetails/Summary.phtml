@@ -1,0 +1,43 @@
+<div class="stock-details-summary">
+    <table border="0">
+
+        <?php if ($this->getWaitingForDeliveryQty() > 0): ?>
+            <tr>
+                <td class="a-right"><?php echo $this->__('Next Supply Date') ?> : </td>
+                <td class="a-right"> <?php echo $this->getSupplyDate(); ?></td>
+            </tr>
+            <tr>
+                <td class="a-right"><?php echo $this->__('Waiting for delivery'); ?> : </td>
+                <td class="a-right"><?php echo ($this->getWaitingForDeliveryQty() ? $this->getWaitingForDeliveryQty() : 0); ?></td>
+            </tr>
+            <tr>
+                <td class="a-right"><?php echo $this->__('Purchase orders'); ?> : </td>
+                <td class="a-right"><?php echo $this->getNextPurchaseOrder(); ?></td>
+            </tr>
+        <?php endif; ?>
+
+        <tr>
+            <td class="a-right">
+              <?php echo $this->__('Manual supply need'); ?> :
+              <?php if ($this->getManualSupplyNeedQty() > 0): ?>
+                  <i><?php echo $this->getProduct()->getmanual_supply_need_comments(); ?></i>
+              <?php endif; ?>
+            </td>
+            <td class="a-right">
+              <?php echo $this->getManualSupplyNeedQty(); ?>
+            </td>
+        </tr>    
+        <tr>
+            <td class="a-right"><?php echo $this->__('Min qty to purchase'); ?> : </td>
+            <td class="a-right"><font color="red"><?php echo $this->getSupplyNeedMinQty(); ?></font></td>
+        </tr>
+        <tr>
+            <td class="a-right"><?php echo $this->__('Max qty to purchase'); ?> : </td>
+            <td class="a-right"><font color="red"><?php echo $this->getSupplyNeedMaxQty(); ?></font></td>
+        </tr>
+        <tr>
+            <td class="a-right" style="white-space: nowrap;"><?php echo $this->__('Status'); ?> : </td>
+            <td class="a-right"><?php echo $this->getGeneralStatus(); ?></td>
+        </tr>            
+    </table>
+</div>

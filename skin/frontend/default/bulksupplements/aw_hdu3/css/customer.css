@@ -1,0 +1,196 @@
+#awhdu3-ticket-list-table tr td{
+    padding: 10px;
+}
+#awhdu3-ticket-list-table tr, #awhdu3-ticket-list-table td{
+    cursor: pointer;
+}
+#awhdu3-ticket-list-table tr:hover, #awhdu3-ticket-list-table td:hover{
+    background-color: #ffc;
+}
+.awhdu3-customer-ticketview-page-title{
+    margin:0;
+    overflow-x: auto;
+}
+.awhdu3-ticket-view-action-bottomgroup{}
+.awhdu3-ticket-view-action-bottomgroup-left{
+    display:inline-block;
+    width: 49%;
+    padding-bottom: 5px;
+}
+.awhdu3-ticket-view-action-bottomgroup-right{
+    display:inline-block;
+    width: 50%;
+    text-align: right;
+    padding-bottom: 5px;
+}
+.awhdu3-ticket-view-info-table th{
+    font-weight: bold;
+    padding: 2px 15px 2px 0;
+}
+#awhdu3-ticket-view-escalate-textarea-bottom-group{
+    text-align:right;
+    padding-top: 10px;
+}
+#awhdu3-ticket-view-escalate-textarea textarea{
+    width: 100%;
+    height: 80px;
+}
+#awhdu3-customer-reply-form label[for="awhdu3-replyform-message"]{
+    text-align: left;
+}
+.aw-hdu3-external-ticketview #awhdu3-replyform-message{
+    width: 894px!important;
+}
+.awhdu3-ticket-view-thread{}
+.awhdu3-ticket-view-thread-message-box{
+    border: 1px solid #ccc;
+    border-left: 4px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    padding: 15px;
+    overflow-x: auto;
+}
+.awhdu3-ticket-view-thread-message-box>div blockquote{
+    margin-left: 20px;
+    padding-left: 10px;
+    border-left: 2px solid #ccc;
+}
+.awhdu3-ticket-view-thread-message-box-header{
+    text-align: left;
+}
+.awhdu3-ticket-view-thread-message-box-header-author{
+    font-weight: bold;
+}
+.awhdu3-ticket-view-thread-message-box-body{
+    margin-top: 8px;
+    padding-top: 2px;
+    border-top: 1px dotted #333;
+}
+.awhdu3-ticket-view-thread-message-box-body-attachmentbox{
+    font-size: 12px;
+    min-width: 100px;
+    display: inline-block;
+    background: #BEBEBE;
+    padding: 5px;
+}
+.awhdu3-ticket-view-thread-message-box-body-attachmentbox>span{
+    float: left;
+    padding: 0 10px 0 0;
+}
+.awhdu3-ticket-view-thread-message-box-body-attachmentbox>ul{
+    float: right;
+}
+.awhdu3-ticket-view-thread-message-box-body-attachmentbox>ul>li{
+    padding: 0;
+    margin: 0!important;
+}
+.awhdu3-ticket-view-thread-message-box-body-attachmentbox>ul>li>a{
+    color: #2A96FF;
+}
+/** ATTACHMENT FILE LIST (ON UPLOAD)*/
+.awhdu3-ticketform-file-list li{
+    margin: 0 10px 10px 0;
+    padding: 0;
+}
+.awhdu3-ticketform-file-list li span{
+    display: block;
+}
+.awhdu3-ticketform-file-list li span label{
+    float: none;
+}
+.awhdu3-ticketform-file-list li img{
+    height: 50px;
+}
+.awhdu3-ticketform-file-list-error-el{
+    color: red;
+}
+
+#awhdu3-ticket-view-escalate-form .required:after{
+    content: ' *';
+    color: red;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+#awhdu3-ticket-view-escalate-form {
+    text-align: left;
+}
+
+#awhdu3-ticket-view-escalate-form label {
+    text-align: center;
+}
+
+.rating-button {
+    overflow: hidden;
+    display: inline-block;
+}
+.rating-input {
+    display: none;
+}
+.rating-button:hover .rating-star:hover,
+.rating-button:hover .rating-star:hover ~ .rating-star {
+    opacity: 0.5;
+    background-image: url("../images/rating_star.png");
+}
+
+.rating-input:checked ~ .rating-star {
+    background-image: url("../images/rating_star.png");
+}
+.rating-star,
+.rating-button:hover .rating-star {
+    display: block;
+    float: right;
+    width: 17px;
+    height: 17px;
+    background-image: url("../images/rating_star-disabled.png");
+}
+
+.rating-message{
+    position: relative;
+    top: 3px;
+}
+
+.rating {
+    display: inline-block;
+    width: 90px;
+    background: url("../images/rating_star-disabled.png") 0 0 repeat-x;
+}
+.rating__bar {
+    display: block;
+    width: 0;
+    height: 17px;
+    background: url("../images/rating_star.png") 0 0 repeat-x
+}
+
+.rating__bar--5 {
+    width: 9px
+}
+.rating__bar--10 {
+    width: 18px
+}
+.rating__bar--15 {
+    width: 27px
+}
+
+.rating__bar--20 {
+    width: 36px
+}
+.rating__bar--25 {
+    width: 45px
+}
+
+.rating__bar--30 {
+    width: 54px
+}
+.rating__bar--35 {
+    width: 63px
+}
+.rating__bar--40 {
+    width: 72px
+}
+.rating__bar--45 {
+    width: 81px
+}
+.rating__bar--50 {
+    width: 90px
+}
+

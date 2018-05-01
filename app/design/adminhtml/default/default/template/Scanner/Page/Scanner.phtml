@@ -1,0 +1,59 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php 
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+
+<body style="background-color: #ffffff; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">
+
+<div style="width: <?php echo mage::getStoreConfig('scanner/display/screen_width'); ?>px; height: <?php echo mage::getStoreConfig('scanner/display/screen_height'); ?>px;">
+	<?php echo $this->getChildHtml('scanner_toolbar') ?>
+	<div id="div_content" name="div_content">
+		<?php echo $this->getChildHtml('content') ?>
+	</div>
+	<div id="div_message" name="div_message" style="display: none; margin-top: 25px; font-size: 15px; font-weight: bold; text-align: center;">
+		<div id="div_message_txt" name="div_message_txt">
+			
+		</div>
+		<center>
+			<p>&nbsp;</p>
+			<p><input type="button" name="simple_message_btn_ok" id="simple_message_btn_ok" onclick="closeSimpleMessage();" value=" CLOSE "></p>
+		</center>
+	</div>
+</div>
+
+<script>
+
+	//remove scroll bars if configured
+	var removeScrollbars = <?php echo (int)mage::getStoreConfig('scanner/display/remove_scroll_bars'); ?>;
+	if (removeScrollbars == 1)
+	{
+		document.documentElement.style.overflow = 'hidden';	 // firefox, chrome
+		document.body.scroll = "no";	// ie only
+	}
+</script>
+
+</body>
+</html>

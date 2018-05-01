@@ -1,0 +1,39 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><header class="page-header">
+    <?php $backLink = $this->getUrl('helpdesk/customer/index');?>
+    <a href="<?php echo $backLink;?>" class="page-header__action page-header__action--left page-header__action--back"><?php echo $this->__('Back');?></a>
+    <h1 class="page-header__title"><?php echo $this->getPageTitle() ?></h1>
+    <script type="text/javascript">
+        var awHdu3PageResizeFn = function() {
+            $$('.page-header__title').first().setStyle({
+                "padding-left": ($$('.page-header__action--back').first().getWidth()) + "px"
+            });
+        };
+        Event.observe(window, 'resize', awHdu3PageResizeFn);
+        awHdu3PageResizeFn();
+    </script>
+</header>

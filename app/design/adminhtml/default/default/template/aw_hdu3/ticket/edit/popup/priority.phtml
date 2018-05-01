@@ -1,0 +1,51 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Adminhtml_Ticket_Edit_Popup_Priority $this */?>
+<table cellspacing="0" class="form-list" id="aw-hdu3-ticket-edit-priority-change-popup">
+    <tbody>
+    <tr>
+        <td class="label">
+            <label for="popup_priority"><?php echo $this->__('Priority');?></label>
+        </td>
+        <td class="value">
+            <select id="popup_priority" name="priority" class=" select">
+                <?php foreach($this->getPriorityOptionArray() as $option): ?>
+                    <?php $isSelected = $option['value'] == $this->getTicket()->getPriority();?>
+                    <option value="<?php echo $option['value'];?>" <?php echo $isSelected?'selected':'';?>><?php echo $option['label'];?></option>
+                <?php endforeach;?>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="label">
+            <label for="popup_priority_note"><?php echo $this->__('Message to Help Desk Agents');?></label>
+        </td>
+        <td class="value">
+            <textarea id="popup_priority_note" name="note"></textarea>
+        </td>
+    </tr>
+    </tbody>
+</table>

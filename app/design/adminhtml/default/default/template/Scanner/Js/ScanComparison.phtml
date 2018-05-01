@@ -1,0 +1,41 @@
+<script>
+
+function compareScan()
+    {
+        var barcode = KC_value;
+
+        //define mode
+        var mode = '';
+        if (document.getElementById('scan_1').innerHTML == '')
+            mode = 'first_scan';
+        else
+        {
+            if (document.getElementById('scan_2').innerHTML == '')
+                mode = 'second_scan';
+            else
+                mode = 'first_scan';
+        }
+
+
+        //apply mode
+        switch(mode)
+        {
+            case 'first_scan':
+                document.getElementById('scan_1').innerHTML = barcode
+                document.getElementById('scan_2').innerHTML = '';
+                document.getElementById('result').innerHTML = '';
+                break;
+            case 'second_scan':
+                document.getElementById('scan_2').innerHTML = barcode
+                if (document.getElementById('scan_1').innerHTML == document.getElementById('scan_2').innerHTML)
+                    document.getElementById('result').innerHTML = '<font color="green">OK</front>';
+                else
+                    document.getElementById('result').innerHTML = '<font color="red">ERROR</front>';
+                break;
+        }
+
+
+        resetHandledKey()
+    }
+
+</script>

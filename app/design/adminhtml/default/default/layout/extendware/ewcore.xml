@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<layout>
+	<default>
+    	<reference name="head">
+    		<action method="addJs"><script>extendware/ewcore/guide.js</script></action>
+        	<action method="addItem"><type>skin_css</type><name>extendware/ewcore/css/guide.css</name></action>
+        </reference>
+        
+        <reference name="js">
+            <block type="ewcore/adminhtml_page_footer_guide" name="ewcore_guide" template="extendware/ewcore/page/footer/guide.phtml" after="-" />
+        	<block type="core/template" name="ewcore_demo" template="extendware/ewcore/page/footer/demo.phtml" after="-" />
+        </reference>
+    </default>
+    <default>
+    	<reference name="head">
+        	<action method="addItem"><type>skin_css</type><name>extendware/ewcore/css/general.css</name></action>
+        	<action method="addJs"><script>extendware/ewcore/adminhtml/general.js</script></action>
+        	
+        	<action method="addJs"><script>extendware/ewcore/opentip/opentip-native-excanvas.min.js</script></action>
+        	<action method="addItem"><type>skin_css</type><name>extendware/ewcore/css/opentip.css</name></action>
+        </reference>
+        
+        <update handle="admin_menu_highlight_handle" ewifhelper="ewcore/layout/isAdminMenuHighlightingEnabled"/>
+        
+        <reference name="notifications">
+            <block type="ewcore/adminhtml_notification_toolbar" name="ewcore_notification_toolbar" acl="system/adminnotification/show_toolbar" template="extendware/ewcore/notification/toolbar.phtml" after="notification_toolbar" />
+        </reference>
+        <reference name="before_body_end">
+            <block type="ewcore/adminhtml_page_footer_tasks" name="ewcore_page_footer_tasks" after="-"/>
+        </reference>
+    </default>
+    <admin_menu_highlight_handle>
+    	<reference name="head">
+        	<action method="addItem"><type>skin_css</type><name>extendware/ewcore/css/menu-highlight.css</name></action>
+        	<action method="addItem"><type>skin_js</type><name>extendware/ewcore/js/general.js</name></action>
+        </reference>
+    </admin_menu_highlight_handle>
+    
+    <ewcore_chooser>
+        <reference name="head">
+            <action method="addJs"><script>mage/adminhtml/wysiwyg/widget.js</script></action>
+            <action method="addJs"><script>extendware/ewcore/adminhtml/trim.js</script></action>
+            <action method="addJs"><script>prototype/window.js</script></action>
+            <!--Magento < 1.7.0 --> 
+            <action method="addItem"><type>js_css</type><name>prototype/windows/themes/default.css</name></action>
+            <action method="addItem"><type>js_css</type><name>prototype/windows/themes/magento.css</name></action>
+            <!--Magento > 1.7.0 --> 
+            <action method="addCss"><name>lib/prototype/windows/themes/magento.css</name></action>
+        </reference>
+    </ewcore_chooser>
+    
+    <!-- <adminhtml_cache_index>
+		<reference name="cache.additional">
+			<block type="ewcore/adminhtml_cache_additional_cache" name="cache.additional.ewcore" template="extendware/ewcore/cache/additional/cache.phtml" />
+		</reference>
+	</adminhtml_cache_index> -->
+</layout>

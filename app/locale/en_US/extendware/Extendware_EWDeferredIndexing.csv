@@ -1,0 +1,48 @@
+"0 seconds","0 seconds"
+"and ","and "
+"Are you sure? If cronjob is setup, then queued events will be processed automatically.","Are you sure? If cronjob is setup, then queued events will be processed automatically."
+Configuration,Configuration
+"Defer re-indexing of partial index events such as when an individual product is saved","Defer re-indexing of partial index events such as when an individual product is saved"
+"Defer the full rebuild of the index (when selecting rebuild index in system -> index management)","Defer the full rebuild of the index (when selecting rebuild index in system -> index management)"
+"Deferred / Queued","Deferred / Queued"
+"Deferred Indexing","Deferred Indexing"
+Developer,Developer
+"Did you know purchasing %s can speed up your store even more?","Did you know purchasing %s can speed up your store even more?"
+"Did you know that there have been a total of %s events processed for a <u>total time savings of %s</u>!","Did you know that there have been a total of %s events processed for a <u>total time savings of %s</u>!"
+Entity,Entity
+"Entity PK","Entity PK"
+Event,Event
+Extendware,Extendware
+"Force Process Queue","Force Process Queue"
+"Full Indexing Deferrment","Full Indexing Deferrment"
+General,General
+ID,ID
+"If enabled, then some debug and informative logs will be created.","If enabled, then some debug and informative logs will be created."
+"If you disable the Magento cron you must add [Magento root]/shell/extendware/ewdeferredindexing/process.php to your cron.","If you disable the Magento cron you must add [Magento root]/shell/extendware/ewdeferredindexing/process.php to your cron."
+"Ignored Indexes","Ignored Indexes"
+"Index Management","Index Management"
+"Indexes must be in manual mode and you must do an action (such as saving a product) that triggers an indexing event","Indexes must be in manual mode and you must do an action (such as saving a product) that triggers an indexing event"
+"Indexes must be in manual mode if you want to use deferred indexing","Indexes must be in manual mode if you want to use deferred indexing"
+"Invalid attribute %s","Invalid attribute %s"
+Logging,Logging
+"Magento Cron","Magento Cron"
+Main,Main
+"Manage Index Queue","Manage Index Queue"
+"Partial Indexing Deferrment","Partial Indexing Deferrment"
+"Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs.","Please <u>read the help descriptions, field descriptions, fieldset descriptions, and user guides</u> so you may configure this extension to suit your needs."
+Process,Process
+"Process order processes each process sequentially by processing their events. Event order processes each event sequentially by calling each related process on the event.","Process order processes each process sequentially by processing their events. Event order processes each event sequentially by calling each related process on the event."
+"Process Queue","Process Queue"
+Processing,Processing
+"Queued Index Events","Queued Index Events"
+"Queued items could not all be processed.","Queued items could not all be processed."
+"Queued items have been processed.","Queued items have been processed."
+Ready,Ready
+"Reindex Order","Reindex Order"
+"Reindex Required","Reindex Required"
+"Select the ordering used when reindexing. Older Magento versions should always use ""Events""","Select the ordering used when reindexing. Older Magento versions should always use ""Events"""
+Settings,Settings
+"There are %d deferred events that will be processed shortly.","There are %d deferred events that will be processed shortly."
+"There have been a total of %s events processed for a <u>total time savings of %s</u>!","There have been a total of %s events processed for a <u>total time savings of %s</u>!"
+"These indexes will not be processed by the deferred indexing engine. Use CTRL-C to select multiple items.","These indexes will not be processed by the deferred indexing engine. Use CTRL-C to select multiple items."
+Type,Type

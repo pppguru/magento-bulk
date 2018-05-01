@@ -1,0 +1,406 @@
+________________________________________________________________________________________________________________
+v1.9.8 - ERP 2.9.5.2
+
+- Stock UI improvements
+- Product grid UI improvement
+- Product association UI improvement
+- Multiple barcode in ERP product grid  display, filter and csv export
+- Add fall back stock on 'Assign to default warehouse if have stock" router rules
+- Improve sales history tab (sorting, display, add store, csv export)
+- Stock take : add configurable options display in product list
+- Enlarge Mass stock editor Stock location field
+- Clean and refresh erp related tables correctly when a tiers extension delete a sales order
+
+- Fix mass stock editor link for patch SUPEE-6788
+- Fix mass stock editor sort issue for patch SUPEE-6788
+- fix unconsistancy on product grid margin
+- fix compatibility issue with some giftcard extension that name "girftcard" as "Giftcard"
+- Fix compatibility issue with POS V2
+- Fix the multiple "Init product" stock movement
+- Fix Enabled/Disabled in Stock view
+- Fixes on Sales order margin tab (cost/price calculation on multi store / multi currency)
+- Fix double sub products in erp stock product view for some configurable products cases
+- Exclude "closed" order from order consideration
+- Add a logs for "valid order" calculation
+- Release/reserve buttons modication
+
+________________________________________________________________________________________________________________
+v1.9.7 - ERP 2.9.5.0
+
+Feature :
+- Add an option to activate ERP in Strict mode : if a stock quantity is not reserved, it will be impossible to ship a bigger with Magento Ship Button. This option prevent negative quantities.
+- Prevent to cancel an order if it is being dispatched Warning message in order view if order is being dispatched
+- Display stock value in warehouse grid and warehouse products tab Csv & Excel export for warehouse products
+- Major Update on Stock take feature : Stock take by Manufacturer, by Supplier, By Location or Not, and Random stock take
+- Mass action set a warehouse as favorite in ERP product grid
+- Display last POs in Magento catalog view inventory tab
+- Add pending order grid in Magento catalog view inventory tab
+- Add dedicated import for shelf locations (tab in warehouse + dataflow profile)
+- Ability to exclude a product from warning stock level/ideal stock level auto calculation
+- Add Adjustment stock movements logs in stock movement grid
+- Log username when creating stock movement in stock movement grid
+- Add sounds when scanning products in stock take
+- Possibility to hide a warehouse
+- Mass stock editor : Add possibility to filter if product is enabled/disabled
+- Mass stock editor : Add Barcode column
+- New option to populate a stock transfer based on the needed products
+- Add manufacturer column in "add products" tab in stock transfer
+- Add manufacturer column in ERP > products grid
+- It is no more mandatory to have a stock in the first warehouse for any products
+- Remove Stock Errors functionality (useless)
+- Display not stock managed products on Order view's preparation tab
+- Improve Misc part of ERP stock view + Improve layout in ERP stock view
+
+
+Fix :
+- Update reserved qty when "Manage Stock" change
+- Order consideration : does not set as updated if All product have not been considered
+- Fix definitively the Default stock does not exist: unable to duplicate for warehouse
+- Fix automatic ideal / preferred stock level calculation methods
+- Stock transfer "product to add" list was not limited to the warehouse you select for the transfer
+- Prevent to scan empty barcode in stock take
+- Fix missing manufacturer name in warehouse export csv file
+- Exclude orders in closed status when refreshing order is valid
+- Prevent php fatal error if a payment is undefined in an order, especially in order is valid calculation
+- Fix a class conflict with Boostmyshop RMA extension
+- Fix crash on credit memo if the product was not stock managed
+
+________________________________________________________________________________________________________________
+v1.9.2 - ERP 2.9.3.4
+
+Features :
+ - Optimize the save time on ERP products view : save only when when necessary
+ - Import StockTransfer products from CSV
+ - Add MassStockEditor Filter by product Status (Enabled/Disabled)
+ - Manage Stock managed Virtual and Downloable products
+ - Add PDF option to use true type font for international product name
+ - Tab price goes to read only + fix saved special price issue from ERP 2.9.3.x previous version
+ - Warehouse : simplify import warehouse and add online help (+ translations)
+ - MassStock Editor : open link in a new tab
+
+Fixes :
+ - PDF : avoid crash if logo is corrupted + log error in this case
+ - Credit memo - ReDispatch order on credit memo cancellation
+ - Add missing Deadlock protection on stock_ordered_qty change
+ - Fix : release qty reserved on partial order cancellation
+ - Fix Incorrect message in cart on some backorder cases
+ - Tab price : fix saved special price issue from ERP 2.9.3.x previous version
+ - Log exception if sales history refresh crash
+ - Import warehouse stock level : improve import errors messages and reliability
+ - Fix favorite warehouse check box + exclude from supply need save issue
+ - Prevent crash on refresh sales history on unique integrity constraint
+ - Warehouse export filename is now a .csv file
+ - Update FR Translation
+
+________________________________________________________________________________________________________________
+v1.9.1 - ERP 2.9.3.3
+
+- Fix MassStock editor grid crash when using prefixed table
+- Update Tab Preparation display in order view
+- Update FR Translation
+
+____________________________________________________________________________________________________________________
+v1.9.0 - ERP 2.9.3.2
+
+- Fix "Order not yet considered by ERP" red message was displayed on previously ERP first install completed or canceled order
+
+____________________________________________________________________________________________________________________
+v1.8.9 - ERP 2.9.3.1
+
+- Fix regression that place product out of stock in backorder mode + fix product that does not come Back instock when backorder was activated
+- Improve and prevent useless search on Barcode
+- Update FR translations
+
+____________________________________________________________________________________________________________________
+v1.8.8 - ERP 2.9.3.0
+
+Features :
+- Valid order : Don't reserve stock when order is not valid option : do_not_consider_invalid_orders_for_stocks 
+- Valid order : Add option exclude_by_payment_method
+- Valid order : Add rule set : Force order to valid by payment method 
+- Warehouse : Ability to Delete a warehouse
+- Warehouse : Enable to search in product quantity in warehouse product grid
+- Warehouse : Add Routing rule : "Affect to default warehouse if has stock, affect to warehouse having stock" 
+- Warehouse : stock export performance if current date is selected
+- AdvancedStock+Purchase : add mass action to link a product to a supplier
+- Add option to avoid Deadlock
+- Display "order was not considered by ERP" in red in order screen. 
+- Stock Take  : Enable to enter quantity manually if needed
+- Stock Take  : New option to prevent stock take edit once it's closed (option in system > configuration > advnaed stock > stock take)
+- Manage Special price in ERP -> Product grid and Price tab in ERP product view
+- Display next supply date in tab Stock 
+- Stock movement Grid : Add filter for qty and set necessary all column as sortable
+- Product grid : Add Filter of Stock Summary (on all other grid that use it)
+- Product grid : Add image + Option to display it or not
+- Product grid : add ID column 
+- Product grid : Add barcode in products and add products tab in a PO
+- Formula calculation : add option to add a minimal value on ideal stock level and warning stock level 
+- Add message in Stock Movement Adjustments to identify easily the "adjustment" from this after save 
+- Log shipment creation in a erp_create_shipment.log
+- Barcode Attribute Selection and Manufacturer/supplier Sync attribute Selection : Limit attribute list the the one compatibles with the relative fucntionnality 
+- Add permission erp :
+- erp > stock management > products to control what columns are visible for erp > products menu
+- erp > order preparation > mass action to select available mass actions in order preparation tabs
+- erp > order preparation  to hide the "selected orders" tab
+- erp > advanced stock > stock take to hide the "apply stock take" tab in stock take view
+- erp > advanced stock > serials to allow / deny to delete a serial number
+- erp > advanced stock > stock movement to allow / deny to delete a stock movement
+- erp > advanced stock > stock transfer to allow / deny to add / remove products and change quantity
+
+Fixes :
+- Fix Reservation crash if product are deleted 
+- Fix release reserved qty on cancel order
+- Fix : back to "out of stock" in some specific scenario
+- Barcode : prevent to print 0 bare code + tips to understand which Barcode to print
+- Barcode printing  : fix blanck page + skip page too early 
+- Barcode printing Fix : When $this->_rowCount = 0 : bad division
+- Trim barcode when reading  and saving it
+- Stock errors : prevent to crash if you want to fix a stock error on a deleted product (stock error is a cache)
+- Serials : prevent crash (of delete or or purchase order) and add basic logic bahaviour on grids
+- Stock Transfer : prevent crash and illogic bahaviour
+- Stock Transfer :  Fix the function "add product from scanner" 
+- Fix Negative qty on unreservation after credit memo 
+- Cancel Order detection based on State change instead of Status change 
+- Fix : Add Unique Index on cataloginventory_stock_assignment 
+- Unicity contraint on ERP sale history : add try catch to avoid upgrade error + add routine to clean double entries
+- Fix : Check payment method to force an order as valid or not 
+- Log Stock change stackTrace from external change 
+- Fix : Add unique on erp_sales_history 
+- Product deletion : Clean related tables on catalog_product_delete_before 
+- Fix Indicator OrderedQty invalid : manage all the warehouse case
+- Speed up ERP : Get AllIds Optims + Avoid getAllId issue on Magento 1.4 and lower and fastup for recent version
+- Replace getStatus() by getstate on order checks
+
+____________________________________________________________________________________________________________________
+v1.8.6 - ERP 2.9.2
+
+- Fix sales history grid ajax pager in product sheet
+- Display waiting for delivery Qty in main product's grid
+- Add Stock information in Add product grid into Create New order from Admin 
+- Fix issue with supply needs when manufacturer is set at different store level for one product
+- Fix issue to backup / restore databae after ERP is installed (update erp_supplyneeds_base view)
+- Add confirmation message when applying transfer
+- Add a new option in transfer to add products using scanner (instead of selecting them in a magento grid)
+- Fix missing location in delivery tab in a purchase order
+- Stock errors menu moved into tools menu
+- New feature : make inventories based on location scanning product barcodes (erp > stock management > inventory)
+
+____________________________________________________________________________________________________________________
+v1.8.1 - ERP 2.9.1
+
+- Affect warehouse to products without stock management (caused issue preparing orders with products without stock management)
+- Display stocks summary in inventory tab in product sheet
+- If you try to access to a deleted product in erp > products, a friendly error message is displayed
+- Fix issue in configurable product sheet if one of the simple product is associated to several warehouses
+- New option in system > configuration > advanced stock > cron to display debug information on html output
+- Fix issue with missing status in system > configuration > advanced stock > valid orders > exclude status
+- Replace qty column in catalog > manage products with a stock summary
+- Display available qty in stock summary column
+- New option in system > configuration > advanced stock > valid orders to force order validity depending of the shipping method
+- New feature to print a PDF from transfer sheet
+- Use zend framework to generate barcode labels : all codes are now accepted
+- New feature : use a product attribute for barcode instead of the standard ERP barcde management system
+- Prevent issue when cron is considering new order and saving stocks_updated (could cause issue with payment gateway feedback)
+- Prevent issue when payment validated is toggled to yes after invoice is paid (could cause issue with some payment gateways)
+- Warehouse affectation algorithm for order item improve, fix issues with simultaneous payment gateway feedback response
+- Fix issue with invoice creation for some payment gateways when "validate payment when invoice is created" option
+- Mass stock editor allows to edit shelf location, warning & ideal stock levels
+- Advanced stock no rewrites cataloginventory_resource classes instead of copying files in app/code/local/Mage
+- Automatically fix over reservation when stock level is decreased from mass stock editor or product sheet
+- Set 0 as default value for disable supply needs in warehouse
+
+____________________________________________________________________________________________________________________
+v1.7.8 - ERP 2.9.0
+
+- Fix issue on Magento 1.6 when backorders are disabled (a wrong error msg was displayed in cart)
+- Fix issue on Magento 1.6 on product duplicate (backorders default setting was unchecked)
+- Allow to display system > configuration > advanced stock at website level
+- Remove option to not reserve products for not valid orders
+- prevent cron crash when a product is deleted
+- fix dataflow issue : were not visible in advanced profiles tab
+- Fix : error was thrown when trying to update product cart quantity
+- Fix : on product duplication, backorders were enabled for new product
+
+____________________________________________________________________________________________________________________
+v1.7.6
+
+- Fix : product sheet when product doesn't manage stocks
+- Fix : issue with multiple stocks on Magento 1.6
+- Fix : customer name was missing in sales history / pending sales order grids
+- New feature : transfers (available in erp > stocks > transfers)
+- Rename prefered stock level in "warning stock level"
+- New feature : ability to manage a warning stock level and an ideal stock (when warning is reach, supply needs is created on ideal stock)
+- New settings : you can set customer groups to force order to be valid
+- Fix issue with grouped products
+- Fix : issue with POS extension creating empty stock movement
+
+____________________________________________________________________________________________________________________
+v1.7.2
+
+- Code pool is now community
+- Feature : add shelf_location column in profile Import product / warehouse stock levels, so you can use this profile to import product location
+- Add manufacturer in warehouse stock export
+- Feature : ability to import stock level at a specific date from warehouse sheet
+- New feature : set favorite warehouse for 1 product in ERP product sheet
+- Optimizations retrieving pending orders for product
+- Improvement : add button in magento product sheet to reach erp product sheet
+- Feature : add form in erp product sheet to associate a product to a warehouse without creating a stock movement
+- Prevent scheduling of the same reindex product task several times
+- Automatically togggle magento inventory options on ERP installation
+- keep tab selection when saving product
+- Fix issue on stock management with Enterprise Edition 1.10
+- Fix issue to add product to cart when both stock management and backorders are disabled
+- Add a new feature to get product sales history statistic, possibility to set 3 periods for statistics in system > configuration > advanced stock > sales history parameters. Can be automatiically updated every sunday
+- Add a new feature to automatically calculate prefered stock level based on sales history
+- Fix issue on Magento Enterprise with giftcards
+- If product availability is missing for a product, doesn't prevent add to cart on front end
+- new setting in system > configuration > advanced stock to hide inventory tab in product sheet
+- Add new role to allow or deny save in erp > product view
+- Add new role to allow or deny price tab view in erp > product view
+- Fix template issue on magento 1.4.2
+- Fix memory issue when trying to refresh stock errors
+- New advanced profiles to export sales history
+- Add all orders history in sales history tab in ERP product sheet
+
+____________________________________________________________________________________________________________________
+v1.6.13
+
+- Fix : issue with magento 1.4.2 enabling option "Display configurable attributes"
+- Improvement : change implementation to link order and preparation warehouse
+- Fix : issue with magento < 1.4.1.1 that prevented to add to cart configurable products
+
+____________________________________________________________________________________________________________________
+v1.6.12
+
+- Fix : synchronize is_in_stock status for every product stocks
+- Fix : issue when using multi stock and check quote item qty
+- Add created at and updated at fields in ERP product sheet
+- Add event advancedstock_mass_stock_editor_grid_preparecolumns
+- Add manufacturer & supplier columns in mass stock editor
+- New feature system > configuration > advanced stocks > misc > display configurable attributes to display configurable attributes values for sub product in all screens
+- Rewrite pointOfSales extension to consider several warehouse in product stock display and ERP barcode management
+- Add warehouse code column in warehouse grid
+- Add new advance profile to import product stock level for one warehouse
+- Add new advance profile to import product product barcodes
+- Fix : information in ERP > products grid were wrong when using price_includes_tax setting
+- Group ERP settings in system > configuration > ERP
+- Advanced stock extension disables stock management for bundle & configurable products on install
+- Feature : print barcode labels from ERP product sheet (in barcode tab)
+- Fix : if "do not display out of stock" product option is enabled, refresh product index when product goes instock / out of stock
+- Add time to stock movement date
+
+____________________________________________________________________________________________________________________
+v1.6.9
+
+- New feature : in warehouse sheet, ability to export product stock levels and value for a specific date (csv file).
+- New event : creditmemo_aftersave
+- Add transfer stock movement type
+- Class MDN_AdvancedStock_Model_Stock removed and merged with MDN_AdvancedStock_Model_CatalogInventory_Stock_Item
+- Model AdvancedStock/Stock removed (replaced with cataloginventory/stock_item)
+- Add new option in system > configuration > advanced stock > general >Restore is in stock when product back in stock to put product "in_stock" when it comes back to stock
+- Fix: product inventory status set to "out_of_stock" when available qty <= min_qty
+- Fix issue with grouped products (orders were not displayed in order preparation)
+- Add link to go in a warehouse sheet from ERP product sheet
+- Add shelf location in product ERP sheet, warehouse products tab
+- Fix: mass stock editor grid: sku & name filter raised an error
+
+____________________________________________________________________________________________________________________
+v1.6.8
+
+- Overrides product return reservation grid to display warehouses summary for each product
+- Fix crash when rma contains reserved product that is not used in created order
+- Fix : add stock movement type for "reservation rma" stock movements
+- Fix: translation issues
+
+____________________________________________________________________________________________________________________
+v1.6.7
+
+- Fix : add payment_validated column in sales_order_grid table for magento >= 1.4.1.1
+- Use innodb & utf8 for database tables
+____________________________________________________________________________________________________________________
+v1.6.6
+
+- Fix : layout error for prototype/window.js
+- Fix : update stocks when stock movement is deleted
+- Add compatibility with Magento 1.1, 1.2
+- Add __construct in new stock movemnt block (to avoid warnings in logs)
+- Add sku in ERP > Product sheet title
+- Fix : stock movement qty wrong for configurable product with qty > 1
+- Fix: issue with helper AdvancedStock/Sales_ValidOrders->updateIsValid
+- New option not to reserve products for not valid orders (setting in system > configuration > advanced stock > valid orders)
+- add productReservationAllowed method in sales_order model
+- when an order is canceled, set reserved qty to 0 (enhancement, not bug fix)
+- when a creditmemo is create, update reserved qty in order (enhancement, not bug fix)
+- Restore stock movement types
+- Fix installation issue under magento 1.4.0.1 if you use database table prefix
+- Fix: add mage directory in local directory to prevent magento from crash when multi stock is used for configurable products
+- Fix : products are reserved for order when changing stock levels using mass stock editor
+
+____________________________________________________________________________________________________________________
+v1.6.5
+
+- Fix: issue with method getProductFromBarcode
+- Fix: issue with database table prefix for FlatOrder->isFlatOrder
+
+____________________________________________________________________________________________________________________
+v1.6.4
+
+- Fix Issue when retrieving pending orders if an order contains the same product twice
+- Use state instead of status to select available orders
+- Add barcode column in ERP > products grid
+- Fix issue when saving product barcode
+- Merge branches 1.4 & 1.4.1
+- New event : advancedstock_product_force_stocks_update_requested
+- New parameter in system > configuration > advanced stock > cron to limit the number of order parsed by the cron
+- Fix : do not create stock movement if product doesn't manage stock
+- Improvement : do not compute stock if product doesn't manage stocks
+- new feature to mass fix errors  (available in stock error grid)
+____________________________________________________________________________________________________________________
+v 1.6.3
+
+- Fix: in erp > product > sheet, only valid order were displayed, all pending order are not displayed
+- Create new event salesorder_just_cancelled (to allow order preparation to dispatch order)
+- Add new event to add custom column in ERP > products
+
+____________________________________________________________________________________________________________________
+v 1.6.1
+
+- Add admin website in warehouse assignments
+- Fix issue when cancelling an order, stocks are not updated
+- Fix issue for stock availability when placing an order from backoffice
+
+____________________________________________________________________________________________________________________
+v 1.6
+
+- Add adminhtml.xml
+- Fix issue regarding product reservation when a positive stock movement is created
+- use explode function instead of split (for php > 5.3)
+
+____________________________________________________________________________________________________________________
+v 1.5.9
+
+- Add settings for valid orders (system > config > advanced stock)
+- Add button in (system > config > advanced stock) to refresh all order is_valid flag value
+- Add french translations
+
+____________________________________________________________________________________________________________________
+v 1.5.8
+
+- Overload product return stock helper to manage product back to stock using stock movement
+- Fix issue with configurable product and getJsonQuery() (old reference to purchase/productavailability)
+
+____________________________________________________________________________________________________________________
+v 1.5.7
+
+- Extension creation (split from purchase module) :this extension managed product stock, inventory, sotck movement, warehouse, product reservation
+- Multi stock management :
+	- Warehouse management
+	- Warehouse assignment
+	- Improved product sheet (all inventory options can be set under erp > product sheet)
+- Stock movement are now depending of 2 warehouse (in / out)
+- Improved stock error feature (use background task to refresh cache and prevent from time out during update, improve error message accuracy)
+- New mass stock editor (to manage multi stocks)
+- Product serial support
+- Product barcode support
+- New menu for all ERP features (ERP)
+- display warehouse stock levels on front office

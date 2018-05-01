@@ -1,0 +1,177 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Fix Conflict Solution')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl()?>'" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="entry-edit-head">
+	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Important Notice'); ?></h4> 
+</div>
+<div class="entry-edit">
+	<fieldset>
+		<font color="red">
+			<p>This tool is provided "as is" and the solution displayed below may not work in every situations</p>
+			<p>We highly recommend to  : </p>
+			<p>- backup modified files previously any modification</p>
+			<p>- to test this on a development server before applying this modification on a production server</p>
+			<p>BoostMyShop can t be responsible for any data lose or server errors</p>
+		</font>
+	</fieldset>
+</div>
+
+<div class="entry-edit-head">
+	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Conflict Information'); ?></h4> 
+</div>
+<div class="entry-edit">
+	<fieldset>
+		<table cellspacing="0" class="form-list">
+			<tr>
+				<td width="200">Core module</td>			
+				<td><?php echo $this->getConflict()->getec_core_module(); ?></td>			
+			</tr>
+			<tr>
+				<td width="200">Core class</td>			
+				<td><?php echo $this->getConflict()->getec_core_class(); ?></td>			
+			</tr>
+			<tr>
+				<td width="200">Rewrite classes</td>			
+				<td><?php echo $this->getConflict()->getec_rewrite_classes(); ?></td>			
+			</tr>
+
+		</table>
+	</fieldset>
+</div>
+
+<?php if (!$this->getConflict()->canFix()): ?>
+
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Solution'); ?></h4> 
+	</div>
+	<div class="entry-edit">
+		<fieldset>
+			There are too many rewrite classes to find a solution :(
+		</fieldset>
+	</div>
+
+<?php else: ?>
+    <?php
+    $max = $this->getConflict()->countRewrites();
+    $class1 = $this->getConflict()->getClassInformation(0);
+    $class2 = $this->getConflict()->getClassInformation(1);
+    $class3 = $this->getConflict()->getClassInformation(2);
+    $class4 = $this->getConflict()->getClassInformation(3);
+    $class5 = $this->getConflict()->getClassInformation(4);
+    $class6 = $this->getConflict()->getClassInformation(5);
+    ?>
+	
+		<div class="entry-edit-head">
+			<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Solution for the %s rewrites',$max); ?></h4>
+		</div>
+		<div class="entry-edit">
+			<fieldset>
+                <?php $i=1; ?>
+                <p><b><?php echo $i.' '.$class1['class']; ?></b></p>
+				<p><?php echo $this->__('Keep the rewrite declaration and extend second class:'); ?></b></p>
+
+                <ul style="margin-left: 30px;">
+                    <?php /*echo '<pre>';var_dump($class1);echo '</pre>';*/ ?>
+                    <li><?php echo $this->__('Edit file '); ?><font color="red"><?php echo $class1['class_path']; ?></font></li>
+                    <li><?php echo $this->__('Replace class declaration'); ?> <font color="red">"<?php echo $class1['class_declaration']; ?>"</font> with <font color="red">"<?php echo $class1['new_class_declaration']; ?><?php echo $class2['class']; ?>"</font></li>
+                </ul>
+
+                <?php if ($class2): ?>
+                    <?php $i++; ?>
+                    <br/><p><b><?php echo $i.' '.$class2['class']; ?></b></p>
+                    <?php if ($max != $i): ?>
+                        <p><b><?php echo $this->__('Change class declaration '); ?></b></p>
+                        <ul style="margin-left: 30px;">
+                            <li><?php echo $this->__('Edit file '); ?><font color="red"><?php echo $class2['class_path']; ?></font></li>
+                            <li><?php echo $this->__('Replace class declaration'); ?> <font color="red">"<?php echo $class2['class_declaration']; ?>"</font> with <font color="red">"<?php echo $class2['new_class_declaration']; ?><?php echo $class3['class']; ?>"</font></li>
+                        </ul>
+                    <?php endif; ?>
+                    <p><b><?php echo $this->__('Then remove the rewrite declaration :'); ?></b></p>
+                    <ul style="margin-left: 30px;">
+                        <li><?php echo $this->__('Edit file '); ?><font color="red"><?php echo $class2['config_file_path']; ?></font></li>
+                        <li><?php echo $this->__('Remove code : '); ?><font color="red">&lt;<?php echo $this->getConflict()->realClassCoreName(); ?>&gt;<?php echo $class2['class']; ?>&lt;<?php echo $this->getConflict()->realClassCoreName(); ?>&gt;</font></li>
+                    </ul>
+                <?php endif; ?>
+
+                <?php if ($class3): ?>
+                    <?php $i++; ?>
+                    <br/><p><b><?php echo $i.' '.$class3['class']; ?></b></p>
+                    <?php if ($max != $i): ?>
+                        <p><b><?php echo $this->__('Change class declaration '); ?></b></p>
+                        <ul style="margin-left: 30px;">
+                            <li><?php echo $this->__('Edit file '); ?><font color="red"><?php echo $class3['class_path']; ?></font></li>
+                            <li><?php echo $this->__('Replace class declaration'); ?> <font color="red">"<?php echo $class3['class_declaration']; ?>"</font> with <font color="red">"<?php echo $class3['new_class_declaration']; ?><?php echo $class4['class']; ?>"</font></li>
+                        </ul>
+                    <?php endif; ?>
+                    <p><b><?php echo $this->__('Then remove the rewrite declaration :'); ?></b></p>
+                    <ul style="margin-left: 30px;">
+                        <li><?php echo $this->__('Edit file '); ?><font color="red"><?php echo $class3['config_file_path']; ?></font></li>
+                        <li><?php echo $this->__('Remove code : '); ?><font color="red">&lt;<?php echo $this->getConflict()->realClassCoreName(); ?>&gt;<?php echo $class3['class']; ?>&lt;<?php echo $this->getConflict()->realClassCoreName(); ?>&gt;</font></li>
+                    </ul>
+                <?php endif; ?>
+
+                <?php if ($class4): ?>
+                    <?php $i++; ?>
+                    <br/><p><b><?php echo $i.' '.$class4['class']; ?></b></p>
+                    <?php if ($max != $i): ?>
+                        <p><b><?php echo $this->__('Change class declaration '); ?></b></p>
+                        <ul style="margin-left: 30px;">
+                            <li><?php echo $this->__('Edit file '); ?><font color="red"><?php echo $class4['class_path']; ?></font></li>
+                            <li><?php echo $this->__('Replace class declaration'); ?> <font color="red">"<?php echo $class4['class_declaration']; ?>"</font> with <font color="red">"<?php echo $class4['new_class_declaration']; ?><?php echo $class5['class']; ?>"</font></li>
+                        </ul>
+                    <?php endif; ?>
+                    <p><b><?php echo $this->__('Then remove the rewrite declaration :'); ?></b></p>
+                    <ul style="margin-left: 30px;">
+                        <li><?php echo $this->__('Edit file '); ?><font color="red"><?php echo $class4['config_file_path']; ?></font></li>
+                        <li><?php echo $this->__('Remove code : '); ?><font color="red">&lt;<?php echo $this->getConflict()->realClassCoreName(); ?>&gt;<?php echo $class4['class']; ?>&lt;<?php echo $this->getConflict()->realClassCoreName(); ?>&gt;</font></li>
+                    </ul>
+                <?php endif; ?>
+
+                <?php if ($class5): ?>
+                    <?php $i++; ?>
+                    <br/><p><b><?php echo $i.' '.$class5['class']; ?></b></p>
+                    <?php if ($max != $i): ?>
+                        <p><b><?php echo $this->__('Change class declaration '); ?></b></p>
+                        <ul style="margin-left: 30px;">
+                            <li><?php echo $this->__('Edit file '); ?><font color="red"><?php echo $class5['class_path']; ?></font></li>
+                            <li><?php echo $this->__('Replace class declaration'); ?> <font color="red">"<?php echo $class5['class_declaration']; ?>"</font> with <font color="red">"<?php echo $class5['new_class_declaration']; ?><?php echo $class6['class']; ?>"</font></li>
+                        </ul>
+                    <?php endif; ?>
+                    <p><b><?php echo $this->__('Then remove the rewrite declaration :'); ?></b></p>
+                    <ul style="margin-left: 30px;">
+                        <li><?php echo $this->__('Edit file '); ?><font color="red"><?php echo $class5['config_file_path']; ?></font></li>
+                        <li><?php echo $this->__('Remove code : '); ?><font color="red">&lt;<?php echo $this->getConflict()->realClassCoreName(); ?>&gt;<?php echo $class5['class']; ?>&lt;<?php echo $this->getConflict()->realClassCoreName(); ?>&gt;</font></li>
+                    </ul>
+                <?php endif; ?>
+
+                <?php if ($class6): ?>
+                    <?php $i++; ?>
+                    <br/><p><b><?php echo $i.' '.$class6['class']; ?></b></p>
+                    <p><b><?php echo $this->__('Then remove the rewrite declaration :'); ?></b></p>
+                    <ul style="margin-left: 30px;">
+                        <li><?php echo $this->__('Edit file '); ?><font color="red"><?php echo $class6['config_file_path']; ?></font></li>
+                        <li><?php echo $this->__('Remove code : '); ?><font color="red">&lt;<?php echo $this->getConflict()->realClassCoreName(); ?>&gt;<?php echo $class6['class']; ?>&lt;<?php echo $this->getConflict()->realClassCoreName(); ?>&gt;</font></li>
+                    </ul>
+                <?php endif; ?>
+
+                <?php $i++; ?>
+				<p><b><?php echo $i.' '.$this->__('Refresh Magento Cache'); ?></p>
+
+                <?php $i++; ?>
+				<p><b><?php echo $i.' '.$this->__('Go back to the conflict list and click on refresh button to check if conflict is fixed'); ?></p>
+			</fieldset>
+		</div>
+
+<?php endif; ?>
+
+</div>

@@ -1,0 +1,105 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Helpdesk3
+ * @version    3.3.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Helpdesk3_Block_Contacts_Fields $this */?>
+<?php if ($this->isCanShow()):?>
+<div id="awhdu3-contacts-fields-container">
+    <p class="form__field">
+        <?php echo $this->getBlockHtml('formkey')?>
+    </p>
+    <?php if ($this->isCanShowDepartment()): ?>
+    <p class="form__field form__field--required">
+        <label for="department" class="form__label form__label--required"><?php echo $this->__('Department') ?></label>
+        <select name="department" id="department" class="form__select textfield required-entry" title="<?php echo $this->__('Department') ?>">
+            <?php foreach($this->getDepartmentOptionList() as $option):?>
+                <option value="<?php echo $option['value'];?>" <?php echo $this->isDepartmentDefault($option['value'])?'selected':''?>
+                    ><?php echo $option['label'];?>
+                </option>
+            <?php endforeach;?>
+        </select>
+    </p>
+    <?php endif;?>
+    <?php if ($this->isCanShowPriority()): ?>
+    <p class="form__field form__field--required">
+        <label for="priority" class="form__label form__label--required"><?php echo $this->__('Priority') ?></label>
+        <select name="priority" id="priority" class="form__select textfield required-entry" title="<?php echo $this->__('Priority') ?>">
+            <?php foreach($this->getPriorityOptionList() as $option):?>
+                <option value="<?php echo $option['value'];?>" <?php echo $this->isPriorityDefault($option['value'])?'selected':''?>
+                    ><?php echo $option['label'];?>
+                </option>
+            <?php endforeach;?>
+        </select>
+    </p>
+    <?php endif;?>
+    <?php if ($this->isCanShowAttachment()): ?>
+    <p class="form__field">
+        <label for="name" class="form__label"><?php echo $this->__('Attachments') ?></label>
+        <?php if ($this->getMaxAvailableFileSize()):?>
+            <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $this->getMaxAvailableFileSize() * 1024 * 1024;?>" />
+        <?php endif;?>
+        <input name="attachments[]" id="attachments" title="<?php echo $this->__('Attachments') ?>" value="" class="form__textfield textfield" type="file" multiple/>
+        <script type="text/javascript">
+            new AWLIB.FileUploader($('attachments'), {
+                fileListClassName: 'awhdu3-ticketform-file-list',
+                errorMsgClassName: 'awhdu3-ticketform-file-list-error-el',
+                fileListElName: 'attachment_needed',
+                availableFileExtensionList: <?php echo Zend_Json::encode($this->getAvailableFileExtensionList());?>,
+                maxFileSizeInBytes: <?php echo Zend_Json::encode($this->getMaxAvailableFileSize() * 1024 * 1024);?>,
+                unexpectedFileExtensionMessage: function(fileName) {
+                    return '<?php echo $this->__('Unexpected extension for file: %s. Extension must be one of: %s', "' + fileName + '", join(', ', $this->getAvailableFileExtensionList()));?>';
+                },
+                unexpectedFileSizeMessage: function(fileName) {
+                    return '<?php echo $this->__('File "%s" is too large. File size must be less than %s Mb', "' + fileName + '", $this->getMaxAvailableFileSize());?>';
+                }
+            });
+        </script>
+    </p>
+    <?php endif;?>
+</div>
+<script type="text/javascript">
+    (function(){
+        var container = $("awhdu3-contacts-fields-container");
+        var commentElement = $("comment");
+        if (!commentElement) {
+            container.remove();
+            return;
+        }
+        var insertBeforeElement = commentElement.up('p');
+        if (!insertBeforeElement) {
+            container.remove();
+            return;
+        }
+        container.select('p').each(function(el){
+            insertBeforeElement.insert({'before': el});
+        });
+        container.remove();
+        var form = commentElement.up('form');
+        if (!form) {
+            return;
+        }
+        form.setAttribute('enctype', 'multipart/form-data');
+    })();
+</script>
+<?php endif;?>

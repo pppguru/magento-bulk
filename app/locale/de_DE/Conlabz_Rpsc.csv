@@ -1,0 +1,8 @@
+"If selected, values will overide configuration in System > Configuration > Checkout > Rpsc","Überschreibt die Einstellung in System > Konfiguration > Zur Kasse > Rpsc"
+"Warning!","Achtung!"
+"The following items are not available for shipment in your country and will be remove from your cart!","Folgende Artikel sind leider nicht in Ihrem Land verfügbar und werden aus dem Warenkorb entfernt"
+"Price","Preis"
+"allow","erlauben"
+"deny","sperren"
+"Use config settings","Konfiguration verwenden"
+"Can be allowed or denied as specified in System > Configuration > Checkout > Rpsc","Länder können erlaubt oder geblockt werden, siehe Einstellung System > Konfiguration > Zur Kasse > Rpsc"

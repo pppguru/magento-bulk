@@ -1,0 +1,9 @@
+<p><?php echo $this->getMethod()->getTitle() ?>
+    <?php if($this->getMethod()->getWiretransferInstructionsEmail()): ?>
+        <br /><?php echo Mage::helper('payment')->__('Send Wire Transfer to:') ?>
+        <br />
+        <span class="checkmo-mailing-address">
+            <?php echo nl2br($this->getMethod()->getWiretransferInstructionsEmail()) ?>
+        </span>
+    <?php endif; ?>
+</p>

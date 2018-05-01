@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * You may not sell, sub-license, rent or lease
+ * any portion of the Software or Documentation to anyone.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future.
+ *
+ * @category   ET
+ * @package    ET_IpSecurity
+ * @copyright  Copyright (c) 2012 ET Web Solutions (http://etwebsolutions.com)
+ * @contacts   support@etwebsolutions.com
+ * @license    http://shop.etwebsolutions.com/etws-license-free-v1/   ETWS Free License (EFL1)
+ */
+ -->
+
+<config>
+    <tabs>
+        <etall translate="label">
+            <label>ET Extensions</label>
+            <sort_order>400</sort_order>
+        </etall>
+    </tabs>
+
+    <sections>
+        <etipsecurity translate="label" module="etipsecurity">
+            <label>IP Security</label>
+            <tab>etall</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>300</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <info translate="label">
+                    <label>IP Security information</label>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <support_information>
+                            <frontend_model>etipsecurity/adminhtml_support</frontend_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </support_information>
+                    </fields>
+                </info>
+                <global_settings translate="label">
+                    <label>Global Settings</label>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <get_ip_method translate="label comment">
+                            <label>Method to get IP</label>
+                            <comment><![CDATA[Extension receives customer IP from server. Servers can store this information in different variables. Usually variable REMOTE_ADDR is used. But if your server is configured differently, you can select neccessary IP address get method.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>etipsecurity/ipVariable</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </get_ip_method>
+                        <methods_information translate="label">
+                            <frontend_model>etipsecurity/adminhtml_getIpInfo</frontend_model>
+                            <label>Current server values</label>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </methods_information>
+                    </fields>
+                </global_settings>
+                <ipsecurityfront translate="label comment">
+                    <label>IP Security - Frontend</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <allow translate="label comment">
+                            <label>Allow these IPs</label>
+                            <comment><![CDATA[Visitors with other IPs will be blocked.]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allow>
+                        <block translate="label">
+                            <label>Block these IPs</label>
+                            <comment><![CDATA[You can enter IP addresses, masks and ranges. Comments are added with character |. Each rule on separate row.<br>Example:<br>127.0.0.1|My address<br>10.*.*.*|internal company IPs<br>10.0.0.1-20.0.0.1|IP Range<br>10.0.0.192/26|IP Range]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block>
+                        <redirect_blank translate="label comment">
+                            <label>Redirect to blank page</label>
+                            <comment><![CDATA[When blocking rule is triggered visitor will be redirected to a blank page with blocking rule description.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </redirect_blank>
+                        <redirect_page translate="label comment">
+                            <label>Redirect to CMS page</label>
+                            <comment><![CDATA[Visitor will not be notified about blocking rule redirection.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_cms_page</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </redirect_page>
+                        <email_event translate="label comment">
+                            <label>Mail block events to</label>
+                            <comment><![CDATA[You can specify multiple recipients. Comma separated. For example: admin1@example.com, admin2@example.com]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_event>
+                        <email_template translate="label">
+                            <label>Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_template>
+                        <email_identity translate="label">
+                            <label>Store email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_identity>
+                        <email_always translate="label comment">
+                            <label>Email always</label>
+                            <comment><![CDATA[Yes - mail notification will be sent every time when blocking rule applies. No - mail notification will be sent when IP is blocked for first time and each 10th time blocking occurs.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_always>
+                    </fields>
+                </ipsecurityfront>
+                <ipsecurityadmin translate="label comment">
+                    <label>IP Security - Admin</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <allow translate="label comment">
+                            <label>Allow these IPs</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment>Be careful not to lock yourself out!</comment>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allow>
+                        <block translate="label">
+                            <label>Block these IPs</label>
+                            <comment><![CDATA[You can enter IP addresses, masks and ranges. Comments are added with character |. Each rule on separate row.<br>Example:<br>127.0.0.1|My address<br>10.*.*.*|internal company IPs<br>10.0.0.1-20.0.0.1|IP Range<br>10.0.0.192/26|IP Range]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block>
+                        <redirect_blank translate="label comment">
+                            <label>Redirect to blank page</label>
+                            <comment><![CDATA[When blocking rule is triggered visitor will be redirected to a blank page with blocking rule description.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </redirect_blank>
+                        <redirect_page translate="label">
+                            <label>Redirect to CMS page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_cms_page</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </redirect_page>
+                        <email_event translate="label comment">
+                            <label>Mail block events to</label>
+                            <comment><![CDATA[You can specify multiple recipients. Comma separated. For example: admin1@example.com, admin2@example.com]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_event>
+                        <email_template translate="label">
+                            <label>Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_template>
+                        <email_identity translate="label">
+                            <label>Store email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_identity>
+                        <email_always translate="label comment">
+                            <label>Email always</label>
+                            <comment><![CDATA[Yes - mail notification will be sent every time when blocking rule applies. No - mail notification will be sent when IP is blocked for first time and each 10th time blocking occurs.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_always>
+                    </fields>
+                </ipsecurityadmin>
+
+                <ipsecuritymaintetance translate="label comment">
+                    <label>IP Security - Maintenance page</label>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Store Offline</label>
+                            <comment>For frontend only.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <except translate="label comment">
+                            <label>Except these IPs</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment><![CDATA[Visitors with these IPs will not be redirected to maintenance page.]]></comment>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </except>
+                        <message translate="label">
+                            <label>Message</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </message>
+                        <remindermessage translate="label">
+                            <label>Reminder message</label>
+                            <comment><![CDATA[This message will be shown on frontend for visitors with IP adresses from exception list while maintenance mode is on.]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </remindermessage>
+                    </fields>
+                </ipsecuritymaintetance>
+            </groups>
+        </etipsecurity>
+    </sections>
+</config>

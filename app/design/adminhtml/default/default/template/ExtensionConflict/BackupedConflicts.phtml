@@ -1,0 +1,36 @@
+<div class="entry-edit">
+    <div class="content-header">
+        <table cellspacing="0" class="grid-header">
+            <tr>
+                <td><h3><?php echo $this->__('Backups of previous conflicts') ?></h3></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="box" style="margin:20px;">
+        <i><?php echo $this->__('Conflicts which has been backup are in /var/ExtensionConflictBackup of your magento installation'); ?></i>
+    </div>
+
+    <div class="grid">
+       <?php
+        $list = mage::helper('ExtensionConflict/Backup')->getBackupedConflictList();
+        echo '<table class="data" cellspacing="0" width="100%">';
+        echo '<thead class="headings"><th class="a-center">'.$this->__('Date').'</th><th class="a-center">'.$this->__('Model').'</th></thead>';
+        foreach ($list as $conflict){
+            if(strlen($conflict) > 2) {
+                $details = explode(MDN_ExtensionConflict_Helper_Backup::DELIM, $conflict);
+                if (count($details) == 2) {
+                    echo '<tr>';
+                        echo '<td align="center">' . $details[0] . '</td>';//DATE
+                        echo '<td align="center">' . $details[1] . '</td>';//MODEL
+                    echo '</tr>';
+                }
+            }
+        }
+        echo '</table>';
+        ?>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,38 @@
+<?php $_products = $this->getProducts(); ?>
+<table class="table-touch" id="table_products">
+    <tr>        
+        <th><?php echo $this->__('SKU'); ?></th>
+        <th><?php echo $this->__('Product'); ?></th>
+        <th><?php echo $this->__('Scanned qty'); ?></th>
+        <th><?php echo $this->__('Expected qty'); ?></th>
+        <th><?php echo $this->__('Difference'); ?></th>
+    </tr>
+    <?php if ($_products->getSize() > 0): ?>
+        <?php foreach($_products as $product): ?>
+            <tr>               
+                <td><?php echo $product->getSku(); ?></td>
+                <td>
+                    <?php
+                    $name = $product->getName();
+                    $configurableAttributes =  '';
+                    if (Mage::getStoreConfig('advancedstock/miscellaneous/display_configurable_attributes') == 1) {
+                        $configurableAttributes = mage::helper('AdvancedStock/Product_ConfigurableAttributes')->getDescription($product->getId());
+                    }
+                    echo (strlen($configurableAttributes)>0)?$name.'<br/>'.$configurableAttributes:$name;
+                    ?>
+                </td>
+                <td>
+                    <?php if (Mage::getStoreConfig('advancedstock/stock_take/display_quantity_buttons')): ?>
+                        <input type="button" value=" - " onclick="inventoryObj.decreaseQty(<?php echo $product->getId(); ?>);">
+                    <?php endif; ?>
+                    <input type="text" size="3" onchange="inventoryObj.textQuantityChanged('<?php echo $product->getId(); ?>');" id="scanned_qty_<?php echo $product->getId(); ?>" name="scanned_qty_<?php echo $product->getId(); ?>" value="1">
+                    <?php if (Mage::getStoreConfig('advancedstock/stock_take/display_quantity_buttons')): ?>
+                        <input type="button" value=" + " onclick="inventoryObj.increaseQty(<?php echo $product->getId(); ?>);">
+                    <?php endif; ?>
+                </td>
+                <td><?php echo (int)$product->geteisp_stock(); ?></td>
+                <td id="diff_<?php echo $product->getId(); ?>"></td>
+            </tr>
+        <?php endforeach; ?>
+    <?php endif ?>
+</table>
